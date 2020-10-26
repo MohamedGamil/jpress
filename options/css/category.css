@@ -1,0 +1,124 @@
+.appbear_postbox {
+    position: relative;
+    min-width: 255px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    background: #fff;
+}
+.appbear_postbox, .stuffbox {
+    margin-bottom: 20px;
+    padding: 0;
+    line-height: 1;
+}
+
+.appbear_postbox h2, .appbear_postbox h3 {
+    color: #23282d;
+    font-size: 1.3em;
+    margin: 1em 0;
+}
+.appbear_postbox h1, .appbear_postbox h2, .appbear_postbox h3, .appbear_postbox h4, .appbear_postbox h5, .appbear_postbox h6 {
+    display: block;
+    font-weight: 600;
+}
+
+.appbear_postbox .inside {
+    margin: 11px 0;
+    position: relative;
+}
+.appbear_postbox .inside {
+    padding: 0 12px 12px;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+.appbear-category-panel {
+    background: #23282d;
+    position: relative;
+    color: #6f7d8c;
+    margin: -6px -12px -11px;
+    transition: opacity 0.3s;
+}
+
+.appbear_postbox #header-preview, .appbear_postbox #header-preview * ,.appbear_postbox .option-item, .appbear_postbox .appbear-category-panel-content, .appbear_postbox .appbear-section-tabs, .appbear_postbox .appbear-section-tabs a, .appbear_postbox .appbear-page-builder input[type=text] ,.appbear_postbox .appbear-page-builder select, .appbear_postbox .appbear-page-builder textarea {
+    box-sizing: border-box;
+}
+.appbear_postbox .option-item {
+    clear: both;
+    padding: 12px 25px;
+    position: relative;
+    background: #ffffff;
+    border-bottom: 1px solid #f4f4f4;
+}
+.appbear_postbox .option-item .appbear-label {
+    width: 250px;
+    margin-right: 20px;
+    display: inline-block;
+    float: left;
+    line-height: 2.2;
+}
+
+.appbear_postbox .option-item select, .appbear_postbox .option-item input[type=text] {
+    border-radius: 3px;
+}
+.appbear_postbox .option-item input[type=text] {
+    border-radius: 3px;
+    padding: 3px 10px;
+    width: calc(100% - 275px);
+    max-width: 300px;
+}
+.appbear_postbox input[type=date], .appbear_postbox input[type=datetime-local], .appbear_postbox input[type=datetime], .appbear_postbox input[type=email], .appbear_postbox input[type=month], .appbear_postbox input[type=number], .appbear_postbox input[type=password], .appbear_postbox input[type=search], .appbear_postbox input[type=tel], .appbear_postbox input[type=text], .appbear_postbox input[type=time], .appbear_postbox input[type=url], .appbear_postbox input[type=week] {
+    padding: 0 8px;
+    line-height: 2;
+    min-height: 30px;
+}
+.appbear_postbox input[type=color], .appbear_postbox input[type=date], .appbear_postbox input[type=datetime-local], .appbear_postbox input[type=datetime], .appbear_postbox input[type=email], .appbear_postbox input[type=month], .appbear_postbox input[type=number], .appbear_postbox input[type=password], .appbear_postbox input[type=search], .appbear_postbox input[type=tel], .appbear_postbox input[type=text], .appbear_postbox input[type=time], .appbear_postbox input[type=url], .appbear_postbox input[type=week], .appbear_postbox select, .appbear_postbox textarea {
+    box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+    background-color: #fff;
+    color: #32373c;
+}
+.appbear-img-path {
+    direction: ltr;
+    text-align: left;
+}
+.appbear_postbox input, .appbear_postbox select {
+    margin: 0 1px;
+}
+.appbear_postbox input, .appbear_postbox textarea {
+    font-size: 14px;
+}
+.appbear_postbox button, .appbear_postbox input, .appbear_postbox select, .appbear_postbox textarea {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.appbear_postbox button, .appbear_postbox input, .appbear_postbox select, .appbear_postbox textarea {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.appbear_postbox .img-preview {
+    border: 4px solid #CCC;
+    float: right;
+    position: relative;
+    line-height: 0;
+    margin-top: 10px;
+}
+.appbear_postbox .img-preview img {
+    width: 160px;
+}
+
+.appbear_postbox .img-preview .delete-category-img, .img-preview .del-img-all {
+    position: absolute;
+    left: -10px;
+    bottom: -10px;
+    background: url(images/delete.png) no-repeat top;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
