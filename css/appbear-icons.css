@@ -1,0 +1,2335 @@
+@charset "UTF-8";
+/*
+|-----------------------------------------------------------------------------------------
+| Appbear Icons
+|-----------------------------------------------------------------------------------------
+*/
+/*!
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'AppbearFontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.appbear-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 AppbearFontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* makes the font 33% larger relative to the icon container */
+.appbear-icon-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -15%; }
+
+.appbear-icon-2x {
+  font-size: 2em; }
+
+.appbear-icon-3x {
+  font-size: 3em; }
+
+.appbear-icon-4x {
+  font-size: 4em; }
+
+.appbear-icon-5x {
+  font-size: 5em; }
+
+.appbear-icon-fw {
+  width: 1.28571em;
+  text-align: center; }
+
+.appbear-icon-ul {
+  padding-left: 0;
+  margin-left: 2.14286em;
+  list-style-type: none; }
+  .appbear-icon-ul > li {
+    position: relative; }
+
+.appbear-icon-li {
+  position: absolute;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
+  text-align: center; }
+  .appbear-icon-li.appbear-icon-lg {
+    left: -1.85714em; }
+
+.appbear-icon-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eee;
+  border-radius: .1em; }
+
+.appbear-icon-pull-left {
+  float: left; }
+
+.appbear-icon-pull-right {
+  float: right; }
+
+.appbear-icon.appbear-icon-pull-left {
+  margin-right: .3em; }
+
+.appbear-icon.appbear-icon-pull-right {
+  margin-left: .3em; }
+
+/* Deprecated as of 4.4.0 */
+.pull-right {
+  float: right; }
+
+.pull-left {
+  float: left; }
+
+.appbear-icon.pull-left {
+  margin-right: .3em; }
+
+.appbear-icon.pull-right {
+  margin-left: .3em; }
+
+.appbear-icon-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear; }
+
+.appbear-icon-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8); }
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
+
+.appbear-icon-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+.appbear-icon-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+.appbear-icon-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.appbear-icon-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1); }
+
+.appbear-icon-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1); }
+
+:root .appbear-icon-rotate-90,
+:root .appbear-icon-rotate-180,
+:root .appbear-icon-rotate-270,
+:root .appbear-icon-flip-horizontal,
+:root .appbear-icon-flip-vertical {
+  -webkit-filter: none;
+  filter: none; }
+
+.appbear-icon-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle; }
+
+.appbear-icon-stack-1x, .appbear-icon-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center; }
+
+.appbear-icon-stack-1x {
+  line-height: inherit; }
+
+.appbear-icon-stack-2x {
+  font-size: 2em; }
+
+.appbear-icon-inverse {
+  color: #fff; }
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+.appbear-icon-glass:before {
+  content: ""; }
+
+.appbear-icon-music:before {
+  content: ""; }
+
+.appbear-icon-search:before {
+  content: ""; }
+
+.appbear-icon-envelope-o:before {
+  content: ""; }
+
+.appbear-icon-heart:before {
+  content: ""; }
+
+.appbear-icon-star:before {
+  content: ""; }
+
+.appbear-icon-star-o:before {
+  content: ""; }
+
+.appbear-icon-user:before {
+  content: ""; }
+
+.appbear-icon-film:before {
+  content: ""; }
+
+.appbear-icon-th-large:before {
+  content: ""; }
+
+.appbear-icon-th:before {
+  content: ""; }
+
+.appbear-icon-th-list:before {
+  content: ""; }
+
+.appbear-icon-check:before {
+  content: ""; }
+
+.appbear-icon-remove:before,
+.appbear-icon-close:before,
+.appbear-icon-times:before {
+  content: ""; }
+
+.appbear-icon-search-plus:before {
+  content: ""; }
+
+.appbear-icon-search-minus:before {
+  content: ""; }
+
+.appbear-icon-power-off:before {
+  content: ""; }
+
+.appbear-icon-signal:before {
+  content: ""; }
+
+.appbear-icon-gear:before,
+.appbear-icon-cog:before {
+  content: ""; }
+
+.appbear-icon-trash-o:before {
+  content: ""; }
+
+.appbear-icon-home:before {
+  content: ""; }
+
+.appbear-icon-file-o:before {
+  content: ""; }
+
+.appbear-icon-clock-o:before {
+  content: ""; }
+
+.appbear-icon-road:before {
+  content: ""; }
+
+.appbear-icon-download:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-o-down:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-o-up:before {
+  content: ""; }
+
+.appbear-icon-inbox:before {
+  content: ""; }
+
+.appbear-icon-play-circle-o:before {
+  content: ""; }
+
+.appbear-icon-rotate-right:before,
+.appbear-icon-repeat:before {
+  content: ""; }
+
+.appbear-icon-refresh:before {
+  content: ""; }
+
+.appbear-icon-list-alt:before {
+  content: ""; }
+
+.appbear-icon-lock:before {
+  content: ""; }
+
+.appbear-icon-flag:before {
+  content: ""; }
+
+.appbear-icon-headphones:before {
+  content: ""; }
+
+.appbear-icon-volume-off:before {
+  content: ""; }
+
+.appbear-icon-volume-down:before {
+  content: ""; }
+
+.appbear-icon-volume-up:before {
+  content: ""; }
+
+.appbear-icon-qrcode:before {
+  content: ""; }
+
+.appbear-icon-barcode:before {
+  content: ""; }
+
+.appbear-icon-tag:before {
+  content: ""; }
+
+.appbear-icon-tags:before {
+  content: ""; }
+
+.appbear-icon-book:before {
+  content: ""; }
+
+.appbear-icon-bookmark:before {
+  content: ""; }
+
+.appbear-icon-print:before {
+  content: ""; }
+
+.appbear-icon-camera:before {
+  content: ""; }
+
+.appbear-icon-font:before {
+  content: ""; }
+
+.appbear-icon-bold:before {
+  content: ""; }
+
+.appbear-icon-italic:before {
+  content: ""; }
+
+.appbear-icon-text-height:before {
+  content: ""; }
+
+.appbear-icon-text-width:before {
+  content: ""; }
+
+.appbear-icon-align-left:before {
+  content: ""; }
+
+.appbear-icon-align-center:before {
+  content: ""; }
+
+.appbear-icon-align-right:before {
+  content: ""; }
+
+.appbear-icon-align-justify:before {
+  content: ""; }
+
+.appbear-icon-list:before {
+  content: ""; }
+
+.appbear-icon-dedent:before,
+.appbear-icon-outdent:before {
+  content: ""; }
+
+.appbear-icon-indent:before {
+  content: ""; }
+
+.appbear-icon-video-camera:before {
+  content: ""; }
+
+.appbear-icon-photo:before,
+.appbear-icon-image:before,
+.appbear-icon-picture-o:before {
+  content: ""; }
+
+.appbear-icon-pencil:before {
+  content: ""; }
+
+.appbear-icon-map-marker:before {
+  content: ""; }
+
+.appbear-icon-adjust:before {
+  content: ""; }
+
+.appbear-icon-tint:before {
+  content: ""; }
+
+.appbear-icon-edit:before,
+.appbear-icon-pencil-square-o:before {
+  content: ""; }
+
+.appbear-icon-share-square-o:before {
+  content: ""; }
+
+.appbear-icon-check-square-o:before {
+  content: ""; }
+
+.appbear-icon-arrows:before {
+  content: ""; }
+
+.appbear-icon-step-backward:before {
+  content: ""; }
+
+.appbear-icon-fast-backward:before {
+  content: ""; }
+
+.appbear-icon-backward:before {
+  content: ""; }
+
+.appbear-icon-play:before {
+  content: ""; }
+
+.appbear-icon-pause:before {
+  content: ""; }
+
+.appbear-icon-stop:before {
+  content: ""; }
+
+.appbear-icon-forward:before {
+  content: ""; }
+
+.appbear-icon-fast-forward:before {
+  content: ""; }
+
+.appbear-icon-step-forward:before {
+  content: ""; }
+
+.appbear-icon-eject:before {
+  content: ""; }
+
+.appbear-icon-chevron-left:before {
+  content: ""; }
+
+.appbear-icon-chevron-right:before {
+  content: ""; }
+
+.appbear-icon-plus-circle:before {
+  content: ""; }
+
+.appbear-icon-minus-circle:before {
+  content: ""; }
+
+.appbear-icon-times-circle:before {
+  content: ""; }
+
+.appbear-icon-check-circle:before {
+  content: ""; }
+
+.appbear-icon-question-circle:before {
+  content: ""; }
+
+.appbear-icon-info-circle:before {
+  content: ""; }
+
+.appbear-icon-crosshairs:before {
+  content: ""; }
+
+.appbear-icon-times-circle-o:before {
+  content: ""; }
+
+.appbear-icon-check-circle-o:before {
+  content: ""; }
+
+.appbear-icon-ban:before {
+  content: ""; }
+
+.appbear-icon-arrow-left:before {
+  content: ""; }
+
+.appbear-icon-arrow-right:before {
+  content: ""; }
+
+.appbear-icon-arrow-up:before {
+  content: ""; }
+
+.appbear-icon-arrow-down:before {
+  content: ""; }
+
+.appbear-icon-mail-forward:before,
+.appbear-icon-share:before {
+  content: ""; }
+
+.appbear-icon-expand:before {
+  content: ""; }
+
+.appbear-icon-compress:before {
+  content: ""; }
+
+.appbear-icon-plus:before {
+  content: ""; }
+
+.appbear-icon-minus:before {
+  content: ""; }
+
+.appbear-icon-asterisk:before {
+  content: ""; }
+
+.appbear-icon-exclamation-circle:before {
+  content: ""; }
+
+.appbear-icon-gift:before {
+  content: ""; }
+
+.appbear-icon-leaf:before {
+  content: ""; }
+
+.appbear-icon-fire:before {
+  content: ""; }
+
+.appbear-icon-eye:before {
+  content: ""; }
+
+.appbear-icon-eye-slash:before {
+  content: ""; }
+
+.appbear-icon-warning:before,
+.appbear-icon-exclamation-triangle:before {
+  content: ""; }
+
+.appbear-icon-plane:before {
+  content: ""; }
+
+.appbear-icon-calendar:before {
+  content: ""; }
+
+.appbear-icon-random:before {
+  content: ""; }
+
+.appbear-icon-comment:before {
+  content: ""; }
+
+.appbear-icon-magnet:before {
+  content: ""; }
+
+.appbear-icon-chevron-up:before {
+  content: ""; }
+
+.appbear-icon-chevron-down:before {
+  content: ""; }
+
+.appbear-icon-retweet:before {
+  content: ""; }
+
+.appbear-icon-shopping-cart:before {
+  content: ""; }
+
+.appbear-icon-folder:before {
+  content: ""; }
+
+.appbear-icon-folder-open:before {
+  content: ""; }
+
+.appbear-icon-arrows-v:before {
+  content: ""; }
+
+.appbear-icon-arrows-h:before {
+  content: ""; }
+
+.appbear-icon-bar-chart-o:before,
+.appbear-icon-bar-chart:before {
+  content: ""; }
+
+.appbear-icon-twitter-square:before {
+  content: ""; }
+
+.appbear-icon-facebook-square:before {
+  content: ""; }
+
+.appbear-icon-camera-retro:before {
+  content: ""; }
+
+.appbear-icon-key:before {
+  content: ""; }
+
+.appbear-icon-gears:before,
+.appbear-icon-cogs:before {
+  content: ""; }
+
+.appbear-icon-comments:before {
+  content: ""; }
+
+.appbear-icon-thumbs-o-up:before {
+  content: ""; }
+
+.appbear-icon-thumbs-o-down:before {
+  content: ""; }
+
+.appbear-icon-star-half:before {
+  content: ""; }
+
+.appbear-icon-heart-o:before {
+  content: ""; }
+
+.appbear-icon-sign-out:before {
+  content: ""; }
+
+.appbear-icon-linkedin-square:before {
+  content: ""; }
+
+.appbear-icon-thumb-tack:before {
+  content: ""; }
+
+.appbear-icon-external-link:before {
+  content: ""; }
+
+.appbear-icon-sign-in:before {
+  content: ""; }
+
+.appbear-icon-trophy:before {
+  content: ""; }
+
+.appbear-icon-github-square:before {
+  content: ""; }
+
+.appbear-icon-upload:before {
+  content: ""; }
+
+.appbear-icon-lemon-o:before {
+  content: ""; }
+
+.appbear-icon-phone:before {
+  content: ""; }
+
+.appbear-icon-square-o:before {
+  content: ""; }
+
+.appbear-icon-bookmark-o:before {
+  content: ""; }
+
+.appbear-icon-phone-square:before {
+  content: ""; }
+
+.appbear-icon-twitter:before {
+  content: ""; }
+
+.appbear-icon-facebook-f:before,
+.appbear-icon-facebook:before {
+  content: ""; }
+
+.appbear-icon-github:before {
+  content: ""; }
+
+.appbear-icon-unlock:before {
+  content: ""; }
+
+.appbear-icon-credit-card:before {
+  content: ""; }
+
+.appbear-icon-feed:before,
+.appbear-icon-rss:before {
+  content: ""; }
+
+.appbear-icon-hdd-o:before {
+  content: ""; }
+
+.appbear-icon-bullhorn:before {
+  content: ""; }
+
+.appbear-icon-bell:before {
+  content: ""; }
+
+.appbear-icon-certificate:before {
+  content: ""; }
+
+.appbear-icon-hand-o-right:before {
+  content: ""; }
+
+.appbear-icon-hand-o-left:before {
+  content: ""; }
+
+.appbear-icon-hand-o-up:before {
+  content: ""; }
+
+.appbear-icon-hand-o-down:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-left:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-right:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-up:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-down:before {
+  content: ""; }
+
+.appbear-icon-globe:before {
+  content: ""; }
+
+.appbear-icon-wrench:before {
+  content: ""; }
+
+.appbear-icon-tasks:before {
+  content: ""; }
+
+.appbear-icon-filter:before {
+  content: ""; }
+
+.appbear-icon-briefcase:before {
+  content: ""; }
+
+.appbear-icon-arrows-alt:before {
+  content: ""; }
+
+.appbear-icon-group:before,
+.appbear-icon-users:before {
+  content: ""; }
+
+.appbear-icon-chain:before,
+.appbear-icon-link:before {
+  content: ""; }
+
+.appbear-icon-cloud:before {
+  content: ""; }
+
+.appbear-icon-flask:before {
+  content: ""; }
+
+.appbear-icon-cut:before,
+.appbear-icon-scissors:before {
+  content: ""; }
+
+.appbear-icon-copy:before,
+.appbear-icon-files-o:before {
+  content: ""; }
+
+.appbear-icon-paperclip:before {
+  content: ""; }
+
+.appbear-icon-save:before,
+.appbear-icon-floppy-o:before {
+  content: ""; }
+
+.appbear-icon-square:before {
+  content: ""; }
+
+.appbear-icon-navicon:before,
+.appbear-icon-reorder:before,
+.appbear-icon-bars:before {
+  content: ""; }
+
+.appbear-icon-list-ul:before {
+  content: ""; }
+
+.appbear-icon-list-ol:before {
+  content: ""; }
+
+.appbear-icon-strikethrough:before {
+  content: ""; }
+
+.appbear-icon-underline:before {
+  content: ""; }
+
+.appbear-icon-table:before {
+  content: ""; }
+
+.appbear-icon-magic:before {
+  content: ""; }
+
+.appbear-icon-truck:before {
+  content: ""; }
+
+.appbear-icon-pinterest:before {
+  content: ""; }
+
+.appbear-icon-pinterest-square:before {
+  content: ""; }
+
+.appbear-icon-google-plus-square:before {
+  content: ""; }
+
+.appbear-icon-google-plus:before {
+  content: ""; }
+
+.appbear-icon-money:before {
+  content: ""; }
+
+.appbear-icon-caret-down:before {
+  content: ""; }
+
+.appbear-icon-caret-up:before {
+  content: ""; }
+
+.appbear-icon-caret-left:before {
+  content: ""; }
+
+.appbear-icon-caret-right:before {
+  content: ""; }
+
+.appbear-icon-columns:before {
+  content: ""; }
+
+.appbear-icon-unsorted:before,
+.appbear-icon-sort:before {
+  content: ""; }
+
+.appbear-icon-sort-down:before,
+.appbear-icon-sort-desc:before {
+  content: ""; }
+
+.appbear-icon-sort-up:before,
+.appbear-icon-sort-asc:before {
+  content: ""; }
+
+.appbear-icon-envelope:before {
+  content: ""; }
+
+.appbear-icon-linkedin:before {
+  content: ""; }
+
+.appbear-icon-rotate-left:before,
+.appbear-icon-undo:before {
+  content: ""; }
+
+.appbear-icon-legal:before,
+.appbear-icon-gavel:before {
+  content: ""; }
+
+.appbear-icon-dashboard:before,
+.appbear-icon-tachometer:before {
+  content: ""; }
+
+.appbear-icon-comment-o:before {
+  content: ""; }
+
+.appbear-icon-comments-o:before {
+  content: ""; }
+
+.appbear-icon-flash:before,
+.appbear-icon-bolt:before {
+  content: ""; }
+
+.appbear-icon-sitemap:before {
+  content: ""; }
+
+.appbear-icon-umbrella:before {
+  content: ""; }
+
+.appbear-icon-paste:before,
+.appbear-icon-clipboard:before {
+  content: ""; }
+
+.appbear-icon-lightbulb-o:before {
+  content: ""; }
+
+.appbear-icon-exchange:before {
+  content: ""; }
+
+.appbear-icon-cloud-download:before {
+  content: ""; }
+
+.appbear-icon-cloud-upload:before {
+  content: ""; }
+
+.appbear-icon-user-md:before {
+  content: ""; }
+
+.appbear-icon-stethoscope:before {
+  content: ""; }
+
+.appbear-icon-suitcase:before {
+  content: ""; }
+
+.appbear-icon-bell-o:before {
+  content: ""; }
+
+.appbear-icon-coffee:before {
+  content: ""; }
+
+.appbear-icon-cutlery:before {
+  content: ""; }
+
+.appbear-icon-file-text-o:before {
+  content: ""; }
+
+.appbear-icon-building-o:before {
+  content: ""; }
+
+.appbear-icon-hospital-o:before {
+  content: ""; }
+
+.appbear-icon-ambulance:before {
+  content: ""; }
+
+.appbear-icon-medkit:before {
+  content: ""; }
+
+.appbear-icon-fighter-jet:before {
+  content: ""; }
+
+.appbear-icon-beer:before {
+  content: ""; }
+
+.appbear-icon-h-square:before {
+  content: ""; }
+
+.appbear-icon-plus-square:before {
+  content: ""; }
+
+.appbear-icon-angle-double-left:before {
+  content: ""; }
+
+.appbear-icon-angle-double-right:before {
+  content: ""; }
+
+.appbear-icon-angle-double-up:before {
+  content: ""; }
+
+.appbear-icon-angle-double-down:before {
+  content: ""; }
+
+.appbear-icon-angle-left:before {
+  content: ""; }
+
+.appbear-icon-angle-right:before {
+  content: ""; }
+
+.appbear-icon-angle-up:before {
+  content: ""; }
+
+.appbear-icon-angle-down:before {
+  content: ""; }
+
+.appbear-icon-desktop:before {
+  content: ""; }
+
+.appbear-icon-laptop:before {
+  content: ""; }
+
+.appbear-icon-tablet:before {
+  content: ""; }
+
+.appbear-icon-mobile-phone:before,
+.appbear-icon-mobile:before {
+  content: ""; }
+
+.appbear-icon-circle-o:before {
+  content: ""; }
+
+.appbear-icon-quote-left:before {
+  content: ""; }
+
+.appbear-icon-quote-right:before {
+  content: ""; }
+
+.appbear-icon-spinner:before {
+  content: ""; }
+
+.appbear-icon-circle:before {
+  content: ""; }
+
+.appbear-icon-mail-reply:before,
+.appbear-icon-reply:before {
+  content: ""; }
+
+.appbear-icon-github-alt:before {
+  content: ""; }
+
+.appbear-icon-folder-o:before {
+  content: ""; }
+
+.appbear-icon-folder-open-o:before {
+  content: ""; }
+
+.appbear-icon-smile-o:before {
+  content: ""; }
+
+.appbear-icon-frown-o:before {
+  content: ""; }
+
+.appbear-icon-meh-o:before {
+  content: ""; }
+
+.appbear-icon-gamepad:before {
+  content: ""; }
+
+.appbear-icon-keyboard-o:before {
+  content: ""; }
+
+.appbear-icon-flag-o:before {
+  content: ""; }
+
+.appbear-icon-flag-checkered:before {
+  content: ""; }
+
+.appbear-icon-terminal:before {
+  content: ""; }
+
+.appbear-icon-code:before {
+  content: ""; }
+
+.appbear-icon-mail-reply-all:before,
+.appbear-icon-reply-all:before {
+  content: ""; }
+
+.appbear-icon-star-half-empty:before,
+.appbear-icon-star-half-full:before,
+.appbear-icon-star-half-o:before {
+  content: ""; }
+
+.appbear-icon-location-arrow:before {
+  content: ""; }
+
+.appbear-icon-crop:before {
+  content: ""; }
+
+.appbear-icon-code-fork:before {
+  content: ""; }
+
+.appbear-icon-unlink:before,
+.appbear-icon-chain-broken:before {
+  content: ""; }
+
+.appbear-icon-question:before {
+  content: ""; }
+
+.appbear-icon-info:before {
+  content: ""; }
+
+.appbear-icon-exclamation:before {
+  content: ""; }
+
+.appbear-icon-superscript:before {
+  content: ""; }
+
+.appbear-icon-subscript:before {
+  content: ""; }
+
+.appbear-icon-eraser:before {
+  content: ""; }
+
+.appbear-icon-puzzle-piece:before {
+  content: ""; }
+
+.appbear-icon-microphone:before {
+  content: ""; }
+
+.appbear-icon-microphone-slash:before {
+  content: ""; }
+
+.appbear-icon-shield:before {
+  content: ""; }
+
+.appbear-icon-calendar-o:before {
+  content: ""; }
+
+.appbear-icon-fire-extinguisher:before {
+  content: ""; }
+
+.appbear-icon-rocket:before {
+  content: ""; }
+
+.appbear-icon-maxcdn:before {
+  content: ""; }
+
+.appbear-icon-chevron-circle-left:before {
+  content: ""; }
+
+.appbear-icon-chevron-circle-right:before {
+  content: ""; }
+
+.appbear-icon-chevron-circle-up:before {
+  content: ""; }
+
+.appbear-icon-chevron-circle-down:before {
+  content: ""; }
+
+.appbear-icon-html5:before {
+  content: ""; }
+
+.appbear-icon-css3:before {
+  content: ""; }
+
+.appbear-icon-anchor:before {
+  content: ""; }
+
+.appbear-icon-unlock-alt:before {
+  content: ""; }
+
+.appbear-icon-bullseye:before {
+  content: ""; }
+
+.appbear-icon-ellipsis-h:before {
+  content: ""; }
+
+.appbear-icon-ellipsis-v:before {
+  content: ""; }
+
+.appbear-icon-rss-square:before {
+  content: ""; }
+
+.appbear-icon-play-circle:before {
+  content: ""; }
+
+.appbear-icon-ticket:before {
+  content: ""; }
+
+.appbear-icon-minus-square:before {
+  content: ""; }
+
+.appbear-icon-minus-square-o:before {
+  content: ""; }
+
+.appbear-icon-level-up:before {
+  content: ""; }
+
+.appbear-icon-level-down:before {
+  content: ""; }
+
+.appbear-icon-check-square:before {
+  content: ""; }
+
+.appbear-icon-pencil-square:before {
+  content: ""; }
+
+.appbear-icon-external-link-square:before {
+  content: ""; }
+
+.appbear-icon-share-square:before {
+  content: ""; }
+
+.appbear-icon-compass:before {
+  content: ""; }
+
+.appbear-icon-toggle-down:before,
+.appbear-icon-caret-square-o-down:before {
+  content: ""; }
+
+.appbear-icon-toggle-up:before,
+.appbear-icon-caret-square-o-up:before {
+  content: ""; }
+
+.appbear-icon-toggle-right:before,
+.appbear-icon-caret-square-o-right:before {
+  content: ""; }
+
+.appbear-icon-euro:before,
+.appbear-icon-eur:before {
+  content: ""; }
+
+.appbear-icon-gbp:before {
+  content: ""; }
+
+.appbear-icon-dollar:before,
+.appbear-icon-usd:before {
+  content: ""; }
+
+.appbear-icon-rupee:before,
+.appbear-icon-inr:before {
+  content: ""; }
+
+.appbear-icon-cny:before,
+.appbear-icon-rmb:before,
+.appbear-icon-yen:before,
+.appbear-icon-jpy:before {
+  content: ""; }
+
+.appbear-icon-ruble:before,
+.appbear-icon-rouble:before,
+.appbear-icon-rub:before {
+  content: ""; }
+
+.appbear-icon-won:before,
+.appbear-icon-krw:before {
+  content: ""; }
+
+.appbear-icon-bitcoin:before,
+.appbear-icon-btc:before {
+  content: ""; }
+
+.appbear-icon-file:before {
+  content: ""; }
+
+.appbear-icon-file-text:before {
+  content: ""; }
+
+.appbear-icon-sort-alpha-asc:before {
+  content: ""; }
+
+.appbear-icon-sort-alpha-desc:before {
+  content: ""; }
+
+.appbear-icon-sort-amount-asc:before {
+  content: ""; }
+
+.appbear-icon-sort-amount-desc:before {
+  content: ""; }
+
+.appbear-icon-sort-numeric-asc:before {
+  content: ""; }
+
+.appbear-icon-sort-numeric-desc:before {
+  content: ""; }
+
+.appbear-icon-thumbs-up:before {
+  content: ""; }
+
+.appbear-icon-thumbs-down:before {
+  content: ""; }
+
+.appbear-icon-youtube-square:before {
+  content: ""; }
+
+.appbear-icon-youtube:before {
+  content: ""; }
+
+.appbear-icon-xing:before {
+  content: ""; }
+
+.appbear-icon-xing-square:before {
+  content: ""; }
+
+.appbear-icon-youtube-play:before {
+  content: ""; }
+
+.appbear-icon-dropbox:before {
+  content: ""; }
+
+.appbear-icon-stack-overflow:before {
+  content: ""; }
+
+.appbear-icon-instagram:before {
+  content: ""; }
+
+.appbear-icon-flickr:before {
+  content: ""; }
+
+.appbear-icon-adn:before {
+  content: ""; }
+
+.appbear-icon-bitbucket:before {
+  content: ""; }
+
+.appbear-icon-bitbucket-square:before {
+  content: ""; }
+
+.appbear-icon-tumblr:before {
+  content: ""; }
+
+.appbear-icon-tumblr-square:before {
+  content: ""; }
+
+.appbear-icon-long-arrow-down:before {
+  content: ""; }
+
+.appbear-icon-long-arrow-up:before {
+  content: ""; }
+
+.appbear-icon-long-arrow-left:before {
+  content: ""; }
+
+.appbear-icon-long-arrow-right:before {
+  content: ""; }
+
+.appbear-icon-apple:before {
+  content: ""; }
+
+.appbear-icon-windows:before {
+  content: ""; }
+
+.appbear-icon-android:before {
+  content: ""; }
+
+.appbear-icon-linux:before {
+  content: ""; }
+
+.appbear-icon-dribbble:before {
+  content: ""; }
+
+.appbear-icon-skype:before {
+  content: ""; }
+
+.appbear-icon-foursquare:before {
+  content: ""; }
+
+.appbear-icon-trello:before {
+  content: ""; }
+
+.appbear-icon-female:before {
+  content: ""; }
+
+.appbear-icon-male:before {
+  content: ""; }
+
+.appbear-icon-gittip:before,
+.appbear-icon-gratipay:before {
+  content: ""; }
+
+.appbear-icon-sun-o:before {
+  content: ""; }
+
+.appbear-icon-moon-o:before {
+  content: ""; }
+
+.appbear-icon-archive:before {
+  content: ""; }
+
+.appbear-icon-bug:before {
+  content: ""; }
+
+.appbear-icon-vk:before {
+  content: ""; }
+
+.appbear-icon-weibo:before {
+  content: ""; }
+
+.appbear-icon-renren:before {
+  content: ""; }
+
+.appbear-icon-pagelines:before {
+  content: ""; }
+
+.appbear-icon-stack-exchange:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-o-right:before {
+  content: ""; }
+
+.appbear-icon-arrow-circle-o-left:before {
+  content: ""; }
+
+.appbear-icon-toggle-left:before,
+.appbear-icon-caret-square-o-left:before {
+  content: ""; }
+
+.appbear-icon-dot-circle-o:before {
+  content: ""; }
+
+.appbear-icon-wheelchair:before {
+  content: ""; }
+
+.appbear-icon-vimeo-square:before {
+  content: ""; }
+
+.appbear-icon-turkish-lira:before,
+.appbear-icon-try:before {
+  content: ""; }
+
+.appbear-icon-plus-square-o:before {
+  content: ""; }
+
+.appbear-icon-space-shuttle:before {
+  content: ""; }
+
+.appbear-icon-slack:before {
+  content: ""; }
+
+.appbear-icon-envelope-square:before {
+  content: ""; }
+
+.appbear-icon-wordpress:before {
+  content: ""; }
+
+.appbear-icon-openid:before {
+  content: ""; }
+
+.appbear-icon-institution:before,
+.appbear-icon-bank:before,
+.appbear-icon-university:before {
+  content: ""; }
+
+.appbear-icon-mortar-board:before,
+.appbear-icon-graduation-cap:before {
+  content: ""; }
+
+.appbear-icon-yahoo:before {
+  content: ""; }
+
+.appbear-icon-google:before {
+  content: ""; }
+
+.appbear-icon-reddit:before {
+  content: ""; }
+
+.appbear-icon-reddit-square:before {
+  content: ""; }
+
+.appbear-icon-stumbleupon-circle:before {
+  content: ""; }
+
+.appbear-icon-stumbleupon:before {
+  content: ""; }
+
+.appbear-icon-delicious:before {
+  content: ""; }
+
+.appbear-icon-digg:before {
+  content: ""; }
+
+.appbear-icon-pied-piper-pp:before {
+  content: ""; }
+
+.appbear-icon-pied-piper-alt:before {
+  content: ""; }
+
+.appbear-icon-drupal:before {
+  content: ""; }
+
+.appbear-icon-joomla:before {
+  content: ""; }
+
+.appbear-icon-language:before {
+  content: ""; }
+
+.appbear-icon-fax:before {
+  content: ""; }
+
+.appbear-icon-building:before {
+  content: ""; }
+
+.appbear-icon-child:before {
+  content: ""; }
+
+.appbear-icon-paw:before {
+  content: ""; }
+
+.appbear-icon-spoon:before {
+  content: ""; }
+
+.appbear-icon-cube:before {
+  content: ""; }
+
+.appbear-icon-cubes:before {
+  content: ""; }
+
+.appbear-icon-behance:before {
+  content: ""; }
+
+.appbear-icon-behance-square:before {
+  content: ""; }
+
+.appbear-icon-steam:before {
+  content: ""; }
+
+.appbear-icon-steam-square:before {
+  content: ""; }
+
+.appbear-icon-recycle:before {
+  content: ""; }
+
+.appbear-icon-automobile:before,
+.appbear-icon-car:before {
+  content: ""; }
+
+.appbear-icon-cab:before,
+.appbear-icon-taxi:before {
+  content: ""; }
+
+.appbear-icon-tree:before {
+  content: ""; }
+
+.appbear-icon-spotify:before {
+  content: ""; }
+
+.appbear-icon-deviantart:before {
+  content: ""; }
+
+.appbear-icon-soundcloud:before {
+  content: ""; }
+
+.appbear-icon-database:before {
+  content: ""; }
+
+.appbear-icon-file-pdf-o:before {
+  content: ""; }
+
+.appbear-icon-file-word-o:before {
+  content: ""; }
+
+.appbear-icon-file-excel-o:before {
+  content: ""; }
+
+.appbear-icon-file-powerpoint-o:before {
+  content: ""; }
+
+.appbear-icon-file-photo-o:before,
+.appbear-icon-file-picture-o:before,
+.appbear-icon-file-image-o:before {
+  content: ""; }
+
+.appbear-icon-file-zip-o:before,
+.appbear-icon-file-archive-o:before {
+  content: ""; }
+
+.appbear-icon-file-sound-o:before,
+.appbear-icon-file-audio-o:before {
+  content: ""; }
+
+.appbear-icon-file-movie-o:before,
+.appbear-icon-file-video-o:before {
+  content: ""; }
+
+.appbear-icon-file-code-o:before {
+  content: ""; }
+
+.appbear-icon-vine:before {
+  content: ""; }
+
+.appbear-icon-codepen:before {
+  content: ""; }
+
+.appbear-icon-jsfiddle:before {
+  content: ""; }
+
+.appbear-icon-life-bouy:before,
+.appbear-icon-life-buoy:before,
+.appbear-icon-life-saver:before,
+.appbear-icon-support:before,
+.appbear-icon-life-ring:before {
+  content: ""; }
+
+.appbear-icon-circle-o-notch:before {
+  content: ""; }
+
+.appbear-icon-ra:before,
+.appbear-icon-resistance:before,
+.appbear-icon-rebel:before {
+  content: ""; }
+
+.appbear-icon-ge:before,
+.appbear-icon-empire:before {
+  content: ""; }
+
+.appbear-icon-git-square:before {
+  content: ""; }
+
+.appbear-icon-git:before {
+  content: ""; }
+
+.appbear-icon-y-combinator-square:before,
+.appbear-icon-yc-square:before,
+.appbear-icon-hacker-news:before {
+  content: ""; }
+
+.appbear-icon-tencent-weibo:before {
+  content: ""; }
+
+.appbear-icon-qq:before {
+  content: ""; }
+
+.appbear-icon-wechat:before,
+.appbear-icon-weixin:before {
+  content: ""; }
+
+.appbear-icon-send:before,
+.appbear-icon-paper-plane:before {
+  content: ""; }
+
+.appbear-icon-send-o:before,
+.appbear-icon-paper-plane-o:before {
+  content: ""; }
+
+.appbear-icon-history:before {
+  content: ""; }
+
+.appbear-icon-circle-thin:before {
+  content: ""; }
+
+.appbear-icon-header:before {
+  content: ""; }
+
+.appbear-icon-paragraph:before {
+  content: ""; }
+
+.appbear-icon-sliders:before {
+  content: ""; }
+
+.appbear-icon-share-alt:before {
+  content: ""; }
+
+.appbear-icon-share-alt-square:before {
+  content: ""; }
+
+.appbear-icon-bomb:before {
+  content: ""; }
+
+.appbear-icon-soccer-ball-o:before,
+.appbear-icon-futbol-o:before {
+  content: ""; }
+
+.appbear-icon-tty:before {
+  content: ""; }
+
+.appbear-icon-binoculars:before {
+  content: ""; }
+
+.appbear-icon-plug:before {
+  content: ""; }
+
+.appbear-icon-slideshare:before {
+  content: ""; }
+
+.appbear-icon-twitch:before {
+  content: ""; }
+
+.appbear-icon-yelp:before {
+  content: ""; }
+
+.appbear-icon-newspaper-o:before {
+  content: ""; }
+
+.appbear-icon-wifi:before {
+  content: ""; }
+
+.appbear-icon-calculator:before {
+  content: ""; }
+
+.appbear-icon-paypal:before {
+  content: ""; }
+
+.appbear-icon-google-wallet:before {
+  content: ""; }
+
+.appbear-icon-cc-visa:before {
+  content: ""; }
+
+.appbear-icon-cc-mastercard:before {
+  content: ""; }
+
+.appbear-icon-cc-discover:before {
+  content: ""; }
+
+.appbear-icon-cc-amex:before {
+  content: ""; }
+
+.appbear-icon-cc-paypal:before {
+  content: ""; }
+
+.appbear-icon-cc-stripe:before {
+  content: ""; }
+
+.appbear-icon-bell-slash:before {
+  content: ""; }
+
+.appbear-icon-bell-slash-o:before {
+  content: ""; }
+
+.appbear-icon-trash:before {
+  content: ""; }
+
+.appbear-icon-copyright:before {
+  content: ""; }
+
+.appbear-icon-at:before {
+  content: ""; }
+
+.appbear-icon-eyedropper:before {
+  content: ""; }
+
+.appbear-icon-paint-brush:before {
+  content: ""; }
+
+.appbear-icon-birthday-cake:before {
+  content: ""; }
+
+.appbear-icon-area-chart:before {
+  content: ""; }
+
+.appbear-icon-pie-chart:before {
+  content: ""; }
+
+.appbear-icon-line-chart:before {
+  content: ""; }
+
+.appbear-icon-lastfm:before {
+  content: ""; }
+
+.appbear-icon-lastfm-square:before {
+  content: ""; }
+
+.appbear-icon-toggle-off:before {
+  content: ""; }
+
+.appbear-icon-toggle-on:before {
+  content: ""; }
+
+.appbear-icon-bicycle:before {
+  content: ""; }
+
+.appbear-icon-bus:before {
+  content: ""; }
+
+.appbear-icon-ioxhost:before {
+  content: ""; }
+
+.appbear-icon-angellist:before {
+  content: ""; }
+
+.appbear-icon-cc:before {
+  content: ""; }
+
+.appbear-icon-shekel:before,
+.appbear-icon-sheqel:before,
+.appbear-icon-ils:before {
+  content: ""; }
+
+.appbear-icon-meanpath:before {
+  content: ""; }
+
+.appbear-icon-buysellads:before {
+  content: ""; }
+
+.appbear-icon-connectdevelop:before {
+  content: ""; }
+
+.appbear-icon-dashcube:before {
+  content: ""; }
+
+.appbear-icon-forumbee:before {
+  content: ""; }
+
+.appbear-icon-leanpub:before {
+  content: ""; }
+
+.appbear-icon-sellsy:before {
+  content: ""; }
+
+.appbear-icon-shirtsinbulk:before {
+  content: ""; }
+
+.appbear-icon-simplybuilt:before {
+  content: ""; }
+
+.appbear-icon-skyatlas:before {
+  content: ""; }
+
+.appbear-icon-cart-plus:before {
+  content: ""; }
+
+.appbear-icon-cart-arrow-down:before {
+  content: ""; }
+
+.appbear-icon-diamond:before {
+  content: ""; }
+
+.appbear-icon-ship:before {
+  content: ""; }
+
+.appbear-icon-user-secret:before {
+  content: ""; }
+
+.appbear-icon-motorcycle:before {
+  content: ""; }
+
+.appbear-icon-street-view:before {
+  content: ""; }
+
+.appbear-icon-heartbeat:before {
+  content: ""; }
+
+.appbear-icon-venus:before {
+  content: ""; }
+
+.appbear-icon-mars:before {
+  content: ""; }
+
+.appbear-icon-mercury:before {
+  content: ""; }
+
+.appbear-icon-intersex:before,
+.appbear-icon-transgender:before {
+  content: ""; }
+
+.appbear-icon-transgender-alt:before {
+  content: ""; }
+
+.appbear-icon-venus-double:before {
+  content: ""; }
+
+.appbear-icon-mars-double:before {
+  content: ""; }
+
+.appbear-icon-venus-mars:before {
+  content: ""; }
+
+.appbear-icon-mars-stroke:before {
+  content: ""; }
+
+.appbear-icon-mars-stroke-v:before {
+  content: ""; }
+
+.appbear-icon-mars-stroke-h:before {
+  content: ""; }
+
+.appbear-icon-neuter:before {
+  content: ""; }
+
+.appbear-icon-genderless:before {
+  content: ""; }
+
+.appbear-icon-facebook-official:before {
+  content: ""; }
+
+.appbear-icon-pinterest-p:before {
+  content: ""; }
+
+.appbear-icon-whatsapp:before {
+  content: ""; }
+
+.appbear-icon-server:before {
+  content: ""; }
+
+.appbear-icon-user-plus:before {
+  content: ""; }
+
+.appbear-icon-user-times:before {
+  content: ""; }
+
+.appbear-icon-hotel:before,
+.appbear-icon-bed:before {
+  content: ""; }
+
+.appbear-icon-viacoin:before {
+  content: ""; }
+
+.appbear-icon-train:before {
+  content: ""; }
+
+.appbear-icon-subway:before {
+  content: ""; }
+
+.appbear-icon-medium:before {
+  content: ""; }
+
+.appbear-icon-yc:before,
+.appbear-icon-y-combinator:before {
+  content: ""; }
+
+.appbear-icon-optin-monster:before {
+  content: ""; }
+
+.appbear-icon-opencart:before {
+  content: ""; }
+
+.appbear-icon-expeditedssl:before {
+  content: ""; }
+
+.appbear-icon-battery-4:before,
+.appbear-icon-battery:before,
+.appbear-icon-battery-full:before {
+  content: ""; }
+
+.appbear-icon-battery-3:before,
+.appbear-icon-battery-three-quarters:before {
+  content: ""; }
+
+.appbear-icon-battery-2:before,
+.appbear-icon-battery-half:before {
+  content: ""; }
+
+.appbear-icon-battery-1:before,
+.appbear-icon-battery-quarter:before {
+  content: ""; }
+
+.appbear-icon-battery-0:before,
+.appbear-icon-battery-empty:before {
+  content: ""; }
+
+.appbear-icon-mouse-pointer:before {
+  content: ""; }
+
+.appbear-icon-i-cursor:before {
+  content: ""; }
+
+.appbear-icon-object-group:before {
+  content: ""; }
+
+.appbear-icon-object-ungroup:before {
+  content: ""; }
+
+.appbear-icon-sticky-note:before {
+  content: ""; }
+
+.appbear-icon-sticky-note-o:before {
+  content: ""; }
+
+.appbear-icon-cc-jcb:before {
+  content: ""; }
+
+.appbear-icon-cc-diners-club:before {
+  content: ""; }
+
+.appbear-icon-clone:before {
+  content: ""; }
+
+.appbear-icon-balance-scale:before {
+  content: ""; }
+
+.appbear-icon-hourglass-o:before {
+  content: ""; }
+
+.appbear-icon-hourglass-1:before,
+.appbear-icon-hourglass-start:before {
+  content: ""; }
+
+.appbear-icon-hourglass-2:before,
+.appbear-icon-hourglass-half:before {
+  content: ""; }
+
+.appbear-icon-hourglass-3:before,
+.appbear-icon-hourglass-end:before {
+  content: ""; }
+
+.appbear-icon-hourglass:before {
+  content: ""; }
+
+.appbear-icon-hand-grab-o:before,
+.appbear-icon-hand-rock-o:before {
+  content: ""; }
+
+.appbear-icon-hand-stop-o:before,
+.appbear-icon-hand-paper-o:before {
+  content: ""; }
+
+.appbear-icon-hand-scissors-o:before {
+  content: ""; }
+
+.appbear-icon-hand-lizard-o:before {
+  content: ""; }
+
+.appbear-icon-hand-spock-o:before {
+  content: ""; }
+
+.appbear-icon-hand-pointer-o:before {
+  content: ""; }
+
+.appbear-icon-hand-peace-o:before {
+  content: ""; }
+
+.appbear-icon-trademark:before {
+  content: ""; }
+
+.appbear-icon-registered:before {
+  content: ""; }
+
+.appbear-icon-creative-commons:before {
+  content: ""; }
+
+.appbear-icon-gg:before {
+  content: ""; }
+
+.appbear-icon-gg-circle:before {
+  content: ""; }
+
+.appbear-icon-tripadvisor:before {
+  content: ""; }
+
+.appbear-icon-odnoklassniki:before {
+  content: ""; }
+
+.appbear-icon-odnoklassniki-square:before {
+  content: ""; }
+
+.appbear-icon-get-pocket:before {
+  content: ""; }
+
+.appbear-icon-wikipedia-w:before {
+  content: ""; }
+
+.appbear-icon-safari:before {
+  content: ""; }
+
+.appbear-icon-chrome:before {
+  content: ""; }
+
+.appbear-icon-firefox:before {
+  content: ""; }
+
+.appbear-icon-opera:before {
+  content: ""; }
+
+.appbear-icon-internet-explorer:before {
+  content: ""; }
+
+.appbear-icon-tv:before,
+.appbear-icon-television:before {
+  content: ""; }
+
+.appbear-icon-contao:before {
+  content: ""; }
+
+.appbear-icon-500px:before {
+  content: ""; }
+
+.appbear-icon-amazon:before {
+  content: ""; }
+
+.appbear-icon-calendar-plus-o:before {
+  content: ""; }
+
+.appbear-icon-calendar-minus-o:before {
+  content: ""; }
+
+.appbear-icon-calendar-times-o:before {
+  content: ""; }
+
+.appbear-icon-calendar-check-o:before {
+  content: ""; }
+
+.appbear-icon-industry:before {
+  content: ""; }
+
+.appbear-icon-map-pin:before {
+  content: ""; }
+
+.appbear-icon-map-signs:before {
+  content: ""; }
+
+.appbear-icon-map-o:before {
+  content: ""; }
+
+.appbear-icon-map:before {
+  content: ""; }
+
+.appbear-icon-commenting:before {
+  content: ""; }
+
+.appbear-icon-commenting-o:before {
+  content: ""; }
+
+.appbear-icon-houzz:before {
+  content: ""; }
+
+.appbear-icon-vimeo:before {
+  content: ""; }
+
+.appbear-icon-black-tie:before {
+  content: ""; }
+
+.appbear-icon-fonticons:before {
+  content: ""; }
+
+.appbear-icon-reddit-alien:before {
+  content: ""; }
+
+.appbear-icon-edge:before {
+  content: ""; }
+
+.appbear-icon-credit-card-alt:before {
+  content: ""; }
+
+.appbear-icon-codiepie:before {
+  content: ""; }
+
+.appbear-icon-modx:before {
+  content: ""; }
+
+.appbear-icon-fort-awesome:before {
+  content: ""; }
+
+.appbear-icon-usb:before {
+  content: ""; }
+
+.appbear-icon-product-hunt:before {
+  content: ""; }
+
+.appbear-icon-mixcloud:before {
+  content: ""; }
+
+.appbear-icon-scribd:before {
+  content: ""; }
+
+.appbear-icon-pause-circle:before {
+  content: ""; }
+
+.appbear-icon-pause-circle-o:before {
+  content: ""; }
+
+.appbear-icon-stop-circle:before {
+  content: ""; }
+
+.appbear-icon-stop-circle-o:before {
+  content: ""; }
+
+.appbear-icon-shopping-bag:before {
+  content: ""; }
+
+.appbear-icon-shopping-basket:before {
+  content: ""; }
+
+.appbear-icon-hashtag:before {
+  content: ""; }
+
+.appbear-icon-bluetooth:before {
+  content: ""; }
+
+.appbear-icon-bluetooth-b:before {
+  content: ""; }
+
+.appbear-icon-percent:before {
+  content: ""; }
+
+.appbear-icon-gitlab:before {
+  content: ""; }
+
+.appbear-icon-wpbeginner:before {
+  content: ""; }
+
+.appbear-icon-wpforms:before {
+  content: ""; }
+
+.appbear-icon-envira:before {
+  content: ""; }
+
+.appbear-icon-universal-access:before {
+  content: ""; }
+
+.appbear-icon-wheelchair-alt:before {
+  content: ""; }
+
+.appbear-icon-question-circle-o:before {
+  content: ""; }
+
+.appbear-icon-blind:before {
+  content: ""; }
+
+.appbear-icon-audio-description:before {
+  content: ""; }
+
+.appbear-icon-volume-control-phone:before {
+  content: ""; }
+
+.appbear-icon-braille:before {
+  content: ""; }
+
+.appbear-icon-assistive-listening-systems:before {
+  content: ""; }
+
+.appbear-icon-asl-interpreting:before,
+.appbear-icon-american-sign-language-interpreting:before {
+  content: ""; }
+
+.appbear-icon-deafness:before,
+.appbear-icon-hard-of-hearing:before,
+.appbear-icon-deaf:before {
+  content: ""; }
+
+.appbear-icon-glide:before {
+  content: ""; }
+
+.appbear-icon-glide-g:before {
+  content: ""; }
+
+.appbear-icon-signing:before,
+.appbear-icon-sign-language:before {
+  content: ""; }
+
+.appbear-icon-low-vision:before {
+  content: ""; }
+
+.appbear-icon-viadeo:before {
+  content: ""; }
+
+.appbear-icon-viadeo-square:before {
+  content: ""; }
+
+.appbear-icon-snapchat:before {
+  content: ""; }
+
+.appbear-icon-snapchat-ghost:before {
+  content: ""; }
+
+.appbear-icon-snapchat-square:before {
+  content: ""; }
+
+.appbear-icon-pied-piper:before {
+  content: ""; }
+
+.appbear-icon-first-order:before {
+  content: ""; }
+
+.appbear-icon-yoast:before {
+  content: ""; }
+
+.appbear-icon-themeisle:before {
+  content: ""; }
+
+.appbear-icon-google-plus-circle:before,
+.appbear-icon-google-plus-official:before {
+  content: ""; }
+
+.appbear-icon-fa:before,
+.appbear-icon-font-awesome:before {
+  content: ""; }
+
+.appbear-icon-handshake-o:before {
+  content: ""; }
+
+.appbear-icon-envelope-open:before {
+  content: ""; }
+
+.appbear-icon-envelope-open-o:before {
+  content: ""; }
+
+.appbear-icon-linode:before {
+  content: ""; }
+
+.appbear-icon-address-book:before {
+  content: ""; }
+
+.appbear-icon-address-book-o:before {
+  content: ""; }
+
+.appbear-icon-vcard:before,
+.appbear-icon-address-card:before {
+  content: ""; }
+
+.appbear-icon-vcard-o:before,
+.appbear-icon-address-card-o:before {
+  content: ""; }
+
+.appbear-icon-user-circle:before {
+  content: ""; }
+
+.appbear-icon-user-circle-o:before {
+  content: ""; }
+
+.appbear-icon-user-o:before {
+  content: ""; }
+
+.appbear-icon-id-badge:before {
+  content: ""; }
+
+.appbear-icon-drivers-license:before,
+.appbear-icon-id-card:before {
+  content: ""; }
+
+.appbear-icon-drivers-license-o:before,
+.appbear-icon-id-card-o:before {
+  content: ""; }
+
+.appbear-icon-quora:before {
+  content: ""; }
+
+.appbear-icon-free-code-camp:before {
+  content: ""; }
+
+.appbear-icon-telegram:before {
+  content: ""; }
+
+.appbear-icon-thermometer-4:before,
+.appbear-icon-thermometer:before,
+.appbear-icon-thermometer-full:before {
+  content: ""; }
+
+.appbear-icon-thermometer-3:before,
+.appbear-icon-thermometer-three-quarters:before {
+  content: ""; }
+
+.appbear-icon-thermometer-2:before,
+.appbear-icon-thermometer-half:before {
+  content: ""; }
+
+.appbear-icon-thermometer-1:before,
+.appbear-icon-thermometer-quarter:before {
+  content: ""; }
+
+.appbear-icon-thermometer-0:before,
+.appbear-icon-thermometer-empty:before {
+  content: ""; }
+
+.appbear-icon-shower:before {
+  content: ""; }
+
+.appbear-icon-bathtub:before,
+.appbear-icon-s15:before,
+.appbear-icon-bath:before {
+  content: ""; }
+
+.appbear-icon-podcast:before {
+  content: ""; }
+
+.appbear-icon-window-maximize:before {
+  content: ""; }
+
+.appbear-icon-window-minimize:before {
+  content: ""; }
+
+.appbear-icon-window-restore:before {
+  content: ""; }
+
+.appbear-icon-times-rectangle:before,
+.appbear-icon-window-close:before {
+  content: ""; }
+
+.appbear-icon-times-rectangle-o:before,
+.appbear-icon-window-close-o:before {
+  content: ""; }
+
+.appbear-icon-bandcamp:before {
+  content: ""; }
+
+.appbear-icon-grav:before {
+  content: ""; }
+
+.appbear-icon-etsy:before {
+  content: ""; }
+
+.appbear-icon-imdb:before {
+  content: ""; }
+
+.appbear-icon-ravelry:before {
+  content: ""; }
+
+.appbear-icon-eercast:before {
+  content: ""; }
+
+.appbear-icon-microchip:before {
+  content: ""; }
+
+.appbear-icon-snowflake-o:before {
+  content: ""; }
+
+.appbear-icon-superpowers:before {
+  content: ""; }
+
+.appbear-icon-wpexplorer:before {
+  content: ""; }
+
+.appbear-icon-meetup:before {
+  content: ""; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; }
+
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto; }

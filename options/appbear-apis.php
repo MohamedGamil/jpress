@@ -1,5 +1,2845 @@
 <?php
 
+function wl_demos(){
+	$array = array (
+		array(
+			'id'	=>	1,
+			'name'	=>	'Jannah Games',
+		),
+		array(
+			'id'	=>	2,
+			'name'	=>	'The Road Dark',
+		),
+		array(
+			'id'	=>	3,
+			'name'	=>	'Journal',
+		),
+		array(
+			'id'	=>	4,
+			'name'	=>	'Jannah Hotels',
+		),
+		array(
+			'id'	=>	5,
+			'name'	=>	'J Videos',
+		),
+		array(
+			'id'	=>	6,
+			'name'	=>	'Jannah News',
+		),
+		array(
+			'id'	=>	7,
+			'name'	=>	'The Road Light',
+		),
+		array(
+			'id'	=>	8,
+			'name'	=>	'Sahifa',
+		),
+		array(
+			'id'	=>	9,
+			'name'	=>	'عربي',
+		),
+	);
+	header('Content-type: application/json');
+	$demo = json_encode($array);
+	echo $demo;
+}
+
+function wl_selectdemo(){
+	$params = $_GET;
+	$array 	= '';
+	
+	switch($params['demo']){
+		case 1:
+			$array = array (
+				'themeMode' => 'ThemeMode.dark',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-1.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-1.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.start',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'false',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'false',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'false',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'false',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab3',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'postLayout' => 'PostLayout.startThumbPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'title' => '',
+					  'seeMore' => 
+					  array (
+						'name' => '',
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'postLayout' => 'PostLayout.cardPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat1',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.startThumbPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.startThumbPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.startThumbPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#3F2878',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#3F2878',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#35393B',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#FFFFFF',
+					'tabBarBackgroundColor' => '#3F2878',
+					'tabBarTextColor' => '#8B8D8F',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#000000',
+					'shadowColor' => 'rgba(10, 10, 10, 0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#3F2878',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#3F2878',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#3F2878',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#35393B',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#3F2878',
+					'tabBarTextColor' => '#8A8A89',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#101010',
+					'shadowColor' => 'rgba(22, 22, 25, 0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#3F2878',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'rateApp' => 'true',
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			  );
+		break;
+		case 2:
+			$array = array (
+				'themeMode' => 'ThemeMode.dark',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-7.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-2.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.cardPost',
+				  'postLayout' => 'PostLayout.startThumbPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.cardPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat3',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#28B291',
+					'secondary' => '#000000',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFFFFF',
+					'appBarColor' => '#222222',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#222222',
+					'tabBarBackgroundColor' => '#ffffff',
+					'tabBarTextColor' => '#8B8D8F',
+					'tabBarActiveTextColor' => '#222222',
+					'tabBarIndicatorColor' => '#28B291',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#28B291',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#28B291',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#222222',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#222222',
+					'tabBarTextColor' => '#8A8A89',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#28B291',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#28B291',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#5C0D1F',
+					'successColor' => '#255834',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'darkMode' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => 'Download Jannah Now...',
+					'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/09/jannah-logo-light-1.png',
+					'android' => 'https://play.google.com/store/apps/details?id=com.jannah.app',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			  );
+		break;
+		case 3:
+			$array = array (
+				'themeMode' => 'ThemeMode.dark',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-3.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-3.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'false',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'false',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe802',
+					  'title_enable' => 'false',
+					  'title' => 'Creative',
+					  'url' => '/wp-json/wl/v1/posts?category_id=31',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'false',
+					  'title' => 'Favorites',
+					),
+					4 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'false',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.cardPost',
+				  'postLayout' => 'PostLayout.startThumbPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.cardPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat2',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.startThumbPostCompact',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#FFFFFF',
+					'secondary' => '#000000',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFFFFF',
+					'appBarColor' => '#222222',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#222222',
+					'tabBarBackgroundColor' => '#ffffff',
+					'tabBarTextColor' => '#8B8D8F',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#F50000',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#FFF9BB',
+					'buttonTextColor' => '#000000',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#FFF9BB',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFF9BB',
+					'appBarColor' => '#000000',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#FFF9BB',
+					'tabBarTextColor' => '#8A8A89',
+					'tabBarActiveTextColor' => '#222222',
+					'tabBarIndicatorColor' => '#F50000',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#FFF9BB',
+					'buttonTextColor' => '#000000',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress site',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			);
+		break;
+		case 4:
+			$array = array (
+				'themeMode' => 'ThemeMode.light',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-4-e1603273606416.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'false',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'false',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'false',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'false',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.cardPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat5',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#BF9958',
+					'secondary' => '#000000',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#BF9958',
+					'appBarColor' => '#222222',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#222222',
+					'tabBarBackgroundColor' => '#ffffff',
+					'tabBarTextColor' => '#8B8D8F',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#F50000',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#BF9958',
+					'buttonTextColor' => '#000000',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1039',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress site',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			  );
+		break;
+		case 5:
+			$array = array (
+				'themeMode' => 'ThemeMode.dark',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.start',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'false',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'false',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'bottom_bar_icon_enable' => 'false',
+					  'icon' => '0xe802',
+					  'title_enable' => 'true',
+					  'title' => 'Videos',
+					  'url' => '/wp-json/wl/v1/posts?category_id=2',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'false',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'Favorites',
+					),
+					4 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'false',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.imagePost',
+				  'postLayout' => 'PostLayout.minimalPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.imagePost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat4',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#BF2519',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#BF2519',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#BF2519',
+					'tabBarTextColor' => '#ffffff',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#ffffff',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#BF2519',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#BF2519',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#BF2519',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#BF2519',
+					'tabBarTextColor' => '#ffffff',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#ffffff',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#BF2519',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			);
+		break;
+		case 6:
+			$array = array (
+				'themeMode' => 'ThemeMode.dark',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.start',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'Settings',
+					),
+					4 => 
+					array (
+					  'type' => 'NavigationType.page',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe979',
+					  'title_enable' => 'true',
+					  'title' => 'Privacy',
+					  'url' => '/wp-json/wl/v1/page?id=1037',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.imagePost',
+				  'postLayout' => 'PostLayout.minimalPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.imagePost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat3',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#0080EE',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#0080EE',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#0080EE',
+					'tabBarTextColor' => '#ffffff',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#ffffff',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#0080EE',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#0080EE',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#0080EE',
+					'tabBarTextColor' => '#ffffff',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#ffffff',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			);
+		break;
+		case 7:
+			$array = array (
+				'themeMode' => 'ThemeMode.light',
+				'logo' => 
+				array (
+				  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-7.png',
+				  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-2.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				  'searchIcon' => '0xe820',
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.cardPost',
+				  'postLayout' => 'PostLayout.startThumbPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.minimalPost',
+					  'firstFeatured' => 'PostLayout.cardPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat2',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#28B291',
+					'secondary' => '#000000',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFFFFF',
+					'appBarColor' => '#222222',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#222222',
+					'tabBarBackgroundColor' => '#ffffff',
+					'tabBarTextColor' => '#8B8D8F',
+					'tabBarActiveTextColor' => '#222222',
+					'tabBarIndicatorColor' => '#28B291',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#28B291',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#000000',
+					'primary' => '#28B291',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#222222',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#222222',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#222222',
+					'tabBarTextColor' => '#8A8A89',
+					'tabBarActiveTextColor' => '#ffffff',
+					'tabBarIndicatorColor' => '#28B291',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#28B291',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#D91C49',
+					'successColor' => '#33C75F',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'darkMode' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'http://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			  );
+		break;
+		case 8:
+			$array = array (
+				'themeMode' => 'ThemeMode.light',
+				'onboardModels' => 
+				array (
+				  0 => 
+				  array (
+					'title' => 'International',
+					'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/svg_1.png',
+					'subTitle' => 'Find the latest breaking news and information on the top stories, weather, business, entertainment, politics,  and more.',
+				  ),
+				  1 => 
+				  array (
+					'title' => 'Live news',
+					'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/10/svg_2.png',
+					'subTitle' => 'Sahifa News Live is a 24/7 streaming channel for breaking news, live events and latest news headlines, and more.',
+				  ),
+				  2 => 
+				  array (
+					'title' => 'World News and Video',
+					'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/10/svg_3.png',
+					'subTitle' => 'Get the latest Sahifa World News international news, features and analysis from Middle East, and more.',
+				  ),
+				),
+				'logo' => 
+				array (
+				  'light' => 'https://www.bdaia.com/amr_work/news/demos/logos/logo-demo-8.png',
+				  'dark' => 'https://www.bdaia.com/amr_work/news/demos/logos/logo-demo-6.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				  'searchIcon' => '0xe820',
+				),
+				'sideNavbar' => 
+				array (
+				  'icon' => '0xed7f',
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.page',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe962',
+					  'title' => 'TieLabs App',
+					  'url' => '/wp-json/wl/v1/page?id=1046',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe97d',
+					  'title' => 'Technology',
+					  'url' => '/wp-json/wl/v1/posts?category_id=30',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe9b2',
+					  'title' => 'Football',
+					  'url' => '/wp-json/wl/v1/posts?category_id=32',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xf0c3',
+					  'title' => 'World',
+					  'url' => '/wp-json/wl/v1/posts?category_id=2',
+					),
+					4 => 
+					array (
+					  'type' => 'NavigationType.page',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe972',
+					  'title' => 'Help',
+					  'url' => '/wp-json/wl/v1/page?id=1038',
+					),
+				  ),
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'Home',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'Categories',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'Favorites',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'Settings',
+					),
+				  ),
+				),
+				'tabs' => 
+				array (
+				  'tabsLayout' => 'TabsLayout.tab1',
+				  'homeTab' => 'Top news',
+				  'tabs' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=32',
+					  'title' => 'Football',
+					),
+					1 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=33',
+					  'title' => 'Racing',
+					),
+					2 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=28',
+					  'title' => 'Sports',
+					),
+					3 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+					4 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=26',
+					  'title' => 'Life Style',
+					),
+					5 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=11',
+					  'title' => 'Travel',
+					),
+					6 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=2',
+					  'title' => 'World',
+					),
+				  ),
+				  'firstFeatured' => 'PostLayout.cardPost',
+				  'postLayout' => 'PostLayout.startThumbPost',
+				  'options' => 
+				  array (
+					'category' => 'true',
+					'readTime' => 'true',
+					'date' => 'true',
+					'share' => 'true',
+					'save' => 'true',
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest&count=3',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.startThumbPostCompact',
+					  'firstFeatured' => 'PostLayout.featuredPost',
+					  'separator' => 'true',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					1 => 
+					array (
+					  'title' => 'TRENDING NEWS',
+					  'seeMore' => 
+					  array (
+						'name' => 'TRENDING NEWS',
+						'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=3',
+					  'postLayout' => 'PostLayout.endThumbPost',
+					  'separator' => 'true',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					2 => 
+					array (
+					  'title' => 'LIVE NEWS',
+					  'seeMore' => 
+					  array (
+						'name' => 'LIVE NEWS',
+						'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=4',
+					  'postLayout' => 'PostLayout.relatedPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					3 => 
+					array (
+					  'title' => 'TRAVEL NEWS',
+					  'seeMore' => 
+					  array (
+						'name' => 'TRAVEL NEWS',
+						'url' => '/wp-json/wl/v1/posts?&categories=11&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=11&offset=0&sort=latest&count=3',
+					  'postLayout' => 'PostLayout.startThumbPostCompact',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat1',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#f88c00',
+					'secondary' => '#333739',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFFFFF',
+					'appBarColor' => '#333739',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#333739',
+					'tabBarBackgroundColor' => '#FFFFFF',
+					'tabBarTextColor' => '#7f7f7f',
+					'tabBarActiveTextColor' => '#f88c00',
+					'tabBarIndicatorColor' => '#f88c00',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#FF0000',
+					'successColor' => '#006900',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#333739',
+					'primary' => '#f88c00',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#333739',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#333739',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#333739',
+					'tabBarTextColor' => '#7f7f7f',
+					'tabBarActiveTextColor' => '#FFFFFF',
+					'tabBarIndicatorColor' => '#f88c00',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#FF0000',
+					'successColor' => '#006900',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'darkMode' => 'true',
+				  'rateApp' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'shortCodes' => 'true',
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				  'demos' => 'true',
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'http://appstage.tielabs.com/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'validConfig' => 'true',
+				'copyrights' => 'https://appbear.io/',
+			);
+		break;
+		case 9:
+			$array = array (
+				'rtl' => 'true',
+				'themeMode' => 'ThemeMode.light',
+				'onboardModels' => 
+				array (
+				  0 => 
+				  array (
+					'title' => 'International',
+					'image' => 'http://Array/2020/07/svg_1.png',
+					'subTitle' => 'Find the latest breaking news and information on the top stories, weather, business, entertainment, politics,  and more.',
+				  ),
+				  1 => 
+				  array (
+					'title' => 'Live news',
+					'image' => 'http://Array/2020/10/svg_2.png',
+					'subTitle' => 'Sahifa News Live is a 24/7 streaming channel for breaking news, live events and latest news headlines, and more.',
+				  ),
+				  2 => 
+				  array (
+					'title' => 'World News and Video',
+					'image' => 'http://Array/2020/10/svg_3.png',
+					'subTitle' => 'Get the latest Sahifa World News international news, features and analysis from Middle East, and more.',
+				  ),
+				),
+				'logo' => 
+				array (
+				  'light' => 'https://www.bdaia.com/amr_work/news/demos/logos/logo-demo-8.png',
+				  'dark' => 'https://www.bdaia.com/amr_work/news/demos/logos/logo-demo-6.png',
+				),
+				'appBar' => 
+				array (
+				  'layout' => 'AppBarLayout.header2',
+				  'position' => 'LogoPosition.center',
+				  'searchIcon' => '0xe820',
+				),
+				'sideNavbar' => 
+				array (
+				  'icon' => '0xed7f',
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.page',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe962',
+					  'title' => 'سليدر #١٨',
+					  'url' => '/wp-json/wl/v1/page?id=3815',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe97d',
+					  'title' => 'الحياة والمجتمع',
+					  'url' => '/wp-json/wl/v1/posts?category_id=6',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe9b2',
+					  'title' => 'السباحة',
+					  'url' => '/wp-json/wl/v1/posts?category_id=140',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.category',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xf0c3',
+					  'title' => 'التكنولوجيا',
+					  'url' => '/wp-json/wl/v1/posts?category_id=64',
+					),
+					4 => 
+					array (
+					  'type' => 'NavigationType.page',
+					  'side_menu_tab_icon' => 'true',
+					  'icon' => '0xe972',
+					  'title' => 'مساعدة',
+					  'url' => '/wp-json/wl/v1/page?id=3815',
+					),
+				  ),
+				),
+				'bottomBar' => 
+				array (
+				  'navigators' => 
+				  array (
+					0 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe800',
+					  'main' => 'MainPage.home',
+					  'title_enable' => 'true',
+					  'title' => 'الرئيسية',
+					),
+					1 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe801',
+					  'main' => 'MainPage.sections',
+					  'title_enable' => 'true',
+					  'title' => 'الأقسام',
+					),
+					2 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe803',
+					  'main' => 'MainPage.favourites',
+					  'title_enable' => 'true',
+					  'title' => 'المفضلة',
+					),
+					3 => 
+					array (
+					  'type' => 'NavigationType.main',
+					  'bottom_bar_icon_enable' => 'true',
+					  'icon' => '0xe935',
+					  'main' => 'MainPage.settings',
+					  'title_enable' => 'true',
+					  'title' => 'الإعدادات',
+					),
+				  ),
+				),
+				'homePage' => 
+				array (
+				  'sections' => 
+				  array (
+					0 => 
+					array (
+					  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+					  'seeMore' => 
+					  array (
+						'name' => NULL,
+						'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+					  ),
+					  'postLayout' => 'PostLayout.startThumbPostCompact',
+					  'firstFeatured' => 'PostLayout.featuredPost',
+					  'separator' => 'true',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'date' => 'true',
+						'share' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					1 => 
+					array (
+					  'title' => 'الأخبار المهمة',
+					  'seeMore' => 
+					  array (
+						'name' => 'الأخبار المهمة',
+						'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+					  'postLayout' => 'PostLayout.endThumbPost',
+					  'separator' => 'true',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					2 => 
+					array (
+					  'title' => 'أحداث مباشرة',
+					  'seeMore' => 
+					  array (
+						'name' => 'أحداث مباشرة',
+						'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=4',
+					  'postLayout' => 'PostLayout.relatedPost',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+					3 => 
+					array (
+					  'title' => 'أخبار السفر',
+					  'seeMore' => 
+					  array (
+						'name' => 'أخبار السفر',
+						'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+					  ),
+					  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+					  'postLayout' => 'PostLayout.startThumbPostCompact',
+					  'options' => 
+					  array (
+						'category' => 'true',
+						'readTime' => 'true',
+						'save' => 'true',
+					  ),
+					),
+				  ),
+				),
+				'archives' => 
+				array (
+				  'categories' => 
+				  array (
+					'layout' => 'CategoriesLayout.cat1',
+					'url' => '/wp-json/wl/v1/categories',
+				  ),
+				  'single' => 
+				  array (
+					'answerButton' => 'true',
+				  ),
+				  'category' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'search' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				  'favorites' => 
+				  array (
+					'postLayout' => 'PostLayout.minimalPost',
+					'url' => '/wp-json/wl/v1/posts?&ids=',
+					'options' => 
+					array (
+					  'count' => '10',
+					  'category' => 'true',
+					  'readTime' => 'true',
+					  'date' => 'true',
+					  'save' => 'true',
+					  'share' => 'true',
+					),
+				  ),
+				),
+				'styling' => 
+				array (
+				  'ThemeMode.light' => 
+				  array (
+					'scaffoldBackgroundColor' => '#FFFFFF',
+					'primary' => '#f88c00',
+					'secondary' => '#333739',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#FFFFFF',
+					'appBarColor' => '#333739',
+					'background' => '#FFFFFF',
+					'sidemenutextcolor' => '#333739',
+					'bottomBarBackgroundColor' => '#ffffff',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#333739',
+					'tabBarBackgroundColor' => '#FFFFFF',
+					'tabBarTextColor' => '#7f7f7f',
+					'tabBarActiveTextColor' => '#f88c00',
+					'tabBarIndicatorColor' => '#f88c00',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(0,0,0,0.05)',
+					'inputsbackgroundcolor' => 'rgba(0,0,0,0.04)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#FFFFFF',
+					'settingTextColor' => '#000000',
+					'errorColor' => '#FF0000',
+					'successColor' => '#006900',
+				  ),
+				  'ThemeMode.dark' => 
+				  array (
+					'scaffoldBackgroundColor' => '#333739',
+					'primary' => '#f88c00',
+					'secondary' => '#FFFFFF',
+					'secondaryVariant' => '#8A8A89',
+					'appBarBackgroundColor' => '#333739',
+					'appBarColor' => '#FFFFFF',
+					'background' => '#333739',
+					'sidemenutextcolor' => '#FFFFFF',
+					'bottomBarBackgroundColor' => '#333739',
+					'bottomBarInActiveColor' => '#8A8A89',
+					'bottomBarActiveColor' => '#ffffff',
+					'tabBarBackgroundColor' => '#333739',
+					'tabBarTextColor' => '#7f7f7f',
+					'tabBarActiveTextColor' => '#FFFFFF',
+					'tabBarIndicatorColor' => '#f88c00',
+					'shadowColor' => 'rgba(0,0,0,0.15)',
+					'dividerColor' => 'rgba(255,255,255,0.13)',
+					'inputsbackgroundcolor' => 'rgba(255,255,255,0.07)',
+					'buttonsbackgroudcolor' => '#0080EE',
+					'buttonTextColor' => '#FFFFFF',
+					'settingBackgroundColor' => '#000000',
+					'settingTextColor' => '#FFFFFF',
+					'errorColor' => '#FF0000',
+					'successColor' => '#006900',
+				  ),
+				),
+				'settingsPage' => 
+				array (
+				  'textSize' => 'true',
+				  'darkMode' => 'true',
+				  'rateApp' => 'true',
+				  'demos' => 'true',
+				  'shareApp' => 
+				  array (
+					'title' => '',
+					'image' => '',
+					'android' => '',
+					'ios' => '',
+				  ),
+				  'privacyPolicy' => '/wp-json/wl/v1/page?id=1039',
+				  'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+				  'contactUs' => '/wp-json/wl/v1/contact-us',
+				  'aboutApp' => 
+				  array (
+					'aboutLogoLight' => 'http://Array/2020/07/logo-demo-6-white.png',
+					'aboutLogoDark' => 'http://Array/2020/07/logo-demo-6-white.png',
+					'title' => 'My WordPress Website',
+					'content' => 'Just another WordPress sitern',
+				  ),
+				  'devMode' => 
+				  array (
+					'time' => '6000',
+					'count' => '3',
+					'addUrl' => '/?edd_action=save_development_token',
+					'removeUrl' => '/?edd_action=remove_development_token',
+				  ),
+				),
+				'basicUrls' => 
+				array (
+				  'devMode' => 'wp-json/wl/v1/dev-mode',
+				  'getPost' => '/wp-json/wl/v1/post',
+				  'submitComment' => '/wp-json/wl/v1/add-comment',
+				  'removeUrl' => '/?edd_action=remove_development_token',
+				  'saveToken' => '/?edd_action=save_token',
+				  'translations' => '/wp-json/wl/v1/translations',
+				  'getPostWPJSON' => '/wp-json/wl/v1/post',
+				  'getTags' => '/wp-json/wl/v1/posts?tags=',
+				  'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
+				  'login' => '/wp-json/wl/v1/login',
+				  'selectDemo' => '/wp-json/wl/v1/selectDemo',
+				  'demos' => '/wp-json/wl/v1/demos',
+				),
+				'baseUrl' => 'https://jannah.tielabs.com/appbear-rtl/',
+				'defaultLayout' => 'Layout.standard',
+				'searchApi' => '/wp-json/wl/v1/posts?s=',
+				'commentsApi' => '/wp-json/wl/v1/comments?id=',
+				'commentAdd' => '/wp-json/wl/v1/add-comment',
+				'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+				'lang' => 'en',
+				'copyrights' => 'https://appbear.io/',
+				'validConfig' => 'true',
+			);
+		break;
+	}
+
+	header('Content-type: application/json');
+	$demo = json_encode($array);
+	echo $demo;
+}
 
 //deep linking
 add_action('wp_enqueue_scripts', 'deeplink_custom_js');
@@ -7,7 +2847,7 @@ function deeplink_custom_js()
 {
 	if (is_single()) {
 
-		wp_register_script('browser-deeplink', XBOX_URL . 'js/browser-deeplink.js', array());
+		wp_register_script('browser-deeplink', APPBEAR_URL . 'js/browser-deeplink.js', array());
 		wp_enqueue_script('browser-deeplink');
 
 		/*
@@ -224,10 +3064,26 @@ function wl_posts()
 					$data['posts'][$i]['featured_image']['medium'] = '';
 					$data['posts'][$i]['featured_image']['large'] = '';
 				} else {
-					$data['posts'][$i]['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-					$data['posts'][$i]['featured_image']['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-					$data['posts'][$i]['featured_image']['medium'] = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-					$data['posts'][$i]['featured_image']['large'] = get_the_post_thumbnail_url(get_the_ID(), 'large');
+					$response = wp_remote_get(get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'));
+					if($response['response']['code']==200)
+						$data['posts'][$i]['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+					else
+						$data['posts'][$i]['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'full');
+					$response = wp_remote_get(get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'));
+					if($response['response']['code']==200)
+						$data['posts'][$i]['featured_image']['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+					else
+						$data['posts'][$i]['featured_image']['thumbnail'] = get_the_post_thumbnail_url(get_the_ID(), 'full');
+					$response = wp_remote_get(get_the_post_thumbnail_url(get_the_ID(), 'medium'));
+					if($response['response']['code']==200)
+						$data['posts'][$i]['featured_image']['medium'] = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+					else
+						$data['posts'][$i]['featured_image']['medium'] = get_the_post_thumbnail_url(get_the_ID(), 'full');
+					$response = wp_remote_get(get_the_post_thumbnail_url(get_the_ID(), 'large'));
+					if($response['response']['code']==200)
+						$data['posts'][$i]['featured_image']['large'] = get_the_post_thumbnail_url(get_the_ID(), 'large');
+					else
+						$data['posts'][$i]['featured_image']['large'] = get_the_post_thumbnail_url(get_the_ID(), 'full');
 				}
 				$i++;
 			}
@@ -510,7 +3366,10 @@ function shortcodes_parsing($content)
 	$string = preg_replace($pattern, '"></video></mediaelementwrapper></div><div class="mejs-layers"><div class="mejs-poster mejs-layer" style="display: none; width: 100%; height: 100%;"></div><div class="mejs-overlay mejs-layer" style="width: 100%; height: 100%; display: none;"><div class="mejs-overlay-loading"><span class="mejs-overlay-loading-bg-img"></span></div></div><div class="mejs-overlay mejs-layer" style="display: none; width: 100%; height: 100%;"><div class="mejs-overlay-error"></div></div><div class="mejs-overlay mejs-layer mejs-overlay-play" style="width: 100%; height: 100%;"><div class="mejs-overlay-button" role="button" tabindex="0" aria-label="Play" aria-pressed="false"></div></div></div><div class="mejs-controls"><div class="mejs-button mejs-playpause-button mejs-play"><button type="button" aria-controls="mep_1" title="Play" aria-label="Play" tabindex="0"></button></div><div class="mejs-time mejs-currenttime-container" role="timer" aria-live="off"><span class="mejs-currenttime">00:00</span></div><div class="mejs-time-rail"><span class="mejs-time-total mejs-time-slider" role="slider" tabindex="0" aria-label="Time Slider" aria-valuemin="0" aria-valuemax="60.095011" aria-valuenow="0" aria-valuetext="00:00"><span class="mejs-time-buffering" style="display: none;"></span><span class="mejs-time-loaded" style="transform: scaleX(0.0594559);"></span><span class="mejs-time-current" style="transform: scaleX(0);"></span><span class="mejs-time-hovered no-hover"></span><span class="mejs-time-handle" style="transform: translateX(0px);"><span class="mejs-time-handle-content"></span></span><span class="mejs-time-float"><span class="mejs-time-float-current">00:00</span><span class="mejs-time-float-corner"></span></span></span></div><div class="mejs-time mejs-duration-container"><span class="mejs-duration">01:00</span></div><div class="mejs-button mejs-volume-button mejs-mute"><button type="button" aria-controls="mep_1" title="Mute" aria-label="Mute" tabindex="0"></button><a href="javascript:void(0);" class="mejs-volume-slider" aria-label="Volume Slider" aria-valuemin="0" aria-valuemax="100" role="slider" aria-orientation="vertical" aria-valuenow="80" aria-valuetext="80%"><span class="mejs-offscreen">Use Up/Down Arrow keys to increase or decrease volume.</span><div class="mejs-volume-total"><div class="mejs-volume-current" style="bottom: 0px; height: 80%;"></div><div class="mejs-volume-handle" style="bottom: 80%; margin-bottom: -3px;"></div></div></a></div><div class="mejs-button mejs-fullscreen-button"><button type="button" aria-controls="mep_1" title="Fullscreen" aria-label="Fullscreen" tabindex="0"></button></div></div></div></div></div>', $string);
 
 
-
+	$pattern = '/\[caption/i';
+	$string = preg_replace($pattern, '<shortcaption', $string);
+	$pattern = '/\[\/caption\]/i';
+	$string = preg_replace($pattern, '</shortcaption>', $string);
 
 
 	$string = str_replace(" ]", ">", $string);
@@ -640,10 +3499,26 @@ function wl_post()
 		$data['featured_image']['medium'] = '';
 		$data['featured_image']['large'] = '';
 	} else {
-		$data['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'thumbnail');
-		$data['featured_image']['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'thumbnail');
-		$data['featured_image']['medium'] = get_the_post_thumbnail_url($post->ID, 'medium');
-		$data['featured_image']['large'] = get_the_post_thumbnail_url($post->ID, 'large');
+		$response = wp_remote_get(get_the_post_thumbnail_url($post->ID, 'thumbnail'));
+		if($response['response']['code']==200)
+			$data['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'thumbnail');
+		else
+			$data['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'full');
+		$response = wp_remote_get(get_the_post_thumbnail_url($post->ID, 'thumbnail'));
+		if($response['response']['code']==200)
+			$data['featured_image']['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'thumbnail');
+		else
+			$data['featured_image']['thumbnail'] = get_the_post_thumbnail_url($post->ID, 'full');
+		$response = wp_remote_get(get_the_post_thumbnail_url($post->ID, 'medium'));
+		if($response['response']['code']==200)
+			$data['featured_image']['medium'] = get_the_post_thumbnail_url($post->ID, 'medium');
+		else
+			$data['featured_image']['medium'] = get_the_post_thumbnail_url($post->ID, 'full');
+		$response = wp_remote_get(get_the_post_thumbnail_url($post->ID, 'large'));
+		if($response['response']['code']==200)
+			$data['featured_image']['large'] = get_the_post_thumbnail_url($post->ID, 'large');
+		else
+			$data['featured_image']['large'] = get_the_post_thumbnail_url($post->ID, 'full');
 	}
 	$data['read_time'] = "2 minutes";
 	$data['author'] = get_the_author_meta('nicename', $post->post_author);
@@ -770,7 +3645,10 @@ function wl_page()
 	$data['post']['id'] = $page->ID;
 	$data['post']['title'] = $page->post_title;
 
-	$data['post']['content'] =  html_styling('<div>' . mobile_kses_stip($page->post_content) . '</div>');
+	// $data['post']['content'] =  html_styling('<div>' . mobile_kses_stip($page->post_content) . '</div>');
+	$data['post']['content'] =  shortcodes_parsing($page->post_content);
+	// $data['post']['content'] =  $page->post_content;
+
 	$data['post']['slug'] = $page->post_name;
 
 	return $data;
@@ -1265,6 +4143,97 @@ function wl_options()
 function wl_translations()
 {
 	return get_option('appbear-language');
+}
+
+function wl_translations_ar()
+{
+	$respone = '{
+		"back": "الرجوع",
+		"skip": "التخطي",
+		"done": "تم",
+		"contactUs": "تواصل معنا",
+		"loadingUpdates": "الحصول علي التحديثات من الخادم...",
+		"baseUrl": "الرابط الاساسي",
+		"baseUrlTitle": "تغيير الرابط الاساسي",
+		"baseUrlDesc": "قم بتغيير عنوان الرابط الذي تأتي منه البيانات.",
+		"emptyBaseUrl": "لا يجب ان يكون الرابط خاليا",
+		"alreadyBaseUrl": "هذا الراب موجود بالفعل",
+		"contactUsTitle": "هيا بنا نتحدث",
+		"contactUsSubTitle": "AppBear هو موقع ويب للأزياء والموسيقى الإخبارية والترفيهية. نقدم لك أحدث الأخبار ومقاطع الفيديو مباشرة من عالم صناعة الترفيه.",
+		"yourName": "اسمك",
+		"yourEmail": "بريدك الالكتروني",
+		"yourMessage": "رسالتك",
+		"send": "إرسال",
+		"settings": "الاعدادات",
+		"aboutUs": "عنا",
+		"layout": "الإطار",
+		"textSize": "حجم الخط",
+		"aA": "Aa",
+		"darkMode": "الوضع المظلم",
+		"rateApp": "قيم هذا التطبيق",
+		"shareApp": "شارك هذا التطبيق",
+		"privacyPolicy": "سياسة الخصوصية",
+		"termsAndConditions": "الشروط و الاحكام",
+		"poweredBy": "مشغل بواسطة",
+		"logout": "الخروج",
+		"relatedPosts": "المنشورات ذات الصلة",
+		"leaveComment": "اترك تعليق",
+		"commentsCount": "التعلقيات",
+		"reply": "الرد",
+		"replyTo": "الرد علي",
+		"By": "بواسطة",
+		"cancel": "الغاء",
+		"submit": "إرسال",
+		"comment": "تعليق",
+		"name": "اسم",
+		"postComment": "تعليق علي منشور",
+		"postReply": "رد علي منشور",
+		"lets": "هيا بنا",
+		"noFav": "لا مختارات حتي الان",
+		"noPosts": "لا توجد منشورات",
+		"mustNotBeEmpty": "لا يجب ان يكون خاليا",
+		"loadingMore": "الحصول علي المزيد...",
+		"loadingMoreQuestions": "حمل المزيد",
+		"someThingWentWrong": "هناك خطأ ما",
+		"search": "ابحث",
+		"noMore": "لا توجد عناصر اخري",
+		"removedToFav": "تمت إزالته من المفضلة",
+		"addedToFav": "أضيف إلي المفضلة",
+		"typeToSearch": "اكتب للبحث",
+		"version": "النسخة ",
+		"yourVersionUpToDate": "إصدار التطبيق الخاص بك محدث ",
+		"yourVersionNotUpToDate": "قم بتحميل أحدث إصدار ",
+		"upgradeHint": "استمر في الضغط لتنشيط وضع التطوير",
+		"aboutApp": "عن التطبيق",
+		"tapsLeft": "Taps left",
+		"devModeActive": "وضع التطوير نشط",
+		"noResults": "لا نتيجة",
+		"noSections": "الرجاء إضافة أقسام الصحفة الرئيسية من لوحة الإدارة",
+		"noMainPage": "يجب إضافة صفحة رئيسية واحدة على الأقل من لوحة الإدارة",
+		"noBoards": "No boarding slides",
+		"errorPageTitle": "حدث خطأ ما",
+		"retry": "إعادة المحاولة",
+		"noInternet": "لا يوجد اتصال بالإنترنت",
+		"checkInternet": "يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى",
+		"noComments": "لا تعليقات",
+		"seeMore": "اظهار الكل",
+		"confirmDemoTitle": "حدد العرض",
+		"confirmDemoMessage": "هل تريد تحديد هذا العرض؟",
+		"chooseYourDemo": "اختر العرض الخاص بك",
+		"confirmResetTitle": "إعادة تعيين العرض",
+		"confirmResetMessage": "تأكيد إعادة الرسالة",
+		"yes": "نعم",
+		"reset": "أعادة",
+		"customDemo": "عرض مخصص",
+		"customDemoTitle": "عرض مخصص",
+		"customDemoBody": "قم بتغيير عنوان الرابط الذي تأتي منه البيانات ",
+		"confirmCustomDemoTitle": "اختار العرض المخصص",
+		"confirmCustomDemoMessage": "هل تريد تحديد عرض توضيحي مخصص؟",
+		"getOur": "يرجى الحصول على",
+		"appBear": "AppBear",
+		"plugin": "plugin"
+	}';
+	echo $respone;
 }
 
 
@@ -4542,6 +7511,11 @@ add_action('rest_api_init', function () {
 		'callback' => 'wl_translations',
 	]);
 
+	register_rest_route('wl/v1', 'translations_ar', [
+		'methods' => 'GET',
+		'callback' => 'wl_translations_ar',
+	]);
+
 	register_rest_route('wl/v1', 'comments', [
 		'methods' => 'GET',
 		'callback' => 'wl_comments',
@@ -4561,6 +7535,14 @@ add_action('rest_api_init', function () {
 	register_rest_route('wl/v1', 'login', [
 		'methods' => 'POST',
 		'callback' => 'wl_login',
+	]);
+	register_rest_route('wl/v1', 'selectdemo', [
+		'methods' => 'GET',
+		'callback' => 'wl_selectdemo',
+	]);
+	register_rest_route('wl/v1', 'demos', [
+		'methods' => 'GET',
+		'callback' => 'wl_demos',
 	]);
 	//
 	// register_rest_route('wl/v1', 'save_token', [

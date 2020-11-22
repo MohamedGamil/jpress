@@ -1,4 +1,4 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class Functions {
 
@@ -158,7 +158,7 @@ class Functions {
     |---------------------------------------------------------------------------------------------------
     */
     public static function get_icon( $value ){
-        $icons = include XBOX_DIR . 'includes/data/icons-spotlayer-framework.php';
+        $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
         return $icons[$value];
     }
 
@@ -415,7 +415,7 @@ class Functions {
                 $return['oembed'] = $check_oembed;
                 $return['provider'] = strtolower( self::get_oembed_provider( $oembed_url ) );
             } else{
-                $return['message'] = "<span class='xbox-preview-error'>" . sprintf( __( "No oEmbed results found for %s. See", 'xbox' ), $maybe_link ) . " <a href='http://codex.wordpress.org/Embeds' target='_blank'>Wordpress Embeds</a></span>";
+                $return['message'] = "<span class='appbear-preview-error'>" . sprintf( __( "No oEmbed results found for %s. See", 'appbear' ), $maybe_link ) . " <a href='http://codex.wordpress.org/Embeds' target='_blank'>Wordpress Embeds</a></span>";
             }
         }
         return $return;
@@ -525,7 +525,7 @@ class Functions {
     */
     public static function is_fontawesome_version( $version = '4.x' ){
         $version = str_replace(array('.', 'x', 'X'), '', $version);
-        return Functions::starts_with($version, XBOX_FONTAWESOME_VERSION );
+        return Functions::starts_with($version, APPBEAR_FONTAWESOME_VERSION );
     }
 
 

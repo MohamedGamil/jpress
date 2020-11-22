@@ -5,10 +5,11 @@ add_action('wp_enqueue_scripts', 'add_category_image');
 add_action('wp_enqueue_styles', 'add_category_image');
 function add_category_image($category) {
 
-	wp_register_script('category', XBOX_URL . 'options/js/category.js', array());
+	wp_register_script('category', APPBEAR_URL . 'options/js/category.js', array());
 	wp_enqueue_script('category');
-	wp_register_style('category', XBOX_URL . 'options/css/category.css', array());
+	wp_register_style('category', APPBEAR_URL . 'options/css/category.css', array());
 	wp_enqueue_style('category');
+	if (current_filter() == 'category_add_form_fields') {
 	?>
 	<!-- <tr class="form-field">
     <th scope="row" valign="top"><label for="category_theme"><?php //_e('Category Theme') ?></label></th>
@@ -23,7 +24,7 @@ function add_category_image($category) {
 							<input id="category" name="term_meta[custom_term_meta]" class="appbear-img-path" type="text" value="">
 							<input id="upload_category_button" type="button" class="appbear-upload-img button" value="Upload">
 							<div id="category-preview" class="img-preview" style="display:none">
-								<img loading="lazy" src="<?php echo XBOX_URL;?>options/img/demos/empty.png" alt="">
+								<img loading="lazy" src="<?php echo APPBEAR_URL;?>options/img/demos/empty.png" alt="">
 								<a class="delete-category-img"></a>
 							</div>
 							<div class="clear"></div>
@@ -36,8 +37,8 @@ function add_category_image($category) {
 	</tr> -->
 	<?php
 	}
+	}
 add_action( sprintf( '%s_add_form_fields', $prefix_taxonomy ), 'add_category_image' );
-
 
 	
 add_action( 'saved_term', 'add_term_meta_data', 10, 2 ); 
@@ -49,14 +50,16 @@ function add_term_meta_data( $term_id, $taxonomy ){
 add_action('wp_enqueue_scripts', 'edit_category_image');
 add_action('wp_enqueue_styles', 'edit_category_image');
 function edit_category_image($category) {
-	wp_register_script('category', XBOX_URL . 'options/js/category.js', array());
+	wp_register_script('category', APPBEAR_URL . 'options/js/category.js', array());
 	wp_enqueue_script('category');
-	wp_register_style('category', XBOX_URL . 'options/css/category.css', array());
+	wp_register_style('category', APPBEAR_URL . 'options/css/category.css', array());
 	wp_enqueue_style('category');
 	$options = array(
 		'id' => 'category-options',
 		'title' => __( 'AppBear - Category Options', 'textdomain' ),
 	);
+	if (current_filter() == 'category_edit_form_fields') {
+
 ?>
 	<tr class="form-field">
 		<td colspan="2">
@@ -74,7 +77,7 @@ function edit_category_image($category) {
 										$image = get_term_meta($category->term_id, "cat_image", true);
 									?>
 								<div id="category-preview" class="img-preview" <?php if(!$image) {?>style="display:none"<?php } ?>>
-									<img loading="lazy" src="<?php if(!$image) { echo XBOX_URL;?>options/img/demos/empty.png<?php }else{ ?><?php  echo $image;?><? } ?>" alt="">
+									<img loading="lazy" src="<?php if(!$image) { echo APPBEAR_URL;?>options/img/demos/empty.png<?php }else{ ?><?php  echo $image;?><? } ?>" alt="">
 									<a class="delete-category-img delete-img"></a>
 								</div>
 								<div class="clear"></div>
@@ -87,6 +90,8 @@ function edit_category_image($category) {
 	</tr>
 <?php
 }
+}
+
 function delete_category_image() {
 	$postid = isset($_POST['id']) ? $_POST['id'] : '';
 	if ( $postid ) {

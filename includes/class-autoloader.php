@@ -1,11 +1,11 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class Autoloader {
 	private $_namespace_separator = '\\';
 	private $_file_extension = '.php';
 	private $_start_with = 'class-';
 	private $_file = null;
-	private static $_plugin_base_namespace = 'Xbox';
+	private static $_plugin_base_namespace = 'Appbear';
 
 	/*
 	|---------------------------------------------------------------------------------------------------

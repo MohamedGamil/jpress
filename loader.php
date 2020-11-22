@@ -1,6 +1,6 @@
 <?php
 
-class XboxLoader148 {
+class AppbearLoader148 {
 	private $version;
 	private $priority;
 
@@ -10,25 +10,25 @@ class XboxLoader148 {
 	}
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Init Xbox
+	| Init Appbear
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function init(){
-		add_action( 'init', array( $this, 'load_xbox' ), $this->priority );
+		add_action( 'init', array( $this, 'load_appbear' ), $this->priority );
 	}
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Init Xbox
+	| Init Appbear
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function load_xbox(){
+	public function load_appbear(){
 
-		if ( class_exists( 'Xbox', false ) ) {
+		if ( class_exists( 'Appbear', false ) ) {
 			return;
 		}
 
-		//Xbox constants
+		//Appbear constants
 		$this->constants();
 
 		//Class autoloader
@@ -43,13 +43,13 @@ class XboxLoader148 {
 		//appBear
 		$this->appBear();
 
-		//Xbox hooks
+		//Appbear hooks
 		if ( is_admin() ) {
-			do_action( 'xbox_admin_init' );
+			do_action( 'appbear_admin_init' );
 		}
-		do_action( 'xbox_init' );
+		do_action( 'appbear_init' );
 
-		Xbox::init( $this->version );
+		Appbear::init( $this->version );
 	}
 
 	/*
@@ -58,12 +58,12 @@ class XboxLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function constants(){
-		define( 'XBOX_VERSION',  $this->version );
-		define( 'XBOX_PRIORITY',  $this->priority );
-		define( 'XBOX_SLUG',  'xbox' );
-		define( 'XBOX_DIR', trailingslashit( dirname( __FILE__ ) ) );
-		define( 'XBOX_URL', trailingslashit( $this->get_url() ) );
-        defined('XBOX_FONTAWESOME_VERSION') or define('XBOX_FONTAWESOME_VERSION', '4.x');
+		define( 'APPBEAR_VERSION',  $this->version );
+		define( 'APPBEAR_PRIORITY',  $this->priority );
+		define( 'APPBEAR_SLUG',  'appbear' );
+		define( 'APPBEAR_DIR', trailingslashit( dirname( __FILE__ ) ) );
+		define( 'APPBEAR_URL', trailingslashit( $this->get_url() ) );
+        defined('APPBEAR_FONTAWESOME_VERSION') or define('APPBEAR_FONTAWESOME_VERSION', '4.x');
 	}
 
 	/*
@@ -72,10 +72,10 @@ class XboxLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function localization(){
-		$loaded = load_plugin_textdomain( 'xbox', false, trailingslashit ( plugin_basename( XBOX_DIR ) ). 'languages/' );
+		$loaded = load_plugin_textdomain( 'appbear', false, trailingslashit ( plugin_basename( APPBEAR_DIR ) ). 'languages/' );
 
 		if( ! $loaded ){
-			load_textdomain( 'xbox', XBOX_DIR . 'languages/xbox-' . get_locale() . '.mo' );
+			load_textdomain( 'appbear', APPBEAR_DIR . 'languages/appbear-' . get_locale() . '.mo' );
 		}
 	}
 
@@ -87,17 +87,17 @@ class XboxLoader148 {
 	*/
 	public function class_autoloader(){
 		include dirname( __FILE__ ) . '/includes/class-autoloader.php';
-		Xbox\Includes\Autoloader::run();
+		Appbear\Includes\Autoloader::run();
 	}
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Xbox files
+	| Appbear files
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function includes(){
-		include dirname( __FILE__ ) . '/includes/class-xbox.php';
-		include dirname( __FILE__ ) . '/includes/class-xbox-items.php';
+		include dirname( __FILE__ ) . '/includes/class-appbear.php';
+		include dirname( __FILE__ ) . '/includes/class-appbear-items.php';
 		include dirname( __FILE__ ) . '/includes/global-functions.php';
 	}
 	
@@ -110,7 +110,7 @@ class XboxLoader148 {
         if( function_exists( 'appBear_options' ) || function_exists( 'my_simple_metabox' ) ){
             return;
         }
-        if( ! defined( 'XBOX_HIDE_DEMO' ) || ( defined( 'XBOX_HIDE_DEMO' ) && ! XBOX_HIDE_DEMO ) ){
+        if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ){
             if( file_exists( dirname( __FILE__ ) . '/options/admin-page.php' ) ){
                 include dirname( __FILE__ ) . '/options/admin-page.php';
             }
@@ -121,23 +121,24 @@ class XboxLoader148 {
 		// APIs File
 		include dirname( __FILE__ ) . '/options/appbear-apis.php';
 		include dirname( __FILE__ ) . '/options/options.php';
+		include dirname( __FILE__ ) . '/options/AppBear_subscription.php';
     }
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Get Xbox Url
+	| Get Appbear Url
 	|---------------------------------------------------------------------------------------------------
 	*/
 	private function get_url(){
-		if( stripos( XBOX_DIR, 'themes') !== false ){
-			$temp = explode( 'themes', XBOX_DIR );
-			$xbox_url = content_url() . '/themes' . $temp[1];
+		if( stripos( APPBEAR_DIR, 'themes') !== false ){
+			$temp = explode( 'themes', APPBEAR_DIR );
+			$appbear_url = content_url() . '/themes' . $temp[1];
 		} else {
-			$temp = explode( 'plugins', XBOX_DIR );
-			$xbox_url = content_url() . '/plugins' . $temp[1];
+			$temp = explode( 'plugins', APPBEAR_DIR );
+			$appbear_url = content_url() . '/plugins' . $temp[1];
 		}
-		$xbox_url = str_replace( "\\", "/", $xbox_url );
-		return $xbox_url;
+		$appbear_url = str_replace( "\\", "/", $appbear_url );
+		return $appbear_url;
 	}
 
 }

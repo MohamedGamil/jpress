@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'xbox_init', 'my_simple_metabox');
+add_action( 'appbear_init', 'my_simple_metabox');
 function my_simple_metabox(){
 	$options = array(
 		'id' => 'my-simple-metabox',
@@ -11,16 +11,16 @@ function my_simple_metabox(){
 		'header' => array()
 	);
 
-	$xbox = xbox_new_metabox( $options );
+	$appbear = appbear_new_metabox( $options );
 
-	$xbox->add_field(array(
+	$appbear->add_field(array(
 		'name' => 'Header slogan',
 		'id' => 'header-slogan',
 		'type' => 'text',
 		'grid' => '3-of-6',
 		'desc' => '"grid" => "3-of-6"',
 	));
-	$xbox->add_field( array(
+	$appbear->add_field( array(
 		'name' => 'Header info',
 		'id' => 'header-info',
 		'type' => 'checkbox',
@@ -34,21 +34,21 @@ function my_simple_metabox(){
 			'width' => '200px',
 		),
 	));
-	$xbox->add_field(array(
+	$appbear->add_field(array(
 		'name' => 'Phone number',
 		'id' => 'phone-number',
 		'type' => 'text',
 		'grid' => '2-of-8',
 		'desc' => '"grid" => "2-of-8"',
 	));
-	$xbox->add_field(array(
+	$appbear->add_field(array(
 		'name' => 'Email',
 		'id' => 'header-email',
 		'type' => 'text',
 		'grid' => '3-of-8',
 		'desc' => '"grid" => "3-of-8"',
 	));
-	$xbox->add_field(array(
+	$appbear->add_field(array(
 		'name' => 'Address',
 		'id' => 'header-addres',
 		'type' => 'text',
@@ -62,7 +62,7 @@ function my_simple_metabox(){
 
 
 
-add_action( 'xbox_init', 'my_advanced_metabox');
+add_action( 'appbear_init', 'my_advanced_metabox');
 function my_advanced_metabox(){
 	$options = array(
 		'id' => 'my-advanced-metabox',
@@ -72,36 +72,36 @@ function my_advanced_metabox(){
 		'layout' => 'boxed',//wide
 		'fields_prefix' => 'xf_',
 		'header' => array(
-			'icon' => '<img src="'.XBOX_URL.'img/xbox-light.png"/>',
+			'icon' => '<img src="'.APPBEAR_URL.'img/appbear-light.png"/>',
 			'desc' => 'Custom description for metabox',
 		),
 	);
 
-	$xbox = xbox_new_metabox( $options );
+	$appbear = appbear_new_metabox( $options );
 
-	$xbox->add_main_tab( array(
+	$appbear->add_main_tab( array(
 		'name' => 'Main tab',
 		'id' => 'main-tab',
 		'items' => array(
-			'logo' => '<i class="xbox-icon xbox-icon-image"></i>Logo',
-			'header' => '<i class="xbox-icon xbox-icon-arrow-up"></i>Header',
-			'footer' => '<i class="xbox-icon xbox-icon-arrow-down"></i>Footer',
-			'sidebar' => '<i class="xbox-icon xbox-icon-list-alt"></i>Sidebar',
-			'number' => '<i class="xbox-icon xbox-icon-dollar"></i>Number',
-			'textarea' => '<i class="xbox-icon xbox-icon-font"></i>Textarea',
-			'wp-editor' => '<i class="xbox-icon xbox-icon-pencil"></i>Wp Editor',
-			'switcher' => '<i class="xbox-icon xbox-icon-toggle-on"></i>Switcher',
-			'checkbox' => '<i class="xbox-icon xbox-icon-check-square"></i>Checkbox - Radio',
-			'image-selector' => '<i class="xbox-icon xbox-icon-photo"></i>Image Selector',
-			'select' => '<i class="xbox-icon xbox-icon-mouse-pointer"></i>Select',
-			'colorpicker' => '<i class="xbox-icon xbox-icon-eyedropper"></i>Colorpicker',
-			'file' => '<i class="xbox-icon xbox-icon-upload"></i>File Upload',
-			'oembed' => '<i class="xbox-icon xbox-icon-refresh"></i>Oembed',
+			'logo' => '<i class="appbear-icon appbear-icon-image"></i>Logo',
+			'header' => '<i class="appbear-icon appbear-icon-arrow-up"></i>Header',
+			'footer' => '<i class="appbear-icon appbear-icon-arrow-down"></i>Footer',
+			'sidebar' => '<i class="appbear-icon appbear-icon-list-alt"></i>Sidebar',
+			'number' => '<i class="appbear-icon appbear-icon-dollar"></i>Number',
+			'textarea' => '<i class="appbear-icon appbear-icon-font"></i>Textarea',
+			'wp-editor' => '<i class="appbear-icon appbear-icon-pencil"></i>Wp Editor',
+			'switcher' => '<i class="appbear-icon appbear-icon-toggle-on"></i>Switcher',
+			'checkbox' => '<i class="appbear-icon appbear-icon-check-square"></i>Checkbox - Radio',
+			'image-selector' => '<i class="appbear-icon appbear-icon-photo"></i>Image Selector',
+			'select' => '<i class="appbear-icon appbear-icon-mouse-pointer"></i>Select',
+			'colorpicker' => '<i class="appbear-icon appbear-icon-eyedropper"></i>Colorpicker',
+			'file' => '<i class="appbear-icon appbear-icon-upload"></i>File Upload',
+			'oembed' => '<i class="appbear-icon appbear-icon-refresh"></i>Oembed',
 		),
 	));
 
-		$xbox->open_tab_item('logo');
-			$xbox->add_tab( array(
+		$appbear->open_tab_item('logo');
+			$appbear->add_tab( array(
 				'name' => 'Logo tabs',
 				'id' => 'logo-tabs',
 				'items' => array(
@@ -110,8 +110,8 @@ function my_advanced_metabox(){
 					'mobile-logo' => 'Mobile Logo',
 				),
 			));
-			$xbox->open_tab_item('main-logo');
-				$xbox->add_field(array(
+			$appbear->open_tab_item('main-logo');
+				$appbear->add_field(array(
 					'id' => 'default-logo',
 					'name' => 'Default logo',
 					'type' => 'file',
@@ -119,8 +119,8 @@ function my_advanced_metabox(){
 						'preview_size' => array( 'width' => '37px', 'height' => 'auto' ),
 					)
 				));
-				$xbox->open_mixed_field(array('name' => 'Logo settings'));
-					$xbox->add_field(array(
+				$appbear->open_mixed_field(array('name' => 'Logo settings'));
+					$appbear->add_field(array(
 						'name' => 'Max width',
 						'id' => 'logo-max-width',
 						'type' => 'number',
@@ -128,7 +128,7 @@ function my_advanced_metabox(){
 						'grid' => '2-of-8',
 						'desc' => '"grid" => "2-of-8"',
 					));
-					$xbox->add_field(array(
+					$appbear->add_field(array(
 						'name' => 'Max height',
 						'id' => 'logo-max-height',
 						'type' => 'number',
@@ -136,7 +136,7 @@ function my_advanced_metabox(){
 						'grid' => '2-of-8',
 						'desc' => '"grid" => "2-of-8"',
 					));
-					$xbox->add_field(array(
+					$appbear->add_field(array(
 						'name' => 'Margin top',
 						'id' => 'logo-margin-top',
 						'type' => 'number',
@@ -144,7 +144,7 @@ function my_advanced_metabox(){
 						'grid' => '2-of-8',
 						'desc' => '"grid" => "2-of-8"',
 					));
-					$xbox->add_field(array(
+					$appbear->add_field(array(
 						'name' => 'Margin left',
 						'id' => 'logo-margin-left',
 						'type' => 'number',
@@ -152,29 +152,29 @@ function my_advanced_metabox(){
 						'grid' => '2-of-8 last',
 						'desc' => '"grid" => "2-of-8 last"',
 					));
-				$xbox->close_mixed_field();
-				$xbox->add_field(array(
+				$appbear->close_mixed_field();
+				$appbear->add_field(array(
 					'id' => 'text-logo',
 					'name' => 'Text logo',
 					'type' => 'text',
 					'grid' => '3-of-6',
 					'desc' => '"grid" => "3-of-6"',
 				));
-				$xbox->add_field(array(
+				$appbear->add_field(array(
 					'name' => 'Use text logo',
 					'id' => 'use-text-logo',
 					'type' => 'switcher',
 					'default' => 'on',
 				));
-				$xbox->open_mixed_field(array('name' => 'Text logo settings'));
-					$xbox->add_field( array(
+				$appbear->open_mixed_field(array('name' => 'Text logo settings'));
+					$appbear->add_field( array(
 						'id' => 'logo-font-family',
 						'name' => __( 'Font family', 'textdomain' ),
 						'type' => 'select',
 						'default' => 'Open Sans',
 						'items' => array(
-							'Google Fonts' => XboxItems::google_fonts(),
-							'Web Safe Fonts' => XboxItems::web_safe_fonts()
+							'Google Fonts' => AppbearItems::google_fonts(),
+							'Web Safe Fonts' => AppbearItems::web_safe_fonts()
 						),
 						'options' => array(
 							'sort' => 'asc',
@@ -182,7 +182,7 @@ function my_advanced_metabox(){
 						),
 						'grid' => '2-of-8'
 					));
-					$xbox->add_field(array(
+					$appbear->add_field(array(
 						'id' => 'logo-font-size',
 						'name' => 'Font size',
 						'type' => 'number',
@@ -192,40 +192,40 @@ function my_advanced_metabox(){
 							'unit' => 'em'
 						),
 					));
-					$xbox->add_field(array(
+					$appbear->add_field(array(
 						'id' => 'logo-font-color',
 						'name' => 'Font color',
 						'type' => 'colorpicker',
 						'default' => '#A55CFD',
 						'grid' => '2-of-8'
 					));
-					$xbox->add_field( array(
+					$appbear->add_field( array(
 						'id' => 'logo-text-align',
 						'name' => __( 'Text align', 'textdomain' ),
 						'type' => 'select',
 						'default' => 'left',
-						'items' => XboxItems::text_align(),
+						'items' => AppbearItems::text_align(),
 						'grid' => '2-of-8'
 					));
-				$xbox->close_mixed_field();
-				$xbox->add_field( array(
+				$appbear->close_mixed_field();
+				$appbear->add_field( array(
 					'id' => 'logo-position',
 					'name' => 'Logo position',
 					'type' => 'image_selector',
 					'default' => 'left',
 					'items' => array(
-						'left' => XBOX_URL.'example/img/logo-position-left.png',
-						'right' => XBOX_URL.'example/img/logo-position-right.png',
-						'center' => XBOX_URL.'example/img/logo-position-center.png'
+						'left' => APPBEAR_URL.'example/img/logo-position-left.png',
+						'right' => APPBEAR_URL.'example/img/logo-position-right.png',
+						'center' => APPBEAR_URL.'example/img/logo-position-center.png'
 					),
 					'options' => array(
 						'width' => '155px',
 					),
 				));
-			$xbox->close_tab_item('main-logo');
+			$appbear->close_tab_item('main-logo');
 
-			$xbox->open_tab_item('footer-logo');
-				$xbox->add_field(array(
+			$appbear->open_tab_item('footer-logo');
+				$appbear->add_field(array(
 					'id' => 'footer-logo',
 					'name' => 'Footer logo',
 					'type' => 'file',
@@ -233,10 +233,10 @@ function my_advanced_metabox(){
 						'preview_size' => array( 'width' => '37px', 'height' => 'auto' ),
 					)
 				));
-			$xbox->close_tab_item('footer-logo');
+			$appbear->close_tab_item('footer-logo');
 
-			$xbox->open_tab_item('mobile-logo');
-				$xbox->add_field(array(
+			$appbear->open_tab_item('mobile-logo');
+				$appbear->add_field(array(
 					'id' => 'mobile-logo',
 					'name' => 'Mobile logo',
 					'type' => 'file',
@@ -244,14 +244,14 @@ function my_advanced_metabox(){
 						'preview_size' => array( 'width' => '37px', 'height' => 'auto' ),
 					)
 				));
-			$xbox->close_tab_item('mobile-logo');
+			$appbear->close_tab_item('mobile-logo');
 
-		$xbox->close_tab('logo-tabs');
+		$appbear->close_tab('logo-tabs');
 
-		$xbox->close_tab_item('logo');
+		$appbear->close_tab_item('logo');
 
-		$xbox->open_tab_item('header');
-			$section_header_1 = $xbox->add_section( array(
+		$appbear->open_tab_item('header');
+			$section_header_1 = $appbear->add_section( array(
 				'name' => 'General Header',
 				'id' => 'section-general-header',
 				'options' => array(
@@ -264,9 +264,9 @@ function my_advanced_metabox(){
 					'type' => 'image_selector',
 					'default' => 'header1',
 					'items' => array(
-						'header1' => XBOX_URL.'example/img/header1.png',
-						'header2' => XBOX_URL.'example/img/header2.png',
-						'header3' => XBOX_URL.'example/img/header3.png'
+						'header1' => APPBEAR_URL.'example/img/header1.png',
+						'header2' => APPBEAR_URL.'example/img/header2.png',
+						'header3' => APPBEAR_URL.'example/img/header3.png'
 					),
 					'options' => array(
 						'width' => '200px',
@@ -317,7 +317,7 @@ function my_advanced_metabox(){
 					'grid' => '4-of-8',
 					'desc' => '"grid" => "4-of-8"',
 				));
-			$section_header_2 = $xbox->add_section( array(
+			$section_header_2 = $appbear->add_section( array(
 				'name' => 'Additional Header Settings',
 				'id' => 'section-general-additional',
 				'options' => array(
@@ -361,15 +361,15 @@ function my_advanced_metabox(){
 					)
 				));
 
-		$xbox->close_tab_item('header');
+		$appbear->close_tab_item('header');
 
-		$xbox->open_tab_item('footer');
-			$xbox->add_field(array(
+		$appbear->open_tab_item('footer');
+			$appbear->add_field(array(
 				'name' => 'Footer background image',
 				'id' => 'footer-background-image',
 				'type' => 'file',
 			));
-			$xbox->add_field(array(
+			$appbear->add_field(array(
 				'name' => 'Footer widgets',
 				'id' => 'footer-widgets',
 				'type' => 'switcher',
@@ -379,7 +379,7 @@ function my_advanced_metabox(){
 					'desc_tooltip' => true
 				)
 			));
-			$xbox->add_field(array(
+			$appbear->add_field(array(
 				'name' => 'Footer Columns',
 				'id' => 'footer-columns',
 				'type' => 'number',
@@ -389,7 +389,7 @@ function my_advanced_metabox(){
 					'show_spinner' => true
 				)
 			));
-			$xbox->add_field(array(
+			$appbear->add_field(array(
 				'name' => 'Footer navigation',
 				'id' => 'footer-navigation',
 				'type' => 'switcher',
@@ -400,34 +400,34 @@ function my_advanced_metabox(){
 				)
 			));
 
-			$xbox->open_mixed_field(array('name' => 'Padding footer'));
-				$xbox->add_field(array(
+			$appbear->open_mixed_field(array('name' => 'Padding footer'));
+				$appbear->add_field(array(
 					'name' => 'Padding top',
 					'id' => 'footer-padding-top',
 					'type' => 'number',
 					'default' => 40,
 				));
-				$xbox->add_field(array(
+				$appbear->add_field(array(
 					'name' => 'Padding right',
 					'id' => 'footer-padding-right',
 					'type' => 'number',
 					'default' => 0,
 				));
-				$xbox->add_field(array(
+				$appbear->add_field(array(
 					'name' => 'Padding bottom',
 					'id' => 'footer-padding-bottom',
 					'type' => 'number',
 					'default' => 40,
 				));
-				$xbox->add_field(array(
+				$appbear->add_field(array(
 					'name' => 'Padding left',
 					'id' => 'footer-padding-left',
 					'type' => 'number',
 					'default' => 0,
 				));
-			$xbox->close_mixed_field();
+			$appbear->close_mixed_field();
 
-			$xbox->add_field(array(
+			$appbear->add_field(array(
 				'name' => 'Copyright bar',
 				'id' => 'copyright-bar',
 				'type' => 'switcher',
@@ -437,7 +437,7 @@ function my_advanced_metabox(){
 					'desc_tooltip' => true
 				)
 			));
-			$xbox->add_field(array(
+			$appbear->add_field(array(
 				'name' => 'Copyright text',
 				'id' => 'copyright-text',
 				'type' => 'textarea',
@@ -446,10 +446,10 @@ function my_advanced_metabox(){
 					'desc_tooltip' => true
 				)
 			));
-		$xbox->close_tab_item('footer');
+		$appbear->close_tab_item('footer');
 
-		$xbox->open_tab_item('sidebar');
-			$sidebar = $xbox->add_group( array(
+		$appbear->open_tab_item('sidebar');
+			$sidebar = $appbear->add_group( array(
 				'name' => 'Create new Sidebar',
 				'id' => 'create-sidebar',
 				'type' => 'group',
@@ -478,10 +478,10 @@ function my_advanced_metabox(){
 				'id' => 'sidebar-class',
 				'type' => 'text',
 			));
-		$xbox->close_tab_item('sidebar');
+		$appbear->close_tab_item('sidebar');
 
-		$xbox->open_tab_item('number');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('number');
+			$appbear->add_field( array(
 				'id' => 'number',
 				'name' => 'Number',
 				'type' => 'number',
@@ -492,7 +492,7 @@ function my_advanced_metabox(){
 					'max' => 50
 				),
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'number-2',
 				'name' => 'Number',
 				'type' => 'number',
@@ -506,7 +506,7 @@ function my_advanced_metabox(){
 					'max' => 100
 				),
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'currency',
 				'name' => 'Currency',
 				'type' => 'number',
@@ -522,7 +522,7 @@ function my_advanced_metabox(){
 					'precision' => 2
 				),
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'currency-2',
 				'name' => 'Currency',
 				'type' => 'number',
@@ -538,15 +538,15 @@ function my_advanced_metabox(){
 					'precision' => 1
 				),
 			));
-		$xbox->close_tab_item('number');
+		$appbear->close_tab_item('number');
 
-		$xbox->open_tab_item('textarea');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('textarea');
+			$appbear->add_field( array(
 				'id' => 'textarea',
 				'name' => 'Textarea',
 				'type' => 'textarea',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'textarea-grid',
 				'name' => 'Textarea with grid',
 				'type' => 'textarea',
@@ -556,12 +556,12 @@ function my_advanced_metabox(){
 					'rows' => 5
 				)
 			));
-		$xbox->close_tab_item('textarea');
+		$appbear->close_tab_item('textarea');
 
-		$xbox->open_tab_item('wp-editor');
-			$section_wp_editor = $xbox->add_section( array(
+		$appbear->open_tab_item('wp-editor');
+			$section_wp_editor = $appbear->add_section( array(
 				'name' => 'Custom css, html, javascript',
-				'desc' => 'Documentation: <a href="http://xboxframework.com/documentation/field-types/wp-editor/" target="_blank">Wp editor</a>, <a href="http://xboxframework.com/documentation/field-types/code-editor/" target="_blank">Code editor</a>',
+				'desc' => 'Documentation: <a href="http://appbearframework.com/documentation/field-types/wp-editor/" target="_blank">Wp editor</a>, <a href="http://appbearframework.com/documentation/field-types/code-editor/" target="_blank">Code editor</a>',
 				'options' => array(
 					'toggle' => true,
 				)
@@ -605,7 +605,7 @@ body {
 					'desc' => '"options" => [ "language" => "html", "theme" => "solarized_light", "height" => "120px"]',
 					'default' => '
 <section>
-  <h1 style="color:blue">Xbox Framework</h1>
+  <h1 style="color:blue">Appbear Framework</h1>
 </section>
 ',
 				));
@@ -627,25 +627,25 @@ jQuery(document).ready(function($) {
 });
 ',
 				));
-		$xbox->close_tab_item('wp-editor');
+		$appbear->close_tab_item('wp-editor');
 
-		$xbox->open_tab_item('switcher');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('switcher');
+			$appbear->add_field( array(
 				'id' => 'switcher-on',
 				'name' => 'Switcher On',
 				'type' => 'switcher',
 				'default' => 'on',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'switcher-off',
 				'name' => 'Switcher Off',
 				'type' => 'switcher',
 				'default' => 'off',
 			));
-		$xbox->close_tab_item('switcher');
+		$appbear->close_tab_item('switcher');
 
-		$xbox->open_tab_item('checkbox');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('checkbox');
+			$appbear->add_field( array(
 				'id' => 'input-checkbox',
 				'name' => 'Checkbox',
 				'type' => 'checkbox',
@@ -664,15 +664,15 @@ jQuery(document).ready(function($) {
 				'desc' => '"options" => ["in_line" => false]',
 			));
 
-			$xbox->add_field( array(
-				'id' => 'xbox-categories',
+			$appbear->add_field( array(
+				'id' => 'appbear-categories',
 				'name' => 'Categories',
 				'type' => 'checkbox',
 				'default' => '$all$',
-				'items' => XboxItems::terms( 'category' ),
-				'desc' => '"items" => "XboxItems::terms( \'category\' )"',
+				'items' => AppbearItems::terms( 'category' ),
+				'desc' => '"items" => "AppbearItems::terms( \'category\' )"',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'input-radio',
 				'name' => 'Radio button',
 				'type' => 'radio',
@@ -686,18 +686,18 @@ jQuery(document).ready(function($) {
 					'disabled' => 'disabled'
 				),
 			));
-		$xbox->close_tab_item('checkbox');
+		$appbear->close_tab_item('checkbox');
 
-		$xbox->open_tab_item('image-selector');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('image-selector');
+			$appbear->add_field( array(
 				'id' => 'image-selector-demo',
 				'name' => 'Select demo',
 				'type' => 'image_selector',
 				'default' => 'demo1',
 				'items' => array(
-					'demo1' => XBOX_URL.'example/img/demo1.png',
-					'demo2' => XBOX_URL.'example/img/demo2.png',
-					'demo3' => XBOX_URL.'example/img/demo3.png',
+					'demo1' => APPBEAR_URL.'example/img/demo1.png',
+					'demo2' => APPBEAR_URL.'example/img/demo2.png',
+					'demo3' => APPBEAR_URL.'example/img/demo3.png',
 				),
 				'items_desc' => array(
 					'demo1' => 'Demo 1',
@@ -710,15 +710,15 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["in_line" => true, "width" => "160px"]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'image-selector',
 				'name' => 'Image selector',
 				'type' => 'image_selector',
 				'default' => 'right',
 				'items' => array(
-					'left' => XBOX_URL.'example/img/logo-position-left.png',
-					'right' => XBOX_URL.'example/img/logo-position-right.png',
-					'center' => XBOX_URL.'example/img/logo-position-center.png'
+					'left' => APPBEAR_URL.'example/img/logo-position-left.png',
+					'right' => APPBEAR_URL.'example/img/logo-position-right.png',
+					'center' => APPBEAR_URL.'example/img/logo-position-center.png'
 				),
 				'options' => array(
 					'width' => '100px',
@@ -726,10 +726,10 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["in_line" => false, "width" => "100px"]',
 			));
-		$xbox->close_tab_item('image-selector');
+		$appbear->close_tab_item('image-selector');
 
-		$xbox->open_tab_item('select');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('select');
+			$appbear->add_field( array(
 				'id' => 'select',
 				'name' => 'Select',
 				'type' => 'select',
@@ -739,15 +739,15 @@ jQuery(document).ready(function($) {
 					'female' => 'Female',
 				),
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'select-images',
 				'name' => 'Select with images',
 				'type' => 'select',
 				'items' => array(
-					'jenny' => '<img class="ui mini avatar image" src="'.XBOX_URL.'example/img/avatar/jenny.jpg">Jenny Hess',
-					'elliot' => '<img class="ui mini avatar image" src="'.XBOX_URL.'example/img/avatar/elliot.jpg">Elliot Fu',
-					'stevie' => '<img class="ui mini avatar image" src="'.XBOX_URL.'example/img/avatar/stevie.jpg">Stevie',
-					'christian' => '<img class="ui mini avatar image" src="'.XBOX_URL.'example/img/avatar/christian.jpg">Christian',
+					'jenny' => '<img class="ui mini avatar image" src="'.APPBEAR_URL.'example/img/avatar/jenny.jpg">Jenny Hess',
+					'elliot' => '<img class="ui mini avatar image" src="'.APPBEAR_URL.'example/img/avatar/elliot.jpg">Elliot Fu',
+					'stevie' => '<img class="ui mini avatar image" src="'.APPBEAR_URL.'example/img/avatar/stevie.jpg">Stevie',
+					'christian' => '<img class="ui mini avatar image" src="'.APPBEAR_URL.'example/img/avatar/christian.jpg">Christian',
 				),
 				'options' => array(
 					'sort' => 'desc'
@@ -755,14 +755,14 @@ jQuery(document).ready(function($) {
 				'default' => 'elliot',
 				'grid' => '2-of-8',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'select-option-group',
 				'name' => 'Select with option group',
 				'type' => 'select',
 				'items' => array(
 					'' => 'None',
-					'Google Fonts' => XboxItems::google_fonts(),
-					'Web Safe Fonts' => XboxItems::web_safe_fonts()
+					'Google Fonts' => AppbearItems::google_fonts(),
+					'Web Safe Fonts' => AppbearItems::web_safe_fonts()
 				),
 				'options' => array(
 					'sort' => 'asc',
@@ -770,22 +770,22 @@ jQuery(document).ready(function($) {
 				),
 				'grid' => '3-of-8'
 			));
-            $xbox->add_field( array(
+            $appbear->add_field( array(
                 'name' => 'Two ways to add icons',
                 'type' => 'title',
             ));
-            $xbox->add_field( array(
+            $appbear->add_field( array(
                 'name' => 'Icon selector',
                 'id' => 'icon-selector',
                 'type' => 'icon_selector',
                 'default' => 'fab fa-apple',
                 'items' => array_merge(
                     array(
-                        XBOX_URL .'img/svg/cake.svg' => "<img src='".XBOX_URL ."img/svg/cake.svg'>",
-                        XBOX_URL .'img/svg/cart.svg' => "<img src='".XBOX_URL ."img/svg/cart.svg'>",
-                        XBOX_URL .'img/svg/cash.svg' => "<img src='".XBOX_URL ."img/svg/cash.svg'>",
+                        APPBEAR_URL .'img/svg/cake.svg' => "<img src='".APPBEAR_URL ."img/svg/cake.svg'>",
+                        APPBEAR_URL .'img/svg/cart.svg' => "<img src='".APPBEAR_URL ."img/svg/cart.svg'>",
+                        APPBEAR_URL .'img/svg/cash.svg' => "<img src='".APPBEAR_URL ."img/svg/cash.svg'>",
                     ),
-                    XboxItems::icon_fonts()
+                    AppbearItems::icon_fonts()
                 ),
                 'options' => array(
                     'wrap_height'    => '220px',
@@ -794,21 +794,21 @@ jQuery(document).ready(function($) {
                     'hide_buttons'   => false,
                 ),
             ));
-            $xbox->add_field( array(
+            $appbear->add_field( array(
                 'name' => 'Select with icons',
                 'id' => 'select-icons',
                 'type' => 'select',
-                'items' => XboxItems::icons(),
+                'items' => AppbearItems::icons(),
                 'options' => array(
                     'search' => true,
                 ),
                 'default' => 'fab fa-apple',
                 'grid' => '3-of-8',
             ));
-		$xbox->close_tab_item('select');
+		$appbear->close_tab_item('select');
 
-		$xbox->open_tab_item('colorpicker');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('colorpicker');
+			$appbear->add_field( array(
 				'id' => 'colorpicker',
 				'name' => 'Colorpicker',
 				'type' => 'colorpicker',
@@ -818,7 +818,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["format" => "hex"]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'colorpicker-alpha',
 				'name' => 'Colorpicker with alpha',
 				'type' => 'colorpicker',
@@ -830,10 +830,10 @@ jQuery(document).ready(function($) {
 				'grid' => '3-of-8',
 				'desc' => '"options" => ["format" => "rgba", "opacity" => 0.6]',
 			));
-		$xbox->close_tab_item('colorpicker');
+		$appbear->close_tab_item('colorpicker');
 
-		$xbox->open_tab_item('file');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('file');
+			$appbear->add_field( array(
 				'id' => 'file-upload',
 				'name' => 'File upload (mp3, pdf)',
 				'type' => 'file',
@@ -843,7 +843,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["mime_types" => ["mp3", "pdf"], "multiple" => true]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'image-upload',
 				'name' => 'Image upload',
 				'type' => 'file',
@@ -854,7 +854,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["mime_types" => ["jpg", "jpeg", "png", "gif", "ico"], "multiple" => false]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'image-upload-multiple',
 				'name' => 'Multiple image upload',
 				'type' => 'file',
@@ -865,7 +865,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["mime_types" => ["jpg", "jpeg", "png", "gif", "ico"], "multiple" => true]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'image-upload-repeatable',
 				'name' => 'Image upload repeatable',
 				'type' => 'file',
@@ -876,10 +876,10 @@ jQuery(document).ready(function($) {
 				'repeatable' => true,
 				'desc' => '"repeatable" => true, "options" => ["mime_types" => ["jpg", "jpeg", "png", "gif", "ico"] ]',
 			));
-		$xbox->close_tab_item('file');
+		$appbear->close_tab_item('file');
 
-		$xbox->open_tab_item('oembed');
-			$xbox->add_field( array(
+		$appbear->open_tab_item('oembed');
+			$appbear->add_field( array(
 				'id' => 'oembed-youtube',
 				'name' => 'Youtube',
 				'type' => 'oembed',
@@ -889,7 +889,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["preview_onload" => true ]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'oembed-vimeo',
 				'name' => 'Vimeo',
 				'type' => 'oembed',
@@ -899,7 +899,7 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["preview_onload" => false ]',
 			));
-			$xbox->add_field( array(
+			$appbear->add_field( array(
 				'id' => 'oembed-soundcloud',
 				'name' => 'Soundcloud',
 				'type' => 'oembed',
@@ -910,9 +910,9 @@ jQuery(document).ready(function($) {
 				),
 				'desc' => '"options" => ["preview_onload" => false, "preview_size" => ["height" => "150px"] ]',
 			));
-		$xbox->close_tab_item('oembed');
+		$appbear->close_tab_item('oembed');
 
-	$xbox->close_tab('main-tab');
+	$appbear->close_tab('main-tab');
 }
 
 

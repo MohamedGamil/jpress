@@ -1,4 +1,4 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class GoogleFonts {
     private $api_key = 'AIzaSyCXXembGADcoCgo0-H5LzkWuCxLK2XVVjA';
@@ -15,7 +15,7 @@ class GoogleFonts {
     */
     public function __construct( $api_key = '', $sort = 'popularity' ){
         $this->api_key = ! empty( $api_key ) ? $api_key : $this->api_key;
-        $this->file = XBOX_DIR . 'includes/data/' . $this->file_name;
+        $this->file = APPBEAR_DIR . 'includes/data/' . $this->file_name;
         $this->url = $this->api_url . '?key=' . urlencode( $this->api_key ) . '&sort=' . urlencode( $sort );
 
         //Download google fonts
@@ -41,7 +41,7 @@ class GoogleFonts {
             }
         } else{
             $this->json = $req['body'];
-            if( is_writable( XBOX_DIR . 'includes/data/' ) ){
+            if( is_writable( APPBEAR_DIR . 'includes/data/' ) ){
                 file_put_contents( $this->file, $this->json );
             }
         }

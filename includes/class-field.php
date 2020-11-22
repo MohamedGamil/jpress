@@ -1,8 +1,8 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class Field {
 	public $id             = 0;
-	public $xbox_id        = '';
+	public $appbear_id        = '';
 	public $in_mixed       = false;
 	public $value          = null;
 	public $index          = 0;
@@ -13,23 +13,23 @@ class Field {
 	public $parent_type    = null;
 	public $row_level      = -1;
 
-	public function __construct( $field_args = array(), $xbox, $parent_object ){
+	public function __construct( $field_args = array(), $appbear, $parent_object ){
 		$this->id         = $field_args['id'];
-		$this->xbox_id    = $xbox->id;
+		$this->appbear_id    = $appbear->id;
 		$this->set_args( $field_args );
 
-		if( is_a( $parent_object, 'Xbox\Includes\Field' ) ){
+		if( is_a( $parent_object, 'Appbear\Includes\Field' ) ){
 			$this->add_parent( $parent_object );
 		}
 	}
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Get Xbox
+    | Get Appbear
     |---------------------------------------------------------------------------------------------------
     */
-    public function get_xbox() {
-        return \Xbox::get( $this->xbox_id );
+    public function get_appbear() {
+        return \Appbear::get( $this->appbear_id );
 	}
 
     /*
@@ -38,8 +38,8 @@ class Field {
     |---------------------------------------------------------------------------------------------------
     */
     public function __get( $property ) {
-        if( $property == 'xbox' ){
-            return $this->get_xbox();
+        if( $property == 'appbear' ){
+            return $this->get_appbear();
         }
         return null;
     }
@@ -202,7 +202,7 @@ class Field {
 					'color' => 'blue',//blue,lightblue,green,teal,red,pink,dark,purple,bluepurple,yellow,orange
 					'size' => 'normal',//tiny,small,normal,medium,large,big
 					'tag' => 'a',//a,button,input
-					'icon' => ''//<i class="xbox-icon xbox-icon-plus"></i>//font awesome icons
+					'icon' => ''//<i class="appbear-icon appbear-icon-plus"></i>//font awesome icons
 				));
 				break;
 
@@ -239,25 +239,25 @@ class Field {
 					'protocols'						 => array(),
 					'preview_size'         => array( 'width' => '64px', 'height' => 'auto' ),
 					'synchronize_selector' => '',
-					'upload_file_text'     => __( 'Upload file', 'xbox' ),
+					'upload_file_text'     => __( 'Upload file', 'appbear' ),
 					'upload_file_class'    => ''
 				), $this->args['options'] );
 
 				if( array_intersect( array( 'jpg', 'jpeg', 'png', 'gif', 'ico', 'icon' ),
 					$this->args['options']['mime_types'] ) ){
-					$this->args['options']['upload_file_text'] = __( 'Upload image', 'xbox' );
+					$this->args['options']['upload_file_text'] = __( 'Upload image', 'appbear' );
 				}
 				if( array_intersect( array( 'mp4', 'webm', 'ogv', 'ogg', 'vp8' ),
 					$this->args['options']['mime_types'] ) ){
-					$this->args['options']['upload_file_text'] = __( 'Upload video', 'xbox' );
+					$this->args['options']['upload_file_text'] = __( 'Upload video', 'appbear' );
 					$this->args['options']['preview_size'] = array( 'width' => '100%', 'height' => '260px' );
 				}
 				break;
 
 			case 'group':
 				$this->args['options'] = array_replace_recursive( array(
-					'add_item_text'  => _x( 'Add new', 'New item for groups', 'xbox' ),
-					'remove_item_text' => _x( 'Remove', 'Remove item for groups', 'xbox' ),
+					'add_item_text'  => _x( 'Add new', 'New item for groups', 'appbear' ),
+					'remove_item_text' => _x( 'Remove', 'Remove item for groups', 'appbear' ),
 					'sortable' => true,
 				), $this->args['options'] );
 
@@ -266,17 +266,17 @@ class Field {
 					'default_type' => 'default',
 					'readonly_name' => true,//Determines whether the control input will be editable. Default: true
 					'images' => false,
-					'default_image' => XBOX_URL.'/img/transparent.png',
+					'default_image' => APPBEAR_URL.'/img/transparent.png',
 					'image_field_id' => '',
 					'position' => 'top',//top, left
 					'width' => '',
 					'height' => '',
 					'left_actions'  => array(
-						'xbox-info-order-item' => '#'
+						'appbear-info-order-item' => '#'
 					),
 					'right_actions'  => array(
-						'xbox-duplicate-group-item' => '<i class="dashicons dashicons-admin-page"></i>',
-						'xbox-remove-group-item' => '<i class="xbox-icon xbox-icon-trash"></i>'
+						'appbear-duplicate-group-item' => '<i class="dashicons dashicons-admin-page"></i>',
+						'appbear-remove-group-item' => '<i class="appbear-icon appbear-icon-trash"></i>'
 					),
 				), $this->args['controls'] );
 				break;
@@ -292,7 +292,7 @@ class Field {
 				$this->args['options'] = wp_parse_args( $this->args['options'],  array(
 					'width'        => '100px',
 					'height'       => 'auto',
-					'active_class' => 'xbox-active',
+					'active_class' => 'appbear-active',
 					'active_color' => '#379FE7',
 					'in_line'			 => true,
 					'like_checkbox' => false
@@ -303,7 +303,7 @@ class Field {
 				$this->args['options'] = wp_parse_args( $this->args['options'],  array(
 					'wrap_height'    => '170px',
 					'size'           => '36px',
-					'active_class'   => 'xbox-active',
+					'active_class'   => 'appbear-active',
 					'load_with_ajax' => false,
 					'ajax_data'      => array('class_name' => '', 'function_name' => ''),
 					'hide_search'    => false,
@@ -318,19 +318,19 @@ class Field {
 					'import_from_url'    => true,
 					'width'              => '100px',
 					'height'             => 'auto',
-					'active_class'       => 'xbox-active',
+					'active_class'       => 'appbear-active',
 					'active_color'       => '#379FE7',
 					'in_line'			       => true,
 					'like_checkbox'			 => false,
-					'import_button_text' => __( 'Import', 'xbox' ),
-					'label_text_auth_fields' => __( 'Is your website password protected?', 'xbox' ),
-					'desc_text_auth_fields' => __( '(Optional)', 'xbox' ),
+					'import_button_text' => __( 'Import', 'appbear' ),
+					'label_text_auth_fields' => __( 'Is your website password protected?', 'appbear' ),
+					'desc_text_auth_fields' => __( '(Optional)', 'appbear' ),
 				));
 				//$this->args['import_data'] = wp_parse_args( $this->args['import_data'],  array() );
 
 				$this->args['items'] = wp_parse_args( array(
-					'from_file' => _x( 'From file', 'Import/Export field', 'xbox' ),
-					'from_url' => _x( 'From url', 'Import/Export field', 'xbox' )
+					'from_file' => _x( 'From file', 'Import/Export field', 'appbear' ),
+					'from_url' => _x( 'From url', 'Import/Export field', 'appbear' )
 				) , $this->args['items']);
 				if( ! $this->args['options']['import_from_file'] ){
 					unset( $this->args['items']['from_file'] );
@@ -342,8 +342,8 @@ class Field {
 
 			case 'export':
 				$this->args['options'] = wp_parse_args( $this->args['options'],  array(
-					'export_button_text'  => __( 'Download', 'xbox' ),
-                    'export_file_name' => 'xbox-backup-file-'.$this->get_xbox()->id,
+					'export_button_text'  => __( 'Download', 'appbear' ),
+                    'export_file_name' => 'appbear-backup-file-'.$this->get_appbear()->id,
 				));
 				break;
 
@@ -368,7 +368,7 @@ class Field {
 					'oembed_class' => '',
 					'preview_onload' => false,
 					'preview_size' => array( 'width' => '100%', 'height' => '200px' ),
-					'get_preview_text' => __( 'Get preview', 'xbox' )
+					'get_preview_text' => __( 'Get preview', 'appbear' )
 				), $this->args['options'] );
 				break;
 
@@ -392,8 +392,8 @@ class Field {
 					'toggle_effect' => 'slide',
 					'toggle_target' => 'header',//header, icon
 					'toggle_speed' => 400,
-					'toggle_open_icon' => 'xbox-icon-chevron-up',
-					'toggle_close_icon' => 'xbox-icon-chevron-down',
+					'toggle_open_icon' => 'appbear-icon-chevron-up',
+					'toggle_close_icon' => 'appbear-icon-chevron-down',
 				));
 				break;
 
@@ -468,9 +468,9 @@ class Field {
                         $this->args['options']['tinymce'] = array();
                     }
                     $this->args['options']['tinymce']['setup'] = 'function(wp_editor){
-                        window.XBOX.on_setup_wp_editor(wp_editor);
+                        window.APPBEAR.on_setup_wp_editor(wp_editor);
                         wp_editor.on("init", function(args) {
-                            window.XBOX.on_init_wp_editor(wp_editor, args);
+                            window.APPBEAR.on_init_wp_editor(wp_editor, args);
                         });
                     }';
                 }
@@ -494,15 +494,15 @@ class Field {
 		if( $field_type == 'group' || $this->args['repeatable'] ) {
 			$this->args['options'] = wp_parse_args( $this->args['options'],  array(
 				'sortable' => true,
-				'add_item_text' => _x( 'Add new', 'New item for repeatable fields', 'xbox' ),
-				'remove_item_text' => _x( 'Remove', 'Remove item for repeatable fields', 'xbox' ),
-				'add_item_class' => '',//'xbox-custom-add' para agregar como nombre de cada control el texto del botón
+				'add_item_text' => _x( 'Add new', 'New item for repeatable fields', 'appbear' ),
+				'remove_item_text' => _x( 'Remove', 'Remove item for repeatable fields', 'appbear' ),
+				'add_item_class' => '',//'appbear-custom-add' para agregar como nombre de cada control el texto del botón
 				'remove_item_class' => '',
-				'duplicate_item_text'  => __( 'Duplicate', 'xbox' ),
+				'duplicate_item_text'  => __( 'Duplicate', 'appbear' ),
 				'duplicate_item_class' => '',
-				'sort_item_text'  => __( 'Sort', 'xbox' ),
+				'sort_item_text'  => __( 'Sort', 'appbear' ),
 				'sort_item_class' => '',
-				'visibility_item_text'  => __( 'Visibility', 'xbox' ),
+				'visibility_item_text'  => __( 'Visibility', 'appbear' ),
 				'visibility_item_class' => '',
 			));
 		}
@@ -625,7 +625,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function add_field( $field_args = array() ){
-		return $this->get_xbox()->add_field( $field_args, $this );
+		return $this->get_appbear()->add_field( $field_args, $this );
 	}
 
 	/*
@@ -634,7 +634,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function get_field( $field_id = '' ){
-		return $this->get_xbox()->get_field( $field_id, $this );
+		return $this->get_appbear()->get_field( $field_id, $this );
 	}
 
 	/*
@@ -643,7 +643,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function add_group( $field_args = array() ){
-		return $this->get_xbox()->add_group( $field_args, $this );
+		return $this->get_appbear()->add_group( $field_args, $this );
 	}
 
 	/*
@@ -652,7 +652,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function get_group( $field_id = '' ){
-		return $this->get_xbox()->get_group( $field_id, $this );
+		return $this->get_appbear()->get_group( $field_id, $this );
 	}
 
 	/*
@@ -661,7 +661,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function open_mixed_field( $field_args = array() ){
-		return $this->get_xbox()->open_mixed_field( $field_args, $this );
+		return $this->get_appbear()->open_mixed_field( $field_args, $this );
 	}
 
 	/*
@@ -670,7 +670,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function close_mixed_field( $field_args = array() ){
-		return $this->get_xbox()->close_mixed_field( $field_args, $this );
+		return $this->get_appbear()->close_mixed_field( $field_args, $this );
 	}
 
 	/*
@@ -679,7 +679,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function add_tab( $field_args = array() ){
-		return $this->get_xbox()->add_tab( $field_args, $this );
+		return $this->get_appbear()->add_tab( $field_args, $this );
 	}
 
 	/*
@@ -688,7 +688,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function close_tab( $field_id = '' ){
-		return $this->get_xbox()->close_tab( $field_id, $this );
+		return $this->get_appbear()->close_tab( $field_id, $this );
 	}
 
 	/*
@@ -697,7 +697,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function open_tab_item( $item_name = '' ){
-		return $this->get_xbox()->open_tab_item( $item_name, $this );
+		return $this->get_appbear()->open_tab_item( $item_name, $this );
 	}
 
 	/*
@@ -706,7 +706,7 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function close_tab_item( $item_name = '' ){
-		return $this->get_xbox()->close_tab_item( $item_name, $this );
+		return $this->get_appbear()->close_tab_item( $item_name, $this );
 	}
 
     /*
@@ -715,7 +715,7 @@ class Field {
     |---------------------------------------------------------------------------------------------------
     */
     public function add_html( $field_args = array() ){
-        return $this->get_xbox()->add_html( $field_args, $this );
+        return $this->get_appbear()->add_html( $field_args, $this );
     }
 
 	/*
@@ -764,10 +764,10 @@ class Field {
 		$row_level = $this->get_real_row_level();
 
 		if( $row_level == 1 ){
-			return $this->get_xbox();
+			return $this->get_appbear();
 		}
 
-		$parent = $this->get_xbox();
+		$parent = $this->get_appbear();
 		foreach( $parents as $level => $level_value ){
 			$parent = $parent->get_field( $level_value['id'] );
 			if ( is_numeric( $real_level ) ){
@@ -826,13 +826,13 @@ class Field {
 		$row_level = $this->get_row_level();
 
 		if( $row_level == 1 ){
-			switch( $this->get_xbox()->get_object_type() ){
+			switch( $this->get_appbear()->get_object_type() ){
 				case 'metabox':
-					$saved = metadata_exists( 'post', $this->get_xbox()->get_object_id(), $this->id );
+					$saved = metadata_exists( 'post', $this->get_appbear()->get_object_id(), $this->id );
 					break;
 
 				case 'admin-page':
-					$options = get_option( $this->get_xbox()->id );
+					$options = get_option( $this->get_appbear()->id );
 					if( isset( $options[ $this->id ] ) ){
 						$saved = true;
 					}
@@ -862,13 +862,13 @@ class Field {
 			return null;
 		}
 
-		switch( $this->get_xbox()->get_object_type() ){
+		switch( $this->get_appbear()->get_object_type() ){
 			case 'metabox':
-				$value = $this->get_xbox()->get_field_value( $this->id, $this->get_xbox()->get_object_id(), '' );
+				$value = $this->get_appbear()->get_field_value( $this->id, $this->get_appbear()->get_object_id(), '' );
 				break;
 
 			case 'admin-page':
-				$value = $this->get_xbox()->get_field_value( $this->id, '' );
+				$value = $this->get_appbear()->get_field_value( $this->id, '' );
 				break;
 		}
 		return $value;
@@ -950,7 +950,7 @@ class Field {
 
 		//Para los grupos de nivel 2 primero tenemos que obtener el valor de grupo de nivel 1
 
-		$group = $this->get_xbox()->get_field( $parents['level-1']['id'] );
+		$group = $this->get_appbear()->get_field( $parents['level-1']['id'] );
 		//Si el campo de nivel 1 es es una sección, entonces el grupo de primer nivel está dentro de esa sección
 		if( $group->arg( 'type' ) == 'section' ){
 			$group = $group->get_field( $parents['level-2']['id'] );
@@ -993,7 +993,7 @@ class Field {
 		//Para los campos dentro de grupos
 		else {
 			//Primero tenemos que posicionarnos en el grupo de nivel 1
-			$group_1 = $this->get_xbox()->get_field( $parents['level-1']['id'] );
+			$group_1 = $this->get_appbear()->get_field( $parents['level-1']['id'] );
 			//Si el campo de nivel 1 es es una sección, entonces el grupo de primer nivel está dentro de esa sección
 			if( $group_1->arg( 'type' ) == 'section' ){
 				$group_1 = $group_1->get_field( $parents['level-2']['id'] );
@@ -1044,7 +1044,7 @@ class Field {
 		//Para los campos dentro de grupos
 		$field_name = ! empty( $name_attr ) ? $name_attr : $this->get_name();
 
-		$group = $this->get_xbox()->get_field( $parents['level-1']['id'] );
+		$group = $this->get_appbear()->get_field( $parents['level-1']['id'] );
 		if( $group->arg( 'type' ) == 'section' ){
 			$group = $group->get_field( $parents['level-2']['id'] );
 		}
@@ -1095,7 +1095,7 @@ class Field {
 		if( Functions::is_empty( $value ) ){
 			return '';
 		}
-		$escape = $this->get_xbox()->exists_callback( 'escape_callback', $this );
+		$escape = $this->get_appbear()->exists_callback( 'escape_callback', $this );
 
 		//No escapar valor
 		if( $escape === false ){
@@ -1135,13 +1135,13 @@ class Field {
 			return $return;
 		}
 
-		switch( $this->get_xbox()->get_object_type() ){
+		switch( $this->get_appbear()->get_object_type() ){
 			case 'metabox':
-				$return['updated'] = $this->get_xbox()->set_field_value( $this->id, $new_value, $this->get_xbox()->get_object_id() );
+				$return['updated'] = $this->get_appbear()->set_field_value( $this->id, $new_value, $this->get_appbear()->get_object_id() );
 				break;
 
 			case 'admin-page':
-				$return['updated'] = $this->get_xbox()->set_field_value( $this->id, $new_value );
+				$return['updated'] = $this->get_appbear()->set_field_value( $this->id, $new_value );
 				break;
 		}
 		return $return;
@@ -1160,7 +1160,7 @@ class Field {
 			return $this->sanitize_repeatable( $value );
 		}
 
-		$sanitize = $this->get_xbox()->exists_callback( 'sanitize_callback', $this );
+		$sanitize = $this->get_appbear()->exists_callback( 'sanitize_callback', $this );
 
 		//No desinfectar
 		if( $sanitize === false ){
@@ -1180,9 +1180,9 @@ class Field {
 		$sanitized_value = $sanitizer->{$this->args['type']}();
 
 		//Filtro para desinfección por el usuario según tipo de campo
-		$filter_tag = "xbox_sanitize_{$this->arg( 'type' )}";
+		$filter_tag = "appbear_sanitize_{$this->arg( 'type' )}";
 		if( has_filter( $filter_tag ) ){
-			$filter_value = apply_filters( $filter_tag, $sanitizer->value, $this->get_xbox()->get_object_id(), $this->args, $sanitizer );
+			$filter_value = apply_filters( $filter_tag, $sanitizer->value, $this->get_appbear()->get_object_id(), $this->args, $sanitizer );
 			if( $filter_value === false ){
 				return $value;
 			}
@@ -1213,7 +1213,7 @@ class Field {
 							$value[ $index ][ $field_id ] = $field->sanitize_group( $val, $on_save );
 						} else {
 						    $val = $field->sanitize_value( $val );
-						    $val = apply_filters( "xbox_filter_field_value_{$field_id}", $val );
+						    $val = apply_filters( "appbear_filter_field_value_{$field_id}", $val );
 							$value[ $index ][ $field_id ] = $val;
 						}
 					}
@@ -1247,7 +1247,7 @@ class Field {
 	*/
 	public function get_result_callback( $callback = '' ){
 		$exclude = array( 'disabled', 'Disabled', 'checked', 'Checked', 'header', 'Header', 'date', 'time' );
-		if( isset( $this->args[ $callback ] ) && ! in_array( $this->args[ $callback ], $exclude ) && $this->get_xbox()->exists_callback( $callback, $this )  ){
+		if( isset( $this->args[ $callback ] ) && ! in_array( $this->args[ $callback ], $exclude ) && $this->get_appbear()->exists_callback( $callback, $this )  ){
 			return call_user_func( $this->args[ $callback ], $this->args, $this );
 		}
 		return isset( $this->args[ $callback ] ) ? $this->args[ $callback ] : '';

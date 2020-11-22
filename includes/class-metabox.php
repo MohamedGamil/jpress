@@ -1,6 +1,6 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
-class Metabox extends XboxCore {
+class Metabox extends AppbearCore {
 
     public function __construct( $args = array() ){
 
@@ -12,7 +12,7 @@ class Metabox extends XboxCore {
 
         $this->args = wp_parse_args( $args, array(
             'id' => '',
-            'title' => __( 'Xbox Metabox', 'xbox' ),
+            'title' => __( 'Appbear Metabox', 'appbear' ),
             'context' => 'normal',
             'priority' => 'high',
             'post_types' => 'post',
@@ -97,16 +97,16 @@ class Metabox extends XboxCore {
     |---------------------------------------------------------------------------------------------------
     */
     public function build_metabox(){
-        echo $this->build_xbox();
+        echo $this->build_appbear();
     }
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Add a class 'xbox-postbox' to a Metabox
+    | Add a class 'appbear-postbox' to a Metabox
     |---------------------------------------------------------------------------------------------------
     */
     public function add_metabox_classes( $classes = array() ){
-        array_push( $classes, 'xbox-postbox' );
+        array_push( $classes, 'appbear-postbox' );
         if( $this->arg( 'closed' ) && empty( $this->args['header'] ) ){
             array_push( $classes, 'closed' );
         }

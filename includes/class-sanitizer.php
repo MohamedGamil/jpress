@@ -1,4 +1,4 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class Sanitizer {
 	public $field = null;

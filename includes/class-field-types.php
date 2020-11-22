@@ -1,4 +1,4 @@
-<?php namespace Xbox\Includes;
+<?php namespace Appbear\Includes;
 
 class FieldTypes {
     protected $field = null;
@@ -19,7 +19,7 @@ class FieldTypes {
     */
     public function __call( $field_type, $arguments ){
         ob_start();
-        do_action( "xbox_build_{$field_type}", $this->field->get_xbox(), $this->field, $this->field->get_value(), $this );
+        do_action( "appbear_build_{$field_type}", $this->field->get_appbear(), $this->field, $this->field->get_value(), $this );
         return ob_get_clean();
     }
 
@@ -47,7 +47,7 @@ class FieldTypes {
         $default_attributes = array(
             'name' => $this->field->get_name(),
             'id' => Functions::get_id_attribute_by_name( $this->field->get_name() ),
-            'class' => "xbox-element xbox-btn xbox-btn-{$options['size']} xbox-btn-{$options['color']}"
+            'class' => "appbear-element appbear-btn appbear-btn-{$options['size']} appbear-btn-{$options['color']}"
         );
         if( $options['tag'] != 'a' ){
             $default_attributes['type'] = 'button';
@@ -84,7 +84,7 @@ class FieldTypes {
         $language = $this->field->arg( 'options', 'language' );
         $theme = $this->field->arg( 'options', 'theme' );
         $height = $this->field->arg( 'options', 'height' );
-        $return .= "<div class='xbox-code-editor' id='{$id}-ace' data-language='$language' data-theme='$theme' style='height: $height'>$value</div>";
+        $return .= "<div class='appbear-code-editor' id='{$id}-ace' data-language='$language' data-theme='$theme' style='height: $height'>$value</div>";
         $return .= $this->build_textarea( 'code_editor' );
         return $return;
     }
@@ -99,13 +99,13 @@ class FieldTypes {
         $value = $this->field->validate_colorpicker( $value );
         $return = '';
         if( $this->field->arg( 'options', 'show_default_button' ) ){
-            $return .= "<div class='xbox-colorpicker-default-btn' title='" . __( 'Set default color', 'xbox' ) . "'>";
-            $return .= "<i class='xbox-icon xbox-icon-eraser'></i>";
+            $return .= "<div class='appbear-colorpicker-default-btn' title='" . __( 'Set default color', 'appbear' ) . "'>";
+            $return .= "<i class='appbear-icon appbear-icon-eraser'></i>";
             $return .= "</div>";
         }
         $return .= $this->build_input( 'text', $value );
-        $return .= "<div class='xbox-colorpicker-preview'>";
-        $return .= "<span class='xbox-colorpicker-color' value='$value'></span>";
+        $return .= "<div class='appbear-colorpicker-preview'>";
+        $return .= "<span class='appbear-colorpicker-color' value='$value'></span>";
         $return .= "</div>";
 
         return $return;
@@ -122,7 +122,7 @@ class FieldTypes {
         $return .= $this->build_input( 'tagsinput', $value );
         if( $this->field->arg( 'options', 'show_default_button' ) ){
             $return .= '<div class="input-group-btn">';
-            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'xbox' ) .'</button>';
+            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'appbear' ) .'</button>';
             $return .= '</div>';
         }
         $return .= "</div>";
@@ -136,7 +136,7 @@ class FieldTypes {
         $return .= $this->build_input( 'tagsinput', $value );
         if( $this->field->arg( 'options', 'show_default_button' ) ){
             $return .= '<div class="input-group-btn">';
-            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'xbox' ) .'</button>';
+            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'appbear' ) .'</button>';
             $return .= '</div>';
         }
         $return .= "</div>";
@@ -186,20 +186,20 @@ class FieldTypes {
         $attachment_field = $this->field->get_parent()->get_field( $this->field->id . '_id' );
         $attachment_name = $attachment_field->get_name( $this->field->index );
 
-        $btn_class = "xbox-btn-input xbox-btn xbox-btn-icon xbox-btn-small xbox-btn-teal xbox-upload-file {$options['upload_file_class']}";
-        $wrap_class = "xbox-wrap-preview xbox-wrap-preview-file";
+        $btn_class = "appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-upload-file {$options['upload_file_class']}";
+        $wrap_class = "appbear-wrap-preview appbear-wrap-preview-file";
 
         if( $options['multiple'] === true ){
-            $btn_class .= " xbox-btn-preview-multiple";
-            $wrap_class .= " xbox-wrap-preview-multiple";
+            $btn_class .= " appbear-btn-preview-multiple";
+            $wrap_class .= " appbear-wrap-preview-multiple";
         } else{
             $return .= $this->build_input( 'text' );
         }
 
-        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'xbox-video-full-width' : '';
+        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'appbear-video-full-width' : '';
 
-        $return .= "<a class='$btn_class' data-field-name='$name' title='{$options['upload_file_text']}'><i class='xbox-icon xbox-icon-upload'></i></a>";
-        $return .= "<ul class='$wrap_class $full_width xbox-clearfix' data-field-name='$attachment_name' data-preview-size='$data_preview_size' data-synchronize-selector='{$options['synchronize_selector']}'>";
+        $return .= "<a class='$btn_class' data-field-name='$name' title='{$options['upload_file_text']}'><i class='appbear-icon appbear-icon-upload'></i></a>";
+        $return .= "<ul class='$wrap_class $full_width appbear-clearfix' data-field-name='$attachment_name' data-preview-size='$data_preview_size' data-synchronize-selector='{$options['synchronize_selector']}'>";
 
         if( ! Functions::is_empty( $value ) ){
             if( $options['multiple'] === true ){
@@ -240,26 +240,26 @@ class FieldTypes {
             $attachment_id = Functions::get_attachment_id_by_url( $value );
         }
 
-        $item_class = 'xbox-preview-item xbox-preview-file';
+        $item_class = 'appbear-preview-item appbear-preview-file';
         $item_body = '';
         $inputs = $multiple == true ? $this->build_input( 'hidden', $value, array(), 'esc_attr', array( 'id' ) ) : '';
-        $inputs .= "<input type='hidden' name='{$attachment_name}' value='{$attachment_id}' class='xbox-attachment-id'>";
+        $inputs .= "<input type='hidden' name='{$attachment_name}' value='{$attachment_id}' class='appbear-attachment-id'>";
 
         if( $this->is_image_file( $value ) ){
-            $item_class .= ' xbox-preview-image';
+            $item_class .= ' appbear-preview-image';
             if( ! empty( $attachment_id ) ){
                 $width = (int) $preview_size['width'];
                 $height = ( $preview_size['height'] == 'auto' ) ? $width : (int) $preview_size['height'];
                 //array( $width, $height ) add custom size added by "add_image_size"
-                $item_body = wp_get_attachment_image( $attachment_id, array( $width, $height ), false, array( 'class' => 'xbox-image xbox-preview-handler' ) );
+                $item_body = wp_get_attachment_image( $attachment_id, array( $width, $height ), false, array( 'class' => 'appbear-image appbear-preview-handler' ) );
             }
             if( empty( $attachment_id ) || empty( $item_body ) ){
-                $item_body = "<img src='$value' style='width: {$preview_size['width']}; height: {$preview_size['height']}' class='xbox-image xbox-preview-handler'>";
+                $item_body = "<img src='$value' style='width: {$preview_size['width']}; height: {$preview_size['height']}' class='appbear-image appbear-preview-handler'>";
             }
         } else if( $this->is_video_file( $value ) ){
-            $item_class .= ' xbox-preview-video';
+            $item_class .= ' appbear-preview-video';
             $extension = Functions::get_file_extension( $value );
-            $item_body = "<div class='xbox-video'>";
+            $item_body = "<div class='appbear-video'>";
             $item_body .= "<video controls style='width: {$preview_size['width']}; height: {$preview_size['height']}'>";
             $item_body .= "<source src='$value' type='video/$extension'>";
             $item_body .= "</video>";
@@ -275,13 +275,13 @@ class FieldTypes {
                 $file_name = wp_basename( get_attached_file( $attachment_id ) );
                 $file_icon_url = wp_mime_type_icon( $attachment_id );
             }
-            $item_body = "<img src='$file_icon_url' class='xbox-preview-icon-file xbox-preview-handler'><a href='$file_link' class='xbox-preview-download-link'>$file_name</a><span class='xbox-preview-mime xbox-preview-handler'>$file_mime</span>";
+            $item_body = "<img src='$file_icon_url' class='appbear-preview-icon-file appbear-preview-handler'><a href='$file_link' class='appbear-preview-download-link'>$file_name</a><span class='appbear-preview-mime appbear-preview-handler'>$file_mime</span>";
         }
 
         $return .= "<li class='{$item_class}'>";
         $return .= $inputs;
         $return .= $item_body;
-        $return .= "<a class='xbox-btn xbox-btn-iconize xbox-btn-small xbox-btn-red xbox-remove-preview'><i class='xbox-icon xbox-icon-times-circle'></i></a>";
+        $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'><i class='appbear-icon appbear-icon-times-circle'></i></a>";
         $return .= "</li>";
 
         return $return;
@@ -316,8 +316,8 @@ class FieldTypes {
         $options = $this->field->arg( 'options' );
         $value = $this->field->get_value();
         $return .= $this->build_input( 'hidden' );
-        $return .= "<div class='xbox-icon-actions xbox-clearfix'>";
-        $return .= "<div class='xbox-icon-active xbox-item-icon-selector'>";
+        $return .= "<div class='appbear-icon-actions appbear-clearfix'>";
+        $return .= "<div class='appbear-icon-active appbear-item-icon-selector'>";
         if( Functions::ends_with( '.svg', $value ) ){
             $return .= "<img src='$value'>";
         } else{
@@ -325,17 +325,17 @@ class FieldTypes {
         }
         $return .= "</div>";
         if( ! $options['hide_search'] ){
-            $return .= "<input type='text' class='xbox-search-icon' placeholder='Search icon...'>";
+            $return .= "<input type='text' class='appbear-search-icon' placeholder='Search icon...'>";
         }
         if( ! $options['hide_buttons'] ){
-            $return .= "<a class='xbox-btn xbox-btn-small xbox-btn-teal' data-search='all'>All</a>";
-            $return .= "<a class='xbox-btn xbox-btn-small xbox-btn-teal' data-search='font'>Icon font</a>";
-            $return .= "<a class='xbox-btn xbox-btn-small xbox-btn-teal' data-search='.svg'>SVG</a>";
+            $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='all'>All</a>";
+            $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='font'>Icon font</a>";
+            $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='.svg'>SVG</a>";
         }
         $return .= "</div>";
 
         $data = json_encode( $options );
-        $return .= "<div class='xbox-icons-wrap xbox-clearfix' data-options='{$data}' style='height:{$options['wrap_height']} '>";
+        $return .= "<div class='appbear-icons-wrap appbear-clearfix' data-options='{$data}' style='height:{$options['wrap_height']} '>";
         $icons_html = '';
         if( ! $options['load_with_ajax'] ){
             foreach( $items as $value => $icon ){
@@ -350,7 +350,7 @@ class FieldTypes {
                     $font_size = ( intval( $options['size'] ) - 14 ) . 'px';//14 = padding vertical + border vertical
                     $icon = preg_replace( '/(<i\b[^><]*)>/i', '$1 style="">', $icon );
                 }
-                $icons_html .= "<div class='xbox-item-icon-selector' data-value='$value' data-key='$key' data-search='".Functions::get_icon($value )."' data-type='$type' style='width: {$options['size']}; height: {$options['size']}; font-size: {$font_size}'>";
+                $icons_html .= "<div class='appbear-item-icon-selector' data-value='$value' data-key='$key' data-search='".Functions::get_icon($value )."' data-type='$type' style='width: {$options['size']}; height: {$options['size']}; font-size: {$font_size}'>";
                 $icons_html .= $icon;
                 $icons_html .= "</div>";
             }
@@ -368,27 +368,27 @@ class FieldTypes {
     public function image( $type = '' ){
         $return = '';
         $value = $this->field->get_value();
-        $image_class = 'xbox-element-image ' . $this->field->arg( 'options', 'image_class' );
+        $image_class = 'appbear-element-image ' . $this->field->arg( 'options', 'image_class' );
 
         if( $this->field->arg( 'options', 'hide_input' ) ){
             $return .= $this->build_input( 'hidden' );
         } else{
             $return .= $this->build_input( 'text' );
-            $return .= "<a class='xbox-btn-input xbox-btn xbox-btn-icon xbox-btn-small xbox-btn-teal xbox-get-image' title='Preview'><i class='xbox-icon xbox-icon-refresh'></i></a>";
+            $return .= "<a class='appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-get-image' title='Preview'><i class='appbear-icon appbear-icon-refresh'></i></a>";
         }
 
-        $return .= "<ul class='xbox-wrap-preview xbox-wrap-image xbox-clearfix' data-image-class='{$image_class}'>";
-        $return .= "<li class='xbox-preview-item xbox-preview-image'>";
+        $return .= "<ul class='appbear-wrap-preview appbear-wrap-image appbear-clearfix' data-image-class='{$image_class}'>";
+        $return .= "<li class='appbear-preview-item appbear-preview-image'>";
         $return .= "<img src='{$value}' class='{$image_class}'";
         if( empty( $value ) ){
             $return .= " style='display: none;'";
         }
         $return .= ">";
-        $return .= "<a class='xbox-btn xbox-btn-iconize xbox-btn-small xbox-btn-red xbox-remove-preview'";
+        $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'";
         if( empty( $value ) ){
             $return .= " style='display: none;'";
         }
-        $return .= "><i class='xbox-icon xbox-icon-times-circle'></i></a>";
+        $return .= "><i class='appbear-icon appbear-icon-times-circle'></i></a>";
         $return .= "</li>";
         $return .= "</ul>";
         return $return;
@@ -404,7 +404,7 @@ class FieldTypes {
         $items = $this->field->arg( 'items' );
         $items_desc = $this->field->arg( 'items_desc' );
         $options = $this->field->arg( 'options' );
-        $import_settings = $this->field->get_xbox()->arg( 'import_settings' );
+        $import_settings = $this->field->get_appbear()->arg( 'import_settings' );
         if( ! Functions::is_empty( $items ) ){
             $has_images = false;
             foreach( $items as $item_key => $item_val ){
@@ -424,48 +424,48 @@ class FieldTypes {
                 if( is_array( $import_data ) ){
                     foreach( $import_data as $import_key => $import_val ){
                         if( Functions::starts_with( 'import_', $import_key ) ){
-                            $return .= "<input type='hidden' name='xbox-import-data[$item_key][$import_key]' value='$import_val'>";
+                            $return .= "<input type='hidden' name='appbear-import-data[$item_key][$import_key]' value='$import_val'>";
                         }
                     }
                 }
             }
         }
 
-        $return .= "<div class='xbox-wrap-import-inputs'></div>";
+        $return .= "<div class='appbear-wrap-import-inputs'></div>";
 
         if( $options['import_from_file'] ){
-            $return .= "<div class='xbox-wrap-input-file'>";
-            $return .= "<input type='file' name='xbox-import-file'>";
+            $return .= "<div class='appbear-wrap-input-file'>";
+            $return .= "<input type='file' name='appbear-import-file'>";
             $return .= "</div>";
         }
         if( $options['import_from_url'] ){
-            $return .= "<div class='xbox-wrap-input-url'>";
-            $placeholder = __( 'Enter a valid json url', 'xbox' );
-            $return .= "<input type='text' name='xbox-import-url' placeholder='$placeholder'>";
+            $return .= "<div class='appbear-wrap-input-url'>";
+            $placeholder = __( 'Enter a valid json url', 'appbear' );
+            $return .= "<input type='text' name='appbear-import-url' placeholder='$placeholder'>";
             $return .= "</div>";
         }
 
         if( $import_settings['show_authentication_fields'] ){
             $auth_fields = '
-<div class="xbox-row xbox-clearfix xbox-type-mixed xbox-show" style="margin-left: -25px; margin-bottom: 15px;">
-    <div class="xbox-label"><label class="xbox-element-label">'.$options["label_text_auth_fields"].'</label>
-        <div class="xbox-field-description">'.$options["desc_text_auth_fields"].'</div>
+<div class="appbear-row appbear-clearfix appbear-type-mixed appbear-show" style="margin-left: -25px; margin-bottom: 15px;">
+    <div class="appbear-label"><label class="appbear-element-label">'.$options["label_text_auth_fields"].'</label>
+        <div class="appbear-field-description">'.$options["desc_text_auth_fields"].'</div>
     </div>
-    <div class="xbox-content xbox-clearfix">
-        <div class="xbox-wrap-mixed xbox-clearfix">
-            <div class="xbox-row xbox-clearfix xbox-type-text xbox-row-mixed xbox-grid xbox-col-2-of-8 xbox-row-id-xbox-import-username xbox-show">
-                <div class="xbox-label-mixed"><label class="xbox-element-label">Username</label></div>
-                <div class="xbox-content-mixed xbox-clearfix">
-                    <div class="xbox-field xbox-field-id-xbox-import-username">
-                        <input type="text" name="xbox-import-username" class="xbox-element-text">
+    <div class="appbear-content appbear-clearfix">
+        <div class="appbear-wrap-mixed appbear-clearfix">
+            <div class="appbear-row appbear-clearfix appbear-type-text appbear-row-mixed appbear-grid appbear-col-2-of-8 appbear-row-id-appbear-import-username appbear-show">
+                <div class="appbear-label-mixed"><label class="appbear-element-label">Username</label></div>
+                <div class="appbear-content-mixed appbear-clearfix">
+                    <div class="appbear-field appbear-field-id-appbear-import-username">
+                        <input type="text" name="appbear-import-username" class="appbear-element-text">
                     </div>
                 </div>
             </div>
-            <div class="xbox-row xbox-clearfix xbox-type-text xbox-row-mixed xbox-grid xbox-col-2-of-8 xbox-row-id-xbox-import-password xbox-show">
-                <div class="xbox-label-mixed"><label class="xbox-element-label">Password</label></div>
-                <div class="xbox-content-mixed xbox-clearfix">
-                    <div class="xbox-field xbox-field-id-xbox-import-password ">
-                        <input type="password" name="xbox-import-password" class="xbox-element-text">
+            <div class="appbear-row appbear-clearfix appbear-type-text appbear-row-mixed appbear-grid appbear-col-2-of-8 appbear-row-id-appbear-import-password appbear-show">
+                <div class="appbear-label-mixed"><label class="appbear-element-label">Password</label></div>
+                <div class="appbear-content-mixed appbear-clearfix">
+                    <div class="appbear-field appbear-field-id-appbear-import-password ">
+                        <input type="password" name="appbear-import-password" class="appbear-element-text">
                     </div>
                 </div>
             </div>
@@ -475,7 +475,7 @@ class FieldTypes {
             $return .= $auth_fields;
         }
 
-        $return .= "<input type='button' name='xbox-import' id='xbox-import' class='xbox-btn xbox-btn-{$this->field->get_xbox()->arg( 'skin' )}' value='{$options['import_button_text']}'>";
+        $return .= "<input type='button' name='appbear-import' id='appbear-import' class='appbear-btn appbear-btn-{$this->field->get_appbear()->arg( 'skin' )}' value='{$options['import_button_text']}'>";
 
         return $return;
     }
@@ -484,11 +484,11 @@ class FieldTypes {
         $return = '';
         $options = $this->field->arg( 'options' );
         $file_base_name = $options['export_file_name'];
-        $data = $this->field->get_xbox()->get_fields_data( 'json' );
+        $data = $this->field->get_appbear()->get_fields_data( 'json' );
         $file_name = $file_base_name . '-' . date( 'd-m-Y' ) . '.json';
         $return .= "<textarea>$data</textarea>";
 
-        $dir = XBOX_DIR;
+        $dir = APPBEAR_DIR;
         if( is_dir( $dir . 'backups' ) ){
             $dir = $dir . 'backups/';
         } else{
@@ -510,11 +510,11 @@ class FieldTypes {
         }
 
         if( false !== file_put_contents( $dir . $file_name, $data ) ){
-            $file_url = XBOX_URL . $file_name;
+            $file_url = APPBEAR_URL . $file_name;
             if( stripos( $dir, 'backups' ) !== false ){
-                $file_url = XBOX_URL . 'backups/' . $file_name;
+                $file_url = APPBEAR_URL . 'backups/' . $file_name;
             }
-            $return .= "<a href='$file_url' id='xbox-export-btn' class='xbox-btn xbox-btn-{$this->field->get_xbox()->arg( 'skin' )}' target='_blank' download>{$options['export_button_text']}</a>";
+            $return .= "<a href='$file_url' id='appbear-export-btn' class='appbear-btn appbear-btn-{$this->field->get_appbear()->arg( 'skin' )}' target='_blank' download>{$options['export_button_text']}</a>";
         }
         return $return;
     }
@@ -531,16 +531,16 @@ class FieldTypes {
         }
         $items_desc = $this->field->arg( 'items_desc' );
         $options = $this->field->arg( 'options' );
-        $wrap_class = 'xbox-radiochecks init-image-selector';
+        $wrap_class = 'appbear-radiochecks init-image-selector';
         if( $this->field->arg( 'options', 'in_line' ) == false ){
-            $wrap_class .= ' xbox-vertical';
+            $wrap_class .= ' appbear-vertical';
         }
         $data_image_chooser = json_encode( $options );
         $return = "<div class='$wrap_class' data-image-selector='$data_image_chooser'>";
         foreach( $items as $key => $image ){
-            $item_class = "xbox-item-image-selector item-key-{$key}";
+            $item_class = "appbear-item-image-selector item-key-{$key}";
             if( ( $key == 'from_file' || $key == 'from_url' ) && ( $options['import_from_file'] || $options['import_from_url'] ) ){
-                $item_class .= " xbox-block";
+                $item_class .= " appbear-block";
             }
             $return .= "<div class='$item_class' style='width: {$options['width']}'>";
             $label_class = "";
@@ -552,16 +552,16 @@ class FieldTypes {
             $return .= "<span>$image</span>";
             $return .= "</label>";
             if( isset( $items_desc[$key] ) ){
-                $return .= "<div class='xbox-item-desc'>";
+                $return .= "<div class='appbear-item-desc'>";
                 if( is_array( $items_desc[$key] ) ){
                     if( isset( $items_desc[$key]['title'] ) ){
-                        $return .= "<div class='xbox-item-desc-title'>{$items_desc[$key]['title']}</div>";
+                        $return .= "<div class='appbear-item-desc-title'>{$items_desc[$key]['title']}</div>";
                     }
                     if( isset( $items_desc[$key]['content'] ) ){
-                        $return .= "<div class='xbox-item-desc-content'>{$items_desc[$key]['content']}</div>";
+                        $return .= "<div class='appbear-item-desc-content'>{$items_desc[$key]['content']}</div>";
                     }
                 } else{
-                    $return .= "<div class='xbox-item-desc'>{$items_desc[$key]}</div>";
+                    $return .= "<div class='appbear-item-desc'>{$items_desc[$key]}</div>";
                 }
                 $return .= "</div>";
             }
@@ -596,25 +596,25 @@ class FieldTypes {
             $unit_value = $options['unit'];
         }
         $return = $this->build_input( 'text', '', array( 'data-default-unit' => $options['unit'] ), 'esc_attr', array( 'min', 'max', 'step', 'precision' ) );
-        $return .= "<div class='xbox-unit xbox-noselect xbox-unit-has-picker-{$has_unit_picker}' data-default-unit='{$options['unit']}'>";
+        $return .= "<div class='appbear-unit appbear-noselect appbear-unit-has-picker-{$has_unit_picker}' data-default-unit='{$options['unit']}'>";
 
-        $return .= "<input type='hidden' name='{$unit_field_name}' value='{$unit_value}' class='xbox-unit-number'>";
+        $return .= "<input type='hidden' name='{$unit_field_name}' value='{$unit_value}' class='appbear-unit-number'>";
         if( $options['show_unit'] ){
             $unit_text = $has_unit_picker ? $unit_picker[$unit_value] : $unit_value;
             //$title = $unit_text == '#' ? 'Without unit' : '';
             $return .= "<span>{$unit_text}</span>";
         }
         if( $has_unit_picker && $options['show_unit'] ){
-            $return .= "<i class='xbox-icon xbox-icon-caret-down xbox-unit-picker'></i>";
-            $return .= "<div class='xbox-units-dropdown'>";
+            $return .= "<i class='appbear-icon appbear-icon-caret-down appbear-unit-picker'></i>";
+            $return .= "<div class='appbear-units-dropdown'>";
             foreach( $unit_picker as $unit => $display ){
                 //$title = $display == '#' ? 'Without unit' : '';
-                $return .= "<div class='xbox-unit-item' data-value='$unit'>$display</div>";
+                $return .= "<div class='appbear-unit-item' data-value='$unit'>$display</div>";
             }
             $return .= "</div>";
         }
-        $return .= "<a href='javascript:;' class='xbox-spinner-control' data-spin='up'><i class='xbox-icon xbox-icon-caret-up xbox-spinner-handler'></i></a>";
-        $return .= "<a href='javascript:;' class='xbox-spinner-control' data-spin='down'><i class='xbox-icon xbox-icon-caret-down xbox-spinner-handler'></i></a>";
+        $return .= "<a href='javascript:;' class='appbear-spinner-control' data-spin='up'><i class='appbear-icon appbear-icon-caret-up appbear-spinner-handler'></i></a>";
+        $return .= "<a href='javascript:;' class='appbear-spinner-control' data-spin='down'><i class='appbear-icon appbear-icon-caret-down appbear-spinner-handler'></i></a>";
         $return .= "</div>";
         return $return;
     }
@@ -628,14 +628,14 @@ class FieldTypes {
         global $post, $wp_embed;
         $return = '';
         $oembed_url = $this->field->get_value();
-        $oembed_class = 'xbox-element-oembed ' . $this->field->arg( 'options', 'oembed_class' );
+        $oembed_class = 'appbear-element-oembed ' . $this->field->arg( 'options', 'oembed_class' );
         $preview_size = $this->field->arg( 'options', 'preview_size' );
         $data_preview_size = json_encode( $preview_size );
         $return .= $this->build_input( 'text' );
-        $return .= "<a class='xbox-btn-input xbox-btn xbox-btn-icon xbox-btn-small xbox-btn-teal xbox-get-oembed' title='{$this->field->arg( 'options', 'get_preview_text' )}'><i class='xbox-icon xbox-icon-refresh'></i></a>";
-        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'xbox-oembed-full-width' : '';
+        $return .= "<a class='appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-get-oembed' title='{$this->field->arg( 'options', 'get_preview_text' )}'><i class='appbear-icon appbear-icon-refresh'></i></a>";
+        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'appbear-oembed-full-width' : '';
 
-        $return .= "<ul class='xbox-wrap-preview xbox-wrap-oembed $full_width xbox-clearfix' data-preview-size='$data_preview_size' data-preview-onload='{$this->field->arg( 'options', 'preview_onload' )}'>";
+        $return .= "<ul class='appbear-wrap-preview appbear-wrap-oembed $full_width appbear-clearfix' data-preview-size='$data_preview_size' data-preview-onload='{$this->field->arg( 'options', 'preview_onload' )}'>";
 
         /*
         Oembed relentiza la carga de la página. Ahora lo hacemos mediante Ajax, es mucho más rápido.
@@ -645,11 +645,11 @@ class FieldTypes {
             $oembed = Functions::get_oembed( $oembed_url, $preview_size );
             if( $oembed['success'] ){
                 $provider = strtolower( Functions::get_oembed_provider( $oembed_url ) );
-                $return .= "<li class='xbox-preview-item xbox-preview-oembed'>";
-                    $return .= "<div class='xbox-oembed xbox-oembed-provider-$provider $oembed_class'>";
+                $return .= "<li class='appbear-preview-item appbear-preview-oembed'>";
+                    $return .= "<div class='appbear-oembed appbear-oembed-provider-$provider $oembed_class'>";
                         $return .= $oembed['oembed'];
                     $return .= "</div>";
-                    $return .= "<a class='xbox-btn xbox-btn-iconize xbox-btn-small xbox-btn-red xbox-remove-preview'><i class='xbox-icon xbox-icon-times-circle'></i></a>";
+                    $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'><i class='appbear-icon appbear-icon-times-circle'></i></a>";
                 $return .= "</li>";
             } else {
                 $return .= $oembed['message'];
@@ -672,12 +672,12 @@ class FieldTypes {
         if( Functions::is_empty( $items ) ){
             return '';
         }
-        $wrap_class = "xbox-radiochecks init-icheck";
+        $wrap_class = "appbear-radiochecks init-icheck";
         if( $this->field->arg( 'options', 'in_line' ) == false ){
-            $wrap_class .= ' xbox-vertical';
+            $wrap_class .= ' appbear-vertical';
         }
         if( $this->field->arg( 'options', 'sortable' ) ){
-            $wrap_class .= ' xbox-sortable';
+            $wrap_class .= ' appbear-sortable';
         }
         $return = "<div class='$wrap_class'>";
         $temp = array();
@@ -725,7 +725,7 @@ class FieldTypes {
         $attributes['data-switcher'] = json_encode( $this->field->arg( 'options' ) );
         $attributes = Functions::nice_array_merge(
             $attributes,
-            array( 'class' => 'xbox-element-switcher' ),
+            array( 'class' => 'appbear-element-switcher' ),
             array(),
             array( 'class' => ' ' )
         );
@@ -747,7 +747,7 @@ class FieldTypes {
             if( $helper == 'maxlength' && $maxlength = $this->field->arg( 'attributes', 'maxlength' ) ){
                 $helper = strlen( $value ) . '/' . $maxlength;
             }
-            $return .= "<span class='xbox-field-helper'>$helper</span>";
+            $return .= "<span class='appbear-field-helper'>$helper</span>";
         }
         return $return;
     }
@@ -761,7 +761,7 @@ class FieldTypes {
         $title_class = $this->field->arg( 'attributes', 'class' );
         $title = $this->field->arg( 'name' );
         if( ! empty( $title ) ){
-            return "<h3 class='xbox-field-title $title_class'>$title</h3>";
+            return "<h3 class='appbear-field-title $title_class'>$title</h3>";
         }
         return '';
     }
@@ -788,7 +788,7 @@ class FieldTypes {
         $element_attributes = array(
             'name' => $this->field->get_name(),
             'id' => Functions::get_id_attribute_by_name( $this->field->get_name() ),
-            'class' => "xbox-element xbox-element-{$type}"
+            'class' => "appbear-element appbear-element-{$type}"
         );
 
         // Une todos los atributos. Evita el reemplazo de ('name', 'id', 'value', 'checked')
@@ -847,7 +847,7 @@ class FieldTypes {
             'data-initial-value' => $value,//Valor inicial al cargar la página
             'data-prev-value' => $value,//Valor anterior al valor actual. Usado para (Ctrl + z)
             'data-temp-value' => $value,//Valor temporal. Usado para (Ctrl + z)
-            'class' => "xbox-element xbox-element-{$type}"
+            'class' => "appbear-element appbear-element-{$type}"
         );
 
         if( $type == 'radio' && $value == $field_value ){
@@ -928,7 +928,7 @@ class FieldTypes {
             if( is_array( $display ) ){
                 if( ! Functions::is_empty( $display ) ){
                     $items_select .= "<div class='divider'></div>";
-                    $items_select .= "<div class='header'><i class='xbox-icon xbox-icon-tags'></i>$key</div>";
+                    $items_select .= "<div class='header'><i class='appbear-icon appbear-icon-tags'></i>$key</div>";
                     if( $options['sort'] ){
                         $display = Functions::sort( $display, $options['sort'], $options['sort_by_values'] ? 'value' : 'key' );
                     }
@@ -943,7 +943,7 @@ class FieldTypes {
             }
         }
 
-        $dropdown_class = "xbox-element xbox-element-$type ui fluid selection dropdown";
+        $dropdown_class = "appbear-element appbear-element-$type ui fluid selection dropdown";
 
         if( $options['search'] === true ){
             $dropdown_class .= " search";
@@ -981,7 +981,7 @@ class FieldTypes {
         $return .= "<i class='dropdown icon'></i>";
         $return .= "<div class='default text'>{$attributes['placeholder']}</div>";
         $return .= "<div class='menu'>";
-        $return .= "<div class='xbox-ui-inner-menu'>";
+        $return .= "<div class='appbear-ui-inner-menu'>";
         $return .= $items_select;
         $return .= "</div>";
         $return .= "</div>";
