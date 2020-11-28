@@ -102,7 +102,7 @@ function appBear_options(){
 			// 		'off_value' => 'false'
 			// 	)
 			// ));
-			// Button to enable/disable 
+			// Button to enable/disable
 			$section_header_1->add_field( array(
 				'id' => 'menu_type',
 				'name' => __( 'Menu Type', 'textdomain' ),
@@ -114,7 +114,7 @@ function appBear_options(){
 					'both' => __( 'Bottom Bar & Side Menu', 'textdomain' ),
 				)
 			));
-			
+
 			// $section_header_1->add_field(array(
 			// 	'name' => __( 'Status Bar Text Color Light ?', 'textdomain' ),
 			// 	'desc' => __( 'Change the status bar for your application, switch between dark status bar and light (Status bar is where the clock and network stats appear on your mobile)', 'textdomain' ),
@@ -566,7 +566,7 @@ function appBear_options(){
 				)
 			) );
 			$appbear_bottombar_styling->close_mixed_field();
-			
+
 			$appbear_bottombar_tabs = $settings->add_section( array(
 				'name'          => __( 'Bottom Bar Tabs', 'textdomain' ),
 				'id'            => 'section-bottombar-tabs',
@@ -603,7 +603,7 @@ function appBear_options(){
 					'NavigationType.page' => __( 'Page', 'textdomain' ),
 				)
 			));
-			
+
 			$tabs->open_mixed_field(array('name' => __('Tab Icon', 'textdomain' )));
 
 			$tabs->add_field(array(
@@ -937,7 +937,7 @@ function appBear_options(){
 					'9' => 9,
 					'10' => 10,
 				), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
-			)); 
+			));
 			$tabs->add_field(array(
 				'name' => __( 'Sort Order', 'textdomain' ),
 				'id' => 'tabs-sort',
@@ -1093,7 +1093,7 @@ function appBear_options(){
 					'toggle' => true,
 				)
 			));
-			
+
 			$homepage->open_mixed_field(
 				array(
 					'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
@@ -1977,7 +1977,7 @@ function appBear_options(){
 				),
 			) );
 			$settings->close_mixed_field();
-		
+
 			$settings->open_mixed_field(array('name' => __('Error Message Background color', 'textdomain' )));
 			$settings->add_field(array(
 				'id'        => 'styling-themeMode_light-errorcolor',
@@ -3493,8 +3493,8 @@ function appBear_options(){
 				'id' => 'translate-customdemotitle',
 				'type' => 'text',
 				'grid' => '6-of-6',
-			));		  
-			
+			));
+
 			$translations_section->add_field(array(
 				'name' => 'Custom Demo Body',
 				'default' => "Custom Demo Body",
@@ -3502,7 +3502,7 @@ function appBear_options(){
 				'type' => 'text',
 				'grid' => '6-of-6',
 			));
-			
+
 			$translations_section->add_field(array(
 				'name' => 'Confirm Custom Demo Title',
 				'default' => "Confirm Custom Demo Title",
@@ -3510,7 +3510,7 @@ function appBear_options(){
 				'type' => 'text',
 				'grid' => '6-of-6',
 			));
-			
+
 			$translations_section->add_field(array(
 				'name' => 'Confirm Custom Demo Message',
 				'default' => "Confirm Custom Demo Message",
@@ -3518,7 +3518,7 @@ function appBear_options(){
 				'type' => 'text',
 				'grid' => '6-of-6',
 			));
-			
+
 			$translations_section->add_field(array(
 				'name' => 'Get Our',
 				'default' => "Get Our",
@@ -3526,7 +3526,7 @@ function appBear_options(){
 				'type' => 'text',
 				'grid' => '6-of-6',
 			));
-			
+
 			$translations_section->add_field(array(
 				'name' => 'AppBear',
 				'default' => "AppBear",
@@ -3534,7 +3534,7 @@ function appBear_options(){
 				'type' => 'text',
 				'grid' => '6-of-6',
 			));
-			
+
 			$translations_section->add_field(array(
 				'name' => 'Plugin',
 				'default' => "Plugin",
@@ -3625,5 +3625,5 @@ function appBear_options(){
 		));
 
 	}
-		  
+
 }

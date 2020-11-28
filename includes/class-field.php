@@ -1246,8 +1246,9 @@ class Field {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function get_result_callback( $callback = '' ){
-		$exclude = array( 'disabled', 'Disabled', 'checked', 'Checked', 'header', 'Header', 'date', 'time' );
+		$exclude = array( 'disabled', 'Disabled', 'checked', 'Checked', 'header', 'Header', 'date', 'time', 'Reset', 'Next' ); // @Fouad
 		if( isset( $this->args[ $callback ] ) && ! in_array( $this->args[ $callback ], $exclude ) && $this->get_appbear()->exists_callback( $callback, $this )  ){
+
 			return call_user_func( $this->args[ $callback ], $this->args, $this );
 		}
 		return isset( $this->args[ $callback ] ) ? $this->args[ $callback ] : '';

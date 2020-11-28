@@ -63,7 +63,7 @@ class AppbearLoader148 {
 		define( 'APPBEAR_SLUG',  'appbear' );
 		define( 'APPBEAR_DIR', trailingslashit( dirname( __FILE__ ) ) );
 		define( 'APPBEAR_URL', trailingslashit( $this->get_url() ) );
-        defined('APPBEAR_FONTAWESOME_VERSION') or define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+		defined('APPBEAR_FONTAWESOME_VERSION') or define('APPBEAR_FONTAWESOME_VERSION', '4.x');
 	}
 
 	/*
@@ -100,29 +100,32 @@ class AppbearLoader148 {
 		include dirname( __FILE__ ) . '/includes/class-appbear-items.php';
 		include dirname( __FILE__ ) . '/includes/global-functions.php';
 	}
-	
-    /*
-    |---------------------------------------------------------------------------------------------------
-    | appBear files
-    |---------------------------------------------------------------------------------------------------
-    */
-    public function appBear(){
-        if( function_exists( 'appBear_options' ) || function_exists( 'my_simple_metabox' ) ){
-            return;
-        }
-        if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ){
-            if( file_exists( dirname( __FILE__ ) . '/options/admin-page.php' ) ){
-                include dirname( __FILE__ ) . '/options/admin-page.php';
-            }
-            if( file_exists( dirname( __FILE__ ) . '/options/metabox.php' ) ){
-                include dirname( __FILE__ ) . '/options/metabox.php';
-            }
+
+	/*
+	|---------------------------------------------------------------------------------------------------
+	| appBear files
+	|---------------------------------------------------------------------------------------------------
+	*/
+	public function appBear(){
+		if( function_exists( 'appBear_options' ) || function_exists( 'my_simple_metabox' ) ){
+			return;
 		}
+
+		if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ){
+			if( file_exists( dirname( __FILE__ ) . '/options/admin-page.php' ) ){
+				include dirname( __FILE__ ) . '/options/admin-page.php';
+			}
+		}
+
 		// APIs File
 		include dirname( __FILE__ ) . '/options/appbear-apis.php';
+		include dirname( __FILE__ ) . '/options/demos-api.php';
 		include dirname( __FILE__ ) . '/options/options.php';
+		include dirname( __FILE__ ) . '/options/functions.php';
 		include dirname( __FILE__ ) . '/options/AppBear_subscription.php';
-    }
+
+		include dirname( __FILE__ ) . '/themes/tielabs.php'; // to be chnaged to load files febending on the current active theme
+	}
 
 	/*
 	|---------------------------------------------------------------------------------------------------

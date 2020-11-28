@@ -1,5 +1,6 @@
 <?php
-$prefix_taxonomy = 'category';
+
+/*$prefix_taxonomy = 'category';
 
 add_action('wp_enqueue_scripts', 'add_category_image');
 add_action('wp_enqueue_styles', 'add_category_image');
@@ -40,8 +41,8 @@ function add_category_image($category) {
 	}
 add_action( sprintf( '%s_add_form_fields', $prefix_taxonomy ), 'add_category_image' );
 
-	
-add_action( 'saved_term', 'add_term_meta_data', 10, 2 ); 
+
+add_action( 'saved_term', 'add_term_meta_data', 10, 2 );
 function add_term_meta_data( $term_id, $taxonomy ){
 	$cat_image = $_POST['term_meta']['custom_term_meta'];
 	add_term_meta($term_id, "cat_image",$cat_image);
@@ -69,7 +70,7 @@ function edit_category_image($category) {
 					<div class="inside">
 						<div class="appbear-category-panel">
 							<div id="category-item" class="option-item ">
-								<span class="appbear-label"><?php echo __( 'Category Image', 'textdomain' );?></span>	
+								<span class="appbear-label"><?php echo __( 'Category Image', 'textdomain' );?></span>
 								<input id="category" name="term_meta[custom_term_meta]" class="appbear-img-path" type="text" value="">
 								<input id="upload_category_button" type="button" class="appbear-upload-img button" value="Upload">
 								<input type="hidden" value="<?php echo $category->term_id; ?>" id="ajaxtestdel_postid">
@@ -101,12 +102,12 @@ function delete_category_image() {
 	   $status = 'Error';
 	}
 	die($status);
-  }  
+  }
 add_action('wp_ajax_delete_category_image', 'delete_category_image');
 
 add_action( sprintf( '%s_edit_form_fields', $prefix_taxonomy ), 'edit_category_image', 100, 20);
 
-add_action( 'edit_terms', 'update_term_meta_data', 10, 2 ); 
+add_action( 'edit_terms', 'update_term_meta_data', 10, 2 );
 function update_term_meta_data( $term_id, $taxonomy ){
 	$cat_image = $_POST['term_meta']['custom_term_meta'];
 	if($cat_image==''||$cat_image==null||empty($cat_image)){
@@ -117,3 +118,4 @@ function update_term_meta_data( $term_id, $taxonomy ){
 	}
 }
 ?>
+*/
