@@ -295,7 +295,13 @@ class AppBear_Endpoints {
 		}
 
 		// Add option later to enable disable
-		$this_post['related_posts'] = array();
+		$this_post['related_posts'] = $this->do_posts(
+			array(
+				'categories' => wp_get_post_categories(),
+				'exclude'    => $request['id'], // Exclude current post
+				'count'      => 5,
+			)
+		);
 
 
 		// -----
@@ -312,7 +318,6 @@ class AppBear_Endpoints {
 			);
 
 			$get_comments = get_comments( $args );
-
 
 			foreach ( $get_comments as $comment ) {
 
