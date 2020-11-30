@@ -1,8 +1,8 @@
 <?php
 
-add_action( 'appbear_init', 'appBear_options');
+add_action( 'appbear_admin_init', 'appBear_options');
 function appBear_options(){
-	if (get_option( 'appbear_license_status' )=="valid") {
+	if ( get_option( 'appbear_license_status' )=="valid" ) {
 		$settings_arg = array(
 			'id' => 'appbear-settings',
 			'title' => 'appBear',
