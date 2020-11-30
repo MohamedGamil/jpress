@@ -655,7 +655,7 @@ class AdminPage extends AppbearCore {
 										case 'NavigationType.category':
 											$category = get_category_by_slug($navigator['category']);
 											if(empty($category)){
-											   continue;
+											   break;
 											}
 											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $category->name;
@@ -664,13 +664,13 @@ class AdminPage extends AppbearCore {
 											$navigator['url']   = '/wp-json/wl/v1/posts?category_id='.$category->term_id;
 
 											if(!isset($category->term_id) || $category->term_id == '')
-												continue;
+												break;
 										break;
 										case 'NavigationType.page':
 											$post = get_post($navigator['page']);
 
 											if(!$post)
-												continue;
+												break;
 											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $post->post_title;
 											}
@@ -696,6 +696,7 @@ class AdminPage extends AppbearCore {
 											}
 										break;
 									}
+
 									unset($navigator['category']);
 									unset($navigator['page']);
 									unset($navigator['cutomized_title']);
@@ -747,7 +748,7 @@ class AdminPage extends AppbearCore {
 										case 'NavigationType.page':
 											$post = get_post($navigator['page']);
 											if(!$post)
-												continue;
+												break;
 											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $post->post_title;
 											}
