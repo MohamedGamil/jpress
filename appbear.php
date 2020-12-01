@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: appBear
+ * Plugin Name: AppBear (BETA)
  * Plugin URI: https://appbear.com
  * Description: Convert your WordPress site into a Native Mobile App. No coding required. Your app syncs with your site automatically. Increase engagement, loyalty and monetize better on mobile!
- * Version: 1.0.0
- * Author: appBear Team
+ * Version: 0.0.1
+ * Author: AppBear Team
  * Author URI: https://appbear.com
  * Text Domain: appbear
  * Domain Path: /languages/
