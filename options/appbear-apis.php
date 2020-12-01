@@ -45,7 +45,6 @@ class AppBear_Endpoints {
 			'page',
 			'add-comment',
 			'get-version',
-			'contact-us',
 			'options',
 			'dev-mode',
 			'translations',
@@ -59,7 +58,8 @@ class AppBear_Endpoints {
 
 		// POST routes
 		$post_routes = array(
-			'login'
+			'login',
+			'contact-us',
 		);
 
 		foreach ( $post_routes as $route ) {
@@ -239,12 +239,15 @@ class AppBear_Endpoints {
 
 		// Featured Image
 		$thumbnail = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
-		$the_post['thumbnail'] = $thumbnail;
-		$the_post['featured_image'] = array(
-			'thumbnail' => $thumbnail,
-			'medium'    => get_the_post_thumbnail_url( $post_id, 'medium' ),
-			'large'     => get_the_post_thumbnail_url( $post_id, 'large' ),
-		);
+
+		if($thumbnail != false){
+			$the_post['thumbnail'] = $thumbnail;
+			$the_post['featured_image'] = array(
+				'thumbnail' => $thumbnail,
+				'medium'    => get_the_post_thumbnail_url( $post_id, 'medium' ),
+				'large'     => get_the_post_thumbnail_url( $post_id, 'large' ),
+			);
+		}
 
 		return apply_filters( 'AppBear/API/Post/data', $the_post );
 	}
