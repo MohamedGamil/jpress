@@ -59,7 +59,7 @@ class AppBear_Endpoints {
 		// POST routes
 		$post_routes = array(
 			'login',
-			'contact-us',
+			'contact-us', 
 		);
 
 		foreach ( $post_routes as $route ) {
@@ -239,7 +239,6 @@ class AppBear_Endpoints {
 
 		// Featured Image
 		$thumbnail = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
-
 		if($thumbnail != false){
 			$the_post['thumbnail'] = $thumbnail;
 			$the_post['featured_image'] = array(
@@ -280,8 +279,11 @@ class AppBear_Endpoints {
 		setup_postdata( $post );
 
 		$this_post = $this->get_post_data();
-
+		
+		// $this_post['content'] = apply_filters( 'the_content', $post->post_content );
 		$this_post['content'] = appbear_shortcodes_parsing( $post->post_content );
+		$this_post['content'] = apply_filters( 'the_content', $this_post['content'] );
+		
 
 		// Tags
 		// To do. create a function that work with cats. and tags

@@ -171,8 +171,8 @@ function appbear_shortcodes_parsing($content)
 	// $string = preg_replace($pattern, "", $string);
 
 
-	$string = str_replace('<p>', "<div>", $string);
-	$string = str_replace('</p>', "</div>", $string);
+	// $string = str_replace('<p>', "<div>", $string);
+	// $string = str_replace('</p>', "</div>", $string);
 
 	//button
 	$pattern = '/\[button/i';
@@ -251,7 +251,7 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[/toggle]", "</div></div>", $string);
 
-	$string = str_replace("[tie_full_img]", "</img>", $string);
+	$string = str_replace("[tie_full_img]", "<img>", $string);
 	$string = str_replace("[/tie_full_img]", "</img>", $string);
 
 
