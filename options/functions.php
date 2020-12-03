@@ -174,6 +174,8 @@ function appbear_shortcodes_parsing($content)
 	// $string = str_replace('<p>', "<div>", $string);
 	// $string = str_replace('</p>', "</div>", $string);
 
+	$string = str_replace('[gallery', "<gallery", $string);
+
 	//button
 	$pattern = '/\[button/i';
 	$string = preg_replace($pattern, "<a class=\"shortc-button\" ", $string);
