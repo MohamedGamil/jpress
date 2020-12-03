@@ -14,6 +14,7 @@ function appbear_get_option($name, $default = false)
 		return $get_options[$name];
 	}
 
+	// FIXME: Smelly code
 	if ($default) {
 		return $default;
 	}
@@ -23,6 +24,7 @@ function appbear_get_option($name, $default = false)
 
 
 
+// FIXME: Missing docs comment
 function appbear_get_time()
 {
 
@@ -62,6 +64,7 @@ function appbear_post_format($post_id = null)
 		$post_id = get_the_ID();
 	}
 
+	// FIXME: Smelly code
 	if (!$post_id) {
 		return false;
 	}
@@ -87,6 +90,7 @@ function appbear_post_gallery($post_id = null)
 		$post_id = get_the_ID();
 	}
 
+	// FIXME: Smelly code
 	if (!$post_id) {
 		return false;
 	}
@@ -108,6 +112,7 @@ function appbear_post_video($post_id = null)
 		$post_id = get_the_ID();
 	}
 
+	// FIXME: Smelly code
 	if (!$post_id) {
 		return false;
 	}
@@ -121,9 +126,14 @@ function appbear_post_video($post_id = null)
 
 
 
+// FIXME: Missing docs comment
 function appbear_shortcodes_parsing($content)
 {
 
+	// NOTE: A couple of things needs to be done here:
+	//            1) Revise each replacement 
+	//            2) A better optimized way to replace strings 
+	//            3) A more dynamic approach to handle replacement cases 
 
 
 	// $pattern = '@(?<=)\[tie_list type="(.*?)(?=)"](?=)(.*?)\[/tie_list](?=)@sm';
@@ -532,8 +542,12 @@ function appbear_shortcodes_parsing($content)
 
 //deep linking
 add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
+
+// FIXME: Missing docs comment
 function appbear_deeplink_custom_js()
 {
+	// FIXME: Smelly code
+	// FIXME: Needs a better check for public use instead of hooking in all pages
 
 	if (!is_single()) {
 		return;

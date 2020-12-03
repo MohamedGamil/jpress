@@ -1,4 +1,6 @@
 <?php
+	// FIXME: Missing docs comment
+
 $appbear->add_import_field(array(
   'name' => 'Select Demo',
   'default' => 'demo-key-2',

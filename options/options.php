@@ -1,5 +1,7 @@
 <?php
 
+// NOTE: What is the purpose of this file?
+
 /*$prefix_taxonomy = 'category';
 
 add_action('wp_enqueue_scripts', 'add_category_image');

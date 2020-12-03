@@ -4,6 +4,7 @@ define( 'APPBEAR_STORE_URL', 'http://appstage.tielabs.com' );
 define( 'APPBEAR_ITEM_ID', 1044 );
 define( 'APPBEAR_ITEM_NAME', 'AppBear' );
 
+// FIXME: Missing docs comment
 class AdminPage extends AppbearCore {
 
 	public function __construct( $args = array() ){
@@ -250,6 +251,7 @@ class AdminPage extends AppbearCore {
 		return true;
 	}
 
+	// FIXME: Missing docs comment
 	public function removeEmpties(&$array)
 	{
 		foreach($array as $key=>$val)

@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class AppBear_subscription {
 
+	// FIXME: Missing docs comment
 	private $api_url     = '';
 	private $api_data    = array();
 	private $name        = '';
