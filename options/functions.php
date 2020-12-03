@@ -1,19 +1,20 @@
 <?php
 
-defined( 'ABSPATH' ) || exit; // Exit if accessed directly
+defined('ABSPATH') || exit; // Exit if accessed directly
 
 /**
  *
  */
-function appbear_get_option( $name, $default = false ){
+function appbear_get_option($name, $default = false)
+{
 
 	$get_options = get_option('appbear-settings');
 
-	if( isset( $get_options[ $name ] ) ) {
-		return $get_options[ $name ];
+	if (isset($get_options[$name])) {
+		return $get_options[$name];
 	}
 
-	if( $default ) {
+	if ($default) {
 		return $default;
 	}
 
@@ -22,30 +23,30 @@ function appbear_get_option( $name, $default = false ){
 
 
 
-function appbear_get_time(){
+function appbear_get_time()
+{
 
-	$time_format = appbear_get_option( 'time_format' );
+	$time_format = appbear_get_option('time_format');
 
 	// Human Readable Post Dates
-	if( $time_format == 'modern' ){
+	if ($time_format == 'modern') {
 
-		$time_now  = current_time( 'timestamp' );
-		$post_time = get_the_time( 'U' );
+		$time_now  = current_time('timestamp');
+		$post_time = get_the_time('U');
 
-		if ( $post_time > ( $time_now - MONTH_IN_SECONDS ) ){
-			$since = sprintf( esc_html__( '%s ago', TIELABS_TEXTDOMAIN ), human_time_diff( $post_time, $time_now ) );
-		}
-		else {
+		if ($post_time > ($time_now - MONTH_IN_SECONDS)) {
+			$since = sprintf(esc_html__('%s ago', TIELABS_TEXTDOMAIN), human_time_diff($post_time, $time_now));
+		} else {
 			$since = get_the_date();
 		}
 	}
 
 	// Default date format
-	else{
+	else {
 		$since = get_the_date();
 	}
 
-	return apply_filters( 'AppBear/API/Post/Post_Date', $since );
+	return apply_filters('AppBear/API/Post/Post_Date', $since);
 }
 
 
@@ -54,22 +55,23 @@ function appbear_get_time(){
  *
  * Get the post format of a post by ID
  */
-function appbear_post_format( $post_id = null ) {
+function appbear_post_format($post_id = null)
+{
 
-	if( ! $post_id ) {
+	if (!$post_id) {
 		$post_id = get_the_ID();
 	}
 
-	if( ! $post_id ) {
+	if (!$post_id) {
 		return false;
 	}
 
 	// Default WordPress Core post format
-	$post_format = get_post_format( $post_id );
+	$post_format = get_post_format($post_id);
 	$post_format = $post_format ? $post_format : 'standard';
 
 	// Allow themes to chnage this and apply their custom post formats
-	return apply_filters( 'AppBear/API/Post/Post_Format', $post_format, $post_id );
+	return apply_filters('AppBear/API/Post/Post_Format', $post_format, $post_id);
 }
 
 
@@ -78,18 +80,19 @@ function appbear_post_format( $post_id = null ) {
  *
  * Get the post gallery of a post by ID
  */
-function appbear_post_gallery( $post_id = null ){
+function appbear_post_gallery($post_id = null)
+{
 
-	if( ! $post_id ){
+	if (!$post_id) {
 		$post_id = get_the_ID();
 	}
 
-	if( ! $post_id ){
+	if (!$post_id) {
 		return false;
 	}
 
 	// Allow themes to chnage this
-	return apply_filters( 'AppBear/API/Post/Post_Gallery', array(), $post_id );
+	return apply_filters('AppBear/API/Post/Post_Gallery', array(), $post_id);
 }
 
 
@@ -98,18 +101,19 @@ function appbear_post_gallery( $post_id = null ){
  *
  * Get the post gallery of a post by ID
  */
-function appbear_post_video( $post_id = null ){
+function appbear_post_video($post_id = null)
+{
 
-	if( ! $post_id ){
+	if (!$post_id) {
 		$post_id = get_the_ID();
 	}
 
-	if( ! $post_id ){
+	if (!$post_id) {
 		return false;
 	}
 
 	// Allow themes to chnage this
-	return apply_filters( 'AppBear/API/Post/Post_Video', '', $post_id );
+	return apply_filters('AppBear/API/Post/Post_Video', '', $post_id);
 }
 
 
@@ -151,21 +155,21 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[/tie_list]", "</div>", $string);
 
-	$pattern = '/\[one\_[a_zA-Z]+\]/i';
+	$pattern = '/\[one\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[two\_[a_zA-Z]+\]/i';
+	$pattern = '/\[two\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/one\_[a_zA-Z]+\]/i';
+	$pattern = '/\[\/one\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[\/two\_[a_zA-Z]+\]/i';
+	$pattern = '/\[\/two\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[three\_[a_zA-Z]+\_[a_zA-Z]+\]/i';
+	$pattern = '/\[three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/three\_[a_zA-Z]+\_[a_zA-Z]+\]/i';
+	$pattern = '/\[\/three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[five\_[a_zA-Z]+\_[a_zA-Z]+\]/i';
+	$pattern = '/\[five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/five\_[a_zA-Z]+\_[a_zA-Z]+\]/i';
+	$pattern = '/\[\/five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
 	// $pattern = '/[[0-9]+\/[0-9]+\]/i';
 	// $string = preg_replace($pattern, "", $string);
@@ -174,8 +178,132 @@ function appbear_shortcodes_parsing($content)
 	// $string = str_replace('<p>', "<div>", $string);
 	// $string = str_replace('</p>', "</div>", $string);
 
-	$string = str_replace('[gallery', "<gallery", $string);
 
+	// Gallery Start
+
+	$pos = strpos($string, "ids=\"");
+	$new_string  = substr($string, $pos + 5);
+	$second_pos = strpos($new_string, "\"");
+	$ids = substr($new_string, 0, $second_pos);
+	$ids = explode(",", $ids);
+	$output = "";
+	$attr = array();
+	$attr['includes'] = $ids;
+	$html5 = current_theme_supports('html5', 'gallery');
+	$atts  = shortcode_atts(
+		array(
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'id'         => $post ? $post->ID : 0,
+			'itemtag'    => $html5 ? 'figure' : 'dl',
+			'icontag'    => $html5 ? 'div' : 'dt',
+			'captiontag' => $html5 ? 'figcaption' : 'dd',
+			'columns'    => 3,
+			'size'       => 'thumbnail',
+			'include'    => '',
+			'exclude'    => '',
+			'link'       => '',
+		),
+		$attr,
+		'gallery'
+	);
+	foreach ($ids as &$value) {
+		$_attachments = get_posts(
+			array(
+				'include'        => $atts['include'],
+				'post_status'    => 'inherit',
+				'post_type'      => 'attachment',
+				'post_mime_type' => 'image',
+			)
+		);
+
+		$attachments = array();
+		foreach ($_attachments as $key => $val) {
+			$attachments[$val->ID] = $_attachments[$key];
+		}
+		$output = "\n";
+		foreach ($attachments as $att_id => $attachment) {
+			if (!empty($atts['link'])) {
+				if ('none' === $atts['link']) {
+					$output .= wp_get_attachment_image($att_id, $atts['size'], false, $attr);
+				} else {
+					$output .= wp_get_attachment_link($att_id, $atts['size'], false);
+				}
+			} else {
+				$output .= wp_get_attachment_link($att_id, $atts['size'], true);
+			}
+			$output .= "\n";
+		}
+		if (apply_filters('use_default_gallery_style', !$html5)) {
+			$type_attr = current_theme_supports('html5', 'style') ? '' : ' type="text/css"';
+			$gallery_style = "
+			               <style{$type_attr}>
+			                       #{$selector} {
+			                               margin: auto;
+			                       }
+			                       #{$selector} .gallery-item {
+			                               float: {$float};
+			                               margin-top: 10px;
+			                               text-align: center;
+			                               width: {$itemwidth}%;
+			                       }
+			                     #{$selector} img {
+			                               border: 2px solid #cfcfcf;
+			                       }
+			                       #{$selector} .gallery-caption {
+			                               margin-left: 0;
+			                       }
+			                       /* see gallery_shortcode() in wp-includes/media.php */
+			               </style>\n\t\t";
+		}
+		$size_class  = sanitize_html_class($atts['size']);
+		$gallery_div = "<div id='1' class='gallery galleryid-1 gallery-columns-4 gallery-size-{$size_class}'>";
+		$output = apply_filters('gallery_style', $gallery_style . $gallery_div);
+		$i = 0;
+		foreach ($attachments as $id => $attachment) {
+			$attr = (trim($attachment->post_excerpt)) ? array('aria-describedby' => "$selector-$id") : '';
+			if (!empty($atts['link']) && 'file' === $atts['link']) {
+				$image_output = wp_get_attachment_link($id, $atts['size'], false, false, false, $attr);
+			} elseif (!empty($atts['link']) && 'none' === $atts['link']) {
+				$image_output = wp_get_attachment_image($id, $atts['size'], false, $attr);
+			} else {
+				$image_output = wp_get_attachment_link($id, $atts['size'], true, false, false, $attr);
+			}
+			$image_meta = wp_get_attachment_metadata($id);
+			$orientation = '';
+			if (isset($image_meta['height'], $image_meta['width'])) {
+				$orientation = ($image_meta['height'] > $image_meta['width']) ? 'portrait' : 'landscape';
+			}
+			$output .= "<{$itemtag} class='gallery-item'>";
+			$output .= "
+                       <{$icontag} class='gallery-icon {$orientation}'>
+                               $image_output
+                       </{$icontag}>";
+			if ($captiontag && trim($attachment->post_excerpt)) {
+				$output .= "
+                               <{$captiontag} class='wp-caption-text gallery-caption' id='$selector-$id'>
+                               " . wptexturize($attachment->post_excerpt) . "
+                               </{$captiontag}>";
+			}
+			$output .= "</{$itemtag}>";
+			if (!$html5 && $columns > 0 && 0 === ++$i % $columns) {
+				$output .= '<br style="clear: both" />';
+			}
+		}
+		if (!$html5 && $columns > 0 && 0 !== $i % $columns) {
+			$output .= "
+                       <br style='clear: both' />";
+		}
+		$output .= "
+               </div>\n";
+	}
+	// print_r($images);
+	// echo"</pre>";
+
+	$pattern = '/\[gallery [\s\S]*\]/i';
+	$string = preg_replace($pattern, $output, $string);
+
+	// exit();
 	//button
 	$pattern = '/\[button/i';
 	$string = preg_replace($pattern, "<a class=\"shortc-button\" ", $string);
@@ -336,11 +464,11 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[tie_login]", '<div class="login-form">
 
-		<form name="registerform" action="'.get_site_url().'/wp-login.php" method="post">
+		<form name="registerform" action="' . get_site_url() . '/wp-login.php" method="post">
 			<input type="text" name="log" title="Username" placeholder="Username">
 			<div class="pass-container">
 				<input type="password" name="pwd" title="Password" placeholder="Password">
-				<a class="forget-text" href="'.get_site_url().'/wp-login.php?action=lostpassword&redirect_to='.get_site_url().'">Forget?</a>
+				<a class="forget-text" href="' . get_site_url() . '/wp-login.php?action=lostpassword&redirect_to=' . get_site_url() . '">Forget?</a>
 			</div>
 
 			<input type="hidden" name="redirect_to" value="/shortcode-test-test-fouad-hi/"/>
@@ -390,6 +518,7 @@ function appbear_shortcodes_parsing($content)
 	$pattern = '/\[\/caption\]/i';
 	$string = preg_replace($pattern, '</shortcaption>', $string);
 
+	// $string = apply_filters( 'the_content', $string );
 
 	$string = str_replace(" ]", ">", $string);
 	$string = str_replace("\"]", "\">", $string);
@@ -403,13 +532,14 @@ function appbear_shortcodes_parsing($content)
 
 //deep linking
 add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
-function appbear_deeplink_custom_js() {
+function appbear_deeplink_custom_js()
+{
 
-	if ( ! is_single()) {
+	if (!is_single()) {
 		return;
 	}
 
-	wp_enqueue_script( 'appbear-browser-deeplink', APPBEAR_URL . 'js/browser-deeplink.js', array() );
+	wp_enqueue_script('appbear-browser-deeplink', APPBEAR_URL . 'js/browser-deeplink.js', array());
 
 	/*
 	* TODO: get appId & appName iOS and Android from settings
@@ -432,6 +562,4 @@ function appbear_deeplink_custom_js() {
 			deeplink.open("' . get_the_ID() . '");
 		}
 	');
-
 }
-
