@@ -69,9 +69,10 @@ class AppbearLoader148 {
 	*/
 	public function constants(){
     // TODO: Version and Priority should be defined at top level constants in no dynamic way and only once.
-		define( 'APPBEAR_VERSION',  $this->version );
-		define( 'APPBEAR_PRIORITY',  $this->priority );
-	}
+    define( 'APPBEAR_VERSION',  $this->version );
+    define( 'APPBEAR_PRIORITY',  $this->priority );
+    define( 'APPBEAR_URL', trailingslashit( $this->get_url() ) );
+  }
 
 	/*
 	|---------------------------------------------------------------------------------------------------
@@ -114,13 +115,16 @@ class AppbearLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function appBear(){
-		if( function_exists( 'appBear_options' ) || function_exists( 'my_simple_metabox' ) ){
+		if( function_exists( 'my_simple_metabox' ) ){
 			return;
 		}
 
-		if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ){
-			if( file_exists( dirname( __FILE__ ) . '/options/admin-page.php' ) ){
-				include dirname( __FILE__ ) . '/options/admin-page.php';
+		if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ) {
+			if ( ( $appBearOptsClass = APPBEAR_DIR . '/options/appbear-options.php' ) && file_exists( $appBearOptsClass ) ){
+        require_once $appBearOptsClass;
+        $appBearOptsClassInstance = new AppBear_Options();
+
+        $appBearOptsClassInstance->run();
 			}
 		}
 
@@ -140,16 +144,16 @@ class AppbearLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	private function get_url(){
-		// BUG: This logic doesn't work with all hosts!
 		if( stripos( APPBEAR_DIR, 'themes') !== false ){
-			$temp = explode( 'themes', APPBEAR_DIR );
+      $temp = explode( 'themes', APPBEAR_DIR );
 			$appbear_url = content_url() . '/themes' . $temp[1];
 		} else {
-			$temp = explode( 'plugins', APPBEAR_DIR );
-			$appbear_url = content_url() . '/plugins' . $temp[1];
-		}
-		$appbear_url = str_replace( "\\", "/", $appbear_url );
-		return $appbear_url;
+      $dirs = explode(DIRECTORY_SEPARATOR, __DIR__);
+      $pluginDirName = end($dirs);
+      $appbear_url = plugins_url() . "/{$pluginDirName}";
+    }
+
+		return str_replace( "\\", "/", $appbear_url );
 	}
 
 }
