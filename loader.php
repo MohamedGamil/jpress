@@ -122,10 +122,10 @@ class AppbearLoader148 {
 		}
 
 		// APIs File
+		include dirname( __FILE__ ) . '/options/functions.php';
 		include dirname( __FILE__ ) . '/options/appbear-apis.php';
 		include dirname( __FILE__ ) . '/options/demos-api.php';
 		include dirname( __FILE__ ) . '/options/options.php';
-		include dirname( __FILE__ ) . '/options/functions.php';
 		include dirname( __FILE__ ) . '/options/AppBear_subscription.php';
 
 		include dirname( __FILE__ ) . '/themes/tielabs.php'; // to be chnaged to load files febending on the current active theme
