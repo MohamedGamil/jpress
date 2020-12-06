@@ -1,8 +1,7 @@
-<?php namespace Appbear\Includes;
+<?php
 
-define( 'APPBEAR_STORE_URL', 'http://appstage.tielabs.com' );
-define( 'APPBEAR_ITEM_ID', 1044 );
-define( 'APPBEAR_ITEM_NAME', 'AppBear' );
+namespace Appbear\Includes;
+
 
 // FIXME: Missing docs comment
 class AdminPage extends AppbearCore {
