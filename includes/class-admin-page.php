@@ -252,6 +252,7 @@ class AdminPage extends AppbearCore {
 	}
 
 	// FIXME: Missing docs comment
+	// FIXME: Unused method
 	public function removeEmpties(&$array)
 	{
 		foreach($array as $key=>$val)
@@ -262,6 +263,7 @@ class AdminPage extends AppbearCore {
 			}
 			else
 			{
+				// BUG: This is problematic!
 				removeEmpties($val);
 			}
 		}

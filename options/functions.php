@@ -2,41 +2,34 @@
 
 defined('ABSPATH') || exit; // Exit if accessed directly
 
+
 /**
- *
+ * Get a Plugin Option
+ * 
+ * @param string $name Option name
+ * @param mixed $default Option default value
  */
 function appbear_get_option($name, $default = false)
 {
-
-	$get_options = get_option('appbear-settings');
-
-	if (isset($get_options[$name])) {
-		return $get_options[$name];
-	}
-
-	// FIXME: Smelly code
-	if ($default) {
-		return $default;
-	}
-
-	return false;
+	$opts = get_option('appbear-settings');
+	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
 
-
-// FIXME: Missing docs comment
+/**
+ * Get Time Format
+ */
 function appbear_get_time()
 {
-
 	$time_format = appbear_get_option('time_format');
 
 	// Human Readable Post Dates
 	if ($time_format == 'modern') {
-
 		$time_now  = current_time('timestamp');
 		$post_time = get_the_time('U');
 
 		if ($post_time > ($time_now - MONTH_IN_SECONDS)) {
+			// NOTE: Why use `TIELABS_TEXTDOMAIN` ?
 			$since = sprintf(esc_html__('%s ago', TIELABS_TEXTDOMAIN), human_time_diff($post_time, $time_now));
 		} else {
 			$since = get_the_date();
@@ -53,20 +46,14 @@ function appbear_get_time()
 
 
 /**
- * appbear_post_format
+ * Get Post Format
  *
- * Get the post format of a post by ID
+ * @param integer $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_format($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
-	}
-
-	// FIXME: Smelly code
-	if (!$post_id) {
-		return false;
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
 	// Default WordPress Core post format
@@ -562,6 +549,10 @@ function appbear_deeplink_custom_js()
 	//$deeplinking['ios']['appid'];
 	//$deeplinking['ios']['appname'];
 	//$deeplinking['android']['appid'];
+
+	// NOTE: This can be re-written in a more dynamic way
+	// FIXME: App package identifier configuration
+
 	wp_add_inline_script('browser-deeplink', '
 		deeplink.setup({
 		iOS: {

@@ -14,6 +14,9 @@ class AppbearLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function init(){
+		// FIXME: Plugin initialization logic should be borken to use multiple actions
+		//           i.e. `wp_loaded` action should initialize theme specific integrations, and
+		//          `init` action should initialize general plugin logic
 		add_action( 'init', array( $this, 'load_appbear' ), $this->priority );
 	}
 
@@ -24,6 +27,7 @@ class AppbearLoader148 {
 	*/
 	public function load_appbear(){
 
+		// NOTE: Is the following line added to prevent scope collesions for multiple versions of this plugin?
 		if ( class_exists( 'Appbear', false ) ) {
 			return;
 		}
@@ -133,6 +137,7 @@ class AppbearLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	private function get_url(){
+		// BUG: This logic doesn't work with all hosts!
 		if( stripos( APPBEAR_DIR, 'themes') !== false ){
 			$temp = explode( 'themes', APPBEAR_DIR );
 			$appbear_url = content_url() . '/themes' . $temp[1];
