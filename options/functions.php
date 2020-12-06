@@ -2,39 +2,34 @@
 
 defined('ABSPATH') || exit; // Exit if accessed directly
 
+
 /**
- *
+ * Get a Plugin Option
+ * 
+ * @param string $name Option name
+ * @param mixed $default Option default value
  */
 function appbear_get_option($name, $default = false)
 {
-
-	$get_options = get_option('appbear-settings');
-
-	if (isset($get_options[$name])) {
-		return $get_options[$name];
-	}
-
-	if ($default) {
-		return $default;
-	}
-
-	return false;
+	$opts = get_option('appbear-settings');
+	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
 
-
+/**
+ * Get Time Format
+ */
 function appbear_get_time()
 {
-
 	$time_format = appbear_get_option('time_format');
 
 	// Human Readable Post Dates
 	if ($time_format == 'modern') {
-
 		$time_now  = current_time('timestamp');
 		$post_time = get_the_time('U');
 
 		if ($post_time > ($time_now - MONTH_IN_SECONDS)) {
+			// NOTE: Why use `TIELABS_TEXTDOMAIN` ?
 			$since = sprintf(esc_html__('%s ago', TIELABS_TEXTDOMAIN), human_time_diff($post_time, $time_now));
 		} else {
 			$since = get_the_date();
@@ -51,19 +46,14 @@ function appbear_get_time()
 
 
 /**
- * appbear_post_format
+ * Get Post Format
  *
- * Get the post format of a post by ID
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_format($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
-	}
-
-	if (!$post_id) {
-		return false;
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
 	// Default WordPress Core post format
@@ -76,20 +66,17 @@ function appbear_post_format($post_id = null)
 
 
 /**
- * appbear_post_gallery
- *
  * Get the post gallery of a post by ID
+ *
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_gallery($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
-	if (!$post_id) {
-		return false;
-	}
+	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
 	return apply_filters('AppBear/API/Post/Post_Gallery', array(), $post_id);
@@ -97,20 +84,17 @@ function appbear_post_gallery($post_id = null)
 
 
 /**
- * appbear_post_video
+ * Get the post video of a post by ID
  *
- * Get the post gallery of a post by ID
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_video($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
-	if (!$post_id) {
-		return false;
-	}
+	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
 	return apply_filters('AppBear/API/Post/Post_Video', '', $post_id);
@@ -121,9 +105,14 @@ function appbear_post_video($post_id = null)
 
 
 
+// FIXME: Missing docs comment
 function appbear_shortcodes_parsing($content)
 {
 
+	// NOTE: A couple of things needs to be done here:
+	//            1) Revise each replacement 
+	//            2) A better optimized way to replace strings 
+	//            3) A more dynamic approach to handle replacement cases 
 
 
 	// $pattern = '@(?<=)\[tie_list type="(.*?)(?=)"](?=)(.*?)\[/tie_list](?=)@sm';
@@ -532,8 +521,12 @@ function appbear_shortcodes_parsing($content)
 
 //deep linking
 add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
+
+// FIXME: Missing docs comment
 function appbear_deeplink_custom_js()
 {
+	// FIXME: Smelly code (why hook in the first place if not in a public page?)
+	// FIXME: Needs a better check for public use instead of hooking in all pages
 
 	if (!is_single()) {
 		return;
@@ -548,6 +541,10 @@ function appbear_deeplink_custom_js()
 	//$deeplinking['ios']['appid'];
 	//$deeplinking['ios']['appname'];
 	//$deeplinking['android']['appid'];
+
+	// NOTE: This can be re-written in a more dynamic way
+	// FIXME: App package identifier configuration
+
 	wp_add_inline_script('browser-deeplink', '
 		deeplink.setup({
 		iOS: {

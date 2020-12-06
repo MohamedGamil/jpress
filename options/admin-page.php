@@ -2,6 +2,9 @@
 
 add_action( 'appbear_admin_init', 'appBear_options');
 function appBear_options(){
+
+	// NOTE: Potential security issue
+
 	if ( get_option( 'appbear_license_status' )=="valid" ) {
 		$settings_arg = array(
 			'id' => 'appbear-settings',

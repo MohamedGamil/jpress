@@ -1,5 +1,8 @@
 <?php
 
+// NOTE: What is the purpose of this file?
+//          3rd-Party integration with specific theme / plugin products.
+
 /*$prefix_taxonomy = 'category';
 
 add_action('wp_enqueue_scripts', 'add_category_image');

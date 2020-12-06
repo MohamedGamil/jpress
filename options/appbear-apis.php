@@ -22,6 +22,7 @@ class AppBear_Endpoints {
 	protected $namespace = 'wl/v1';
 
 
+	// FIXME: Missing docs comment
 	public function __construct() {
 
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
@@ -621,6 +622,7 @@ class AppBear_Endpoints {
 
 
 
+	// FIXME: Missing docs comment + LOL
 	// Pure SHIT
 	function do_contact_us() {
 		$param = $_GET;
@@ -934,6 +936,7 @@ class AppBear_Endpoints {
 
 
 
+	// FIXME: Missing docs comment
 	function do_options() {
 		return get_option('appbear-settings');
 	}
@@ -941,6 +944,7 @@ class AppBear_Endpoints {
 
 
 
+	// FIXME: Missing docs comment
 	function do_translations() {
 		return get_option('appbear-language');
 	}
@@ -948,6 +952,7 @@ class AppBear_Endpoints {
 
 
 
+	// FIXME: Missing docs comment
 	function do_dev_mode( $request ){
 
 		if( ! empty( $request['action'] ) ){
