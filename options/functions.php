@@ -101,6 +101,29 @@ function appbear_post_video($post_id = null)
 }
 
 
+/**
+ * Get a Template File
+ *
+ * @param string $file Template File Path
+ */
+function appbear_get_template($templatePath, $vars = [])
+{
+	// NOTE: Should be substitued with a template file..
+	$prefix = APPBEAR_DIR . 'templates';
+	$templatePath = str_replace('.php', '', $templatePath);
+	$path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
+
+    if (is_file($path)) {
+		ob_start();
+		empty($vars) === false && extract($vars);
+        include $path;
+        return ob_get_clean();
+	}
+
+    throw new Error("Template '{$templatePath}' not found!");
+}
+
+
 
 
 

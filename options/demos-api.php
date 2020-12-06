@@ -21,10 +21,11 @@ class AppBear_Demos_Endpoints {
 	 */
 	protected $namespace = 'wl/v1';
 
-
-	// FIXME: Missing docs comment
+	
+	/**
+	 * Class Constructor
+	 */
 	public function __construct() {
-
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
