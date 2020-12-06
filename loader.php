@@ -1,5 +1,11 @@
 <?php
 
+/* 
+ * 
+ */
+require_once dirname( __FILE__ ) . '/constants.php';
+
+
 class AppbearLoader148 {
 	private $version;
 	private $priority;
@@ -62,12 +68,9 @@ class AppbearLoader148 {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function constants(){
+    // TODO: Version and Priority should be defined at top level constants in no dynamic way and only once.
 		define( 'APPBEAR_VERSION',  $this->version );
 		define( 'APPBEAR_PRIORITY',  $this->priority );
-		define( 'APPBEAR_SLUG',  'appbear' );
-		define( 'APPBEAR_DIR', trailingslashit( dirname( __FILE__ ) ) );
-		define( 'APPBEAR_URL', trailingslashit( $this->get_url() ) );
-		defined('APPBEAR_FONTAWESOME_VERSION') or define('APPBEAR_FONTAWESOME_VERSION', '4.x');
 	}
 
 	/*

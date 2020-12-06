@@ -1,4 +1,6 @@
-<?php namespace Appbear\Includes;
+<?php 
+
+namespace Appbear\Includes;
 
 class Field {
 	public $id             = 0;
