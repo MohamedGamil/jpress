@@ -48,7 +48,7 @@ function appbear_get_time()
 /**
  * Get Post Format
  *
- * @param integer $post_id Post ID (Optional for current post ID)
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_format($post_id = null)
 {
@@ -66,21 +66,17 @@ function appbear_post_format($post_id = null)
 
 
 /**
- * appbear_post_gallery
- *
  * Get the post gallery of a post by ID
+ *
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_gallery($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
-	// FIXME: Smelly code
-	if (!$post_id) {
-		return false;
-	}
+	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
 	return apply_filters('AppBear/API/Post/Post_Gallery', array(), $post_id);
@@ -88,21 +84,17 @@ function appbear_post_gallery($post_id = null)
 
 
 /**
- * appbear_post_video
+ * Get the post video of a post by ID
  *
- * Get the post gallery of a post by ID
+ * @param int $post_id Post ID (Optional for current post ID)
  */
 function appbear_post_video($post_id = null)
 {
-
-	if (!$post_id) {
-		$post_id = get_the_ID();
+	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
+		return null;
 	}
 
-	// FIXME: Smelly code
-	if (!$post_id) {
-		return false;
-	}
+	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
 	return apply_filters('AppBear/API/Post/Post_Video', '', $post_id);
@@ -533,7 +525,7 @@ add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
 // FIXME: Missing docs comment
 function appbear_deeplink_custom_js()
 {
-	// FIXME: Smelly code
+	// FIXME: Smelly code (why hook in the first place if not in a public page?)
 	// FIXME: Needs a better check for public use instead of hooking in all pages
 
 	if (!is_single()) {
