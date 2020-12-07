@@ -1,21 +1,125 @@
 <?php
 
-add_action( 'appbear_admin_init', 'appBear_options');
-function appBear_options(){
+defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
-	// NOTE: Potential security issue
 
-	if ( get_option( 'appbear_license_status' )=="valid" ) {
+/**
+ * AppBear_Endpoints Class
+ *
+ * This class handles all API Endpoints
+ *
+ *
+ * @since 1.0
+ */
+class AppBear_Options
+{
+
+	/**
+	 * Class internal initialization state
+	 */
+  protected $_didInit = false;
+
+
+	/**
+	 * Class Constructor
+	 */
+	public function __construct() {
+		// ...
+  }
+
+
+  /* 
+   * Run initialization routine
+   */
+  public function run() {
+    if ( $this->_didInit === false ) {
+      add_action( 'appbear_admin_init', array( $this, 'init' ) );
+    }
+  }
+
+
+  /* 
+   * Initialize AppBear options
+   */
+  public function init() {
+    if ( $this->_didInit === true ) {
+      return;
+    }
+
+    $this->_didInit = true;
+
+    if ( appbear_check_license() === true ) {
+      $this->_initOptions();
+    } else {
+      $this->_noLicenseInit();
+    }
+  }
+
+
+  /* 
+   * Plugin updater
+   */
+  public function appbear_plugin_updater() {
+    // To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
+    $doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
+
+    if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
+      return;
+    }
+
+    // retrieve our license key from the DB
+    $license_key = $this->_getLicenseKey();
+
+    // setup the updater
+    $edd_updater = new AppBear_subscription( APPBEAR_STORE_URL, __FILE__,
+      array(
+        'version' => '1.0',                    // current version number
+        'license' => $license_key,             // license key (used get_option above to retrieve from DB)
+        'item_id' => APPBEAR_ITEM_ID,       // ID of the product
+        'author'  => 'Easy Digital Downloads', // author of this plugin
+        'beta'    => false,
+      )
+    );
+  }
+
+
+  /* 
+   * Register license option
+   */
+  public function appbear_register_option() {
+    register_setting('appbear_license_status', 'appbear_license_key', array( $this, 'appbear_sanitize_license' ) );
+  }
+
+
+  /* 
+   * Sanitize license key
+   */
+  public function appbear_sanitize_license( $new ) {
+    $old = get_option( 'appbear_license_key' );
+
+    if( $old && $old !== $new ) {
+      // new license has been entered, so must reactivate
+      delete_option( 'appbear_license_status' );
+    }
+
+    return $new;
+  }
+
+
+  /* 
+   * Initialize options for valid license state
+   */
+  protected function _initOptions() {
 		$settings_arg = array(
 			'id' => 'appbear-settings',
 			'title' => 'appBear',
 			'menu_title' => 'appBear',
 			'menu_side_title' => 'Settings',
-			'icon' => APPBEAR_URL.'img/appbear-light-small.png',//Menu icon
+			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
 			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
 			'layout' => 'wide',//wide
 			'header' => array(
-				'icon' => '<img src="'.APPBEAR_URL.'img/a-logo.svg"/>',
+				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
 				'desc' => 'No coding required. Your app syncs with your site automatically.',
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
@@ -54,162 +158,174 @@ function appBear_options(){
 			)
 		));
 
-		$settings->open_tab_item('general');
-			$section_header_1 = $settings->add_section( array(
-				'name' => __( 'General Settings', 'textdomain' ),
-				'id' => 'section-general-settings',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$section_header_1->add_field(array(
-				'name' => __( 'Date format', 'textdomain' ),
-				'id' => 'time_format',
-				'type' => 'radio',
-				'default' => 'traditional',
-				'items' => array(
-					'traditional' => __( 'Traditional', 'textdomain' ),
-					'modern' => __( 'Time Ago Format', 'textdomain' ),
-				)
-			));
-			$section_header_1->add_field(array(
-				'name' => __( 'Switch between dark & light', 'textdomain' ),
-				'id' => 'switch_theme_mode',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section_header_1->add_field( array(
-				'id' => 'thememode',
-				'name' => __( 'Default Theme Mode', 'textdomain' ),
-				'type' => 'select',
-				'default' => 'ThemeMode_light',
-				'items' => array(
-					'ThemeMode_light' => __( 'Light', 'textdomain' ),
-					'ThemeMode_dark' => __( 'Dark', 'textdomain' ),
-				),
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			));
-			// $section_header_1->add_field(array(
-			// 	'name' => __( 'RTL ?', 'textdomain' ),
-			// 	'id' => 'rtl',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// Button to enable/disable
-			$section_header_1->add_field( array(
-				'id' => 'menu_type',
-				'name' => __( 'Menu Type', 'textdomain' ),
-				'type' => 'select',
-				'default' => 'both',
-				'items' => array(
-					'bottombar' => __( 'Bottom Bar Only', 'textdomain' ),
-					'sidemenu' => __( 'Side Menu Only', 'textdomain' ),
-					'both' => __( 'Bottom Bar & Side Menu', 'textdomain' ),
-				)
-			));
+    $settings->open_tab_item('general');
 
-			// $section_header_1->add_field(array(
-			// 	'name' => __( 'Status Bar Text Color Light ?', 'textdomain' ),
-			// 	'desc' => __( 'Change the status bar for your application, switch between dark status bar and light (Status bar is where the clock and network stats appear on your mobile)', 'textdomain' ),
-			// 	'id' => 'statusBarWhiteForeground',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
+    $section_header_1 = $settings->add_section( array(
+      'name' => __( 'General Settings', 'textdomain' ),
+      'id' => 'section-general-settings',
+      'options' => array(
+        'toggle' => true,
+      )
+    ));
 
-			## General Styling ---------- *
-			$section_header_1->open_mixed_field(array('name' => __('Background color', 'textdomain' ),'desc'      => __( 'Application background color.', 'textdomain' ),));
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_light-scaffoldbackgroundcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'show_name' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
+    $section_header_1->add_field(array(
+      'name' => __( 'Date format', 'textdomain' ),
+      'id' => 'time_format',
+      'type' => 'radio',
+      'default' => 'traditional',
+      'items' => array(
+        'traditional' => __( 'Traditional', 'textdomain' ),
+        'modern' => __( 'Time Ago Format', 'textdomain' ),
+      )
+    ));
+    
+    $section_header_1->add_field(array(
+      'name' => __( 'Switch between dark & light', 'textdomain' ),
+      'id' => 'switch_theme_mode',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_dark-scaffoldbackgroundcolor',
-				'name'      => __( 'Drak Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$section_header_1->close_mixed_field();
+    $section_header_1->add_field( array(
+      'id' => 'thememode',
+      'name' => __( 'Default Theme Mode', 'textdomain' ),
+      'type' => 'select',
+      'default' => 'ThemeMode_light',
+      'items' => array(
+        'ThemeMode_light' => __( 'Light', 'textdomain' ),
+        'ThemeMode_dark' => __( 'Dark', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
 
-			$section_header_1->open_mixed_field(array('name' => __('Main Color', 'textdomain' ),'desc'      => __( 'The main color of the application.', 'textdomain' ),));
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_light-primary',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088ff',
-			) );
+    // $section_header_1->add_field(array(
+    // 	'name' => __( 'RTL ?', 'textdomain' ),
+    // 	'id' => 'rtl',
+    // 	'type' => 'switcher',
+    // 	'default'	=>	'false',
+    // 	'options' => array(
+    // 		'on_value'  => 'true',
+    // 		'off_value' => 'false'
+    // 	)
+    // ));
 
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_dark-primary',
-				'name'      => __( 'Drak Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088ff',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$section_header_1->close_mixed_field();
+    // Button to enable/disable
+    $section_header_1->add_field( array(
+      'id' => 'menu_type',
+      'name' => __( 'Menu Type', 'textdomain' ),
+      'type' => 'select',
+      'default' => 'both',
+      'items' => array(
+        'bottombar' => __( 'Bottom Bar Only', 'textdomain' ),
+        'sidemenu' => __( 'Side Menu Only', 'textdomain' ),
+        'both' => __( 'Bottom Bar & Side Menu', 'textdomain' ),
+      )
+    ));
 
-			$section_header_1->open_mixed_field(array('name' => __('Primary text Color', 'textdomain' ),'desc'      => __( 'All text color on application such as post titles, sections titles, posts content, pages content and settings page.', 'textdomain' ),));
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_light-secondary',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-			) );
+    // $section_header_1->add_field(array(
+    // 	'name' => __( 'Status Bar Text Color Light ?', 'textdomain' ),
+    // 	'desc' => __( 'Change the status bar for your application, switch between dark status bar and light (Status bar is where the clock and network stats appear on your mobile)', 'textdomain' ),
+    // 	'id' => 'statusBarWhiteForeground',
+    // 	'type' => 'switcher',
+    // 	'default'	=>	'false',
+    // 	'options' => array(
+    // 		'on_value'  => 'true',
+    // 		'off_value' => 'false'
+    // 	)
+    // ));
 
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_dark-secondary',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$section_header_1->close_mixed_field();
+    ## General Styling ---------- *
+    $section_header_1->open_mixed_field(array('name' => __('Background color', 'textdomain' ),'desc'      => __( 'Application background color.', 'textdomain' ),));
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_light-scaffoldbackgroundcolor',
+      //'name'      => __( 'Light Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#FFFFFF',
+      'options' => array(
+        'show_name' => array('switch_theme_mode', '=', 'true'),
+      )
+    ) );
 
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_dark-scaffoldbackgroundcolor',
+      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#333739',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ) );
 
-			$section_header_1->open_mixed_field(array('name' => __('Meta text color', 'textdomain' ),'desc'      => __( 'All small text color on application such as meta posts.', 'textdomain' ),));
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_light-secondaryvariant',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#8A8A89',
-			) );
+    $section_header_1->close_mixed_field();
 
-			$section_header_1->add_field(array(
-				'id'        => 'styling-themeMode_dark-secondaryvariant',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#8A8A89',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$section_header_1->close_mixed_field();
+    $section_header_1->open_mixed_field(array('name' => __('Main Color', 'textdomain' ),'desc'      => __( 'The main color of the application.', 'textdomain' ),));
+    
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_light-primary',
+      //'name'      => __( 'Light Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#0088ff',
+    ) );
+
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_dark-primary',
+      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#0088ff',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ) );
+
+    $section_header_1->close_mixed_field();
+
+    $section_header_1->open_mixed_field(array('name' => __('Primary text Color', 'textdomain' ),'desc'      => __( 'All text color on application such as post titles, sections titles, posts content, pages content and settings page.', 'textdomain' ),));
+    
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_light-secondary',
+      //'name'      => __( 'Light Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#333739',
+    ) );
+
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_dark-secondary',
+      'name'      => __( 'Dark Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#FFFFFF',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ) );
+
+    $section_header_1->close_mixed_field();
+
+    $section_header_1->open_mixed_field(array('name' => __('Meta text color', 'textdomain' ),'desc'      => __( 'All small text color on application such as meta posts.', 'textdomain' ),));
+    
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_light-secondaryvariant',
+      //'name'      => __( 'Light Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#8A8A89',
+    ) );
+
+    $section_header_1->add_field(array(
+      'id'        => 'styling-themeMode_dark-secondaryvariant',
+      'name'      => __( 'Dark Mode', 'textdomain' ),
+      'type'      => 'colorpicker',
+      'default'   => '#8A8A89',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ) );
+
+    $section_header_1->close_mixed_field();
 		$settings->close_tab_item('general');
 
 		$settings->open_tab_item('topbar');
@@ -741,12 +857,12 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'TabsLayout.tab1',
 				'items' => array(
-					'TabsLayout.tab1' => APPBEAR_URL.'options/img/topbar_tabs/tab_1.png',
-					'TabsLayout.tab2' => APPBEAR_URL.'options/img/topbar_tabs/tab_2.png',
-					'TabsLayout.tab3' => APPBEAR_URL.'options/img/topbar_tabs/tab_3.png',
-					'TabsLayout.tab4' => APPBEAR_URL.'options/img/topbar_tabs/tab_4.png',
-					'TabsLayout.tab5' => APPBEAR_URL.'options/img/topbar_tabs/tab_5.png',
-					'TabsLayout.tab6' => APPBEAR_URL.'options/img/topbar_tabs/tab_6.png'
+					'TabsLayout.tab1' => APPBEAR_URL . 'options/img/topbar_tabs/tab_1.png',
+					'TabsLayout.tab2' => APPBEAR_URL . 'options/img/topbar_tabs/tab_2.png',
+					'TabsLayout.tab3' => APPBEAR_URL . 'options/img/topbar_tabs/tab_3.png',
+					'TabsLayout.tab4' => APPBEAR_URL . 'options/img/topbar_tabs/tab_4.png',
+					'TabsLayout.tab5' => APPBEAR_URL . 'options/img/topbar_tabs/tab_5.png',
+					'TabsLayout.tab6' => APPBEAR_URL . 'options/img/topbar_tabs/tab_6.png'
 				),
 				'options' => array(
 					'width' => '200px',
@@ -960,17 +1076,17 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.startThumbPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.relatedPost' => APPBEAR_URL.'options/img/blocks/relatedPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -995,16 +1111,16 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.featuredPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					// 'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					// 'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					// 'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					// 'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					// 'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					// 'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					// 'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					// 'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1137,7 +1253,7 @@ function appBear_options(){
 					'readonly_name' => false,
 					'images' => true,
 					'position' => 'left',
-					'default_image' => APPBEAR_URL.'/img/transparent.png',
+					'default_image' => APPBEAR_URL . '/img/transparent.png',
 					'image_field_id' => 'postlayout',
 					'height' => '190px',
 				),
@@ -1287,17 +1403,17 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.startThumbPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.relatedPost' => APPBEAR_URL.'options/img/blocks/relatedPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1320,16 +1436,16 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.featuredPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					// 'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					// 'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					// 'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					// 'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					// 'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					// 'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					// 'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					// 'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1434,11 +1550,11 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'CategoriesLayout.cat1',
 				'items' => array(
-					'CategoriesLayout.cat1' => APPBEAR_URL.'options/img/categories/cat_1.png',
-					'CategoriesLayout.cat2' => APPBEAR_URL.'options/img/categories/cat_2.png',
-					'CategoriesLayout.cat3' => APPBEAR_URL.'options/img/categories/cat_3.png',
-					'CategoriesLayout.cat4' => APPBEAR_URL.'options/img/categories/cat_4.png',
-					'CategoriesLayout.cat5' => APPBEAR_URL.'options/img/categories/cat_5.png',
+					'CategoriesLayout.cat1' => APPBEAR_URL . 'options/img/categories/cat_1.png',
+					'CategoriesLayout.cat2' => APPBEAR_URL . 'options/img/categories/cat_2.png',
+					'CategoriesLayout.cat3' => APPBEAR_URL . 'options/img/categories/cat_3.png',
+					'CategoriesLayout.cat4' => APPBEAR_URL . 'options/img/categories/cat_4.png',
+					'CategoriesLayout.cat5' => APPBEAR_URL . 'options/img/categories/cat_5.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1457,16 +1573,16 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.startThumbPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1586,16 +1702,16 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.startThumbPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -1715,16 +1831,16 @@ function appBear_options(){
 				'type' => 'image_selector',
 				'default' => 'PostLayout.startThumbPost',
 				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL.'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL.'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL.'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL.'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL.'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL.'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL.'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL.'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL.'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL.'options/img/blocks/startThumbPostCompact.png',
+					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
 				),
 				'options' => array(
 					'width' => '155px',
@@ -2006,100 +2122,109 @@ function appBear_options(){
 			$settings->close_mixed_field();
 		$settings->close_tab_item('styling');
 
+    $settings->open_tab_item('advertisement');
 
+    $admob = $settings->add_section( array(
+      'name' => __( 'Admob advertisement platform', 'textdomain' ),
+      'id' => 'section-advertisement-admob',
+      'options' => array(
+        'toggle' => true,
+      )
+    ));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'Android App ID', 'textdomain' ),
+        'id'      => 'advertisement_android_app_id_text',
+        'type'  => 'text',
+    ));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'iOS App ID', 'textdomain' ),
+        'id'      => 'advertisement_ios_app_id_text',
+        'type'  => 'text',
+    ));
 
-		$settings->open_tab_item('advertisement');
-			$admob = $settings->add_section( array(
-				'name' => __( 'Admob advertisement platform', 'textdomain' ),
-				'id' => 'section-advertisement-admob',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$admob->add_field(
-				array(
-					'name'    => __( 'Android App ID', 'textdomain' ),
-					'id'      => 'advertisement_android_app_id_text',
-					'type'  => 'text',
-				));
+    $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
+    
+    $admob->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-admob_banner',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'Android ID', 'textdomain' ),
+        'id'      => 'advertisement_android_banner_id_text',
+        'type'  => 'text',
+        'options'	=>	array(
+          'show_if' => array('local-admob_banner', '=', 'true')
+        ),
+      ));
+    
+      $admob->add_field(
+      array(
+        'name'    => __( 'iOS ID', 'textdomain' ),
+        'id'      => 'advertisement_ios_banner_id_text',
+        'type'  => 'text',
+        'options'	=>	array(
+          'show_if' => array('local-admob_banner', '=', 'true')
+        ),
+      ));
+    
+      $admob->close_mixed_field();
+    
+    $admob->open_mixed_field(array('name' => __('Admob Banner Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-admob_banner', '=', 'true')),));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'Above the Top Bar', 'textdomain' ),
+        'id'      => 'advertisement_top_toggle',
+        'type'  => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+          'on_value'  => 'true',
+          'off_value' => 'false'
+        )
+    ));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'Above the Bottom Bar', 'textdomain' ),
+        'id'      => 'advertisement_bottom_toggle',
+        'type'  => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
-			$admob->add_field(
-				array(
-					'name'    => __( 'iOS App ID', 'textdomain' ),
-					'id'      => 'advertisement_ios_app_id_text',
-					'type'  => 'text',
-				));
+    
+    $admob->add_field(
+      array(
+        'name'    => __( 'At the end of the Posts', 'textdomain' ),
+        'id'      => 'advertisement_after_post_toggel',
+        'type'  => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+          'on_value'  => 'true',
+          'off_value' => 'false'
+        )
+    ));
+    
+    $admob->close_mixed_field();
 
-			$admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
-			$admob->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'local-admob_banner',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$admob->add_field(
-				array(
-					'name'    => __( 'Android ID', 'textdomain' ),
-					'id'      => 'advertisement_android_banner_id_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-admob_banner', '=', 'true')
-					),
-				));
-			$admob->add_field(
-				array(
-					'name'    => __( 'iOS ID', 'textdomain' ),
-					'id'      => 'advertisement_ios_banner_id_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-admob_banner', '=', 'true')
-					),
-				));
-			$admob->close_mixed_field();
-			$admob->open_mixed_field(array('name' => __('Admob Banner Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-admob_banner', '=', 'true')),));
-			$admob->add_field(
-				array(
-					'name'    => __( 'Above the Top Bar', 'textdomain' ),
-					'id'      => 'advertisement_top_toggle',
-					'type'  => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-
-			$admob->add_field(
-				array(
-					'name'    => __( 'Above the Bottom Bar', 'textdomain' ),
-					'id'      => 'advertisement_bottom_toggle',
-					'type'  => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-
-			$admob->add_field(
-				array(
-					'name'    => __( 'At the end of the Posts', 'textdomain' ),
-					'id'      => 'advertisement_after_post_toggel',
-					'type'  => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-			$admob->close_mixed_field();
-
-			$admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
-			$admob->add_field(
+    $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
+      
+    $admob->add_field(
 				array(
 					'name'    => __( 'Enable', 'textdomain' ),
 					'id'      => 'local-advertisement_admob_interstatial',
@@ -2109,29 +2234,34 @@ function appBear_options(){
 						'on_value'  => 'true',
 						'off_value' => 'false'
 					)
-				));
+    ));
 
-			$admob->add_field(
-				array(
-					'name'    => __( 'Android ID', 'textdomain' ),
-					'id'      => 'advertisement_android_interstatial_id_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
-					),
-				));
-			$admob->add_field(
-				array(
-					'name'    => __( 'iOS ID', 'textdomain' ),
-					'id'      => 'advertisement_ios_interstatial_id_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
-					),
-				));
-			$admob->close_mixed_field();
-			$admob->open_mixed_field(array('name' => __('Admob Interstatial Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_admob_interstatial', '=', 'true')),));
-			$admob->add_field(
+      
+    $admob->add_field(
+      array(
+        'name'    => __( 'Android ID', 'textdomain' ),
+        'id'      => 'advertisement_android_interstatial_id_text',
+        'type'  => 'text',
+        'options'	=>	array(
+          'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
+        ),
+    ));
+      
+    $admob->add_field(
+      array(
+        'name'    => __( 'iOS ID', 'textdomain' ),
+        'id'      => 'advertisement_ios_interstatial_id_text',
+        'type'  => 'text',
+        'options'	=>	array(
+          'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
+        ),
+    ));
+      
+    $admob->close_mixed_field();
+      
+    $admob->open_mixed_field(array('name' => __('Admob Interstatial Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_admob_interstatial', '=', 'true')),));
+
+    $admob->add_field(
 				array(
 					'name'    => __( 'Before View Post', 'textdomain' ),
 					'id'      => 'advertisement_interstatial_before_post_toggle',
@@ -2213,9 +2343,12 @@ function appBear_options(){
 			// 	));
 			$admob->close_mixed_field();
 
-		$settings->close_tab_item('advertisement');
-		$settings->open_tab_item('user_guide');
-		$section_header_2 = $settings->add_section( array(
+    
+    $settings->close_tab_item('advertisement');
+    
+    $settings->open_tab_item('user_guide');
+    
+    $section_header_2 = $settings->add_section( array(
 			'name' => __( 'User Guide Slides', 'textdomain' ),
 			'id' => 'local-section_userguide_slides',
 			'desc' => __( 'Slides which your clients will see when they first start your application', 'textdomain' ),
@@ -2223,7 +2356,8 @@ function appBear_options(){
 				'toggle' => true,
 			)
 		));
-		$section_header_2->add_field(array(
+    
+    $section_header_2->add_field(array(
 			'name' => __( 'Enabled', 'textdomain' ),
 			'id' => 'onboarding',
 			'type' => 'switcher',
@@ -2233,7 +2367,8 @@ function appBear_options(){
 				'off_value' => 'false'
 			)
 		));
-		$slides = $section_header_2->add_group( array(
+    
+    $slides = $section_header_2->add_group( array(
 			'name' => __('User Guide Slides', 'textdomain'),
 			'id' => 'onboardmodels',
 			'options' => array(
@@ -2244,7 +2379,7 @@ function appBear_options(){
 				'name' =>  __('Slide', 'textdomain').' #',
 				'readonly_name' => false,
 				'images' => true,
-				'default_image' => APPBEAR_URL.'/img/transparent.png',
+				'default_image' => APPBEAR_URL . '/img/transparent.png',
 				'image_field_id' => 'image',
 				'height' => '190px',
 			),
@@ -2256,18 +2391,21 @@ function appBear_options(){
 			'type' => 'text',
 			'grid' => '3-of-6',
 		));
-		$slides->add_field(array(
+    
+    $slides->add_field(array(
 			'id' => 'subTitle',
 			'name' => __('SubTitle', 'textdomain'),
 			'type' => 'text',
 			'grid' => '3-of-6'
 		));
-		$slides->add_field(array(
+    
+    $slides->add_field(array(
 			'id' => 'image',
 			'name' => __( 'Image', 'textdomain' ),
 			'type' => 'file',
 		));
-		$settings->close_tab_item('user_guide');
+    
+    $settings->close_tab_item('user_guide');
 
 		$settings->open_tab_item('typography');
 
@@ -2499,141 +2637,165 @@ function appBear_options(){
 				));
 			$font->close_mixed_field();
 			$font->open_mixed_field(array('name' => __('Subtitle 1', 'textdomain' ),'desc' => __( 'Example: Meta (tags, author, category, ...)',   'textdomain' ),));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle1-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle1-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle1-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle1-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Subtitle 2', 'textdomain' ),'desc' => __( 'Example: Bottom Bar and Homepage tabs Text')));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle2-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle2-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle2-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-subtitle2-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Body 1', 'textdomain' ),'desc' => __( 'Example: Page Titles')));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body1-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body1-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body1-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body1-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Body 2', 'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body2-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body2-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body2-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-body2-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
+      $font->add_field( array(
+        'id' => 'section-typography-font-subtitle1-size',
+        'name' => __( 'Font Size',   'textdomain' ),
+        'type' => 'select',
+        'default' => '',
+        'items' => AppbearItems::font_size(),
+      ));
+      $font->add_field( array(
+        'id' => 'section-typography-font-subtitle1-line_height',
+        'name' => __( 'Line Height',   'textdomain' ),
+        'type' => 'select',
+        'default' => '',
+        'items' => AppbearItems::line_height(),
+      ));
+      $font->add_field( array(
+        'id' => 'section-typography-font-subtitle1-weight',
+        'name' => __( 'Font Weight',   'textdomain' ),
+        'type' => 'select',
+        'default' => '',
+        'items' => AppbearItems::font_weight(),
+      ));
+      $font->add_field( array(
+        'id' => 'section-typography-font-subtitle1-transform',
+        'name' => __( 'Capitalization',   'textdomain' ),
+        'type' => 'select',
+        'default' => '',
+        'items' => AppbearItems::text_transform(),
+      ));
+    
+    $font->close_mixed_field();
+    
+    $font->open_mixed_field(array('name' => __('Subtitle 2', 'textdomain' ),'desc' => __( 'Example: Bottom Bar and Homepage tabs Text')));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle2-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle2-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle2-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle2-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    
+    $font->close_mixed_field();
+    
+    $font->open_mixed_field(array('name' => __('Body 1', 'textdomain' ),'desc' => __( 'Example: Page Titles')));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body1-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body1-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body1-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body1-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    
+    $font->close_mixed_field();
+    
+    $font->open_mixed_field(array('name' => __('Body 2', 'textdomain' )));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body2-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body2-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body2-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    
+    $font->add_field( array(
+      'id' => 'section-typography-font-body2-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    
+    $font->close_mixed_field();
+  
 		$settings->close_tab_item('typography');
 
-		$settings->open_tab_item('settings');
-		$settings->open_mixed_field(array('name' => __('Styling', 'textdomain' ),));
+    $settings->open_tab_item('settings');
+    
+    $settings->open_mixed_field(array('name' => __('Styling', 'textdomain' ),));
+    
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_light-settingBackgroundColor',
 			'name'      => __( 'Background Color', 'textdomain' ),
 			'type'      => 'colorpicker',
 			'default'   => '#0088ff',
-		) );
+    ) );
+    
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_light-settingTextColor',
 			'name'      => __( 'Text Color', 'textdomain' ),
 			'type'      => 'colorpicker',
 			'default'   => '#0088ff',
-		) );
+    ) );
+    
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_dark-settingBackgroundColor',
 			'name'      => __( 'Background Color (Dark Mode)', 'textdomain' ),
@@ -2642,7 +2804,8 @@ function appBear_options(){
 			'options' => array(
 				'show_if' => array('switch_theme_mode', '=', 'true'),
 			),
-		) );
+    ) );
+    
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_dark-settingTextColor',
 			'name'      => __( 'Text Color (Dark Mode)', 'textdomain' ),
@@ -2651,8 +2814,10 @@ function appBear_options(){
 			'options' => array(
 				'show_if' => array('switch_theme_mode', '=', 'true'),
 			),
-		) );
-		$settings->close_mixed_field();
+    ) );
+    
+    $settings->close_mixed_field();
+
 			$settings->add_field(array(
 				'name' => __( 'Text size option', 'textdomain' ),
 				'id' => 'settingspage-textSize',
@@ -2663,7 +2828,8 @@ function appBear_options(){
 					'off_value' => 'false'
 				),
 				'desc'    => __( 'Give your vistiors the ability to change the text size of the application', 'textdomain' ),
-			));
+      ));
+
 			$settings->add_field(array(
 				'name' => __( 'Switch between Dark/Light modes', 'textdomain' ),
 				'id' => 'settingspage-darkMode',
@@ -2675,7 +2841,8 @@ function appBear_options(){
 					'off_value' => 'false',
 					'show_if' => array('switch_theme_mode', '=', 'true'),
 				)
-			));
+      ));
+
 			$settings->add_field(array(
 				'name' => __( 'Rate application', 'textdomain' ),
 				'id' => 'settingspage-rateApp',
@@ -2686,7 +2853,8 @@ function appBear_options(){
 					'off_value' => 'false'
 				),
 				'desc'    => __( 'Show rate appliction button on the settings page', 'textdomain' ),
-			));
+      ));
+
 			$settings->add_field(array(
 				'name' => __( 'Share application', 'textdomain' ),
 				'id' => 'local-settingspage-share',
@@ -2697,211 +2865,232 @@ function appBear_options(){
 					'off_value' => 'false'
 				),
 				'desc'    => __( 'Show share appliction button on the settings page', 'textdomain' ),
-			));
+      ));
+
 			$settings->open_mixed_field(array('name' => __('Share info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-share', '=', 'true'))));
-				$settings->add_field(
-					array(
-						'name'    => __( 'Headline', 'textdomain' ),
-						'id'      => 'settingspage-shareApp-title',
-						'type'  => 'text'
-					));
-				$settings->add_field(array(
-					'name'    => __( 'Image', 'textdomain' ),
-					'id'      => 'settingspage-shareApp-image',
-					'type' => 'file',
-					'desc'    => __( 'The image that will be shared with the application link', 'textdomain' ),
-				));
-				$settings->add_field(
-					array(
-						'name'    => __( 'Android Link', 'textdomain' ),
-						'id'      => 'settingspage-shareApp-android',
-						'type'  => 'text'
-					));
-				$settings->add_field(
-					array(
-						'name'    => __( 'iOS Link', 'textdomain' ),
-						'id'      => 'settingspage-shareApp-ios',
-						'type'  => 'text'
-					));
-			$settings->close_mixed_field();
-			$settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
-				$settings->add_field(array(
-					'name' => __( 'Enabled', 'textdomain' ),
-					'id' => 'local-settingspage-aboutus',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$settings->add_field( array(
-					'id' => 'settingspage-aboutUs',
-					'name' => __( 'About us page',   'textdomain' ),
-					'type' => 'select',
-					'items' => AppbearItems::posts_by_post_type( 'page' ),
-					'options'	=>	array(
-						'show_if' => array('local-settingspage-aboutus', '=', 'true')
-					),
-				));
-			$settings->close_mixed_field();
+
+      $settings->add_field(
+        array(
+          'name'    => __( 'Headline', 'textdomain' ),
+          'id'      => 'settingspage-shareApp-title',
+          'type'  => 'text'
+      ));
+
+      $settings->add_field(array(
+        'name'    => __( 'Image', 'textdomain' ),
+        'id'      => 'settingspage-shareApp-image',
+        'type' => 'file',
+        'desc'    => __( 'The image that will be shared with the application link', 'textdomain' ),
+      ));
+
+      $settings->add_field(
+        array(
+          'name'    => __( 'Android Link', 'textdomain' ),
+          'id'      => 'settingspage-shareApp-android',
+          'type'  => 'text'
+      ));
+
+      $settings->add_field(
+        array(
+          'name'    => __( 'iOS Link', 'textdomain' ),
+          'id'      => 'settingspage-shareApp-ios',
+          'type'  => 'text'
+      ));
+          
+      $settings->close_mixed_field();
+      
+      $settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
+      
+      $settings->add_field(array(
+        'name' => __( 'Enabled', 'textdomain' ),
+        'id' => 'local-settingspage-aboutus',
+        'type' => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+          'on_value'  => 'true',
+          'off_value' => 'false'
+        )
+      ));
+
+      $settings->add_field( array(
+        'id' => 'settingspage-aboutUs',
+        'name' => __( 'About us page',   'textdomain' ),
+        'type' => 'select',
+        'items' => AppbearItems::posts_by_post_type( 'page' ),
+        'options'	=>	array(
+          'show_if' => array('local-settingspage-aboutus', '=', 'true')
+        ),
+      ));
+
+      $settings->close_mixed_field();
+
 			$settings->add_field( array(
 				'id' => 'settingspage-privacyPolicy',
 				'name' => __( 'Privacy page',   'textdomain' ),
 				'type' => 'select',
 				'default' => get_option( 'wp_page_for_privacy_policy' ),
 				'items' => AppbearItems::posts_by_post_type( 'page' ),
-			));
+      ));
+
 			$settings->add_field( array(
 				'id' => 'settingspage-termsAndConditions',
 				'name' => __( 'Terms and conditions page',   'textdomain' ).' '.get_option( 'wp_page_for_privacy_policy' ),
 				'type' => 'select',
 				'default' => get_option( 'wp_page_for_privacy_policy' ),
 				'items' => AppbearItems::posts_by_post_type( 'page' ),
-			));
+      ));
+
 			$settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
-				$settings->add_field(array(
-					'name' => __( 'Enabled', 'textdomain' ),
-					'id' => 'settingspage-contactus',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$settings->add_field(array(
-					'name' => __( 'Email/s', 'textdomain' ),
-					'id' => 'local-settingspage-contactus',
-					'type' => 'textarea',
-					'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'textdomain' ),
-					'grid' => '5-of-6',
-					'default' => get_bloginfo( 'admin_email' ),
-					'options' => array(
-						'desc_tooltip' => true,
-						'show_if' => array('settingspage-contactus', '=', 'true')
-					)
-				));
-			$settings->close_mixed_field();
+      
+      $settings->add_field(array(
+        'name' => __( 'Enabled', 'textdomain' ),
+        'id' => 'settingspage-contactus',
+        'type' => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+          'on_value'  => 'true',
+          'off_value' => 'false'
+        )
+      ));
 
+      $settings->add_field(array(
+        'name' => __( 'Email/s', 'textdomain' ),
+        'id' => 'local-settingspage-contactus',
+        'type' => 'textarea',
+        'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'textdomain' ),
+        'grid' => '5-of-6',
+        'default' => get_bloginfo( 'admin_email' ),
+        'options' => array(
+          'desc_tooltip' => true,
+          'show_if' => array('settingspage-contactus', '=', 'true')
+        )
+      ));
 
+    $settings->close_mixed_field();
 
-			$settings->add_field(array(
-				'name' => __( 'About application', 'textdomain' ),
-				'id' => 'local-settingspage-aboutapp',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'desc'    => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
-			));
-			$settings->open_mixed_field(array('name' => __('About Info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
-				$settings->add_field(array(
-					'name' => __('Logo (Light)', 'textdomain' ),
-					'id' => 'settingspage-aboutapp-logo-light',
-					'type' => 'file',
-					'default' => APPBEAR_URL .'img/jannah-logo-light.png',
-				));
-				$settings->add_field(array(
-					'name' => __('Logo (Dark)', 'textdomain' ),
-					'id' => 'settingspage-aboutapp-logo-dark',
-					'type' => 'file',
-					'default' => APPBEAR_URL .'img/jannah-logo-dark.png',
-					'options' => array(
-						'show_if' => array('switch_theme_mode', '=', 'true'),
-					),
-				));
-				$settings->add_field(
-					array(
-						'name'    => __( 'Title', 'textdomain' ),
-						'id'      => 'settingspage-aboutapp-title',
-						'type'  => 'text',
-						'default' => get_bloginfo( 'name' ),
-					));
-				$settings->add_field(
-					array(
-						'name'    => __( 'Description', 'textdomain' ),
-						'id'      => 'settingspage-aboutapp-content',
-						'type'  => 'textarea',
-						'default' => get_bloginfo( 'description' ),
-					));
-			$settings->close_mixed_field();
-			$settings->add_field(array(
-				'name' => __( 'Enable Demos', 'textdomain' ),
-				'id' => 'settingspage-demos',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-			));
-			$settings->open_mixed_field(
-				array(
-					'name' => __('Development Mode', 'textdomain' ),
-					'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
-					'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
-				)
-			);
+    $settings->add_field(array(
+      'name' => __( 'About application', 'textdomain' ),
+      'id' => 'local-settingspage-aboutapp',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      ),
+      'desc'    => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
+    ));
+    $settings->open_mixed_field(array('name' => __('About Info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
+    
+    $settings->add_field(array(
+      'name' => __('Logo (Light)', 'textdomain' ),
+      'id' => 'settingspage-aboutapp-logo-light',
+      'type' => 'file',
+      'default' => APPBEAR_URL .'img/jannah-logo-light.png',
+    ));
+    
+    $settings->add_field(array(
+      'name' => __('Logo (Dark)', 'textdomain' ),
+      'id' => 'settingspage-aboutapp-logo-dark',
+      'type' => 'file',
+      'default' => APPBEAR_URL .'img/jannah-logo-dark.png',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
 
-				$settings->add_field(array(
-					'name' => __( 'Enabled', 'textdomain' ),
-					'id' => 'settingspage-devmode',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				// $settings->add_field(array(
-				// 	'name' => __( 'count', 'textdomain' ),
-				// 	'id' => 'settingspage-devmode-count',
-				// 	'type' => 'number',
-				// 	'desc' => __( 'The count of the clicks needed to activate the development mode.', 'textdomain' ),
-				// 	'grid' => '1-of-6',
-				// 	'default' => '3',
-				// 	'options' => array(
-				// 		'desc_tooltip' => true,
-				// 		'show_unit' => false,
-				// 		'show_if' => array('settingspage-devmode', '=', 'true')
-				// 	)
-				// ));
-				// $settings->add_field(array(
-				// 	'name' => __( 'Gap Time', 'textdomain' ),
-				// 	'id' => 'settingspage-devmode-time',
-				// 	'type' => 'number',
-				// 	'default' => '6000',
-				// 	'desc' => __( 'Time by milisecond for the gap between the repeated clicks on the version number.', 'textdomain' ),
-				// 	'grid' => '1-of-6',
-				// 	'options' => array(
-				// 		'desc_tooltip' => true,
-				// 		'show_unit' => false,
-				// 		'show_if' => array('settingspage-devmode', '=', 'true')
-				// 	)
-				// ));
-			$settings->close_mixed_field();
+    $settings->add_field(
+      array(
+        'name'    => __( 'Title', 'textdomain' ),
+        'id'      => 'settingspage-aboutapp-title',
+        'type'  => 'text',
+        'default' => get_bloginfo( 'name' ),
+      ));
 
+    $settings->add_field(
+      array(
+        'name'    => __( 'Description', 'textdomain' ),
+        'id'      => 'settingspage-aboutapp-content',
+        'type'  => 'textarea',
+        'default' => get_bloginfo( 'description' ),
+    ));
+
+    $settings->close_mixed_field();
+    $settings->add_field(array(
+      'name' => __( 'Enable Demos', 'textdomain' ),
+      'id' => 'settingspage-demos',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $settings->open_mixed_field(
+      array(
+        'name' => __('Development Mode', 'textdomain' ),
+        'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
+        'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
+      )
+    );
+
+    $settings->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'settingspage-devmode',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value'  => 'true',
+        'off_value' => 'false'
+      )
+    ));
+      
+    // $settings->add_field(array(
+    // 	'name' => __( 'count', 'textdomain' ),
+    // 	'id' => 'settingspage-devmode-count',
+    // 	'type' => 'number',
+    // 	'desc' => __( 'The count of the clicks needed to activate the development mode.', 'textdomain' ),
+    // 	'grid' => '1-of-6',
+    // 	'default' => '3',
+    // 	'options' => array(
+    // 		'desc_tooltip' => true,
+    // 		'show_unit' => false,
+    // 		'show_if' => array('settingspage-devmode', '=', 'true')
+    // 	)
+    // ));
+    // $settings->add_field(array(
+    // 	'name' => __( 'Gap Time', 'textdomain' ),
+    // 	'id' => 'settingspage-devmode-time',
+    // 	'type' => 'number',
+    // 	'default' => '6000',
+    // 	'desc' => __( 'Time by milisecond for the gap between the repeated clicks on the version number.', 'textdomain' ),
+    // 	'grid' => '1-of-6',
+    // 	'options' => array(
+    // 		'desc_tooltip' => true,
+    // 		'show_unit' => false,
+    // 		'show_if' => array('settingspage-devmode', '=', 'true')
+    // 	)
+    // ));
+
+    $settings->close_mixed_field();
 
 		$settings->close_tab_item('settings');
 
-		//TODO Add json for demos
+		// TODO: Add json for demos
 		$settings->open_tab_item('import');
 			$settings->add_import_field(array(
 				'name' => 'Select Demo',
 				'default' => 'http://appbearframework.com/demos/blank.json',
 				'desc' => 'Choose a demo, then click import button',
 				'items' => array(
-					APPBEAR_URL.'options/demos/demo1.json' => APPBEAR_URL.'options/img/demos/demo1.jpg',
-					APPBEAR_URL.'options/demos/demo2.json' => APPBEAR_URL.'options/img/demos/demo2.jpg',
-					APPBEAR_URL.'options/demos/demo3.json' => APPBEAR_URL.'options/img/demos/demo3.jpg',
-					APPBEAR_URL.'options/demos/demo4.json' => APPBEAR_URL.'options/img/demos/demo4.jpg',
-					APPBEAR_URL.'options/demos/demo5.json' => APPBEAR_URL.'options/img/demos/demo5.jpg',
-					APPBEAR_URL.'options/demos/demo6.json' => APPBEAR_URL.'options/img/demos/demo6.jpg',
-					APPBEAR_URL.'options/demos/demo7.json' => APPBEAR_URL.'options/img/demos/demo7.jpg',
-					APPBEAR_URL.'options/demos/demo8.json' => APPBEAR_URL.'options/img/demos/demo8.jpg'
+					APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
+					APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
+					APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
+					APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
+					APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
+					APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
+					APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
+					APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
 				),
 				'options' => array(
 					'import_from_file' => false,
@@ -2918,17 +3107,15 @@ function appBear_options(){
 
 		$settings->close_tab('main-tab');
 
-
-
 		$translations_arg = array(
 			'id' => 'appbear-translations',
 			'title' => 'appBear Translations',
 			'menu_title' => 'Translations',
-			'icon' => APPBEAR_URL.'img/appbear-light-small.png',//Menu icon
+			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
 			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
 			'layout' => 'wide',//wide
 			'header' => array(
-				'icon' => '<img src="'.APPBEAR_URL.'img/a-logo.svg"/>',
+				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
 				'desc' => 'No coding required. Your app syncs with your site automatically.',
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
@@ -2944,441 +3131,504 @@ function appBear_options(){
 				'toggle' => true,
 			)
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Back',
 			'default' => "Back",
 			'id' => 'translate-back',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'SKIP',
 			'default' => "SKIP",
 			'id' => 'translate-skip',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Done',
 			'default' => "Done",
 			'id' => 'translate-done',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Contact Us',
 			'default' => "Contact Us",
 			'id' => 'translate-contactUs',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Receiving updates\nfrom server...',
 			'default' => "Receiving updates\n from server...",
 			'id' => 'translate-loadingUpdates',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Base URL',
 			'default' => "Base URL",
 			'id' => 'translate-baseUrl',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Change Base Url',
 			'default' => "Change Base Url",
 			'id' => 'translate-baseUrlTitle',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.',
 			'default' => "Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.",
 			'id' => 'translate-baseUrlDesc',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Url should not be empty.',
 			'default' => "Url should not be empty.",
 			'id' => 'translate-emptyBaseUrl',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'This Url is already set.',
 			'default' => "This Url is already set.",
 			'id' => 'translate-alreadyBaseUrl',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => "Let's talk",
 			'default' => "Let's talk",
 			'id' => 'translate-contactUsTitle',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.',
 			'default' => "Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.",
 			'id' => 'translate-contactUsSubTitle',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Your Name',
 			'default' => "Your Name",
 			'id' => 'translate-yourName',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Your Email',
 			'default' => "Your Email",
 			'id' => 'translate-yourEmail',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Your Message',
 			'default' => "Your Message",
 			'id' => 'translate-yourMessage',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Send',
 			'default' => "Send",
 			'id' => 'translate-send',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Settings',
 			'default' => "Settings",
 			'id' => 'translate-settings',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'About Us',
 			'default' => "About Us",
 			'id' => 'translate-aboutUs',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Layout',
 			'default' => "Layout",
 			'id' => 'translate-layout',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Text Size',
 			'default' => "Text Size",
 			'id' => 'translate-textSize',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Aa',
 			'default' => "Aa",
 			'id' => 'translate-aA',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Dark Mode',
 			'default' => "Dark Mode",
 			'id' => 'translate-darkMode',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Rate this app',
 			'default' => "Rate this app",
 			'id' => 'translate-rateApp',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Share the app',
 			'default' => "Share the app",
 			'id' => 'translate-shareApp',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Privacy policy',
 			'default' => "Privacy policy",
 			'id' => 'translate-privacyPolicy',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Terms and Conditions',
 			'default' => "Terms and Conditions",
 			'id' => 'translate-termsAndConditions',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Powered by',
 			'default' => "Powered by",
 			'id' => 'translate-poweredBy',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Logout',
 			'default' => "Logout",
 			'id' => 'translate-logout',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'RELATED POSTS',
 			'default' => "RELATED POSTS",
 			'id' => 'translate-relatedPosts',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'LEAVE A COMMENT',
 			'default' => "LEAVE A COMMENT",
 			'id' => 'translate-leaveComment',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'COMMENTS',
 			'default' => "COMMENTS",
 			'id' => 'translate-commentsCount',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Reply',
 			'default' => "Reply",
 			'id' => 'translate-reply',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Reply to',
 			'default' => "Reply to",
 			'id' => 'translate-replyTo',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'By',
 			'default' => "By",
 			'id' => 'translate-By',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Cancel',
 			'default' => "Cancel",
 			'id' => 'translate-cancel',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Submit',
 			'default' => "Submit",
 			'id' => 'translate-submit',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Comment',
 			'default' => "Comment",
 			'id' => 'translate-comment',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Name',
 			'default' => "Name",
 			'id' => 'translate-name',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Post Comment',
 			'default' => "Post Comment",
 			'id' => 'translate-postComment',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Post Reply',
 			'default' => "Post Reply",
 			'id' => 'translate-postReply',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => "Let's go",
 			'default' => "Let's go",
 			'id' => 'translate-lets',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Favorites Yet',
 			'default' => "No Favorites Yet",
 			'id' => 'translate-noFav',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Posts Found',
 			'default' => "No Posts Found",
 			'id' => 'translate-noPosts',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => ' must not be empty',
 			'default' => " must not be empty",
 			'id' => 'translate-mustNotBeEmpty',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Loading more...',
 			'default' => "Loading more...",
 			'id' => 'translate-loadingMore',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Load more',
 			'default' => "Load more",
 			'id' => 'translate-loadingMoreQuestions',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Something went wrong',
 			'default' => "Something went wrong",
 			'id' => 'translate-someThingWentWrong',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Search',
 			'default' => "Search",
 			'id' => 'translate-search',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No more items',
 			'default' => "No more items",
 			'id' => 'translate-noMore',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Removed from favourites',
 			'default' => "Removed from favourites",
 			'id' => 'translate-removedToFav',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Added to favourites',
 			'default' => "Added to favourites",
 			'id' => 'translate-addedToFav',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Type to search',
 			'default' => "Type to search",
 			'id' => 'translate-typeToSearch',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Version ',
 			'default' => "Version ",
 			'id' => 'translate-version',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Your app version is up to date ',
 			'default' => "Your app version is up to date ",
 			'id' => 'translate-yourVersionUpToDate',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Update the latest version ',
 			'default' => "Update the latest version ",
 			'id' => 'translate-yourVersionNotUpToDate',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Continue clicking to activate development mode',
 			'default' => "Continue clicking to activate development mode",
 			'id' => 'translate-upgradeHint',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'About app',
 			'default' => "About app",
 			'id' => 'translate-aboutApp',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Taps left',
 			'default' => "Taps left",
 			'id' => 'translate-tapsLeft',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Development Mode is active',
 			'default' => "Development Mode is active",
 			'id' => 'translate-devModeActive',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Results',
 			'default' => "No Result",
 			'id' => 'translate-noResults',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Sections',
 			'default' => "Please add home sections from admin panel",
 			'id' => 'translate-noSections',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Main Page',
 			'default' => "At least one main page must be added from admin panel",
 			'id' => 'translate-noMainPage',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Boards',
 			'default' => "No boarding slides",
 			'id' => 'translate-noBoards',
@@ -3392,26 +3642,29 @@ function appBear_options(){
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'Retry',
 			'default' => "Retry",
 			'id' => 'translate-retry',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
+    
+    $translations_section->add_field(array(
 			'name' => 'No Internet Connection!',
 			'default' => "No Internet Connection!",
 			'id' => 'translate-nointernet',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-		$translations_section->add_field(array(
-		'name' => 'Please check your internet connection and try again',
-		'default' => "Please check your internet connection and try again",
-		'id' => 'translate-checkinternet',
-		'type' => 'text',
-		'grid' => '6-of-6',
+    
+    $translations_section->add_field(array(
+      'name' => 'Please check your internet connection and try again',
+      'default' => "Please check your internet connection and try again",
+      'id' => 'translate-checkinternet',
+      'type' => 'text',
+      'grid' => '6-of-6',
 		));
 
 		$translations_section->add_field(array(
@@ -3428,178 +3681,155 @@ function appBear_options(){
 			'id' => 'translate-seemore',
 			'type' => 'text',
 			'grid' => '6-of-6',
-			));
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Confirm Demo Title',
-				'default' => "Confirm Demo Title",
-				'id' => 'translate-confirmdemotitle',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Confirm Demo Title',
+      'default' => "Confirm Demo Title",
+      'id' => 'translate-confirmdemotitle',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Confirm Demo Message',
-				'default' => "Confirm Demo Message",
-				'id' => 'translate-confirmDemoMessage',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Confirm Demo Message',
+      'default' => "Confirm Demo Message",
+      'id' => 'translate-confirmDemoMessage',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Choose Your Demo',
-				'default' => "Choose Your Demo",
-				'id' => 'translate-chooseyourdemo',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
-			$translations_section->add_field(array(
-				'name' => 'Confirm Reset Title',
-				'default' => "Confirm Reset Title",
-				'id' => 'translate-confirmresettitle',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
-			$translations_section->add_field(array(
-				'name' => 'Confirm Reset Message',
-				'default' => "Confirm Reset Message",
-				'id' => 'translate-confirmresetmessage',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Choose Your Demo',
+      'default' => "Choose Your Demo",
+      'id' => 'translate-chooseyourdemo',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+    
+    $translations_section->add_field(array(
+      'name' => 'Confirm Reset Title',
+      'default' => "Confirm Reset Title",
+      'id' => 'translate-confirmresettitle',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+    
+    $translations_section->add_field(array(
+      'name' => 'Confirm Reset Message',
+      'default' => "Confirm Reset Message",
+      'id' => 'translate-confirmresetmessage',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Yes',
-				'default' => "Yes",
-				'id' => 'translate-yes',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
-			$translations_section->add_field(array(
-				'name' => 'Reset',
-				'default' => "Reset",
-				'id' => 'translate-reset',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
-			$translations_section->add_field(array(
-				'name' => 'Custom Demo',
-				'default' => "Custom Demo",
-				'id' => 'translate-customdemo',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Yes',
+      'default' => "Yes",
+      'id' => 'translate-yes',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+    
+    $translations_section->add_field(array(
+      'name' => 'Reset',
+      'default' => "Reset",
+      'id' => 'translate-reset',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+    
+    $translations_section->add_field(array(
+      'name' => 'Custom Demo',
+      'default' => "Custom Demo",
+      'id' => 'translate-customdemo',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Custom Demo Title',
-				'default' => "Custom Demo Title",
-				'id' => 'translate-customdemotitle',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Custom Demo Title',
+      'default' => "Custom Demo Title",
+      'id' => 'translate-customdemotitle',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Custom Demo Body',
-				'default' => "Custom Demo Body",
-				'id' => 'translate-customdemobody',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Custom Demo Body',
+      'default' => "Custom Demo Body",
+      'id' => 'translate-customdemobody',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Confirm Custom Demo Title',
-				'default' => "Confirm Custom Demo Title",
-				'id' => 'translate-confirmcustomdemotitle',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Confirm Custom Demo Title',
+      'default' => "Confirm Custom Demo Title",
+      'id' => 'translate-confirmcustomdemotitle',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Confirm Custom Demo Message',
-				'default' => "Confirm Custom Demo Message",
-				'id' => 'translate-confirmcustomdemomessage',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Confirm Custom Demo Message',
+      'default' => "Confirm Custom Demo Message",
+      'id' => 'translate-confirmcustomdemomessage',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Get Our',
-				'default' => "Get Our",
-				'id' => 'translate-getour',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Get Our',
+      'default' => "Get Our",
+      'id' => 'translate-getour',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'AppBear',
-				'default' => "AppBear",
-				'id' => 'translate-appbear',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'AppBear',
+      'default' => "AppBear",
+      'id' => 'translate-appbear',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Plugin',
-				'default' => "Plugin",
-				'id' => 'translate-plugin',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
+    $translations_section->add_field(array(
+      'name' => 'Plugin',
+      'default' => "Plugin",
+      'id' => 'translate-plugin',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
 
-			$translations_section->add_field(array(
-				'name' => 'Next',
-				'default' => "Next",
-				'id' => 'translate-next',
-				'type' => 'text',
-				'grid' => '6-of-6',
-			));
-	}else{
-		function appbear_plugin_updater() {
-			// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
-			$doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
-			if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
-				return;
-			}
-
-			// retrieve our license key from the DB
-			$license_key = trim( get_option( 'appbear_license_key' ) );
-
-			// setup the updater
-			$edd_updater = new AppBear_subscription( APPBEAR_STORE_URL, __FILE__,
-				array(
-					'version' => '1.0',                    // current version number
-					'license' => $license_key,             // license key (used get_option above to retrieve from DB)
-					'item_id' => APPBEAR_ITEM_ID,       // ID of the product
-					'author'  => 'Easy Digital Downloads', // author of this plugin
-					'beta'    => false,
-				)
-			);
-		}
-		add_action( 'init', 'appbear_plugin_updater' );
-
-		function appbear_register_option() {
-			register_setting('appbear_license_status', 'appbear_license_key', 'appbear_sanitize_license' );
-		}
-		add_action('admin_init', 'appbear_register_option');
-		function appbear_sanitize_license( $new ) {
-			$old = get_option( 'appbear_license_key' );
-			if( $old && $old != $new ) {
-				delete_option( 'appbear_license_status' ); // new license has been entered, so must reactivate
-			}
-			return $new;
-		}
+    $translations_section->add_field(array(
+      'name' => 'Next',
+      'default' => "Next",
+      'id' => 'translate-next',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+  }
 
 
+  /* 
+   * Initialize options for no or invalid license state
+   */
+  protected function _noLicenseInit() {
+		add_action( 'init', array( $this, 'appbear_plugin_updater' ) );
+    add_action( 'admin_init', array( $this, 'appbear_register_option' ) );
+    
 		$activation_args = array(
 			'id' => 'appbear-settings',
 			'title' => 'appBear',
 			'menu_title' => 'appBear',
 			'menu_side_title' => 'Activation',
-			'icon' => APPBEAR_URL.'img/appbear-light-small.png',//Menu icon
+			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
 			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
 			'layout' => 'wide',//wide
 			'header' => array(
-				'icon' => '<img src="'.APPBEAR_URL.'img/a-logo.svg"/>',
+				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
 				'desc' => 'Activate your license key.',
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
@@ -3612,13 +3842,15 @@ function appBear_options(){
 		$activation_section	=	$activation->add_section( array(
 			'name' => 'Activation',
 			'id' => 'section-general-activation',
-		));
+    ));
+
 		$activation_section->add_field(array(
 			'id' => 'custom-title',
 			'name' => __( 'Enter your license key', 'textdomain' ),
 			'type' => 'title',
 			'desc' => __('You have to activate your license before start controlling application settings, if you do not have key and you need to activate the demo version please type 000 in the Key field.'),
-		));
+    ));
+
 		$activation_section->add_field(array(
 			'name' => 'Key',
 			'default' => "",
@@ -3626,7 +3858,13 @@ function appBear_options(){
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
+  }
 
-	}
 
+  /* 
+   * Get license key
+   */
+  private function _getLicenseKey() {
+    return trim( get_option( 'appbear_license_key' ) );
+  }
 }

@@ -111,16 +111,25 @@ function appbear_get_template($templatePath, $vars = [])
 	// NOTE: Should be substitued with a template file..
 	$prefix = APPBEAR_DIR . 'templates';
 	$templatePath = str_replace('.php', '', $templatePath);
-	$path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
+  $path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
 
-    if (is_file($path)) {
+  if (is_file($path)) {
 		ob_start();
 		empty($vars) === false && extract($vars);
-        include $path;
-        return ob_get_clean();
+    include $path;
+    return ob_get_clean();
 	}
 
-    throw new Error("Template '{$templatePath}' not found!");
+  throw new Error("Template '{$templatePath}' not found!");
+}
+
+/**
+ * Check current license validity 
+ */
+function appbear_check_license()
+{
+  // NOTE: May need improvements.
+  return get_option( 'appbear_license_status' ) === 'valid' || APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true;
 }
 
 
