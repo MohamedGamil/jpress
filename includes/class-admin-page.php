@@ -1320,7 +1320,7 @@ class AdminPage extends AppbearCore {
 							$options['basicUrls']["selectDemo"] = "/wp-json/wl/v1/selectDemo";
 							$options['basicUrls']["demos"] = "/wp-json/wl/v1/demos";
 
-							$options['baseUrl'] = get_site_url().'/';
+							$options['baseUrl'] = get_home_url().'/';
 							$options['defaultLayout'] = "Layout.standard";
 							$options['searchApi'] = "/wp-json/wl/v1/posts?s=";
 							$options['commentsApi'] = "/wp-json/wl/v1/comments?id=";
@@ -1345,7 +1345,7 @@ class AdminPage extends AppbearCore {
 							$license_key = get_option( 'appbear_license_key' );
 							if ($license_status == "valid"){
 
-								$url  = 'https://appstage.tielabs.com/?edd_action=save_settings&item_id=1044&license='.$license_key;
+								$url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license='.$license_key;
 
 								$post = [
 									'settings' => json_encode($options, JSON_UNESCAPED_UNICODE)
@@ -1360,20 +1360,21 @@ class AdminPage extends AppbearCore {
 					break;
 				}
 
+				$base_url = get_home_url();
+        $len = strlen('/');
 
-				$base_url =get_site_url();
-				$len = strlen('/');
-				if(substr($string, -$len) === '/'){
+				if (substr($string, -$len) === '/'){
 					$base_url = substr($base_url, 0, -1);
-				}
+        }
+
 				$licensedBase = str_replace("http://","",str_replace("http://","",$base_url));
 				$licensedBase = str_replace("https://","",str_replace("https://","",$licensedBase));
 
 
 				if($change_language == false){
-					$tes = wp_remote_get("https://appstage.tielabs.com/?edd_action=send_silent_fcm_message&site_url=".$licensedBase);
+					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase);
 				}else{
-					$tes = wp_remote_get("https://appstage.tielabs.com/?edd_action=send_silent_fcm_message&site_url=".$licensedBase."&change_translations=true");
+					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase . '&change_translations=true');
 				}
 
 				update_option( 'appbear_license_status', $license_data->license );
@@ -1384,6 +1385,4 @@ class AdminPage extends AppbearCore {
 			}
 		}
 	}
-
-
 }

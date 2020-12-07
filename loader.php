@@ -122,8 +122,8 @@ class AppbearLoader148 {
 		if( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ) {
 			if ( ( $appBearOptsClass = APPBEAR_DIR . '/options/appbear-options.php' ) && file_exists( $appBearOptsClass ) ){
         require_once $appBearOptsClass;
+        
         $appBearOptsClassInstance = new AppBear_Options();
-
         $appBearOptsClassInstance->run();
 			}
 		}

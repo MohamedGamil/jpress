@@ -21,7 +21,7 @@ class AppBear_Demos_Endpoints {
 	 */
 	protected $namespace = 'wl/v1';
 
-	
+
 	/**
 	 * Class Constructor
 	 */
@@ -142,8 +142,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.dark',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-1.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-1.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-1.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-1.png',
 					),
 					'appBar' =>
 					array (
@@ -382,7 +382,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -390,7 +390,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				  );
 			break;
 			case 2:
@@ -398,8 +398,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.dark',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-7.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-2.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-7.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-2.png',
 					),
 					'appBar' =>
 					array (
@@ -643,7 +643,7 @@ class AppBear_Demos_Endpoints {
 					  'shareApp' =>
 					  array (
 						'title' => 'Download Jannah Now...',
-						'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/09/jannah-logo-light-1.png',
+						'image' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/09/jannah-logo-light-1.png',
 						'android' => 'https://play.google.com/store/apps/details?id=com.jannah.app',
 						'ios' => '',
 					  ),
@@ -652,8 +652,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress sitern',
 					  ),
@@ -682,7 +682,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -690,7 +690,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				  );
 			break;
 			case 3:
@@ -698,8 +698,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.dark',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-3.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-3.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-3.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-3.png',
 					),
 					'appBar' =>
 					array (
@@ -960,8 +960,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress site',
 					  ),
@@ -990,7 +990,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -998,7 +998,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				);
 			break;
 			case 4:
@@ -1006,7 +1006,7 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.light',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-4-e1603273606416.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-4-e1603273606416.png',
 					),
 					'appBar' =>
 					array (
@@ -1177,7 +1177,7 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress site',
 					  ),
@@ -1206,7 +1206,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -1214,7 +1214,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				  );
 			break;
 			case 5:
@@ -1222,8 +1222,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.dark',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-55.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-55.png',
 					),
 					'appBar' =>
 					array (
@@ -1484,8 +1484,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-55.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-55.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-55.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress sitern',
 					  ),
@@ -1514,7 +1514,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -1522,7 +1522,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				);
 			break;
 			case 6:
@@ -1530,8 +1530,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.dark',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
 					),
 					'appBar' =>
 					array (
@@ -1792,8 +1792,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress sitern',
 					  ),
@@ -1822,7 +1822,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'https://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL,
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -1830,7 +1830,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				);
 			break;
 			case 7:
@@ -1838,8 +1838,8 @@ class AppBear_Demos_Endpoints {
 					'themeMode' => 'ThemeMode.light',
 					'logo' =>
 					array (
-					  'light' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-7.png',
-					  'dark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/08/logo-demo-2.png',
+					  'light' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-7.png',
+					  'dark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-2.png',
 					),
 					'appBar' =>
 					array (
@@ -2092,8 +2092,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress sitern',
 					  ),
@@ -2122,7 +2122,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'http://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL . '/',
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -2130,7 +2130,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				  );
 			break;
 			case 8:
@@ -2141,19 +2141,19 @@ class AppBear_Demos_Endpoints {
 					  0 =>
 					  array (
 						'title' => 'International',
-						'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/svg_1.png',
+						'image' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/svg_1.png',
 						'subTitle' => 'Find the latest breaking news and information on the top stories, weather, business, entertainment, politics,  and more.',
 					  ),
 					  1 =>
 					  array (
 						'title' => 'Live news',
-						'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/10/svg_2.png',
+						'image' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/10/svg_2.png',
 						'subTitle' => 'Sahifa News Live is a 24/7 streaming channel for breaking news, live events and latest news headlines, and more.',
 					  ),
 					  2 =>
 					  array (
 						'title' => 'World News and Video',
-						'image' => 'http://appstage.tielabs.com/wp-content/uploads/2020/10/svg_3.png',
+						'image' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/10/svg_3.png',
 						'subTitle' => 'Get the latest Sahifa World News international news, features and analysis from Middle East, and more.',
 					  ),
 					),
@@ -2513,8 +2513,8 @@ class AppBear_Demos_Endpoints {
 					  'contactUs' => '/wp-json/wl/v1/contact-us',
 					  'aboutApp' =>
 					  array (
-						'aboutLogoLight' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
-						'aboutLogoDark' => 'http://appstage.tielabs.com/wp-content/uploads/2020/07/logo-demo-6-white.png',
+						'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
+						'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
 						'title' => 'My WordPress Website',
 						'content' => 'Just another WordPress sitern',
 					  ),
@@ -2543,7 +2543,7 @@ class AppBear_Demos_Endpoints {
 					  'selectDemo' => '/wp-json/wl/v1/selectDemo',
 					  'demos' => '/wp-json/wl/v1/demos',
 					),
-					'baseUrl' => 'http://appstage.tielabs.com/',
+					'baseUrl' => APPBEAR_STORE_URL . '/',
 					'defaultLayout' => 'Layout.standard',
 					'searchApi' => '/wp-json/wl/v1/posts?s=',
 					'commentsApi' => '/wp-json/wl/v1/comments?id=',
@@ -2551,7 +2551,7 @@ class AppBear_Demos_Endpoints {
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
 					'validConfig' => 'true',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 				);
 			break;
 			case 9:
@@ -2918,7 +2918,7 @@ class AppBear_Demos_Endpoints {
 					'commentAdd' => '/wp-json/wl/v1/add-comment',
 					'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
 					'lang' => 'en',
-					'copyrights' => 'https://appbear.io/',
+					'copyrights' => APPBEAR_COPYRIGHTS_URL,
 					'validConfig' => 'true',
 				);
 			break;
