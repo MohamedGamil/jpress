@@ -47,7 +47,7 @@ require_once plugin_dir_path( __FILE__ ) . '/constants.php';
  * The code that runs during plugin activation.
  * This action is documented in includes/class-appbear-activator.php
  */
-function activate_plugin_name() {
+function appbear_activate_hook() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-appbear-activator.php';
 	App_Bear_Activator::activate();
 }
@@ -56,13 +56,13 @@ function activate_plugin_name() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-appbear-deactivator.php
  */
-function deactivate_plugin_name() {
+function appbear_deactivate_hook() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-appbear-deactivator.php';
 	App_Bear_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_plugin_name' );
-register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
+register_activation_hook( __FILE__, 'appbear_activate_hook' );
+register_deactivation_hook( __FILE__, 'appbear_deactivate_hook' );
 
 /**
  * Begins execution of the plugin.

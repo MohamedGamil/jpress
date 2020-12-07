@@ -594,17 +594,15 @@ function appbear_deeplink_custom_js()
 }
 
 
+if (!function_exists('dd')):
+
 /**
  * Simple debugging helper functions
  *
  * @since      0.0.2
  * @package    App_Bear
  * @subpackage App_Bear/options
- * @author     Mohamed Gamil
  */
-
-if (!function_exists('dd')):
-
 function dd() {
   if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
 
@@ -645,10 +643,6 @@ function dd() {
   echo "\n</pre></body>";
   die;
 }
-
-endif;
-
-if (!function_exists('ddjson')):
 
 function ddjson() {
   if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;

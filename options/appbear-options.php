@@ -4,12 +4,12 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 /**
- * AppBear_Endpoints Class
+ * AppBear Options
  *
- * This class handles all API Endpoints
+ * This class handles all AppBear options declerations
  *
  *
- * @since 1.0
+ * @since 0.0.2
  */
 class AppBear_Options
 {
