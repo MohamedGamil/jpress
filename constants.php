@@ -1,11 +1,5 @@
 <?php
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
-
 /*
 |---------------------------------------------------------------------------------------------------
 | AppBear Plugin Front Controller
@@ -58,6 +52,12 @@ define( 'APPBEAR_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
  * AppBear FontAwesome Version.
  */
 defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+
+
+/**
+ * Enable / Disable Debugging Helpers
+ */
+define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );
 
 
 /**

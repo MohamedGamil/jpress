@@ -6,9 +6,9 @@ namespace Appbear\Includes;
 // FIXME: Missing docs comment
 class AdminPage extends AppbearCore {
 
-	public function __construct( $args = array() ){
+	public function __construct( $args = array() ) {
 
-		if ( ! is_array( $args ) || Functions::is_empty( $args ) || empty( $args['id'] ) ){
+		if ( ! is_array( $args ) || Functions::is_empty( $args ) || empty( $args['id'] ) ) {
 			return;
 		}
 
@@ -39,11 +39,11 @@ class AdminPage extends AppbearCore {
 	| Acceso al id del objecto actual, post id o page id
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function set_object_id( $object_id = 0 ){
-		if ( $object_id ){
+	public function set_object_id( $object_id = 0 ) {
+		if ( $object_id ) {
 			$this->object_id = $object_id;
 		}
-		if ( $this->object_id ){
+		if ( $this->object_id ) {
 			return $this->object_id;
 		}
 		$this->object_id = $this->id;
@@ -55,7 +55,7 @@ class AdminPage extends AppbearCore {
 	| Register Hooks
 	|---------------------------------------------------------------------------------------------------
 	*/
-	private function hooks(){
+	private function hooks() {
 		add_action( 'admin_init', array( $this, 'init' ) );
 		add_action( 'admin_menu', array( $this, 'add_admin_page' ), 101 );//101 para que se agrege después de otros items
 		add_action( "admin_action_appbear_process_form_{$this->object_id}", array( $this, 'admin_action_appbear_process_form' ), 10 );
@@ -67,7 +67,7 @@ class AdminPage extends AppbearCore {
 	| Nombre para el aviso al guardar cambios
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function settings_notice_key(){
+	public function settings_notice_key() {
 		return $this->get_object_id() . '-notices';
 	}
 
@@ -76,7 +76,7 @@ class AdminPage extends AppbearCore {
 	| Registramos las opciones
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function init(){
+	public function init() {
 		register_setting( $this->id, $this->id );
 	}
 
@@ -85,9 +85,9 @@ class AdminPage extends AppbearCore {
 	| Add menu page
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function add_admin_page(){
-		if ( $this->args['parent'] === false ){
-			if ($this->args['menu_side_title']){
+	public function add_admin_page() {
+		if ( $this->args['parent'] === false ) {
+			if ($this->args['menu_side_title']) {
 				add_menu_page( $this->args['title'], $this->args['menu_title'], $this->args['capability'], $this->args['id'], array( $this, 'build_admin_page' ), $this->args['icon'], $this->args['position'] );
 				add_submenu_page( $this->args['id'], $this->args['title'], $this->args['menu_side_title'], $this->args['capability'], $this->args['id'], array( $this, 'build_admin_page' ) );
 			}else{
@@ -103,7 +103,7 @@ class AdminPage extends AppbearCore {
 	| Construye la página de opciones
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function build_admin_page(){
+	public function build_admin_page() {
 		$this->set_object_id( $this->id );//Set the object ID for the current admin page
 
 		$display = "";
@@ -119,12 +119,12 @@ class AdminPage extends AppbearCore {
 
 		//Check for settings notice
 		$settings_error = get_settings_errors( $this->settings_notice_key() );
-		if ( $settings_error ){
+		if ( $settings_error ) {
 			settings_errors( $this->settings_notice_key() );
 		}
 
 		$display .= "<div class='wrap appbear-wrap-admin-page'>";
-		if ( ! empty( $this->args['title'] ) && empty( $this->args['header'] ) ){
+		if ( ! empty( $this->args['title'] ) && empty( $this->args['header'] ) ) {
 			$display .= "<h1 class='appbear-admin-page-title'>";
 			$display .= "<i class='appbear-icon appbear-icon-cog'></i>";
 			$display .= esc_html( get_admin_page_title() );
@@ -140,7 +140,7 @@ class AdminPage extends AppbearCore {
 	| Nuevo formulario basado en Appbear
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function get_form( $form_options = array(), $echo = false ){
+	public function get_form( $form_options = array(), $echo = false ) {
 		$form = "";
 		$args = wp_parse_args( $form_options, $this->arg( 'form_options' ) );
 
@@ -152,13 +152,13 @@ class AdminPage extends AppbearCore {
 		$form .= wp_referer_field( false );
 		$form .= "<input type='hidden' name='appbear_id' value='{$this->object_id}'>";
 		$form .= $this->build_appbear( $this->get_object_id(), false );
-		if ( empty( $this->args['header'] ) ){
+		if ( empty( $this->args['header'] ) ) {
 			$form .= $this->get_form_buttons( $args );
 		}
 		$form .= "</form>";
 		$form .= $args['insert_after'];
 
-		if ( ! $echo ){
+		if ( ! $echo ) {
 			return $form;
 		}
 		echo $form;
@@ -169,7 +169,7 @@ class AdminPage extends AppbearCore {
 	| Guarda un campo
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function set_field_value( $field_id, $value = '' ){
+	public function set_field_value( $field_id, $value = '' ) {
 		$field_id = $this->get_field_id( $field_id );
 		$options = (array) get_option( $this->id );
 		$options[$field_id] = $value;
@@ -181,14 +181,14 @@ class AdminPage extends AppbearCore {
 	| Obtiene el valor de un campo
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function get_field_value( $field_id, $default = '' ){
+	public function get_field_value( $field_id, $default = '' ) {
 		$value = '';
 		$field_id = $this->get_field_id( $field_id );
 		$options = get_option( $this->id );
-		if ( isset( $options[$field_id] ) ){
+		if ( isset( $options[$field_id] ) ) {
 			$value = $options[$field_id];
 		}
-		if ( Functions::is_empty( $value ) ){
+		if ( Functions::is_empty( $value ) ) {
 			return $default;
 		}
 		return $value;
@@ -199,9 +199,9 @@ class AdminPage extends AppbearCore {
 	| Obtiene todos los campos con sus valores
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function get_options(){
+	public function get_options() {
 		$options = get_option( $this->id );
-		if ( is_array( $options ) && ! empty( $options ) ){
+		if ( is_array( $options ) && ! empty( $options ) ) {
 			return $options;
 		}
 		return array();
@@ -212,8 +212,8 @@ class AdminPage extends AppbearCore {
 	| Save Options
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function admin_action_appbear_process_form(){
-		if ( $this->can_save_form() ){
+	public function admin_action_appbear_process_form() {
+		if ( $this->can_save_form() ) {
 			$this->save_fields( $this->get_object_id(), $_POST );
 		}
 
@@ -230,17 +230,17 @@ class AdminPage extends AppbearCore {
 	| Comprueba si el formulario se debe guardar
 	|---------------------------------------------------------------------------------------------------
 	*/
-	private function can_save_form(){
+	private function can_save_form() {
 		$args = $this->arg( 'form_options' );
 		$save_button = $args['save_button_name'];
 
-		if ( ! isset( $_POST[$save_button] ) && ! isset( $_POST['appbear-reset'] ) && ! isset( $_POST['appbear-import'] ) ){
+		if ( ! isset( $_POST[$save_button] ) && ! isset( $_POST['appbear-reset'] ) && ! isset( $_POST['appbear-import'] ) ) {
 			return false;
 		}
 
 		//Verify nonce
-		if ( isset( $_POST[$this->get_nonce()] ) ){
-			if ( ! wp_verify_nonce( $_POST[$this->get_nonce()], $this->get_nonce() ) ){
+		if ( isset( $_POST[$this->get_nonce()] ) ) {
+			if ( ! wp_verify_nonce( $_POST[$this->get_nonce()], $this->get_nonce() ) ) {
 				return false;
 			}
 		} else{
@@ -273,16 +273,16 @@ class AdminPage extends AppbearCore {
 	| Redfine the options for remote save
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function redefine_options($k){
+	public function redefine_options($k) {
 		$remove =   array('_wp_http_referer','appbear_id','appbear_nonce_appbear-settings','appbear-save','appbear-import-field');
-		if (is_array($k)){
-			foreach($k as $key => $value){
-				if (in_array($key, $remove) || strpos($key, 'local-') !== false){
+		if (is_array($k)) {
+			foreach($k as $key => $value) {
+				if (in_array($key, $remove) || strpos($key, 'local-') !== false) {
 					return false;
 				}
 			}
 		}else{
-			if (in_array($k, $remove) || strpos($k, 'local-') !== false){
+			if (in_array($k, $remove) || strpos($k, 'local-') !== false) {
 				return false;
 			}
 		}
@@ -294,34 +294,36 @@ class AdminPage extends AppbearCore {
 	| Activa mensaje de campos actualizados y redirecciona
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function after_save_fields( $data, $object_id, $updated_fields = array() ){
-		if ( $this->id != $object_id ){
+	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
+    dd($data);
+
+		if ( $this->id !== $object_id ) {
 			return;
 		}
 
 		//Para evitar error cuando se está guardando campos automáticamente al activar un plugin o tema
 		//$appbear->save_fields(0, array( 'display_message_on_save' => false ));
-		if ( isset( $data['display_message_on_save'] ) && $data['display_message_on_save'] == false ){
+		if ( isset( $data['display_message_on_save'] ) && $data['display_message_on_save'] == false ) {
 			return;
     }
 
 		$type = 'updated';
     $this->update_message = $this->arg( 'saved_message' );
 
-		if ( $this->reset ){
+		if ( $this->reset ) {
 			$this->update_message = $this->arg( 'reset_message' );
     }
 
-		if ( $this->import ){
+		if ( $this->import ) {
       $this->update_message = $this->arg( 'import_message' );
 
-			if ( $this->update_error ){
+			if ( $this->update_error ) {
 				$this->update_message = $this->arg( 'import_message_error' );
 				$type = 'error';
 			}
 		}
 
-		//Add settings error
+		// Add settings error
 		if ( isset( $data['appbear_license_key'] ) ) {
       update_option( 'appbear_license_key', $data['appbear_license_key'] );
 
@@ -340,14 +342,14 @@ class AdminPage extends AppbearCore {
 
 			// make sure the response came back okay
 			if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-
 				if ( is_wp_error( $response ) ) {
 					$message = $response->get_error_message();
-				} else {
+        }
+        else {
 					$message = __( 'An error occurred, please try again.' );
 				}
-
-			} else {
+      }
+      else {
 
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
@@ -406,15 +408,16 @@ class AdminPage extends AppbearCore {
 
 				add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
-			}else{
+      }
+      else {
 				update_option( 'appbear_license_status', $license_data->license );
 
 				add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', '.__('Your license has been activated successfully'), 'updated' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 			}
-		}else{
-
-			if ( empty( $data ) ){
+    }
+    else {
+			if ( empty( $data ) ) {
 				return -1;
 			}
 
@@ -430,7 +433,7 @@ class AdminPage extends AppbearCore {
 			// Call the custom API.
 			$response = wp_remote_post( APPBEAR_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
-			if ( is_wp_error( $response ) ){
+			if ( is_wp_error( $response ) ) {
 				$message = __( 'An error occurred, please try again.' );
 				update_option( 'appbear_license_status', json_decode($response['body'])->license );
 
@@ -441,7 +444,7 @@ class AdminPage extends AppbearCore {
 
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-			if ( $license_data->license != 'valid' ) {
+			if ( $license_data->license !== 'valid' ) {
 				update_option( 'appbear_license_status', $license_data->error );
 
 				switch( $license_data->error ) {
@@ -490,129 +493,134 @@ class AdminPage extends AppbearCore {
 				add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 
-			} else {
+      }
+      else {
+        $change_language = false;
 
-				$change_language = false;
-				switch($this->id){
-
+        switch($this->id) {
 					case 'appbear-translations':
 						/***************************************************************
 						 * Parsing the translations to be read in mobile application
 						 ***************************************************************/
-							$translations = array();
-							$translations['back']    = $data['translate-back'];
-							$translations['skip']    = $data['translate-skip'];
-							$translations['done']    = $data['translate-done'];
-							$translations['contactUs']   = $data['translate-contactus'];
-							$translations['loadingUpdates']  = $data['translate-loadingupdates'];
-							$translations['baseUrl'] = $data['translate-baseurl'];
-							$translations['baseUrlTitle']    = $data['translate-baseurltitle'];
-							$translations['baseUrlDesc'] = $data['translate-baseurldesc'];
-							$translations['emptyBaseUrl']    = $data['translate-emptybaseurl'];
-							$translations['alreadyBaseUrl']  = $data['translate-alreadybaseurl'];
-							$translations['contactUsTitle']  = $data['translate-contactustitle'];
-							$translations['contactUsSubTitle']   = $data['translate-contactussubtitle'];
-							$translations['yourName']    = $data['translate-yourname'];
-							$translations['yourEmail']   = $data['translate-youremail'];
-							$translations['yourMessage'] = $data['translate-yourmessage'];
-							$translations['send']    = $data['translate-send'];
-							$translations['settings']    = $data['translate-settings'];
-							$translations['aboutUs'] = $data['translate-aboutus'];
-							$translations['layout']  = $data['translate-layout'];
-							$translations['textSize']    = $data['translate-textsize'];
-							$translations['aA']  = $data['translate-aa'];
-							$translations['darkMode']    = $data['translate-darkmode'];
-							$translations['rateApp'] = $data['translate-rateapp'];
-							$translations['shareApp']    = $data['translate-shareapp'];
-							$translations['privacyPolicy']   = $data['translate-privacypolicy'];
-							$translations['termsAndConditions']  = $data['translate-termsandconditions'];
-							$translations['poweredBy']   = $data['translate-poweredby'];
-							$translations['logout']  = $data['translate-logout'];
-							$translations['relatedPosts']    = $data['translate-relatedposts'];
-							$translations['leaveComment']    = $data['translate-leavecomment'];
-							$translations['commentsCount']   = $data['translate-commentscount'];
-							$translations['reply']   = $data['translate-reply'];
-							$translations['replyTo'] = $data['translate-replyto'];
-							$translations['By']  = $data['translate-by'];
-							$translations['cancel']  = $data['translate-cancel'];
-							$translations['submit']  = $data['translate-submit'];
-							$translations['comment'] = $data['translate-comment'];
-							$translations['name']    = $data['translate-name'];
-							$translations['postComment'] = $data['translate-postcomment'];
-							$translations['postReply']   = $data['translate-postreply'];
-							$translations['lets']    = $data['translate-lets'];
-							$translations['noFav']   = $data['translate-nofav'];
-							$translations['noPosts'] = $data['translate-noposts'];
-							$translations['mustNotBeEmpty']  = $data['translate-mustnotbeempty'];
-							$translations['loadingMore'] = $data['translate-loadingmore'];
-							$translations['loadingMoreQuestions']    = $data['translate-loadingmorequestions'];
-							$translations['someThingWentWrong']  = $data['translate-somethingwentwrong'];
-							$translations['search']  = $data['translate-search'];
-							$translations['noMore']  = $data['translate-nomore'];
-							$translations['removedToFav']    = $data['translate-removedtofav'];
-							$translations['addedToFav']  = $data['translate-addedtofav'];
-							$translations['typeToSearch']    = $data['translate-typetosearch'];
-							$translations['version'] = $data['translate-version'];
-							$translations['yourVersionUpToDate'] = $data['translate-yourversionuptodate'];
-							$translations['yourVersionNotUpToDate']  = $data['translate-yourversionnotuptodate'];
-							$translations['upgradeHint'] = $data['translate-upgradehint'];
-							$translations['aboutApp']    = $data['translate-aboutapp'];
-							$translations['tapsLeft']    = $data['translate-tapsleft'];
-							$translations['devModeActive']   = $data['translate-devmodeactive'];
-							$translations['noResults']   = $data['translate-noresults'];
-							$translations['noSections']   = $data['translate-nosections'];
-							$translations['noMainPage']   = $data['translate-nomainpage'];
-							$translations['noBoards']   = $data['translate-noboards'];
-							$translations['errorPageTitle']   = $data['translate-errorpagetitle'];
-							$translations['retry']   = $data['translate-retry'];
-							$translations['noInternet']   = $data['translate-nointernet'];
-							$translations['checkInternet']   = $data['translate-checkinternet'];
-							$translations['noComments']   = $data['translate-nocomments'];
-							$translations['seeMore']   = $data['translate-seemore'];
-							$translations['confirmDemoTitle']   = $data['translate-confirmdemotitle'];
-							$translations['confirmDemoMessage']   = $data['translate-confirmdemomessage'];
-							$translations['chooseYourDemo']   = $data['translate-chooseyourdemo'];
-							$translations['confirmResetTitle']   = $data['translate-confirmresettitle'];
-							$translations['confirmResetMessage']   = $data['translate-confirmresetmessage'];
-							$translations['yes']   = $data['translate-yes'];
-							$translations['reset']   = $data['translate-reset'];
-							$translations['customDemo']   = $data['translate-customdemo'];
-							$translations['customDemoTitle']   = $data['translate-customdemotitle'];
-							$translations['customDemoBody']   = $data['translate-customdemobody'];
-							$translations['confirmCustomDemoTitle']   = $data['translate-confirmcustomdemotitle'];
-							$translations['confirmCustomDemoMessage']   = $data['translate-confirmcustomdemomessage'];
-							$translations['getOur']   = $data['translate-getour'];
-							$translations['appBear']   = $data['translate-appbear'];
-							$translations['plugin']   = $data['translate-plugin'];
-							$translations['next']   = $data['translate-next'];
-							// print_r($translations['contactUsTitle']);
-							// exit();
-							$translations = str_replace("\\","",$translations);
-							update_option( 'appbear-language', $translations );
+            $translations = array();
+            $translations['back']    = $data['translate-back'];
+            $translations['skip']    = $data['translate-skip'];
+            $translations['done']    = $data['translate-done'];
+            $translations['contactUs']   = $data['translate-contactus'];
+            $translations['loadingUpdates']  = $data['translate-loadingupdates'];
+            $translations['baseUrl'] = $data['translate-baseurl'];
+            $translations['baseUrlTitle']    = $data['translate-baseurltitle'];
+            $translations['baseUrlDesc'] = $data['translate-baseurldesc'];
+            $translations['emptyBaseUrl']    = $data['translate-emptybaseurl'];
+            $translations['alreadyBaseUrl']  = $data['translate-alreadybaseurl'];
+            $translations['contactUsTitle']  = $data['translate-contactustitle'];
+            $translations['contactUsSubTitle']   = $data['translate-contactussubtitle'];
+            $translations['yourName']    = $data['translate-yourname'];
+            $translations['yourEmail']   = $data['translate-youremail'];
+            $translations['yourMessage'] = $data['translate-yourmessage'];
+            $translations['send']    = $data['translate-send'];
+            $translations['settings']    = $data['translate-settings'];
+            $translations['aboutUs'] = $data['translate-aboutus'];
+            $translations['layout']  = $data['translate-layout'];
+            $translations['textSize']    = $data['translate-textsize'];
+            $translations['aA']  = $data['translate-aa'];
+            $translations['darkMode']    = $data['translate-darkmode'];
+            $translations['rateApp'] = $data['translate-rateapp'];
+            $translations['shareApp']    = $data['translate-shareapp'];
+            $translations['privacyPolicy']   = $data['translate-privacypolicy'];
+            $translations['termsAndConditions']  = $data['translate-termsandconditions'];
+            $translations['poweredBy']   = $data['translate-poweredby'];
+            $translations['logout']  = $data['translate-logout'];
+            $translations['relatedPosts']    = $data['translate-relatedposts'];
+            $translations['leaveComment']    = $data['translate-leavecomment'];
+            $translations['commentsCount']   = $data['translate-commentscount'];
+            $translations['reply']   = $data['translate-reply'];
+            $translations['replyTo'] = $data['translate-replyto'];
+            $translations['By']  = $data['translate-by'];
+            $translations['cancel']  = $data['translate-cancel'];
+            $translations['submit']  = $data['translate-submit'];
+            $translations['comment'] = $data['translate-comment'];
+            $translations['name']    = $data['translate-name'];
+            $translations['postComment'] = $data['translate-postcomment'];
+            $translations['postReply']   = $data['translate-postreply'];
+            $translations['lets']    = $data['translate-lets'];
+            $translations['noFav']   = $data['translate-nofav'];
+            $translations['noPosts'] = $data['translate-noposts'];
+            $translations['mustNotBeEmpty']  = $data['translate-mustnotbeempty'];
+            $translations['loadingMore'] = $data['translate-loadingmore'];
+            $translations['loadingMoreQuestions']    = $data['translate-loadingmorequestions'];
+            $translations['someThingWentWrong']  = $data['translate-somethingwentwrong'];
+            $translations['search']  = $data['translate-search'];
+            $translations['noMore']  = $data['translate-nomore'];
+            $translations['removedToFav']    = $data['translate-removedtofav'];
+            $translations['addedToFav']  = $data['translate-addedtofav'];
+            $translations['typeToSearch']    = $data['translate-typetosearch'];
+            $translations['version'] = $data['translate-version'];
+            $translations['yourVersionUpToDate'] = $data['translate-yourversionuptodate'];
+            $translations['yourVersionNotUpToDate']  = $data['translate-yourversionnotuptodate'];
+            $translations['upgradeHint'] = $data['translate-upgradehint'];
+            $translations['aboutApp']    = $data['translate-aboutapp'];
+            $translations['tapsLeft']    = $data['translate-tapsleft'];
+            $translations['devModeActive']   = $data['translate-devmodeactive'];
+            $translations['noResults']   = $data['translate-noresults'];
+            $translations['noSections']   = $data['translate-nosections'];
+            $translations['noMainPage']   = $data['translate-nomainpage'];
+            $translations['noBoards']   = $data['translate-noboards'];
+            $translations['errorPageTitle']   = $data['translate-errorpagetitle'];
+            $translations['retry']   = $data['translate-retry'];
+            $translations['noInternet']   = $data['translate-nointernet'];
+            $translations['checkInternet']   = $data['translate-checkinternet'];
+            $translations['noComments']   = $data['translate-nocomments'];
+            $translations['seeMore']   = $data['translate-seemore'];
+            $translations['confirmDemoTitle']   = $data['translate-confirmdemotitle'];
+            $translations['confirmDemoMessage']   = $data['translate-confirmdemomessage'];
+            $translations['chooseYourDemo']   = $data['translate-chooseyourdemo'];
+            $translations['confirmResetTitle']   = $data['translate-confirmresettitle'];
+            $translations['confirmResetMessage']   = $data['translate-confirmresetmessage'];
+            $translations['yes']   = $data['translate-yes'];
+            $translations['reset']   = $data['translate-reset'];
+            $translations['customDemo']   = $data['translate-customdemo'];
+            $translations['customDemoTitle']   = $data['translate-customdemotitle'];
+            $translations['customDemoBody']   = $data['translate-customdemobody'];
+            $translations['confirmCustomDemoTitle']   = $data['translate-confirmcustomdemotitle'];
+            $translations['confirmCustomDemoMessage']   = $data['translate-confirmcustomdemomessage'];
+            $translations['getOur']   = $data['translate-getour'];
+            $translations['appBear']   = $data['translate-appbear'];
+            $translations['plugin']   = $data['translate-plugin'];
+            $translations['next']   = $data['translate-next'];
+            $translations = str_replace("\\","",$translations);
+            update_option( 'appbear-language', $translations );
 
-							$change_language = true;
-					break;
+            $change_language = true;
+          break;
+
 					case 'appbear-settings':
 						/***************************************************************
 						 * Parsing the configuration to be read in mobile application
 						 ***************************************************************/
-							if (is_rtl())
+							if (is_rtl()) {
 								$options['rtl'] = is_rtl();
-							$options['themeMode'] = str_replace('_','.',$data['thememode']);
-							if (isset($data['statusbarwhiteforeground']) && $data['statusbarwhiteforeground'] != 'false')
-								$options['statusBarWhiteForeground'] = $data['statusbarwhiteforeground'];
+              }
+
+              $options['themeMode'] = str_replace('_','.',$data['thememode']);
+
+							if (isset($data['statusbarwhiteforeground']) && $data['statusbarwhiteforeground'] != 'false') {
+                $options['statusBarWhiteForeground'] = $data['statusbarwhiteforeground'];
+              }
+
 							// if (isset($data['rtl']) && $data['rtl'] != 'false')
 							//     $options['rtl'] = $data['rtl'];
 							if ( is_rtl() ) {
 								$options['rtl'] = 'true';
-							}
+              }
+
 							/*
 							* onboardmodels array
 							*/
-							if (isset($data['onboarding']) && $data['onboarding'] != 'false'){
+							if (isset($data['onboarding']) && $data['onboarding'] != 'false') {
 								$options['onboardModels'] = array();
-								foreach($data['onboardmodels'] as $key => $slide){
-									if ($key == 1000){
+								foreach($data['onboardmodels'] as $key => $slide) {
+									if ($key == 1000) {
 										continue;
 									}
 									unset($slide['onboardmodels_type']);
@@ -636,32 +644,32 @@ class AdminPage extends AppbearCore {
 							*/
 							$options['appBar']['layout']    =   'AppBarLayout.header2';
 							$options['appBar']['position']    =   $data['appbar-position'];
-							if (isset($data["topbar_search_button"]) && $data["topbar_search_button"] != 'false'){
+							if (isset($data["topbar_search_button"]) && $data["topbar_search_button"] != 'false') {
 								$options['appBar']['searchIcon']    =   $data['appbar-searchicon'];
 							}
 
 							/*
 							* sideNavbar array
 							*/
-							if (isset($data["menu_type"]) && $data["menu_type"] != 'bottombar'){
+							if (isset($data["menu_type"]) && $data["menu_type"] != 'bottombar') {
 								$options['sideNavbar']['icon']    =   $data['sidenavbar-icon'];
 								$options['sideNavbar']['navigators'] = array();
-								foreach($data['navigators'] as $key=> $navigator){
+								foreach($data['navigators'] as $key=> $navigator) {
 
-									if ($key == 1000){
+									if ($key == 1000) {
 										continue;
 									}
 									unset($navigator['navigators_type']);
 									unset($navigator['navigators_visibility']);
 									unset($navigator['navigators_name']);
 
-									switch($navigator['type']){
+									switch($navigator['type']) {
 										case 'NavigationType.category':
 											$category = get_category_by_slug($navigator['category']);
-											if (empty($category)){
+											if (empty($category)) {
 											   break;
 											}
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
 												$navigator['title'] = $category->name;
 											}
 											unset($navigator['main']);
@@ -675,15 +683,15 @@ class AdminPage extends AppbearCore {
 
 											if (!$post)
 												break;
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
 												$navigator['title'] = $post->post_title;
 											}
 											$navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
 											unset($navigator['main']);
 										break;
 										case 'NavigationType.main':
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
-												switch($navigator['main']){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
+												switch($navigator['main']) {
 													case 'MainPage.home':
 														$navigator['title'] = __('Home', 'textdomain' );
 													break;
@@ -712,10 +720,10 @@ class AdminPage extends AppbearCore {
 							/*
 							* bottomBar array
 							*/
-							if ($data['menu_type']!='sidemenu' && isset($data["bottombar_tabs"]) && !empty($data["bottombar_tabs"])){
+							if ($data['menu_type']!='sidemenu' && isset($data["bottombar_tabs"]) && !empty($data["bottombar_tabs"])) {
 								$options['bottomBar']['navigators'] = array();
-								foreach($data['bottombar_tabs'] as $key=> $navigator){
-									if ($key == 1000){
+								foreach($data['bottombar_tabs'] as $key=> $navigator) {
+									if ($key == 1000) {
 										continue;
 									}
 									unset($navigator['bottombar_tabs_type']);
@@ -723,8 +731,8 @@ class AdminPage extends AppbearCore {
 									unset($navigator['bottombar_tabs_name']);
 									unset($navigator['side_menu_tab_icon']);
 
-									// if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
-									//     switch($navigator['main']){
+									// if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
+									//     switch($navigator['main']) {
 									//         case 'MainPage.home':
 									//             $navigator['title'] = __('Home', 'textdomain' );
 									//         break;
@@ -740,10 +748,10 @@ class AdminPage extends AppbearCore {
 									//     }
 									// }
 
-									switch($navigator['type']){
+									switch($navigator['type']) {
 										case 'NavigationType.category':
 											$category = get_category_by_slug($navigator['category']);
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
 												$navigator['title'] = $category->name;
 											}
 											unset($navigator['main']);
@@ -753,15 +761,15 @@ class AdminPage extends AppbearCore {
 											$post = get_post($navigator['page']);
 											if (!$post)
 												break;
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
 												$navigator['title'] = $post->post_title;
 											}
 											$navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
 											unset($navigator['main']);
 										break;
 										case 'NavigationType.main':
-											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
-												switch($navigator['main']){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
+												switch($navigator['main']) {
 													case 'MainPage.home':
 														$navigator['title'] = __('Home', 'textdomain' );
 													break;
@@ -794,7 +802,7 @@ class AdminPage extends AppbearCore {
 								}
 							}
 
-							if (!empty($bottombar)){
+							if (!empty($bottombar)) {
 								// $options['bottomBar']['navigators'] = $bottombar;
 							}else{
 								// unset($options['bottomBar']);
@@ -807,18 +815,18 @@ class AdminPage extends AppbearCore {
 							/*
 							* tabs array
 							*/
-							if (isset($data['tabsbar_categories_tab']) && $data['tabsbar_categories_tab'] != 'false'){
+							if (isset($data['tabsbar_categories_tab']) && $data['tabsbar_categories_tab'] != 'false') {
 								$options['tabs']['tabsLayout']  = $data['tabs-tabslayout'];
 								if (isset($data['local-hompage_title']) && $data['local-hompage_title'] != 'false')
 									$options['tabs']['homeTab'] = $data['homepage-sections-title'];
 
 								$options['tabs']['tabs']    = array();
-								foreach($data['tabsbaritems'] as $key => $slide){
-									if ($key == 1000){
+								foreach($data['tabsbaritems'] as $key => $slide) {
+									if ($key == 1000) {
 										continue;
 									}
 
-									if (!isset($slide['categories'][0])){
+									if (!isset($slide['categories'][0])) {
 										continue;
 									}
 									unset($slide['tabsbaritems_type']);
@@ -830,7 +838,7 @@ class AdminPage extends AppbearCore {
 									$selected_categories = explode(',',$slide['categories'][0]);
 									$category = get_category_by_slug($selected_categories[0]);
 									$ids = $category->term_id;
-									foreach($selected_categories as $cat){
+									foreach($selected_categories as $cat) {
 										if ($selected_categories[0] == $cat)
 											continue;
 
@@ -841,7 +849,7 @@ class AdminPage extends AppbearCore {
 
 
 
-									if ($slide['customized-title'] == true && $slide['title'] != ''){
+									if ($slide['customized-title'] == true && $slide['title'] != '') {
 										$item['title']  =   $slide['title'];
 									}else{
 										$item['title'] = $category->name;
@@ -884,8 +892,8 @@ class AdminPage extends AppbearCore {
 							* Homepage array
 							*/
 							$options['homePage']['sections'] = array();
-							foreach($data['sections'] as $key => $section){
-								if ($key == 1000){
+							foreach($data['sections'] as $key => $section) {
+								if ($key == 1000) {
 									continue;
 								}
 
@@ -911,13 +919,13 @@ class AdminPage extends AppbearCore {
 								}
 
 								$item['url'] = "/wp-json/wl/v1/posts?";
-								switch($section['showposts']){
+								switch($section['showposts']) {
 									case 'categories':
 										$selected_categories = explode(',',$section['categories'][0]);
 										$category = get_category_by_slug($selected_categories[0]);
-										foreach($section['categories'] as $key => $cat){
+										foreach($section['categories'] as $key => $cat) {
 											$other = get_category_by_slug($cat);
-											if ($key == 0){
+											if ($key == 0) {
 												$category_name = $other->name;
 												$ids = $other->term_id;
 											}else{
@@ -1042,13 +1050,13 @@ class AdminPage extends AppbearCore {
 							/*
 							* adMob array
 							*/
-							if (!(!isset($data['advertisement_android_app_id_text']) || $data['advertisement_android_app_id_text'] == '') || !(!isset($data['advertisement_ios_app_id_text']) || $data['advertisement_ios_app_id_text'] == '')){
+							if (!(!isset($data['advertisement_android_app_id_text']) || $data['advertisement_android_app_id_text'] == '') || !(!isset($data['advertisement_ios_app_id_text']) || $data['advertisement_ios_app_id_text'] == '')) {
 								if (isset($data['advertisement_android_app_id_text']) && $data['advertisement_android_app_id_text'] != '')
 									$options['adMob']['androidAppId']   =  $data['advertisement_android_app_id_text'];
 								if (isset($data['advertisement_ios_app_id_text']) && $data['advertisement_ios_app_id_text'] != '')
 									$options['adMob']['iosAppId']   =  $data['advertisement_ios_app_id_text'];
 
-								if (isset($data['local-admob_banner']) && $data['local-admob_banner'] != 'false'){
+								if (isset($data['local-admob_banner']) && $data['local-admob_banner'] != 'false') {
 									$options['adMob']['banner']['androidBannerId']   =  $data['advertisement_android_banner_id_text'];
 									$options['adMob']['banner']['iosBannerId']   =  $data['advertisement_ios_banner_id_text'];
 									if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false')
@@ -1058,7 +1066,7 @@ class AdminPage extends AppbearCore {
 									if (isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false')
 										$options['adMob']['banner']['positions']['afterPost']   =  $data['advertisement_after_post_toggel'];
 								}
-								if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false'){
+								if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false') {
 									$options['adMob']['interstatial']['androidInterstatialId']   =  $data['advertisement_android_interstatial_id_text'];
 									$options['adMob']['interstatial']['iosInterstatialId']   =  $data['advertisement_ios_interstatial_id_text'];
 									if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false')
@@ -1066,7 +1074,7 @@ class AdminPage extends AppbearCore {
 									if (isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false')
 										$options['adMob']['interstatial']['positions']['beforeComment']   =  $data['advertisement_interstatial_before_comment_toggle'];
 								}
-								if (isset($data['local-advertisement_android_rewarded']) && $data['local-advertisement_android_rewarded'] != 'false'){
+								if (isset($data['local-advertisement_android_rewarded']) && $data['local-advertisement_android_rewarded'] != 'false') {
 									$options['adMob']['rewarded']['androidRewardedId']   =  $data['advertisement_android_rewarded_id_text'];
 									$options['adMob']['rewarded']['iosRewardedId']   =  $data['advertisement_android_rewarded_ios_text'];
 									if (isset($data['advertisement_rewarded_before_post_toggle']) && $data['advertisement_rewarded_before_post_toggle'] != 'false')
@@ -1105,7 +1113,7 @@ class AdminPage extends AppbearCore {
 							$options['styling']['ThemeMode.light']['errorColor']    =    $data['styling-thememode_light-errorcolor'];
 							$options['styling']['ThemeMode.light']['successColor']    =   $data['styling-thememode_light-successcolor'];
 
-							if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false'){
+							if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false') {
 								$options['styling']['ThemeMode.dark']['scaffoldBackgroundColor']    =   $data['styling-thememode_dark-scaffoldbackgroundcolor'];
 								$options['styling']['ThemeMode.dark']['primary']    =   $data['styling-thememode_dark-primary'];
 								$options['styling']['ThemeMode.dark']['secondary']    =   $data['styling-thememode_dark-secondary'];
@@ -1138,7 +1146,7 @@ class AdminPage extends AppbearCore {
 							$options['settingsPage']['darkMode']    =   $data['settingspage-darkmode'];
 							if (isset($data['settingspage-rateapp']) && $data['settingspage-rateapp'] != 'false')
 							$options['settingsPage']['rateApp']    =   $data['settingspage-rateapp'];
-							if (isset($data['local-settingspage-share']) && $data['local-settingspage-share'] != 'false'){
+							if (isset($data['local-settingspage-share']) && $data['local-settingspage-share'] != 'false') {
 								$options['settingsPage']['shareApp']['title']    =   $data['settingspage-shareapp-title'];
 								$options['settingsPage']['shareApp']['image']    =   $data['settingspage-shareapp-image'];
 								$options['settingsPage']['shareApp']['android']    =   $data['settingspage-shareapp-android'];
@@ -1153,7 +1161,7 @@ class AdminPage extends AppbearCore {
 							if (isset($data['settingspage-contactus']) && $data['settingspage-contactus'] != 'false')
 								$options['settingsPage']['contactUs']    =   "/wp-json/wl/v1/contact-us";
 
-							if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false'){
+							if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false') {
 								$options['settingsPage']['aboutApp']["aboutLogoLight"] = $data['settingspage-aboutapp-logo-light'];
 								if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false')
 									$options['settingsPage']['aboutApp']["aboutLogoDark"] = $data['settingspage-aboutapp-logo-dark'];
@@ -1162,7 +1170,7 @@ class AdminPage extends AppbearCore {
 								$options['settingsPage']['shortCodes'] = "true";
 
 
-								if (isset($data['settingspage-devmode']) && $data['settingspage-devmode'] != 'false'){
+								if (isset($data['settingspage-devmode']) && $data['settingspage-devmode'] != 'false') {
 									// $options['settingsPage']['devMode']["time"] = $data['settingspage-devmode-time'];
 									$options['settingsPage']['devMode']["time"] = "6000";
 									// $options['settingsPage']['devMode']["count"] = $data['settingspage-devmode-count'];
@@ -1173,18 +1181,18 @@ class AdminPage extends AppbearCore {
 								}
 							}
 
-							if (isset($data['settingspage-demos']) && $data['settingspage-demos'] != 'false'){
+							if (isset($data['settingspage-demos']) && $data['settingspage-demos'] != 'false') {
 								$options['settingsPage']['demos'] = "true";
 							}
 
-							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-heading'] != ''){
+							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-heading'] != '') {
 								$options['typography']['headline1']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline2']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline3']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline4']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline5']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 							}
-							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-body'] != ''){
+							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-body'] != '') {
 								$options['typography']['subtitle1']["fontFamily"]   = $data['section-typography-fontfamily-body'];
 								$options['typography']['subtitle2']["fontFamily"]   = $data['section-typography-fontfamily-body'];
 								$options['typography']['bodyText1']["fontFamily"]   = $data['section-typography-fontfamily-body'];
@@ -1192,120 +1200,120 @@ class AdminPage extends AppbearCore {
 							}
 
 
-							if (isset($data['section-typography-font-h1-size']) && $data['section-typography-font-h1-size'] != ''){
+							if (isset($data['section-typography-font-h1-size']) && $data['section-typography-font-h1-size'] != '') {
 								$options['typography']['headline1']["fontSize"]     = $data['section-typography-font-h1-size'];
 							}
-							if (isset($data['section-typography-font-h1-line_height']) && $data['section-typography-font-h1-line_height'] != ''){
+							if (isset($data['section-typography-font-h1-line_height']) && $data['section-typography-font-h1-line_height'] != '') {
 								$options['typography']['headline1']["lineHeight"]   = $data['section-typography-font-h1-line_height'];
 							}
-							if (isset($data['section-typography-font-h1-weight']) && $data['section-typography-font-h1-weight'] != ''){
+							if (isset($data['section-typography-font-h1-weight']) && $data['section-typography-font-h1-weight'] != '') {
 								$options['typography']['headline1']["fontWeight"]   = $data['section-typography-font-h1-weight'];
 							}
-							if (isset($data['section-typography-font-h1-transform']) && $data['section-typography-font-h1-transform'] != ''){
+							if (isset($data['section-typography-font-h1-transform']) && $data['section-typography-font-h1-transform'] != '') {
 								$options['typography']['headline1']["fontTransform"]    = $data['section-typography-font-h1-transform'];
 							}
 
-							if (isset($data['section-typography-font-h2-size']) && $data['section-typography-font-h2-size'] != ''){
+							if (isset($data['section-typography-font-h2-size']) && $data['section-typography-font-h2-size'] != '') {
 								$options['typography']['headline2']["fontSize"]     = $data['section-typography-font-h2-size'];
 							}
-							if (isset($data['section-typography-font-h2-line_height']) && $data['section-typography-font-h2-line_height'] != ''){
+							if (isset($data['section-typography-font-h2-line_height']) && $data['section-typography-font-h2-line_height'] != '') {
 								$options['typography']['headline2']["lineHeight"]   = $data['section-typography-font-h2-line_height'];
 							}
-							if (isset($data['section-typography-font-h2-weight']) && $data['section-typography-font-h2-weight'] != ''){
+							if (isset($data['section-typography-font-h2-weight']) && $data['section-typography-font-h2-weight'] != '') {
 								$options['typography']['headline2']["fontWeight"]   = $data['section-typography-font-h2-weight'];
 							}
-							if (isset($data['section-typography-font-h2-transform']) && $data['section-typography-font-h2-transform'] != ''){
+							if (isset($data['section-typography-font-h2-transform']) && $data['section-typography-font-h2-transform'] != '') {
 								$options['typography']['headline2']["fontTransform"]    = $data['section-typography-font-h2-transform'];
 							}
 
-						if (isset($data['section-typography-font-h3-size']) && $data['section-typography-font-h3-size'] != ''){
+						if (isset($data['section-typography-font-h3-size']) && $data['section-typography-font-h3-size'] != '') {
 							$options['typography']['headline3']["fontSize"]     = $data['section-typography-font-h3-size'];
 						}
-						if (isset($data['section-typography-font-h3-line_height']) && $data['section-typography-font-h3-line_height'] != ''){
+						if (isset($data['section-typography-font-h3-line_height']) && $data['section-typography-font-h3-line_height'] != '') {
 							$options['typography']['headline3']["lineHeight"]   = $data['section-typography-font-h3-line_height'];
 						}
-						if (isset($data['section-typography-font-h3-weight']) && $data['section-typography-font-h3-weight'] != ''){
+						if (isset($data['section-typography-font-h3-weight']) && $data['section-typography-font-h3-weight'] != '') {
 							$options['typography']['headline3']["fontWeight"]   = $data['section-typography-font-h3-weight'];
 						}
-						if (isset($data['section-typography-font-h3-transform']) && $data['section-typography-font-h3-transform'] != ''){
+						if (isset($data['section-typography-font-h3-transform']) && $data['section-typography-font-h3-transform'] != '') {
 							$options['typography']['headline3']["fontTransform"]    = $data['section-typography-font-h3-transform'];
 						}
 
-						if (isset($data['section-typography-font-h4-size']) && $data['section-typography-font-h4-size'] != ''){
+						if (isset($data['section-typography-font-h4-size']) && $data['section-typography-font-h4-size'] != '') {
 							$options['typography']['headline4']["fontSize"]     = $data['section-typography-font-h4-size'];
 						}
-						if (isset($data['section-typography-font-h4-line_height']) && $data['section-typography-font-h4-line_height'] != ''){
+						if (isset($data['section-typography-font-h4-line_height']) && $data['section-typography-font-h4-line_height'] != '') {
 							$options['typography']['headline4']["lineHeight"]   = $data['section-typography-font-h4-line_height'];
 						}
-						if (isset($data['section-typography-font-h4-weight']) && $data['section-typography-font-h4-weight'] != ''){
+						if (isset($data['section-typography-font-h4-weight']) && $data['section-typography-font-h4-weight'] != '') {
 							$options['typography']['headline4']["fontWeight"]   = $data['section-typography-font-h4-weight'];
 						}
-						if (isset($data['section-typography-font-h4-transform']) && $data['section-typography-font-h4-transform'] != ''){
+						if (isset($data['section-typography-font-h4-transform']) && $data['section-typography-font-h4-transform'] != '') {
 							$options['typography']['headline4']["fontTransform"]    = $data['section-typography-font-h4-transform'];
 						}
 
-						if (isset($data['section-typography-font-h5-size']) && $data['section-typography-font-h5-size'] != ''){
+						if (isset($data['section-typography-font-h5-size']) && $data['section-typography-font-h5-size'] != '') {
 							$options['typography']['headline5']["fontSize"]     = $data['section-typography-font-h5-size'];
 						}
-						if (isset($data['section-typography-font-h5-line_height']) && $data['section-typography-font-h5-line_height'] != ''){
+						if (isset($data['section-typography-font-h5-line_height']) && $data['section-typography-font-h5-line_height'] != '') {
 							$options['typography']['headline5']["lineHeight"]   = $data['section-typography-font-h5-line_height'];
 						}
-						if (isset($data['section-typography-font-h5-weight']) && $data['section-typography-font-h5-weight'] != ''){
+						if (isset($data['section-typography-font-h5-weight']) && $data['section-typography-font-h5-weight'] != '') {
 							$options['typography']['headline5']["fontWeight"]   = $data['section-typography-font-h5-weight'];
 						}
-						if (isset($data['section-typography-font-h5-transform']) && $data['section-typography-font-h5-transform'] != ''){
+						if (isset($data['section-typography-font-h5-transform']) && $data['section-typography-font-h5-transform'] != '') {
 							$options['typography']['headline5']["fontTransform"]    = $data['section-typography-font-h5-transform'];
 						}
 
-						if (isset($data['section-typography-font-subtitle1-size']) && $data['section-typography-font-subtitle1-size'] != ''){
+						if (isset($data['section-typography-font-subtitle1-size']) && $data['section-typography-font-subtitle1-size'] != '') {
 							$options['typography']['subtitle1']["fontSize"]     = $data['section-typography-font-subtitle1-size'];
 						}
-						if (isset($data['section-typography-font-subtitle1-line_height']) && $data['section-typography-font-subtitle1-line_height'] != ''){
+						if (isset($data['section-typography-font-subtitle1-line_height']) && $data['section-typography-font-subtitle1-line_height'] != '') {
 							$options['typography']['subtitle1']["lineHeight"]   = $data['section-typography-font-subtitle1-line_height'];
 						}
-						if (isset($data['section-typography-font-subtitle1-weight']) && $data['section-typography-font-subtitle1-weight'] != ''){
+						if (isset($data['section-typography-font-subtitle1-weight']) && $data['section-typography-font-subtitle1-weight'] != '') {
 							$options['typography']['subtitle1']["fontWeight"]   = $data['section-typography-font-subtitle1-weight'];
 						}
-						if (isset($data['section-typography-font-subtitle1-transform']) && $data['section-typography-font-subtitle1-transform'] != ''){
+						if (isset($data['section-typography-font-subtitle1-transform']) && $data['section-typography-font-subtitle1-transform'] != '') {
 							$options['typography']['subtitle1']["fontTransform"]    = $data['section-typography-font-subtitle1-transform'];
 						}
 
-						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-size'] != ''){
+						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-size'] != '') {
 							$options['typography']['subtitle2']["fontSize"]     = $data['section-typography-font-subtitle2-size'];
 						}
-						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-line_height'] != ''){
+						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-line_height'] != '') {
 							$options['typography']['subtitle2']["lineHeight"]   = $data['section-typography-font-subtitle2-line_height'];
 						}
-						if (isset($data['section-typography-font-subtitle2-weight']) && $data['section-typography-font-subtitle2-weight'] != ''){
+						if (isset($data['section-typography-font-subtitle2-weight']) && $data['section-typography-font-subtitle2-weight'] != '') {
 							$options['typography']['subtitle2']["fontWeight"]   = $data['section-typography-font-subtitle2-weight'];
 						}
-						if (isset($data['section-typography-font-subtitle2-transform']) && $data['section-typography-font-subtitle2-transform'] != ''){
+						if (isset($data['section-typography-font-subtitle2-transform']) && $data['section-typography-font-subtitle2-transform'] != '') {
 							$options['typography']['subtitle2']["fontTransform"]    = $data['section-typography-font-subtitle2-transform'];
 						}
 
-						if (isset($data['section-typography-font-body1-size']) && $data['section-typography-font-body1-size'] != ''){
+						if (isset($data['section-typography-font-body1-size']) && $data['section-typography-font-body1-size'] != '') {
 							$options['typography']['bodyText1']["fontSize"]     = $data['section-typography-font-body1-size'];
 						}
-						if (isset($data['section-typography-font-body1-line_height']) && $data['section-typography-font-body1-line_height'] != ''){
+						if (isset($data['section-typography-font-body1-line_height']) && $data['section-typography-font-body1-line_height'] != '') {
 							$options['typography']['bodyText1']["lineHeight"]   = $data['section-typography-font-body1-line_height'];
 						}
-						if (isset($data['section-typography-font-body1-weight']) && $data['section-typography-font-body1-weight'] != ''){
+						if (isset($data['section-typography-font-body1-weight']) && $data['section-typography-font-body1-weight'] != '') {
 							$options['typography']['bodyText1']["fontWeight"]   = $data['section-typography-font-body1-weight'];
 						}
-						if (isset($data['section-typography-font-body1-transform']) && $data['section-typography-font-body1-transform'] != ''){
+						if (isset($data['section-typography-font-body1-transform']) && $data['section-typography-font-body1-transform'] != '') {
 							$options['typography']['bodyText1']["fontTransform"]    = $data['section-typography-font-body1-transform'];
 						}
 
-						if (isset($data['section-typography-font-body2-size']) && $data['section-typography-font-body2-size'] != ''){
+						if (isset($data['section-typography-font-body2-size']) && $data['section-typography-font-body2-size'] != '') {
 							$options['typography']['bodyText2']["fontSize"]     = $data['section-typography-font-body2-size'];
 						}
-						if (isset($data['section-typography-font-body2-line_height']) && $data['section-typography-font-body2-line_height'] != ''){
+						if (isset($data['section-typography-font-body2-line_height']) && $data['section-typography-font-body2-line_height'] != '') {
 							$options['typography']['bodyText2']["lineHeight"]   = $data['section-typography-font-body2-line_height'];
 						}
-						if (isset($data['section-typography-font-body2-weight']) && $data['section-typography-font-body2-weight'] != ''){
+						if (isset($data['section-typography-font-body2-weight']) && $data['section-typography-font-body2-weight'] != '') {
 							$options['typography']['bodyText2']["fontWeight"]   = $data['section-typography-font-body2-weight'];
 						}
-						if (isset($data['section-typography-font-body2-transform']) && $data['section-typography-font-body2-transform'] != ''){
+						if (isset($data['section-typography-font-body2-transform']) && $data['section-typography-font-body2-transform'] != '') {
 							$options['typography']['bodyText2']["fontTransform"]    = $data['section-typography-font-body2-transform'];
 						}
 
@@ -1335,7 +1343,7 @@ class AdminPage extends AppbearCore {
 							update_option( 'appbear_default_lang', $options['lang'] );
 							$new_version                                                                = 1;
 							$old_version                                                                = get_option( 'appbear_version' );
-							if (isset($old_version)){
+							if (isset($old_version)) {
 								$new_version = $old_version + 1;
 							}
 							update_option( 'appbear_version', $new_version );
@@ -1344,7 +1352,7 @@ class AdminPage extends AppbearCore {
 
 							$license_status = get_option( 'appbear_license_status' );
 							$license_key = get_option( 'appbear_license_key' );
-							if ($license_status == "valid"){
+							if ($license_status == "valid") {
 
 								$url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license='.$license_key;
 
@@ -1359,27 +1367,26 @@ class AdminPage extends AppbearCore {
 								curl_close($ch);
 							}
 					break;
-				}
+        }
 
 				$base_url = get_home_url();
         $len = strlen('/');
 
-				if (substr($string, -$len) === '/'){
+				if (substr($string, -$len) === '/') {
 					$base_url = substr($base_url, 0, -1);
         }
 
 				$licensedBase = str_replace("http://","",str_replace("http://","",$base_url));
 				$licensedBase = str_replace("https://","",str_replace("https://","",$licensedBase));
 
-
-				if ($change_language == false){
+				if ($change_language === false) {
 					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase);
-				}else{
+        }
+        else {
 					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase . '&change_translations=true');
 				}
 
 				update_option( 'appbear_license_status', $license_data->license );
-
 
 				add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', '.__('Your settings has been updated successfully'), 'updated' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );

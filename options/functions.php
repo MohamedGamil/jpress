@@ -592,3 +592,69 @@ function appbear_deeplink_custom_js()
 		}
 	');
 }
+
+
+/**
+ * Simple debugging helper functions
+ *
+ * @since      0.0.2
+ * @package    App_Bear
+ * @subpackage App_Bear/options
+ * @author     Mohamed Gamil
+ */
+
+if (!function_exists('dd')):
+
+function dd() {
+  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+
+  $args = func_get_args();
+  $newLine = "\n\n------------------%s------------------\n\n\n";
+
+  @ob_get_clean();
+  @ob_flush();
+
+  echo "<body style='background: #1c1c1c; color: #FFF'><pre>\n";
+
+  foreach($args as $k => $arg) {
+      $kk = $k + 1;
+      $argTitle = " Argument #{$kk} ";
+      print('<span style="color:#888">');
+      printf($newLine, $argTitle);
+      print('</span>');
+
+      switch(TRUE) {
+          case (is_bool($arg)) === TRUE:
+          case (is_string($arg)) === TRUE:
+          case (is_numeric($arg)) === TRUE:
+              var_dump($arg);
+              break;
+          default:
+              print_r($arg);
+              break;
+      }
+
+      if ($k !== (count($args) -1)) {
+          $sep = sprintf($newLine, str_repeat('-', strlen($argTitle)));
+          print('<span style="color:#555">');
+          print( str_replace('-', '_', $sep) . "\n" );
+          print('</span>');
+      }
+  }
+
+  echo "\n</pre></body>";
+  die;
+}
+
+endif;
+
+if (!function_exists('ddjson')):
+
+function ddjson() {
+  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+  $args = func_get_args();
+  echo json_encode($args);
+  die;
+}
+
+endif;

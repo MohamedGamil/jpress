@@ -94,12 +94,13 @@ class Appbear {
     */
     public static function get( $appbear_id ){
         $appbear_id = trim( $appbear_id );
+
         if( empty( $appbear_id ) ){
-            return null;
+          return null;
         }
 
         if( Functions::is_empty( self::$appbears ) || ! isset( self::$appbears[$appbear_id] ) ){
-            return null;
+          return null;
         }
 
         return self::$appbears[$appbear_id];
