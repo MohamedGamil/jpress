@@ -28,7 +28,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Run initialization routine
    */
   public function run() {
@@ -38,7 +38,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Initialize AppBear options
    */
   public function init() {
@@ -56,7 +56,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Plugin updater
    */
   public function appbear_plugin_updater() {
@@ -83,7 +83,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Register license option
    */
   public function appbear_register_option() {
@@ -91,7 +91,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Sanitize license key
    */
   public function appbear_sanitize_license( $new ) {
@@ -106,7 +106,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Initialize options for valid license state
    */
   protected function _initOptions() {
@@ -178,7 +178,7 @@ class AppBear_Options
         'modern' => __( 'Time Ago Format', 'textdomain' ),
       )
     ));
-    
+
     $section_header_1->add_field(array(
       'name' => __( 'Switch between dark & light', 'textdomain' ),
       'id' => 'switch_theme_mode',
@@ -265,7 +265,7 @@ class AppBear_Options
     $section_header_1->close_mixed_field();
 
     $section_header_1->open_mixed_field(array('name' => __('Main Color', 'textdomain' ),'desc'      => __( 'The main color of the application.', 'textdomain' ),));
-    
+
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-primary',
       //'name'      => __( 'Light Mode', 'textdomain' ),
@@ -286,7 +286,7 @@ class AppBear_Options
     $section_header_1->close_mixed_field();
 
     $section_header_1->open_mixed_field(array('name' => __('Primary text Color', 'textdomain' ),'desc'      => __( 'All text color on application such as post titles, sections titles, posts content, pages content and settings page.', 'textdomain' ),));
-    
+
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-secondary',
       //'name'      => __( 'Light Mode', 'textdomain' ),
@@ -307,7 +307,7 @@ class AppBear_Options
     $section_header_1->close_mixed_field();
 
     $section_header_1->open_mixed_field(array('name' => __('Meta text color', 'textdomain' ),'desc'      => __( 'All small text color on application such as meta posts.', 'textdomain' ),));
-    
+
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-secondaryvariant',
       //'name'      => __( 'Light Mode', 'textdomain' ),
@@ -2131,14 +2131,14 @@ class AppBear_Options
         'toggle' => true,
       )
     ));
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'Android App ID', 'textdomain' ),
         'id'      => 'advertisement_android_app_id_text',
         'type'  => 'text',
     ));
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'iOS App ID', 'textdomain' ),
@@ -2147,7 +2147,7 @@ class AppBear_Options
     ));
 
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
-    
+
     $admob->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
       'id' => 'local-admob_banner',
@@ -2158,7 +2158,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'Android ID', 'textdomain' ),
@@ -2168,7 +2168,7 @@ class AppBear_Options
           'show_if' => array('local-admob_banner', '=', 'true')
         ),
       ));
-    
+
       $admob->add_field(
       array(
         'name'    => __( 'iOS ID', 'textdomain' ),
@@ -2178,11 +2178,11 @@ class AppBear_Options
           'show_if' => array('local-admob_banner', '=', 'true')
         ),
       ));
-    
+
       $admob->close_mixed_field();
-    
+
     $admob->open_mixed_field(array('name' => __('Admob Banner Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-admob_banner', '=', 'true')),));
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'Above the Top Bar', 'textdomain' ),
@@ -2194,7 +2194,7 @@ class AppBear_Options
           'off_value' => 'false'
         )
     ));
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'Above the Bottom Bar', 'textdomain' ),
@@ -2207,7 +2207,7 @@ class AppBear_Options
       )
     ));
 
-    
+
     $admob->add_field(
       array(
         'name'    => __( 'At the end of the Posts', 'textdomain' ),
@@ -2219,11 +2219,11 @@ class AppBear_Options
           'off_value' => 'false'
         )
     ));
-    
+
     $admob->close_mixed_field();
 
     $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
-      
+
     $admob->add_field(
 				array(
 					'name'    => __( 'Enable', 'textdomain' ),
@@ -2236,7 +2236,7 @@ class AppBear_Options
 					)
     ));
 
-      
+
     $admob->add_field(
       array(
         'name'    => __( 'Android ID', 'textdomain' ),
@@ -2246,7 +2246,7 @@ class AppBear_Options
           'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
         ),
     ));
-      
+
     $admob->add_field(
       array(
         'name'    => __( 'iOS ID', 'textdomain' ),
@@ -2256,9 +2256,9 @@ class AppBear_Options
           'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
         ),
     ));
-      
+
     $admob->close_mixed_field();
-      
+
     $admob->open_mixed_field(array('name' => __('Admob Interstatial Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_admob_interstatial', '=', 'true')),));
 
     $admob->add_field(
@@ -2343,11 +2343,11 @@ class AppBear_Options
 			// 	));
 			$admob->close_mixed_field();
 
-    
+
     $settings->close_tab_item('advertisement');
-    
+
     $settings->open_tab_item('user_guide');
-    
+
     $section_header_2 = $settings->add_section( array(
 			'name' => __( 'User Guide Slides', 'textdomain' ),
 			'id' => 'local-section_userguide_slides',
@@ -2356,7 +2356,7 @@ class AppBear_Options
 				'toggle' => true,
 			)
 		));
-    
+
     $section_header_2->add_field(array(
 			'name' => __( 'Enabled', 'textdomain' ),
 			'id' => 'onboarding',
@@ -2367,7 +2367,7 @@ class AppBear_Options
 				'off_value' => 'false'
 			)
 		));
-    
+
     $slides = $section_header_2->add_group( array(
 			'name' => __('User Guide Slides', 'textdomain'),
 			'id' => 'onboardmodels',
@@ -2391,20 +2391,20 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '3-of-6',
 		));
-    
+
     $slides->add_field(array(
 			'id' => 'subTitle',
 			'name' => __('SubTitle', 'textdomain'),
 			'type' => 'text',
 			'grid' => '3-of-6'
 		));
-    
+
     $slides->add_field(array(
 			'id' => 'image',
 			'name' => __( 'Image', 'textdomain' ),
 			'type' => 'file',
 		));
-    
+
     $settings->close_tab_item('user_guide');
 
 		$settings->open_tab_item('typography');
@@ -2665,11 +2665,11 @@ class AppBear_Options
         'default' => '',
         'items' => AppbearItems::text_transform(),
       ));
-    
+
     $font->close_mixed_field();
-    
+
     $font->open_mixed_field(array('name' => __('Subtitle 2', 'textdomain' ),'desc' => __( 'Example: Bottom Bar and Homepage tabs Text')));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-subtitle2-size',
       'name' => __( 'Font Size',   'textdomain' ),
@@ -2677,7 +2677,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_size(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-subtitle2-line_height',
       'name' => __( 'Line Height',   'textdomain' ),
@@ -2685,7 +2685,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::line_height(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-subtitle2-weight',
       'name' => __( 'Font Weight',   'textdomain' ),
@@ -2693,7 +2693,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_weight(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-subtitle2-transform',
       'name' => __( 'Capitalization',   'textdomain' ),
@@ -2701,11 +2701,11 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::text_transform(),
     ));
-    
+
     $font->close_mixed_field();
-    
+
     $font->open_mixed_field(array('name' => __('Body 1', 'textdomain' ),'desc' => __( 'Example: Page Titles')));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body1-size',
       'name' => __( 'Font Size',   'textdomain' ),
@@ -2713,7 +2713,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_size(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body1-line_height',
       'name' => __( 'Line Height',   'textdomain' ),
@@ -2721,7 +2721,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::line_height(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body1-weight',
       'name' => __( 'Font Weight',   'textdomain' ),
@@ -2729,7 +2729,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_weight(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body1-transform',
       'name' => __( 'Capitalization',   'textdomain' ),
@@ -2737,11 +2737,11 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::text_transform(),
     ));
-    
+
     $font->close_mixed_field();
-    
+
     $font->open_mixed_field(array('name' => __('Body 2', 'textdomain' )));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body2-size',
       'name' => __( 'Font Size',   'textdomain' ),
@@ -2749,7 +2749,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_size(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body2-line_height',
       'name' => __( 'Line Height',   'textdomain' ),
@@ -2757,7 +2757,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::line_height(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body2-weight',
       'name' => __( 'Font Weight',   'textdomain' ),
@@ -2765,7 +2765,7 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::font_weight(),
     ));
-    
+
     $font->add_field( array(
       'id' => 'section-typography-font-body2-transform',
       'name' => __( 'Capitalization',   'textdomain' ),
@@ -2773,29 +2773,29 @@ class AppBear_Options
       'default' => '',
       'items' => AppbearItems::text_transform(),
     ));
-    
+
     $font->close_mixed_field();
-  
+
 		$settings->close_tab_item('typography');
 
     $settings->open_tab_item('settings');
-    
+
     $settings->open_mixed_field(array('name' => __('Styling', 'textdomain' ),));
-    
+
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_light-settingBackgroundColor',
 			'name'      => __( 'Background Color', 'textdomain' ),
 			'type'      => 'colorpicker',
 			'default'   => '#0088ff',
     ) );
-    
+
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_light-settingTextColor',
 			'name'      => __( 'Text Color', 'textdomain' ),
 			'type'      => 'colorpicker',
 			'default'   => '#0088ff',
     ) );
-    
+
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_dark-settingBackgroundColor',
 			'name'      => __( 'Background Color (Dark Mode)', 'textdomain' ),
@@ -2805,7 +2805,7 @@ class AppBear_Options
 				'show_if' => array('switch_theme_mode', '=', 'true'),
 			),
     ) );
-    
+
 		$settings->add_field(array(
 			'id'        => 'styling-themeMode_dark-settingTextColor',
 			'name'      => __( 'Text Color (Dark Mode)', 'textdomain' ),
@@ -2815,7 +2815,7 @@ class AppBear_Options
 				'show_if' => array('switch_theme_mode', '=', 'true'),
 			),
     ) );
-    
+
     $settings->close_mixed_field();
 
 			$settings->add_field(array(
@@ -2896,11 +2896,11 @@ class AppBear_Options
           'id'      => 'settingspage-shareApp-ios',
           'type'  => 'text'
       ));
-          
+
       $settings->close_mixed_field();
-      
+
       $settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
-      
+
       $settings->add_field(array(
         'name' => __( 'Enabled', 'textdomain' ),
         'id' => 'local-settingspage-aboutus',
@@ -2941,7 +2941,7 @@ class AppBear_Options
       ));
 
 			$settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
-      
+
       $settings->add_field(array(
         'name' => __( 'Enabled', 'textdomain' ),
         'id' => 'settingspage-contactus',
@@ -2980,14 +2980,14 @@ class AppBear_Options
       'desc'    => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
     ));
     $settings->open_mixed_field(array('name' => __('About Info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
-    
+
     $settings->add_field(array(
       'name' => __('Logo (Light)', 'textdomain' ),
       'id' => 'settingspage-aboutapp-logo-light',
       'type' => 'file',
       'default' => APPBEAR_URL .'img/jannah-logo-light.png',
     ));
-    
+
     $settings->add_field(array(
       'name' => __('Logo (Dark)', 'textdomain' ),
       'id' => 'settingspage-aboutapp-logo-dark',
@@ -3044,7 +3044,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-      
+
     // $settings->add_field(array(
     // 	'name' => __( 'count', 'textdomain' ),
     // 	'id' => 'settingspage-devmode-count',
@@ -3131,7 +3131,7 @@ class AppBear_Options
 				'toggle' => true,
 			)
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Back',
 			'default' => "Back",
@@ -3139,7 +3139,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'SKIP',
 			'default' => "SKIP",
@@ -3147,7 +3147,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Done',
 			'default' => "Done",
@@ -3155,7 +3155,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Contact Us',
 			'default' => "Contact Us",
@@ -3163,7 +3163,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Receiving updates\nfrom server...',
 			'default' => "Receiving updates\n from server...",
@@ -3171,7 +3171,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Base URL',
 			'default' => "Base URL",
@@ -3179,7 +3179,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Change Base Url',
 			'default' => "Change Base Url",
@@ -3187,7 +3187,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.',
 			'default' => "Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.",
@@ -3195,7 +3195,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Url should not be empty.',
 			'default' => "Url should not be empty.",
@@ -3203,7 +3203,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'This Url is already set.',
 			'default' => "This Url is already set.",
@@ -3211,7 +3211,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => "Let's talk",
 			'default' => "Let's talk",
@@ -3219,7 +3219,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.',
 			'default' => "Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.",
@@ -3227,7 +3227,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Your Name',
 			'default' => "Your Name",
@@ -3235,7 +3235,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Your Email',
 			'default' => "Your Email",
@@ -3243,7 +3243,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Your Message',
 			'default' => "Your Message",
@@ -3251,7 +3251,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Send',
 			'default' => "Send",
@@ -3259,7 +3259,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Settings',
 			'default' => "Settings",
@@ -3267,7 +3267,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'About Us',
 			'default' => "About Us",
@@ -3275,7 +3275,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Layout',
 			'default' => "Layout",
@@ -3283,7 +3283,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Text Size',
 			'default' => "Text Size",
@@ -3291,7 +3291,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Aa',
 			'default' => "Aa",
@@ -3299,7 +3299,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Dark Mode',
 			'default' => "Dark Mode",
@@ -3307,7 +3307,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Rate this app',
 			'default' => "Rate this app",
@@ -3315,7 +3315,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Share the app',
 			'default' => "Share the app",
@@ -3323,7 +3323,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Privacy policy',
 			'default' => "Privacy policy",
@@ -3331,7 +3331,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Terms and Conditions',
 			'default' => "Terms and Conditions",
@@ -3339,7 +3339,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Powered by',
 			'default' => "Powered by",
@@ -3347,7 +3347,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Logout',
 			'default' => "Logout",
@@ -3355,7 +3355,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'RELATED POSTS',
 			'default' => "RELATED POSTS",
@@ -3363,7 +3363,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'LEAVE A COMMENT',
 			'default' => "LEAVE A COMMENT",
@@ -3371,7 +3371,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'COMMENTS',
 			'default' => "COMMENTS",
@@ -3379,7 +3379,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Reply',
 			'default' => "Reply",
@@ -3387,7 +3387,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Reply to',
 			'default' => "Reply to",
@@ -3395,7 +3395,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'By',
 			'default' => "By",
@@ -3403,7 +3403,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Cancel',
 			'default' => "Cancel",
@@ -3411,7 +3411,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Submit',
 			'default' => "Submit",
@@ -3419,7 +3419,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Comment',
 			'default' => "Comment",
@@ -3427,7 +3427,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Name',
 			'default' => "Name",
@@ -3435,7 +3435,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Post Comment',
 			'default' => "Post Comment",
@@ -3443,7 +3443,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Post Reply',
 			'default' => "Post Reply",
@@ -3451,7 +3451,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => "Let's go",
 			'default' => "Let's go",
@@ -3459,7 +3459,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Favorites Yet',
 			'default' => "No Favorites Yet",
@@ -3467,7 +3467,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Posts Found',
 			'default' => "No Posts Found",
@@ -3475,7 +3475,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => ' must not be empty',
 			'default' => " must not be empty",
@@ -3483,7 +3483,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Loading more...',
 			'default' => "Loading more...",
@@ -3491,7 +3491,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Load more',
 			'default' => "Load more",
@@ -3499,7 +3499,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Something went wrong',
 			'default' => "Something went wrong",
@@ -3507,7 +3507,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Search',
 			'default' => "Search",
@@ -3515,7 +3515,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No more items',
 			'default' => "No more items",
@@ -3523,7 +3523,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Removed from favourites',
 			'default' => "Removed from favourites",
@@ -3531,7 +3531,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Added to favourites',
 			'default' => "Added to favourites",
@@ -3539,7 +3539,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Type to search',
 			'default' => "Type to search",
@@ -3547,7 +3547,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Version ',
 			'default' => "Version ",
@@ -3555,7 +3555,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Your app version is up to date ',
 			'default' => "Your app version is up to date ",
@@ -3563,7 +3563,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Update the latest version ',
 			'default' => "Update the latest version ",
@@ -3571,7 +3571,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Continue clicking to activate development mode',
 			'default' => "Continue clicking to activate development mode",
@@ -3579,7 +3579,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'About app',
 			'default' => "About app",
@@ -3587,7 +3587,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Taps left',
 			'default' => "Taps left",
@@ -3595,7 +3595,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Development Mode is active',
 			'default' => "Development Mode is active",
@@ -3603,7 +3603,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Results',
 			'default' => "No Result",
@@ -3611,7 +3611,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Sections',
 			'default' => "Please add home sections from admin panel",
@@ -3619,7 +3619,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Main Page',
 			'default' => "At least one main page must be added from admin panel",
@@ -3627,7 +3627,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Boards',
 			'default' => "No boarding slides",
@@ -3642,7 +3642,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'Retry',
 			'default' => "Retry",
@@ -3650,7 +3650,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
 			'name' => 'No Internet Connection!',
 			'default' => "No Internet Connection!",
@@ -3658,7 +3658,7 @@ class AppBear_Options
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
-    
+
     $translations_section->add_field(array(
       'name' => 'Please check your internet connection and try again',
       'default' => "Please check your internet connection and try again",
@@ -3706,7 +3706,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '6-of-6',
     ));
-    
+
     $translations_section->add_field(array(
       'name' => 'Confirm Reset Title',
       'default' => "Confirm Reset Title",
@@ -3714,7 +3714,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '6-of-6',
     ));
-    
+
     $translations_section->add_field(array(
       'name' => 'Confirm Reset Message',
       'default' => "Confirm Reset Message",
@@ -3730,7 +3730,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '6-of-6',
     ));
-    
+
     $translations_section->add_field(array(
       'name' => 'Reset',
       'default' => "Reset",
@@ -3738,7 +3738,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '6-of-6',
     ));
-    
+
     $translations_section->add_field(array(
       'name' => 'Custom Demo',
       'default' => "Custom Demo",
@@ -3813,13 +3813,13 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Initialize options for no or invalid license state
    */
   protected function _noLicenseInit() {
 		add_action( 'init', array( $this, 'appbear_plugin_updater' ) );
     add_action( 'admin_init', array( $this, 'appbear_register_option' ) );
-    
+
 		$activation_args = array(
 			'id' => 'appbear-settings',
 			'title' => 'appBear',
@@ -3861,7 +3861,7 @@ class AppBear_Options
   }
 
 
-  /* 
+  /*
    * Get license key
    */
   private function _getLicenseKey() {
