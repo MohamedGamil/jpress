@@ -568,6 +568,8 @@ class AdminPage extends AppbearCore {
             $translations['noBoards']   = $data['translate-noboards'];
             $translations['errorPageTitle']   = $data['translate-errorpagetitle'];
             $translations['retry']   = $data['translate-retry'];
+
+            // FIXME: Should be converted to camelcase.
             $translations['noInternet']   = $data['translate-nointernet'];
             $translations['checkInternet']   = $data['translate-checkinternet'];
             $translations['noComments']   = $data['translate-nocomments'];
@@ -577,8 +579,11 @@ class AdminPage extends AppbearCore {
             $translations['chooseYourDemo']   = $data['translate-chooseyourdemo'];
             $translations['confirmResetTitle']   = $data['translate-confirmresettitle'];
             $translations['confirmResetMessage']   = $data['translate-confirmresetmessage'];
+
             $translations['yes']   = $data['translate-yes'];
             $translations['reset']   = $data['translate-reset'];
+
+            // FIXME: Should be converted to camelcase.
             $translations['customDemo']   = $data['translate-customdemo'];
             $translations['customDemoTitle']   = $data['translate-customdemotitle'];
             $translations['customDemoBody']   = $data['translate-customdemobody'];
@@ -586,6 +591,7 @@ class AdminPage extends AppbearCore {
             $translations['confirmCustomDemoMessage']   = $data['translate-confirmcustomdemomessage'];
             $translations['getOur']   = $data['translate-getour'];
             $translations['appBear']   = $data['translate-appbear'];
+
             $translations['plugin']   = $data['translate-plugin'];
             $translations['next']   = $data['translate-next'];
             $translations = str_replace("\\","",$translations);
@@ -594,6 +600,7 @@ class AdminPage extends AppbearCore {
             $change_language = true;
           break;
 
+          // FIXME: Settings may require a specific logic to handle updates.
 					case 'appbear-settings':
 						/***************************************************************
 						 * Parsing the configuration to be read in mobile application
