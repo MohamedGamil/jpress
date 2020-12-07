@@ -8,7 +8,7 @@ class AdminPage extends AppbearCore {
 
 	public function __construct( $args = array() ){
 
-		if( ! is_array( $args ) || Functions::is_empty( $args ) || empty( $args['id'] ) ){
+		if ( ! is_array( $args ) || Functions::is_empty( $args ) || empty( $args['id'] ) ){
 			return;
 		}
 
@@ -40,10 +40,10 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function set_object_id( $object_id = 0 ){
-		if( $object_id ){
+		if ( $object_id ){
 			$this->object_id = $object_id;
 		}
-		if( $this->object_id ){
+		if ( $this->object_id ){
 			return $this->object_id;
 		}
 		$this->object_id = $this->id;
@@ -86,8 +86,8 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function add_admin_page(){
-		if( $this->args['parent'] === false ){
-			if($this->args['menu_side_title']){
+		if ( $this->args['parent'] === false ){
+			if ($this->args['menu_side_title']){
 				add_menu_page( $this->args['title'], $this->args['menu_title'], $this->args['capability'], $this->args['id'], array( $this, 'build_admin_page' ), $this->args['icon'], $this->args['position'] );
 				add_submenu_page( $this->args['id'], $this->args['title'], $this->args['menu_side_title'], $this->args['capability'], $this->args['id'], array( $this, 'build_admin_page' ) );
 			}else{
@@ -119,12 +119,12 @@ class AdminPage extends AppbearCore {
 
 		//Check for settings notice
 		$settings_error = get_settings_errors( $this->settings_notice_key() );
-		if( $settings_error ){
+		if ( $settings_error ){
 			settings_errors( $this->settings_notice_key() );
 		}
 
 		$display .= "<div class='wrap appbear-wrap-admin-page'>";
-		if( ! empty( $this->args['title'] ) && empty( $this->args['header'] ) ){
+		if ( ! empty( $this->args['title'] ) && empty( $this->args['header'] ) ){
 			$display .= "<h1 class='appbear-admin-page-title'>";
 			$display .= "<i class='appbear-icon appbear-icon-cog'></i>";
 			$display .= esc_html( get_admin_page_title() );
@@ -152,13 +152,13 @@ class AdminPage extends AppbearCore {
 		$form .= wp_referer_field( false );
 		$form .= "<input type='hidden' name='appbear_id' value='{$this->object_id}'>";
 		$form .= $this->build_appbear( $this->get_object_id(), false );
-		if( empty( $this->args['header'] ) ){
+		if ( empty( $this->args['header'] ) ){
 			$form .= $this->get_form_buttons( $args );
 		}
 		$form .= "</form>";
 		$form .= $args['insert_after'];
 
-		if( ! $echo ){
+		if ( ! $echo ){
 			return $form;
 		}
 		echo $form;
@@ -185,10 +185,10 @@ class AdminPage extends AppbearCore {
 		$value = '';
 		$field_id = $this->get_field_id( $field_id );
 		$options = get_option( $this->id );
-		if( isset( $options[$field_id] ) ){
+		if ( isset( $options[$field_id] ) ){
 			$value = $options[$field_id];
 		}
-		if( Functions::is_empty( $value ) ){
+		if ( Functions::is_empty( $value ) ){
 			return $default;
 		}
 		return $value;
@@ -201,7 +201,7 @@ class AdminPage extends AppbearCore {
 	*/
 	public function get_options(){
 		$options = get_option( $this->id );
-		if( is_array( $options ) && ! empty( $options ) ){
+		if ( is_array( $options ) && ! empty( $options ) ){
 			return $options;
 		}
 		return array();
@@ -213,7 +213,7 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function admin_action_appbear_process_form(){
-		if( $this->can_save_form() ){
+		if ( $this->can_save_form() ){
 			$this->save_fields( $this->get_object_id(), $_POST );
 		}
 
@@ -234,13 +234,13 @@ class AdminPage extends AppbearCore {
 		$args = $this->arg( 'form_options' );
 		$save_button = $args['save_button_name'];
 
-		if( ! isset( $_POST[$save_button] ) && ! isset( $_POST['appbear-reset'] ) && ! isset( $_POST['appbear-import'] ) ){
+		if ( ! isset( $_POST[$save_button] ) && ! isset( $_POST['appbear-reset'] ) && ! isset( $_POST['appbear-import'] ) ){
 			return false;
 		}
 
 		//Verify nonce
-		if( isset( $_POST[$this->get_nonce()] ) ){
-			if( ! wp_verify_nonce( $_POST[$this->get_nonce()], $this->get_nonce() ) ){
+		if ( isset( $_POST[$this->get_nonce()] ) ){
+			if ( ! wp_verify_nonce( $_POST[$this->get_nonce()], $this->get_nonce() ) ){
 				return false;
 			}
 		} else{
@@ -256,7 +256,7 @@ class AdminPage extends AppbearCore {
 	{
 		foreach($array as $key=>$val)
 		{
-			if(count($val)==0 || $val == '' || $val == null || $val == 'false')
+			if (count($val)==0 || $val == '' || $val == null || $val == 'false')
 			{
 				return false;
 			}
@@ -275,14 +275,14 @@ class AdminPage extends AppbearCore {
 	*/
 	public function redefine_options($k){
 		$remove =   array('_wp_http_referer','appbear_id','appbear_nonce_appbear-settings','appbear-save','appbear-import-field');
-		if(is_array($k)){
+		if (is_array($k)){
 			foreach($k as $key => $value){
-				if(in_array($key, $remove) || strpos($key, 'local-') !== false){
+				if (in_array($key, $remove) || strpos($key, 'local-') !== false){
 					return false;
 				}
 			}
 		}else{
-			if(in_array($k, $remove) || strpos($k, 'local-') !== false){
+			if (in_array($k, $remove) || strpos($k, 'local-') !== false){
 				return false;
 			}
 		}
@@ -295,36 +295,37 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ){
-		if( $this->id != $object_id ){
+		if ( $this->id != $object_id ){
 			return;
 		}
-
 
 		//Para evitar error cuando se está guardando campos automáticamente al activar un plugin o tema
 		//$appbear->save_fields(0, array( 'display_message_on_save' => false ));
-		if( isset( $data['display_message_on_save'] ) && $data['display_message_on_save'] == false ){
+		if ( isset( $data['display_message_on_save'] ) && $data['display_message_on_save'] == false ){
 			return;
-		}
+    }
+
 		$type = 'updated';
-		$this->update_message = $this->arg( 'saved_message' );
-		if( $this->reset ){
+    $this->update_message = $this->arg( 'saved_message' );
+
+		if ( $this->reset ){
 			$this->update_message = $this->arg( 'reset_message' );
-		}
-		if( $this->import ){
-			$this->update_message = $this->arg( 'import_message' );
-			if( $this->update_error ){
+    }
+
+		if ( $this->import ){
+      $this->update_message = $this->arg( 'import_message' );
+
+			if ( $this->update_error ){
 				$this->update_message = $this->arg( 'import_message_error' );
 				$type = 'error';
 			}
 		}
 
 		//Add settings error
-		if( isset( $data['appbear_license_key'] ) ) {
+		if ( isset( $data['appbear_license_key'] ) ) {
+      update_option( 'appbear_license_key', $data['appbear_license_key'] );
 
-			update_option( 'appbear_license_key', $data['appbear_license_key'] );
-			// retrieve the license from the database
 			$license = trim( get_option( 'appbear_license_key' ) );
-
 
 			// data to send in our API request
 			$api_params = array(
@@ -413,7 +414,7 @@ class AdminPage extends AppbearCore {
 			}
 		}else{
 
-			if( empty( $data ) ){
+			if ( empty( $data ) ){
 				return -1;
 			}
 
@@ -440,7 +441,7 @@ class AdminPage extends AppbearCore {
 
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-			if( $license_data->license != 'valid' ) {
+			if ( $license_data->license != 'valid' ) {
 				update_option( 'appbear_license_status', $license_data->error );
 
 				switch( $license_data->error ) {
@@ -595,12 +596,12 @@ class AdminPage extends AppbearCore {
 						/***************************************************************
 						 * Parsing the configuration to be read in mobile application
 						 ***************************************************************/
-							if(is_rtl())
+							if (is_rtl())
 								$options['rtl'] = is_rtl();
 							$options['themeMode'] = str_replace('_','.',$data['thememode']);
-							if(isset($data['statusbarwhiteforeground']) && $data['statusbarwhiteforeground'] != 'false')
+							if (isset($data['statusbarwhiteforeground']) && $data['statusbarwhiteforeground'] != 'false')
 								$options['statusBarWhiteForeground'] = $data['statusbarwhiteforeground'];
-							// if(isset($data['rtl']) && $data['rtl'] != 'false')
+							// if (isset($data['rtl']) && $data['rtl'] != 'false')
 							//     $options['rtl'] = $data['rtl'];
 							if ( is_rtl() ) {
 								$options['rtl'] = 'true';
@@ -608,10 +609,10 @@ class AdminPage extends AppbearCore {
 							/*
 							* onboardmodels array
 							*/
-							if(isset($data['onboarding']) && $data['onboarding'] != 'false'){
+							if (isset($data['onboarding']) && $data['onboarding'] != 'false'){
 								$options['onboardModels'] = array();
 								foreach($data['onboardmodels'] as $key => $slide){
-									if($key == 1000){
+									if ($key == 1000){
 										continue;
 									}
 									unset($slide['onboardmodels_type']);
@@ -627,7 +628,7 @@ class AdminPage extends AppbearCore {
 							* logo array
 							*/
 							$options['logo']['light']   =   $data['logo-light'];
-							if(isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false')
+							if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false')
 								$options['logo']['dark']    =   $data['logo-dark'];
 
 							/*
@@ -635,19 +636,19 @@ class AdminPage extends AppbearCore {
 							*/
 							$options['appBar']['layout']    =   'AppBarLayout.header2';
 							$options['appBar']['position']    =   $data['appbar-position'];
-							if(isset($data["topbar_search_button"]) && $data["topbar_search_button"] != 'false'){
+							if (isset($data["topbar_search_button"]) && $data["topbar_search_button"] != 'false'){
 								$options['appBar']['searchIcon']    =   $data['appbar-searchicon'];
 							}
 
 							/*
 							* sideNavbar array
 							*/
-							if(isset($data["menu_type"]) && $data["menu_type"] != 'bottombar'){
+							if (isset($data["menu_type"]) && $data["menu_type"] != 'bottombar'){
 								$options['sideNavbar']['icon']    =   $data['sidenavbar-icon'];
 								$options['sideNavbar']['navigators'] = array();
 								foreach($data['navigators'] as $key=> $navigator){
 
-									if($key == 1000){
+									if ($key == 1000){
 										continue;
 									}
 									unset($navigator['navigators_type']);
@@ -657,31 +658,31 @@ class AdminPage extends AppbearCore {
 									switch($navigator['type']){
 										case 'NavigationType.category':
 											$category = get_category_by_slug($navigator['category']);
-											if(empty($category)){
+											if (empty($category)){
 											   break;
 											}
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $category->name;
 											}
 											unset($navigator['main']);
 											$navigator['url']   = '/wp-json/wl/v1/posts?category_id='.$category->term_id;
 
-											if(!isset($category->term_id) || $category->term_id == '')
+											if (!isset($category->term_id) || $category->term_id == '')
 												break;
 										break;
 										case 'NavigationType.page':
 											$post = get_post($navigator['page']);
 
-											if(!$post)
+											if (!$post)
 												break;
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $post->post_title;
 											}
 											$navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
 											unset($navigator['main']);
 										break;
 										case 'NavigationType.main':
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												switch($navigator['main']){
 													case 'MainPage.home':
 														$navigator['title'] = __('Home', 'textdomain' );
@@ -711,10 +712,10 @@ class AdminPage extends AppbearCore {
 							/*
 							* bottomBar array
 							*/
-							if($data['menu_type']!='sidemenu' && isset($data["bottombar_tabs"]) && !empty($data["bottombar_tabs"])){
+							if ($data['menu_type']!='sidemenu' && isset($data["bottombar_tabs"]) && !empty($data["bottombar_tabs"])){
 								$options['bottomBar']['navigators'] = array();
 								foreach($data['bottombar_tabs'] as $key=> $navigator){
-									if($key == 1000){
+									if ($key == 1000){
 										continue;
 									}
 									unset($navigator['bottombar_tabs_type']);
@@ -722,7 +723,7 @@ class AdminPage extends AppbearCore {
 									unset($navigator['bottombar_tabs_name']);
 									unset($navigator['side_menu_tab_icon']);
 
-									// if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+									// if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 									//     switch($navigator['main']){
 									//         case 'MainPage.home':
 									//             $navigator['title'] = __('Home', 'textdomain' );
@@ -742,7 +743,7 @@ class AdminPage extends AppbearCore {
 									switch($navigator['type']){
 										case 'NavigationType.category':
 											$category = get_category_by_slug($navigator['category']);
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $category->name;
 											}
 											unset($navigator['main']);
@@ -750,16 +751,16 @@ class AdminPage extends AppbearCore {
 										break;
 										case 'NavigationType.page':
 											$post = get_post($navigator['page']);
-											if(!$post)
+											if (!$post)
 												break;
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												$navigator['title'] = $post->post_title;
 											}
 											$navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
 											unset($navigator['main']);
 										break;
 										case 'NavigationType.main':
-											if(!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
+											if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false'){
 												switch($navigator['main']){
 													case 'MainPage.home':
 														$navigator['title'] = __('Home', 'textdomain' );
@@ -793,12 +794,12 @@ class AdminPage extends AppbearCore {
 								}
 							}
 
-							if(!empty($bottombar)){
+							if (!empty($bottombar)){
 								// $options['bottomBar']['navigators'] = $bottombar;
 							}else{
 								// unset($options['bottomBar']);
 							}
-							if($data['menu_type']=='sidemenu' )
+							if ($data['menu_type']=='sidemenu' )
 							{
 								unset($options['bottomBar']);
 							}
@@ -806,18 +807,18 @@ class AdminPage extends AppbearCore {
 							/*
 							* tabs array
 							*/
-							if(isset($data['tabsbar_categories_tab']) && $data['tabsbar_categories_tab'] != 'false'){
+							if (isset($data['tabsbar_categories_tab']) && $data['tabsbar_categories_tab'] != 'false'){
 								$options['tabs']['tabsLayout']  = $data['tabs-tabslayout'];
-								if(isset($data['local-hompage_title']) && $data['local-hompage_title'] != 'false')
+								if (isset($data['local-hompage_title']) && $data['local-hompage_title'] != 'false')
 									$options['tabs']['homeTab'] = $data['homepage-sections-title'];
 
 								$options['tabs']['tabs']    = array();
 								foreach($data['tabsbaritems'] as $key => $slide){
-									if($key == 1000){
+									if ($key == 1000){
 										continue;
 									}
 
-									if(!isset($slide['categories'][0])){
+									if (!isset($slide['categories'][0])){
 										continue;
 									}
 									unset($slide['tabsbaritems_type']);
@@ -830,7 +831,7 @@ class AdminPage extends AppbearCore {
 									$category = get_category_by_slug($selected_categories[0]);
 									$ids = $category->term_id;
 									foreach($selected_categories as $cat){
-										if($selected_categories[0] == $cat)
+										if ($selected_categories[0] == $cat)
 											continue;
 
 										$other = get_category_by_slug($cat);
@@ -840,7 +841,7 @@ class AdminPage extends AppbearCore {
 
 
 
-									if($slide['customized-title'] == true && $slide['title'] != ''){
+									if ($slide['customized-title'] == true && $slide['title'] != ''){
 										$item['title']  =   $slide['title'];
 									}else{
 										$item['title'] = $category->name;
@@ -849,27 +850,27 @@ class AdminPage extends AppbearCore {
 								}
 
 
-								if(isset($data["local-tabs-firstfeatured"]) && $data["local-tabs-firstfeatured"] != 'false')
+								if (isset($data["local-tabs-firstfeatured"]) && $data["local-tabs-firstfeatured"] != 'false')
 									$options['tabs']['firstFeatured']  =   $data['tabs-firstfeatured'];
-								if(isset($data["local-tabs-seperator"]) && $data["local-tabs-seperator"] != 'false')
+								if (isset($data["local-tabs-seperator"]) && $data["local-tabs-seperator"] != 'false')
 									$item_options['seperator']  =   $data['tabs-seperator'];
-								if(isset($data["tabs-options-sort"]) && $data["tabs-options-sort"] != 'false')
+								if (isset($data["tabs-options-sort"]) && $data["tabs-options-sort"] != 'false')
 									$item_options["sort"]  =   $data['tabs-options-sort'];
-								if(isset($data["tabs-options-count"]) && $tabs["tabs-options-count"] != 'false')
+								if (isset($data["tabs-options-count"]) && $tabs["tabs-options-count"] != 'false')
 									$item_options["count"] =   $data['tabs-options-count'];
-								if(isset($data["tabs-options-category"]) && $data["tabs-options-category"] != 'false')
+								if (isset($data["tabs-options-category"]) && $data["tabs-options-category"] != 'false')
 									$item_options["category"]  =   $data["tabs-options-category"];
-								if(isset($data["tabs-options-author"]) && $data["tabs-options-author"] != 'false')
+								if (isset($data["tabs-options-author"]) && $data["tabs-options-author"] != 'false')
 									$item_options["author"]  =   $data["tabs-options-author"];
-								if(isset($data["tabs-options-readtime"]) && $data["tabs-options-readtime"] != 'false')
+								if (isset($data["tabs-options-readtime"]) && $data["tabs-options-readtime"] != 'false')
 									$item_options["readTime"]  =   $data["tabs-options-readtime"];
-								if(isset($data["tabs-options-date"]) && $data["tabs-options-date"] != 'false')
+								if (isset($data["tabs-options-date"]) && $data["tabs-options-date"] != 'false')
 									$item_options["date"]  =   $data["tabs-options-date"];
-								if(isset($data["tabs-options-share"]) && $data["tabs-options-share"] != 'false')
+								if (isset($data["tabs-options-share"]) && $data["tabs-options-share"] != 'false')
 									$item_options["share"] =   $data["tabs-options-share"];
-								if(isset($data["tabs-options-save"]) && $data["tabs-options-save"] != 'false')
+								if (isset($data["tabs-options-save"]) && $data["tabs-options-save"] != 'false')
 									$item_options["save"]  =   $data["tabs-options-save"];
-								if(isset($data["tabs-options-tags"]) && $data["tabs-options-tags"] != 'false')
+								if (isset($data["tabs-options-tags"]) && $data["tabs-options-tags"] != 'false')
 									$item_options["tags"]  =   $data["tabs-options-tags"];
 
 								$options['tabs']['postLayout']    =   $data['tabs-postlayout'];
@@ -884,7 +885,7 @@ class AdminPage extends AppbearCore {
 							*/
 							$options['homePage']['sections'] = array();
 							foreach($data['sections'] as $key => $section){
-								if($key == 1000){
+								if ($key == 1000){
 									continue;
 								}
 
@@ -893,14 +894,14 @@ class AdminPage extends AppbearCore {
 
 								$item   =   $item_options   =   array();
 
-								if($section['local-hompage_title'] == true && $section['homepage-sections-title'] != '')
+								if ($section['local-hompage_title'] == true && $section['homepage-sections-title'] != '')
 									$item['hometab']     =   $data['homepage-sections-title'];
 
-								if(isset($section["local-section_title"]) && $section["local-section_title"] != 'false')
+								if (isset($section["local-section_title"]) && $section["local-section_title"] != 'false')
 								{
 									$item['title']  =   $section['title'];
 
-									if(isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off"))
+									if (isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off"))
 									{
 										$item['seeMore']  =   array(
 											'name'  =>  $item['title'],
@@ -916,7 +917,7 @@ class AdminPage extends AppbearCore {
 										$category = get_category_by_slug($selected_categories[0]);
 										foreach($section['categories'] as $key => $cat){
 											$other = get_category_by_slug($cat);
-											if($key == 0){
+											if ($key == 0){
 												$category_name = $other->name;
 												$ids = $other->term_id;
 											}else{
@@ -930,15 +931,15 @@ class AdminPage extends AppbearCore {
 										$item['url'] .= "&tags=".$section['tags'];
 									break;
 								}
-								if(isset($section['local-enable_exclude_posts']) && $section['local-exclude_posts'] != '')
+								if (isset($section['local-enable_exclude_posts']) && $section['local-exclude_posts'] != '')
 									$item['url'] .= "&exclude=".$section['local-exclude_posts'];
-								if(isset($section['local-enable_offset_posts']) && $section['local-offset_posts'] != '')
+								if (isset($section['local-enable_offset_posts']) && $section['local-offset_posts'] != '')
 									$item['url'] .= "&offset=".$section['local-offset_posts'];
-								if(isset($section['local-sort']))
+								if (isset($section['local-sort']))
 									$item['url'] .= "&sort=".$section['local-sort'];
 
 
-								if(isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off"))
+								if (isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off"))
 								{
 									$item['seeMore']  =   array(
 										'name'  =>  $item['title'],
@@ -946,32 +947,32 @@ class AdminPage extends AppbearCore {
 									);
 								}
 
-								if(isset($section['local-count']))
+								if (isset($section['local-count']))
 									$item['url'] .= "&count=".$section['local-count'];
 
 
 								$item['postLayout']     =   $section['postlayout'];
-								if(isset($section["local-firstfeatured"]) && $section["local-firstfeatured"] != 'false')
+								if (isset($section["local-firstfeatured"]) && $section["local-firstfeatured"] != 'false')
 									$item['firstFeatured']  =   $section['firstfeatured'];
-								if(isset($section["separator"]) && $section["separator"] != 'false')
+								if (isset($section["separator"]) && $section["separator"] != 'false')
 									$item['separator']  =   $section['separator'];
-								if(isset($section["options-sort"]) && $section["options-sort"] != 'false')
+								if (isset($section["options-sort"]) && $section["options-sort"] != 'false')
 									$item_options["sort"]  =   $section['options-sort'];
-								if(isset($section["options-count"]) && $section["options-count"] != 'false')
+								if (isset($section["options-count"]) && $section["options-count"] != 'false')
 									$item_options["count"] =   $section['options-count'];
-								if(isset($section["options-category"]) && $section["options-category"] != 'false')
+								if (isset($section["options-category"]) && $section["options-category"] != 'false')
 									$item_options["category"]  =   $section["options-category"];
-								if(isset($section["options-author"]) && $section["options-author"] != 'false')
+								if (isset($section["options-author"]) && $section["options-author"] != 'false')
 									$item_options["author"]  =   $section["options-author"];
-								if(isset($section["options-readtime"]) && $section["options-readtime"] != 'false')
+								if (isset($section["options-readtime"]) && $section["options-readtime"] != 'false')
 									$item_options["readTime"]  =   $section["options-readtime"];
-								if(isset($section["options-date"]) && $section["options-date"] != 'false')
+								if (isset($section["options-date"]) && $section["options-date"] != 'false')
 									$item_options["date"]  =   $section["options-date"];
-								if(isset($section["options-share"]) && $section["options-share"] != 'false')
+								if (isset($section["options-share"]) && $section["options-share"] != 'false')
 									$item_options["share"] =   $section["options-share"];
-								if(isset($section["options-save"]) && $section["options-save"] != 'false')
+								if (isset($section["options-save"]) && $section["options-save"] != 'false')
 									$item_options["save"]  =   $section["options-save"];
-								if(isset($section["options-tags"]) && $section["options-tags"] != 'false')
+								if (isset($section["options-tags"]) && $section["options-tags"] != 'false')
 									$item_options["tags"]  =   $section["options-tags"];
 
 								$item['options']    =   $item_options;
@@ -988,89 +989,89 @@ class AdminPage extends AppbearCore {
 
 							$options['archives']['category']['postLayout']    =   $data['archives-category-postlayout'];
 							$options['archives']['category']['options']['count']    =   $data['local-archives-category-count'];
-							if(isset($data['archives-category-options-category']) && $data['archives-category-options-category'] != 'false')
+							if (isset($data['archives-category-options-category']) && $data['archives-category-options-category'] != 'false')
 								$options['archives']['category']['options']['category']    =   $data['archives-category-options-category'];
-							if(isset($data['archives-category-options-author']) && $data['archives-category-options-author'] != 'false')
+							if (isset($data['archives-category-options-author']) && $data['archives-category-options-author'] != 'false')
 								$options['archives']['category']['options']['author']    =   $data['archives-category-options-author'];
-							if(isset($data['archives-category-options-tags']) && $data['archives-category-options-tags'] != 'false')
+							if (isset($data['archives-category-options-tags']) && $data['archives-category-options-tags'] != 'false')
 								$options['archives']['category']['options']['tags']    =   $data['archives-category-options-tags'];
-							if(isset($data['archives-category-options-readtime']) && $data['archives-category-options-readtime'] != 'false')
+							if (isset($data['archives-category-options-readtime']) && $data['archives-category-options-readtime'] != 'false')
 								$options['archives']['category']['options']['readTime']    =   $data['archives-category-options-readtime'];
-							if(isset($data['archives-category-options-date']) && $data['archives-category-options-date'] != 'false')
+							if (isset($data['archives-category-options-date']) && $data['archives-category-options-date'] != 'false')
 								$options['archives']['category']['options']['date']    =   $data['archives-category-options-date'];
-							if(isset($data['archives-category-options-save']) && $data['archives-category-options-save'] != 'false')
+							if (isset($data['archives-category-options-save']) && $data['archives-category-options-save'] != 'false')
 								$options['archives']['category']['options']['save']    =   $data['archives-category-options-save'];
-							if(isset($data['archives-category-options-share']) && $data['archives-category-options-share'] != 'false')
+							if (isset($data['archives-category-options-share']) && $data['archives-category-options-share'] != 'false')
 								$options['archives']['category']['options']['share']    =   $data['archives-category-options-share'];
 
 							$options['archives']['search']['postLayout']    =   $data['archives-search-postlayout'];
 							$options['archives']['search']['options']['count']    =   $data['local-archives-search-count'];
-							if(isset($data['archives-search-options-category']) && $data['archives-search-options-category'] != 'false')
+							if (isset($data['archives-search-options-category']) && $data['archives-search-options-category'] != 'false')
 								$options['archives']['search']['options']['category']    =   $data['archives-search-options-category'];
-							if(isset($data['archives-search-options-author']) && $data['archives-search-options-author'] != 'false')
+							if (isset($data['archives-search-options-author']) && $data['archives-search-options-author'] != 'false')
 								$options['archives']['search']['options']['author']    =   $data['archives-search-options-author'];
-							if(isset($data['archives-search-options-tags']) && $data['archives-search-options-tags'] != 'false')
+							if (isset($data['archives-search-options-tags']) && $data['archives-search-options-tags'] != 'false')
 								$options['archives']['search']['options']['tags']    =   $data['archives-search-options-tags'];
-							if(isset($data['archives-search-options-readtime']) && $data['archives-search-options-readtime'] != 'false')
+							if (isset($data['archives-search-options-readtime']) && $data['archives-search-options-readtime'] != 'false')
 								$options['archives']['search']['options']['readTime']    =   $data['archives-search-options-readtime'];
-							if(isset($data['archives-search-options-date']) && $data['archives-search-options-date'] != 'false')
+							if (isset($data['archives-search-options-date']) && $data['archives-search-options-date'] != 'false')
 								$options['archives']['search']['options']['date']    =   $data['archives-search-options-date'];
-							if(isset($data['archives-search-options-save']) && $data['archives-search-options-save'] != 'false')
+							if (isset($data['archives-search-options-save']) && $data['archives-search-options-save'] != 'false')
 								$options['archives']['search']['options']['save']    =   $data['archives-search-options-save'];
-							if(isset($data['archives-search-options-share']) && $data['archives-search-options-share'] != 'false')
+							if (isset($data['archives-search-options-share']) && $data['archives-search-options-share'] != 'false')
 								$options['archives']['search']['options']['share']    =   $data['archives-search-options-share'];
 
 							$options['archives']['favorites']['postLayout']    =   $data['archives-favorites-postlayout'];
 							$options['archives']['favorites']['url']    =   '/wp-json/wl/v1/posts?&ids=';
 							$options['archives']['favorites']['options']['count']    =   $data['local-archives-favorites-count'];
-							if(isset($data['archives-favorites-options-category']) && $data['archives-favorites-options-category'] != 'false')
+							if (isset($data['archives-favorites-options-category']) && $data['archives-favorites-options-category'] != 'false')
 								$options['archives']['favorites']['options']['category']    =   $data['archives-favorites-options-category'];
-							if(isset($data['archives-favorites-options-author']) && $data['archives-favorites-options-author'] != 'false')
+							if (isset($data['archives-favorites-options-author']) && $data['archives-favorites-options-author'] != 'false')
 								$options['archives']['favorites']['options']['author']    =   $data['archives-favorites-options-author'];
-							if(isset($data['archives-favorites-options-tags']) && $data['archives-favorites-options-tags'] != 'false')
+							if (isset($data['archives-favorites-options-tags']) && $data['archives-favorites-options-tags'] != 'false')
 								$options['archives']['favorites']['options']['tags']    =   $data['archives-favorites-options-tags'];
-							if(isset($data['archives-favorites-options-readtime']) && $data['archives-favorites-options-readtime'] != 'false')
+							if (isset($data['archives-favorites-options-readtime']) && $data['archives-favorites-options-readtime'] != 'false')
 								$options['archives']['favorites']['options']['readTime']    =   $data['archives-favorites-options-readtime'];
-							if(isset($data['archives-favorites-options-date']) && $data['archives-favorites-options-date'] != 'false')
+							if (isset($data['archives-favorites-options-date']) && $data['archives-favorites-options-date'] != 'false')
 								$options['archives']['favorites']['options']['date']    =   $data['archives-favorites-options-date'];
-							if(isset($data['archives-favorites-options-save']) && $data['archives-favorites-options-save'] != 'false')
+							if (isset($data['archives-favorites-options-save']) && $data['archives-favorites-options-save'] != 'false')
 								$options['archives']['favorites']['options']['save']    =   $data['archives-favorites-options-save'];
-							if(isset($data['archives-favorites-options-share']) && $data['archives-favorites-options-share'] != 'false')
+							if (isset($data['archives-favorites-options-share']) && $data['archives-favorites-options-share'] != 'false')
 								$options['archives']['favorites']['options']['share']    =   $data['archives-favorites-options-share'];
 
 							/*
 							* adMob array
 							*/
-							if(!(!isset($data['advertisement_android_app_id_text']) || $data['advertisement_android_app_id_text'] == '') || !(!isset($data['advertisement_ios_app_id_text']) || $data['advertisement_ios_app_id_text'] == '')){
-								if(isset($data['advertisement_android_app_id_text']) && $data['advertisement_android_app_id_text'] != '')
+							if (!(!isset($data['advertisement_android_app_id_text']) || $data['advertisement_android_app_id_text'] == '') || !(!isset($data['advertisement_ios_app_id_text']) || $data['advertisement_ios_app_id_text'] == '')){
+								if (isset($data['advertisement_android_app_id_text']) && $data['advertisement_android_app_id_text'] != '')
 									$options['adMob']['androidAppId']   =  $data['advertisement_android_app_id_text'];
-								if(isset($data['advertisement_ios_app_id_text']) && $data['advertisement_ios_app_id_text'] != '')
+								if (isset($data['advertisement_ios_app_id_text']) && $data['advertisement_ios_app_id_text'] != '')
 									$options['adMob']['iosAppId']   =  $data['advertisement_ios_app_id_text'];
 
-								if(isset($data['local-admob_banner']) && $data['local-admob_banner'] != 'false'){
+								if (isset($data['local-admob_banner']) && $data['local-admob_banner'] != 'false'){
 									$options['adMob']['banner']['androidBannerId']   =  $data['advertisement_android_banner_id_text'];
 									$options['adMob']['banner']['iosBannerId']   =  $data['advertisement_ios_banner_id_text'];
-									if(isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false')
+									if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false')
 										$options['adMob']['banner']['positions']['top']   =  $data['advertisement_top_toggle'];
-									if(isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false')
+									if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false')
 										$options['adMob']['banner']['positions']['bottom']   =  $data['advertisement_bottom_toggle'];
-									if(isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false')
+									if (isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false')
 										$options['adMob']['banner']['positions']['afterPost']   =  $data['advertisement_after_post_toggel'];
 								}
-								if(isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false'){
+								if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false'){
 									$options['adMob']['interstatial']['androidInterstatialId']   =  $data['advertisement_android_interstatial_id_text'];
 									$options['adMob']['interstatial']['iosInterstatialId']   =  $data['advertisement_ios_interstatial_id_text'];
-									if(isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false')
+									if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false')
 										$options['adMob']['interstatial']['positions']['beforePost']   =  $data['advertisement_interstatial_before_post_toggle'];
-									if(isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false')
+									if (isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false')
 										$options['adMob']['interstatial']['positions']['beforeComment']   =  $data['advertisement_interstatial_before_comment_toggle'];
 								}
-								if(isset($data['local-advertisement_android_rewarded']) && $data['local-advertisement_android_rewarded'] != 'false'){
+								if (isset($data['local-advertisement_android_rewarded']) && $data['local-advertisement_android_rewarded'] != 'false'){
 									$options['adMob']['rewarded']['androidRewardedId']   =  $data['advertisement_android_rewarded_id_text'];
 									$options['adMob']['rewarded']['iosRewardedId']   =  $data['advertisement_android_rewarded_ios_text'];
-									if(isset($data['advertisement_rewarded_before_post_toggle']) && $data['advertisement_rewarded_before_post_toggle'] != 'false')
+									if (isset($data['advertisement_rewarded_before_post_toggle']) && $data['advertisement_rewarded_before_post_toggle'] != 'false')
 										$options['adMob']['rewarded']['positions']['beforePost']   =  $data['advertisement_rewarded_before_post_toggle'];
-									if(isset($data['advertisement_rewarded_before_comment_toggle']) && $data['advertisement_rewarded_before_comment_toggle'] != 'false')
+									if (isset($data['advertisement_rewarded_before_comment_toggle']) && $data['advertisement_rewarded_before_comment_toggle'] != 'false')
 										$options['adMob']['rewarded']['positions']['beforeComment']   =  $data['advertisement_rewarded_before_comment_toggle'];
 								}
 							}
@@ -1104,7 +1105,7 @@ class AdminPage extends AppbearCore {
 							$options['styling']['ThemeMode.light']['errorColor']    =    $data['styling-thememode_light-errorcolor'];
 							$options['styling']['ThemeMode.light']['successColor']    =   $data['styling-thememode_light-successcolor'];
 
-							if(isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false'){
+							if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false'){
 								$options['styling']['ThemeMode.dark']['scaffoldBackgroundColor']    =   $data['styling-thememode_dark-scaffoldbackgroundcolor'];
 								$options['styling']['ThemeMode.dark']['primary']    =   $data['styling-thememode_dark-primary'];
 								$options['styling']['ThemeMode.dark']['secondary']    =   $data['styling-thememode_dark-secondary'];
@@ -1131,37 +1132,37 @@ class AdminPage extends AppbearCore {
 								$options['styling']['ThemeMode.dark']['successColor']    =   $data['styling-thememode_dark-successcolor'];
 							}
 
-							if(isset($data['settingspage-textsize']) && $data['settingspage-textsize'] != 'false')
+							if (isset($data['settingspage-textsize']) && $data['settingspage-textsize'] != 'false')
 							$options['settingsPage']['textSize']    =   $data['settingspage-textsize'];
-							if(isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false' && isset($data['settingspage-darkmode']) && $data['settingspage-darkmode'] != 'false')
+							if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false' && isset($data['settingspage-darkmode']) && $data['settingspage-darkmode'] != 'false')
 							$options['settingsPage']['darkMode']    =   $data['settingspage-darkmode'];
-							if(isset($data['settingspage-rateapp']) && $data['settingspage-rateapp'] != 'false')
+							if (isset($data['settingspage-rateapp']) && $data['settingspage-rateapp'] != 'false')
 							$options['settingsPage']['rateApp']    =   $data['settingspage-rateapp'];
-							if(isset($data['local-settingspage-share']) && $data['local-settingspage-share'] != 'false'){
+							if (isset($data['local-settingspage-share']) && $data['local-settingspage-share'] != 'false'){
 								$options['settingsPage']['shareApp']['title']    =   $data['settingspage-shareapp-title'];
 								$options['settingsPage']['shareApp']['image']    =   $data['settingspage-shareapp-image'];
 								$options['settingsPage']['shareApp']['android']    =   $data['settingspage-shareapp-android'];
 								$options['settingsPage']['shareApp']['ios']    =   $data['settingspage-shareapp-ios'];
 							}
-							if(isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false')
+							if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false')
 								$options['settingsPage']['aboutUs']    =   "/wp-json/wl/v1/page?id=".$data['settingspage-aboutus'];
-							if(isset($data['settingspage-privacypolicy']) && $data['settingspage-privacypolicy'] != '')
+							if (isset($data['settingspage-privacypolicy']) && $data['settingspage-privacypolicy'] != '')
 								$options['settingsPage']['privacyPolicy']    =   "/wp-json/wl/v1/page?id=".$data['settingspage-privacypolicy'];
-							if(isset($data['settingspage-termsandconditions']) && $data['settingspage-termsandconditions'] != '')
+							if (isset($data['settingspage-termsandconditions']) && $data['settingspage-termsandconditions'] != '')
 								$options['settingsPage']['termsAndConditions']    =   "/wp-json/wl/v1/page?id=".$data['settingspage-termsandconditions'];
-							if(isset($data['settingspage-contactus']) && $data['settingspage-contactus'] != 'false')
+							if (isset($data['settingspage-contactus']) && $data['settingspage-contactus'] != 'false')
 								$options['settingsPage']['contactUs']    =   "/wp-json/wl/v1/contact-us";
 
-							if(isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false'){
+							if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false'){
 								$options['settingsPage']['aboutApp']["aboutLogoLight"] = $data['settingspage-aboutapp-logo-light'];
-								if(isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false')
+								if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false')
 									$options['settingsPage']['aboutApp']["aboutLogoDark"] = $data['settingspage-aboutapp-logo-dark'];
 								$options['settingsPage']['aboutApp']["title"] = $data['settingspage-aboutapp-title'];
 								$options['settingsPage']['aboutApp']["content"] = $data['settingspage-aboutapp-content'];
 								$options['settingsPage']['shortCodes'] = "true";
 
 
-								if(isset($data['settingspage-devmode']) && $data['settingspage-devmode'] != 'false'){
+								if (isset($data['settingspage-devmode']) && $data['settingspage-devmode'] != 'false'){
 									// $options['settingsPage']['devMode']["time"] = $data['settingspage-devmode-time'];
 									$options['settingsPage']['devMode']["time"] = "6000";
 									// $options['settingsPage']['devMode']["count"] = $data['settingspage-devmode-count'];
@@ -1172,18 +1173,18 @@ class AdminPage extends AppbearCore {
 								}
 							}
 
-							if(isset($data['settingspage-demos']) && $data['settingspage-demos'] != 'false'){
+							if (isset($data['settingspage-demos']) && $data['settingspage-demos'] != 'false'){
 								$options['settingsPage']['demos'] = "true";
 							}
 
-							if(isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-heading'] != ''){
+							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-heading'] != ''){
 								$options['typography']['headline1']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline2']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline3']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline4']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 								$options['typography']['headline5']["fontFamily"]   = $data['section-typography-fontfamily-heading'];
 							}
-							if(isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-body'] != ''){
+							if (isset($data['section-typography-fontfamily-heading']) && $data['section-typography-fontfamily-body'] != ''){
 								$options['typography']['subtitle1']["fontFamily"]   = $data['section-typography-fontfamily-body'];
 								$options['typography']['subtitle2']["fontFamily"]   = $data['section-typography-fontfamily-body'];
 								$options['typography']['bodyText1']["fontFamily"]   = $data['section-typography-fontfamily-body'];
@@ -1191,120 +1192,120 @@ class AdminPage extends AppbearCore {
 							}
 
 
-							if(isset($data['section-typography-font-h1-size']) && $data['section-typography-font-h1-size'] != ''){
+							if (isset($data['section-typography-font-h1-size']) && $data['section-typography-font-h1-size'] != ''){
 								$options['typography']['headline1']["fontSize"]     = $data['section-typography-font-h1-size'];
 							}
-							if(isset($data['section-typography-font-h1-line_height']) && $data['section-typography-font-h1-line_height'] != ''){
+							if (isset($data['section-typography-font-h1-line_height']) && $data['section-typography-font-h1-line_height'] != ''){
 								$options['typography']['headline1']["lineHeight"]   = $data['section-typography-font-h1-line_height'];
 							}
-							if(isset($data['section-typography-font-h1-weight']) && $data['section-typography-font-h1-weight'] != ''){
+							if (isset($data['section-typography-font-h1-weight']) && $data['section-typography-font-h1-weight'] != ''){
 								$options['typography']['headline1']["fontWeight"]   = $data['section-typography-font-h1-weight'];
 							}
-							if(isset($data['section-typography-font-h1-transform']) && $data['section-typography-font-h1-transform'] != ''){
+							if (isset($data['section-typography-font-h1-transform']) && $data['section-typography-font-h1-transform'] != ''){
 								$options['typography']['headline1']["fontTransform"]    = $data['section-typography-font-h1-transform'];
 							}
 
-							if(isset($data['section-typography-font-h2-size']) && $data['section-typography-font-h2-size'] != ''){
+							if (isset($data['section-typography-font-h2-size']) && $data['section-typography-font-h2-size'] != ''){
 								$options['typography']['headline2']["fontSize"]     = $data['section-typography-font-h2-size'];
 							}
-							if(isset($data['section-typography-font-h2-line_height']) && $data['section-typography-font-h2-line_height'] != ''){
+							if (isset($data['section-typography-font-h2-line_height']) && $data['section-typography-font-h2-line_height'] != ''){
 								$options['typography']['headline2']["lineHeight"]   = $data['section-typography-font-h2-line_height'];
 							}
-							if(isset($data['section-typography-font-h2-weight']) && $data['section-typography-font-h2-weight'] != ''){
+							if (isset($data['section-typography-font-h2-weight']) && $data['section-typography-font-h2-weight'] != ''){
 								$options['typography']['headline2']["fontWeight"]   = $data['section-typography-font-h2-weight'];
 							}
-							if(isset($data['section-typography-font-h2-transform']) && $data['section-typography-font-h2-transform'] != ''){
+							if (isset($data['section-typography-font-h2-transform']) && $data['section-typography-font-h2-transform'] != ''){
 								$options['typography']['headline2']["fontTransform"]    = $data['section-typography-font-h2-transform'];
 							}
 
-						if(isset($data['section-typography-font-h3-size']) && $data['section-typography-font-h3-size'] != ''){
+						if (isset($data['section-typography-font-h3-size']) && $data['section-typography-font-h3-size'] != ''){
 							$options['typography']['headline3']["fontSize"]     = $data['section-typography-font-h3-size'];
 						}
-						if(isset($data['section-typography-font-h3-line_height']) && $data['section-typography-font-h3-line_height'] != ''){
+						if (isset($data['section-typography-font-h3-line_height']) && $data['section-typography-font-h3-line_height'] != ''){
 							$options['typography']['headline3']["lineHeight"]   = $data['section-typography-font-h3-line_height'];
 						}
-						if(isset($data['section-typography-font-h3-weight']) && $data['section-typography-font-h3-weight'] != ''){
+						if (isset($data['section-typography-font-h3-weight']) && $data['section-typography-font-h3-weight'] != ''){
 							$options['typography']['headline3']["fontWeight"]   = $data['section-typography-font-h3-weight'];
 						}
-						if(isset($data['section-typography-font-h3-transform']) && $data['section-typography-font-h3-transform'] != ''){
+						if (isset($data['section-typography-font-h3-transform']) && $data['section-typography-font-h3-transform'] != ''){
 							$options['typography']['headline3']["fontTransform"]    = $data['section-typography-font-h3-transform'];
 						}
 
-						if(isset($data['section-typography-font-h4-size']) && $data['section-typography-font-h4-size'] != ''){
+						if (isset($data['section-typography-font-h4-size']) && $data['section-typography-font-h4-size'] != ''){
 							$options['typography']['headline4']["fontSize"]     = $data['section-typography-font-h4-size'];
 						}
-						if(isset($data['section-typography-font-h4-line_height']) && $data['section-typography-font-h4-line_height'] != ''){
+						if (isset($data['section-typography-font-h4-line_height']) && $data['section-typography-font-h4-line_height'] != ''){
 							$options['typography']['headline4']["lineHeight"]   = $data['section-typography-font-h4-line_height'];
 						}
-						if(isset($data['section-typography-font-h4-weight']) && $data['section-typography-font-h4-weight'] != ''){
+						if (isset($data['section-typography-font-h4-weight']) && $data['section-typography-font-h4-weight'] != ''){
 							$options['typography']['headline4']["fontWeight"]   = $data['section-typography-font-h4-weight'];
 						}
-						if(isset($data['section-typography-font-h4-transform']) && $data['section-typography-font-h4-transform'] != ''){
+						if (isset($data['section-typography-font-h4-transform']) && $data['section-typography-font-h4-transform'] != ''){
 							$options['typography']['headline4']["fontTransform"]    = $data['section-typography-font-h4-transform'];
 						}
 
-						if(isset($data['section-typography-font-h5-size']) && $data['section-typography-font-h5-size'] != ''){
+						if (isset($data['section-typography-font-h5-size']) && $data['section-typography-font-h5-size'] != ''){
 							$options['typography']['headline5']["fontSize"]     = $data['section-typography-font-h5-size'];
 						}
-						if(isset($data['section-typography-font-h5-line_height']) && $data['section-typography-font-h5-line_height'] != ''){
+						if (isset($data['section-typography-font-h5-line_height']) && $data['section-typography-font-h5-line_height'] != ''){
 							$options['typography']['headline5']["lineHeight"]   = $data['section-typography-font-h5-line_height'];
 						}
-						if(isset($data['section-typography-font-h5-weight']) && $data['section-typography-font-h5-weight'] != ''){
+						if (isset($data['section-typography-font-h5-weight']) && $data['section-typography-font-h5-weight'] != ''){
 							$options['typography']['headline5']["fontWeight"]   = $data['section-typography-font-h5-weight'];
 						}
-						if(isset($data['section-typography-font-h5-transform']) && $data['section-typography-font-h5-transform'] != ''){
+						if (isset($data['section-typography-font-h5-transform']) && $data['section-typography-font-h5-transform'] != ''){
 							$options['typography']['headline5']["fontTransform"]    = $data['section-typography-font-h5-transform'];
 						}
 
-						if(isset($data['section-typography-font-subtitle1-size']) && $data['section-typography-font-subtitle1-size'] != ''){
+						if (isset($data['section-typography-font-subtitle1-size']) && $data['section-typography-font-subtitle1-size'] != ''){
 							$options['typography']['subtitle1']["fontSize"]     = $data['section-typography-font-subtitle1-size'];
 						}
-						if(isset($data['section-typography-font-subtitle1-line_height']) && $data['section-typography-font-subtitle1-line_height'] != ''){
+						if (isset($data['section-typography-font-subtitle1-line_height']) && $data['section-typography-font-subtitle1-line_height'] != ''){
 							$options['typography']['subtitle1']["lineHeight"]   = $data['section-typography-font-subtitle1-line_height'];
 						}
-						if(isset($data['section-typography-font-subtitle1-weight']) && $data['section-typography-font-subtitle1-weight'] != ''){
+						if (isset($data['section-typography-font-subtitle1-weight']) && $data['section-typography-font-subtitle1-weight'] != ''){
 							$options['typography']['subtitle1']["fontWeight"]   = $data['section-typography-font-subtitle1-weight'];
 						}
-						if(isset($data['section-typography-font-subtitle1-transform']) && $data['section-typography-font-subtitle1-transform'] != ''){
+						if (isset($data['section-typography-font-subtitle1-transform']) && $data['section-typography-font-subtitle1-transform'] != ''){
 							$options['typography']['subtitle1']["fontTransform"]    = $data['section-typography-font-subtitle1-transform'];
 						}
 
-						if(isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-size'] != ''){
+						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-size'] != ''){
 							$options['typography']['subtitle2']["fontSize"]     = $data['section-typography-font-subtitle2-size'];
 						}
-						if(isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-line_height'] != ''){
+						if (isset($data['section-typography-font-subtitle2-size']) && $data['section-typography-font-subtitle2-line_height'] != ''){
 							$options['typography']['subtitle2']["lineHeight"]   = $data['section-typography-font-subtitle2-line_height'];
 						}
-						if(isset($data['section-typography-font-subtitle2-weight']) && $data['section-typography-font-subtitle2-weight'] != ''){
+						if (isset($data['section-typography-font-subtitle2-weight']) && $data['section-typography-font-subtitle2-weight'] != ''){
 							$options['typography']['subtitle2']["fontWeight"]   = $data['section-typography-font-subtitle2-weight'];
 						}
-						if(isset($data['section-typography-font-subtitle2-transform']) && $data['section-typography-font-subtitle2-transform'] != ''){
+						if (isset($data['section-typography-font-subtitle2-transform']) && $data['section-typography-font-subtitle2-transform'] != ''){
 							$options['typography']['subtitle2']["fontTransform"]    = $data['section-typography-font-subtitle2-transform'];
 						}
 
-						if(isset($data['section-typography-font-body1-size']) && $data['section-typography-font-body1-size'] != ''){
+						if (isset($data['section-typography-font-body1-size']) && $data['section-typography-font-body1-size'] != ''){
 							$options['typography']['bodyText1']["fontSize"]     = $data['section-typography-font-body1-size'];
 						}
-						if(isset($data['section-typography-font-body1-line_height']) && $data['section-typography-font-body1-line_height'] != ''){
+						if (isset($data['section-typography-font-body1-line_height']) && $data['section-typography-font-body1-line_height'] != ''){
 							$options['typography']['bodyText1']["lineHeight"]   = $data['section-typography-font-body1-line_height'];
 						}
-						if(isset($data['section-typography-font-body1-weight']) && $data['section-typography-font-body1-weight'] != ''){
+						if (isset($data['section-typography-font-body1-weight']) && $data['section-typography-font-body1-weight'] != ''){
 							$options['typography']['bodyText1']["fontWeight"]   = $data['section-typography-font-body1-weight'];
 						}
-						if(isset($data['section-typography-font-body1-transform']) && $data['section-typography-font-body1-transform'] != ''){
+						if (isset($data['section-typography-font-body1-transform']) && $data['section-typography-font-body1-transform'] != ''){
 							$options['typography']['bodyText1']["fontTransform"]    = $data['section-typography-font-body1-transform'];
 						}
 
-						if(isset($data['section-typography-font-body2-size']) && $data['section-typography-font-body2-size'] != ''){
+						if (isset($data['section-typography-font-body2-size']) && $data['section-typography-font-body2-size'] != ''){
 							$options['typography']['bodyText2']["fontSize"]     = $data['section-typography-font-body2-size'];
 						}
-						if(isset($data['section-typography-font-body2-line_height']) && $data['section-typography-font-body2-line_height'] != ''){
+						if (isset($data['section-typography-font-body2-line_height']) && $data['section-typography-font-body2-line_height'] != ''){
 							$options['typography']['bodyText2']["lineHeight"]   = $data['section-typography-font-body2-line_height'];
 						}
-						if(isset($data['section-typography-font-body2-weight']) && $data['section-typography-font-body2-weight'] != ''){
+						if (isset($data['section-typography-font-body2-weight']) && $data['section-typography-font-body2-weight'] != ''){
 							$options['typography']['bodyText2']["fontWeight"]   = $data['section-typography-font-body2-weight'];
 						}
-						if(isset($data['section-typography-font-body2-transform']) && $data['section-typography-font-body2-transform'] != ''){
+						if (isset($data['section-typography-font-body2-transform']) && $data['section-typography-font-body2-transform'] != ''){
 							$options['typography']['bodyText2']["fontTransform"]    = $data['section-typography-font-body2-transform'];
 						}
 
@@ -1334,7 +1335,7 @@ class AdminPage extends AppbearCore {
 							update_option( 'appbear_default_lang', $options['lang'] );
 							$new_version                                                                = 1;
 							$old_version                                                                = get_option( 'appbear_version' );
-							if(isset($old_version)){
+							if (isset($old_version)){
 								$new_version = $old_version + 1;
 							}
 							update_option( 'appbear_version', $new_version );
@@ -1371,7 +1372,7 @@ class AdminPage extends AppbearCore {
 				$licensedBase = str_replace("https://","",str_replace("https://","",$licensedBase));
 
 
-				if($change_language == false){
+				if ($change_language == false){
 					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase);
 				}else{
 					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase . '&change_translations=true');
