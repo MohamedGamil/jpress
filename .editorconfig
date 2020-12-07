@@ -1,14 +1,30 @@
-# EditorConfig is awesome: https://EditorConfig.org
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
 
-# top-most EditorConfig file
+# WordPress Coding Standards
+# https://make.wordpress.org/core/handbook/coding-standards/
+
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = false
+end_of_line = lf
+indent_size = 2
+tab_width = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
 trim_trailing_white_space_on_save = true
 ensure_newline_at_eof_on_save = true
-insert_final_newline = false
+
+[*.{html,css,scss}]
+indent_style = tab
+trim_trailing_whitespace = false
+
+[*.txt]
+trim_trailing_whitespace = false
+
+[*.{md,json,yml}]
+trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2

@@ -5,7 +5,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly
 
 /**
  * Get a Plugin Option
- * 
+ *
  * @param string $name Option name
  * @param mixed $default Option default value
  */
@@ -124,7 +124,7 @@ function appbear_get_template($templatePath, $vars = [])
 }
 
 /**
- * Check current license validity 
+ * Check current license validity
  */
 function appbear_check_license()
 {
@@ -142,9 +142,9 @@ function appbear_shortcodes_parsing($content)
 {
 
 	// NOTE: A couple of things needs to be done here:
-	//            1) Revise each replacement 
-	//            2) A better optimized way to replace strings 
-	//            3) A more dynamic approach to handle replacement cases 
+	//            1) Revise each replacement
+	//            2) A better optimized way to replace strings
+	//            3) A more dynamic approach to handle replacement cases
 
 
 	// $pattern = '@(?<=)\[tie_list type="(.*?)(?=)"](?=)(.*?)\[/tie_list](?=)@sm';
@@ -485,11 +485,11 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[tie_login]", '<div class="login-form">
 
-		<form name="registerform" action="' . get_site_url() . '/wp-login.php" method="post">
+		<form name="registerform" action="' . get_home_url() . '/wp-login.php" method="post">
 			<input type="text" name="log" title="Username" placeholder="Username">
 			<div class="pass-container">
 				<input type="password" name="pwd" title="Password" placeholder="Password">
-				<a class="forget-text" href="' . get_site_url() . '/wp-login.php?action=lostpassword&redirect_to=' . get_site_url() . '">Forget?</a>
+				<a class="forget-text" href="' . get_home_url() . '/wp-login.php?action=lostpassword&redirect_to=' . get_home_url() . '">Forget?</a>
 			</div>
 
 			<input type="hidden" name="redirect_to" value="/shortcode-test-test-fouad-hi/"/>

@@ -1320,7 +1320,7 @@ class AdminPage extends AppbearCore {
 							$options['basicUrls']["selectDemo"] = "/wp-json/wl/v1/selectDemo";
 							$options['basicUrls']["demos"] = "/wp-json/wl/v1/demos";
 
-							$options['baseUrl'] = get_site_url().'/';
+							$options['baseUrl'] = get_home_url().'/';
 							$options['defaultLayout'] = "Layout.standard";
 							$options['searchApi'] = "/wp-json/wl/v1/posts?s=";
 							$options['commentsApi'] = "/wp-json/wl/v1/comments?id=";
@@ -1361,7 +1361,7 @@ class AdminPage extends AppbearCore {
 				}
 
 
-				$base_url =get_site_url();
+				$base_url = get_home_url();
 				$len = strlen('/');
 				if(substr($string, -$len) === '/'){
 					$base_url = substr($base_url, 0, -1);

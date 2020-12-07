@@ -11,4 +11,4 @@ define( 'APPBEAR_SLUG',  'appbear' );
 define( 'APPBEAR_DIR', trailingslashit( dirname( __FILE__ ) ) );
 defined('APPBEAR_FONTAWESOME_VERSION') or define('APPBEAR_FONTAWESOME_VERSION', '4.x');
 
-define( 'APPBEAR_ENABLE_LICENSE_DEBUG_MODE', false );
+define( 'APPBEAR_ENABLE_LICENSE_DEBUG_MODE', true );
