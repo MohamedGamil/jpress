@@ -114,10 +114,22 @@ function appbear_get_template($templatePath, $vars = [])
   $path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
 
   if (is_file($path)) {
+    // Start a new output buffer
 		ob_start();
-		empty($vars) === false && extract($vars);
+
+    // Extract passed template vars if needed
+    if (empty($vars) === false) {
+      extract($vars);
+    }
+
+    // Include template in current output buffer
     include $path;
-    return ob_get_clean();
+
+    // Get template output
+    $getOutputBuffer = ob_get_clean();
+
+    // Apply filters on template output before using it
+    return apply_filters('AppBear/API/Template', $getOutputBuffer, $templatePath, $vars);
 	}
 
   throw new Error("Template '{$templatePath}' not found!");
