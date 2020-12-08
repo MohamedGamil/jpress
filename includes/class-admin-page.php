@@ -252,18 +252,13 @@ class AdminPage extends AppbearCore {
 
 	// FIXME: Missing docs comment
 	// FIXME: Unused method
-	public function removeEmpties(&$array)
-	{
-		foreach($array as $key=>$val)
-		{
-			if (count($val)==0 || $val == '' || $val == null || $val == 'false')
-			{
+	public function removeEmpties(&$array) {
+		foreach($array as $key=>$val) {
+			if (count($val)==0 || $val == '' || $val == null || $val == 'false') {
 				return false;
 			}
-			else
-			{
-				// BUG: This is problematic!
-				removeEmpties($val);
+			else {
+				$this->removeEmpties($val);
 			}
 		}
 	}
