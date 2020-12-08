@@ -290,7 +290,7 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
-    dd($data);
+    // dd($data);
 
 		if ( $this->id !== $object_id ) {
 			return;
@@ -561,7 +561,7 @@ class AdminPage extends AppbearCore {
               $options['tabs']['tabs'] = array();
 
               foreach($data['tabsbaritems'] as $key => $slide) {
-                if ($key === 1000 || !isset($slide['categories'][0]) {
+                if ( $key === 1000 || !isset($slide['categories'][0]) ) {
                   continue;
                 }
 
