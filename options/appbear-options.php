@@ -3654,7 +3654,7 @@ class AppBear_Options
     $translations_section->add_field(array(
 			'name' => 'No Internet Connection!',
 			'default' => "No Internet Connection!",
-			'id' => 'translate-nointernet',
+			'id' => 'translate-noInternet',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
@@ -3662,7 +3662,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Please check your internet connection and try again',
       'default' => "Please check your internet connection and try again",
-      'id' => 'translate-checkinternet',
+      'id' => 'translate-checkInternet',
       'type' => 'text',
       'grid' => '6-of-6',
 		));
@@ -3670,7 +3670,7 @@ class AppBear_Options
 		$translations_section->add_field(array(
 			'name' => 'No Comments',
 			'default' => "No Comments",
-			'id' => 'translate-nocomments',
+			'id' => 'translate-noComments',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
@@ -3678,7 +3678,7 @@ class AppBear_Options
 		$translations_section->add_field(array(
 			'name' => 'See All',
 			'default' => "See All",
-			'id' => 'translate-seemore',
+			'id' => 'translate-seeMore',
 			'type' => 'text',
 			'grid' => '6-of-6',
     ));
@@ -3686,7 +3686,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Confirm Demo Title',
       'default' => "Confirm Demo Title",
-      'id' => 'translate-confirmdemotitle',
+      'id' => 'translate-confirmDemoTitle',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3702,7 +3702,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Choose Your Demo',
       'default' => "Choose Your Demo",
-      'id' => 'translate-chooseyourdemo',
+      'id' => 'translate-chooseYourDemo',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3710,7 +3710,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Confirm Reset Title',
       'default' => "Confirm Reset Title",
-      'id' => 'translate-confirmresettitle',
+      'id' => 'translate-confirmResetTitle',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3718,7 +3718,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Confirm Reset Message',
       'default' => "Confirm Reset Message",
-      'id' => 'translate-confirmresetmessage',
+      'id' => 'translate-confirmResetMessage',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3742,7 +3742,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Custom Demo',
       'default' => "Custom Demo",
-      'id' => 'translate-customdemo',
+      'id' => 'translate-customDemo',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3750,7 +3750,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Custom Demo Title',
       'default' => "Custom Demo Title",
-      'id' => 'translate-customdemotitle',
+      'id' => 'translate-customDemoTitle',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3758,7 +3758,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Custom Demo Body',
       'default' => "Custom Demo Body",
-      'id' => 'translate-customdemobody',
+      'id' => 'translate-customDemoBody',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3766,7 +3766,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Confirm Custom Demo Title',
       'default' => "Confirm Custom Demo Title",
-      'id' => 'translate-confirmcustomdemotitle',
+      'id' => 'translate-confirmCustomDemoTitle',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3774,7 +3774,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Confirm Custom Demo Message',
       'default' => "Confirm Custom Demo Message",
-      'id' => 'translate-confirmcustomdemomessage',
+      'id' => 'translate-confirmCustomDemoMessage',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3782,7 +3782,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'Get Our',
       'default' => "Get Our",
-      'id' => 'translate-getour',
+      'id' => 'translate-getOur',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
@@ -3790,7 +3790,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'AppBear',
       'default' => "AppBear",
-      'id' => 'translate-appbear',
+      'id' => 'translate-appBear',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
