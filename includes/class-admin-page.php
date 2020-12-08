@@ -561,7 +561,7 @@ class AdminPage extends AppbearCore {
               $options['tabs']['tabs'] = array();
 
               foreach($data['tabsbaritems'] as $key => $slide) {
-                if ($key === 1000 || !isset($slide['categories'][0]) {
+                if ( $key === 1000 || !isset($slide['categories'][0]) ) {
                   continue;
                 }
 
