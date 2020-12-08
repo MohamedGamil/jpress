@@ -290,7 +290,7 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
-    dd($data);
+    // dd($data);
 
 		if ( $this->id !== $object_id ) {
 			return;
