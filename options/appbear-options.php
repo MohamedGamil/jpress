@@ -13,7 +13,6 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  */
 class AppBear_Options
 {
-
 	/**
 	 * Class internal initialization state
 	 */
