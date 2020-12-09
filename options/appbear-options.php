@@ -2922,7 +2922,7 @@ class AppBear_Options
         'id' => 'settingspage-aboutUs',
         'name' => __( 'About us page',   'textdomain' ),
         'type' => 'select',
-        'items' => AppbearItems::posts_by_post_type( 'page' ),
+        'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
         'options'	=>	array(
           'show_if' => array('local-settingspage-aboutus', '=', 'true')
         ),
