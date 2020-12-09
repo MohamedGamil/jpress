@@ -1123,7 +1123,8 @@ class AppBear_Options
 				),
 				'options' => array(
 					'width' => '155px',
-					'show_if' => array('local-tabs-firstfeatured', '=', 'true')
+					'show_if' => array('tabsbar_categories_tab', '=', 'true')
+					// 'show_if' => array('local-tabs-firstfeatured', '=', 'true')
 				),
 			));
 			$tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
@@ -1313,11 +1314,14 @@ class AppBear_Options
 				'options' => array(
 					'show_if' => array('showposts', '=', 'categories')
 				)
-			));
+      ));
 			$section->add_field(array(
 				'id' => 'tags',
 				'name' => __( 'Tags', 'textdomain' ),
-				'type' => 'tagsinput',
+				'type' => 'checkbox',
+				'default' => '$all$',
+				'items' => AppbearItems::terms( 'post_tag' ),
+				'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
 				'options' => array(
 					'show_if' => array('showposts', '=', 'tags')
 				)
@@ -1388,10 +1392,13 @@ class AppBear_Options
 				'default' => '3',
 				'items' => array(
 					'1' => __( '1 Post', 'textdomain' ),
+					'2' => __( '2 Posts', 'textdomain' ),
 					'3' => __( '3 Posts', 'textdomain' ),
 					'4' => __( '4 Posts', 'textdomain' ),
+					'5' => __( '5 Posts', 'textdomain' ),
 					'6' => __( '6 Posts', 'textdomain' ),
 					'7' => __( '7 Posts', 'textdomain' ),
+					'8' => __( '8 Posts', 'textdomain' ),
 					'9' => __( '9 Posts', 'textdomain' ),
 					'10' => __( '10 Posts', 'textdomain' ),
 				)
