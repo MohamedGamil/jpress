@@ -157,19 +157,16 @@ class AppBear_Endpoints {
         $posts->the_post();
         $data['posts'][] = $this->get_post_data();
       }
+
+      return $data;
     }
 
-    // No Posts
-    else {
-      $data = array(
-        'status'      => false,
-        'count'       => 0,
-        'count_total' => 0,
-        'pages'       => 0,
-      );
-    }
-
-    return $data;
+    return array(
+      'status'      => false,
+      'count'       => 0,
+      'count_total' => 0,
+      'pages'       => 0,
+    );
 	}
 
 
