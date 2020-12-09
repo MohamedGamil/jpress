@@ -141,7 +141,9 @@ function appbear_get_template($templatePath, $vars = [])
 function appbear_check_license()
 {
   // NOTE: May need improvements.
-  return get_option( 'appbear_license_status' ) === 'valid' || APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true;
+  return get_option( 'appbear_license_status' ) === 'valid' || (
+    APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ])
+  );
 }
 
 

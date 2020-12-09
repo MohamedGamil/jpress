@@ -360,7 +360,7 @@ class AdminPage extends AppbearCore {
           // Parsing the configuration to be read in mobile application
 					case 'appbear-settings':
             $options['rtl'] = is_rtl() ? 'true' : 'false';
-            $options['themeMode'] = str_replace( '_','.', $data['thememode'] );
+            $options['themeMode'] = str_replace( '_', '.', $data['thememode'] );
 
             if (isset($data['statusbarwhiteforeground']) && $data['statusbarwhiteforeground'] !== 'false') {
               $options['statusBarWhiteForeground'] = $data['statusbarwhiteforeground'];
@@ -436,7 +436,7 @@ class AdminPage extends AppbearCore {
                     }
 
                     unset($navigator['main']);
-                    $navigator['url']   = '/wp-json/wl/v1/posts?category_id='.$category->term_id;
+                    $navigator['url']   = '/wp-json/wl/v1/posts?category_id=' . $category->term_id;
                   break;
 
                   case 'NavigationType.page':
@@ -450,7 +450,7 @@ class AdminPage extends AppbearCore {
                       $navigator['title'] = $post->post_title;
                     }
 
-                    $navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
+                    $navigator['url']   = '/wp-json/wl/v1/page?id=' . $post->ID;
                     unset($navigator['main']);
                   break;
 
@@ -505,7 +505,7 @@ class AdminPage extends AppbearCore {
                       $navigator['title'] = $category->name;
                     }
                     unset($navigator['main']);
-                    $navigator['url']   = '/wp-json/wl/v1/posts?category_id='.$category->term_id;
+                    $navigator['url']   = '/wp-json/wl/v1/posts?category_id=' . $category->term_id;
                   break;
                   case 'NavigationType.page':
                     $post = get_post($navigator['page']);
@@ -514,7 +514,7 @@ class AdminPage extends AppbearCore {
                     if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
                       $navigator['title'] = $post->post_title;
                     }
-                    $navigator['url']   = '/wp-json/wl/v1/page?id='.$post->ID;
+                    $navigator['url']   = '/wp-json/wl/v1/page?id=' . $post->ID;
                     unset($navigator['main']);
                   break;
                   case 'NavigationType.main':
@@ -580,10 +580,10 @@ class AdminPage extends AppbearCore {
                     continue;
 
                   $other = get_category_by_slug($cat);
-                  $ids .=','.$other->term_id;
+                  $ids .=',' . $other->term_id;
                 }
 
-                $item['url']   = '/wp-json/wl/v1/posts?&categories='.$ids;
+                $item['url']   = '/wp-json/wl/v1/posts?&categories=' . $ids;
 
                 if ($slide['customized-title'] == true && $slide['title'] != '') {
                   $item['title']  =   $slide['title'];
@@ -594,7 +594,6 @@ class AdminPage extends AppbearCore {
 
                 array_push($options['tabs']['tabs'], $item);
               }
-
 
               if (isset($data["local-tabs-firstfeatured"]) && $data["local-tabs-firstfeatured"] != 'false') {
                 $options['tabs']['firstFeatured']  =   $data['tabs-firstfeatured'];
@@ -678,39 +677,42 @@ class AdminPage extends AppbearCore {
 
               switch($section['showposts']) {
                 case 'categories':
-                  $selected_categories = explode(',',$section['categories'][0]);
-                  $category = get_category_by_slug($selected_categories[0]);
+                  $selected_categories = explode( ',', $section['categories'][0] );
+                  $category = get_category_by_slug( $selected_categories[0] );
+                  $ids = '';
 
                   foreach ($section['categories'] as $key => $cat) {
                     $other = get_category_by_slug($cat);
-
-                    if ($key == 0) {
-                      $category_name = $other->name;
-                      $ids = $other->term_id;
-                    }
-                    else {
-                      $ids .=','.$other->term_id;
-                    }
+                    $ids = ($key == 0) ? $other->term_id : ($ids . ',' . $other->term_id);
                   }
 
-                  $item['url'] .= "&categories=".$ids;
+                  $item['url'] .= '&categories=' . $ids;
                 break;
 
                 case 'tags':
-                  $item['url'] .= "&tags=".$section['tags'];
+                  $selected_tags = explode( ',', $section['tags'][0] );
+                  $tag = get_term_by( 'slug', $selected_tags[0], 'post_tag' );
+                  $ids = '';
+
+                  foreach ($section['tags'] as $key => $tag) {
+                    $other = get_term_by( 'slug', $tag, 'post_tag' );
+                    $ids = ($key == 0) ? $other->term_id : ($ids . ',' . $other->term_id);
+                  }
+
+                  $item['url'] .= '&tags=' . $ids;
                 break;
               }
 
               if (isset($section['local-enable_exclude_posts']) && $section['local-exclude_posts'] != '') {
-                $item['url'] .= "&exclude=".$section['local-exclude_posts'];
+                $item['url'] .= "&exclude=" . $section['local-exclude_posts'];
               }
 
               if (isset($section['local-enable_offset_posts']) && $section['local-offset_posts'] != '') {
-                $item['url'] .= "&offset=".$section['local-offset_posts'];
+                $item['url'] .= "&offset=" . $section['local-offset_posts'];
               }
 
               if (isset($section['local-sort'])) {
-                $item['url'] .= "&sort=".$section['local-sort'];
+                $item['url'] .= "&sort=" . $section['local-sort'];
               }
 
               if (isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off")) {
@@ -721,7 +723,7 @@ class AdminPage extends AppbearCore {
               }
 
               if (isset($section['local-count'])) {
-                $item['url'] .= "&count=".$section['local-count'];
+                $item['url'] .= "&count=" . $section['local-count'];
               }
 
               $item['postLayout'] = $section['postlayout'];
@@ -1007,15 +1009,15 @@ class AdminPage extends AppbearCore {
             }
 
             if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false') {
-              $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=".$data['settingspage-aboutus'];
+              $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutus'];
             }
 
             if (isset($data['settingspage-privacypolicy']) && $data['settingspage-privacypolicy'] != '') {
-              $options['settingsPage']['privacyPolicy'] = "/wp-json/wl/v1/page?id=".$data['settingspage-privacypolicy'];
+              $options['settingsPage']['privacyPolicy'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-privacypolicy'];
             }
 
             if (isset($data['settingspage-termsandconditions']) && $data['settingspage-termsandconditions'] != '') {
-              $options['settingsPage']['termsAndConditions'] = "/wp-json/wl/v1/page?id=".$data['settingspage-termsandconditions'];
+              $options['settingsPage']['termsAndConditions'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-termsandconditions'];
             }
 
             if (isset($data['settingspage-contactus']) && $data['settingspage-contactus'] != 'false') {
@@ -1244,7 +1246,7 @@ class AdminPage extends AppbearCore {
 
             if ( $license_status === 'valid' ) {
 
-              $url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license='.$license_key;
+              $url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license=' . $license_key;
 
               $post = [
                 'settings' => json_encode($options, JSON_UNESCAPED_UNICODE)
@@ -1272,7 +1274,7 @@ class AdminPage extends AppbearCore {
 				}
 
 				update_option( 'appbear_license_status', $isValidLicense ? 'valid' : 'invalid' );
-				add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', '.__('Your settings has been updated successfully'), 'updated' );
+				add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', ' . __('Your settings has been updated successfully'), 'updated' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 			}
 		}
@@ -1308,9 +1310,11 @@ class AdminPage extends AppbearCore {
     $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
     if ( $license_data->license !== 'valid' ) {
-      update_option( 'appbear_license_status', $license_data->error );
+      $invalidReason = isset($license_data->error) ? $license_data->error : 'unknown';
 
-      switch( $license_data->error ) {
+      update_option( 'appbear_license_status', $license_data->license );
+
+      switch( $invalidReason ) {
         case 'expired' :
           $message = sprintf(
             __( 'Your license key expired on %s.' ),
@@ -1433,8 +1437,7 @@ class AdminPage extends AppbearCore {
     }
     else {
       update_option( 'appbear_license_status', $license_data->license );
-
-      add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', '.__('Your license has been activated successfully'), 'updated' );
+      add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ) . ', ' . __('Your license has been activated successfully'), 'updated' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
     }
 
