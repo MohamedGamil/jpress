@@ -299,41 +299,40 @@ class AppBear_Endpoints {
 
     $comments = array();
 
-    if ( get_comments_number() < 100 ) {
-      $args = array(
-        'post_id'       => $post->ID,
-        'status'        => 'approve',
-        'order'         => 'ASC',
-        'type'          => 'comment',
-        //'hierarchical'  => 'threaded',
-      );
+    $args = array(
+      'post_id'       => $post->ID,
+      'status'        => 'approve',
+      'order'         => 'ASC',
+      'type'          => 'comment',
+      //'hierarchical'  => 'threaded',
+    );
 
-      $get_comments = get_comments( $args );
+    $get_comments = get_comments( $args );
 
-      foreach ( $get_comments as $comment ) {
-        if ( $comment->comment_parent == 0 ) {
-          // Set the avatar
-          $comment = $this->prepare_comment( $comment );
+    // NOTE: May require a limit paramter
 
-          // Get Child replies
-          $child_comments = get_comments( array(
-            'post_id'       => $post->ID,
-            'status'        => 'approve',
-            'order'         => 'ASC',
-            'type'          => 'comment',
-            'parent'        => $comment['comment_ID']
-          ));
+    foreach ( $get_comments as $comment ) {
+      if ( $comment->comment_parent == 0 ) {
+        // Set the avatar
+        $comment = $this->prepare_comment( $comment );
 
-          $replies = array();
+        // Get Child replies
+        $child_comments = get_comments( array(
+          'post_id'       => $post->ID,
+          'status'        => 'approve',
+          'order'         => 'ASC',
+          'type'          => 'comment',
+          'parent'        => $comment['comment_ID']
+        ));
 
-          foreach ( $child_comments as $reply ) {
-            $replies[] = $this->prepare_comment( $reply );
-          }
+        $replies = array();
 
-          $comment['replies'] = $replies;
-
-          $comments[] = $comment;
+        foreach ( $child_comments as $reply ) {
+          $replies[] = $this->prepare_comment( $reply );
         }
+
+        $comment['replies'] = $replies;
+        $comments[] = $comment;
       }
     }
 

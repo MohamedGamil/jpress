@@ -94,7 +94,7 @@ class AppBear_Options
    * Sanitize license key
    */
   public function appbear_sanitize_license( $new ) {
-    $old = get_option( 'appbear_license_key' );
+    $old = appbear_get_license_key();
 
     if( $old && $old !== $new ) {
       // new license has been entered, so must reactivate
@@ -3871,6 +3871,6 @@ class AppBear_Options
    * Get license key
    */
   private function _getLicenseKey() {
-    return trim( get_option( 'appbear_license_key' ) );
+    return appbear_get_license_key();
   }
 }

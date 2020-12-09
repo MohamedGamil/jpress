@@ -136,6 +136,14 @@ function appbear_get_template($templatePath, $vars = [])
 }
 
 /**
+ * Get license key
+ */
+function appbear_get_license_key()
+{
+  return trim( get_option( 'appbear_license_key' ) );
+}
+
+/**
  * Check current license validity
  */
 function appbear_check_license()

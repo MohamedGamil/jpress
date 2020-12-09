@@ -1242,7 +1242,7 @@ class AdminPage extends AppbearCore {
             update_option( 'appbear_version', $new_version );
 
             $license_status = get_option( 'appbear_license_status' );
-            $license_key = get_option( 'appbear_license_key' );
+            $license_key = $this->_getLicenseKey();
 
             if ( $license_status === 'valid' ) {
 
@@ -1448,6 +1448,6 @@ class AdminPage extends AppbearCore {
    * Get license key
    */
   private function _getLicenseKey() {
-    return trim( get_option( 'appbear_license_key' ) );
+    return appbear_get_license_key();
   }
 }
