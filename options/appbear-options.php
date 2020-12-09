@@ -1479,26 +1479,6 @@ class AppBear_Options
 					'off_value' => 'false'
 				)
 			));
-			// $section->add_field(array(
-			// 	'name' => __( 'Author', 'textdomain' ),
-			// 	'id' => 'options-author',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $section->add_field(array(
-			// 	'name' => __( 'Tags', 'textdomain' ),
-			// 	'id' => 'options-tags',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
 			$section->add_field(array(
 				'name' => __( 'Read Time', 'textdomain' ),
 				'id' => 'options-readtime',

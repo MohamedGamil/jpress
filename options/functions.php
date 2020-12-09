@@ -135,6 +135,7 @@ function appbear_get_template($templatePath, $vars = [])
   throw new Error("Template '{$templatePath}' not found!");
 }
 
+
 /**
  * Get license key
  */
@@ -143,20 +144,24 @@ function appbear_get_license_key()
   return trim( get_option( 'appbear_license_key' ) );
 }
 
+
+/**
+ * Check if dev mode is active
+ */
+function _appbear_is_dev_mode()
+{
+  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
+}
+
+
 /**
  * Check current license validity
  */
 function appbear_check_license()
 {
   // NOTE: May need improvements.
-  return get_option( 'appbear_license_status' ) === 'valid' || (
-    APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ])
-  );
+  return get_option( 'appbear_license_status' ) === 'valid' || _appbear_is_dev_mode();
 }
-
-
-
-
 
 
 // FIXME: Missing docs comment
@@ -570,10 +575,7 @@ function appbear_shortcodes_parsing($content)
 }
 
 
-
-
-
-//deep linking
+// Deep linking
 add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
 
 // FIXME: Missing docs comment

@@ -327,7 +327,7 @@ class AdminPage extends AppbearCore {
 				return -1;
       }
 
-      if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true ) {
+      if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true || _appbear_is_dev_mode() ) {
         $change_language = false;
 
         switch($this->id) {
@@ -704,7 +704,9 @@ class AdminPage extends AppbearCore {
               }
 
               if (isset($section['local-enable_exclude_posts']) && $section['local-exclude_posts'] != '') {
-                $item['url'] .= "&exclude=" . $section['local-exclude_posts'];
+                // dd($section['local-exclude_posts']);
+                // $postsIds = explode(',', $section['local-exclude_posts']);
+                $item['url'] .= '&exclude=' . $section['local-exclude_posts'];
               }
 
               if (isset($section['local-enable_offset_posts']) && $section['local-offset_posts'] != '') {
@@ -772,9 +774,12 @@ class AdminPage extends AppbearCore {
                 $item_options["tags"]  =   $section["options-tags"];
               }
 
-              $item['options'] = $item_options;
+              // NOTE: Ensure all options are sent correctly
+              $item['options'] = array_merge( array( 'category' => true ), $item_options);
 
               array_push($options['homePage']['sections'], $item);
+
+              // dd($options['homePage']['sections'][0]);
             }
 
             /*
