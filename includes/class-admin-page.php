@@ -327,8 +327,7 @@ class AdminPage extends AppbearCore {
 				return -1;
       }
 
-      if ( true ) {
-      // if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true ) {
+      if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true ) {
         $change_language = false;
 
         switch($this->id) {
