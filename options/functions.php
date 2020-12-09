@@ -150,7 +150,7 @@ function appbear_get_license_key()
  */
 function _appbear_is_dev_mode()
 {
-  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ])
+  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
 }
 
 
