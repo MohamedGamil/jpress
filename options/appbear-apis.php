@@ -109,35 +109,34 @@ class AppBear_Endpoints {
     if ( isset( $request['s'] ) ) {
       $args['s'] = $request['s'];
     }
-    else {
-      // Categories
-      if ( isset( $request['categories'] ) ) {
-        $args['cat'] = $request['categories'];
-      }
 
-      // Tags
-      if ( isset( $request['tags'] ) ) {
-        $args['tag__in'] = explode( ',', $request['tags'] );
-      }
+    // Categories
+    if ( isset( $request['categories'] ) ) {
+      $args['cat'] = $request['categories'];
+    }
 
-      // Posts IDs
-      if ( isset( $request['ids'] ) ) {
-        $args['post__in'] = explode( ',', $request['ids'] );
-      }
+    // Tags
+    if ( isset( $request['tags'] ) ) {
+      $args['tag__in'] = explode( ',', $request['tags'] );
+    }
 
-      // Exclude posts
-      if ( isset( $request['exclude'] ) ) {
-        $args['post__not_in'] = explode( ',', $request['exclude'] );
-      }
+    // Posts IDs
+    if ( isset( $request['ids'] ) ) {
+      $args['post__in'] = explode( ',', $request['ids'] );
+    }
 
-      if ( isset( $request['offset'] ) ) {
-        $args['offset'] = $request['offset'];
-      }
+    // Exclude posts
+    if ( isset( $request['exclude'] ) ) {
+      $args['post__not_in'] = explode( ',', $request['exclude'] );
+    }
 
-      if ( isset( $request['sort'] ) ) {
-        $args['order']   = '';
-        $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
-      }
+    if ( isset( $request['offset'] ) ) {
+      $args['offset'] = $request['offset'];
+    }
+
+    if ( isset( $request['sort'] ) ) {
+      $args['order']   = '';
+      $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
     }
 
     // The Query
