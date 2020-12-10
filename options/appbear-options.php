@@ -1290,11 +1290,11 @@ class AppBear_Options
       'type' => 'select',
       'default' => 'latest',
       'items' => array(
-      'latest' => __( 'Recent Posts', 'textdomain' ),
-      'rand' => __( 'Random Posts', 'textdomain' ),
-      'modified' => __( 'Last Modified Posts', 'textdomain' ),
-      'popular' => __( 'Most Commented posts', 'textdomain' ),
-      'title' => __( 'Alphabetically', 'textdomain' ),
+        'latest' => __( 'Recent Posts', 'textdomain' ),
+        'rand' => __( 'Random Posts', 'textdomain' ),
+        'modified' => __( 'Last Modified Posts', 'textdomain' ),
+        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
     $section->add_field(array(
@@ -1303,16 +1303,16 @@ class AppBear_Options
       'type' => 'select',
       'default' => '3',
       'items' => array(
-      '1' => __( '1 Post', 'textdomain' ),
-      '2' => __( '2 Posts', 'textdomain' ),
-      '3' => __( '3 Posts', 'textdomain' ),
-      '4' => __( '4 Posts', 'textdomain' ),
-      '5' => __( '5 Posts', 'textdomain' ),
-      '6' => __( '6 Posts', 'textdomain' ),
-      '7' => __( '7 Posts', 'textdomain' ),
-      '8' => __( '8 Posts', 'textdomain' ),
-      '9' => __( '9 Posts', 'textdomain' ),
-      '10' => __( '10 Posts', 'textdomain' ),
+        '1' => __( '1 Post', 'textdomain' ),
+        '2' => __( '2 Posts', 'textdomain' ),
+        '3' => __( '3 Posts', 'textdomain' ),
+        '4' => __( '4 Posts', 'textdomain' ),
+        '5' => __( '5 Posts', 'textdomain' ),
+        '6' => __( '6 Posts', 'textdomain' ),
+        '7' => __( '7 Posts', 'textdomain' ),
+        '8' => __( '8 Posts', 'textdomain' ),
+        '9' => __( '9 Posts', 'textdomain' ),
+        '10' => __( '10 Posts', 'textdomain' ),
       )
     ));
     $section->add_field( array(
@@ -1485,11 +1485,11 @@ class AppBear_Options
       'type' => 'select',
       'default' => 'latest',
       'items' => array(
-      'latest' => __( 'Recent Posts', 'textdomain' ),
-      'rand' => __( 'Random Posts', 'textdomain' ),
-      'modified' => __( 'Last Modified Posts', 'textdomain' ),
-      'popular' => __( 'Most Commented posts', 'textdomain' ),
-      'title' => __( 'Alphabetically', 'textdomain' ),
+        'latest' => __( 'Recent Posts', 'textdomain' ),
+        'rand' => __( 'Random Posts', 'textdomain' ),
+        'modified' => __( 'Last Modified Posts', 'textdomain' ),
+        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
     $archives_category->add_field(array(
@@ -1498,13 +1498,16 @@ class AppBear_Options
       'type' => 'select',
       'default' => '10',
       'items' => array(
-      '1' => __( '1 Post', 'textdomain' ),
-      '3' => __( '3 Posts', 'textdomain' ),
-      '4' => __( '4 Posts', 'textdomain' ),
-      '6' => __( '6 Posts', 'textdomain' ),
-      '7' => __( '7 Posts', 'textdomain' ),
-      '9' => __( '9 Posts', 'textdomain' ),
-      '10' => __( '10 Posts', 'textdomain' ),
+        '1' => __( '1 Post', 'textdomain' ),
+        '2' => __( '2 Posts', 'textdomain' ),
+        '3' => __( '3 Posts', 'textdomain' ),
+        '4' => __( '4 Posts', 'textdomain' ),
+        '5' => __( '5 Posts', 'textdomain' ),
+        '6' => __( '6 Posts', 'textdomain' ),
+        '7' => __( '7 Posts', 'textdomain' ),
+        '8' => __( '8 Posts', 'textdomain' ),
+        '9' => __( '9 Posts', 'textdomain' ),
+        '10' => __( '10 Posts', 'textdomain' ),
       )
     ));
     $archives_category->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
@@ -1582,11 +1585,11 @@ class AppBear_Options
       'type' => 'select',
       'default' => 'latest',
       'items' => array(
-      'latest' => __( 'Recent Posts', 'textdomain' ),
-      'rand' => __( 'Random Posts', 'textdomain' ),
-      'modified' => __( 'Last Modified Posts', 'textdomain' ),
-      'popular' => __( 'Most Commented posts', 'textdomain' ),
-      'title' => __( 'Alphabetically', 'textdomain' ),
+        'latest' => __( 'Recent Posts', 'textdomain' ),
+        'rand' => __( 'Random Posts', 'textdomain' ),
+        'modified' => __( 'Last Modified Posts', 'textdomain' ),
+        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
     $archives_search->add_field(array(
@@ -1595,13 +1598,16 @@ class AppBear_Options
       'type' => 'select',
       'default' => '10',
       'items' => array(
-      '1' => __( '1 Post', 'textdomain' ),
-      '3' => __( '3 Posts', 'textdomain' ),
-      '4' => __( '4 Posts', 'textdomain' ),
-      '6' => __( '6 Posts', 'textdomain' ),
-      '7' => __( '7 Posts', 'textdomain' ),
-      '9' => __( '9 Posts', 'textdomain' ),
-      '10' => __( '10 Posts', 'textdomain' ),
+        '1' => __( '1 Post', 'textdomain' ),
+        '2' => __( '2 Posts', 'textdomain' ),
+        '3' => __( '3 Posts', 'textdomain' ),
+        '4' => __( '4 Posts', 'textdomain' ),
+        '5' => __( '5 Posts', 'textdomain' ),
+        '6' => __( '6 Posts', 'textdomain' ),
+        '7' => __( '7 Posts', 'textdomain' ),
+        '8' => __( '8 Posts', 'textdomain' ),
+        '9' => __( '9 Posts', 'textdomain' ),
+        '10' => __( '10 Posts', 'textdomain' ),
       )
     ));
     $archives_search->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
@@ -1689,11 +1695,11 @@ class AppBear_Options
       'type' => 'select',
       'default' => 'latest',
       'items' => array(
-      'latest' => __( 'Recent Posts', 'textdomain' ),
-      'rand' => __( 'Random Posts', 'textdomain' ),
-      'modified' => __( 'Last Modified Posts', 'textdomain' ),
-      'popular' => __( 'Most Commented posts', 'textdomain' ),
-      'title' => __( 'Alphabetically', 'textdomain' ),
+        'latest' => __( 'Recent Posts', 'textdomain' ),
+        'rand' => __( 'Random Posts', 'textdomain' ),
+        'modified' => __( 'Last Modified Posts', 'textdomain' ),
+        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
     $archives_favorites->add_field(array(
@@ -1702,13 +1708,16 @@ class AppBear_Options
       'type' => 'select',
       'default' => '10',
       'items' => array(
-      '1' => __( '1 Post', 'textdomain' ),
-      '3' => __( '3 Posts', 'textdomain' ),
-      '4' => __( '4 Posts', 'textdomain' ),
-      '6' => __( '6 Posts', 'textdomain' ),
-      '7' => __( '7 Posts', 'textdomain' ),
-      '9' => __( '9 Posts', 'textdomain' ),
-      '10' => __( '10 Posts', 'textdomain' ),
+        '1' => __( '1 Post', 'textdomain' ),
+        '2' => __( '2 Posts', 'textdomain' ),
+        '3' => __( '3 Posts', 'textdomain' ),
+        '4' => __( '4 Posts', 'textdomain' ),
+        '5' => __( '5 Posts', 'textdomain' ),
+        '6' => __( '6 Posts', 'textdomain' ),
+        '7' => __( '7 Posts', 'textdomain' ),
+        '8' => __( '8 Posts', 'textdomain' ),
+        '9' => __( '9 Posts', 'textdomain' ),
+        '10' => __( '10 Posts', 'textdomain' ),
       )
     ));
     $archives_favorites->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
