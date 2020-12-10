@@ -49,9 +49,9 @@ class AppBear_Options
 
     if ( appbear_check_license() === true ) {
       $this->_initOptions();
-    } else {
-      $this->_noLicenseInit();
     }
+
+    $this->_noLicenseInit();
   }
 
 
@@ -3807,20 +3807,20 @@ class AppBear_Options
     add_action( 'admin_init', array( $this, 'appbear_register_option' ) );
 
 		$activation_args = array(
-			'id' => 'appbear-settings',
-			'title' => 'appBear',
-			'menu_title' => 'appBear',
-			'menu_side_title' => 'Activation',
+			'id' => 'appbear-activation',
+			'title' => 'Connect AppBear',
+			'menu_title' => 'Connect AppBear',
+			'menu_side_title' => 'Connect AppBear',
 			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
 			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
 			'layout' => 'wide',//wide
 			'header' => array(
 				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
-				'desc' => 'Activate your license key.',
+				'desc' => 'Connect and activate your AppBear account.',
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
 			'capability' => 'manage_options',
-			// 'parent' => 'appbear-settings',
+			'parent' => 'appbear-settings',
 		);
 
 		$activation = appbear_new_admin_page( $activation_args );
@@ -3839,7 +3839,7 @@ class AppBear_Options
 
 		$activation_section->add_field(array(
 			'name' => 'Key',
-			'default' => "",
+			'default' => $this->_getLicenseKey(),
 			'id' => 'appbear_license_key',
 			'type' => 'text',
 			'grid' => '6-of-6',
