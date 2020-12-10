@@ -950,7 +950,10 @@ class AdminPage extends AppbearCore {
             $options['styling']['ThemeMode.light']['appBarColor'] = $data['styling-themeMode_light-appbarcolor'];
             $options['styling']['ThemeMode.light']['background'] = $data['styling-themeMode_light-background'];
             $options['styling']['ThemeMode.light']['sidemenutextcolor'] = $data['styling-themeMode_light-sidemenuiconstextcolor'];
-            $options['styling']['ThemeMode.light']['bottomBarBackgroundColor'] = $data['styling-themeMode_light-bottombarbackgroundcolor'];
+
+            // DEPRECATED: No longer needed
+            // $options['styling']['ThemeMode.light']['bottomBarBackgroundColor'] = $data['styling-themeMode_light-bottomBarBackgroundColor'];
+
             $options['styling']['ThemeMode.light']['bottomBarInActiveColor'] = $data['styling-themeMode_light-bottombarinactivecolor'];
             $options['styling']['ThemeMode.light']['bottomBarActiveColor'] = $data['styling-themeMode_light-bottombaractivecolor'];
             $options['styling']['ThemeMode.light']['tabBarBackgroundColor'] = $data['styling-themeMode_light-tabbarbackgroundcolor'];
@@ -976,7 +979,10 @@ class AdminPage extends AppbearCore {
               $options['styling']['ThemeMode.dark']['appBarColor'] = $data['styling-themeMode_dark-appbarcolor'];
               $options['styling']['ThemeMode.dark']['background'] = $data['styling-themeMode_dark-background'];
               $options['styling']['ThemeMode.dark']['sidemenutextcolor'] = $data['styling-themeMode_dark-sidemenuiconstextcolor'];
-              $options['styling']['ThemeMode.dark']['bottomBarBackgroundColor'] = $data['styling-themeMode_dark-bottombarbackgroundcolor'];
+
+              // DEPRECATED: No longer needed
+              // $options['styling']['ThemeMode.dark']['bottomBarBackgroundColor'] = $data['styling-themeMode_dark-bottomBarBackgroundColor'];
+
               $options['styling']['ThemeMode.dark']['bottomBarInActiveColor'] = $data['styling-themeMode_dark-bottombarinactivecolor'];
               $options['styling']['ThemeMode.dark']['bottomBarActiveColor'] = $data['styling-themeMode_dark-bottombaractivecolor'];
               $options['styling']['ThemeMode.dark']['tabBarBackgroundColor'] = $data['styling-themeMode_dark-tabbarbackgroundcolor'];
