@@ -947,10 +947,10 @@ class AdminPage extends AppbearCore {
             }
 
             /*
-            * social array
+            * Social array
             */
           if ( isset($data['social_enabled'], $data['social']) && $data['social_enabled'] === 'true' && empty($data['social']) === false ) {
-            $options['social'] = array();
+            $options['settingsPage']['social'] = array();
 
             foreach($data['social'] as $key => $section) {
               if ($key === 1000) {
@@ -967,13 +967,13 @@ class AdminPage extends AppbearCore {
                   'url' => '',
                 ),
                 array(
-                  'title' => $section['title'],
+                  'title' => $section['title'] && $section['social_link_title'] === 'true' ? $section['title'] : '',
                   'icon' => $section['icon'],
                   'url' => $section['url'],
                 ),
               );
 
-              $options['social'][] = $item;
+              $options['settingsPage']['social'][] = $item;
             }
 
             // dd($options['social']);

@@ -141,6 +141,9 @@ function appbear_get_template($templatePath, $vars = [])
  */
 function appbear_get_public_key()
 {
+  // FIXME: Return actual public key
+  // return '364b6c454a0f34c08743428e1e295791641a45310696e1c556756c90d1bf50a6';
+
   return trim( get_option( 'appbear_public_key' ) );
 }
 
