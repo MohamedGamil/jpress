@@ -250,8 +250,7 @@ class AdminPage extends AppbearCore {
 		return true;
 	}
 
-	// FIXME: Missing docs comment
-	// FIXME: Unused method
+	// FIXME: Missing docs comment | DEPRECATED: Unused method
 	public function removeEmpties(&$array) {
 		foreach($array as $key=>$val) {
 			if (count($val)==0 || $val == '' || $val == null || $val == 'false') {
@@ -940,6 +939,39 @@ class AdminPage extends AppbearCore {
             }
 
             /*
+            * social array
+            */
+          if ( isset($data['social_enabled'], $data['social']) && $data['social_enabled'] === 'true' && empty($data['social']) === false ) {
+            $options['social'] = array();
+
+            foreach($data['social'] as $key => $section) {
+              if ($key === 1000) {
+                continue;
+              }
+
+              unset($section['sections_type']);
+              unset($section['sections_visibility']);
+
+              $item = array_merge(
+                array(
+                  'title' => '',
+                  'icon' => '',
+                  'url' => '',
+                ),
+                array(
+                  'title' => $section['title'],
+                  'icon' => $section['icon'],
+                  'url' => $section['url'],
+                ),
+              );
+
+              $options['social'][] = $item;
+            }
+
+            // dd($options['social']);
+          }
+
+            /*
             * styling array
             */
             $options['styling']['ThemeMode.light']['scaffoldBackgroundColor'] = $data['styling-themeMode_light-scaffoldbackgroundcolor'];
@@ -950,10 +982,6 @@ class AdminPage extends AppbearCore {
             $options['styling']['ThemeMode.light']['appBarColor'] = $data['styling-themeMode_light-appbarcolor'];
             $options['styling']['ThemeMode.light']['background'] = $data['styling-themeMode_light-background'];
             $options['styling']['ThemeMode.light']['sidemenutextcolor'] = $data['styling-themeMode_light-sidemenuiconstextcolor'];
-
-            // DEPRECATED: No longer needed
-            // $options['styling']['ThemeMode.light']['bottomBarBackgroundColor'] = $data['styling-themeMode_light-bottomBarBackgroundColor'];
-
             $options['styling']['ThemeMode.light']['bottomBarInActiveColor'] = $data['styling-themeMode_light-bottombarinactivecolor'];
             $options['styling']['ThemeMode.light']['bottomBarActiveColor'] = $data['styling-themeMode_light-bottombaractivecolor'];
             $options['styling']['ThemeMode.light']['tabBarBackgroundColor'] = $data['styling-themeMode_light-tabbarbackgroundcolor'];
@@ -979,10 +1007,6 @@ class AdminPage extends AppbearCore {
               $options['styling']['ThemeMode.dark']['appBarColor'] = $data['styling-themeMode_dark-appbarcolor'];
               $options['styling']['ThemeMode.dark']['background'] = $data['styling-themeMode_dark-background'];
               $options['styling']['ThemeMode.dark']['sidemenutextcolor'] = $data['styling-themeMode_dark-sidemenuiconstextcolor'];
-
-              // DEPRECATED: No longer needed
-              // $options['styling']['ThemeMode.dark']['bottomBarBackgroundColor'] = $data['styling-themeMode_dark-bottomBarBackgroundColor'];
-
               $options['styling']['ThemeMode.dark']['bottomBarInActiveColor'] = $data['styling-themeMode_dark-bottombarinactivecolor'];
               $options['styling']['ThemeMode.dark']['bottomBarActiveColor'] = $data['styling-themeMode_dark-bottombaractivecolor'];
               $options['styling']['ThemeMode.dark']['tabBarBackgroundColor'] = $data['styling-themeMode_dark-tabbarbackgroundcolor'];
@@ -1243,8 +1267,8 @@ class AdminPage extends AppbearCore {
 
             update_option( 'appbear_default_lang', $options['lang'] );
 
-            $new_version                                                                = 1;
-            $old_version                                                                = get_option( 'appbear_version' );
+            $new_version = 1;
+            $old_version = get_option( 'appbear_version' );
 
             if (isset($old_version)) {
               $new_version = $old_version + 1;
@@ -1252,21 +1276,29 @@ class AdminPage extends AppbearCore {
 
             update_option( 'appbear_version', $new_version );
 
+            $public_key = appbear_get_public_key();
             $license_status = get_option( 'appbear_license_status' );
             $license_key = $this->_getLicenseKey();
 
             if ( $license_status === 'valid' ) {
-
-              $url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license=' . $license_key;
+              // $url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license=' . $license_key;
+              $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
 
               $post = [
                 'settings' => json_encode($options, JSON_UNESCAPED_UNICODE)
               ];
 
               $ch = curl_init($url);
+
+              curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'X-AppBear-Key: ' . $public_key,
+              ));
+
               curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
               curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+
               $response = curl_exec($ch);
+
               curl_close($ch);
             }
 					break;
@@ -1401,8 +1433,15 @@ class AdminPage extends AppbearCore {
     else {
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-      if ( false === $license_data->success ) {
-        switch( $license_data->error ) {
+      if ( true === $license_data->success ) {
+        $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
+
+        update_option( 'appbear_public_key', $publicKey );
+      }
+      else {
+        $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';
+
+        switch( $errorKey ) {
           case 'expired' :
             $message = sprintf(
               __( 'Your license key expired on %s.' ),
