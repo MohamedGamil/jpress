@@ -47,10 +47,11 @@ class AppBear_Options
 
     $this->_didInit = true;
 
-    if ( appbear_check_license() === true ) {
-      $this->_initOptions();
+    if ( appbear_check_license() === false ) {
+      // TODO: Add a warning message to inform users about account activation, to connect their app.
     }
 
+    $this->_initOptions();
     $this->_noLicenseInit();
   }
 
@@ -109,62 +110,70 @@ class AppBear_Options
    * Initialize options for valid license state
    */
   protected function _initOptions() {
-		$settings_arg = array(
-			'id' => 'appbear-settings',
-			'title' => 'appBear',
-			'menu_title' => 'appBear',
-			'menu_side_title' => 'Settings',
-			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
-			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
-			'layout' => 'wide',//wide
-			'header' => array(
-				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
-				'desc' => 'No coding required. Your app syncs with your site automatically.',
-			),
-			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
-			'capability' => 'manage_options',
-			// 'parent' => 'appbear-settings',
-		);
+    $this->_initSettingsPage();
+    $this->_initTranslationsPage();
+  }
 
-		$settings = appbear_new_admin_page( $settings_arg );
 
-		$settings->add_main_tab( array(
-			'name' => 'Main tab',
-			'id' => 'main-tab',
-			'items' => array(
-				'general' => '<i class="appbear-icon fa fa-cog"></i>'.__( 'General', 'textdomain' ),
-				'user_guide' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'User Guide', 'textdomain' ),
-				'topbar' => '<i class="appbear-icon fa fa-sliders"></i>'.__( 'Topbar', 'textdomain' ),
-				'sidemenu' => '<i class="appbear-icon fa fa-bars"></i>'.__( 'Side Menu', 'textdomain' ),
-				'homepage' => '<i class="appbear-icon appbear-icon-home"></i>'.__( 'Home Tab', 'textdomain' ),
-				'bottombar' => '<i class="appbear-icon fa fa-th-large"></i>'.__( 'Bottom Bar', 'textdomain' ),
-				'archives' => '<i class="appbear-icon fa-tags"></i>'.__( 'Archives', 'textdomain' ),
-				'styling' => '<i class="appbear-icon fa fa-paint-brush"></i>'.__( 'Styling', 'textdomain' ),
-				// 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
-				'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
-				'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
-				'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
-			),
-			'options' => array(
-				'conditions' => array(
-					'sidemenu' => array(
-						'show_if' => array('menu_type', '!=', 'bottombar'),
-					),
-					'bottombar' => array(
-						'show_if' => array('menu_type', '!=', 'sidemenu'),
-					),
-				),
-			)
-		));
+  /*
+   * Initialize settings page options
+   */
+  protected function _initSettingsPage() {
+    // NOTE: START Settings Page
+    $settings_arg = array(
+      'id' => 'appbear-settings',
+      'title' => 'appBear',
+      'menu_title' => 'appBear',
+      'menu_side_title' => 'Settings',
+      'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
+      'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
+      'layout' => 'wide',//wide
+      'header' => array(
+          'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
+          'desc' => 'No coding required. Your app syncs with your site automatically.',
+      ),
+      'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
+      'capability' => 'manage_options',
+      // 'parent' => 'appbear-settings',
+    );
+
+    $settings = appbear_new_admin_page( $settings_arg );
+
+    $settings->add_main_tab( array(
+      'name' => 'Main tab',
+      'id' => 'main-tab',
+      'items' => array(
+          'general' => '<i class="appbear-icon fa fa-cog"></i>'.__( 'General', 'textdomain' ),
+          'user_guide' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'User Guide', 'textdomain' ),
+          'topbar' => '<i class="appbear-icon fa fa-sliders"></i>'.__( 'Topbar', 'textdomain' ),
+          'sidemenu' => '<i class="appbear-icon fa fa-bars"></i>'.__( 'Side Menu', 'textdomain' ),
+          'homepage' => '<i class="appbear-icon appbear-icon-home"></i>'.__( 'Home Tab', 'textdomain' ),
+          'bottombar' => '<i class="appbear-icon fa fa-th-large"></i>'.__( 'Bottom Bar', 'textdomain' ),
+          'archives' => '<i class="appbear-icon fa-tags"></i>'.__( 'Archives', 'textdomain' ),
+          'styling' => '<i class="appbear-icon fa fa-paint-brush"></i>'.__( 'Styling', 'textdomain' ),
+          // 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
+          'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
+          'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
+          'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
+      ),
+      'options' => array(
+          'conditions' => array(
+              'sidemenu' => array(
+                  'show_if' => array('menu_type', '!=', 'bottombar'),
+              ),
+              'bottombar' => array(
+                  'show_if' => array('menu_type', '!=', 'sidemenu'),
+              ),
+          ),
+      )
+    ));
 
     $settings->open_tab_item('general');
 
     $section_header_1 = $settings->add_section( array(
       'name' => __( 'General Settings', 'textdomain' ),
       'id' => 'section-general-settings',
-      'options' => array(
-        'toggle' => true,
-      )
+      'options' => array( 'toggle' => true )
     ));
 
     $section_header_1->add_field(array(
@@ -203,18 +212,6 @@ class AppBear_Options
       )
     ));
 
-    // $section_header_1->add_field(array(
-    // 	'name' => __( 'RTL ?', 'textdomain' ),
-    // 	'id' => 'rtl',
-    // 	'type' => 'switcher',
-    // 	'default'	=>	'false',
-    // 	'options' => array(
-    // 		'on_value'  => 'true',
-    // 		'off_value' => 'false'
-    // 	)
-    // ));
-
-    // Button to enable/disable
     $section_header_1->add_field( array(
       'id' => 'menu_type',
       'name' => __( 'Menu Type', 'textdomain' ),
@@ -227,29 +224,17 @@ class AppBear_Options
       )
     ));
 
-    // $section_header_1->add_field(array(
-    // 	'name' => __( 'Status Bar Text Color Light ?', 'textdomain' ),
-    // 	'desc' => __( 'Change the status bar for your application, switch between dark status bar and light (Status bar is where the clock and network stats appear on your mobile)', 'textdomain' ),
-    // 	'id' => 'statusBarWhiteForeground',
-    // 	'type' => 'switcher',
-    // 	'default'	=>	'false',
-    // 	'options' => array(
-    // 		'on_value'  => 'true',
-    // 		'off_value' => 'false'
-    // 	)
-    // ));
 
-    ## General Styling ---------- *
+    // NOTE: General Styling
     $section_header_1->open_mixed_field(array('name' => __('Background color', 'textdomain' ),'desc'      => __( 'Application background color.', 'textdomain' ),));
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-scaffoldbackgroundcolor',
-      //'name'      => __( 'Light Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#FFFFFF',
-      'options' => array(
+        'options' => array(
         'show_name' => array('switch_theme_mode', '=', 'true'),
       )
-    ) );
+    ));
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-scaffoldbackgroundcolor',
@@ -259,7 +244,7 @@ class AppBear_Options
       'options' => array(
         'show_if' => array('switch_theme_mode', '=', 'true'),
       )
-    ) );
+    ));
 
     $section_header_1->close_mixed_field();
 
@@ -267,10 +252,9 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-primary',
-      //'name'      => __( 'Light Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#0088ff',
-    ) );
+    ));
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-primary',
@@ -280,7 +264,7 @@ class AppBear_Options
       'options' => array(
         'show_if' => array('switch_theme_mode', '=', 'true'),
       )
-    ) );
+    ));
 
     $section_header_1->close_mixed_field();
 
@@ -288,10 +272,9 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-secondary',
-      //'name'      => __( 'Light Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#333739',
-    ) );
+    ));
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-secondary',
@@ -301,1835 +284,1685 @@ class AppBear_Options
       'options' => array(
         'show_if' => array('switch_theme_mode', '=', 'true'),
       )
-    ) );
+    ));
 
     $section_header_1->close_mixed_field();
 
-    $section_header_1->open_mixed_field(array('name' => __('Meta text color', 'textdomain' ),'desc'      => __( 'All small text color on application such as meta posts.', 'textdomain' ),));
+    $section_header_1->open_mixed_field(array('name' => __('Meta text color', 'textdomain' ),'desc' => __( 'All small text color on application such as meta posts.', 'textdomain' ),));
+    $section_header_1->add_field(array(
+      'id' => 'styling-themeMode_light-secondaryvariant',
+      'type' => 'colorpicker',
+      'default' => '#8A8A89',
+    ));
 
     $section_header_1->add_field(array(
-      'id'        => 'styling-themeMode_light-secondaryvariant',
-      //'name'      => __( 'Light Mode', 'textdomain' ),
-      'type'      => 'colorpicker',
-      'default'   => '#8A8A89',
-    ) );
-
-    $section_header_1->add_field(array(
-      'id'        => 'styling-themeMode_dark-secondaryvariant',
-      'name'      => __( 'Dark Mode', 'textdomain' ),
-      'type'      => 'colorpicker',
-      'default'   => '#8A8A89',
+      'id' => 'styling-themeMode_dark-secondaryvariant',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#8A8A89',
       'options' => array(
         'show_if' => array('switch_theme_mode', '=', 'true'),
       )
-    ) );
+    ));
 
     $section_header_1->close_mixed_field();
-		$settings->close_tab_item('general');
-
-		$settings->open_tab_item('topbar');
-			$settings->add_field(array(
-				'name' => __('Logo (Light)', 'textdomain' ),
-				'id' => 'logo-light',
-				'type' => 'file',
-				'default' => APPBEAR_URL .'img/jannah-logo-light.png',
-			));
-			$settings->add_field(array(
-				'name' => __('Logo (Dark)', 'textdomain' ),
-				'id' => 'logo-dark',
-				'type' => 'file',
-				'default' => APPBEAR_URL .'img/jannah-logo-dark.png',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			));
-			$settings->add_field(array(
-				'name' => __( 'Logo Postition', 'textdomain' ),
-				'id' => 'appbar-position',
-				'type' => 'radio',
-				'default' => 'LogoPosition.start',
-				'items' => array(
-					'LogoPosition.start' => __( 'Start', 'textdomain' ),
-					'LogoPosition.center' => __( 'Center', 'textdomain' ),
-				)
-			));
-			$settings->add_field( array(
-				'name' => __('Side menu icon', 'textdomain'),
-				'id' => 'sidenavbar-icon',
-				'type' => 'icon_selector',
-				'default' => '0xe808',
-				'items' => array_merge(
-					AppbearItems::icon_fonts()
-				),
-				'options' => array(
-					'wrap_height'    => '220px',
-					'size'           => '36px',
-					'hide_search'    => false,
-					'hide_buttons'   => true,
-					'show_if' => array('menu_type', '!=', 'bottombar')
-				),
-			));
-			$settings->open_mixed_field(array('name' => __('Show search button', 'textdomain' )));
-			$settings->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'topbar_search_button',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$settings->add_field( array(
-				'name' => __('Search icon', 'textdomain'),
-				'id' => 'appbar-searchicon',
-				'type' => 'icon_selector',
-				'default' => '0xe820',
-				'items' => array_merge(
-					AppbearItems::icon_fonts()
-				),
-				'options' => array(
-					'wrap_height'    => '220px',
-					'size'           => '36px',
-					'hide_search'    => false,
-					'hide_buttons'   => true,
-					'show_if' => array('topbar_search_button', '=', 'true')
-				),
-			));
-			$settings->close_mixed_field();
-
-
-
-			$settings->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-appBarBackgroundColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-			) );
-
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-appBarBackgroundColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$settings->close_mixed_field();
-
-
-			$settings->open_mixed_field(array('name' => __('Icons/Text colors', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-appBarColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-			) );
-
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-appBarColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$settings->close_mixed_field();
-		$settings->close_tab_item('topbar');
-
-		$settings->open_tab_item('sidemenu');
-			$appbear_sidemenu_styling = $settings->add_section( array(
-				'name'          => __( 'Side Menu Styling', 'textdomain' ),
-				'id'            => 'section-sidemenu',
-				'options'       => array(
-					'toggle'    => true,
-				)
-			));
-
-			$appbear_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
-			$appbear_sidemenu_styling->add_field(array(
-				'id'        => 'styling-themeMode_light-background',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-			) );
-
-			$appbear_sidemenu_styling->add_field(array(
-				'id'        => 'styling-themeMode_dark-background',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$appbear_sidemenu_styling->close_mixed_field();
-
-			$appbear_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'textdomain' )));
-			$appbear_sidemenu_styling->add_field(array(
-				'id'        => 'styling-themeMode_light-sideMenuIconsTextColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-			) );
-
-			$appbear_sidemenu_styling->add_field(array(
-				'id'        => 'styling-themeMode_dark-sideMenuIconsTextColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$appbear_sidemenu_styling->close_mixed_field();
-
-
-
-
-
-			$sidemenu_items = $settings->add_section( array(
-				'name'          => __( 'Side Menu Items', 'textdomain' ),
-				'id'            => 'section-sidemenu-items',
-				'options'       => array(
-					'toggle'    => true,
-				)
-			));
-
-			$tabs = $sidemenu_items->add_group( array(
-				'name' => __('Menu Items', 'textdomain'),
-				'id' => 'navigators',
-				'options' => array(
-					'add_item_text' => __('New Tab', 'textdomain'),
-				),
-				'controls' => array(
-					'name' =>  __('Menu Item', 'textdomain').' #',
-					'position' => 'left',
-					'readonly_name' => true,
-					'images' => false,
-				),
-			));
-
-			$tabs->add_field(array(
-				'name' => __( 'Tab Type', 'textdomain' ),
-				'id' => 'type',
-				'type' => 'radio',
-				'default' => 'NavigationType.category',
-				'items' => array(
-					'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-					'NavigationType.category' => __( 'Category', 'textdomain' ),
-					'NavigationType.page' => __( 'Page', 'textdomain' ),
-				)
-			));
-			$tabs->open_mixed_field(array('name' => __('Tab Icon', 'textdomain' )));
-			$tabs->add_field(array(
-				'name' => __( 'Enable', 'textdomain' ),
-				'id' => 'side_menu_tab_icon',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field( array(
-				'name' => __('Tab icon', 'textdomain'),
-				'id' => 'icon',
-				'type' => 'icon_selector',
-				'default' => '0xe9f5',
-				'items' => array_merge(
-					AppbearItems::icon_fonts()
-				),
-				'options' => array(
-					'wrap_height'    => '220px',
-					'size'           => '36px',
-					'hide_search'    => false,
-					'hide_buttons'   => true,
-					'show_if' => array('side_menu_tab_icon', '=', 'true'),
-				),
-			));
-		$tabs->close_mixed_field();
-
-			$tabs->add_field(array(
-				'name' => __( 'Main Pages', 'textdomain' ),
-				'id' => 'main',
-				'type' => 'select',
-				'default' => 'MainPage.home',
-				'items' => array(
-					'MainPage.home' => __( 'Home', 'textdomain' ),
-					'MainPage.sections' => __( 'Sections', 'textdomain' ),
-					'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-					'MainPage.settings' => __( 'Settings', 'textdomain' ),
-				),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.main'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Categories', 'textdomain' ),
-				'id' => 'category',
-				'type' => 'select',
-				'items' => AppbearItems::terms( 'category' ),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.category'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Pages', 'textdomain' ),
-				'id' => 'page',
-				'type' => 'select',
-				'items' => AppbearItems::posts_by_post_type( 'page' ),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.page'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-
-			$tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
-				$tabs->add_field(array(
-					'name' => __( 'Enable', 'textdomain' ),
-					'id' => 'cutomized_title',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$tabs->add_field(array(
-					'name' => __( 'New Title', 'textdomain' ),
-					'id' => 'title',
-					'type' => 'text',
-					'grid' => '2-of-6',
-					'options' => array(
-						'show_if' => array('cutomized_title', '=', 'true'),
-					),
-				));
-			$tabs->close_mixed_field();
-		$settings->close_tab_item('sidemenu');
-
-		$settings->open_tab_item('bottombar');
-			$appbear_bottombar_styling = $settings->add_section( array(
-				'name'          => __( 'Bottom Bar Styling', 'textdomain' ),
-				'id'            => 'section-bottombar-styling',
-				'options'       => array(
-					'toggle'    => true,
-				)
-			));
-
-			// $appbear_bottombar_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
-			// $appbear_bottombar_styling->add_field(array(
-			// 	'id'        => 'styling-themeMode_light-bottomBarBackgroundColor',
-			// 	//'name'      => __( 'Light Mode', 'textdomain' ),
-			// 	'type'      => 'colorpicker',
-			// 	'default'   => '#FFFFFF',
-			// ) );
-
-			// $appbear_bottombar_styling->add_field(array(
-			// 	'id'        => 'styling-themeMode_dark-bottomBarBackgroundColor',
-			// 	'name'      => __( 'Dark Mode', 'textdomain' ),
-			// 	'type'      => 'colorpicker',
-			// 	'default'   => '#35393B',
-			// 	'options' => array(
-			// 		'show_if' => array('switch_theme_mode', '=', 'true'),
-			// 	)
-			// ) );
-			// $appbear_bottombar_styling->close_mixed_field();
-
-			$appbear_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_light-bottomBarInActiveColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#BCBCBC',
-			) );
-
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_dark-bottomBarInActiveColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#838483',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$appbear_bottombar_styling->close_mixed_field();
-
-			$appbear_bottombar_styling->open_mixed_field(array('name' => __('Active tab text color', 'textdomain' )));
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_light-bottomBarActiveColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088ff',
-			) );
-
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_dark-bottomBarActiveColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088ff',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$appbear_bottombar_styling->close_mixed_field();
-
-			$appbear_bottombar_tabs = $settings->add_section( array(
-				'name'          => __( 'Bottom Bar Tabs', 'textdomain' ),
-				'id'            => 'section-bottombar-tabs',
-				'options'       => array(
-					'toggle'    => true,
-					'show_if' => array('menu_type', '!=', 'sidemenu'),
-				),
-			));
-
-
-			$tabs = $appbear_bottombar_tabs->add_group( array(
-				'name' => __('Tabs', 'textdomain'),
-				'id' => 'bottombar_tabs',
-				'options' => array(
-					'add_item_text' => __('New Tab', 'textdomain'),
-					'show_if' => array('menu_type', '!=', 'sidemenu'),
-
-				),
-				'controls' => array(
-					'name' =>  __('Tab', 'textdomain').' #',
-					'readonly_name' => true,
-					'images' => false,
-				),
-			));
-
-			$tabs->add_field(array(
-				'name' => __( 'Tab Type', 'textdomain' ),
-				'id' => 'type',
-				'type' => 'radio',
-				'default' => 'NavigationType.category',
-				'items' => array(
-					'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-					'NavigationType.category' => __( 'Category', 'textdomain' ),
-					'NavigationType.page' => __( 'Page', 'textdomain' ),
-				)
-			));
-
-			$tabs->open_mixed_field(array('name' => __('Tab Icon', 'textdomain' )));
-
-			$tabs->add_field(array(
-				'name' => __( 'Enable', 'textdomain' ),
-				'id' => 'bottom_bar_icon_enable',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field( array(
-				'name' => __('Tab icon', 'textdomain'),
-				'id' => 'icon',
-				'type' => 'icon_selector',
-				'default' => '0xe800',
-				'items' => array_merge(
-					AppbearItems::icon_fonts()
-				),
-				'options' => array(
-					'wrap_height'    => '220px',
-					'size'           => '36px',
-					'hide_search'    => false,
-					'hide_buttons'   => true,
-					// 'show_if' => array('bottom_bar_enable_tabs', '=', 'true'),
-					'show_if' => array('bottom_bar_icon_enable', '=', 'true')
-
-				),
-			));
-			$tabs->close_mixed_field();
-			$tabs->add_field(array(
-				'name' => __( 'Main Pages', 'textdomain' ),
-				'id' => 'main',
-				'type' => 'select',
-				'default' => 'MainPage.home',
-				'items' => array(
-					'MainPage.home' => __( 'Home', 'textdomain' ),
-					'MainPage.sections' => __( 'Sections', 'textdomain' ),
-					'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-					'MainPage.settings' => __( 'Settings', 'textdomain' ),
-				),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.main'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Categories', 'textdomain' ),
-				'id' => 'category',
-				'type' => 'select',
-				'items' => AppbearItems::terms( 'category' ),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.category'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Pages', 'textdomain' ),
-				'id' => 'page',
-				'type' => 'select',
-				'items' => AppbearItems::posts_by_post_type( 'page' ),
-				'options' => array(
-					'show_if' => array('type', '=', 'NavigationType.page'),
-				),
-				'attributes' => array(
-					'required' => true
-				),
-			));
-
-			$tabs->open_mixed_field(array('name' => __('Title', 'textdomain' )));
-			$tabs->add_field(array(
-				'id' => 'title_enable',
-				'name' => __( 'Enable', 'textdomain' ),
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false',
-					'show_if' => array('menu_type', '!=', 'sidemenu'),
-				)
-			));
-			$tabs->add_field(array(
-				'id' => 'cutomized_title',
-				'name' => __( 'Enable Customized Title', 'textdomain' ),
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false',
-					'show_if' => array('title_enable', '=', 'true'),
-				)
-			));
-			$tabs->add_field(array(
-				'id' => 'title',
-				'type' => 'text',
-				'name' => __( 'Title', 'textdomain' ),
-				'grid' => '5-of-6',
-				'options' => array(
-					'show_if' => array('cutomized_title', '=', 'true'),
-				),
-			));
-			$tabs->close_mixed_field();
-		$settings->close_tab_item('bottombar');
-
-		$settings->open_tab_item('homepage');
-
-			$tabs = $settings->add_section( array(
-				'name' => __( 'Homepage tabs', 'textdomain' ),
-				'id' => 'section-homepage-tabs',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Enable Tabs', 'textdomain' ),
-				'id' => 'tabsbar_categories_tab',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field( array(
-				'name' => __( 'Layout', 'textdomain' ),
-				'id' => 'tabs-tabslayout',
-				'type' => 'image_selector',
-				'default' => 'TabsLayout.tab1',
-				'items' => array(
-					'TabsLayout.tab1' => APPBEAR_URL . 'options/img/topbar_tabs/tab_1.png',
-					'TabsLayout.tab2' => APPBEAR_URL . 'options/img/topbar_tabs/tab_2.png',
-					'TabsLayout.tab3' => APPBEAR_URL . 'options/img/topbar_tabs/tab_3.png',
-					'TabsLayout.tab4' => APPBEAR_URL . 'options/img/topbar_tabs/tab_4.png',
-					'TabsLayout.tab5' => APPBEAR_URL . 'options/img/topbar_tabs/tab_5.png',
-					'TabsLayout.tab6' => APPBEAR_URL . 'options/img/topbar_tabs/tab_6.png'
-				),
-				'options' => array(
-					'width' => '200px',
-					'show_if' => array('tabsbar_categories_tab', '=', 'true')
-				),
-			));
-
-
-			$tabs->open_mixed_field(array('name' => __('Background color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_light-tabbarbackgroundcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-			) );
-
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_dark-tabbarbackgroundcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$tabs->close_mixed_field();
-
-
-			$tabs->open_mixed_field(array('name' => __('InActive Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_light-tabbartextcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#7F7F7F',
-			) );
-
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_dark-tabbartextcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#8A8A89',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$tabs->close_mixed_field();
-
-			$tabs->open_mixed_field(array('name' => __('Active Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_light-tabbaractivetextcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#333739',
-			) );
-
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_dark-tabbaractivetextcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$tabs->close_mixed_field();
-
-			$tabs->open_mixed_field(array('name' => __('Indicator color', 'textdomain' ),'desc'      => __('The line under/outline/background the active tab', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_light-tabbarindicatorcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088FF',
-			) );
-
-			$tabs->add_field(array(
-				'id'        => 'styling-themeMode_dark-tabbarindicatorcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088FF',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$tabs->close_mixed_field();
-
-
-			$homepage_tabs = $tabs->add_group( array(
-				'name' => __('Tabs', 'textdomain'),
-				'id' => 'tabsbaritems',
-				'options' => array(
-					'add_item_text' => __('New Tab', 'textdomain'),
-					'show_if' => array('tabsbar_categories_tab', '=', 'true')
-				),
-				'controls' => array(
-					'name' =>  __('Tabs Item', 'textdomain').' #',
-					'position' => 'top',
-					'readonly_name' => true,
-					'images' => false,
-				),
-			));
-			$homepage_tabs->add_field(array(
-				'name' => __( 'Category', 'textdomain' ),
-				'id' => 'categories',
-				'type' => 'select',
-				'items' => AppbearItems::terms( 'category' ),
-				'options' => array(
-					'multiple' => true,
-					'search' => true,
-					'show_if' => array('local-tabs-tab_type', '=', 'category'),
-				),
-			));
-
-			$homepage_tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
-				$homepage_tabs->add_field(array(
-					'name' => __( 'Enable', 'textdomain' ),
-					'id' => 'customized-title',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$homepage_tabs->add_field(array(
-					'name' => __( 'New Title', 'textdomain' ),
-					'id' => 'title',
-					'type' => 'text',
-					'grid' => '2-of-6',
-					'options' => array(
-						'show_if' => array('customized-title', '=', 'true'),
-					),
-				));
-			$homepage_tabs->close_mixed_field();
-
-			$tabs->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-				$tabs->add_field(array(
-					'name' => __( 'Enabled', 'textdomain' ),
-					'id' => 'local-tabs-exclude_posts',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$tabs->add_field(array(
-					'id' => 'tabs-exclude_posts',
-					'name' => __( 'Posts ID/IDs', 'textdomain' ),
-					'type' => 'text',
-					'grid' => '5-of-6',
-					'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
-					'options' => array(
-						'show_if' => array('local-tabs-exclude_posts', '=', 'true')
-					)
-				));
-			$tabs->close_mixed_field();
-			$tabs->open_mixed_field(array('name' => __('Offset', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-				$tabs->add_field(array(
-					'name' => __( 'Enabled', 'textdomain' ),
-					'id' => 'local-tabs-offset_posts',
-					'type' => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-				$tabs->add_field(array(
-					'id' => 'tabs-offset_posts',
-					'name' => __( 'Offset Count', 'textdomain' ),
-					'type' => 'number',
-					'grid' => '5-of-6',
-					'desc' => __( 'Number of posts to pass over', 'textdomain' ),
-					'options' => array(
-						'show_unit' => false,
-						'show_if' => array('local-tabs-offset_posts', '=', 'true')
-					)
-				));
-			$tabs->close_mixed_field();
-			$tabs->add_field(array(
-				'name' => __( 'Number of posts to show', 'textdomain' ),
-				'id' => 'tabs-count',
-				'type' => 'select',
-				'default' => '3',
-				'items' => array(
-					'1' => 1,
-					'3' => 3,
-					'5' => 5,
-					'6' => 6,
-					'7' => 7,
-					'9' => 9,
-					'10' => 10,
-				), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Sort Order', 'textdomain' ),
-				'id' => 'tabs-sort',
-				'type' => 'select',
-				'default' => 'latest',
-				'items' => array(
-					'latest' => __( 'Recent Posts', 'textdomain' ),
-					'rand' => __( 'Random Posts', 'textdomain' ),
-					'modified' => __( 'Last Modified Posts', 'textdomain' ),
-					'popular' => __( 'Most Commented posts', 'textdomain' ),
-					'title' => __( 'Alphabetically', 'textdomain' ),
-				), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
-			));
-			$tabs->add_field( array(
-				'id' => 'tabs-postlayout',
-				'name' => __( 'Posts Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.startThumbPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-					'show_if' => array('tabsbar_categories_tab', '=', 'true')
-				),
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Is first post "Featured"?', 'textdomain' ),
-				'id' => 'local-tabs-firstfeatured',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false',
-					'show_if' => array('tabsbar_categories_tab', '=', 'true')
-				),
-				'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
-			));
-			$tabs->add_field( array(
-				'id' => 'tabs-firstfeatured',
-				'name' => __( 'Featured Post Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.featuredPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					// 'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					// 'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					// 'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					// 'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-					'show_if' => array('tabsbar_categories_tab', '=', 'true')
-					// 'show_if' => array('local-tabs-firstfeatured', '=', 'true')
-				),
-			));
-			$tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-			$tabs->add_field(array(
-				'name' => __( 'Catgeory', 'textdomain' ),
-				'id' => 'tabs-options-category',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			// $tabs->add_field(array(
-			// 	'name' => __( 'Author', 'textdomain' ),
-			// 	'id' => 'tabs-options-author',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $tabs->add_field(array(
-			// 	'name' => __( 'Tags', 'textdomain' ),
-			// 	'id' => 'tabs-options-tags',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			$tabs->add_field(array(
-				'name' => __( 'Read Time', 'textdomain' ),
-				'id' => 'tabs-options-readtime',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Created Date', 'textdomain' ),
-				'id' => 'tabs-options-date',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Favorite', 'textdomain' ),
-				'id' => 'tabs-options-save',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->add_field(array(
-				'name' => __( 'Share', 'textdomain' ),
-				'id' => 'tabs-options-share',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$tabs->close_mixed_field();
-
-
-
-
-
-
-			$homepage = $settings->add_section( array(
-				'name' => __( 'Personalize the home page', 'textdomain' ),
-				'id' => 'section-homepage-builder',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-
-			$homepage->open_mixed_field(
-				array(
-					'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
-					'options' => array(
-						'show_if' => array('tabsbar_categories_tab', '=', 'true')
-					)
-				)
-			);
-			$homepage->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'local-hompage_title',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$homepage->add_field(array(
-				'id' => 'homepage-sections-title',
-				'name' => __( 'Title', 'textdomain' ),
-				'type' => 'text',
-				'grid' => '5-of-6',
-				'default' => __( 'Home', 'textdomain' ),
-				'options' => array(
-					'show_if' => array('local-hompage_title', '=', 'true')
-				)
-			));
-			$homepage->close_mixed_field();
-			$section = $homepage->add_group( array(
-				'name' => __( 'Homepage Sections', 'textdomain' ),
-				'id' => 'sections',
-				'options' => array(
-					'add_item_text' => __('New Section', 'textdomain'),
-				),
-				'controls' => array(
-					'name' =>  __('Section', 'textdomain').' #',
-					'readonly_name' => false,
-					'images' => true,
-					'position' => 'left',
-					'default_image' => APPBEAR_URL . '/img/transparent.png',
-					'image_field_id' => 'postlayout',
-					'height' => '190px',
-				),
-			));
-			$section->open_mixed_field(array('name' =>  __('Section Title', 'textdomain' )));
-			$section->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'local-section_title',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'id' => 'title',
-				'name' => __( 'Title', 'textdomain' ),
-				'type' => 'text',
-				'grid' => '5-of-6',
-				'desc' => __( 'If you don\'t need this section to have title, then switch it off', 'textdomain' ),
-				'options' => array(
-					'show_if' => array('local-section_title', '=', 'true')
-				)
-			));
-			$section->close_mixed_field();
-
-			$section->add_field(array(
-				'name' => __( "Show 'See All' Button", 'textdomain' ),
-				'id' => 'local-enable_see_all',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'options' => array(
-					'show_if' => array('local-section_title', '=', 'true')
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Show posts by', 'textdomain' ),
-				'id' => 'showposts',
-				'type' => 'radio',
-				'default' => 'categories',
-				'items' => array(
-					'categories' => __( 'Categories', 'textdomain' ),
-					'tags' => __( 'Tags', 'textdomain' ),
-				)
-			));
-			$section->add_field( array(
-				'id' => 'categories',
-				'name' => __( 'Categories', 'textdomain' ),
-				'type' => 'checkbox',
-				'default' => '$all$',
-				'items' => AppbearItems::terms( 'category' ),
-				'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
-				'options' => array(
-					'show_if' => array('showposts', '=', 'categories')
-				)
-      ));
-			$section->add_field(array(
-				'id' => 'tags',
-				'name' => __( 'Tags', 'textdomain' ),
-				'type' => 'checkbox',
-				'default' => '$all$',
-				'items' => AppbearItems::terms( 'post_tag' ),
-				'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
-				'options' => array(
-					'show_if' => array('showposts', '=', 'tags')
-				)
-			));
-			$section->close_mixed_field();
-			$section->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' )));
-			$section->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'local-enable_exclude_posts',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'id' => 'local-exclude_posts',
-				'name' => __( 'Posts ID/IDs', 'textdomain' ),
-				'type' => 'text',
-				'grid' => '5-of-6',
-				'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
-				'options' => array(
-					'show_if' => array('local-enable_exclude_posts', '=', 'true')
-				)
-			));
-			$section->close_mixed_field();
-			$section->open_mixed_field(array('name' => __('Offset', 'textdomain' )));
-			$section->add_field(array(
-				'name' => __( 'Enabled', 'textdomain' ),
-				'id' => 'local-enable_offset_posts',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'id' => 'local-offset_posts',
-				'name' => __( 'Count', 'textdomain' ),
-				'type' => 'number',
-				'grid' => '5-of-6',
-				'desc' => __( 'Number of posts to pass over', 'textdomain' ),
-				'options' => array(
-					'show_unit'=>false,
-					'show_if' => array('local-enable_offset_posts', '=', 'true')
-				)
-			));
-			$section->close_mixed_field();
-			$section->add_field(array(
-				'name' => __( 'Sort Order', 'textdomain' ),
-				'id' => 'local-sort',
-				'type' => 'select',
-				'default' => 'latest',
-				'items' => array(
-					'latest' => __( 'Recent Posts', 'textdomain' ),
-					'rand' => __( 'Random Posts', 'textdomain' ),
-					'modified' => __( 'Last Modified Posts', 'textdomain' ),
-					'popular' => __( 'Most Commented posts', 'textdomain' ),
-					'title' => __( 'Alphabetically', 'textdomain' ),
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Number of posts to show', 'textdomain' ),
-				'id' => 'local-count',
-				'type' => 'select',
-				'default' => '3',
-				'items' => array(
-					'1' => __( '1 Post', 'textdomain' ),
-					'2' => __( '2 Posts', 'textdomain' ),
-					'3' => __( '3 Posts', 'textdomain' ),
-					'4' => __( '4 Posts', 'textdomain' ),
-					'5' => __( '5 Posts', 'textdomain' ),
-					'6' => __( '6 Posts', 'textdomain' ),
-					'7' => __( '7 Posts', 'textdomain' ),
-					'8' => __( '8 Posts', 'textdomain' ),
-					'9' => __( '9 Posts', 'textdomain' ),
-					'10' => __( '10 Posts', 'textdomain' ),
-				)
-			));
-			$section->add_field( array(
-				'id' => 'postlayout',
-				'name' => __( 'Posts Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.startThumbPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-				),
-			));
-			$section->add_field(array(
-				'name' => __( 'Is first post "Featured"?', 'textdomain' ),
-				'id' => 'local-firstfeatured',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
-			));
-			$section->add_field(array(
-				'id' => 'firstFeatured',
-				'name' => __( 'First Post Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.featuredPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					// 'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					// 'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					// 'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					// 'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					// 'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-					'show_if' => array('local-firstfeatured', '=', 'true')
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Add separator after the block?', 'textdomain' ),
-				'id' => 'separator',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
-			$section->add_field(array(
-				'name' => __( 'Catgeory', 'textdomain' ),
-				'id' => 'options-category',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Read Time', 'textdomain' ),
-				'id' => 'options-readtime',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Created Date', 'textdomain' ),
-				'id' => 'options-date',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Favorite', 'textdomain' ),
-				'id' => 'options-save',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->add_field(array(
-				'name' => __( 'Share', 'textdomain' ),
-				'id' => 'options-share',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$section->close_mixed_field();
-		$settings->close_tab_item('homepage');
-
-		$settings->open_tab_item('archives');
-			$archives_categories = $settings->add_section( array(
-				'name' => __( 'Categories List Page Settings', 'textdomain' ),
-				'id' => 'section-archives-categories',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$archives_categories->add_field( array(
-				'id' => 'archives-categories-postlayout',
-				'name' => __( 'Categories Page Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'CategoriesLayout.cat1',
-				'items' => array(
-					'CategoriesLayout.cat1' => APPBEAR_URL . 'options/img/categories/cat_1.png',
-					'CategoriesLayout.cat2' => APPBEAR_URL . 'options/img/categories/cat_2.png',
-					'CategoriesLayout.cat3' => APPBEAR_URL . 'options/img/categories/cat_3.png',
-					'CategoriesLayout.cat4' => APPBEAR_URL . 'options/img/categories/cat_4.png',
-					'CategoriesLayout.cat5' => APPBEAR_URL . 'options/img/categories/cat_5.png',
-				),
-				'options' => array(
-					'width' => '155px',
-				),
-			));
-			$archives_category = $settings->add_section( array(
-				'name' => __( 'Single Category Page Settings', 'textdomain' ),
-				'id' => 'section-archives-category',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$archives_category->add_field( array(
-				'id' => 'archives-category-postlayout',
-				'name' => __( 'Single Category Posts Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.startThumbPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-				),
-			));
-			$archives_category->add_field(array(
-				'name' => __( 'Sort Order', 'textdomain' ),
-				'id' => 'local-archives-category-sort',
-				'type' => 'select',
-				'default' => 'latest',
-				'items' => array(
-					'latest' => __( 'Recent Posts', 'textdomain' ),
-					'rand' => __( 'Random Posts', 'textdomain' ),
-					'modified' => __( 'Last Modified Posts', 'textdomain' ),
-					'popular' => __( 'Most Commented posts', 'textdomain' ),
-					'title' => __( 'Alphabetically', 'textdomain' ),
-				)
-			));
-			$archives_category->add_field(array(
-				'name' => __( 'Number of posts to show', 'textdomain' ),
-				'id' => 'local-archives-category-count',
-				'type' => 'select',
-				'default' => '10',
-				'items' => array(
-					'1' => __( '1 Post', 'textdomain' ),
-					'3' => __( '3 Posts', 'textdomain' ),
-					'4' => __( '4 Posts', 'textdomain' ),
-					'6' => __( '6 Posts', 'textdomain' ),
-					'7' => __( '7 Posts', 'textdomain' ),
-					'9' => __( '9 Posts', 'textdomain' ),
-					'10' => __( '10 Posts', 'textdomain' ),
-				)
-			));
-			$archives_category->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
-			// $archives_category->add_field(array(
-			// 	'name' => __( 'Catgeory', 'textdomain' ),
-			// 	'id' => 'archives-category-options-category',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'true',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $archives_category->add_field(array(
-			// 	'name' => __( 'Author', 'textdomain' ),
-			// 	'id' => 'archives-category-options-author',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $archives_category->add_field(array(
-			// 	'name' => __( 'Tags', 'textdomain' ),
-			// 	'id' => 'archives-category-options-tags',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			$archives_category->add_field(array(
-				'name' => __( 'Read Time', 'textdomain' ),
-				'id' => 'archives-category-options-readtime',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_category->add_field(array(
-				'name' => __( 'Created Date', 'textdomain' ),
-				'id' => 'archives-category-options-date',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_category->add_field(array(
-				'name' => __( 'Favorite', 'textdomain' ),
-				'id' => 'archives-category-options-save',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_category->add_field(array(
-				'name' => __( 'Share', 'textdomain' ),
-				'id' => 'archives-category-options-share',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_category->close_mixed_field();
-
-			$archives_search = $settings->add_section( array(
-				'name' => __( 'Search Page Settings', 'textdomain' ),
-				'id' => 'section-archives-search',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$archives_search->add_field( array(
-				'id' => 'archives-search-postlayout',
-				'name' => __( 'Search Page Posts Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.startThumbPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-				),
-			));
-			$archives_search->add_field(array(
-				'name' => __( 'Sort Order', 'textdomain' ),
-				'id' => 'local-archives-search-sort',
-				'type' => 'select',
-				'default' => 'latest',
-				'items' => array(
-					'latest' => __( 'Recent Posts', 'textdomain' ),
-					'rand' => __( 'Random Posts', 'textdomain' ),
-					'modified' => __( 'Last Modified Posts', 'textdomain' ),
-					'popular' => __( 'Most Commented posts', 'textdomain' ),
-					'title' => __( 'Alphabetically', 'textdomain' ),
-				)
-			));
-			$archives_search->add_field(array(
-				'name' => __( 'Number of posts to show', 'textdomain' ),
-				'id' => 'local-archives-search-count',
-				'type' => 'select',
-				'default' => '10',
-				'items' => array(
-					'1' => __( '1 Post', 'textdomain' ),
-					'3' => __( '3 Posts', 'textdomain' ),
-					'4' => __( '4 Posts', 'textdomain' ),
-					'6' => __( '6 Posts', 'textdomain' ),
-					'7' => __( '7 Posts', 'textdomain' ),
-					'9' => __( '9 Posts', 'textdomain' ),
-					'10' => __( '10 Posts', 'textdomain' ),
-				)
-			));
-			$archives_search->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
-			$archives_search->add_field(array(
-				'name' => __( 'Catgeory', 'textdomain' ),
-				'id' => 'archives-search-options-category',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			// $archives_search->add_field(array(
-			// 	'name' => __( 'Author', 'textdomain' ),
-			// 	'id' => 'archives-search-options-author',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $archives_search->add_field(array(
-			// 	'name' => __( 'Tags', 'textdomain' ),
-			// 	'id' => 'archives-search-options-tags',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			$archives_search->add_field(array(
-				'name' => __( 'Read Time', 'textdomain' ),
-				'id' => 'archives-search-options-readtime',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_search->add_field(array(
-				'name' => __( 'Created Date', 'textdomain' ),
-				'id' => 'archives-search-options-date',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_search->add_field(array(
-				'name' => __( 'Favorite', 'textdomain' ),
-				'id' => 'archives-search-options-save',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_search->add_field(array(
-				'name' => __( 'Share', 'textdomain' ),
-				'id' => 'archives-search-options-share',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_search->close_mixed_field();
-
-			$archives_favorites = $settings->add_section( array(
-				'name' => __( 'Favorites Page Settings', 'textdomain' ),
-				'id' => 'section-archives-favorites',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$archives_favorites->add_field( array(
-				'id' => 'archives-favorites-postlayout',
-				'name' => __( 'Favorites Page Posts Layout', 'textdomain' ),
-				'type' => 'image_selector',
-				'default' => 'PostLayout.startThumbPost',
-				'items' => array(
-					'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-					'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-					'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-					'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-					'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-					'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-					'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-					'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-					'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-					'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-				),
-				'options' => array(
-					'width' => '155px',
-				),
-			));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Sort Order', 'textdomain' ),
-				'id' => 'local-archives-favorites-sort',
-				'type' => 'select',
-				'default' => 'latest',
-				'items' => array(
-					'latest' => __( 'Recent Posts', 'textdomain' ),
-					'rand' => __( 'Random Posts', 'textdomain' ),
-					'modified' => __( 'Last Modified Posts', 'textdomain' ),
-					'popular' => __( 'Most Commented posts', 'textdomain' ),
-					'title' => __( 'Alphabetically', 'textdomain' ),
-				)
-			));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Number of posts to show', 'textdomain' ),
-				'id' => 'local-archives-favorites-count',
-				'type' => 'select',
-				'default' => '10',
-				'items' => array(
-					'1' => __( '1 Post', 'textdomain' ),
-					'3' => __( '3 Posts', 'textdomain' ),
-					'4' => __( '4 Posts', 'textdomain' ),
-					'6' => __( '6 Posts', 'textdomain' ),
-					'7' => __( '7 Posts', 'textdomain' ),
-					'9' => __( '9 Posts', 'textdomain' ),
-					'10' => __( '10 Posts', 'textdomain' ),
-				)
-			));
-			$archives_favorites->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Catgeory', 'textdomain' ),
-				'id' => 'archives-favorites-options-category',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			// $archives_favorites->add_field(array(
-			// 	'name' => __( 'Author', 'textdomain' ),
-			// 	'id' => 'archives-favorites-options-author',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			// $archives_favorites->add_field(array(
-			// 	'name' => __( 'Tags', 'textdomain' ),
-			// 	'id' => 'archives-favorites-options-tags',
-			// 	'type' => 'switcher',
-			// 	'default'	=>	'false',
-			// 	'options' => array(
-			// 		'on_value'  => 'true',
-			// 		'off_value' => 'false'
-			// 	)
-			// ));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Read Time', 'textdomain' ),
-				'id' => 'archives-favorites-options-readtime',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Created Date', 'textdomain' ),
-				'id' => 'archives-favorites-options-date',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Favorite', 'textdomain' ),
-				'id' => 'archives-favorites-options-save',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_favorites->add_field(array(
-				'name' => __( 'Share', 'textdomain' ),
-				'id' => 'archives-favorites-options-share',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				)
-			));
-			$archives_favorites->close_mixed_field();
-
-		$settings->close_tab_item('archives');
-
-		$settings->open_tab_item('styling');
-
-			$settings->open_mixed_field(array('name' => __('Shadow Color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-shadowColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(0,0,0,0.15)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-				),
-			) );
-
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-shadowColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(0,0,0,0.15)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-
-			$settings->open_mixed_field(array('name' => __('Dividers Color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-dividerColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(0,0,0,0.05)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-				),
-			) );
-
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-dividerColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(255,255,255,0.13)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-
-			$settings->open_mixed_field(array('name' => __('Inputs Background Color', 'textdomain' ),'desc'      => __( 'All inputs background color on search, sort by select and indicator.', 'textdomain' ),));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-inputsbackgroundcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(0,0,0,0.04)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-				),
-			) );
-
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-inputsbackgroundcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => 'rgba(255,255,255,0.07)',
-				'options' => array(
-					'format' => 'rgba',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-
-			$settings->open_mixed_field(array('name' => __('Buttons Background color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-buttonsbackgroudcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088FF',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-				),
-			) );
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-buttonsbackgroudcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#0088FF',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-
-			$settings->open_mixed_field(array('name' => __('Buttons Text color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-buttonTextColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-				),
-			) );
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-buttonTextColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-			$settings->open_mixed_field(array('name' => __('Success Message Background color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-successcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#006900',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-				),
-			) );
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-successcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#006900',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-
-			$settings->open_mixed_field(array('name' => __('Error Message Background color', 'textdomain' )));
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_light-errorcolor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FF0000',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-				),
-			) );
-			$settings->add_field(array(
-				'id'        => 'styling-themeMode_dark-errorcolor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FF0000',
-				'options' => array(
-					'format' => 'hex',
-					'show_default_button' => true,
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				),
-			) );
-			$settings->close_mixed_field();
-		$settings->close_tab_item('styling');
-
+    $settings->close_tab_item('general');
+
+
+    // NOTE: Top Bar Page
+    $settings->open_tab_item('topbar');
+    $settings->add_field(array(
+      'name' => __('Logo (Light)', 'textdomain' ),
+      'id' => 'logo-light',
+      'type' => 'file',
+      'default' => APPBEAR_URL .'img/jannah-logo-light.png',
+    ));
+    $settings->add_field(array(
+      'name' => __('Logo (Dark)', 'textdomain' ),
+      'id' => 'logo-dark',
+      'type' => 'file',
+      'default' => APPBEAR_URL .'img/jannah-logo-dark.png',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->add_field(array(
+      'name' => __( 'Logo Postition', 'textdomain' ),
+      'id' => 'appbar-position',
+      'type' => 'radio',
+      'default' => 'LogoPosition.start',
+      'items' => array(
+        'LogoPosition.start' => __( 'Start', 'textdomain' ),
+        'LogoPosition.center' => __( 'Center', 'textdomain' ),
+      )
+    ));
+    $settings->add_field( array(
+      'name' => __('Side menu icon', 'textdomain'),
+      'id' => 'sidenavbar-icon',
+      'type' => 'icon_selector',
+      'default' => '0xe808',
+      'items' => array_merge(
+        AppbearItems::icon_fonts()
+      ),
+      'options' => array(
+        'wrap_height' => '220px',
+        'size' => '36px',
+        'hide_search' => false,
+        'hide_buttons' => true,
+        'show_if' => array('menu_type', '!=', 'bottombar')
+      ),
+    ));
+    $settings->open_mixed_field(array('name' => __('Show search button', 'textdomain' )));
+    $settings->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'topbar_search_button',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $settings->add_field( array(
+      'name' => __('Search icon', 'textdomain'),
+      'id' => 'appbar-searchicon',
+      'type' => 'icon_selector',
+      'default' => '0xe820',
+      'items' => array_merge(
+        AppbearItems::icon_fonts()
+      ),
+      'options' => array(
+        'wrap_height' => '220px',
+        'size' => '36px',
+        'hide_search' => false,
+        'hide_buttons' => true,
+        'show_if' => array('topbar_search_button', '=', 'true')
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-appBarBackgroundColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+    ));
+
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-appBarBackgroundColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Icons/Text colors', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-appBarColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+    ));
+
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-appBarColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $settings->close_mixed_field();
+    $settings->close_tab_item('topbar');
+
+
+    // NOTE: Side-Menu Page
+    $settings->open_tab_item('sidemenu');
+    $appbear_sidemenu_styling = $settings->add_section( array(
+      'name' => __( 'Side Menu Styling', 'textdomain' ),
+      'id' => 'section-sidemenu',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $appbear_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+    $appbear_sidemenu_styling->add_field(array(
+      'id' => 'styling-themeMode_light-background',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+    ));
+
+    $appbear_sidemenu_styling->add_field(array(
+      'id' => 'styling-themeMode_dark-background',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $appbear_sidemenu_styling->close_mixed_field();
+
+    $appbear_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'textdomain' )));
+    $appbear_sidemenu_styling->add_field(array(
+      'id' => 'styling-themeMode_light-sideMenuIconsTextColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+    ));
+
+    $appbear_sidemenu_styling->add_field(array(
+      'id' => 'styling-themeMode_dark-sideMenuIconsTextColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $appbear_sidemenu_styling->close_mixed_field();
+
+
+    $sidemenu_items = $settings->add_section( array(
+      'name' => __( 'Side Menu Items', 'textdomain' ),
+      'id' => 'section-sidemenu-items',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $tabs = $sidemenu_items->add_group( array(
+      'name' => __('Menu Items', 'textdomain'),
+      'id' => 'navigators',
+      'options' => array(
+        'add_item_text' => __('New Tab', 'textdomain'),
+      ),
+      'controls' => array(
+        'name' =>  __('Menu Item', 'textdomain').' #',
+        'position' => 'left',
+        'readonly_name' => true,
+        'images' => false,
+      ),
+    ));
+
+    $tabs->add_field(array(
+      'name' => __( 'Tab Type', 'textdomain' ),
+      'id' => 'type',
+      'type' => 'radio',
+      'default' => 'NavigationType.category',
+      'items' => array(
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      )
+    ));
+    $tabs->open_mixed_field(array('name' => __('Tab Icon', 'textdomain' )));
+    $tabs->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'side_menu_tab_icon',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field( array(
+      'name' => __('Tab icon', 'textdomain'),
+      'id' => 'icon',
+      'type' => 'icon_selector',
+      'default' => '0xe9f5',
+      'items' => array_merge(
+        AppbearItems::icon_fonts()
+      ),
+      'options' => array(
+      'wrap_height' => '220px',
+      'size' => '36px',
+      'hide_search' => false,
+      'hide_buttons' => true,
+        'show_if' => array('side_menu_tab_icon', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+    $tabs->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.main'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'category',
+      'type' => 'select',
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.category'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'page',
+      'type' => 'select',
+      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.page'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+
+    $tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
+    $tabs->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'cutomized_title',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'New Title', 'textdomain' ),
+      'id' => 'title',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('cutomized_title', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+    $settings->close_tab_item('sidemenu');
+
+
+    // NOTE: Bottom Bar Page
+    $settings->open_tab_item('bottombar');
+    $appbear_bottombar_styling = $settings->add_section( array(
+      'name' => __( 'Bottom Bar Styling', 'textdomain' ),
+      'id' => 'section-bottombar-styling',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $appbear_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_light-bottomBarInActiveColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#BCBCBC',
+    ));
+
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_dark-bottomBarInActiveColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#838483',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $appbear_bottombar_styling->close_mixed_field();
+
+    $appbear_bottombar_styling->open_mixed_field(array('name' => __('Active tab text color', 'textdomain' )));
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_light-bottomBarActiveColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+    ));
+
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_dark-bottomBarActiveColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $appbear_bottombar_styling->close_mixed_field();
+
+    $appbear_bottombar_tabs = $settings->add_section( array(
+      'name' => __( 'Bottom Bar Tabs', 'textdomain' ),
+      'id' => 'section-bottombar-tabs',
+      'options' => array(
+      'toggle' => true,
+        'show_if' => array('menu_type', '!=', 'sidemenu'),
+      ),
+    ));
+
+
+    $tabs = $appbear_bottombar_tabs->add_group( array(
+      'name' => __('Tabs', 'textdomain'),
+      'id' => 'bottombar_tabs',
+      'options' => array(
+      'add_item_text' => __('New Tab', 'textdomain'),
+        'show_if' => array('menu_type', '!=', 'sidemenu'),
+
+      ),
+      'controls' => array(
+      'name' =>  __('Tab', 'textdomain').' #',
+      'readonly_name' => true,
+      'images' => false,
+      ),
+    ));
+
+    $tabs->add_field(array(
+      'name' => __( 'Tab Type', 'textdomain' ),
+      'id' => 'type',
+      'type' => 'radio',
+      'default' => 'NavigationType.category',
+      'items' => array(
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      )
+    ));
+
+    $tabs->open_mixed_field(array('name' => __('Tab Icon', 'textdomain' )));
+
+    $tabs->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'bottom_bar_icon_enable',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field( array(
+      'name' => __('Tab icon', 'textdomain'),
+      'id' => 'icon',
+      'type' => 'icon_selector',
+      'default' => '0xe800',
+      'items' => array_merge( AppbearItems::icon_fonts() ),
+      'options' => array(
+        'wrap_height' => '220px',
+        'size' => '36px',
+        'hide_search' => false,
+        'hide_buttons' => true,
+        // 'show_if' => array('bottom_bar_icon_enable', '=', 'true'),
+        'show_if' => array('bottom_bar_enable_tabs', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+    $tabs->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.main'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'category',
+      'type' => 'select',
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.category'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'page',
+      'type' => 'select',
+      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'options' => array(
+        'show_if' => array('type', '=', 'NavigationType.page'),
+      ),
+      'attributes' => array( 'required' => true ),
+    ));
+
+    $tabs->open_mixed_field(array('name' => __('Title', 'textdomain' )));
+    $tabs->add_field(array(
+      'id' => 'title_enable',
+      'name' => __( 'Enable', 'textdomain' ),
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+      'on_value' => 'true',
+      'off_value' => 'false',
+        'show_if' => array('menu_type', '!=', 'sidemenu'),
+      )
+    ));
+    $tabs->add_field(array(
+      'id' => 'cutomized_title',
+      'name' => __( 'Enable Customized Title', 'textdomain' ),
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+      'on_value' => 'true',
+      'off_value' => 'false',
+        'show_if' => array('title_enable', '=', 'true'),
+      )
+    ));
+    $tabs->add_field(array(
+      'id' => 'title',
+      'type' => 'text',
+      'name' => __( 'Title', 'textdomain' ),
+      'grid' => '5-of-6',
+      'options' => array(
+        'show_if' => array('cutomized_title', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+    $settings->close_tab_item('bottombar');
+
+
+    // NOTE: Home Page
+    $settings->open_tab_item('homepage');
+
+    $tabs = $settings->add_section( array(
+      'name' => __( 'Homepage tabs', 'textdomain' ),
+      'id' => 'section-homepage-tabs',
+      'options' => array( 'toggle' => true )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Enable Tabs', 'textdomain' ),
+      'id' => 'tabsbar_categories_tab',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field( array(
+      'name' => __( 'Layout', 'textdomain' ),
+      'id' => 'tabs-tabslayout',
+      'type' => 'image_selector',
+      'default' => 'TabsLayout.tab1',
+      'items' => array(
+        'TabsLayout.tab1' => APPBEAR_URL . 'options/img/topbar_tabs/tab_1.png',
+        'TabsLayout.tab2' => APPBEAR_URL . 'options/img/topbar_tabs/tab_2.png',
+        'TabsLayout.tab3' => APPBEAR_URL . 'options/img/topbar_tabs/tab_3.png',
+        'TabsLayout.tab4' => APPBEAR_URL . 'options/img/topbar_tabs/tab_4.png',
+        'TabsLayout.tab5' => APPBEAR_URL . 'options/img/topbar_tabs/tab_5.png',
+        'TabsLayout.tab6' => APPBEAR_URL . 'options/img/topbar_tabs/tab_6.png'
+      ),
+      'options' => array(
+        'width' => '200px',
+        'show_if' => array('tabsbar_categories_tab', '=', 'true'),
+      ),
+    ));
+
+
+    $tabs->open_mixed_field(array('name' => __('Background color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_light-tabbarbackgroundcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+    ));
+
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_dark-tabbarbackgroundcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+
+    $tabs->open_mixed_field(array('name' => __('InActive Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_light-tabbartextcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#7F7F7F',
+    ));
+
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_dark-tabbartextcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#8A8A89',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+    $tabs->open_mixed_field(array('name' => __('Active Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_light-tabbaractivetextcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#333739',
+    ));
+
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_dark-tabbaractivetextcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+    $tabs->open_mixed_field(array('name' => __('Indicator color', 'textdomain' ),'desc' => __('The line under/outline/background the active tab', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_light-tabbarindicatorcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088FF',
+    ));
+
+    $tabs->add_field(array(
+      'id' => 'styling-themeMode_dark-tabbarindicatorcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088FF',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $tabs->close_mixed_field();
+
+
+    $homepage_tabs = $tabs->add_group( array(
+      'name' => __('Tabs', 'textdomain'),
+      'id' => 'tabsbaritems',
+      'options' => array(
+      'add_item_text' => __('New Tab', 'textdomain'),
+        'show_if' => array('tabsbar_categories_tab', '=', 'true')
+      ),
+      'controls' => array(
+        'name' =>  __('Tabs Item', 'textdomain').' #',
+        'position' => 'top',
+        'readonly_name' => true,
+        'images' => false,
+      ),
+    ));
+    $homepage_tabs->add_field(array(
+      'name' => __( 'Category', 'textdomain' ),
+      'id' => 'categories',
+      'type' => 'select',
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+      'multiple' => true,
+      'search' => true,
+        'show_if' => array('local-tabs-tab_type', '=', 'category'),
+      ),
+    ));
+
+    $homepage_tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
+    $homepage_tabs->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'customized-title',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $homepage_tabs->add_field(array(
+      'name' => __( 'New Title', 'textdomain' ),
+      'id' => 'title',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('customized-title', '=', 'true'),
+      ),
+    ));
+    $homepage_tabs->close_mixed_field();
+
+    $tabs->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-tabs-exclude_posts',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'id' => 'tabs-exclude_posts',
+      'name' => __( 'Posts ID/IDs', 'textdomain' ),
+      'type' => 'text',
+      'grid' => '5-of-6',
+      'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
+      'options' => array(
+        'show_if' => array('local-tabs-exclude_posts', '=', 'true')
+      )
+    ));
+    $tabs->close_mixed_field();
+    $tabs->open_mixed_field(array('name' => __('Offset', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-tabs-offset_posts',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'id' => 'tabs-offset_posts',
+      'name' => __( 'Offset Count', 'textdomain' ),
+      'type' => 'number',
+      'grid' => '5-of-6',
+      'desc' => __( 'Number of posts to pass over', 'textdomain' ),
+      'options' => array(
+        'show_unit' => false,
+        'show_if' => array('local-tabs-offset_posts', '=', 'true')
+      )
+    ));
+    $tabs->close_mixed_field();
+    $tabs->add_field(array(
+      'name' => __( 'Number of posts to show', 'textdomain' ),
+      'id' => 'tabs-count',
+      'type' => 'select',
+      'default' => '3',
+      'items' => array(
+        '1' => 1,
+        '3' => 3,
+        '5' => 5,
+        '6' => 6,
+        '7' => 7,
+        '9' => 9,
+        '10' => 10,
+      ),
+      'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Sort Order', 'textdomain' ),
+      'id' => 'tabs-sort',
+      'type' => 'select',
+      'default' => 'latest',
+      'items' => array(
+        'latest' => __( 'Recent Posts', 'textdomain' ),
+        'rand' => __( 'Random Posts', 'textdomain' ),
+        'modified' => __( 'Last Modified Posts', 'textdomain' ),
+        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'title' => __( 'Alphabetically', 'textdomain' ),
+      ),
+      'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
+    ));
+    $tabs->add_field( array(
+      'id' => 'tabs-postlayout',
+      'name' => __( 'Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
+      'items' => array(
+        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+        'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('tabsbar_categories_tab', '=', 'true')
+      ),
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Is first post "Featured"?', 'textdomain' ),
+      'id' => 'local-tabs-firstfeatured',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false',
+        'show_if' => array('tabsbar_categories_tab', '=', 'true')
+      ),
+    ));
+    $tabs->add_field( array(
+      'id' => 'tabs-firstfeatured',
+      'name' => __( 'Featured Post Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.featuredPost',
+      'items' => array(
+        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('tabsbar_categories_tab', '=', 'true')
+      ),
+    ));
+    $tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $tabs->add_field(array(
+      'name' => __( 'Catgeory', 'textdomain' ),
+      'id' => 'tabs-options-category',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'tabs-options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'tabs-options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'tabs-options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'tabs-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $tabs->close_mixed_field();
+
+
+    $homepage = $settings->add_section( array(
+      'name' => __( 'Personalize the home page', 'textdomain' ),
+      'id' => 'section-homepage-builder',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $homepage->open_mixed_field(
+    array(
+      'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('tabsbar_categories_tab', '=', 'true')
+    )
+    )
+    );
+    $homepage->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-hompage_title',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $homepage->add_field(array(
+      'id' => 'homepage-sections-title',
+      'name' => __( 'Title', 'textdomain' ),
+      'type' => 'text',
+      'grid' => '5-of-6',
+      'default' => __( 'Home', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('local-hompage_title', '=', 'true')
+      )
+    ));
+    $homepage->close_mixed_field();
+    $section = $homepage->add_group( array(
+      'name' => __( 'Homepage Sections', 'textdomain' ),
+      'id' => 'sections',
+      'options' => array(
+      'add_item_text' => __('New Section', 'textdomain'),
+      ),
+      'controls' => array(
+      'name' =>  __('Section', 'textdomain').' #',
+      'readonly_name' => false,
+      'images' => true,
+      'position' => 'left',
+      'default_image' => APPBEAR_URL . '/img/transparent.png',
+      'image_field_id' => 'postlayout',
+      'height' => '190px',
+      ),
+    ));
+    $section->open_mixed_field(array('name' =>  __('Section Title', 'textdomain' )));
+    $section->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-section_title',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'id' => 'title',
+      'name' => __( 'Title', 'textdomain' ),
+      'type' => 'text',
+      'grid' => '5-of-6',
+      'desc' => __( 'If you don\'t need this section to have title, then switch it off', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('local-section_title', '=', 'true')
+      )
+    ));
+    $section->close_mixed_field();
+
+    $section->add_field(array(
+      'name' => __( "Show 'See All' Button", 'textdomain' ),
+      'id' => 'local-enable_see_all',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+      'options' => array(
+    'show_if' => array('local-section_title', '=', 'true')
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Show posts by', 'textdomain' ),
+      'id' => 'showposts',
+      'type' => 'radio',
+      'default' => 'categories',
+      'items' => array(
+      'categories' => __( 'Categories', 'textdomain' ),
+      'tags' => __( 'Tags', 'textdomain' ),
+      )
+    ));
+    $section->add_field( array(
+      'id' => 'categories',
+      'name' => __( 'Categories', 'textdomain' ),
+      'type' => 'checkbox',
+      'default' => '$all$',
+      'items' => AppbearItems::terms( 'category' ),
+      'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('showposts', '=', 'categories')
+      )
+    ));
+    $section->add_field(array(
+      'id' => 'tags',
+      'name' => __( 'Tags', 'textdomain' ),
+      'type' => 'checkbox',
+      'default' => '$all$',
+      'items' => AppbearItems::terms( 'post_tag' ),
+      'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('showposts', '=', 'tags')
+      )
+    ));
+    $section->close_mixed_field();
+    $section->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' )));
+    $section->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-enable_exclude_posts',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'id' => 'local-exclude_posts',
+      'name' => __( 'Posts ID/IDs', 'textdomain' ),
+      'type' => 'text',
+      'grid' => '5-of-6',
+      'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
+      'options' => array(
+    'show_if' => array('local-enable_exclude_posts', '=', 'true')
+      )
+    ));
+    $section->close_mixed_field();
+    $section->open_mixed_field(array('name' => __('Offset', 'textdomain' )));
+    $section->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-enable_offset_posts',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'id' => 'local-offset_posts',
+      'name' => __( 'Count', 'textdomain' ),
+      'type' => 'number',
+      'grid' => '5-of-6',
+      'desc' => __( 'Number of posts to pass over', 'textdomain' ),
+      'options' => array(
+      'show_unit'=>false,
+    'show_if' => array('local-enable_offset_posts', '=', 'true')
+      )
+    ));
+    $section->close_mixed_field();
+    $section->add_field(array(
+      'name' => __( 'Sort Order', 'textdomain' ),
+      'id' => 'local-sort',
+      'type' => 'select',
+      'default' => 'latest',
+      'items' => array(
+      'latest' => __( 'Recent Posts', 'textdomain' ),
+      'rand' => __( 'Random Posts', 'textdomain' ),
+      'modified' => __( 'Last Modified Posts', 'textdomain' ),
+      'popular' => __( 'Most Commented posts', 'textdomain' ),
+      'title' => __( 'Alphabetically', 'textdomain' ),
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Number of posts to show', 'textdomain' ),
+      'id' => 'local-count',
+      'type' => 'select',
+      'default' => '3',
+      'items' => array(
+      '1' => __( '1 Post', 'textdomain' ),
+      '2' => __( '2 Posts', 'textdomain' ),
+      '3' => __( '3 Posts', 'textdomain' ),
+      '4' => __( '4 Posts', 'textdomain' ),
+      '5' => __( '5 Posts', 'textdomain' ),
+      '6' => __( '6 Posts', 'textdomain' ),
+      '7' => __( '7 Posts', 'textdomain' ),
+      '8' => __( '8 Posts', 'textdomain' ),
+      '9' => __( '9 Posts', 'textdomain' ),
+      '10' => __( '10 Posts', 'textdomain' ),
+      )
+    ));
+    $section->add_field( array(
+      'id' => 'postlayout',
+      'name' => __( 'Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
+      'items' => array(
+      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+      'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+      'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+      'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+      'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+      'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+    $section->add_field(array(
+      'name' => __( 'Is first post "Featured"?', 'textdomain' ),
+      'id' => 'local-firstfeatured',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+      'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
+    ));
+    $section->add_field(array(
+      'id' => 'firstFeatured',
+      'name' => __( 'First Post Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.featuredPost',
+      'items' => array(
+      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+    'show_if' => array('local-firstfeatured', '=', 'true')
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Add separator after the block?', 'textdomain' ),
+      'id' => 'separator',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+    $section->add_field(array(
+      'name' => __( 'Catgeory', 'textdomain' ),
+      'id' => 'options-category',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'options-share',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->close_mixed_field();
+    $settings->close_tab_item('homepage');
+
+
+    // NOTE: Archives Page
+    $settings->open_tab_item('archives');
+    $archives_categories = $settings->add_section( array(
+      'name' => __( 'Categories List Page Settings', 'textdomain' ),
+      'id' => 'section-archives-categories',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_categories->add_field( array(
+      'id' => 'archives-categories-postlayout',
+      'name' => __( 'Categories Page Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'CategoriesLayout.cat1',
+      'items' => array(
+      'CategoriesLayout.cat1' => APPBEAR_URL . 'options/img/categories/cat_1.png',
+      'CategoriesLayout.cat2' => APPBEAR_URL . 'options/img/categories/cat_2.png',
+      'CategoriesLayout.cat3' => APPBEAR_URL . 'options/img/categories/cat_3.png',
+      'CategoriesLayout.cat4' => APPBEAR_URL . 'options/img/categories/cat_4.png',
+      'CategoriesLayout.cat5' => APPBEAR_URL . 'options/img/categories/cat_5.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+    $archives_category = $settings->add_section( array(
+      'name' => __( 'Single Category Page Settings', 'textdomain' ),
+      'id' => 'section-archives-category',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_category->add_field( array(
+      'id' => 'archives-category-postlayout',
+      'name' => __( 'Single Category Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
+      'items' => array(
+      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+      'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+      'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+      'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+      'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+    $archives_category->add_field(array(
+      'name' => __( 'Sort Order', 'textdomain' ),
+      'id' => 'local-archives-category-sort',
+      'type' => 'select',
+      'default' => 'latest',
+      'items' => array(
+      'latest' => __( 'Recent Posts', 'textdomain' ),
+      'rand' => __( 'Random Posts', 'textdomain' ),
+      'modified' => __( 'Last Modified Posts', 'textdomain' ),
+      'popular' => __( 'Most Commented posts', 'textdomain' ),
+      'title' => __( 'Alphabetically', 'textdomain' ),
+      )
+    ));
+    $archives_category->add_field(array(
+      'name' => __( 'Number of posts to show', 'textdomain' ),
+      'id' => 'local-archives-category-count',
+      'type' => 'select',
+      'default' => '10',
+      'items' => array(
+      '1' => __( '1 Post', 'textdomain' ),
+      '3' => __( '3 Posts', 'textdomain' ),
+      '4' => __( '4 Posts', 'textdomain' ),
+      '6' => __( '6 Posts', 'textdomain' ),
+      '7' => __( '7 Posts', 'textdomain' ),
+      '9' => __( '9 Posts', 'textdomain' ),
+      '10' => __( '10 Posts', 'textdomain' ),
+      )
+    ));
+    $archives_category->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+    $archives_category->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'archives-category-options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_category->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'archives-category-options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_category->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'archives-category-options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_category->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'archives-category-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_category->close_mixed_field();
+
+    $archives_search = $settings->add_section( array(
+      'name' => __( 'Search Page Settings', 'textdomain' ),
+      'id' => 'section-archives-search',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_search->add_field( array(
+      'id' => 'archives-search-postlayout',
+      'name' => __( 'Search Page Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
+      'items' => array(
+      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+      'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+      'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+      'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+      'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Sort Order', 'textdomain' ),
+      'id' => 'local-archives-search-sort',
+      'type' => 'select',
+      'default' => 'latest',
+      'items' => array(
+      'latest' => __( 'Recent Posts', 'textdomain' ),
+      'rand' => __( 'Random Posts', 'textdomain' ),
+      'modified' => __( 'Last Modified Posts', 'textdomain' ),
+      'popular' => __( 'Most Commented posts', 'textdomain' ),
+      'title' => __( 'Alphabetically', 'textdomain' ),
+      )
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Number of posts to show', 'textdomain' ),
+      'id' => 'local-archives-search-count',
+      'type' => 'select',
+      'default' => '10',
+      'items' => array(
+      '1' => __( '1 Post', 'textdomain' ),
+      '3' => __( '3 Posts', 'textdomain' ),
+      '4' => __( '4 Posts', 'textdomain' ),
+      '6' => __( '6 Posts', 'textdomain' ),
+      '7' => __( '7 Posts', 'textdomain' ),
+      '9' => __( '9 Posts', 'textdomain' ),
+      '10' => __( '10 Posts', 'textdomain' ),
+      )
+    ));
+    $archives_search->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+    $archives_search->add_field(array(
+      'name' => __( 'Catgeory', 'textdomain' ),
+      'id' => 'archives-search-options-category',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'archives-search-options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'archives-search-options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'archives-search-options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_search->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'archives-search-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_search->close_mixed_field();
+
+    $archives_favorites = $settings->add_section( array(
+      'name' => __( 'Favorites Page Settings', 'textdomain' ),
+      'id' => 'section-archives-favorites',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_favorites->add_field( array(
+      'id' => 'archives-favorites-postlayout',
+      'name' => __( 'Favorites Page Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
+      'items' => array(
+      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+      'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+      'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+      'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+      'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+      'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Sort Order', 'textdomain' ),
+      'id' => 'local-archives-favorites-sort',
+      'type' => 'select',
+      'default' => 'latest',
+      'items' => array(
+      'latest' => __( 'Recent Posts', 'textdomain' ),
+      'rand' => __( 'Random Posts', 'textdomain' ),
+      'modified' => __( 'Last Modified Posts', 'textdomain' ),
+      'popular' => __( 'Most Commented posts', 'textdomain' ),
+      'title' => __( 'Alphabetically', 'textdomain' ),
+      )
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Number of posts to show', 'textdomain' ),
+      'id' => 'local-archives-favorites-count',
+      'type' => 'select',
+      'default' => '10',
+      'items' => array(
+      '1' => __( '1 Post', 'textdomain' ),
+      '3' => __( '3 Posts', 'textdomain' ),
+      '4' => __( '4 Posts', 'textdomain' ),
+      '6' => __( '6 Posts', 'textdomain' ),
+      '7' => __( '7 Posts', 'textdomain' ),
+      '9' => __( '9 Posts', 'textdomain' ),
+      '10' => __( '10 Posts', 'textdomain' ),
+      )
+    ));
+    $archives_favorites->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Catgeory', 'textdomain' ),
+      'id' => 'archives-favorites-options-category',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'archives-favorites-options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'archives-favorites-options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'archives-favorites-options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_favorites->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'archives-favorites-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_favorites->close_mixed_field();
+
+    $settings->close_tab_item('archives');
+
+
+    // NOTE: Styling Page
+    $settings->open_tab_item('styling');
+
+    $settings->open_mixed_field(array('name' => __('Shadow Color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-shadowColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(0,0,0,0.15)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+      ),
+    ));
+
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-shadowColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(0,0,0,0.15)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Dividers Color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-dividerColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(0,0,0,0.05)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+      ),
+    ));
+
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-dividerColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(255,255,255,0.13)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Inputs Background Color', 'textdomain' ),'desc' => __( 'All inputs background color on search, sort by select and indicator.', 'textdomain' ),));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-inputsbackgroundcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(0,0,0,0.04)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+      ),
+    ));
+
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-inputsbackgroundcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => 'rgba(255,255,255,0.07)',
+      'options' => array(
+      'format' => 'rgba',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Buttons Background color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-buttonsbackgroudcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088FF',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+      ),
+    ));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-buttonsbackgroudcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088FF',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Buttons Text color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-buttonTextColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+      ),
+    ));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-buttonTextColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FFFFFF',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+    $settings->open_mixed_field(array('name' => __('Success Message Background color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-successcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#006900',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+      ),
+    ));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-successcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#006900',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+
+    $settings->open_mixed_field(array('name' => __('Error Message Background color', 'textdomain' )));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-errorcolor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FF0000',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+      ),
+    ));
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-errorcolor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#FF0000',
+      'options' => array(
+      'format' => 'hex',
+      'show_default_button' => true,
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
+    $settings->close_mixed_field();
+    $settings->close_tab_item('styling');
+
+
+    // NOTE: Advertisement / Admob Page
     $settings->open_tab_item('advertisement');
 
     $admob = $settings->add_section( array(
       'name' => __( 'Admob advertisement platform', 'textdomain' ),
       'id' => 'section-advertisement-admob',
-      'options' => array(
-        'toggle' => true,
-      )
+      'options' => array( 'toggle' => true )
     ));
 
     $admob->add_field(
-      array(
-        'name'    => __( 'Android App ID', 'textdomain' ),
-        'id'      => 'advertisement_android_app_id_text',
-        'type'  => 'text',
+    array(
+      'name' => __( 'Android App ID', 'textdomain' ),
+      'id' => 'advertisement_android_app_id_text',
+      'type' => 'text',
     ));
 
     $admob->add_field(
-      array(
-        'name'    => __( 'iOS App ID', 'textdomain' ),
-        'id'      => 'advertisement_ios_app_id_text',
-        'type'  => 'text',
+    array(
+      'name' => __( 'iOS App ID', 'textdomain' ),
+      'id' => 'advertisement_ios_app_id_text',
+      'type' => 'text',
     ));
 
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
@@ -2140,68 +1973,68 @@ class AppBear_Options
       'type' => 'switcher',
       'default'	=>	'false',
       'options' => array(
-        'on_value'  => 'true',
+        'on_value' => 'true',
         'off_value' => 'false'
       )
     ));
 
     $admob->add_field(
       array(
-        'name'    => __( 'Android ID', 'textdomain' ),
-        'id'      => 'advertisement_android_banner_id_text',
-        'type'  => 'text',
+        'name' => __( 'Android ID', 'textdomain' ),
+        'id' => 'advertisement_android_banner_id_text',
+        'type' => 'text',
         'options'	=>	array(
-          'show_if' => array('local-admob_banner', '=', 'true')
-        ),
-      ));
+        'show_if' => array('local-admob_banner', '=', 'true')
+      ),
+    ));
 
-      $admob->add_field(
+    $admob->add_field(
       array(
-        'name'    => __( 'iOS ID', 'textdomain' ),
-        'id'      => 'advertisement_ios_banner_id_text',
-        'type'  => 'text',
+        'name' => __( 'iOS ID', 'textdomain' ),
+        'id' => 'advertisement_ios_banner_id_text',
+        'type' => 'text',
         'options'	=>	array(
-          'show_if' => array('local-admob_banner', '=', 'true')
-        ),
-      ));
+        'show_if' => array('local-admob_banner', '=', 'true')
+      ),
+    ));
 
-      $admob->close_mixed_field();
+    $admob->close_mixed_field();
 
     $admob->open_mixed_field(array('name' => __('Admob Banner Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-admob_banner', '=', 'true')),));
 
     $admob->add_field(
       array(
-        'name'    => __( 'Above the Top Bar', 'textdomain' ),
-        'id'      => 'advertisement_top_toggle',
-        'type'  => 'switcher',
+        'name' => __( 'Above the Top Bar', 'textdomain' ),
+        'id' => 'advertisement_top_toggle',
+        'type' => 'switcher',
         'default'	=>	'false',
         'options' => array(
-          'on_value'  => 'true',
+          'on_value' => 'true',
           'off_value' => 'false'
         )
     ));
 
     $admob->add_field(
       array(
-        'name'    => __( 'Above the Bottom Bar', 'textdomain' ),
-        'id'      => 'advertisement_bottom_toggle',
-        'type'  => 'switcher',
+        'name' => __( 'Above the Bottom Bar', 'textdomain' ),
+        'id' => 'advertisement_bottom_toggle',
+        'type' => 'switcher',
         'default'	=>	'false',
         'options' => array(
-        'on_value'  => 'true',
-        'off_value' => 'false'
-      )
+          'on_value' => 'true',
+          'off_value' => 'false'
+        )
     ));
 
 
     $admob->add_field(
       array(
-        'name'    => __( 'At the end of the Posts', 'textdomain' ),
-        'id'      => 'advertisement_after_post_toggel',
-        'type'  => 'switcher',
+        'name' => __( 'At the end of the Posts', 'textdomain' ),
+        'id' => 'advertisement_after_post_toggel',
+        'type' => 'switcher',
         'default'	=>	'false',
         'options' => array(
-          'on_value'  => 'true',
+          'on_value' => 'true',
           'off_value' => 'false'
         )
     ));
@@ -2211,36 +2044,36 @@ class AppBear_Options
     $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
 
     $admob->add_field(
-				array(
-					'name'    => __( 'Enable', 'textdomain' ),
-					'id'      => 'local-advertisement_admob_interstatial',
-					'type'    => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
+      array(
+        'name' => __( 'Enable', 'textdomain' ),
+        'id' => 'local-advertisement_admob_interstatial',
+        'type' => 'switcher',
+        'default'	=>	'false',
+        'options' => array(
+          'on_value' => 'true',
+          'off_value' => 'false'
+        )
     ));
 
 
     $admob->add_field(
       array(
-        'name'    => __( 'Android ID', 'textdomain' ),
-        'id'      => 'advertisement_android_interstatial_id_text',
-        'type'  => 'text',
+        'name' => __( 'Android ID', 'textdomain' ),
+        'id' => 'advertisement_android_interstatial_id_text',
+        'type' => 'text',
         'options'	=>	array(
-          'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
-        ),
+        'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
+      ),
     ));
 
     $admob->add_field(
-      array(
-        'name'    => __( 'iOS ID', 'textdomain' ),
-        'id'      => 'advertisement_ios_interstatial_id_text',
-        'type'  => 'text',
-        'options'	=>	array(
-          'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
-        ),
+    array(
+      'name' => __( 'iOS ID', 'textdomain' ),
+      'id' => 'advertisement_ios_interstatial_id_text',
+      'type' => 'text',
+    'options'	=>	array(
+    'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
+      ),
     ));
 
     $admob->close_mixed_field();
@@ -2248,409 +2081,382 @@ class AppBear_Options
     $admob->open_mixed_field(array('name' => __('Admob Interstatial Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_admob_interstatial', '=', 'true')),));
 
     $admob->add_field(
-				array(
-					'name'    => __( 'Before View Post', 'textdomain' ),
-					'id'      => 'advertisement_interstatial_before_post_toggle',
-					'type'  => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-			// $admob->add_field(
-			// 	array(
-			// 		'name'    => __( 'Before Submit New Comment', 'textdomain' ),
-			// 		'id'      => 'advertisement_interstatial_before_comment_toggle',
-			// 		'type'  => 'switcher',
-			// 		'default'	=>	'false',
-			// 		'options' => array(
-			// 			'on_value'  => 'true',
-			// 			'off_value' => 'false'
-			// 		)
-			// 	));
-			$admob->close_mixed_field();
+    array(
+      'name' => __( 'Before View Post', 'textdomain' ),
+      'id' => 'advertisement_interstatial_before_post_toggle',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $admob->close_mixed_field();
 
-			$admob->open_mixed_field(array('name' => __('Admob Rewarded', 'textdomain' )));
+    $admob->open_mixed_field(array('name' => __('Admob Rewarded', 'textdomain' )));
 
-			$admob->add_field(
-				array(
-					'name'    => __( 'Enable', 'textdomain' ),
-					'id'      => 'local-advertisement_android_rewarded',
-					'type'    => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
+    $admob->add_field(
+    array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'local-advertisement_android_rewarded',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
-			$admob->add_field(
-				array(
-					'name'    => __( 'Android ID', 'textdomain' ),
-					'id'      => 'advertisement_android_rewarded_id_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
-					),
-				));
-			$admob->add_field(
-				array(
-					'name'    => __( 'iOS ID', 'textdomain' ),
-					'id'      => 'advertisement_android_rewarded_ios_text',
-					'type'  => 'text',
-					'options'	=>	array(
-						'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
-					),
-				));
-			$admob->close_mixed_field();
-			$admob->open_mixed_field(array('name' => __('Admob Rewarded Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_android_rewarded', '=', 'true')),));
-			$admob->add_field(
-				array(
-					'name'    => __( 'Before View Post', 'textdomain' ),
-					'id'      => 'advertisement_rewarded_before_post_toggle',
-					'type'  => 'switcher',
-					'default'	=>	'false',
-					'options' => array(
-						'on_value'  => 'true',
-						'off_value' => 'false'
-					)
-				));
-			// $admob->add_field(
-			// 	array(
-			// 		'name'    => __( 'Before Submit New Comment', 'textdomain' ),
-			// 		'id'      => 'advertisement_rewarded_before_comment_toggle',
-			// 		'type'  => 'switcher',
-			// 		'default'	=>	'false',
-			// 		'options' => array(
-			// 			'on_value'  => 'true',
-			// 			'off_value' => 'false'
-			// 		)
-			// 	));
-			$admob->close_mixed_field();
+    $admob->add_field(
+    array(
+      'name' => __( 'Android ID', 'textdomain' ),
+      'id' => 'advertisement_android_rewarded_id_text',
+      'type' => 'text',
+    'options'	=>	array(
+    'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
+      ),
+    ));
+    $admob->add_field(
+    array(
+      'name' => __( 'iOS ID', 'textdomain' ),
+      'id' => 'advertisement_android_rewarded_ios_text',
+      'type' => 'text',
+    'options'	=>	array(
+    'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
+      ),
+    ));
+    $admob->close_mixed_field();
+    $admob->open_mixed_field(array('name' => __('Admob Rewarded Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_android_rewarded', '=', 'true')),));
+    $admob->add_field(
+    array(
+      'name' => __( 'Before View Post', 'textdomain' ),
+      'id' => 'advertisement_rewarded_before_post_toggle',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $admob->close_mixed_field();
 
 
     $settings->close_tab_item('advertisement');
 
+
+    // NOTE: User Guide Page
     $settings->open_tab_item('user_guide');
 
     $section_header_2 = $settings->add_section( array(
-			'name' => __( 'User Guide Slides', 'textdomain' ),
-			'id' => 'local-section_userguide_slides',
-			'desc' => __( 'Slides which your clients will see when they first start your application', 'textdomain' ),
-			'options' => array(
-				'toggle' => true,
-			)
-		));
+      'name' => __( 'User Guide Slides', 'textdomain' ),
+      'id' => 'local-section_userguide_slides',
+      'desc' => __( 'Slides which your clients will see when they first start your application', 'textdomain' ),
+      'options' => array( 'toggle' => true )
+    ));
 
     $section_header_2->add_field(array(
-			'name' => __( 'Enabled', 'textdomain' ),
-			'id' => 'onboarding',
-			'type' => 'switcher',
-			'default'	=>	'false',
-			'options' => array(
-				'on_value'  => 'true',
-				'off_value' => 'false'
-			)
-		));
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'onboarding',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
     $slides = $section_header_2->add_group( array(
-			'name' => __('User Guide Slides', 'textdomain'),
-			'id' => 'onboardmodels',
-			'options' => array(
-				'add_item_text' => __('New Slide', 'textdomain'),
-				'show_if' => array('onboarding', '=', 'true'),
-			),
-			'controls' => array(
-				'name' =>  __('Slide', 'textdomain').' #',
-				'readonly_name' => false,
-				'images' => true,
-				'default_image' => APPBEAR_URL . '/img/transparent.png',
-				'image_field_id' => 'image',
-				'height' => '190px',
-			),
-		));
-
-		$slides->add_field(array(
-			'id' => 'title',
-			'name' => __('Slide Title', 'textdomain'),
-			'type' => 'text',
-			'grid' => '3-of-6',
-		));
+      'name' => __('User Guide Slides', 'textdomain'),
+      'id' => 'onboardmodels',
+      'options' => array(
+      'add_item_text' => __('New Slide', 'textdomain'),
+        'show_if' => array('onboarding', '=', 'true'),
+      ),
+      'controls' => array(
+      'name' =>  __('Slide', 'textdomain').' #',
+      'readonly_name' => false,
+      'images' => true,
+      'default_image' => APPBEAR_URL . '/img/transparent.png',
+      'image_field_id' => 'image',
+      'height' => '190px',
+      ),
+    ));
 
     $slides->add_field(array(
-			'id' => 'subTitle',
-			'name' => __('SubTitle', 'textdomain'),
-			'type' => 'text',
-			'grid' => '3-of-6'
-		));
+      'id' => 'title',
+      'name' => __('Slide Title', 'textdomain'),
+      'type' => 'text',
+      'grid' => '3-of-6',
+    ));
 
     $slides->add_field(array(
-			'id' => 'image',
-			'name' => __( 'Image', 'textdomain' ),
-			'type' => 'file',
-		));
+      'id' => 'subTitle',
+      'name' => __('SubTitle', 'textdomain'),
+      'type' => 'text',
+    'grid' => '3-of-6'
+    ));
+
+    $slides->add_field(array(
+      'id' => 'image',
+      'name' => __( 'Image', 'textdomain' ),
+      'type' => 'file',
+    ));
 
     $settings->close_tab_item('user_guide');
 
-		$settings->open_tab_item('typography');
 
-			$fontfamily = $settings->add_section( array(
-				'name' => __( 'Font Family', 'textdomain' ),
-				'id' => 'section-typography-fontfamily',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$fontfamily->add_field( array(
-				'id' => 'section-typography-fontfamily-heading',
-				'name' => __( 'Headings Font Family',   'textdomain' ),
-				'type' => 'select',
-				'default' => '',
-				'items' => array(
-					'' => __('Default', 'textdomain'),
-					__( 'Web Safe Fonts',   'textdomain' ) => AppbearItems::web_safe_fonts(),
-					__( 'Google Fonts',   'textdomain' ) => AppbearItems::dart_google_fonts()
-				),
-				'options' => array(
-					'search' => true, //Displays an input to search items. Default: false
-				)
-			));
-			$fontfamily->add_field( array(
-				'id' => 'section-typography-fontfamily-body',
-				'name' => __( 'Body Font Family',   'textdomain' ),
-				'type' => 'select',
-				'default' => '',
-				'items' => array(
-					'' => __('Default', 'textdomain'),
-					'Web Safe Fonts' => AppbearItems::web_safe_fonts(),
-					'Google Fonts' => AppbearItems::dart_google_fonts()
-				),
-				'options' => array(
-					'search' => true, //Displays an input to search items. Default: false
-				)
-				// 'items' => array(
-				// 	'-SFProDisplay' => __( 'SF Pro Display',   'textdomain' ),
-				// ),
-			));
+    // NOTE: Typography Page
+    $settings->open_tab_item('typography');
+
+    $fontfamily = $settings->add_section( array(
+      'name' => __( 'Font Family', 'textdomain' ),
+      'id' => 'section-typography-fontfamily',
+      'options' => array( 'toggle' => true )
+    ));
+    $fontfamily->add_field( array(
+      'id' => 'section-typography-fontfamily-heading',
+      'name' => __( 'Headings Font Family',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => array(
+        '' => __('Default', 'textdomain'),
+        __( 'Web Safe Fonts',   'textdomain' ) => AppbearItems::web_safe_fonts(),
+        __( 'Google Fonts',   'textdomain' ) => AppbearItems::dart_google_fonts()
+      ),
+      'options' => array(
+        'search' => true, // NOTE: Displays an input to search items. Default: false
+      )
+    ));
+    $fontfamily->add_field( array(
+      'id' => 'section-typography-fontfamily-body',
+      'name' => __( 'Body Font Family',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => array(
+        '' => __('Default', 'textdomain'),
+        'Web Safe Fonts' => AppbearItems::web_safe_fonts(),
+        'Google Fonts' => AppbearItems::dart_google_fonts()
+      ),
+      'options' => array(
+        'search' => true, // NOTE: Displays an input to search items. Default: false
+      )
+    ));
 
 
-			$font = $settings->add_section( array(
-				'name' => __( 'Font Sizes, Weights and Line Heights', 'textdomain' ),
-				'id' => 'section-typography-font',
-				'options' => array(
-					'toggle' => true,
-				)
-			));
-			$font->open_mixed_field(array('name' => __('Heading: H1', 'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h1-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h1-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h1-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h1-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Heading: H2', 'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h2-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h2-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h2-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h2-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Heading: H3', 'textdomain' ),'desc' => __( 'Example: Sections Title')));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h3-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h3-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h3-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h3-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Heading: H4', 'textdomain' ),'desc' => __( 'Example: Post Titles',   'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h4-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h4-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h4-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h4-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Heading: H5', 'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h5-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h5-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h5-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h5-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Heading: H6', 'textdomain' )));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h6-size',
-					'name' => __( 'Font Size',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_size(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h6-line_height',
-					'name' => __( 'Line Height',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::line_height(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h6-weight',
-					'name' => __( 'Font Weight',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::font_weight(),
-				));
-				$font->add_field( array(
-					'id' => 'section-typography-font-h6-transform',
-					'name' => __( 'Capitalization',   'textdomain' ),
-					'type' => 'select',
-					'default' => '',
-					'items' => AppbearItems::text_transform(),
-				));
-			$font->close_mixed_field();
-			$font->open_mixed_field(array('name' => __('Subtitle 1', 'textdomain' ),'desc' => __( 'Example: Meta (tags, author, category, ...)',   'textdomain' ),));
-      $font->add_field( array(
-        'id' => 'section-typography-font-subtitle1-size',
-        'name' => __( 'Font Size',   'textdomain' ),
-        'type' => 'select',
-        'default' => '',
-        'items' => AppbearItems::font_size(),
-      ));
-      $font->add_field( array(
-        'id' => 'section-typography-font-subtitle1-line_height',
-        'name' => __( 'Line Height',   'textdomain' ),
-        'type' => 'select',
-        'default' => '',
-        'items' => AppbearItems::line_height(),
-      ));
-      $font->add_field( array(
-        'id' => 'section-typography-font-subtitle1-weight',
-        'name' => __( 'Font Weight',   'textdomain' ),
-        'type' => 'select',
-        'default' => '',
-        'items' => AppbearItems::font_weight(),
-      ));
-      $font->add_field( array(
-        'id' => 'section-typography-font-subtitle1-transform',
-        'name' => __( 'Capitalization',   'textdomain' ),
-        'type' => 'select',
-        'default' => '',
-        'items' => AppbearItems::text_transform(),
-      ));
+    $font = $settings->add_section( array(
+      'name' => __( 'Font Sizes, Weights and Line Heights', 'textdomain' ),
+      'id' => 'section-typography-font',
+      'options' => array( 'toggle' => true )
+    ));
+    $font->open_mixed_field(array('name' => __('Heading: H1', 'textdomain' )));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h1-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h1-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h1-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h1-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Heading: H2', 'textdomain' )));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h2-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h2-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h2-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h2-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Heading: H3', 'textdomain' ),'desc' => __( 'Example: Sections Title')));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h3-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h3-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h3-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h3-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Heading: H4', 'textdomain' ),'desc' => __( 'Example: Post Titles',   'textdomain' )));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h4-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h4-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h4-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h4-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Heading: H5', 'textdomain' )));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h5-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h5-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h5-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h5-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Heading: H6', 'textdomain' )));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h6-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h6-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h6-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-h6-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
+    $font->close_mixed_field();
+    $font->open_mixed_field(array('name' => __('Subtitle 1', 'textdomain' ),'desc' => __( 'Example: Meta (tags, author, category, ...)',   'textdomain' ),));
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle1-size',
+      'name' => __( 'Font Size',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_size(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle1-line_height',
+      'name' => __( 'Line Height',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::line_height(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle1-weight',
+      'name' => __( 'Font Weight',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::font_weight(),
+    ));
+    $font->add_field( array(
+      'id' => 'section-typography-font-subtitle1-transform',
+      'name' => __( 'Capitalization',   'textdomain' ),
+      'type' => 'select',
+      'default' => '',
+      'items' => AppbearItems::text_transform(),
+    ));
 
     $font->close_mixed_field();
 
@@ -2762,195 +2568,274 @@ class AppBear_Options
 
     $font->close_mixed_field();
 
-		$settings->close_tab_item('typography');
+    $settings->close_tab_item('typography');
 
+
+    // NOTE: Settings Page
     $settings->open_tab_item('settings');
+
+    $section_header_social = $settings->add_section( array(
+      'name' => __( 'Social', 'textdomain' ),
+      'id' => 'local-section_social_links',
+      'desc' => __( 'Add social networks links to your application', 'textdomain' ),
+      'options' => array( 'toggle' => true )
+    ));
+
+    $section_header_social->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'social_enabled',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+
+    $socialLinks = $section_header_social->add_group( array(
+      'id' => 'social',
+      'name' => __('Social', 'textdomain'),
+      'controls' => array(
+        'name' =>  __('Social Link', 'textdomain').' #',
+        'readonly_name' => false,
+        'images' => false,
+      ),
+      'options' => array(
+      'add_item_text' => __('New Social Link', 'textdomain'),
+        'show_if' => array('social_enabled', '=', 'true'),
+      ),
+    ));
+
+    $socialLinks->open_mixed_field(array('name' => __('Title', 'textdomain' )));
+    $socialLinks->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'social_link_title',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $socialLinks->add_field(array(
+      'id' => 'title',
+      'name' => __('Social Link Title', 'textdomain'),
+      'type' => 'text',
+      'grid' => '3-of-6',
+      'options' => array(
+        'show_if' => array( 'social_link_title', '=', 'true' ),
+      ),
+    ));
+    $socialLinks->close_mixed_field();
+
+    $socialLinks->add_field( array(
+      'name' => __('Icon', 'textdomain'),
+      'id' => 'icon',
+      'type' => 'icon_selector',
+      'default' => '0xe95d',
+      'items' => array_merge(
+        AppbearItems::icon_fonts()
+      ),
+      'options' => array(
+        'wrap_height' => '220px',
+        'size' => '36px',
+        'hide_search' => false,
+        'hide_buttons' => true,
+      ),
+    ));
+
+    $socialLinks->add_field(array(
+      'id' => 'url',
+      'name' => __('URL', 'textdomain'),
+      'type' => 'text',
+      'grid' => '3-of-6'
+    ));
 
     $settings->open_mixed_field(array('name' => __('Styling', 'textdomain' ),));
 
-		$settings->add_field(array(
-			'id'        => 'styling-themeMode_light-settingBackgroundColor',
-			'name'      => __( 'Background Color', 'textdomain' ),
-			'type'      => 'colorpicker',
-			'default'   => '#0088ff',
-    ) );
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-settingBackgroundColor',
+      'name' => __( 'Background Color', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+    ));
 
-		$settings->add_field(array(
-			'id'        => 'styling-themeMode_light-settingTextColor',
-			'name'      => __( 'Text Color', 'textdomain' ),
-			'type'      => 'colorpicker',
-			'default'   => '#0088ff',
-    ) );
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_light-settingTextColor',
+      'name' => __( 'Text Color', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+    ));
 
-		$settings->add_field(array(
-			'id'        => 'styling-themeMode_dark-settingBackgroundColor',
-			'name'      => __( 'Background Color (Dark Mode)', 'textdomain' ),
-			'type'      => 'colorpicker',
-			'default'   => '#0088ff',
-			'options' => array(
-				'show_if' => array('switch_theme_mode', '=', 'true'),
-			),
-    ) );
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-settingBackgroundColor',
+      'name' => __( 'Background Color (Dark Mode)', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
 
-		$settings->add_field(array(
-			'id'        => 'styling-themeMode_dark-settingTextColor',
-			'name'      => __( 'Text Color (Dark Mode)', 'textdomain' ),
-			'type'      => 'colorpicker',
-			'default'   => '#0088ff',
-			'options' => array(
-				'show_if' => array('switch_theme_mode', '=', 'true'),
-			),
-    ) );
+    $settings->add_field(array(
+      'id' => 'styling-themeMode_dark-settingTextColor',
+      'name' => __( 'Text Color (Dark Mode)', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#0088ff',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      ),
+    ));
 
     $settings->close_mixed_field();
 
-			$settings->add_field(array(
-				'name' => __( 'Text size option', 'textdomain' ),
-				'id' => 'settingspage-textSize',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'desc'    => __( 'Give your vistiors the ability to change the text size of the application', 'textdomain' ),
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Text size option', 'textdomain' ),
+      'id' => 'settingspage-textSize',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+      'desc' => __( 'Give your vistiors the ability to change the text size of the application', 'textdomain' ),
+    ));
 
-			$settings->add_field(array(
-				'name' => __( 'Switch between Dark/Light modes', 'textdomain' ),
-				'id' => 'settingspage-darkMode',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'desc'    => __( 'Give your vistiors the ability to switch between Dark/Light modes', 'textdomain' ),
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false',
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Switch between Dark/Light modes', 'textdomain' ),
+      'id' => 'settingspage-darkMode',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'desc' => __( 'Give your vistiors the ability to switch between Dark/Light modes', 'textdomain' ),
+      'options' => array(
+      'on_value' => 'true',
+      'off_value' => 'false',
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
 
-			$settings->add_field(array(
-				'name' => __( 'Rate application', 'textdomain' ),
-				'id' => 'settingspage-rateApp',
-				'type' => 'switcher',
-				'default'	=>	'true',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'desc'    => __( 'Show rate appliction button on the settings page', 'textdomain' ),
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Rate application', 'textdomain' ),
+      'id' => 'settingspage-rateApp',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+      'desc' => __( 'Show rate appliction button on the settings page', 'textdomain' ),
+    ));
 
-			$settings->add_field(array(
-				'name' => __( 'Share application', 'textdomain' ),
-				'id' => 'local-settingspage-share',
-				'type' => 'switcher',
-				'default'	=>	'false',
-				'options' => array(
-					'on_value'  => 'true',
-					'off_value' => 'false'
-				),
-				'desc'    => __( 'Show share appliction button on the settings page', 'textdomain' ),
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Share application', 'textdomain' ),
+      'id' => 'local-settingspage-share',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+      'desc' => __( 'Show share appliction button on the settings page', 'textdomain' ),
+    ));
 
-			$settings->open_mixed_field(array('name' => __('Share info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-share', '=', 'true'))));
+    $settings->open_mixed_field(array('name' => __('Share info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-share', '=', 'true'))));
 
-      $settings->add_field(
-        array(
-          'name'    => __( 'Headline', 'textdomain' ),
-          'id'      => 'settingspage-shareApp-title',
-          'type'  => 'text'
-      ));
+    $settings->add_field(
+    array(
+      'name' => __( 'Headline', 'textdomain' ),
+      'id' => 'settingspage-shareApp-title',
+    'type' => 'text'
+    ));
 
-      $settings->add_field(array(
-        'name'    => __( 'Image', 'textdomain' ),
-        'id'      => 'settingspage-shareApp-image',
-        'type' => 'file',
-        'desc'    => __( 'The image that will be shared with the application link', 'textdomain' ),
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Image', 'textdomain' ),
+      'id' => 'settingspage-shareApp-image',
+      'type' => 'file',
+      'desc' => __( 'The image that will be shared with the application link', 'textdomain' ),
+    ));
 
-      $settings->add_field(
-        array(
-          'name'    => __( 'Android Link', 'textdomain' ),
-          'id'      => 'settingspage-shareApp-android',
-          'type'  => 'text'
-      ));
+    $settings->add_field(
+    array(
+      'name' => __( 'Android Link', 'textdomain' ),
+      'id' => 'settingspage-shareApp-android',
+    'type' => 'text'
+    ));
 
-      $settings->add_field(
-        array(
-          'name'    => __( 'iOS Link', 'textdomain' ),
-          'id'      => 'settingspage-shareApp-ios',
-          'type'  => 'text'
-      ));
+    $settings->add_field(
+    array(
+      'name' => __( 'iOS Link', 'textdomain' ),
+      'id' => 'settingspage-shareApp-ios',
+    'type' => 'text'
+    ));
 
-      $settings->close_mixed_field();
+    $settings->close_mixed_field();
 
-      $settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
+    $settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
 
-      $settings->add_field(array(
-        'name' => __( 'Enabled', 'textdomain' ),
-        'id' => 'local-settingspage-aboutus',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value'  => 'true',
-          'off_value' => 'false'
-        )
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-settingspage-aboutus',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
-      $settings->add_field( array(
-        'id' => 'settingspage-aboutUs',
-        'name' => __( 'About us page',   'textdomain' ),
-        'type' => 'select',
-        'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
-        'options'	=>	array(
-          'show_if' => array('local-settingspage-aboutus', '=', 'true')
-        ),
-      ));
+    $settings->add_field( array(
+      'id' => 'settingspage-aboutUs',
+      'name' => __( 'About us page',   'textdomain' ),
+      'type' => 'select',
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+    'options'	=>	array(
+    'show_if' => array('local-settingspage-aboutus', '=', 'true')
+      ),
+    ));
 
-      $settings->close_mixed_field();
+    $settings->close_mixed_field();
 
-			$settings->add_field( array(
-				'id' => 'settingspage-privacyPolicy',
-				'name' => __( 'Privacy page',   'textdomain' ),
-				'type' => 'select',
-				'default' => get_option( 'wp_page_for_privacy_policy' ),
-				'items' => AppbearItems::posts_by_post_type( 'page' ),
-      ));
+    $settings->add_field( array(
+      'id' => 'settingspage-privacyPolicy',
+      'name' => __( 'Privacy page',   'textdomain' ),
+      'type' => 'select',
+      'default' => get_option( 'wp_page_for_privacy_policy' ),
+      'items' => AppbearItems::posts_by_post_type( 'page' ),
+    ));
 
-			$settings->add_field( array(
-				'id' => 'settingspage-termsAndConditions',
-				'name' => __( 'Terms and conditions page',   'textdomain' ).' '.get_option( 'wp_page_for_privacy_policy' ),
-				'type' => 'select',
-				'default' => get_option( 'wp_page_for_privacy_policy' ),
-				'items' => AppbearItems::posts_by_post_type( 'page' ),
-      ));
+    $settings->add_field( array(
+      'id' => 'settingspage-termsAndConditions',
+      'name' => __( 'Terms and conditions page',   'textdomain' ).' '.get_option( 'wp_page_for_privacy_policy' ),
+      'type' => 'select',
+      'default' => get_option( 'wp_page_for_privacy_policy' ),
+      'items' => AppbearItems::posts_by_post_type( 'page' ),
+    ));
 
-			$settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
+    $settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
 
-      $settings->add_field(array(
-        'name' => __( 'Enabled', 'textdomain' ),
-        'id' => 'settingspage-contactus',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value'  => 'true',
-          'off_value' => 'false'
-        )
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'settingspage-contactus',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
 
-      $settings->add_field(array(
-        'name' => __( 'Email/s', 'textdomain' ),
-        'id' => 'local-settingspage-contactus',
-        'type' => 'textarea',
-        'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'textdomain' ),
-        'grid' => '5-of-6',
-        'default' => get_bloginfo( 'admin_email' ),
-        'options' => array(
-          'desc_tooltip' => true,
-          'show_if' => array('settingspage-contactus', '=', 'true')
-        )
-      ));
+    $settings->add_field(array(
+      'name' => __( 'Email/s', 'textdomain' ),
+      'id' => 'local-settingspage-contactus',
+      'type' => 'textarea',
+      'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => get_bloginfo( 'admin_email' ),
+      'options' => array(
+      'desc_tooltip' => true,
+    'show_if' => array('settingspage-contactus', '=', 'true')
+      )
+    ));
 
     $settings->close_mixed_field();
 
@@ -2960,10 +2845,10 @@ class AppBear_Options
       'type' => 'switcher',
       'default'	=>	'false',
       'options' => array(
-        'on_value'  => 'true',
+        'on_value' => 'true',
         'off_value' => 'false'
       ),
-      'desc'    => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
+      'desc' => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
     ));
     $settings->open_mixed_field(array('name' => __('About Info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
 
@@ -2985,19 +2870,19 @@ class AppBear_Options
     ));
 
     $settings->add_field(
-      array(
-        'name'    => __( 'Title', 'textdomain' ),
-        'id'      => 'settingspage-aboutapp-title',
-        'type'  => 'text',
-        'default' => get_bloginfo( 'name' ),
-      ));
+    array(
+      'name' => __( 'Title', 'textdomain' ),
+      'id' => 'settingspage-aboutapp-title',
+      'type' => 'text',
+      'default' => get_bloginfo( 'name' ),
+    ));
 
     $settings->add_field(
-      array(
-        'name'    => __( 'Description', 'textdomain' ),
-        'id'      => 'settingspage-aboutapp-content',
-        'type'  => 'textarea',
-        'default' => get_bloginfo( 'description' ),
+    array(
+      'name' => __( 'Description', 'textdomain' ),
+      'id' => 'settingspage-aboutapp-content',
+      'type' => 'textarea',
+      'default' => get_bloginfo( 'description' ),
     ));
 
     $settings->close_mixed_field();
@@ -3007,17 +2892,17 @@ class AppBear_Options
       'type' => 'switcher',
       'default'	=>	'false',
       'options' => array(
-        'on_value'  => 'true',
+        'on_value' => 'true',
         'off_value' => 'false'
       ),
     ));
 
     $settings->open_mixed_field(
-      array(
-        'name' => __('Development Mode', 'textdomain' ),
-        'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
-        'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
-      )
+    array(
+      'name' => __('Development Mode', 'textdomain' ),
+      'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
+    'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
+    )
     );
 
     $settings->add_field(array(
@@ -3026,73 +2911,54 @@ class AppBear_Options
       'type' => 'switcher',
       'default'	=>	'false',
       'options' => array(
-        'on_value'  => 'true',
+        'on_value' => 'true',
         'off_value' => 'false'
       )
     ));
 
-    // $settings->add_field(array(
-    // 	'name' => __( 'count', 'textdomain' ),
-    // 	'id' => 'settingspage-devmode-count',
-    // 	'type' => 'number',
-    // 	'desc' => __( 'The count of the clicks needed to activate the development mode.', 'textdomain' ),
-    // 	'grid' => '1-of-6',
-    // 	'default' => '3',
-    // 	'options' => array(
-    // 		'desc_tooltip' => true,
-    // 		'show_unit' => false,
-    // 		'show_if' => array('settingspage-devmode', '=', 'true')
-    // 	)
-    // ));
-    // $settings->add_field(array(
-    // 	'name' => __( 'Gap Time', 'textdomain' ),
-    // 	'id' => 'settingspage-devmode-time',
-    // 	'type' => 'number',
-    // 	'default' => '6000',
-    // 	'desc' => __( 'Time by milisecond for the gap between the repeated clicks on the version number.', 'textdomain' ),
-    // 	'grid' => '1-of-6',
-    // 	'options' => array(
-    // 		'desc_tooltip' => true,
-    // 		'show_unit' => false,
-    // 		'show_if' => array('settingspage-devmode', '=', 'true')
-    // 	)
-    // ));
 
     $settings->close_mixed_field();
 
-		$settings->close_tab_item('settings');
+    $settings->close_tab_item('settings');
 
-		// TODO: Add json for demos
-		$settings->open_tab_item('import');
-			$settings->add_import_field(array(
-				'name' => 'Select Demo',
-				'default' => 'http://appbearframework.com/demos/blank.json',
-				'desc' => 'Choose a demo, then click import button',
-				'items' => array(
-					APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
-					APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
-					APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
-					APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
-					APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
-					APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
-					APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
-					APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
-				),
-				'options' => array(
-					'import_from_file' => false,
-					'import_from_url' => false,
-					'width' => '200px'
-				)
-			));
 
-			$settings->add_export_field(array(
-				'name' => 'Export',
-				'desc' => 'Download and make a backup of your options.',
-			));
-		$settings->close_tab_item('import');
+    // NOTE: Import / Export Page
+    $settings->open_tab_item('import');
+    $settings->add_import_field(array(
+      'name' => 'Select Demo',
+      'default' => 'http://appbearframework.com/demos/blank.json',
+      'desc' => 'Choose a demo, then click import button',
+      'items' => array(
+        APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
+        APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
+        APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
+        APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
+        APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
+        APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
+        APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
+        APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
+      ),
+      'options' => array(
+        'import_from_file' => false,
+        'import_from_url' => false,
+        'width' => '200px'
+      )
+    ));
 
-		$settings->close_tab('main-tab');
+    $settings->add_export_field(array(
+      'name' => 'Export',
+      'desc' => 'Download and make a backup of your options.',
+    ));
+    $settings->close_tab_item('import');
 
+    $settings->close_tab('main-tab');
+  }
+
+
+  /*
+   * Initialize translaions page options
+   */
+  protected function _initTranslationsPage() {
 		$translations_arg = array(
 			'id' => 'appbear-translations',
 			'title' => 'appBear Translations',

@@ -137,6 +137,15 @@ function appbear_get_template($templatePath, $vars = [])
 
 
 /**
+ * Get public key
+ */
+function appbear_get_public_key()
+{
+  return trim( get_option( 'appbear_public_key' ) );
+}
+
+
+/**
  * Get license key
  */
 function appbear_get_license_key()
@@ -159,8 +168,7 @@ function _appbear_is_dev_mode()
  */
 function appbear_check_license()
 {
-  // NOTE: May need improvements.
-  return get_option( 'appbear_license_status' ) === 'valid' || _appbear_is_dev_mode();
+  return ( get_option( 'appbear_license_status' ) === 'valid' && empty(appbear_get_public_key()) === false ) || _appbear_is_dev_mode();
 }
 
 
