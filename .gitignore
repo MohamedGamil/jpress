@@ -1,1 +1,9 @@
-phploy.ini
+# phploy.ini
+/node_modules
+.env
+.env.backup
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+vendor.zip
+Thumbs.db
