@@ -3696,11 +3696,19 @@ class AppBear_Options
 			'id' => 'section-general-activation',
     ));
 
+    $publicKey = appbear_get_public_key();
 		$activation_section->add_field(array(
 			'id' => 'custom-title',
 			'name' => __( 'Enter your license key', 'textdomain' ),
 			'type' => 'title',
-			'desc' => __('You have to activate your license before start controlling application settings, if you do not have key and you need to activate the demo version please type 000 in the Key field.'),
+			'desc' => (
+        __('You have to activate your license before start controlling application settings, if you do not have key and you need to activate the demo version please type 000 in the Key field.')
+        . '<br>'
+        . ($publicKey
+          ? ( __('Your public key is: ') . "( <strong>{$publicKey}</strong> )" )
+          : ( __('Activate your license by saving changes to obtain a public key.') )
+        )
+      ),
     ));
 
 		$activation_section->add_field(array(
@@ -3709,7 +3717,31 @@ class AppBear_Options
 			'id' => 'appbear_license_key',
 			'type' => 'text',
 			'grid' => '6-of-6',
-		));
+    ));
+
+    if ( get_option('appbear_license_status') === 'valid' && empty($publicKey) === false ) {
+      $activation_section->add_field(array(
+        'name' => '<strong style="color:green">'. __('License Active!') .'</strong>',
+        'id' => 'appbear_public_key',
+        'type' => '__text',
+        'grid' => '6-of-6',
+        'options' => array(
+          'readonly' => true,
+          'helper' => __('Obtain a public key by activating your license.'),
+        ),
+      ));
+    } else {
+      $activation_section->add_field(array(
+        'name' => '<strong style="color:red">'. __('License Inactive!') .'</strong>',
+        'id' => 'appbear_public_key',
+        'type' => '__text',
+        'grid' => '6-of-6',
+        'options' => array(
+          'readonly' => true,
+          'helper' => __('Obtain a public key by activating your license.'),
+        ),
+      ));
+    }
   }
 
 
