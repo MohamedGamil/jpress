@@ -273,7 +273,7 @@ class AppBear_Endpoints {
     // Tags
     // To do. create a function that work with cats. and tags
     $this_post['tags'] = array();
-    $tags = get_the_tags( $post->ID );
+    $tags = get_the_tags( $this_post['id'] );
 
     if ( ! empty( $tags ) ) {
       foreach ( $tags as $single_tag ) {
