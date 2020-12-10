@@ -628,24 +628,24 @@ class AppBear_Options
 				)
 			));
 
-			$appbear_bottombar_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_light-bottomBarBackgroundColor',
-				//'name'      => __( 'Light Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#FFFFFF',
-			) );
+			// $appbear_bottombar_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+			// $appbear_bottombar_styling->add_field(array(
+			// 	'id'        => 'styling-themeMode_light-bottomBarBackgroundColor',
+			// 	//'name'      => __( 'Light Mode', 'textdomain' ),
+			// 	'type'      => 'colorpicker',
+			// 	'default'   => '#FFFFFF',
+			// ) );
 
-			$appbear_bottombar_styling->add_field(array(
-				'id'        => 'styling-themeMode_dark-bottomBarBackgroundColor',
-				'name'      => __( 'Dark Mode', 'textdomain' ),
-				'type'      => 'colorpicker',
-				'default'   => '#35393B',
-				'options' => array(
-					'show_if' => array('switch_theme_mode', '=', 'true'),
-				)
-			) );
-			$appbear_bottombar_styling->close_mixed_field();
+			// $appbear_bottombar_styling->add_field(array(
+			// 	'id'        => 'styling-themeMode_dark-bottomBarBackgroundColor',
+			// 	'name'      => __( 'Dark Mode', 'textdomain' ),
+			// 	'type'      => 'colorpicker',
+			// 	'default'   => '#35393B',
+			// 	'options' => array(
+			// 		'show_if' => array('switch_theme_mode', '=', 'true'),
+			// 	)
+			// ) );
+			// $appbear_bottombar_styling->close_mixed_field();
 
 			$appbear_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
 			$appbear_bottombar_styling->add_field(array(
