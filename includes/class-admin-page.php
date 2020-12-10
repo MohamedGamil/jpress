@@ -3,11 +3,15 @@
 namespace Appbear\Includes;
 
 
-// FIXME: Missing docs comment
+/**
+ * AppBear Admin Page
+ */
 class AdminPage extends AppbearCore {
 
+  /**
+   * Class constructor
+   */
 	public function __construct( $args = array() ) {
-
 		if ( ! is_array( $args ) || Functions::is_empty( $args ) || empty( $args['id'] ) ) {
 			return;
 		}
@@ -250,7 +254,11 @@ class AdminPage extends AppbearCore {
 		return true;
 	}
 
-	// FIXME: Missing docs comment | DEPRECATED: Unused method
+  /**
+   * {missing docs}
+   *
+   * @DEPRECATED: Unused method
+   */
 	public function removeEmpties(&$array) {
 		foreach($array as $key=>$val) {
 			if (count($val)==0 || $val == '' || $val == null || $val == 'false') {
@@ -1278,28 +1286,20 @@ class AdminPage extends AppbearCore {
 
             $public_key = appbear_get_public_key();
             $license_status = get_option( 'appbear_license_status' );
-            $license_key = $this->_getLicenseKey();
 
             if ( $license_status === 'valid' ) {
-              // $url  = APPBEAR_STORE_URL . '/?edd_action=save_settings&item_id=1044&license=' . $license_key;
               $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
-
-              $post = [
-                'settings' => json_encode($options, JSON_UNESCAPED_UNICODE)
-              ];
-
-              $ch = curl_init($url);
-
-              curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'X-AppBear-Key: ' . $public_key,
+              $response = wp_remote_post( $url, array(
+                'body' => json_encode(
+                    array(
+                      'settings'     => $options
+                    )
+                ),
+                'headers' => array(
+                  'Content-Type' => 'application/json; charset=utf-8',
+                  'X-AppBear-Key' => $public_key,
+                ),
               ));
-
-              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-              curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-
-              $response = curl_exec($ch);
-
-              curl_close($ch);
             }
 					break;
         }
