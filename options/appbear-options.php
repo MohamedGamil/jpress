@@ -3661,6 +3661,14 @@ class AppBear_Options
     ));
 
     $translations_section->add_field(array(
+      'name' => 'This page intended for demo purposes only',
+      'default' => "This page intended for demo purposes only",
+      'id' => 'translate-demoSent',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+
+    $translations_section->add_field(array(
       'name' => 'Get Our',
       'default' => "Get Our",
       'id' => 'translate-getOur',

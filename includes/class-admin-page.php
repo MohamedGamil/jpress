@@ -7,6 +7,7 @@ namespace Appbear\Includes;
  * AppBear Admin Page
  */
 class AdminPage extends AppbearCore {
+  const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
    * Class constructor
@@ -331,7 +332,14 @@ class AdminPage extends AppbearCore {
 
 		// Add settings error
 		if ( isset( $data['appbear_license_key'] ) ) {
+      // dd($data);
       $this->_updateLicenseKey( $data['appbear_license_key'] );
+
+      $settingsURL = admin_url('admin.php?page=appbear-settings');
+
+      if (static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL )) {
+        exit;
+      }
     }
     else {
 			if ( empty( $data ) ) {
@@ -353,8 +361,8 @@ class AdminPage extends AppbearCore {
               'typeToSearch', 'version', 'yourVersionUpToDate', 'yourVersionNotUpToDate', 'upgradeHint', 'aboutApp', 'tapsLeft', 'devModeActive',
               'noResults', 'noSections', 'noMainPage', 'noBoards', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments',
               'seeMore', 'confirmDemoTitle', 'confirmDemoMessage', 'chooseYourDemo', 'confirmResetTitle', 'confirmResetMessage', 'yes', 'reset',
-              'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'getOur', 'appBear',
-              'plugin', 'next',
+              'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demoSent', 'getOur',
+              'appBear', 'plugin', 'next',
             );
             $translations = array();
 
