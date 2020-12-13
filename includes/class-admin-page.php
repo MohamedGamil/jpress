@@ -360,7 +360,7 @@ class AdminPage extends AppbearCore {
               'typeToSearch', 'version', 'yourVersionUpToDate', 'yourVersionNotUpToDate', 'upgradeHint', 'aboutApp', 'tapsLeft', 'devModeActive',
               'noResults', 'noSections', 'noMainPage', 'noBoards', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments',
               'seeMore', 'confirmDemoTitle', 'confirmDemoMessage', 'chooseYourDemo', 'confirmResetTitle', 'confirmResetMessage', 'yes', 'reset',
-              'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demoSent', 'getOur',
+              'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demosHint', 'getOur',
               'appBear', 'plugin', 'next',
             );
             $translations = array();
