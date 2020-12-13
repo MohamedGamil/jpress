@@ -1226,6 +1226,16 @@ class AppBear_Options
       )
     ));
     $section->add_field(array(
+      'name' => __( "Show 'Load more' Button", 'textdomain' ),
+      'id' => 'local-enable_load_more',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $section->add_field(array(
       'name' => __( 'Show posts by', 'textdomain' ),
       'id' => 'showposts',
       'type' => 'radio',
