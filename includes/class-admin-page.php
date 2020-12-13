@@ -28,7 +28,7 @@ class AdminPage extends AppbearCore {
 			'position' => null,
 			'icon' => '',
 			'container' => false,
-		) );
+		));
 
 		$this->object_type = 'admin-page';
 		parent::__construct( $this->args );
@@ -1334,16 +1334,7 @@ class AdminPage extends AppbearCore {
    */
   private function _checkLicenseStatus() {
     $license = $this->_getLicenseKey();
-
-    $api_params = array(
-      'edd_action' => 'check_license',
-      'license' => $license,
-      'item_name' => urlencode( APPBEAR_ITEM_NAME ),
-      'url'       => home_url()
-    );
-
-    // Call the custom API.
-    $response = wp_remote_post( APPBEAR_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    $response = AppbearAPI::check_license($license);
 
     if ( is_wp_error( $response ) ) {
       $message = __( 'An error occurred, please try again.' );
@@ -1413,17 +1404,7 @@ class AdminPage extends AppbearCore {
 
     // NOTE: Why re-fetch key if we can just use "$licenseKey"?
     $license = $this->_getLicenseKey();
-
-    // Data to send in our API request
-    $api_params = array(
-      'edd_action' => 'activate_license',
-      'license'    => $license,
-      'item_name'  => urlencode( APPBEAR_ITEM_NAME ), // the name of our product in EDD
-      'url'        => home_url()
-    );
-
-    // Call the custom API.
-    $response = wp_remote_post( APPBEAR_STORE_URL, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    $response = AppbearAPI::activate_license($license);
 
     // Make sure the response came back okay
     if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {

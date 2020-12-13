@@ -3697,6 +3697,10 @@ class AppBear_Options
    * Initialize options for no or invalid license state
    */
   protected function _noLicenseInit() {
+    if ( appbear_check_license() === true ) {
+      return;
+    }
+
 		add_action( 'init', array( $this, 'appbear_plugin_updater' ) );
     add_action( 'admin_init', array( $this, 'appbear_register_option' ) );
 
