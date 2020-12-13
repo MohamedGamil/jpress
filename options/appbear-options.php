@@ -3663,7 +3663,7 @@ class AppBear_Options
     $translations_section->add_field(array(
       'name' => 'This page intended for demo purposes only',
       'default' => "This page intended for demo purposes only",
-      'id' => 'translate-demoSent',
+      'id' => 'translate-demosHint',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
