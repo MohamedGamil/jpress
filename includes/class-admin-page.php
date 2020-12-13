@@ -1320,16 +1320,23 @@ class AdminPage extends AppbearCore {
 					break;
         }
 
-				$base_url = get_home_url();
-        $base_url = substr($base_url, -1) === '/' ? substr($base_url, 0, -1) : $base_url;
-				$licensedBase = str_replace( 'http://', '', str_replace( 'http://', '', $base_url ) );
-				$licensedBase = str_replace( 'https://', '', str_replace( 'https://', '', $licensedBase ) );
+				if ( $change_language !== false ) {
+          $public_key = appbear_get_public_key();
+          $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
+          $response = wp_remote_post( $url, array(
+            'body' => json_encode(
+                array(
+                  'data' => array(
+                    'translations' => true
+                  )
+                )
+            ),
+            'headers' => array(
+              'Content-Type' => 'application/json; charset=utf-8',
+              'X-AppBear-Key' => $public_key,
+            ),
+          ));
 
-				if ( $change_language === false ) {
-					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase);
-        }
-        else {
-					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase . '&change_translations=true');
 				}
 
 				update_option( 'appbear_license_status', $isValidLicense ? 'valid' : 'invalid' );
