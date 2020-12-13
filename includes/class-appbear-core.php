@@ -1,4 +1,6 @@
-<?php namespace Appbear\Includes;
+<?php
+
+namespace Appbear\Includes;
 
 class AppbearCore {
     public $id = 0;
@@ -578,13 +580,17 @@ class AppbearCore {
         return false;
     }
 
-    /*
+    /**
     |---------------------------------------------------------------------------------------------------
     | Obtiene el id real del campo
-    |---------------------------------------------------------------------------------------------------
+    |
+    | NOTE: Modified to play nicely with case sensetive options names
+    |---------------------------------------------------------------------------------------------------|
+    |
+    | @since 0.0.2
     */
     public function get_field_id( $field_id ){
-        $field_id = Functions::str_trim_to_lower( $field_id, '-' );
+        $field_id = Functions::str_trim_to_lower( $field_id, '-', true );
         if( ! Functions::starts_with( $this->fields_prefix, $field_id ) ){
             return $this->fields_prefix . $field_id;
         }

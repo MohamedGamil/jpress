@@ -5,7 +5,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly
 
 /**
  * Get a Plugin Option
- * 
+ *
  * @param string $name Option name
  * @param mixed $default Option default value
  */
@@ -101,8 +101,78 @@ function appbear_post_video($post_id = null)
 }
 
 
+/**
+ * Get a Template File
+ *
+ * @param string $file Template File Path
+ */
+function appbear_get_template($templatePath, $vars = [])
+{
+	// NOTE: Should be substitued with a template file..
+	$prefix = APPBEAR_DIR . 'templates';
+	$templatePath = str_replace('.php', '', $templatePath);
+  $path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
+
+  if (is_file($path)) {
+    // Start a new output buffer
+		ob_start();
+
+    // Extract passed template vars if needed
+    if (empty($vars) === false) {
+      extract($vars);
+    }
+
+    // Include template in current output buffer
+    include $path;
+
+    // Get template output
+    $getOutputBuffer = ob_get_clean();
+
+    // Apply filters on template output before using it
+    return apply_filters('AppBear/API/Template', $getOutputBuffer, $templatePath, $vars);
+	}
+
+  throw new Error("Template '{$templatePath}' not found!");
+}
 
 
+/**
+ * Get public key
+ */
+function appbear_get_public_key()
+{
+  // FIXME: Return actual public key
+  // return '364b6c454a0f34c08743428e1e295791641a45310696e1c556756c90d1bf50a6';
+
+  return trim( get_option( 'appbear_public_key' ) );
+}
+
+
+/**
+ * Get license key
+ */
+function appbear_get_license_key()
+{
+  return trim( get_option( 'appbear_license_key' ) );
+}
+
+
+/**
+ * Check if dev mode is active
+ */
+function _appbear_is_dev_mode()
+{
+  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
+}
+
+
+/**
+ * Check current license validity
+ */
+function appbear_check_license()
+{
+  return ( get_option( 'appbear_license_status' ) === 'valid' && empty(appbear_get_public_key()) === false ) || _appbear_is_dev_mode();
+}
 
 
 // FIXME: Missing docs comment
@@ -110,9 +180,9 @@ function appbear_shortcodes_parsing($content)
 {
 
 	// NOTE: A couple of things needs to be done here:
-	//            1) Revise each replacement 
-	//            2) A better optimized way to replace strings 
-	//            3) A more dynamic approach to handle replacement cases 
+	//            1) Revise each replacement
+	//            2) A better optimized way to replace strings
+	//            3) A more dynamic approach to handle replacement cases
 
 
 	// $pattern = '@(?<=)\[tie_list type="(.*?)(?=)"](?=)(.*?)\[/tie_list](?=)@sm';
@@ -453,11 +523,11 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[tie_login]", '<div class="login-form">
 
-		<form name="registerform" action="' . get_site_url() . '/wp-login.php" method="post">
+		<form name="registerform" action="' . get_home_url() . '/wp-login.php" method="post">
 			<input type="text" name="log" title="Username" placeholder="Username">
 			<div class="pass-container">
 				<input type="password" name="pwd" title="Password" placeholder="Password">
-				<a class="forget-text" href="' . get_site_url() . '/wp-login.php?action=lostpassword&redirect_to=' . get_site_url() . '">Forget?</a>
+				<a class="forget-text" href="' . get_home_url() . '/wp-login.php?action=lostpassword&redirect_to=' . get_home_url() . '">Forget?</a>
 			</div>
 
 			<input type="hidden" name="redirect_to" value="/shortcode-test-test-fouad-hi/"/>
@@ -516,10 +586,7 @@ function appbear_shortcodes_parsing($content)
 }
 
 
-
-
-
-//deep linking
+// Deep linking
 add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
 
 // FIXME: Missing docs comment
@@ -560,3 +627,63 @@ function appbear_deeplink_custom_js()
 		}
 	');
 }
+
+
+if (!function_exists('dd')):
+
+/**
+ * Simple debugging helper functions
+ *
+ * @since      0.0.2
+ * @package    App_Bear
+ * @subpackage App_Bear/options
+ */
+function dd() {
+  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+
+  $args = func_get_args();
+  $newLine = "\n\n------------------%s------------------\n\n\n";
+
+  @ob_get_clean();
+  @ob_flush();
+
+  echo "<body style='background: #1c1c1c; color: #FFF'><pre>\n";
+
+  foreach($args as $k => $arg) {
+      $kk = $k + 1;
+      $argTitle = " Argument #{$kk} ";
+      print('<span style="color:#888">');
+      printf($newLine, $argTitle);
+      print('</span>');
+
+      switch(TRUE) {
+          case (is_bool($arg)) === TRUE:
+          case (is_string($arg)) === TRUE:
+          case (is_numeric($arg)) === TRUE:
+              var_dump($arg);
+              break;
+          default:
+              print_r($arg);
+              break;
+      }
+
+      if ($k !== (count($args) -1)) {
+          $sep = sprintf($newLine, str_repeat('-', strlen($argTitle)));
+          print('<span style="color:#555">');
+          print( str_replace('-', '_', $sep) . "\n" );
+          print('</span>');
+      }
+  }
+
+  echo "\n</pre></body>";
+  die;
+}
+
+function ddjson() {
+  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+  $args = func_get_args();
+  echo json_encode($args);
+  die;
+}
+
+endif;

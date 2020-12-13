@@ -1,0 +1,22 @@
+{
+  "name": "appbear_plugin",
+  "version": "1.0.0",
+  "description": "AppBear Mobile Solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "phploy --server patch",
+    "deploy:dev": "phploy --server dev",
+    "deploy:production": "phploy --server production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ourcoteam/appbear_plugin.git"
+  },
+  "author": "AppBear Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ourcoteam/appbear_plugin/issues"
+  },
+  "homepage": "https://github.com/ourcoteam/appbear_plugin#readme"
+}
