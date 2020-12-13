@@ -291,11 +291,15 @@ class AdminPage extends AppbearCore {
 		return true;
 	}
 
-	/*
-	|---------------------------------------------------------------------------------------------------
-	| Activa mensaje de campos actualizados y redirecciona
-	|---------------------------------------------------------------------------------------------------
-	*/
+	/**
+	 * Activa mensaje de campos actualizados y redirecciona,
+   * After save hook.
+   *
+   * @param array $data
+   * @param mixed $object_id
+   * @param array $updated_fields
+   * @return void
+   */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
     // dd($data);
 
@@ -949,35 +953,35 @@ class AdminPage extends AppbearCore {
             /*
             * Social array
             */
-          if ( isset($data['social_enabled'], $data['social']) && $data['social_enabled'] === 'true' && empty($data['social']) === false ) {
-            $options['settingsPage']['social'] = array();
+            if ( isset($data['social_enabled'], $data['social']) && $data['social_enabled'] === 'true' && empty($data['social']) === false ) {
+              $options['settingsPage']['social'] = array();
 
-            foreach($data['social'] as $key => $section) {
-              if ($key === 1000) {
-                continue;
+              foreach($data['social'] as $key => $section) {
+                if ($key === 1000) {
+                  continue;
+                }
+
+                unset($section['sections_type']);
+                unset($section['sections_visibility']);
+
+                $item = array_merge(
+                  array(
+                    'title' => '',
+                    'icon' => '',
+                    'url' => '',
+                  ),
+                  array(
+                    'title' => $section['title'] && $section['social_link_title'] === 'true' ? $section['title'] : '',
+                    'icon' => $section['icon'],
+                    'url' => $section['url'],
+                  ),
+                );
+
+                $options['settingsPage']['social'][] = $item;
               }
 
-              unset($section['sections_type']);
-              unset($section['sections_visibility']);
-
-              $item = array_merge(
-                array(
-                  'title' => '',
-                  'icon' => '',
-                  'url' => '',
-                ),
-                array(
-                  'title' => $section['title'] && $section['social_link_title'] === 'true' ? $section['title'] : '',
-                  'icon' => $section['icon'],
-                  'url' => $section['url'],
-                ),
-              );
-
-              $options['settingsPage']['social'][] = $item;
+              // dd($options['settingsPage']['social']);
             }
-
-            // dd($options['social']);
-          }
 
             /*
             * styling array
@@ -1292,7 +1296,7 @@ class AdminPage extends AppbearCore {
               $response = wp_remote_post( $url, array(
                 'body' => json_encode(
                     array(
-                      'settings'     => $options
+                      'settings' => $options
                     )
                 ),
                 'headers' => array(

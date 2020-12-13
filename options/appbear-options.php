@@ -47,9 +47,7 @@ class AppBear_Options
 
     $this->_didInit = true;
 
-    if ( appbear_check_license() === false ) {
-      // TODO: Add a warning message to inform users about account activation, to connect their app.
-    }
+    add_action('admin_notices', array( $this, 'notifyUserLicense' ));
 
     $this->_initOptions();
     $this->_noLicenseInit();
@@ -103,6 +101,27 @@ class AppBear_Options
     }
 
     return $new;
+  }
+
+
+  /*
+   * Initialize options for no or invalid license state
+   */
+  public function notifyUserLicense() {
+    $activationURL = admin_url( 'admin.php?page=appbear-activation' );
+    $message = __('You must connect your AppBear account to activate your license.', 'textdomain')
+                  . ' <a href="'. $activationURL .'">'
+                  . __('Click here to activate.', 'textdomain')
+                  . '</a> ';
+
+    $key = 'appbear-license-notices';
+
+    add_settings_error( $key, 'appbear_license_status', $message, 'warning' );
+    // set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+    if ( appbear_check_license() === false ) {
+      settings_errors( $key );
+    }
   }
 
 
