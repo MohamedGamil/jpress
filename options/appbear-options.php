@@ -2831,9 +2831,10 @@ class AppBear_Options
       'items' => AppbearItems::posts_by_post_type( 'page' ),
     ));
 
+    //  . ' ' . get_option( 'wp_page_for_privacy_policy' )
     $settings->add_field( array(
       'id' => 'settingspage-termsAndConditions',
-      'name' => __( 'Terms and conditions page',   'textdomain' ).' '.get_option( 'wp_page_for_privacy_policy' ),
+      'name' => __( 'Terms and conditions page',   'textdomain' ),
       'type' => 'select',
       'default' => get_option( 'wp_page_for_privacy_policy' ),
       'items' => AppbearItems::posts_by_post_type( 'page' ),
