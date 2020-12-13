@@ -971,11 +971,15 @@ class AdminPage extends AppbearCore {
                     'url' => '',
                   ),
                   array(
-                    'title' => $section['title'] && $section['social_link_title'] === 'true' ? $section['title'] : '',
+                    'title' => $section['title'],
                     'icon' => $section['icon'],
                     'url' => $section['url'],
                   ),
                 );
+
+                if ($section['social_link_title'] === 'false') {
+                  unset($item['title']);
+                }
 
                 $options['settingsPage']['social'][] = $item;
               }
