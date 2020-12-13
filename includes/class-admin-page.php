@@ -954,7 +954,7 @@ class AdminPage extends AppbearCore {
             * Social array
             */
             if ( isset($data['social_enabled'], $data['social']) && $data['social_enabled'] === 'true' && empty($data['social']) === false ) {
-              $options['settings']['social'] = array();
+              $options['settingsPage']['social'] = array();
 
               foreach($data['social'] as $key => $section) {
                 if ($key === 1000) {
@@ -981,7 +981,7 @@ class AdminPage extends AppbearCore {
                   unset($item['title']);
                 }
 
-                $options['settings']['social'][] = $item;
+                $options['settingsPage']['social'][] = $item;
               }
 
               // dd($options['settingsPage']['social']);
