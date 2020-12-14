@@ -693,7 +693,7 @@ class AdminPage extends AppbearCore {
               }
 
               if (isset($section["local-enable_load_more"]) && !($section["local-enable_load_more"] == 'false'||$section["local-enable_load_more"]=="off")) {
-                $item['loadMore']  =   true;
+                $item['loadMore']  =   "true";
               }
 
               $item['url'] = '/wp-json/wl/v1/posts?';
