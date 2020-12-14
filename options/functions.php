@@ -360,8 +360,12 @@ function appbear_shortcodes_parsing($content)
 	// print_r($images);
 	// echo"</pre>";
 
-	$pattern = '/\[gallery [\s\S]*\]/i';
-  $string = preg_replace($pattern, $output, $string);
+  // DEPRECATED: The following line applies the above logic to the string while omiting the rest of the string,
+  //                    this behavior introduce unwanted effect in the mobile app resulting in a missing post content.
+  //                    Plus it looks like the gallery shortcode is already pre-applied in the post content, thus the
+  //                    entirety of this code block needs proper refactoring.
+	// $pattern = '/\[gallery [\s\S]*\]/i';
+  // $string = preg_replace($pattern, $output, $string);
 
 
 	// exit();
