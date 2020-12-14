@@ -174,6 +174,7 @@ class AppBear_Options
           'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
           'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
           'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
+          'deeplinking' => '<i class="appbear-icon fa fa-link"></i>'.__( 'Deeplinking', 'textdomain' ),
       ),
       'options' => array(
           'conditions' => array(
@@ -187,6 +188,8 @@ class AppBear_Options
       )
     ));
 
+
+    // NOTE: General Styling
     $settings->open_tab_item('general');
 
     $section_header_1 = $settings->add_section( array(
@@ -242,9 +245,6 @@ class AppBear_Options
         'both' => __( 'Bottom Bar & Side Menu', 'textdomain' ),
       )
     ));
-
-
-    // NOTE: General Styling
     $section_header_1->open_mixed_field(array('name' => __('Background color', 'textdomain' ),'desc'      => __( 'Application background color.', 'textdomain' ),));
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-scaffoldbackgroundcolor',
@@ -326,6 +326,47 @@ class AppBear_Options
 
     $section_header_1->close_mixed_field();
     $settings->close_tab_item('general');
+
+
+    // NOTE: Deeplinking Page
+    $settings->open_tab_item('deeplinking');
+
+    $section_deeplinking = $settings->add_section( array(
+      'name' => __( 'Deep-Linking Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking->add_field(array(
+      'name' => __( 'App Bundle Identifier (iOS)', 'textdomain' ),
+      'id' => 'bundle_name_ios',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: com.organization.package',
+      ),
+    ));
+
+    $section_deeplinking->add_field(array(
+      'name' => __( 'App Bundle Identifier (Android)', 'textdomain' ),
+      'id' => 'bundle_name_android',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: com.organization.package',
+      ),
+    ));
+
+    $section_deeplinking->add_field(array(
+      'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
+      'id' => 'deeplinking_widget_enabled',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+
+    $settings->close_tab_item('deeplinking');
 
 
     // NOTE: Top Bar Page
