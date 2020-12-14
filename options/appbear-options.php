@@ -173,8 +173,8 @@ class AppBear_Options
           // 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
           'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
           'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
-          'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
           'deeplinking' => '<i class="appbear-icon fa fa-link"></i>'.__( 'Deeplinking', 'textdomain' ),
+          'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
       ),
       'options' => array(
           'conditions' => array(
@@ -331,31 +331,52 @@ class AppBear_Options
     // NOTE: Deeplinking Page
     $settings->open_tab_item('deeplinking');
 
-    $section_deeplinking = $settings->add_section( array(
-      'name' => __( 'Deep-Linking Settings', 'textdomain' ),
-      'id' => 'section-deeplinking-settings',
+    $section_deeplinking_ios = $settings->add_section( array(
+      'name' => __( 'Deep-Linking iOS Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-ios',
       'options' => array( 'toggle' => false )
     ));
 
-    $section_deeplinking->add_field(array(
-      'name' => __( 'App Bundle Identifier (iOS)', 'textdomain' ),
+    $section_deeplinking_ios->add_field(array(
+      'name' => __( 'App ID', 'textdomain' ),
+      'id' => 'appid_ios',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: 1505020400',
+      ),
+    ));
+
+    $section_deeplinking_ios->add_field(array(
+      'name' => __( 'App Bundle Identifier', 'textdomain' ),
       'id' => 'bundle_name_ios',
       'type' => 'text',
       'attributes' => array(
-        'placeholder' => 'ex: com.organization.package',
+        'placeholder' => 'ex: com.organization.package.ios',
       ),
     ));
 
-    $section_deeplinking->add_field(array(
-      'name' => __( 'App Bundle Identifier (Android)', 'textdomain' ),
+    $section_deeplinking_android = $settings->add_section( array(
+      'name' => __( 'Deep-Linking Android Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-android',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking_android->add_field(array(
+      'name' => __( 'App Bundle Identifier', 'textdomain' ),
       'id' => 'bundle_name_android',
       'type' => 'text',
       'attributes' => array(
-        'placeholder' => 'ex: com.organization.package',
+        'placeholder' => 'ex: com.organization.package.android',
       ),
     ));
 
-    $section_deeplinking->add_field(array(
+    $section_deeplinking_other = $settings->add_section( array(
+      'name' => __( 'Deep-Linking Widget Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-widget',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking_other->add_field(array(
       'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
       'id' => 'deeplinking_widget_enabled',
       'type' => 'switcher',

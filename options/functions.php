@@ -155,6 +155,24 @@ function appbear_get_license_key()
 
 
 /**
+ * Get deeplinking options
+ */
+function appbear_get_deeplinking_opts($asArray = false)
+{
+  $allOpts = get_option( 'appbear-settings' );
+
+  $opts = (Object) array(
+    'appid_ios' => $allOpts['appid_ios'],
+    'name_ios' => $allOpts['bundle_name_ios'],
+    'name_android' => $allOpts['bundle_name_android'],
+    'widget_enabled' => $allOpts['deeplinking_widget_enabled'],
+  );
+
+  return $asArray ? (array) $opts : $opts;
+}
+
+
+/**
  * Check if dev mode is active
  */
 function _appbear_is_dev_mode()
@@ -589,49 +607,6 @@ function appbear_shortcodes_parsing($content)
 	$string = str_replace("\"]", "\">", $string);
 
 	return $string;
-}
-
-
-// Deep linking
-add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
-
-// FIXME: Missing docs comment
-function appbear_deeplink_custom_js()
-{
-	// FIXME: Smelly code (why hook in the first place if not in a public page?)
-	// FIXME: Needs a better check for public use instead of hooking in all pages
-
-	if (!is_single()) {
-		return;
-	}
-
-	wp_enqueue_script('appbear-browser-deeplink', APPBEAR_URL . 'js/browser-deeplink.js', array());
-
-	/*
-	* TODO: get appId & appName iOS and Android from settings
-	*/
-	$deeplinking = appbear_get_option('deeplinking');
-	//$deeplinking['ios']['appid'];
-	//$deeplinking['ios']['appname'];
-	//$deeplinking['android']['appid'];
-
-	// NOTE: This can be re-written in a more dynamic way
-	// FIXME: App package identifier configuration
-
-	wp_add_inline_script('browser-deeplink', '
-		deeplink.setup({
-		iOS: {
-			appId: "1525329429",
-			appName: "com.jannah.app"
-		},
-			android: {
-			appId: "com.jannah.app",
-		}
-		});
-		window.onload = function() {
-			deeplink.open("' . get_the_ID() . '");
-		}
-	');
 }
 
 

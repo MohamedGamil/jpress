@@ -1,0 +1,60 @@
+/* 
+	* =========================
+	* Deeplinking Widget Styling
+	* =========================
+	* */
+
+.deeplinking-public-widget {
+	position: fixed;
+	z-index: 99999;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 80px;
+	color: #FFF;
+	background-color: #6515DD;
+}
+
+.deeplinking-public-widget-inner {
+	position: relative;
+	padding-top: 20px;
+}
+
+.deeplinking-public-widget-inner::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.deeplinking-public-widget-inner .text-content {
+	padding-top: 8px;
+}
+
+.deeplinking-public-widget-inner .text-content p {
+	font-size: 1.6em;
+}
+
+.deeplinking-public-widget-inner .text-content a {
+	color: #FEC500;
+	text-decoration: underline;
+}
+
+.deeplinking-public-widget-inner .store-buttons {
+	/* width: 40%; */
+}
+
+.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+	display: inline-block;
+	vertical-align: top;
+	width: 40%;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.google-play {
+		background-image: url('../img/google_play_badge_en.svg');	
+	}
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.appstore {
+		background-image: url('../img/appstore_badge_en.svg');	
+	}
+
