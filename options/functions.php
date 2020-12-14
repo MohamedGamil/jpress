@@ -141,9 +141,6 @@ function appbear_get_template($templatePath, $vars = [])
  */
 function appbear_get_public_key()
 {
-  // FIXME: Return actual public key
-  // return '364b6c454a0f34c08743428e1e295791641a45310696e1c556756c90d1bf50a6';
-
   return trim( get_option( 'appbear_public_key' ) );
 }
 
@@ -193,6 +190,11 @@ function appbear_shortcodes_parsing($content)
 	// ';
 	// $string = preg_replace($pattern, $replacement, $string);
 
+
+	$pattern = '/\[gallery [\s\S]*\]/i';
+  preg_match_all($pattern, $content, $matches);
+  dd($matches, $content);
+
 	$pattern = "/\[tie_list type=\"checklist\"\]\n<ul>\n/i";
 	$string = preg_replace($pattern, "<div class=\"tie_list checklist\">", $content);
 	$pattern = "/\[tie_list type=\"heart\"\]\n<ul>\n/i";
@@ -239,7 +241,6 @@ function appbear_shortcodes_parsing($content)
 
 
 	// Gallery Start
-
 	$pos = strpos($string, "ids=\"");
 	$new_string  = substr($string, $pos + 5);
 	$second_pos = strpos($new_string, "\"");
@@ -360,7 +361,8 @@ function appbear_shortcodes_parsing($content)
 	// echo"</pre>";
 
 	$pattern = '/\[gallery [\s\S]*\]/i';
-	$string = preg_replace($pattern, $output, $string);
+  $string = preg_replace($pattern, $output, $string);
+
 
 	// exit();
 	//button
@@ -647,6 +649,7 @@ function dd() {
   @ob_get_clean();
   @ob_flush();
 
+  header('Content-Type: text/html; charset=UTF-8');
   echo "<body style='background: #1c1c1c; color: #FFF'><pre>\n";
 
   foreach($args as $k => $arg) {
@@ -681,6 +684,8 @@ function dd() {
 
 function ddjson() {
   if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+
+  header('Content-Type: application/json; charset=UTF-8');
   $args = func_get_args();
   echo json_encode($args);
   die;
