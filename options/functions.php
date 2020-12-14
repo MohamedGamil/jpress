@@ -191,9 +191,9 @@ function appbear_shortcodes_parsing($content)
 	// $string = preg_replace($pattern, $replacement, $string);
 
 
-	$pattern = '/\[gallery [\s\S]*\]/i';
-  preg_match_all($pattern, $content, $matches);
-  dd($matches, $content);
+	// $pattern = '/\[gallery [\s\S]*\]/i';
+  // preg_match_all($pattern, $content, $matches);
+  // dd($matches, $content);
 
 	$pattern = "/\[tie_list type=\"checklist\"\]\n<ul>\n/i";
 	$string = preg_replace($pattern, "<div class=\"tie_list checklist\">", $content);
