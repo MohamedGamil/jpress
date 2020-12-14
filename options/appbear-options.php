@@ -1027,7 +1027,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       ),
       'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
@@ -1322,7 +1322,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1517,7 +1517,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1617,7 +1617,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1727,7 +1727,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
