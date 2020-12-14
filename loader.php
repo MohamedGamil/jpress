@@ -148,12 +148,16 @@ class AppbearLoader148
 			}
 		}
 
-		// APIs File
+		// Options & Plugin Custom Classes
 		include plugin_dir_path( __FILE__ ) . '/options/functions.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
 		include plugin_dir_path( __FILE__ ) . '/options/demos-api.php';
 		include plugin_dir_path( __FILE__ ) . '/options/options.php';
-		include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
+    include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
+
+    // Init Classes
+    AppBear_Endpoints::run();
+    AppBear_Demos_Endpoints::run();
   }
 
   /**
