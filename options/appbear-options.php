@@ -3717,7 +3717,7 @@ class AppBear_Options
    */
   protected function _noLicenseInit() {
     if ( appbear_check_license() === true ) {
-      return;
+      // return;
     }
 
 		add_action( 'init', array( $this, 'appbear_plugin_updater' ) );
