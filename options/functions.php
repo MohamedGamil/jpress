@@ -141,9 +141,6 @@ function appbear_get_template($templatePath, $vars = [])
  */
 function appbear_get_public_key()
 {
-  // FIXME: Return actual public key
-  // return '364b6c454a0f34c08743428e1e295791641a45310696e1c556756c90d1bf50a6';
-
   return trim( get_option( 'appbear_public_key' ) );
 }
 
@@ -154,6 +151,27 @@ function appbear_get_public_key()
 function appbear_get_license_key()
 {
   return trim( get_option( 'appbear_license_key' ) );
+}
+
+
+/**
+ * Get deeplinking options
+ */
+function appbear_get_deeplinking_opts($asArray = false)
+{
+  $allOpts = get_option( 'appbear-settings' );
+
+  $opts = (Object) array(
+    'appid_ios' => $allOpts['appid_ios'],
+    'scheme_url' => $allOpts['deeplinking_scheme_url'],
+    'name_ios' => $allOpts['bundle_name_ios'],
+    'name_android' => $allOpts['bundle_name_android'],
+    'widget_enabled' => $allOpts['deeplinking_widget_enabled'],
+    'widget_fg_color' => $allOpts['deeplinking_widget_fg_color'],
+    'widget_bg_color' => $allOpts['deeplinking_widget_bg_color'],
+  );
+
+  return $asArray ? (array) $opts : $opts;
 }
 
 
@@ -193,6 +211,11 @@ function appbear_shortcodes_parsing($content)
 	// ';
 	// $string = preg_replace($pattern, $replacement, $string);
 
+
+	// $pattern = '/\[gallery [\s\S]*\]/i';
+  // preg_match_all($pattern, $content, $matches);
+  // dd($matches, $content);
+
 	$pattern = "/\[tie_list type=\"checklist\"\]\n<ul>\n/i";
 	$string = preg_replace($pattern, "<div class=\"tie_list checklist\">", $content);
 	$pattern = "/\[tie_list type=\"heart\"\]\n<ul>\n/i";
@@ -214,21 +237,21 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[/tie_list]", "</div>", $string);
 
-	$pattern = '/\[one\_[a-zA-Z]+\]/i';
+	$pattern = '/\[one\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[two\_[a-zA-Z]+\]/i';
+	$pattern = '/\[two\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/one\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/one\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[\/two\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/two\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[three\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/three\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[five\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/five\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
 	// $pattern = '/[[0-9]+\/[0-9]+\]/i';
 	// $string = preg_replace($pattern, "", $string);
@@ -239,7 +262,6 @@ function appbear_shortcodes_parsing($content)
 
 
 	// Gallery Start
-
 	$pos = strpos($string, "ids=\"");
 	$new_string  = substr($string, $pos + 5);
 	$second_pos = strpos($new_string, "\"");
@@ -359,8 +381,13 @@ function appbear_shortcodes_parsing($content)
 	// print_r($images);
 	// echo"</pre>";
 
-	$pattern = '/\[gallery [\s\S]*\]/i';
-	$string = preg_replace($pattern, $output, $string);
+  // DEPRECATED: The following line applies the above logic to the string while omiting the rest of the string,
+  //                    this behavior introduce unwanted effect in the mobile app resulting in a missing post content.
+  //                    Plus it looks like the gallery shortcode is already pre-applied in the post content, thus the
+  //                    entirety of this code block needs proper refactoring.
+	// $pattern = '/\[gallery [\s\S]*\]/i';
+  // $string = preg_replace($pattern, $output, $string);
+
 
 	// exit();
 	//button
@@ -586,49 +613,6 @@ function appbear_shortcodes_parsing($content)
 }
 
 
-// Deep linking
-add_action('wp_enqueue_scripts', 'appbear_deeplink_custom_js');
-
-// FIXME: Missing docs comment
-function appbear_deeplink_custom_js()
-{
-	// FIXME: Smelly code (why hook in the first place if not in a public page?)
-	// FIXME: Needs a better check for public use instead of hooking in all pages
-
-	if (!is_single()) {
-		return;
-	}
-
-	wp_enqueue_script('appbear-browser-deeplink', APPBEAR_URL . 'js/browser-deeplink.js', array());
-
-	/*
-	* TODO: get appId & appName iOS and Android from settings
-	*/
-	$deeplinking = appbear_get_option('deeplinking');
-	//$deeplinking['ios']['appid'];
-	//$deeplinking['ios']['appname'];
-	//$deeplinking['android']['appid'];
-
-	// NOTE: This can be re-written in a more dynamic way
-	// FIXME: App package identifier configuration
-
-	wp_add_inline_script('browser-deeplink', '
-		deeplink.setup({
-		iOS: {
-			appId: "1525329429",
-			appName: "com.jannah.app"
-		},
-			android: {
-			appId: "com.jannah.app",
-		}
-		});
-		window.onload = function() {
-			deeplink.open("' . get_the_ID() . '");
-		}
-	');
-}
-
-
 if (!function_exists('dd')):
 
 /**
@@ -647,6 +631,7 @@ function dd() {
   @ob_get_clean();
   @ob_flush();
 
+  header('Content-Type: text/html; charset=UTF-8');
   echo "<body style='background: #1c1c1c; color: #FFF'><pre>\n";
 
   foreach($args as $k => $arg) {
@@ -681,6 +666,8 @@ function dd() {
 
 function ddjson() {
   if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+
+  header('Content-Type: application/json; charset=UTF-8');
   $args = func_get_args();
   echo json_encode($args);
   die;

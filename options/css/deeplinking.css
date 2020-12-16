@@ -1,0 +1,125 @@
+/* 
+	* =========================
+	* Deeplinking Widget Styling
+	* =========================
+	* */
+
+.deeplinking-public-widget {
+	position: fixed;
+	z-index: 99999;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 80px;
+	color: #616161;
+	background-color: #f1f1f1;
+}
+
+.deeplinking-public-widget .close-widget {
+	position: absolute;
+	padding: 8px 10px 4px;
+	z-index: 99;
+	top: 0;
+	right: 0;
+	font-size: 0.9em;
+}
+	.deeplinking-public-widget .close-widget,
+	.deeplinking-public-widget .close-widget:active,
+	.deeplinking-public-widget .close-widget:visited {
+		color: #616161;
+	}
+	.deeplinking-public-widget .close-widget:active {
+		opacity: 0.65;
+	}
+
+.deeplinking-public-widget-inner {
+	position: relative;
+	padding-top: 20px;
+}
+
+.deeplinking-public-widget-inner::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.deeplinking-public-widget-inner .text-content {
+	padding-top: 8px;
+}
+
+.deeplinking-public-widget-inner .text-content p {
+	font-size: 1.6em;
+}
+
+.deeplinking-public-widget-inner .text-content a {
+	color: #FEC500;
+	text-decoration: underline;
+}
+
+.deeplinking-public-widget-inner .store-buttons {
+	/* width: 40%; */
+	/* padding-right: 10px; */
+}
+
+.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+	display: inline-block;
+	vertical-align: top;
+	width: 40%;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.google-play {
+		background-image: url('../img/google_play_badge_en.svg');	
+	}
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.appstore {
+		background-image: url('../img/appstore_badge_en.svg');	
+	}
+
+
+/* = = = = = = = = = = =
+    = Responsive 
+    = = = = = = = = = = */
+
+
+/*	TABLET
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 1024px) {
+}
+
+
+/*	MOBILE & TABLET COMMON
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 768px) {
+}
+
+
+/*	MOBILE 
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 425px) {
+	.deeplinking-public-widget-inner {
+		/* padding-top: 5px; */
+	}
+
+	.deeplinking-public-widget-inner .text-content p {
+		margin-bottom: 5px;
+		font-size: 1.3em;
+		text-align: center;
+	}
+
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+		display: block;
+		width: 100%;
+		height: 30px;
+		background-size: contain;
+	}
+}
+
+@media (min-width: 200px) and (max-width: 320px) {
+}
+
+@media (min-width: 992px) {
+}

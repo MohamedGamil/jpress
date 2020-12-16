@@ -20,6 +20,28 @@ class AppBear_Demos_Endpoints
   */
   protected $namespace = 'wl/v1';
 
+  /**
+   * Internal initilization state &
+   * internal singlton instance.
+   *
+   * @var boolean
+   */
+  static protected $_didInit = false;
+  static protected $_localInstance = null;
+
+
+  /**
+   * Run hooks initilization
+   */
+  static public function run() {
+    if (static::$_didInit === true && is_null(static::$_localInstance) === false) {
+      return;
+    }
+
+    static::$_localInstance = new AppBear_Demos_Endpoints();
+    static::$_didInit = true;
+  }
+
 
   /**
   * Class Constructor
@@ -2929,5 +2951,3 @@ class AppBear_Demos_Endpoints
     return apply_filters( 'AppBear/API/Demos/data', $demo_data, $request['demo'] );
   }
 }
-
-new AppBear_Demos_Endpoints();

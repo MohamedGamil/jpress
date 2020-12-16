@@ -692,6 +692,10 @@ class AdminPage extends AppbearCore {
                 }
               }
 
+              if (isset($section["local-enable_load_more"]) && !($section["local-enable_load_more"] == 'false'||$section["local-enable_load_more"]=="off")) {
+                $item['loadMore']  =   "true";
+              }
+
               $item['url'] = '/wp-json/wl/v1/posts?';
 
               switch($section['showposts']) {
@@ -1017,7 +1021,7 @@ class AdminPage extends AppbearCore {
             $options['styling']['ThemeMode.light']['inputsbackgroundcolor'] = $data['styling-themeMode_light-inputsbackgroundcolor'];
             $options['styling']['ThemeMode.light']['buttonsbackgroudcolor'] = $data['styling-themeMode_light-buttonsbackgroudcolor'];
             $options['styling']['ThemeMode.light']['buttonTextColor'] = $data['styling-themeMode_light-buttonTextColor'];
-            $options['styling']['ThemeMode.light']['settingBackgroundColor'] = $data['styling-themeMode_light-settingbackgroundcolor'];
+            $options['styling']['ThemeMode.light']['settingBackgroundColor'] = $data['styling-themeMode_light-settingBackgroundColor'];
             $options['styling']['ThemeMode.light']['settingTextColor'] = $data['styling-themeMode_light-settingTextColor'];
             $options['styling']['ThemeMode.light']['errorColor'] =  $data['styling-themeMode_light-errorcolor'];
             $options['styling']['ThemeMode.light']['successColor'] = $data['styling-themeMode_light-successcolor'];
@@ -1042,7 +1046,7 @@ class AdminPage extends AppbearCore {
               $options['styling']['ThemeMode.dark']['inputsbackgroundcolor'] = $data['styling-themeMode_dark-inputsbackgroundcolor'];
               $options['styling']['ThemeMode.dark']['buttonsbackgroudcolor'] = $data['styling-themeMode_dark-buttonsbackgroudcolor'];
               $options['styling']['ThemeMode.dark']['buttonTextColor'] = $data['styling-themeMode_dark-buttonTextColor'];
-              $options['styling']['ThemeMode.dark']['settingBackgroundColor'] = $data['styling-themeMode_dark-settingbackgroundcolor'];
+              $options['styling']['ThemeMode.dark']['settingBackgroundColor'] = $data['styling-themeMode_dark-settingBackgroundColor'];
               $options['styling']['ThemeMode.dark']['settingTextColor'] = $data['styling-themeMode_dark-settingTextColor'];
               $options['styling']['ThemeMode.dark']['errorColor'] = $data['styling-themeMode_dark-errorcolor'];
               $options['styling']['ThemeMode.dark']['successColor'] = $data['styling-themeMode_dark-successcolor'];
@@ -1300,15 +1304,14 @@ class AdminPage extends AppbearCore {
 
             update_option( 'appbear_version', $new_version );
 
-            $public_key = appbear_get_public_key();
-            $license_status = get_option( 'appbear_license_status' );
-
-            if ( $license_status === 'valid' ) {
+            if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true || _appbear_is_dev_mode() ) {
+              $public_key = appbear_get_public_key();
               $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
+
               $response = wp_remote_post( $url, array(
                 'body' => json_encode(
                     array(
-                      'settings' => $options
+                      'settings' => $this->_removeEmptyOptions($options)
                     )
                 ),
                 'headers' => array(
@@ -1317,19 +1320,32 @@ class AdminPage extends AppbearCore {
                 ),
               ));
             }
+
+            $options['copyrights'] = get_home_url();
+            $options['validConfig'] = true;
+            update_option( 'appbear-settings', $options );
+            
 					break;
         }
 
-				$base_url = get_home_url();
-        $base_url = substr($base_url, -1) === '/' ? substr($base_url, 0, -1) : $base_url;
-				$licensedBase = str_replace( 'http://', '', str_replace( 'http://', '', $base_url ) );
-				$licensedBase = str_replace( 'https://', '', str_replace( 'https://', '', $licensedBase ) );
-
-				if ( $change_language === false ) {
-					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase);
-        }
-        else {
-					$tes = wp_remote_get(APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase . '&change_translations=true');
+        if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true || _appbear_is_dev_mode() ) {
+          if ( $change_language !== false ) {
+            $public_key = appbear_get_public_key();
+            $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
+            $response = wp_remote_post( $url, array(
+              'body' => json_encode(
+                  array(
+                    'data' => array(
+                      'translations' => true
+                    )
+                  )
+              ),
+              'headers' => array(
+                'Content-Type' => 'application/json; charset=utf-8',
+                'X-AppBear-Key' => $public_key,
+              ),
+            ));
+          }
 				}
 
 				update_option( 'appbear_license_status', $isValidLicense ? 'valid' : 'invalid' );
@@ -1337,7 +1353,26 @@ class AdminPage extends AppbearCore {
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 			}
 		}
-	}
+  }
+
+  /**
+   * Remove empty / null options before sending the request
+   *
+   * @param array $options
+   * @return array
+   */
+  private function _removeEmptyOptions(array $options) {
+    foreach ($options as $key => &$opt) {
+      if (is_array($opt) && empty($opt) === false) {
+        $opt = $this->_removeEmptyOptions($opt);
+      }
+      elseif (empty($opt) || is_null($opt) || trim($opt) === '') {
+        unset($options[$key]);
+      }
+    }
+
+    return $options;
+  }
 
   /*
    * Check license status
