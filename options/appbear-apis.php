@@ -442,6 +442,7 @@ class AppBear_Endpoints {
       'order'   => 'ASC'
     ));
 
+    // TODO: ...
     $the_cats = array();
 
     foreach ( $categories as $category ) {
