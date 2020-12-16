@@ -57,7 +57,7 @@ class AppBear_Deeplinking {
    * Initialize Post
    */
   public function init_post() {
-
+    // ...
   }
 
   /**
@@ -93,6 +93,7 @@ class AppBear_Deeplinking {
       window.AppBear_Deeplinking = {
         ios_url: "https://apps.apple.com/us/app/id'. $deeplinkingOpts->appid_ios .'",
         android_url: "https://play.google.com/store/apps/details?id='. $deeplinkingOpts->name_android .'",
+        bg_color: "'. $deeplinkingOpts->widget_bg_color .'",
         open: function () {
           deeplink.open("' . get_the_ID() . '");
         },

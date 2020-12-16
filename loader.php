@@ -160,8 +160,6 @@ class AppbearLoader148
     AppBear_Endpoints::run();
     AppBear_Demos_Endpoints::run();
     AppBear_Deeplinking::run();
-
-    // appbear_get_deeplinking_opts();
   }
 
   /**

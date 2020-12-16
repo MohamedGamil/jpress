@@ -387,6 +387,16 @@ class AppBear_Options
       )
     ));
 
+    $section_deeplinking_other->add_field(array(
+      'name' => __( 'Deeplinking Widget Background Color', 'textdomain' ),
+      'id' => 'deeplinking_widget_bg_color',
+      'type' => 'colorpicker',
+      'default'	=>	'#6515DD',
+      'options' => array(
+        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
+      )
+    ));
+
     $settings->close_tab_item('deeplinking');
 
 

@@ -30,10 +30,12 @@
       </div>
     `;
 
+    if (!!AppBear_Deeplinking.bg_color) {
+      $widget.css('background-color', AppBear_Deeplinking.bg_color);
+    }
+
     $widget.append(HTML);
     $body.append($widget);
-
-    console.info($widget);
 
     $widget.find('a.google-play').attr('href', AppBear_Deeplinking.android_url);
     $widget.find('a.appstore').attr('href', AppBear_Deeplinking.ios_url);

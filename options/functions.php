@@ -166,6 +166,7 @@ function appbear_get_deeplinking_opts($asArray = false)
     'name_ios' => $allOpts['bundle_name_ios'],
     'name_android' => $allOpts['bundle_name_android'],
     'widget_enabled' => $allOpts['deeplinking_widget_enabled'],
+    'widget_bg_color' => $allOpts['deeplinking_widget_bg_color'],
   );
 
   return $asArray ? (array) $opts : $opts;

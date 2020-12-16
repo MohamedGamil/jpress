@@ -58,3 +58,49 @@
 		background-image: url('../img/appstore_badge_en.svg');	
 	}
 
+
+/* = = = = = = = = = = =
+    = Responsive 
+    = = = = = = = = = = */
+
+
+/*	TABLET
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 1024px) {
+}
+
+
+/*	MOBILE & TABLET COMMON
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 768px) {
+}
+
+
+/*	MOBILE 
+/*===========================================*/
+
+@media (min-width: 200px) and (max-width: 425px) {
+	.deeplinking-public-widget-inner {
+		padding-top: 5px;
+	}
+
+	.deeplinking-public-widget-inner .text-content p {
+		font-size: 1.3em;
+	}
+
+	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+		display: block;
+		width: 100%;
+		margin-top: 4px;
+		height: 30px;
+		background-size: contain;
+	}
+}
+
+@media (min-width: 200px) and (max-width: 320px) {
+}
+
+@media (min-width: 992px) {
+}
