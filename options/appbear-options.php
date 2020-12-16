@@ -710,6 +710,25 @@ class AppBear_Options
       'options' => array( 'toggle' => true )
     ));
 
+    $appbear_bottombar_styling->open_mixed_field(array('name' => __('Bottom bar background color', 'textdomain' )));
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_light-bottomBarBackgroundColor',
+      //'name' => __( 'Light Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#BCBCBC',
+    ));
+
+    $appbear_bottombar_styling->add_field(array(
+      'id' => 'styling-themeMode_dark-bottomBarBackgroundColor',
+      'name' => __( 'Dark Mode', 'textdomain' ),
+      'type' => 'colorpicker',
+      'default' => '#838483',
+      'options' => array(
+        'show_if' => array('switch_theme_mode', '=', 'true'),
+      )
+    ));
+    $appbear_bottombar_styling->close_mixed_field();
+
     $appbear_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
     $appbear_bottombar_styling->add_field(array(
       'id' => 'styling-themeMode_light-bottomBarInActiveColor',
