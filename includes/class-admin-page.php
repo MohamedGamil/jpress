@@ -1323,8 +1323,8 @@ class AdminPage extends AppbearCore {
 
             $options['copyrights'] = get_home_url();
             $options['validConfig'] = true;
-            update_option( 'appbear-settings', $options );
-            
+            update_option( 'appbear-options', $options );
+
 					break;
         }
 
