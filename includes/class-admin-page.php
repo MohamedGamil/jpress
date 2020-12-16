@@ -1309,10 +1309,11 @@ class AdminPage extends AppbearCore {
 
             if ( $license_status === 'valid' ) {
               $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
+
               $response = wp_remote_post( $url, array(
                 'body' => json_encode(
                     array(
-                      'settings' => $options
+                      'settings' => $this->_removeEmptyOptions($options)
                     )
                 ),
                 'headers' => array(
@@ -1348,7 +1349,26 @@ class AdminPage extends AppbearCore {
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 			}
 		}
-	}
+  }
+
+  /**
+   * Remove empty / null options before sending the request
+   *
+   * @param array $options
+   * @return array
+   */
+  private function _removeEmptyOptions(array $options) {
+    foreach ($options as $key => &$opt) {
+      if (is_array($opt) && empty($opt) === false) {
+        $opt = $this->_removeEmptyOptions($opt);
+      }
+      elseif (empty($opt) || is_null($opt) || trim($opt) === '') {
+        unset($options[$key]);
+      }
+    }
+
+    return $options;
+  }
 
   /*
    * Check license status
