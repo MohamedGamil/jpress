@@ -43,6 +43,13 @@ class AppBear_Categories {
     static::$_didInit = true;
   }
 
+  /**
+   * Get categories metadata
+   */
+  static public function get_metadata() {
+    return get_option( static::OPTION_KEY );
+  }
+
 
   /**
    * Class Constructor
