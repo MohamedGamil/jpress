@@ -49,13 +49,13 @@
 
     setTimeout(() => {
       if (new Date().valueOf() - now > 100) {
-        _appInstalled = true;
+        // _appInstalled = true;
         _update();
         return;
       }
 
       window.location = _isAndroid() ? AppBear_Deeplinking.android_url : AppBear_Deeplinking.ios_url;
-    }, 25);
+    }, 100);
 
     if (!!AppBear_Deeplinking.base_url) {
       window.location = !!AppBear_Deeplinking.deeplink_url ? AppBear_Deeplinking.deeplink_url : AppBear_Deeplinking.base_url;
