@@ -19,6 +19,28 @@ class AppBear_Endpoints {
    */
   protected $namespace = 'wl/v1';
 
+  /**
+   * Internal initilization state &
+   * internal singlton instance.
+   *
+   * @var boolean
+   */
+  static protected $_didInit = false;
+  static protected $_localInstance = null;
+
+
+  /**
+   * Run hooks initilization
+   */
+  static public function run() {
+    if (static::$_didInit === true && is_null(static::$_localInstance) === false) {
+      return;
+    }
+
+    static::$_localInstance = new AppBear_Endpoints();
+    static::$_didInit = true;
+  }
+
 
   /**
    * Class Constructor
@@ -100,40 +122,38 @@ class AppBear_Endpoints {
       'posts_per_page' => ! empty( $request['count'] ) ? $request['count'] : -1,
     );
 
-    // Pagination
-    if ( isset($request['page'] ) ) {
-      $args['paged'] = $request['page'];
+    $argsPairs = array(
+      'paged' => 'page',
+      'cat' => 'categories',
+      'offset' => 'offset',
+      's' => 's',
+    );
+
+    $arrayPairs = array(
+      'tag__in' => 'tags',
+      'post__in' => 'ids',
+      'post__not_in' => 'exclude',
+    );
+
+    // NOTE: Arguments Pairs [ "Pagination", "Categories", "Tags", "Inclusive / Exclusive Posts by IDs", "Offsetting", "Search" ]
+    foreach ( $argsPairs as $key => $requestKey ) {
+      if ( isset($request[$requestKey]) ) {
+        $args[ $key ] = $request[ $requestKey ];
+      }
     }
 
-		// Search
-    if ( isset( $request['s'] ) ) {
-      $args['s'] = $request['s'];
+    foreach ( $arrayPairs as $key => $requestKey ) {
+      if ( isset($request[$requestKey]) ) {
+        $args[ $key ] = explode( ',', $request[ $requestKey ] );
+      }
     }
 
-    // Categories
-    if ( isset( $request['categories'] ) ) {
-      $args['cat'] = $request['categories'];
+    // Unset "offset" param if using pagination
+    if ( isset($args['paged'], $args['offset']) ) {
+      unset($args['offset']);
     }
 
-    // Tags
-    if ( isset( $request['tags'] ) ) {
-      $args['tag__in'] = explode( ',', $request['tags'] );
-    }
-
-    // Posts IDs
-    if ( isset( $request['ids'] ) ) {
-      $args['post__in'] = explode( ',', $request['ids'] );
-    }
-
-    // Exclude posts
-    if ( isset( $request['exclude'] ) ) {
-      $args['post__not_in'] = explode( ',', $request['exclude'] );
-    }
-
-    if ( isset( $request['offset'] ) ) {
-      $args['offset'] = $request['offset'];
-    }
-
+    // Sorting
     if ( isset( $request['sort'] ) ) {
       $args['order']   = '';
       $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
@@ -631,6 +651,3 @@ class AppBear_Endpoints {
     }
   }
 }
-
-
-new AppBear_Endpoints();

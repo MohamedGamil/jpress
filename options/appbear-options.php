@@ -141,8 +141,8 @@ class AppBear_Options
     // NOTE: START Settings Page
     $settings_arg = array(
       'id' => 'appbear-settings',
-      'title' => 'appBear',
-      'menu_title' => 'appBear',
+      'title' => 'AppBear',
+      'menu_title' => 'AppBear',
       'menu_side_title' => 'Settings',
       'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
       'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
@@ -173,6 +173,7 @@ class AppBear_Options
           // 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
           'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
           'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
+          'deeplinking' => '<i class="appbear-icon fa fa-link"></i>'.__( 'Deeplinking', 'textdomain' ),
           'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
       ),
       'options' => array(
@@ -187,6 +188,8 @@ class AppBear_Options
       )
     ));
 
+
+    // NOTE: General Styling
     $settings->open_tab_item('general');
 
     $section_header_1 = $settings->add_section( array(
@@ -242,9 +245,6 @@ class AppBear_Options
         'both' => __( 'Bottom Bar & Side Menu', 'textdomain' ),
       )
     ));
-
-
-    // NOTE: General Styling
     $section_header_1->open_mixed_field(array('name' => __('Background color', 'textdomain' ),'desc'      => __( 'Application background color.', 'textdomain' ),));
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_light-scaffoldbackgroundcolor',
@@ -326,6 +326,90 @@ class AppBear_Options
 
     $section_header_1->close_mixed_field();
     $settings->close_tab_item('general');
+
+
+    // NOTE: Deeplinking Page
+    $settings->open_tab_item('deeplinking');
+
+    $section_deeplinking_ios = $settings->add_section( array(
+      'name' => __( 'Deep-Linking iOS Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-ios',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking_ios->add_field(array(
+      'name' => __( 'App ID', 'textdomain' ),
+      'id' => 'appid_ios',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: 1505020400',
+      ),
+    ));
+
+    $section_deeplinking_ios->add_field(array(
+      'name' => __( 'App Bundle Identifier', 'textdomain' ),
+      'id' => 'bundle_name_ios',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: com.organization.package.ios',
+      ),
+    ));
+
+    $section_deeplinking_android = $settings->add_section( array(
+      'name' => __( 'Deep-Linking Android Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-android',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking_android->add_field(array(
+      'name' => __( 'App Bundle Identifier', 'textdomain' ),
+      'id' => 'bundle_name_android',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: com.organization.package.android',
+      ),
+    ));
+
+    $section_deeplinking_other = $settings->add_section( array(
+      'name' => __( 'Deep-Linking Widget Settings', 'textdomain' ),
+      'id' => 'section-deeplinking-settings-widget',
+      'options' => array( 'toggle' => false )
+    ));
+
+    $section_deeplinking_other->add_field(array(
+      'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
+      'id' => 'deeplinking_widget_enabled',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+
+    $section_deeplinking_other->add_field(array(
+      'name' => __( 'Deeplink Scheme & URL', 'textdomain' ),
+      'id' => 'deeplinking_scheme_url',
+      'type' => 'text',
+      'attributes' => array(
+        'placeholder' => 'ex: appbear://io.appbear.app',
+      ),
+      'options' => array(
+        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
+      ),
+    ));
+
+    $section_deeplinking_other->add_field(array(
+      'name' => __( 'Deeplinking Widget Background Color', 'textdomain' ),
+      'id' => 'deeplinking_widget_bg_color',
+      'type' => 'colorpicker',
+      'default'	=>	'#6515DD',
+      'options' => array(
+        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
+      ),
+    ));
+
+    $settings->close_tab_item('deeplinking');
 
 
     // NOTE: Top Bar Page
@@ -1027,7 +1111,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       ),
       'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
@@ -1322,7 +1406,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1517,7 +1601,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1617,7 +1701,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
@@ -1727,7 +1811,7 @@ class AppBear_Options
         'latest' => __( 'Recent Posts', 'textdomain' ),
         'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
-        'popular' => __( 'Most Commented posts', 'textdomain' ),
+        'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
       )
     ));
