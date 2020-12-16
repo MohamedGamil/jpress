@@ -163,6 +163,7 @@ function appbear_get_deeplinking_opts($asArray = false)
 
   $opts = (Object) array(
     'appid_ios' => $allOpts['appid_ios'],
+    'scheme_url' => $allOpts['deeplinking_scheme_url'],
     'name_ios' => $allOpts['bundle_name_ios'],
     'name_android' => $allOpts['bundle_name_android'],
     'widget_enabled' => $allOpts['deeplinking_widget_enabled'],

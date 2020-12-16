@@ -57,7 +57,9 @@
       window.location = _isAndroid() ? AppBear_Deeplinking.android_url : AppBear_Deeplinking.ios_url;
     }, 25);
 
-    window.location = !!AppBear_Deeplinking.deeplink_url ? AppBear_Deeplinking.deeplink_url : AppBear_Deeplinking.base_url;
+    if (!!AppBear_Deeplinking.base_url) {
+      window.location = !!AppBear_Deeplinking.deeplink_url ? AppBear_Deeplinking.deeplink_url : AppBear_Deeplinking.base_url;
+    }
   }
 
   /**

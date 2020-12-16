@@ -21,6 +21,13 @@ class AppBear_Deeplinking {
   static protected $_didInit = false;
   static protected $_localInstance = null;
 
+  /**
+   * Internal store of deeplinking options.
+   *
+   * @var object
+   */
+  public $options = null;
+
 
   /**
    * Run hooks initilization
@@ -54,17 +61,19 @@ class AppBear_Deeplinking {
   }
 
   /**
-   * Initialize Post
+   * Initialize options
    */
-  public function init_post() {
-    // ...
+  public function init_options() {
+    $this->options = appbear_get_deeplinking_opts();
   }
 
   /**
    * Enqueue Deeplinking Scripts
    */
   public function enqueue_scripts() {
-    $deeplinkingOpts = appbear_get_deeplinking_opts();
+    $this->init_options();
+
+    $deeplinkingOpts = $this->options;
     $deeplinkJs1 = APPBEAR_URL . 'js/browser-deeplink.js';
     $deeplinkJs2 = APPBEAR_URL . 'options/js/deeplinking.js';
     $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
@@ -115,14 +124,13 @@ class AppBear_Deeplinking {
    * @return string
    */
   protected function _getDeeplink($type = null, $ID = null) {
-    $baseURL = 'appbear://io.appbear.app';
+    $baseURL = $this->options->scheme_url;
     $deeplinkURL = $baseURL . '/?type=%s&id=%s';
 
     if ( is_null($type) && is_null($ID) ) {
       return $baseURL;
     }
 
-    // TODO: Dynamic App Deeplinking Scheme & URL
     // TODO: Check valid post types
 
     return sprintf( $deeplinkURL, trim($type), trim($ID) );
