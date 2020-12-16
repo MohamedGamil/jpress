@@ -1304,10 +1304,8 @@ class AdminPage extends AppbearCore {
 
             update_option( 'appbear_version', $new_version );
 
-            $public_key = appbear_get_public_key();
-            $license_status = get_option( 'appbear_license_status' );
-
-            if ( $license_status === 'valid' ) {
+            if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true || _appbear_is_dev_mode() ) {
+              $public_key = appbear_get_public_key();
               $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
 
               $response = wp_remote_post( $url, array(
@@ -1322,26 +1320,32 @@ class AdminPage extends AppbearCore {
                 ),
               ));
             }
+
+            $options['copyrights'] = get_home_url();
+            $options['validConfig'] = true;
+            update_option( 'appbear-settings', $options );
+            
 					break;
         }
 
-				if ( $change_language !== false ) {
-          $public_key = appbear_get_public_key();
-          $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
-          $response = wp_remote_post( $url, array(
-            'body' => json_encode(
-                array(
-                  'data' => array(
-                    'translations' => true
+        if ( ( $isValidLicense = $this->_checkLicenseStatus() ) === true || _appbear_is_dev_mode() ) {
+          if ( $change_language !== false ) {
+            $public_key = appbear_get_public_key();
+            $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
+            $response = wp_remote_post( $url, array(
+              'body' => json_encode(
+                  array(
+                    'data' => array(
+                      'translations' => true
+                    )
                   )
-                )
-            ),
-            'headers' => array(
-              'Content-Type' => 'application/json; charset=utf-8',
-              'X-AppBear-Key' => $public_key,
-            ),
-          ));
-
+              ),
+              'headers' => array(
+                'Content-Type' => 'application/json; charset=utf-8',
+                'X-AppBear-Key' => $public_key,
+              ),
+            ));
+          }
 				}
 
 				update_option( 'appbear_license_status', $isValidLicense ? 'valid' : 'invalid' );
