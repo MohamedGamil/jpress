@@ -106,6 +106,7 @@ class AppBear_Deeplinking {
         deeplink_url: "' . $deeplinkURL . '",
         ios_url: "https://apps.apple.com/us/app/id'. $deeplinkingOpts->appid_ios .'",
         android_url: "https://play.google.com/store/apps/details?id='. $deeplinkingOpts->name_android .'",
+        fg_color: "'. $deeplinkingOpts->widget_fg_color .'",
         bg_color: "'. $deeplinkingOpts->widget_bg_color .'",
         open: function () {
           console.log("Opening Deeplink URL: \"'. $deeplinkURL .'\" ");

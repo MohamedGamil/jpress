@@ -69,6 +69,15 @@
    * @returns {void}
    */
   function _update() {
+    if (!!AppBear_Deeplinking.bg_color) {
+      $widget.css('background-color', AppBear_Deeplinking.bg_color);
+    }
+
+    if (!!AppBear_Deeplinking.fg_color) {
+      // .find('.text-content').find('a, p')
+      $widget.add($widget.find('.text-content a')).css('color', AppBear_Deeplinking.fg_color);
+    }
+
     $widget.find('a.appbear-appstore-link').hide();
 
     if (_appInstalled === true) {
@@ -99,8 +108,7 @@
       return false;
     }
 
-    _detectApp();
-    _update();
+    // _detectApp();
 
     $body = $('body');
 
@@ -115,24 +123,21 @@
    */
   function _prepareHtml() {
     const HTML = `
-      <div class="deeplinking-public-widget-inner container">
+      <a href="#" class="close-widget"><i class="fa fa-times"></i></a>
+      <div class="deeplinking-public-widget-inner container deeplinking-open-post">
         <div class="tie-row">
-          <div class="text-content tie-col-xs-8">
+          <div class="text-content tie-col-md-12">
             <p>
-              Read <a href="#" class="deeplinking-open-post">this post</a> in our mobile application, download
+              Read <a href="#" class="_deeplinking-open-post">this post</a> in our mobile application
             </p>
-          </div>
-          <div class="store-buttons tie-col-xs-4">
-            <a href="#" target="_blank" class="appbear-appstore-link google-play"></a>
-            <a href="#" target="_blank" class="appbear-appstore-link appstore"></a>
           </div>
         </div>
       </div>
     `;
-
-    if (!!AppBear_Deeplinking.bg_color) {
-      $widget.css('background-color', AppBear_Deeplinking.bg_color);
-    }
+    // <div class="store-buttons tie-col-md-4">
+    //   <a href="#" target="_blank" class="appbear-appstore-link google-play"></a>
+    //   <a href="#" target="_blank" class="appbear-appstore-link appstore"></a>
+    // </div>
 
     $widget.append(HTML);
     $body.append($widget);
@@ -140,9 +145,17 @@
     $widget.find('a.google-play').attr('href', AppBear_Deeplinking.android_url);
     $widget.find('a.appstore').attr('href', AppBear_Deeplinking.ios_url);
 
+    _update();
+
+    $widget.on('click', '.close-widget', function(event) {
+      event.preventDefault();
+      $widget.hide();
+    });
+
     $widget.on('click', '.deeplinking-open-post', function(event) {
       event.preventDefault();
-      AppBear_Deeplinking.open();
+      // AppBear_Deeplinking.open();
+      _detectApp();
     });
   }
 
