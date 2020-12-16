@@ -21,6 +21,13 @@ class AppBear_Deeplinking {
   static protected $_didInit = false;
   static protected $_localInstance = null;
 
+  /**
+   * Internal store of deeplinking options.
+   *
+   * @var object
+   */
+  public $options = null;
+
 
   /**
    * Run hooks initilization
@@ -54,20 +61,24 @@ class AppBear_Deeplinking {
   }
 
   /**
-   * Initialize Post
+   * Initialize options
    */
-  public function init_post() {
-    // ...
+  public function init_options() {
+    $this->options = appbear_get_deeplinking_opts();
   }
 
   /**
    * Enqueue Deeplinking Scripts
    */
   public function enqueue_scripts() {
-    $deeplinkingOpts = appbear_get_deeplinking_opts();
+    $this->init_options();
+
+    $deeplinkingOpts = $this->options;
     $deeplinkJs1 = APPBEAR_URL . 'js/browser-deeplink.js';
     $deeplinkJs2 = APPBEAR_URL . 'options/js/deeplinking.js';
     $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
+    $baseDeeplinkURL = $this->_getDeeplink();
+    $deeplinkURL = $this->_getDeeplink( 'post', get_the_ID() );
 
     if ($deeplinkingOpts->widget_enabled !== 'true' || $this->_canInit() === false) {
       return;
@@ -91,16 +102,45 @@ class AppBear_Deeplinking {
       });
 
       window.AppBear_Deeplinking = {
+        base_url: "' . $baseDeeplinkURL . '",
+        deeplink_url: "' . $deeplinkURL . '",
         ios_url: "https://apps.apple.com/us/app/id'. $deeplinkingOpts->appid_ios .'",
         android_url: "https://play.google.com/store/apps/details?id='. $deeplinkingOpts->name_android .'",
         bg_color: "'. $deeplinkingOpts->widget_bg_color .'",
         open: function () {
-          deeplink.open("' . get_the_ID() . '");
+          console.log("Opening Deeplink URL: \"'. $deeplinkURL .'\" ");
+          // deeplink.open("' . $deeplinkURL . '");
+          window.location = "'. $deeplinkURL .'";
         },
       };
     ');
   }
 
+  /**
+   * Get Full Deeplink URL
+   *
+   * @param string $type  Post Type
+   * @param string|integer $ID  Post ID
+   * @return string
+   */
+  protected function _getDeeplink($type = null, $ID = null) {
+    $baseURL = $this->options->scheme_url;
+    $deeplinkURL = $baseURL . '/?type=%s&id=%s';
+
+    if ( is_null($type) && is_null($ID) ) {
+      return $baseURL;
+    }
+
+    // TODO: Check valid post types
+
+    return sprintf( $deeplinkURL, trim($type), trim($ID) );
+  }
+
+  /**
+   * Can Initialize
+   *
+   * @return boolean
+   */
   private function _canInit() {
     return is_single() === true;
   }
