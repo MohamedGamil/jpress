@@ -234,21 +234,21 @@ function appbear_shortcodes_parsing($content)
 
 	$string = str_replace("[/tie_list]", "</div>", $string);
 
-	$pattern = '/\[one\_[a-zA-Z]+\]/i';
+	$pattern = '/\[one\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[two\_[a-zA-Z]+\]/i';
+	$pattern = '/\[two\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/one\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/one\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[\/two\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/two\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[three\_[_a-zA-Z]+\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/three\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/three\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
-	$pattern = '/\[five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[five\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "<div>", $string);
-	$pattern = '/\[\/five\_[a-zA-Z]+\_[a-zA-Z]+\]/i';
+	$pattern = '/\[\/five\_[_a-zA-Z]\]/i';
 	$string = preg_replace($pattern, "</div>", $string);
 	// $pattern = '/[[0-9]+\/[0-9]+\]/i';
 	// $string = preg_replace($pattern, "", $string);
