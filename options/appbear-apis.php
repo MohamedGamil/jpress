@@ -19,6 +19,28 @@ class AppBear_Endpoints {
    */
   protected $namespace = 'wl/v1';
 
+  /**
+   * Internal initilization state &
+   * internal singlton instance.
+   *
+   * @var boolean
+   */
+  static protected $_didInit = false;
+  static protected $_localInstance = null;
+
+
+  /**
+   * Run hooks initilization
+   */
+  static public function run() {
+    if (static::$_didInit === true && is_null(static::$_localInstance) === false) {
+      return;
+    }
+
+    static::$_localInstance = new AppBear_Endpoints();
+    static::$_didInit = true;
+  }
+
 
   /**
    * Class Constructor
@@ -629,6 +651,3 @@ class AppBear_Endpoints {
     }
   }
 }
-
-
-new AppBear_Endpoints();
