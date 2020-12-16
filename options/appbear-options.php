@@ -141,8 +141,8 @@ class AppBear_Options
     // NOTE: START Settings Page
     $settings_arg = array(
       'id' => 'appbear-settings',
-      'title' => 'appBear',
-      'menu_title' => 'appBear',
+      'title' => 'AppBear',
+      'menu_title' => 'AppBear',
       'menu_side_title' => 'Settings',
       'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
       'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'

@@ -49,7 +49,5 @@
     _prepareHtml();
   }
 
-  console.warn(1);
-
   $(document).ready(() => init());
 })(jQuery);
