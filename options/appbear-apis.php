@@ -437,17 +437,26 @@ class AppBear_Endpoints {
    * @return void
    */
   function do_categories() {
+    $metadata = AppBear_Categories::get_metadata();
+
+    foreach( $metadata as $key => &$cat ) {
+      $cat = isset($cat['image']) && $cat['image'] ? $cat['image'] : '';
+    }
+
     $categories = get_categories( array(
       'orderby' => 'name',
       'order'   => 'ASC'
     ));
 
-    // TODO: ...
     $the_cats = array();
 
     foreach ( $categories as $category ) {
+      // $category->image_url = get_term_meta( $category->term_id, 'cat_image', true );
+
+      $imageId = isset($metadata[$category->term_id]) ? $metadata[$category->term_id] : '';
+      $category->image_id = $imageId;
+      $category->image_url = wp_get_attachment_url( $imageId, 'thumbnail' );
       $category->url = "wp-json/wl/v1/posts?categories=" . $category->term_id;
-      $category->image_url = get_term_meta( $category->term_id, 'cat_image', true );
       $the_cats[] = $category;
     }
 

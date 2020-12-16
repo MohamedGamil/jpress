@@ -150,9 +150,9 @@ class AppbearLoader148
 
 		// Options & Plugin Custom Classes
 		include plugin_dir_path( __FILE__ ) . '/options/functions.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-categories.php';
+		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
+		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
 		include plugin_dir_path( __FILE__ ) . '/options/demos-api.php';
 		include plugin_dir_path( __FILE__ ) . '/options/options.php';
     include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
