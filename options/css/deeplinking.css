@@ -11,9 +11,26 @@
 	left: 0;
 	width: 100vw;
 	height: 80px;
-	color: #FFF;
-	background-color: #6515DD;
+	color: #616161;
+	background-color: #f1f1f1;
 }
+
+.deeplinking-public-widget .close-widget {
+	position: absolute;
+	padding: 8px 10px 4px;
+	z-index: 99;
+	top: 0;
+	right: 0;
+	font-size: 0.9em;
+}
+	.deeplinking-public-widget .close-widget,
+	.deeplinking-public-widget .close-widget:active,
+	.deeplinking-public-widget .close-widget:visited {
+		color: #616161;
+	}
+	.deeplinking-public-widget .close-widget:active {
+		opacity: 0.65;
+	}
 
 .deeplinking-public-widget-inner {
 	position: relative;
@@ -41,6 +58,7 @@
 
 .deeplinking-public-widget-inner .store-buttons {
 	/* width: 40%; */
+	/* padding-right: 10px; */
 }
 
 .deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
@@ -83,17 +101,18 @@
 
 @media (min-width: 200px) and (max-width: 425px) {
 	.deeplinking-public-widget-inner {
-		padding-top: 5px;
+		/* padding-top: 5px; */
 	}
 
 	.deeplinking-public-widget-inner .text-content p {
+		margin-bottom: 5px;
 		font-size: 1.3em;
+		text-align: center;
 	}
 
 	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
 		display: block;
 		width: 100%;
-		margin-top: 4px;
 		height: 30px;
 		background-size: contain;
 	}
