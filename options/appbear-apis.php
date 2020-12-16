@@ -620,7 +620,7 @@ class AppBear_Endpoints {
    * Options
    */
   function do_options() {
-    return get_option('appbear-settings');
+    return get_option('appbear-options');
   }
 
 
