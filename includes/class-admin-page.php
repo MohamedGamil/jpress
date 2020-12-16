@@ -302,7 +302,7 @@ class AdminPage extends AppbearCore {
    * @return void
    */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
-    // dd($data);
+      // dd($data);
 
 		if ( $this->id !== $object_id ) {
 			return;
@@ -754,7 +754,7 @@ class AdminPage extends AppbearCore {
               $item['postLayout'] = $section['postlayout'];
 
               if (isset($section["local-firstfeatured"]) && $section["local-firstfeatured"] != 'false') {
-                $item['firstFeatured']  =   $section['firstfeatured'];
+                $item['firstFeatured']  =   $section['firstFeatured'];
               }
 
               if (isset($section["separator"]) && $section["separator"] != 'false') {

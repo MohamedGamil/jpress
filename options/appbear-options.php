@@ -1472,8 +1472,8 @@ class AppBear_Options
       'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
     ));
     $section->add_field(array(
-      'id' => 'firstFeatured',
       'name' => __( 'First Post Layout', 'textdomain' ),
+      'id' => 'firstFeatured',
       'type' => 'image_selector',
       'default' => 'PostLayout.featuredPost',
       'items' => array(
