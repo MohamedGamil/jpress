@@ -152,6 +152,7 @@ class AppbearLoader148
 		include plugin_dir_path( __FILE__ ) . '/options/functions.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
+		include plugin_dir_path( __FILE__ ) . '/options/appbear-categories.php';
 		include plugin_dir_path( __FILE__ ) . '/options/demos-api.php';
 		include plugin_dir_path( __FILE__ ) . '/options/options.php';
     include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
@@ -160,6 +161,7 @@ class AppbearLoader148
     AppBear_Endpoints::run();
     AppBear_Demos_Endpoints::run();
     AppBear_Deeplinking::run();
+    AppBear_Categories::run();
   }
 
   /**
