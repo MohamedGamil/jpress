@@ -163,7 +163,7 @@
    * Initialize widget
    *
    * @private
-   * @returns {Boolean} true/false
+   * @returns {void}
    */
   function _init() {
     if ( _checks() === true ) {
