@@ -137,7 +137,7 @@ class AppbearLoader148
 	public function appBear() {
 		if ( $this->_cannotInit() ) {
 			return;
-		}
+    }
 
 		if ( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ) {
 			if ( ( $appBearOptsClass = APPBEAR_DIR . '/options/appbear-options.php' ) && file_exists( $appBearOptsClass ) ) {
