@@ -139,9 +139,6 @@ class AppBear_Categories {
   public function enqueue_scripts() {
     wp_enqueue_media();
     wp_enqueue_script( 'appbear-browser-deeplink-init', APPBEAR_URL . 'options/js/cat_image.js', array('jquery') );
-
-    // $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
-    // wp_enqueue_style( 'appbear-browser-deeplink-widget', $deeplinkCss );
   }
 
   /**
