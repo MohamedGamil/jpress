@@ -14,7 +14,7 @@ class AppbearAPI {
    * Class constructor
    */
 	public function __construct( $args = array() ) {
-
+    // ...
   }
 
   /**
@@ -49,5 +49,33 @@ class AppbearAPI {
     );
 
     return wp_remote_post( APPBEAR_STORE_URL, array( 'timeout' => static::TIMEOUT_DURATION, 'sslverify' => static::VERYIFY_SSL, 'body' => $api_params ) );
+  }
+
+  /**
+   * Send a new push notification
+   *
+   * @param string $title
+   * @param string $body
+   * @return array|WP_ERROR The response or WP_Error on failure.
+   */
+  public static function send_notification($title, $body) {
+    $params = array(
+      'title' => $title,
+      'body' => $body,
+    );
+
+    $endpoint = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
+    $public_key = appbear_get_public_key();
+    $opts = array(
+      'timeout' => static::TIMEOUT_DURATION,
+      'sslverify' => static::VERYIFY_SSL,
+      'body' => json_encode($params),
+      'headers' => array(
+        'Content-Type' => 'application/json; charset=utf-8',
+        'X-AppBear-Key' => $public_key,
+      ),
+    );
+
+    return wp_remote_post( $endpoint, $opts );
   }
 }

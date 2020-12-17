@@ -255,22 +255,6 @@ class AdminPage extends AppbearCore {
 		return true;
 	}
 
-  /**
-   * {missing docs}
-   *
-   * @DEPRECATED: Unused method
-   */
-	public function removeEmpties(&$array) {
-		foreach($array as $key=>$val) {
-			if (count($val)==0 || $val == '' || $val == null || $val == 'false') {
-				return false;
-			}
-			else {
-				$this->removeEmpties($val);
-			}
-		}
-	}
-
 	/*
 	|---------------------------------------------------------------------------------------------------
 	| Redfine the options for remote save

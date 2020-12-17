@@ -123,8 +123,8 @@ class AppBear_Categories {
   /**
    * Update the form field value
    *
-   * @param [type] $term_id
-   * @param [type] $tt_id
+   * @param integer $term_id
+   * @param integer $tt_id
    * @return void
    */
   public function updated_category_image( $term_id, $tt_id ) {
@@ -134,14 +134,11 @@ class AppBear_Categories {
   }
 
   /**
-   * Enqueue Deeplinking Scripts
+   * Enqueue Scripts
    */
   public function enqueue_scripts() {
     wp_enqueue_media();
-    wp_enqueue_script( 'appbear-browser-deeplink-init', APPBEAR_URL . 'options/js/cat_image.js', array('jquery') );
-
-    // $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
-    // wp_enqueue_style( 'appbear-browser-deeplink-widget', $deeplinkCss );
+    wp_enqueue_script( 'appbear-categories-init', APPBEAR_URL . 'options/js/cat_image.js', array('jquery') );
   }
 
   /**

@@ -1,0 +1,51 @@
+/* 
+	* =============================
+	* Notifications Metabox Styling
+	* =============================
+	* */
+
+
+.appbear-notification-metabox-wrapper {
+	display: block;
+	padding-top: 10px;
+}
+
+.anm_field {
+	display: block;
+}
+	.anm_field::after {
+		content: "";
+		display: table;
+		clear: both;	
+	}
+	.anm_field .anm_checkbox {
+		float: left;
+		margin-top: 6px !important;
+		margin-right: 10px;
+	}
+	.anm_field .anm_checkbox_label {
+		padding: 5px;
+		user-select: none;
+	}
+
+.anm_field label,
+.anm_field input,
+.anm_field textarea {
+	display: block;
+}
+
+.anm_field label {
+	padding: 5px 0;
+}
+
+.anm_field input[type="text"],
+.anm_field textarea {
+	width: 100%;
+}
+
+.anm_field textarea {
+	height: 140px;
+	min-height: 140px;
+	max-height: 240px;
+	resize: vertical;
+}
