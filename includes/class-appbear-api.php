@@ -56,12 +56,19 @@ class AppbearAPI {
    *
    * @param string $title
    * @param string $body
+   * @param string $type Post type
+   * @param string $ID Post ID
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
-  public static function send_notification($title, $body) {
+  public static function send_notification($title, $body, $type = 'post', $ID = '') {
     $params = array(
       'title' => $title,
       'body' => $body,
+      'data' => array(
+        'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
+        'type' => $type,
+        'id' => $ID,
+      ),
     );
 
     $endpoint = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';

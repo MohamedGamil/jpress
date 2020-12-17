@@ -454,8 +454,13 @@ class AppBear_Endpoints {
       // $category->image_url = get_term_meta( $category->term_id, 'cat_image', true );
 
       $imageId = isset($metadata[$category->term_id]) ? $metadata[$category->term_id] : '';
+      $imageUrl = wp_get_attachment_url( $imageId, 'thumbnail' );
       $category->image_id = $imageId;
-      $category->image_url = wp_get_attachment_url( $imageId, 'thumbnail' );
+
+      if (empty($imageUrl) === false) {
+        $category->image_url =  $imageUrl;
+      }
+
       $category->url = "wp-json/wl/v1/posts?categories=" . $category->term_id;
       $the_cats[] = $category;
     }

@@ -97,7 +97,7 @@ class AppBear_Notifications_Metabox {
    */
   public function save_post( $postID, $post, $update ) {
     // Skip updates and auto-saves
-    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || $update === true || empty($_POST)) {
+    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || $update === true ) {
       return;
     }
 
@@ -112,6 +112,10 @@ class AppBear_Notifications_Metabox {
       'appbear_notifications_message',
     ];
 
+    if (empty($_POST) || $this->_isValidLicense() === false) {
+      return;
+    }
+
     foreach ($inputs as $key => $field) {
       $fieldKey = str_replace('appbear_notifications_', '', $field);
       $inputs[$fieldKey] = isset($_POST[$field]) ? trim(sanitize_text_field($_POST[$field])) : '';
@@ -122,38 +126,36 @@ class AppBear_Notifications_Metabox {
       return;
     }
 
-    if ( empty($inputs['title']) ) {
-      // TODO: Should display a warning message that notification title it empty and required.
+    if ( empty($inputs['title']) === true ) {
+      $this->_serveSubmitError('Input Error! Please submit at least a notification title, and you may add a notification message.');
       return;
     }
 
-    $response = AppbearAPI::send_notification($inputs['title'], $inputs['body']);
+    dd( -1, $inputs, $postID );
 
-    if ( is_wp_error( $response ) ) {
-      $data = json_decode( wp_remote_retrieve_body( $response ) );
-      dd(0, $data);
-      // TODO: Display error message and possibly store response items regarding request limits in wp options
+    $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
 
-      // $message = __( 'An error occurred, please try again.' );
-      // update_option( 'appbear_license_status', json_decode($response['body'])->license );
-
-      // add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
-      // set_transient( 'settings_errors', get_settings_errors(), 30 );
-      // return false;
-    }
-    else {
+    if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ) );
 
-      if ( isset($data['errors']) ) {
-        // TODO: Errors which may include limits related, or delegated call errors
-      }
-      elseif ( isset($data['success']) ) {
-        // TODO: Success state and update metadata
-      }
+      if ( isset($data['success']) && $data['success'] ) {
+        $usageData = isset($data['data']) ? $data['data'] : [
+          'remaining' => -1,
+          'sent_count' => -1,
+          'plan_total' => -1,
+        ];
 
-      // TODO: Store reponse items and display a success message
-      // $this->_update(..)
+        foreach ($usageData as &$opt) {
+          $opt = (int) $opt;
+        }
+
+        $this->_update($usageData);
+        $this->_serveSuccessMessage();
+        return;
+      }
     }
+
+    $this->_serveSubmitError();
   }
 
   /**
@@ -198,6 +200,28 @@ class AppBear_Notifications_Metabox {
   }
 
   /**
+   * Present an error message
+   *
+   * @return void
+   */
+  protected function _serveSubmitError($message = null) {
+    $message = __($message, 'textdomain') ?? __('AppBear Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
+
+    // TODO: ...
+  }
+
+  /**
+   * Present an success message
+   *
+   * @return void
+   */
+  protected function _serveSuccessMessage($message = null) {
+    $message = __($message, 'textdomain') ?? __('AppBear notification sent successfully.', 'textdomain');
+
+    // TODO: ...
+  }
+
+  /**
    * Can Initialize
    *
    * @return boolean
@@ -220,5 +244,15 @@ class AppBear_Notifications_Metabox {
     else {
       return update_option( static::OPTION_KEY, $newOptions );
     }
+  }
+
+  /**
+   * Is license valid
+   *
+   * @return boolean
+   */
+  private function _isValidLicense()
+  {
+    return appbear_check_license();
   }
 }
