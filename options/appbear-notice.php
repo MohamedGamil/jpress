@@ -1,18 +1,11 @@
 <?php
 
-namespace Appbear\Includes;
-
 
 /**
  * AppBear Notices Helpers
  */
-class AppbearNotice {
-  /**
-   * Notices bag.
-   *
-   * @var array
-   */
-  public static $notices = [];
+class Appbear_Notice {
+  const OPTION_KEY = 'appbear_flash_notices';
 
   /**
    * Internal initilization state &
@@ -31,7 +24,7 @@ class AppbearNotice {
       return;
     }
 
-    static::$_localInstance = new AppbearNotice();
+    static::$_localInstance = new Appbear_Notice();
     static::$_didInit = true;
   }
 
@@ -74,11 +67,34 @@ class AppbearNotice {
    * @return void
    */
   public static function notice($type, $message, $isDismissable = true) {
-    static::$notices[] = array(
+    $notices = static::_getAll();
+
+    $notices[] = array(
       'type' => $type,
       'message' => $message,
       'dismissable' => $isDismissable,
     );
+
+    update_option( static::OPTION_KEY, $notices);
+  }
+
+  /**
+   * Get All Notices
+   *
+   * @return array
+   */
+  protected static function _getAll() {
+    $notices = maybe_unserialize(get_option( static::OPTION_KEY, ''));
+    return is_array($notices) ? $notices : array();
+  }
+
+  /**
+   * Purge All Notices
+   *
+   * @return void
+   */
+  protected static function _purge() {
+    delete_option(static::OPTION_KEY);
   }
 
 
@@ -99,8 +115,8 @@ class AppbearNotice {
       return;
     }
 
-    // dd(static::$notices);
-    add_action('admin_notices', array( $this, 'display_notices' ));
+    // NOTE: Disabled Temporarly..
+    // add_action('admin_notices', array( &$this, 'display_notices' ));
   }
 
   /**
@@ -110,9 +126,11 @@ class AppbearNotice {
    */
   public function display_notices() {
     $html = '';
+    $notices = $this->_getNotices();
 
-    foreach (static::$notices as $notice) {
-      $html .= appbear_get_template( 'alert/notice', $notice );
+    foreach ( $notices as $notice ) {
+      $notice['type'] = $this->_sanitizeNoticeType($notice['type']);
+      $html .= appbear_get_template( 'alerts/notice', $notice );
 
       echo $html;die;
     }
@@ -120,6 +138,42 @@ class AppbearNotice {
     if (empty($html) === false) {
       echo $html;
     }
+
+    $this->_cleanup();
+  }
+
+  /**
+   * Cleanup
+   *
+   * @return void
+   */
+  protected function _sanitizeNoticeType($type) {
+    $className = 'updated';
+
+    // TODO: Add warning error-class support
+    if ($type === 'error' || $type === 'warning') {
+      $className = 'error';
+    }
+
+    return $className;
+  }
+
+  /**
+   * Cleanup
+   *
+   * @return void
+   */
+  protected function _cleanup() {
+    return static::_purge();
+  }
+
+  /**
+   * Get Flash Notices
+   *
+   * @return array
+   */
+  private function _getNotices() {
+    return static::_getAll();
   }
 
   /**
@@ -131,7 +185,3 @@ class AppbearNotice {
     return is_admin() === true;
   }
 }
-
-
-// Run Class
-AppbearNotice::run();

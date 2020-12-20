@@ -154,6 +154,7 @@ class AppbearLoader148
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-notifications-metabox.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
+		include plugin_dir_path( __FILE__ ) . '/options/appbear-notice.php';
 		include plugin_dir_path( __FILE__ ) . '/options/demos-api.php';
 		include plugin_dir_path( __FILE__ ) . '/options/options.php';
     include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
@@ -164,6 +165,7 @@ class AppbearLoader148
     AppBear_Deeplinking::run();
     AppBear_Categories::run();
     AppBear_Notifications_Metabox::run();
+    Appbear_Notice::run();
   }
 
   /**
