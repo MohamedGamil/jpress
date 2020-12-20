@@ -671,7 +671,7 @@ class AppBear_Options
       'name' => __( 'Pages', 'textdomain' ),
       'id' => 'page',
       'type' => 'select',
-      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.page'),
       ),
@@ -863,7 +863,7 @@ class AppBear_Options
       'name' => __( 'Pages', 'textdomain' ),
       'id' => 'page',
       'type' => 'select',
-      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.page'),
       ),
@@ -2951,7 +2951,7 @@ class AppBear_Options
       'name' => __( 'Privacy page',   'textdomain' ),
       'type' => 'select',
       'default' => get_option( 'wp_page_for_privacy_policy' ),
-      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
     ));
 
     //  . ' ' . get_option( 'wp_page_for_privacy_policy' )
@@ -2960,7 +2960,7 @@ class AppBear_Options
       'name' => __( 'Terms and conditions page',   'textdomain' ),
       'type' => 'select',
       'default' => get_option( 'wp_page_for_privacy_policy' ),
-      'items' => AppbearItems::posts_by_post_type( 'page' ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
     ));
 
     $settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
