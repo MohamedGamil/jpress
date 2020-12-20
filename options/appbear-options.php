@@ -168,7 +168,6 @@ class AppBear_Options
           // 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
           'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
           'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
-          'deeplinking' => '<i class="appbear-icon fa fa-link"></i>'.__( 'Deeplinking', 'textdomain' ),
           'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
       ),
       'options' => array(
@@ -2721,44 +2720,6 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '3-of-6'
     ));
-
-    $settings->open_mixed_field(array('name' => __('Styling', 'textdomain' ),));
-
-    $settings->add_field(array(
-      'id' => 'styling-themeMode_light-settingBackgroundColor',
-      'name' => __( 'Background Color', 'textdomain' ),
-      'type' => 'colorpicker',
-      'default' => '#0088ff',
-    ));
-
-    $settings->add_field(array(
-      'id' => 'styling-themeMode_light-settingTextColor',
-      'name' => __( 'Text Color', 'textdomain' ),
-      'type' => 'colorpicker',
-      'default' => '#0088ff',
-    ));
-
-    $settings->add_field(array(
-      'id' => 'styling-themeMode_dark-settingBackgroundColor',
-      'name' => __( 'Background Color (Dark Mode)', 'textdomain' ),
-      'type' => 'colorpicker',
-      'default' => '#0088ff',
-      'options' => array(
-        'show_if' => array('switch_theme_mode', '=', 'true'),
-      ),
-    ));
-
-    $settings->add_field(array(
-      'id' => 'styling-themeMode_dark-settingTextColor',
-      'name' => __( 'Text Color (Dark Mode)', 'textdomain' ),
-      'type' => 'colorpicker',
-      'default' => '#0088ff',
-      'options' => array(
-        'show_if' => array('switch_theme_mode', '=', 'true'),
-      ),
-    ));
-
-    $settings->close_mixed_field();
 
     $settings->add_field(array(
       'name' => __( 'Text size option', 'textdomain' ),
