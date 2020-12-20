@@ -286,7 +286,10 @@ class AdminPage extends AppbearCore {
    * @return void
    */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
-    // Appbear_Notice::error('Test');
+    // \Appbear_Notice::error('Test');
+    // \Appbear_Notice::info('Test');
+    // \Appbear_Notice::warning('Test');
+    // \Appbear_Notice::success('Test');
 
 		if ( $this->id !== $object_id ) {
 			return;
