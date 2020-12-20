@@ -39,6 +39,16 @@ class Appbear_Notice {
   }
 
   /**
+   * Add New Info Notice / Alert
+   *
+   * @param string $message
+   * @return void
+   */
+  public static function info($message) {
+    static::notice('info', $message);
+  }
+
+  /**
    * Add New Warning Notice / Alert
    *
    * @param string $message
@@ -115,8 +125,7 @@ class Appbear_Notice {
       return;
     }
 
-    // NOTE: Disabled Temporarly..
-    // add_action('admin_notices', array( &$this, 'display_notices' ));
+    add_action('admin_notices', array( &$this, 'display_notices' ));
   }
 
   /**
@@ -129,10 +138,9 @@ class Appbear_Notice {
     $notices = $this->_getNotices();
 
     foreach ( $notices as $notice ) {
-      $notice['type'] = $this->_sanitizeNoticeType($notice['type']);
       $html .= appbear_get_template( 'alerts/notice', $notice );
 
-      echo $html;die;
+      echo $html;
     }
 
     if (empty($html) === false) {
@@ -140,22 +148,6 @@ class Appbear_Notice {
     }
 
     $this->_cleanup();
-  }
-
-  /**
-   * Cleanup
-   *
-   * @return void
-   */
-  protected function _sanitizeNoticeType($type) {
-    $className = 'updated';
-
-    // TODO: Add warning error-class support
-    if ($type === 'error' || $type === 'warning') {
-      $className = 'error';
-    }
-
-    return $className;
   }
 
   /**
