@@ -986,6 +986,7 @@ class AdminPage extends AppbearCore {
             /*
             * styling array
             */
+            $options['styling']['ThemeMode.light']['bottomBarBackgroundColor'] = $data['styling-themeMode_light-bottomBarBackgroundColor'];
             $options['styling']['ThemeMode.light']['scaffoldBackgroundColor'] = $data['styling-themeMode_light-scaffoldbackgroundcolor'];
             $options['styling']['ThemeMode.light']['primary'] = $data['styling-themeMode_light-primary'];
             $options['styling']['ThemeMode.light']['secondary'] = $data['styling-themeMode_light-secondary'];
@@ -1011,6 +1012,7 @@ class AdminPage extends AppbearCore {
             $options['styling']['ThemeMode.light']['successColor'] = $data['styling-themeMode_light-successcolor'];
 
             if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] !== 'false') {
+              $options['styling']['ThemeMode.dark']['bottomBarBackgroundColor'] = $data['styling-themeMode_dark-bottomBarBackgroundColor'];
               $options['styling']['ThemeMode.dark']['scaffoldBackgroundColor'] = $data['styling-themeMode_dark-scaffoldbackgroundcolor'];
               $options['styling']['ThemeMode.dark']['primary'] = $data['styling-themeMode_dark-primary'];
               $options['styling']['ThemeMode.dark']['secondary'] = $data['styling-themeMode_dark-secondary'];
