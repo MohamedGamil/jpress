@@ -8,6 +8,13 @@ class Appbear_Notice {
   const OPTION_KEY = 'appbear_flash_notices';
 
   /**
+   * Instant notices bag.
+   *
+   * @var array
+   */
+  static protected $_notices = [];
+
+  /**
    * Internal initilization state &
    * internal singlton instance.
    *
@@ -74,10 +81,11 @@ class Appbear_Notice {
    * @param string $type  Notice type
    * @param string $message  Message
    * @param string $isDismissable  Is alert dismissable
+   * @param string $isInstant  Is alert instant (Not Flash)
    * @return void
    */
-  public static function notice($type, $message, $isDismissable = true) {
-    $notices = static::_getAll();
+  public static function notice($type, $message, $isDismissable = true, $isInstant = false) {
+    $notices = $isInstant === true ? static::$_notices : static::_getAll();
 
     $notices[] = array(
       'type' => $type,
@@ -85,7 +93,11 @@ class Appbear_Notice {
       'dismissable' => $isDismissable,
     );
 
-    update_option( static::OPTION_KEY, $notices);
+    if ($isInstant === true) {
+      static::$_notices = $notices;
+    } else {
+      update_option( static::OPTION_KEY, $notices);
+    }
   }
 
   /**
@@ -135,7 +147,7 @@ class Appbear_Notice {
    */
   public function display_notices() {
     $html = '';
-    $notices = $this->_getNotices();
+    $notices = array_merge( static::$_notices, $this->_getNotices() );
 
     foreach ( $notices as $notice ) {
       $html .= appbear_get_template( 'alerts/notice', $notice );

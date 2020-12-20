@@ -610,11 +610,12 @@ function appbear_shortcodes_parsing($content)
  * @param string $message
  * @param string $type
  * @param boolean $isDismissable
+ * @param string $isInstant  Is alert instant (Not Flash)
  * @return void
  */
-function appbear_notice($message, $type = 'success', $isDismissable = true)
+function appbear_notice($message, $type = 'success', $isDismissable = true, $isInstant = false)
 {
-  \Appbear_Notice::notice($type, $message, $isDismissable);
+  \Appbear_Notice::notice($type, $message, $isDismissable, $isInstant);
 }
 
 

@@ -114,13 +114,8 @@ class AppBear_Options
                   . __('Click here to activate.', 'textdomain')
                   . '</a> ';
 
-    $key = 'appbear-license-notices';
-
-    add_settings_error( $key, 'appbear_license_status', $message, 'warning' );
-    // set_transient( 'settings_errors', get_settings_errors(), 30 );
-
     if ( appbear_check_license() === false ) {
-      settings_errors( $key );
+      appbear_notice($message, 'warning');
     }
   }
 
