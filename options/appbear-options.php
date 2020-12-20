@@ -221,6 +221,7 @@ class AppBear_Options
       'type' => 'select',
       'default' => 'ThemeMode_light',
       'items' => array(
+        'ThemeMode_system' => __( 'System', 'textdomain' ),
         'ThemeMode_light' => __( 'Light', 'textdomain' ),
         'ThemeMode_dark' => __( 'Dark', 'textdomain' ),
       ),
