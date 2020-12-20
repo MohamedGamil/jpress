@@ -1,6 +1,6 @@
 <?php
   $message = isset($message) && $message ? $message : '';
-  $type = isset($type) && $type ? $type : 'info';
+  $type = isset($type) && $type ? $type : 'updated';
   $dismissable = isset($dismissable) && $dismissable;
 ?>
 
