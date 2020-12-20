@@ -131,7 +131,8 @@ class AppBear_Notifications_Metabox {
       return;
     }
 
-    dd( -1, $inputs, $postID );
+    // NOTE: Debug line
+    // dd( -1, $inputs, $postID );
 
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
 
