@@ -43,6 +43,12 @@ define( 'APPBEAR_SLUG',  'appbear' );
 
 
 /**
+ * AppBear Deeplinking Scheme.
+ */
+define( 'APPBEAR_DEEPLINKING_SCHEME',  'appbear' );
+
+
+/**
  * AppBear Root Directory.
  */
 define( 'APPBEAR_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -52,6 +58,18 @@ define( 'APPBEAR_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
  * AppBear FontAwesome Version.
  */
 defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+
+
+/**
+ * AppBear Options Key Name
+ */
+define( 'APPBEAR_PRIMARY_OPTIONS', 'appbear-settings' );
+
+
+/**
+ * Deeplinking Option Key Name
+ */
+define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_settings' );
 
 
 /**

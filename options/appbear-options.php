@@ -135,7 +135,7 @@ class AppBear_Options
   protected function _initSettingsPage() {
     // NOTE: START Settings Page
     $settings_arg = array(
-      'id' => 'appbear-settings',
+      'id' => APPBEAR_PRIMARY_OPTIONS,
       'title' => 'AppBear',
       'menu_title' => 'AppBear',
       'menu_side_title' => 'Settings',
@@ -148,7 +148,7 @@ class AppBear_Options
       ),
       'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
       'capability' => 'manage_options',
-      // 'parent' => 'appbear-settings',
+      // 'parent' => APPBEAR_PRIMARY_OPTIONS,
     );
 
     $settings = appbear_new_admin_page( $settings_arg );
@@ -320,101 +320,25 @@ class AppBear_Options
     ));
 
     $section_header_1->close_mixed_field();
-    $settings->close_tab_item('general');
 
-
-    // NOTE: Deeplinking Page
-    $settings->open_tab_item('deeplinking');
-
-    $section_deeplinking_ios = $settings->add_section( array(
-      'name' => __( 'Deep-Linking iOS Settings', 'textdomain' ),
-      'id' => 'section-deeplinking-settings-ios',
-      'options' => array( 'toggle' => false )
-    ));
-
-    $section_deeplinking_ios->add_field(array(
-      'name' => __( 'App ID', 'textdomain' ),
-      'id' => 'appid_ios',
-      'type' => 'text',
-      'attributes' => array(
-        'placeholder' => 'ex: 1505020400',
-      ),
-    ));
-
-    $section_deeplinking_ios->add_field(array(
-      'name' => __( 'App Bundle Identifier', 'textdomain' ),
-      'id' => 'bundle_name_ios',
-      'type' => 'text',
-      'attributes' => array(
-        'placeholder' => 'ex: com.organization.package.ios',
-      ),
-    ));
-
-    $section_deeplinking_android = $settings->add_section( array(
-      'name' => __( 'Deep-Linking Android Settings', 'textdomain' ),
-      'id' => 'section-deeplinking-settings-android',
-      'options' => array( 'toggle' => false )
-    ));
-
-    $section_deeplinking_android->add_field(array(
-      'name' => __( 'App Bundle Identifier', 'textdomain' ),
-      'id' => 'bundle_name_android',
-      'type' => 'text',
-      'attributes' => array(
-        'placeholder' => 'ex: com.organization.package.android',
-      ),
-    ));
-
-    $section_deeplinking_other = $settings->add_section( array(
-      'name' => __( 'Deep-Linking Widget Settings', 'textdomain' ),
-      'id' => 'section-deeplinking-settings-widget',
-      'options' => array( 'toggle' => false )
-    ));
-
-    $section_deeplinking_other->add_field(array(
+    $deeplinkingOpts = appbear_get_deeplinking_opts();
+    $canDeeplinking = isset($deeplinkingOpts->appid_ios) && empty($deeplinkingOpts->appid_ios) === false;
+    $section_header_1->add_field(array(
       'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
-      'id' => 'deeplinking_widget_enabled',
+      'desc' => $canDeeplinking ? '' : __('This option can be enabled after activating your license, then saving settings for the first time.'),
+      'id' => 'is_deeplinking_widget_enabled',
       'type' => 'switcher',
-      'default'	=>	'true',
+      'default'	=>	$canDeeplinking ? 'true' : 'false',
+      'attributes' => array(
+        'disabled' => $canDeeplinking === false,
+      ),
       'options' => array(
         'on_value' => 'true',
-        'off_value' => 'false'
+        'off_value' => 'false',
       )
     ));
 
-    $section_deeplinking_other->add_field(array(
-      'name' => __( 'Deeplink Scheme & URL', 'textdomain' ),
-      'id' => 'deeplinking_scheme_url',
-      'type' => 'text',
-      'attributes' => array(
-        'placeholder' => 'ex: appbear://io.appbear.app',
-      ),
-      'options' => array(
-        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
-      ),
-    ));
-
-    $section_deeplinking_other->add_field(array(
-      'name' => __( 'Deeplinking Widget Foreground Color', 'textdomain' ),
-      'id' => 'deeplinking_widget_fg_color',
-      'type' => 'colorpicker',
-      'default'	=>	'#616161',
-      'options' => array(
-        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
-      ),
-    ));
-
-    $section_deeplinking_other->add_field(array(
-      'name' => __( 'Deeplinking Widget Background Color', 'textdomain' ),
-      'id' => 'deeplinking_widget_bg_color',
-      'type' => 'colorpicker',
-      'default'	=>	'#f1f1f1',
-      'options' => array(
-        'show_if' => array('deeplinking_widget_enabled', '=', 'true'),
-      ),
-    ));
-
-    $settings->close_tab_item('deeplinking');
+    $settings->close_tab_item('general');
 
 
     // NOTE: Top Bar Page
@@ -3119,7 +3043,7 @@ class AppBear_Options
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
 			'capability' => 'manage_options',
-			'parent' => 'appbear-settings',
+			'parent' => APPBEAR_PRIMARY_OPTIONS,
 		);
 		$translations = appbear_new_admin_page( $translations_arg );
 
@@ -3845,7 +3769,7 @@ class AppBear_Options
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
 			'capability' => 'manage_options',
-			'parent' => 'appbear-settings',
+			'parent' => APPBEAR_PRIMARY_OPTIONS,
 		);
 
 		$activation = appbear_new_admin_page( $activation_args );
