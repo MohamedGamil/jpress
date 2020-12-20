@@ -48,7 +48,13 @@ class AppbearAPI {
       'url'        => home_url()
     );
 
-    return wp_remote_post( APPBEAR_STORE_URL, array( 'timeout' => static::TIMEOUT_DURATION, 'sslverify' => static::VERYIFY_SSL, 'body' => $api_params ) );
+    $requestOpts = array(
+      'timeout' => static::TIMEOUT_DURATION,
+      'sslverify' => static::VERYIFY_SSL,
+      'body' => $api_params,
+    );
+
+    return wp_remote_post( APPBEAR_STORE_URL, $requestOpts );
   }
 
   /**

@@ -3886,7 +3886,7 @@ class AppBear_Options
     if ( get_option('appbear_license_status') === 'valid' && empty($publicKey) === false ) {
       $activation_section->add_field(array(
         'name' => '<strong style="color:green">'. __('License Active!') .'</strong>',
-        'id' => 'appbear_public_key',
+        'id' => APPBEAR_PUBLIC_KEY_OPTION,
         'type' => '__text',
         'grid' => '6-of-6',
         'options' => array(
@@ -3897,7 +3897,7 @@ class AppBear_Options
     } else {
       $activation_section->add_field(array(
         'name' => '<strong style="color:red">'. __('License Inactive!') .'</strong>',
-        'id' => 'appbear_public_key',
+        'id' => APPBEAR_PUBLIC_KEY_OPTION,
         'type' => '__text',
         'grid' => '6-of-6',
         'options' => array(

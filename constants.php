@@ -20,7 +20,7 @@ define( 'APPBEAR_PRIORITY', 952 );
 /**
  * AppBear Store URL.
  */
-define( 'APPBEAR_STORE_URL', 'https://appstage.tielabs.com' );
+define( 'APPBEAR_STORE_URL', 'http://appstage.tielabs.com' );
 
 
 /**
@@ -52,6 +52,12 @@ define( 'APPBEAR_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
  * AppBear FontAwesome Version.
  */
 defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+
+
+/**
+ * Public-Key Option Key Name
+ */
+define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_pub_key' );
 
 
 /**
