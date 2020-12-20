@@ -141,8 +141,7 @@ function appbear_get_template($templatePath, $vars = [])
  */
 function appbear_get_public_key()
 {
-  // return '4edecdebf223222469629216566e29c95df1280a03a76957c30b6c4c630d0965';
-  return trim( get_option( 'appbear_public_key' ) );
+  return trim( get_option( APPBEAR_PUBLIC_KEY_OPTION ) );
 }
 
 

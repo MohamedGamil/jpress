@@ -55,6 +55,12 @@ defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', 
 
 
 /**
+ * Public-Key Option Key Name
+ */
+define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_pub_key' );
+
+
+/**
  * Enable / Disable Debugging Helpers
  */
 define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );

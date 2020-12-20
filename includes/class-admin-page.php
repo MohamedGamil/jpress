@@ -1049,10 +1049,20 @@ class AdminPage extends AppbearCore {
             }
 
             if (isset($data['local-settingspage-share']) && $data['local-settingspage-share'] != 'false') {
-              $options['settingsPage']['shareApp']['title'] = $data['settingspage-shareapp-title'];
-              $options['settingsPage']['shareApp']['image'] = $data['settingspage-shareapp-image'];
-              $options['settingsPage']['shareApp']['android'] = $data['settingspage-shareapp-android'];
-              $options['settingsPage']['shareApp']['ios'] = $data['settingspage-shareapp-ios'];
+              $shareApp = array();
+              $prefix = 'settingspage-shareApp-';
+
+              foreach ( array('title', 'image', 'android', 'ios') as $k ) {
+                $key = $prefix . $k;
+
+                if (isset($data[$key]) && empty($data[$key]) === false) {
+                  $shareApp[$k] = $data[$key];
+                }
+              }
+
+              if (empty($shareApp) === false) {
+                $options['settingsPage']['shareApp'] = $shareApp;
+              }
             }
 
             if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false') {
@@ -1452,7 +1462,10 @@ class AdminPage extends AppbearCore {
       if ( true === $license_data->success ) {
         $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
 
-        update_option( 'appbear_public_key', $publicKey );
+        // NOTE: FALSE?
+        update_option( APPBEAR_PUBLIC_KEY_OPTION, $publicKey, false );
+
+        dd($publicKey);
       }
       else {
         $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';
