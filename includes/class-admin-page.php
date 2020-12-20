@@ -1470,7 +1470,7 @@ class AdminPage extends AppbearCore {
         // NOTE: FALSE?
         update_option( APPBEAR_PUBLIC_KEY_OPTION, $publicKey, false );
 
-        dd($publicKey);
+        // dd($publicKey);
       }
       else {
         $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';
