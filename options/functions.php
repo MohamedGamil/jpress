@@ -176,15 +176,6 @@ function appbear_get_deeplinking_opts($asArray = false)
 
 
 /**
- * Check if dev mode is active
- */
-function _appbear_is_dev_mode()
-{
-  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
-}
-
-
-/**
  * Check current license validity
  */
 function appbear_check_license()
@@ -610,6 +601,29 @@ function appbear_shortcodes_parsing($content)
 	$string = str_replace("\"]", "\">", $string);
 
 	return $string;
+}
+
+
+/**
+ * Displays a Flash Notice Message
+ *
+ * @param string $message
+ * @param string $type
+ * @param boolean $isDismissable
+ * @return void
+ */
+function appbear_notice($message, $type = 'success', $isDismissable = true)
+{
+  \Appbear_Notice::notice($type, $message, $isDismissable);
+}
+
+
+/**
+ * Check if dev mode is active
+ */
+function _appbear_is_dev_mode()
+{
+  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
 }
 
 

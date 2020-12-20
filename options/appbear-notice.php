@@ -139,8 +139,6 @@ class Appbear_Notice {
 
     foreach ( $notices as $notice ) {
       $html .= appbear_get_template( 'alerts/notice', $notice );
-
-      echo $html;
     }
 
     if (empty($html) === false) {
