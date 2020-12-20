@@ -12,6 +12,8 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  * @since 0.0.5
  */
 class AppBear_Deeplinking {
+  const SUPPORTED_PLATFORMS = [ 'android', 'ios' ];
+
   /**
    * Internal initilization state &
    * internal singlton instance.
@@ -74,45 +76,34 @@ class AppBear_Deeplinking {
     $this->init_options();
 
     $deeplinkingOpts = $this->options;
-    $deeplinkJs1 = APPBEAR_URL . 'js/browser-deeplink.js';
-    $deeplinkJs2 = APPBEAR_URL . 'options/js/deeplinking.js';
+    $deeplinkJs = APPBEAR_URL . 'options/js/deeplinking.js';
     $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
-    $baseDeeplinkURL = $this->_getDeeplink();
-    $deeplinkURL = $this->_getDeeplink( 'post', get_the_ID() );
+    $baseDeeplinkURLAndroid = $this->_getDeeplink('android');
+    $baseDeeplinkURLIos = $this->_getDeeplink('ios');
+    $deeplinkURLAndroid = $this->_getDeeplink( 'android', 'post', get_the_ID() );
+    $deeplinkURLIos = $this->_getDeeplink( 'ios', 'post', get_the_ID() );
 
     if ($deeplinkingOpts->widget_enabled !== 'true' || $this->_canInit() === false) {
       return;
     }
 
+    // dd($baseDeeplinkURLAndroid, $baseDeeplinkURLIos, $deeplinkURLAndroid, $deeplinkURLIos);
+
     wp_enqueue_style( 'appbear-browser-deeplink-widget', $deeplinkCss );
-    wp_enqueue_script( 'appbear-browser-deeplink-lib', $deeplinkJs1, array('jquery') );
     wp_register_script( 'appbear-browser-deeplink', '' );
     wp_enqueue_script( 'appbear-browser-deeplink', array('jquery') );
-    wp_enqueue_script( 'appbear-browser-deeplink-init', $deeplinkJs2, array('jquery') );
+    wp_enqueue_script( 'appbear-browser-deeplink-init', $deeplinkJs, array('jquery') );
 
     wp_add_inline_script('appbear-browser-deeplink', '
-      deeplink.setup({
-          iOS: {
-            appId: "' . $deeplinkingOpts->appid_ios . '",
-            appName: "' . $deeplinkingOpts->name_ios . '"
-          },
-          android: {
-            appId: "' . $deeplinkingOpts->name_android . '",
-          },
-      });
-
       window.AppBear_Deeplinking = {
-        base_url: "' . $baseDeeplinkURL . '",
-        deeplink_url: "' . $deeplinkURL . '",
+        base_url_android: "' . $baseDeeplinkURLAndroid . '",
+        base_url_ios: "' . $baseDeeplinkURLIos . '",
+        deeplink_url_android: "' . $deeplinkURLAndroid . '",
+        deeplink_url_ios: "' . $deeplinkURLIos . '",
         ios_url: "https://apps.apple.com/us/app/id'. $deeplinkingOpts->appid_ios .'",
         android_url: "https://play.google.com/store/apps/details?id='. $deeplinkingOpts->name_android .'",
-        fg_color: "'. $deeplinkingOpts->widget_fg_color .'",
-        bg_color: "'. $deeplinkingOpts->widget_bg_color .'",
-        open: function () {
-          console.log("Opening Deeplink URL: \"'. $deeplinkURL .'\" ");
-          // deeplink.open("' . $deeplinkURL . '");
-          window.location = "'. $deeplinkURL .'";
-        },
+        // fg_color: "'. $deeplinkingOpts->widget_fg_color .'",
+        // bg_color: "'. $deeplinkingOpts->widget_bg_color .'",
       };
     ');
   }
@@ -120,12 +111,15 @@ class AppBear_Deeplinking {
   /**
    * Get Full Deeplink URL
    *
+   * @param string $platform  Platform type (Android / iOS)
    * @param string $type  Post Type
    * @param string|integer $ID  Post ID
    * @return string
    */
-  protected function _getDeeplink($type = null, $ID = null) {
-    $baseURL = $this->options->scheme_url;
+  protected function _getDeeplink($platform, $type = null, $ID = null) {
+    $platform = in_array(strtolower($platform), static::SUPPORTED_PLATFORMS) ? strtolower($platform) : static::SUPPORTED_PLATFORMS[0];
+    $platformBundle = $this->options->{ "name_{$platform}" } ?? $platform;
+    $baseURL = APPBEAR_DEEPLINKING_SCHEME . "://{$platformBundle}";
     $deeplinkURL = $baseURL . '/?type=%s&id=%s';
 
     if ( is_null($type) && is_null($ID) ) {

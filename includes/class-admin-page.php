@@ -358,7 +358,7 @@ class AdminPage extends AppbearCore {
           break;
 
           // Parsing the configuration to be read in mobile application
-					case 'appbear-settings':
+					case APPBEAR_PRIMARY_OPTIONS:
             $options['rtl'] = is_rtl() ? 'true' : 'false';
             $options['themeMode'] = str_replace( '_', '.', $data['thememode'] );
 
@@ -1313,6 +1313,10 @@ class AdminPage extends AppbearCore {
                   'X-AppBear-Key' => $public_key,
                 ),
               ));
+
+              // Parse response then update deeplinking options
+              $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
+              $this->_updateDeeplinkingOptions( $responseObject );
             }
 
             $options['copyrights'] = get_home_url();
@@ -1519,6 +1523,22 @@ class AdminPage extends AppbearCore {
     }
 
     return $message;
+  }
+
+  /**
+   * Update Deeplinking Options
+   *
+   * @param array $options
+   * @return void
+   */
+  private function _updateDeeplinkingOptions(array $options) {
+    $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
+
+    update_option( APPBEAR_DEEPLINKING_OPTION, array(
+      'ios_app_id' => isset($options) ? $options['ios_app_id'] : '',
+      'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
+      'android_bundle' => isset($options) ? $options['android_bundle'] : '',
+    ));
   }
 
   /*

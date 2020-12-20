@@ -11,7 +11,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly
  */
 function appbear_get_option($name, $default = false)
 {
-	$opts = get_option('appbear-settings');
+	$opts = get_option(APPBEAR_PRIMARY_OPTIONS);
 	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
@@ -159,16 +159,14 @@ function appbear_get_license_key()
  */
 function appbear_get_deeplinking_opts($asArray = false)
 {
-  $allOpts = get_option( 'appbear-settings' );
+  $widgetEnabled = appbear_get_option('is_deeplinking_widget_enabled', false);
+  $deeplinkingOpts = get_option( APPBEAR_DEEPLINKING_OPTION );
 
   $opts = (Object) array(
-    'appid_ios' => $allOpts['appid_ios'],
-    'scheme_url' => $allOpts['deeplinking_scheme_url'],
-    'name_ios' => $allOpts['bundle_name_ios'],
-    'name_android' => $allOpts['bundle_name_android'],
-    'widget_enabled' => $allOpts['deeplinking_widget_enabled'],
-    'widget_fg_color' => $allOpts['deeplinking_widget_fg_color'],
-    'widget_bg_color' => $allOpts['deeplinking_widget_bg_color'],
+    'widget_enabled' => $widgetEnabled,
+    'appid_ios' => isset($deeplinkingOpts['ios_app_id']) ? $deeplinkingOpts['ios_app_id'] : null,
+    'name_ios' => isset($deeplinkingOpts['ios_bundle']) ? $deeplinkingOpts['ios_bundle'] : null,
+    'name_android' => isset($deeplinkingOpts['android_bundle']) ? $deeplinkingOpts['android_bundle'] : null,
   );
 
   return $asArray ? (array) $opts : $opts;

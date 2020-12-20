@@ -12,7 +12,8 @@
 	width: 100vw;
 	height: 80px;
 	color: #616161;
-	background-color: #f1f1f1;
+	background-color: rgba(255, 255, 255, 0.87);
+	border-top: 1px solid rgba(0, 0, 0, 0.13);
 }
 
 .deeplinking-public-widget .close-widget {

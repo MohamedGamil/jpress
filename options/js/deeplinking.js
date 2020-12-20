@@ -48,7 +48,7 @@
     const now = new Date().valueOf();
 
     setTimeout(() => {
-      if (new Date().valueOf() - now > 100) {
+      if (new Date().valueOf() - now > 25) {
         // _appInstalled = true;
         _update();
         return;
@@ -57,8 +57,11 @@
       window.location = _isAndroid() ? AppBear_Deeplinking.android_url : AppBear_Deeplinking.ios_url;
     }, 100);
 
-    if (!!AppBear_Deeplinking.base_url) {
-      window.location = !!AppBear_Deeplinking.deeplink_url ? AppBear_Deeplinking.deeplink_url : AppBear_Deeplinking.base_url;
+    if ( !!AppBear_Deeplinking.base_url_android && _isAndroid() ) {
+      window.location = !!AppBear_Deeplinking.deeplink_url_android ? AppBear_Deeplinking.deeplink_url_android : AppBear_Deeplinking.base_url_android;
+    }
+    else if ( !!AppBear_Deeplinking.base_url_ios && _isIOS() ) {
+      window.location = !!AppBear_Deeplinking.deeplink_url_ios ? AppBear_Deeplinking.deeplink_url_ios : AppBear_Deeplinking.base_url_ios;
     }
   }
 
@@ -108,8 +111,6 @@
       return false;
     }
 
-    // _detectApp();
-
     $body = $('body');
 
     return true;
@@ -128,7 +129,7 @@
         <div class="tie-row">
           <div class="text-content tie-col-md-12">
             <p>
-              Read <a href="#" class="_deeplinking-open-post">this post</a> in our mobile application
+              Read this post in our mobile application
             </p>
           </div>
         </div>
