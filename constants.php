@@ -20,7 +20,7 @@ define( 'APPBEAR_PRIORITY', 952 );
 /**
  * AppBear Store URL.
  */
-define( 'APPBEAR_STORE_URL', 'https://appstage.tielabs.com' );
+define( 'APPBEAR_STORE_URL', 'http://appstage.tielabs.com' );
 
 
 /**
