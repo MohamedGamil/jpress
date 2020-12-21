@@ -1392,6 +1392,7 @@ class AdminPage extends AppbearCore {
 
     $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+    dd($license_data);
     if ( $license_data->license !== 'valid' ) {
       $invalidReason = isset($license_data->error) ? $license_data->error : 'unknown';
 
