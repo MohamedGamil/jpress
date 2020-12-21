@@ -252,7 +252,7 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-scaffoldbackgroundcolor',
-      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'name'      => __( 'Dark Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#333739',
       'options' => array(
@@ -272,7 +272,7 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-primary',
-      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'name'      => __( 'Dark Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#0088ff',
       'options' => array(
