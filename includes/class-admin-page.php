@@ -1464,6 +1464,8 @@ class AdminPage extends AppbearCore {
     else {
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+        dd($license_data, appbear_get_public_key());
+
       if ( true === $license_data->success ) {
         $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
 
