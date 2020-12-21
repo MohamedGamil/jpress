@@ -134,6 +134,9 @@ class AppBear_Notifications_Metabox {
 
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
 
+    // NOTE: Debug line
+    // dd( $response );
+
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ) );
 
@@ -241,7 +244,7 @@ class AppBear_Notifications_Metabox {
       return get_option( static::OPTION_KEY );
     }
     else {
-      return update_option( static::OPTION_KEY, $newOptions );
+      return update_option( static::OPTION_KEY, $newOptions, false );
     }
   }
 
