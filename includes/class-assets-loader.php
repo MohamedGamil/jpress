@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Appbear\Includes;
 
@@ -181,31 +181,33 @@ class AssetsLoader {
     */
     public static function localization(){
         $l10n = array(
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'ajax_nonce' => wp_create_nonce( 'appbear_ajax_nonce' ),
-            'text' => array(
-                'popup' => array(
-                    'accept_button' => _x( 'Accept', 'Button - On confirm popup', 'appbear' ),
-                    'cancel_button' => _x( 'Cancel', 'Button - On confirm popup', 'appbear' ),
-                ),
-                'remove_item_popup' => array(
-                    'title' => _x( 'Delete', 'Title - On popup "remove item"', 'appbear' ),
-                    'content' => _x( 'Are you sure you want to delete?', 'Content - On popup "remove item"', 'appbear' ),
-                ),
-                'validation_url_popup' => array(
-                    'title' => _x( 'Validation', 'Title - On popup "Validation url"', 'appbear' ),
-                    'content' => _x( 'Please enter a valid url', 'Content - On popup "Validation url"', 'appbear' ),
-                ),
-                'reset_popup' => array(
-                    'title' => _x( 'Reset values', 'Title - On popup "Reset values"', 'appbear' ),
-                    'content' => _x( 'Are you sure you want to reset all options to the default values? All saved data will be lost.', 'Content - On popup "Reset values"', 'appbear' ),
-                ),
-                'import_popup' => array(
-                    'title' => _x( 'Import values', 'Title - On popup "Import values"', 'appbear' ),
-                    'content' => _x( 'Are you sure you want to import all options? All current values will be lost and well be overwritten.', 'Content - On popup "Import values"', 'appbear' ),
-                ),
-            )
+          'ajax_url' => admin_url( 'admin-ajax.php' ),
+          'ajax_nonce' => wp_create_nonce( 'appbear_ajax_nonce' ),
+          'text' => array(
+            'popup' => array(
+                'accept_button' => _x( 'Accept', 'Button - On confirm popup', 'appbear' ),
+                'cancel_button' => _x( 'Cancel', 'Button - On confirm popup', 'appbear' ),
+            ),
+            'remove_item_popup' => array(
+                'title' => _x( 'Delete', 'Title - On popup "remove item"', 'appbear' ),
+                'content' => _x( 'Are you sure you want to delete?', 'Content - On popup "remove item"', 'appbear' ),
+            ),
+            'validation_url_popup' => array(
+                'title' => _x( 'Validation', 'Title - On popup "Validation url"', 'appbear' ),
+                'content' => _x( 'Please enter a valid url', 'Content - On popup "Validation url"', 'appbear' ),
+            ),
+            'reset_popup' => array(
+                'title' => _x( 'Reset values', 'Title - On popup "Reset values"', 'appbear' ),
+                'content' => _x( 'Are you sure you want to reset all options to the default values? All saved data will be lost.', 'Content - On popup "Reset values"', 'appbear' ),
+            ),
+            'import_popup' => array(
+                'title' => _x( 'Import values', 'Title - On popup "Import values"', 'appbear' ),
+                'content' => _x( 'Are you sure you want to import all options? All current values will be lost and well be overwritten.', 'Content - On popup "Import values"', 'appbear' ),
+            ),
+          ),
+          '_field_icons' => array(),
         );
+
         return $l10n;
     }
 

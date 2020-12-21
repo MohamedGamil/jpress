@@ -3,6 +3,7 @@
   $checked = isset($checked) ? $checked : true;
   $stats = isset($stats) && is_array($stats) ? (Object) $stats : false;
 ?>
+
 <div class="appbear-notification-metabox-wrapper">
     <?php if ( $disabled ) : ?>
     <div class="meta-options anm_notice">

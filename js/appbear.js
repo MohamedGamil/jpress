@@ -1,6 +1,10 @@
+/**
+ * AppBear Options JS
+ */
 
 window.APPBEAR = (function (window, document, $) {
   'use strict';
+
   var appbear = {
     duplicate: false,
     media: {
@@ -154,6 +158,7 @@ window.APPBEAR = (function (window, document, $) {
 
   appbear.load_icons_for_icon_selector = function (event) {
     var fields = [];
+
     $('.appbear-type-icon_selector').each(function (index, el) {
       var field_id = $(el).data('field-id');
       var options = $(el).find('.appbear-icons-wrap').data('options');
@@ -171,55 +176,101 @@ window.APPBEAR = (function (window, document, $) {
     //   $('.appbear-icons-wrap').removeClass('d-block');
     //   $('.appbear-search-icon').removeClass('d-block');
     // });
-    $(document).mouseup(function(e) 
-    {
+
+    $(document).mouseup(function(e) {
         var container = $(".appbear-type-icon_selector .appbear-field .appbear-search-icon");
-    
+
         // if the target of the click isn't the container nor a descendant of the container
-        if (!container.is(e.target) && container.has(e.target).length === 0) 
-        {
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
           container.removeClass('d-block');
         }
 
         var container = $(".appbear-type-icon_selector .appbear-field .appbear-icons-wrap");
-    
+
         // if the target of the click isn't the container nor a descendant of the container
-        if (!container.is(e.target) && container.has(e.target).length === 0) 
-        {
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
             container.removeClass('d-block');
         }
     });
 
+    // NOTE: Display icons select options
     $(document).on('click', '.appbear-icon-actions', function (event) {
       event.stopPropagation();
-      $(this).closest('.appbear-field').find('.appbear-icons-wrap').addClass('d-block');
-      $(this).closest('.appbear-field').find('.appbear-search-icon').addClass('d-block');
-      return false; 
+      event.preventDefault();
+
+      const
+        $el = $(this),
+        $parent = $el.parents('.appbear-type-icon_selector:first'),
+        $field = $el.closest('.appbear-field'),
+        $iconsWrap = $field.find('.appbear-icons-wrap'),
+        $searchIcons = $field.find('.appbear-search-icon'),
+        opts = $iconsWrap.data('options'),
+        optSize = ~~String(opts.size || '36px').replace('px', ''),
+        fieldID = $parent.data('field-id'),
+        items = APPBEAR_JS._field_icons[fieldID] || false,
+        itemsKeys = Object.keys(items);
+
+      // NOTE: Debug line
+      // console.info({fieldID, $el, $parent, $field, $iconsWrap, $searchIcons, opts, itemsKeys, items, size: optSize - 14});
+
+      if (!!items) {
+        if ($iconsWrap.find('.appbear-item-icon-selector').length === 0) {
+          $iconsWrap.empty();
+
+          let iconsHTML = '';
+
+          for (const iconKey of itemsKeys) {
+            const
+              iconClass = items[iconKey],
+              iconSize = optSize - 14,
+              fontSize = `${iconSize}px`,
+              dataKey = `font ${iconKey}`,
+              dataType = 'icon font',
+              $iconEl = `<i class="${iconClass}" style=""></i>`;
+
+            iconsHTML += `<div class="appbear-item-icon-selector" data-value='${iconKey}' data-key='${dataKey}' data-search='${iconClass}' data-type='${dataType}' style='width: ${opts.size}; height: ${opts.size}; font-size: ${fontSize}'>`;
+            iconsHTML += $iconEl;
+            iconsHTML += "</div>";
+          }
+
+          $iconsWrap.append(iconsHTML);
+        }
+
+        $iconsWrap.add($searchIcons).addClass('d-block');
+      }
     });
 
-
+    // NOTE: Search icons
     $(document).on('input', '.appbear-search-icon', function (event) {
       event.preventDefault();
       var value = $(this).val();
       var $container = $(this).closest('.appbear-field').find('.appbear-icons-wrap');
       appbear.filter_items(value, $container, '.appbear-item-icon-selector');
     });
+
+    // NOTE: Icon select button action
     $(document).on('click', '.appbear-icon-actions .appbear-btn', function (event) {
       var value = $(this).data('search');
       var $container = $(this).closest('.appbear-field').find('.appbear-icons-wrap');
       appbear.filter_items(value, $container, '.appbear-item-icon-selector');
     });
 
+    // NOTE: Select an icon
     $(document).on('click', '.appbear-icons-wrap .appbear-item-icon-selector', function (event) {
-      var $field = $(this).closest('.appbear-field');
-      var $container = $field.find('.appbear-icons-wrap');
-      var options = $container.data('options');
-      $(this).addClass(options.active_class).siblings().removeClass(options.active_class);
-      $field.find('input.appbear-element').val($(this).data('value')).trigger('change');
-      $field.find('.appbear-icon-active').html($(this).html());
+      const
+        $field = $(this).closest('.appbear-field'),
+        $container = $field.find('.appbear-icons-wrap'),
+        options = $container.data('options'),
+        $e = $(this),
+        dataValue = $e.data('value'),
+        elHTML = $e.html();
+
+      $e.addClass(options.active_class).siblings().removeClass(options.active_class);
+      $field.find('input.appbear-element').val(dataValue).trigger('change');
+      $field.find('.appbear-icon-active').html(elHTML);
       $field.find('.appbear-icons-wrap').css('style', 'display:block  !important');
 
-      $(".appbear-type-icon_selector .appbear-field .appbear-icons-wrap,.appbear-type-icon_selector .appbear-field .appbear-search-icon").removeClass('d-block');
+      $(".appbear-type-icon_selector .appbear-field .appbear-icons-wrap, .appbear-type-icon_selector .appbear-field .appbear-search-icon").removeClass('d-block');
     });
   };
 
@@ -1981,6 +2032,7 @@ window.APPBEAR = (function (window, document, $) {
 })(jQuery);
 
 
+// NOTE: WTF is that for?
 (function ($) {
   $('.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector').on('click', function(){
     alert('test');

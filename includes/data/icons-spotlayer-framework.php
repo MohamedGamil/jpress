@@ -1,6 +1,7 @@
 <?php
+
 /**
- * 
+ * Icons Field Data
  */
 
 return array(

@@ -352,17 +352,20 @@ class AppbearItems {
     |---------------------------------------------------------------------------------------------------
     */
     public static function icon_fonts( $more_items = array() ){
-        // if( Functions::is_fontawesome_version( '5.x' ) ){
-        //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
-        // } else{
-        //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
-        // }
-        $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
-        $items = array();
-        foreach( $icons as $k => $icon ){
-            $items[$k] = "<i class='$icon'></i>";
-        }
-        return Functions::nice_array_merge( $more_items, $items );
+      // if( Functions::is_fontawesome_version( '5.x' ) ){
+      //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
+      // } else{
+      //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
+      // }
+
+      $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
+      $items = array();
+
+      foreach( $icons as $k => $icon ){
+        $items[$k] = "<i class='$icon'></i>";
+      }
+
+      return Functions::nice_array_merge( $more_items, $items );
     }
 
     /*
