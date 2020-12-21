@@ -1392,7 +1392,6 @@ class AdminPage extends AppbearCore {
 
     $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-    dd($license, $license_data);
     if ( $license_data->license !== 'valid' ) {
       $invalidReason = isset($license_data->error) ? $license_data->error : 'unknown';
 
@@ -1534,6 +1533,7 @@ class AdminPage extends AppbearCore {
    */
   private function _updateDeeplinkingOptions(array $options) {
     dd($options);
+
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
 
     update_option( APPBEAR_DEEPLINKING_OPTION, array(
