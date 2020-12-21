@@ -3710,7 +3710,7 @@ class AppBear_Options
    * Initialize options for no or invalid license state
    */
   protected function _noLicenseInit() {
-    if ( appbear_check_license() === true ) {
+    if ( appbear_check_license() === true && APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE === false ) {
       return;
     }
 
