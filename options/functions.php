@@ -150,7 +150,7 @@ function appbear_get_public_key()
  */
 function appbear_get_license_key()
 {
-  return trim( get_option( 'appbear_license_key' ) );
+  return trim( get_option( APPBEAR_LICENSE_KEY_OPTION ) );
 }
 
 
@@ -178,7 +178,7 @@ function appbear_get_deeplinking_opts($asArray = false)
  */
 function appbear_check_license()
 {
-  return ( get_option( 'appbear_license_status' ) === 'valid' && empty(appbear_get_public_key()) === false ) || _appbear_is_dev_mode();
+  return ( get_option( APPBEAR_LICENSE_STATUS_KEY_OPTION ) === 'valid' && empty(appbear_get_public_key()) === false ) || _appbear_is_dev_mode();
 }
 
 

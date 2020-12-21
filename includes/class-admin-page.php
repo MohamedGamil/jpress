@@ -313,8 +313,8 @@ class AdminPage extends AppbearCore {
 		}
 
 		// Add settings error
-		if ( isset( $data['appbear_license_key'] ) ) {
-      $this->_updateLicenseKey( $data['appbear_license_key'] );
+		if ( isset( $data[APPBEAR_LICENSE_KEY_OPTION] ) ) {
+      $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] );
 
       $settingsURL = admin_url('admin.php?page=appbear-settings');
 
@@ -1346,7 +1346,7 @@ class AdminPage extends AppbearCore {
           }
 				}
 
-				update_option( 'appbear_license_status', $isValidLicense ? 'valid' : 'invalid' );
+				update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $isValidLicense ? 'valid' : 'invalid', false );
 				add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', ' . __('Your settings has been updated successfully'), 'updated' );
 				set_transient( 'settings_errors', get_settings_errors(), 30 );
 			}
@@ -1383,7 +1383,7 @@ class AdminPage extends AppbearCore {
 
     if ( is_wp_error( $response ) ) {
       $message = __( 'An error occurred, please try again.' );
-      update_option( 'appbear_license_status', json_decode($response['body'])->license );
+      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, json_decode($response['body'])->license, false );
 
       add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
@@ -1396,7 +1396,7 @@ class AdminPage extends AppbearCore {
     if ( $license_data->license !== 'valid' ) {
       $invalidReason = isset($license_data->error) ? $license_data->error : 'unknown';
 
-      update_option( 'appbear_license_status', $license_data->license );
+      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $license_data->license, false );
 
       switch( $invalidReason ) {
         case 'expired' :
@@ -1446,7 +1446,7 @@ class AdminPage extends AppbearCore {
    * @param string $licenseKey License key
    */
   private function _updateLicenseKey( $licenseKey ) {
-    update_option( 'appbear_license_key', $licenseKey );
+    update_option( APPBEAR_LICENSE_KEY_OPTION, $licenseKey, false );
 
     // NOTE: Why re-fetch key if we can just use "$licenseKey"?
     $license = $this->_getLicenseKey();
@@ -1512,13 +1512,13 @@ class AdminPage extends AppbearCore {
 
     // Check if anything passed on a message constituting a failure
     if ( ! empty( $message ) ) {
-      update_option( 'appbear_license_status', $license_data->error );
+      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $license_data->error, false );
 
       add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
     }
     else {
-      update_option( 'appbear_license_status', $license_data->license );
+      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $license_data->license, false );
       add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ) . ', ' . __('Your license has been activated successfully'), 'updated' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
     }
