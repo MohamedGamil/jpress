@@ -1316,6 +1316,9 @@ class AdminPage extends AppbearCore {
 
               // Parse response then update deeplinking options
               $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
+
+              dd($url, $responseObject);
+
               $this->_updateDeeplinkingOptions( $responseObject );
             }
 
@@ -1532,8 +1535,6 @@ class AdminPage extends AppbearCore {
    * @return void
    */
   private function _updateDeeplinkingOptions(array $options) {
-    dd($options);
-
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
 
     update_option( APPBEAR_DEEPLINKING_OPTION, array(
