@@ -9,6 +9,15 @@
 	display: block;
 	padding-top: 10px;
 }
+	.appbear-notification-metabox-wrapper .anm_notice a {
+		display: block;
+		margin-bottom: 10px;
+		padding: 10px;
+		color: #1c1c1c;
+		background: #ffc862;
+		border-radius: 4px;
+		text-decoration: none;
+	}
 
 .anm_field {
 	display: block;

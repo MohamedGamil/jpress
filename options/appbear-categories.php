@@ -219,8 +219,7 @@ class AppBear_Categories {
    * @param array $newOptions Update metadata with given options array
    * @return array|boolean Metadata array or boolean if updating
    */
-  private function _metadata(array $newOptions = null)
-  {
+  private function _metadata(array $newOptions = null) {
     if (is_null($newOptions) === true) {
       return get_option( static::OPTION_KEY );
     }

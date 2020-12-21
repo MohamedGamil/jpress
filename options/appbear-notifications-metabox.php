@@ -15,6 +15,7 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
+  const DISABLE_IF_UPDATING = true;
 
   /**
    * Internal initilization state &
@@ -82,12 +83,11 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   public function display_meta_box( $post ) {
-    // TODO: License check
-
     $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
     $data = array(
       'post' => $post,
-      'checked' => $updating === false
+      'checked' => $updating === false,
+      'activated' => $this->_isValidLicense() === true,
     );
 
     echo appbear_get_template('metabox/notifications', $data);
@@ -229,7 +229,12 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   private function _canInit() {
-    return is_admin() === true;
+    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
+
+    return is_admin() === true && (
+      ( static::DISABLE_IF_UPDATING === true && $updating === false )
+      || static::DISABLE_IF_UPDATING === false
+    );
   }
 
   /**
@@ -238,8 +243,7 @@ class AppBear_Notifications_Metabox {
    * @param array $newOptions Update metadata with given options array
    * @return array|boolean Metadata array or boolean if updating
    */
-  private function _metadata(array $newOptions = null)
-  {
+  private function _metadata(array $newOptions = null) {
     if (is_null($newOptions) === true) {
       return get_option( static::OPTION_KEY );
     }
@@ -253,8 +257,7 @@ class AppBear_Notifications_Metabox {
    *
    * @return boolean
    */
-  private function _isValidLicense()
-  {
+  private function _isValidLicense() {
     return appbear_check_license();
   }
 }
