@@ -75,7 +75,7 @@ define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_settings' );
 /**
  * Public-Key Option Key Name
  */
-define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_pub_key' );
+define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_license_public_key' );
 
 
 /**
