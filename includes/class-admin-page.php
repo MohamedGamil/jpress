@@ -1532,6 +1532,7 @@ class AdminPage extends AppbearCore {
    * @return void
    */
   private function _updateDeeplinkingOptions(array $options) {
+    dd($options);
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
 
     update_option( APPBEAR_DEEPLINKING_OPTION, array(
