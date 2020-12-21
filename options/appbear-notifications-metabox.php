@@ -82,8 +82,12 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   public function display_meta_box( $post ) {
+    // TODO: License check
+
+    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
     $data = array(
       'post' => $post,
+      'checked' => $updating === false
     );
 
     echo appbear_get_template('metabox/notifications', $data);
@@ -96,8 +100,8 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   public function save_post( $postID, $post, $update ) {
-    // Skip updates and auto-saves
-    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || $update === true ) {
+    // Skip auto-saves and requests with an invalid license state
+    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || empty($_POST) === true || $this->_isValidLicense() === false ) {
       return;
     }
 
@@ -106,20 +110,17 @@ class AppBear_Notifications_Metabox {
       $postID = $parentID;
     }
 
-    $inputs = [
+    $fields = [
       'appbear_notifications_send',
       'appbear_notifications_title',
       'appbear_notifications_message',
     ];
 
-    if (empty($_POST) || $this->_isValidLicense() === false) {
-      return;
-    }
+    $inputs = [];
 
-    foreach ($inputs as $key => $field) {
-      $fieldKey = str_replace('appbear_notifications_', '', $field);
-      $inputs[$fieldKey] = isset($_POST[$field]) ? trim(sanitize_text_field($_POST[$field])) : '';
-      unset($inputs[$key]);
+    foreach ($fields as $field) {
+      $key = str_replace('appbear_notifications_', '', $field);
+      $inputs[$key] = isset($_POST[$field]) ? trim(sanitize_text_field($_POST[$field])) : '';
     }
 
     if ($inputs['send'] !== 'on') {
@@ -130,9 +131,6 @@ class AppBear_Notifications_Metabox {
       $this->_serveSubmitError('Input Error! Please submit at least a notification title, and you may add a notification message.');
       return;
     }
-
-    // NOTE: Debug line
-    // dd( -1, $inputs, $postID );
 
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
 

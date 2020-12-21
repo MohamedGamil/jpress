@@ -22,6 +22,8 @@
     $inputs = $groups.find('input, textarea');
     $checkbox = $widget.find('.anm_checkbox:first');
 
+    const $titleInput = $inputs.filter('[name="appbear_notifications_title"]');
+
     $checkbox.on('change', function (event) {
       $groups.hide();
 
@@ -30,9 +32,13 @@
       }
     });
 
+    if (String($titleInput.val()).trim().length === 0 && $postTitle.length > 0) {
+      $titleInput.val($postTitle.val());
+    }
+
     $postTitle.on('keyup', function (event) {
       const title = String($postTitle.val()).trim();
-      $inputs.filter('[name="appbear_notifications_title"]').val( title );
+      $titleInput.val( title );
     });
   }
 

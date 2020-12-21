@@ -1,6 +1,12 @@
+<?php $checked = isset($checked) ? $checked : true; ?>
 <div class="appbear-notification-metabox-wrapper">
     <p class="meta-options anm_field anm_field_checkbox">
-        <input type="checkbox" name="appbear_notifications_send" id="appbear_notifications_send" class="anm_checkbox" checked="checked" />
+        <input
+          type="checkbox"
+          name="appbear_notifications_send"
+          id="appbear_notifications_send"
+          class="anm_checkbox"
+          <?php echo $checked ? 'checked="checked"' : ''; ?> />
         <label for="appbear_notifications_send" class="anm_checkbox_label">
           <strong>Send notification for this post</strong>
         </label>
