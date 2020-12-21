@@ -1,6 +1,7 @@
 <?php
   $disabled = (isset($activated) && $activated === false) || isset($activated) === false;
   $checked = isset($checked) ? $checked : true;
+  $stats = isset($stats) && is_array($stats) ? (Object) $stats : false;
 ?>
 <div class="appbear-notification-metabox-wrapper">
     <?php if ( $disabled ) : ?>
@@ -42,4 +43,24 @@
           id="appbear_notifications_message"
           rows="3">🔥 <?php _e('Check out this new article.', 'textdomain'); ?></textarea>
     </p>
+
+    <?php if ( is_object($stats) ) : ?>
+    <hr>
+    <div class="meta-options anm_notice anm_notice_normal">
+      <span href="<?php echo admin_url('admin.php?page=appbear-activation'); ?>" target="_blank">
+        <strong><?php _e('Total sent:', 'textdomain'); ?></strong>
+        <?php
+          echo $stats->sent_count === '?'
+            ? __('Unknown', 'textdomain')
+            : ( $stats->sent_count === -1 ? __('UNLIMITED', 'textdomain') : $stats->sent_count ); ?>
+        <br>
+        <strong><?php _e('Remaining Notifications:', 'textdomain'); ?></strong>
+        <?php
+          echo $stats->remaining === '?'
+            ? __('Unknown', 'textdomain')
+            : ( $stats->remaining === -1 ? __('UNLIMITED', 'textdomain') : $stats->remaining ); ?>
+        <!-- <br> -->
+      </span>
+    </div>
+    <?php endif; ?>
 </div>
