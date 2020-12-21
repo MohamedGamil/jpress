@@ -323,7 +323,7 @@ class AppBear_Options
 
     $deeplinkingOpts = appbear_get_deeplinking_opts();
     $canDeeplinking = isset($deeplinkingOpts->appid_ios) && empty($deeplinkingOpts->appid_ios) === false;
-    $deeplinkingAttrs = $canDeeplinking ? array( 'disabled' => 'disabled' ) : array();
+    $deeplinkingAttrs = $canDeeplinking === false ? array( 'disabled' => 'disabled' ) : array();
     $section_header_1->add_field(array(
       'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
       'desc' => $canDeeplinking ? '' : __('This option can be enabled after activating your license, then saving settings for the first time.'),
