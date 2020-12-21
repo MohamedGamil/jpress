@@ -78,14 +78,13 @@ class AppbearAPI {
     );
 
     $endpoint = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
-    $public_key = appbear_get_public_key();
     $opts = array(
       'timeout' => static::TIMEOUT_DURATION,
       'sslverify' => static::VERYIFY_SSL,
       'body' => json_encode($params),
       'headers' => array(
         'Content-Type' => 'application/json; charset=utf-8',
-        'X-AppBear-Key' => $public_key,
+        'X-AppBear-Key' => appbear_get_public_key(),
       ),
     );
 

@@ -669,8 +669,8 @@ class AppBear_Demos_Endpoints
             'contactUs' => '/wp-json/wl/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
+              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-dark.png',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress sitern',
             ),
@@ -978,8 +978,8 @@ class AppBear_Demos_Endpoints
             'contactUs' => '/wp-json/wl/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
+              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-dark.png',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress site',
             ),
@@ -1196,7 +1196,7 @@ class AppBear_Demos_Endpoints
             'contactUs' => '/wp-json/wl/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
+              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress site',
             ),
@@ -2114,8 +2114,8 @@ class AppBear_Demos_Endpoints
             'contactUs' => '/wp-json/wl/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appBear-plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
+              'aboutLogoDark' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-dark.png',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress sitern',
             ),

@@ -85,7 +85,7 @@ class AppBear_Options
    * Register license option
    */
   public function appbear_register_option() {
-    register_setting('appbear_license_status', 'appbear_license_key', array( $this, 'appbear_sanitize_license' ) );
+    register_setting(APPBEAR_LICENSE_STATUS_KEY_OPTION, APPBEAR_LICENSE_KEY_OPTION, array( $this, 'appbear_sanitize_license' ) );
   }
 
 
@@ -97,7 +97,7 @@ class AppBear_Options
 
     if( $old && $old !== $new ) {
       // new license has been entered, so must reactivate
-      delete_option( 'appbear_license_status' );
+      delete_option( APPBEAR_LICENSE_STATUS_KEY_OPTION );
     }
 
     return $new;
@@ -3710,7 +3710,7 @@ class AppBear_Options
    * Initialize options for no or invalid license state
    */
   protected function _noLicenseInit() {
-    if ( appbear_check_license() === true ) {
+    if ( appbear_check_license() === true && APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE === false ) {
       return;
     }
 
@@ -3759,12 +3759,12 @@ class AppBear_Options
 		$activation_section->add_field(array(
 			'name' => 'Key',
 			'default' => $this->_getLicenseKey(),
-			'id' => 'appbear_license_key',
+			'id' => APPBEAR_LICENSE_KEY_OPTION,
 			'type' => 'text',
 			'grid' => '6-of-6',
     ));
 
-    if ( get_option('appbear_license_status') === 'valid' && empty($publicKey) === false ) {
+    if ( get_option(APPBEAR_LICENSE_STATUS_KEY_OPTION) === 'valid' && empty($publicKey) === false ) {
       $activation_section->add_field(array(
         'name' => '<strong style="color:green">'. __('License Active!') .'</strong>',
         'id' => APPBEAR_PUBLIC_KEY_OPTION,

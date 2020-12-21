@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.0.7' );
+define( 'APPBEAR_VERSION', '0.0.8' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -73,15 +73,33 @@ define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_settings' );
 
 
 /**
+ * License Option Key Name
+ */
+define( 'APPBEAR_LICENSE_KEY_OPTION', 'appbear_license_activation_key' );
+
+
+/**
  * Public-Key Option Key Name
  */
-define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_pub_key' );
+define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_license_public_key' );
+
+
+/**
+ * License Status Option Key Name
+ */
+define( 'APPBEAR_LICENSE_STATUS_KEY_OPTION', 'appbear_activation_status' );
 
 
 /**
  * Enable / Disable Debugging Helpers
  */
 define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );
+
+
+/**
+ * Enable / Disable Displaying Connect to AppBear even if the license is active
+ */
+define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', true );
 
 
 /**
