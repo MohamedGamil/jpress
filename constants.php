@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.0.8' );
+define( 'APPBEAR_VERSION', '0.0.9' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -99,7 +99,7 @@ define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );
 /**
  * Enable / Disable Displaying Connect to AppBear even if the license is active
  */
-define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', true );
+define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', false );
 
 
 /**
