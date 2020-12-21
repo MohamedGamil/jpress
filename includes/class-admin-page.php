@@ -1325,9 +1325,6 @@ class AdminPage extends AppbearCore {
           // Parse response then update deeplinking options
           $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
 
-          // NOTE: Debug line
-          dd($url, $responseObject);
-
           $this->_updateDeeplinkingOptions( $responseObject );
 
           $options['copyrights'] = get_home_url();
@@ -1455,6 +1452,7 @@ class AdminPage extends AppbearCore {
    */
   private function _updateDeeplinkingOptions(array $options) {
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
+    $options = isset($options['data']) && is_array($options['data']) ? $options['data'] : [];
 
     update_option( APPBEAR_DEEPLINKING_OPTION, array(
       'ios_app_id' => isset($options) ? $options['ios_app_id'] : '',
