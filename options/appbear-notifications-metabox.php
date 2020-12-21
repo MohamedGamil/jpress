@@ -84,7 +84,9 @@ class AppBear_Notifications_Metabox {
    */
   public function display_meta_box( $post ) {
     $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
+    $stats = $this->_get();
     $data = array(
+      'stats' => $stats,
       'post' => $post,
       'checked' => $updating === false,
       'activated' => $this->_isValidLicense() === true,
@@ -174,7 +176,18 @@ class AppBear_Notifications_Metabox {
    * @return array
    */
   protected function _get() {
-    return $this->_metadata();
+    $data = $this->_metadata();
+    $data = $data !== false ? $data : [
+      'remaining' => '?',
+      'sent_count' => '?',
+      'plan_total' => '?',
+    ];
+
+    foreach ($data as &$field) {
+      $field = $field === '?' ? $field : (int) $field;
+    }
+
+    return $data;
   }
 
   /**

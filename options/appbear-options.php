@@ -252,7 +252,7 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-scaffoldbackgroundcolor',
-      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'name'      => __( 'Dark Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#333739',
       'options' => array(
@@ -272,7 +272,7 @@ class AppBear_Options
 
     $section_header_1->add_field(array(
       'id'        => 'styling-themeMode_dark-primary',
-      'name'      => __( 'Drak Mode', 'textdomain' ),
+      'name'      => __( 'Dark Mode', 'textdomain' ),
       'type'      => 'colorpicker',
       'default'   => '#0088ff',
       'options' => array(
@@ -372,9 +372,7 @@ class AppBear_Options
       'id' => 'sidenavbar-icon',
       'type' => 'icon_selector',
       'default' => '0xe808',
-      'items' => array_merge(
-        AppbearItems::icon_fonts()
-      ),
+      'items' => array_merge( AppbearItems::icon_fonts() ),
       'options' => array(
         'wrap_height' => '220px',
         'size' => '36px',
@@ -399,9 +397,7 @@ class AppBear_Options
       'id' => 'appbar-searchicon',
       'type' => 'icon_selector',
       'default' => '0xe820',
-      'items' => array_merge(
-        AppbearItems::icon_fonts()
-      ),
+      'items' => array_merge( AppbearItems::icon_fonts() ),
       'options' => array(
         'wrap_height' => '220px',
         'size' => '36px',
@@ -546,9 +542,7 @@ class AppBear_Options
       'id' => 'icon',
       'type' => 'icon_selector',
       'default' => '0xe9f5',
-      'items' => array_merge(
-        AppbearItems::icon_fonts()
-      ),
+      'items' => array_merge( AppbearItems::icon_fonts() ),
       'options' => array(
       'wrap_height' => '220px',
       'size' => '36px',
@@ -2702,9 +2696,7 @@ class AppBear_Options
       'id' => 'icon',
       'type' => 'icon_selector',
       'default' => '0xe95d',
-      'items' => array_merge(
-        AppbearItems::icon_fonts()
-      ),
+      'items' => array_merge( AppbearItems::icon_fonts() ),
       'options' => array(
         'wrap_height' => '220px',
         'size' => '36px',
