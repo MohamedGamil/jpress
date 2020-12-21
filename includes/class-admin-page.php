@@ -1326,7 +1326,7 @@ class AdminPage extends AppbearCore {
           $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
 
           // NOTE: Debug line
-          // dd($url, $responseObject);
+          dd($url, $responseObject);
 
           $this->_updateDeeplinkingOptions( $responseObject );
 
