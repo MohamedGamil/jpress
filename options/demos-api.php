@@ -754,7 +754,7 @@ class AppBear_Demos_Endpoints
                 'icon' => '0xe802',
                 'title_enable' => 'false',
                 'title' => 'Creative',
-                'url' => '/wp-json/wl/v1/posts?category_id=31',
+                'url' => '/wp-json/wl/v1/posts?categories=31',
               ),
               3 =>
               array (
@@ -1280,7 +1280,7 @@ class AppBear_Demos_Endpoints
                 'icon' => '0xe802',
                 'title_enable' => 'true',
                 'title' => 'Videos',
-                'url' => '/wp-json/wl/v1/posts?category_id=2',
+                'url' => '/wp-json/wl/v1/posts?categories=2',
               ),
               3 =>
               array (
@@ -2210,7 +2210,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe97d',
                 'title' => 'Technology',
-                'url' => '/wp-json/wl/v1/posts?category_id=30',
+                'url' => '/wp-json/wl/v1/posts?categories=30',
               ),
               2 =>
               array (
@@ -2218,7 +2218,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe9b2',
                 'title' => 'Football',
-                'url' => '/wp-json/wl/v1/posts?category_id=32',
+                'url' => '/wp-json/wl/v1/posts?categories=32',
               ),
               3 =>
               array (
@@ -2226,7 +2226,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xf0c3',
                 'title' => 'World',
-                'url' => '/wp-json/wl/v1/posts?category_id=2',
+                'url' => '/wp-json/wl/v1/posts?categories=2',
               ),
               4 =>
               array (
@@ -2633,7 +2633,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe97d',
                 'title' => 'الحياة والمجتمع',
-                'url' => '/wp-json/wl/v1/posts?category_id=6',
+                'url' => '/wp-json/wl/v1/posts?categories=6',
               ),
               2 =>
               array (
@@ -2641,7 +2641,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe9b2',
                 'title' => 'السباحة',
-                'url' => '/wp-json/wl/v1/posts?category_id=140',
+                'url' => '/wp-json/wl/v1/posts?categories=140',
               ),
               3 =>
               array (
@@ -2649,7 +2649,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xf0c3',
                 'title' => 'التكنولوجيا',
-                'url' => '/wp-json/wl/v1/posts?category_id=64',
+                'url' => '/wp-json/wl/v1/posts?categories=64',
               ),
               4 =>
               array (

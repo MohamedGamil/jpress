@@ -446,7 +446,7 @@ class AdminPage extends AppbearCore {
                   }
 
                   unset($navigator['main']);
-                  $navigator['url']   = '/wp-json/wl/v1/posts?category_id=' . $category->term_id;
+                  $navigator['url']   = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
                 break;
 
                 case 'NavigationType.page':
@@ -515,7 +515,7 @@ class AdminPage extends AppbearCore {
                     $navigator['title'] = $category->name;
                   }
                   unset($navigator['main']);
-                  $navigator['url']   = '/wp-json/wl/v1/posts?category_id=' . $category->term_id;
+                  $navigator['url']   = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
                 break;
                 case 'NavigationType.page':
                   $post = get_post($navigator['page']);
@@ -570,6 +570,9 @@ class AdminPage extends AppbearCore {
 
             $options['tabs']['tabs'] = array();
 
+            // NOTE: Debug line
+            // dd($data['tabsbaritems']);
+
             foreach($data['tabsbaritems'] as $key => $slide) {
               if ( $key === 1000 || !isset($slide['categories'][0]) ) {
                 continue;
@@ -581,26 +584,42 @@ class AdminPage extends AppbearCore {
 
               $item   =   $item_options   =   array();
 
+              $tabQueryURL = '/wp-json/wl/v1/posts?';
               $selected_categories = explode(',',$slide['categories'][0]);
-              $category = get_category_by_slug($selected_categories[0]);
-              $ids = $category->term_id;
 
-              foreach ($selected_categories as $cat) {
-                if ($selected_categories[0] == $cat)
-                  continue;
+              if (empty($selected_categories) === false) {
+                $ids = '';
+                $firstCat = false;
 
-                $other = get_category_by_slug($cat);
-                $ids .=',' . $other->term_id;
+                foreach ($selected_categories as $idx => $cat) {
+                  $category = get_category_by_slug($cat);
+                  $termId = $category->term_id ? $category->term_id : false;
+
+                  if ($idx === 0) {
+                    $firstCat = $category;
+                  }
+
+                  if ( $idx !== 0 && empty($termId) === false ) {
+                    $ids .= ',';
+                  }
+
+                  $ids .= $termId ? $termId : '';
+                }
+
+                $tabQueryURL .= empty($ids) === false ? "categories={$ids}" : '';
               }
 
-              $item['url']   = '/wp-json/wl/v1/posts?&categories=' . $ids;
+              $item['url']   = $tabQueryURL;
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
                 $item['title']  =   $slide['title'];
               }
               else {
-                $item['title'] = $category->name;
+                $item['title'] = $firstCat !== false ? $firstCat->name : '';
               }
+
+              // NOTE: Debug line
+              // dd($item);
 
               array_push($options['tabs']['tabs'], $item);
             }
