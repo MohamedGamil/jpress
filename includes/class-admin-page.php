@@ -760,7 +760,7 @@ class AdminPage extends AppbearCore {
               );
             }
 
-            $item['url'] .= "&count=" . ( isset($section['local-count']) ? '3' : $section['local-count'] );
+            $item['url'] .= "&count=" . ( isset($section['local-count']) ? $section['local-count'] : '3' );
 
             $item['postLayout'] = $section['postlayout'];
 
