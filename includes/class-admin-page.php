@@ -1095,7 +1095,7 @@ class AdminPage extends AppbearCore {
           }
 
           if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false') {
-            $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutus'];
+            $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutUs'];
           }
 
           if (isset($data['settingspage-privacyPolicy']) && $data['settingspage-privacyPolicy'] != '') {
