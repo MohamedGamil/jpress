@@ -286,6 +286,9 @@ class AdminPage extends AppbearCore {
    * @return void
    */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
+    // NOTE: Debug line
+    // dd($data);
+
 		if ( $this->id !== $object_id ) {
 			return;
 		}
@@ -1110,14 +1113,14 @@ class AdminPage extends AppbearCore {
           }
 
           if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false') {
-            $options['settingsPage']['aboutApp']["aboutLogoLight"] = $data['settingspage-aboutapp-logo-light'];
+            $options['settingsPage']['aboutApp']["aboutLogoLight"] = empty($data['settingspage-aboutapp-logo-light']) === false ? $data['settingspage-aboutapp-logo-light'] : $data['logo-light'];
 
             if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] != 'false') {
-              $options['settingsPage']['aboutApp']["aboutLogoDark"] = $data['settingspage-aboutapp-logo-dark'];
+              $options['settingsPage']['aboutApp']["aboutLogoDark"] = empty($data['settingspage-aboutapp-logo-dark']) === false ? $data['settingspage-aboutapp-logo-dark'] : $data['logo-dark'];
             }
 
-            $options['settingsPage']['aboutApp']["title"] = $data['settingspage-aboutapp-title'];
-            $options['settingsPage']['aboutApp']["content"] = $data['settingspage-aboutapp-content'];
+            $options['settingsPage']['aboutApp']["title"] = empty($data['settingspage-aboutapp-title']) === false ? $data['settingspage-aboutapp-title'] : get_bloginfo('name');
+            $options['settingsPage']['aboutApp']["content"] = empty($data['settingspage-aboutapp-content']) === false ? $data['settingspage-aboutapp-content'] : get_bloginfo('description');
             $options['settingsPage']['shortCodes'] = "true";
 
             if (isset($data['settingspage-devmode']) && $data['settingspage-devmode'] != 'false') {
@@ -1348,6 +1351,10 @@ class AdminPage extends AppbearCore {
 
           $options['copyrights'] = get_home_url();
           $options['validConfig'] = true;
+
+          // NOTE: Debug line
+          // dd($options);
+
           update_option( 'appbear-options', $options );
         break;
       }
