@@ -760,7 +760,7 @@ class AdminPage extends AppbearCore {
               );
             }
 
-            $item['url'] .= "&count=" . ( isset($section['local-count']) ? '3' : $section['local-count'] );
+            $item['url'] .= "&count=" . ( isset($section['local-count']) ? $section['local-count'] : '3' );
 
             $item['postLayout'] = $section['postlayout'];
 
@@ -1095,7 +1095,7 @@ class AdminPage extends AppbearCore {
           }
 
           if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false') {
-            $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutus'];
+            $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutUs'];
           }
 
           if (isset($data['settingspage-privacyPolicy']) && $data['settingspage-privacyPolicy'] != '') {
