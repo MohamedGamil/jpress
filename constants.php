@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.0.10' );
+define( 'APPBEAR_VERSION', '0.0.11' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
