@@ -639,7 +639,7 @@ class AdminPage extends AppbearCore {
               $item_options["sort"]  =   $data['tabs-options-sort'];
             }
 
-            if (isset($data["tabs-options-count"]) && $tabs["tabs-options-count"] != 'false') {
+            if (isset($data["tabs-options-count"]) && $data["tabs-options-count"] != 'false') {
               $item_options["count"] =   $data['tabs-options-count'];
             }
 
@@ -760,9 +760,7 @@ class AdminPage extends AppbearCore {
               );
             }
 
-            if (isset($section['local-count'])) {
-              $item['url'] .= "&count=" . $section['local-count'];
-            }
+            $item['url'] .= "&count=" . ( isset($section['local-count']) ? '3' : $section['local-count'] );
 
             $item['postLayout'] = $section['postlayout'];
 
