@@ -148,10 +148,10 @@ class AppBear_Endpoints {
       }
     }
 
-    // Unset "offset" param if using pagination
-    if ( isset($args['paged'], $args['offset']) ) {
-      unset($args['offset']);
-    }
+    // Unset "paged" param if using pagination
+    // if ( isset($args['paged'], $args['offset']) ) {
+    //   unset($args['paged']);
+    // }
 
     // Sorting
     if ( isset( $request['sort'] ) ) {
