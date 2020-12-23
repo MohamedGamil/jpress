@@ -287,7 +287,7 @@ class AdminPage extends AppbearCore {
    */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
     // NOTE: Debug line
-    dd($data);
+    // dd($data);
 
 		if ( $this->id !== $object_id ) {
 			return;
@@ -1351,7 +1351,7 @@ class AdminPage extends AppbearCore {
           $options['validConfig'] = true;
 
           // NOTE: Debug line
-          // dd($options);
+          dd($responseObject);
 
           update_option( 'appbear-options', $options );
         break;
