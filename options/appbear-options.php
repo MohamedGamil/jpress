@@ -563,6 +563,7 @@ class AppBear_Options
         'MainPage.sections' => __( 'Sections', 'textdomain' ),
         'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
         'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.main'),
@@ -755,6 +756,7 @@ class AppBear_Options
         'MainPage.sections' => __( 'Sections', 'textdomain' ),
         'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
         'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.main'),
@@ -3041,6 +3043,22 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
+			'name' => "Contact Us",
+			'default' => "Contact Us",
+			'id' => 'translate-contactUsTitle',
+			'type' => 'text',
+			'grid' => '6-of-6',
+		));
+
+    $translations_section->add_field(array(
+			'name' => 'Contact us for more information.',
+			'default' => "Contact us for more information.",
+			'id' => 'translate-contactUsSubTitle',
+			'type' => 'text',
+			'grid' => '6-of-6',
+		));
+
+    $translations_section->add_field(array(
 			'name' => 'Receiving updates\nfrom server...',
 			'default' => "Receiving updates\n from server...",
 			'id' => 'translate-loadingUpdates',
@@ -3084,22 +3102,6 @@ class AppBear_Options
 			'name' => 'This Url is already set.',
 			'default' => "This Url is already set.",
 			'id' => 'translate-alreadyBaseUrl',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => "Let's talk",
-			'default' => "Let's talk",
-			'id' => 'translate-contactUsTitle',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.',
-			'default' => "Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.",
-			'id' => 'translate-contactUsSubTitle',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));

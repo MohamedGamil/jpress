@@ -716,6 +716,34 @@ class AdminPage extends AppbearCore {
 
             switch($section['showposts']) {
               case 'categories':
+                // TODO:
+                /* $tabQueryURL = '/wp-json/wl/v1/posts?';
+                $selected_categories = explode( ',', $slide['categories'][0] );
+
+                if (empty($selected_categories) === false) {
+                  $ids = '';
+                  $firstCat = false;
+
+                  foreach ($selected_categories as $idx => $cat) {
+                    $category = get_category_by_slug($cat);
+                    $termId = $category->term_id ? $category->term_id : false;
+
+                    if ($idx === 0) {
+                      $firstCat = $category;
+                    }
+
+                    if ( $idx !== 0 && empty($termId) === false ) {
+                      $ids .= ',';
+                    }
+
+                    $ids .= $termId ? $termId : '';
+                  }
+
+                  $tabQueryURL .= empty($ids) === false ? "categories={$ids}" : '';
+                }
+
+                $item['url']   = $tabQueryURL; */
+
                 $selected_categories = explode( ',', $section['categories'][0] );
                 $category = get_category_by_slug( $selected_categories[0] );
                 $ids = '';
