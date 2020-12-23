@@ -717,7 +717,7 @@ class AdminPage extends AppbearCore {
             switch($section['showposts']) {
               case 'categories':
                 $queryURL = '';
-                $selected_categories = explode( ',', $section['categories'][0] );
+                $selected_categories = $section['categories'];
 
                 if (empty($selected_categories) === false) {
                   $ids = '';
