@@ -1509,7 +1509,7 @@ class AdminPage extends AppbearCore {
     $endpoint = APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase;
 
     if ( $translationChanged === true ) {
-      $endpoint .= '&change_translations=true');
+      $endpoint .= '&change_translations=true';
     }
 
     wp_remote_get($endpoint);
