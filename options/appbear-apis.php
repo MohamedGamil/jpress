@@ -150,14 +150,14 @@ class AppBear_Endpoints {
       }
     }
 
-    // DEPRECATED: Unset "paged" param if using pagination
-    // if ( isset($args['paged'], $args['offset']) ) {
-    //   unset($args['paged']);
-    // }
-
-    // NOTE: Introduce default value for count parameter if pagination is requested
+    // NOTE: Introduce default value for count parameter to prevent pagination issues
     if (isset($args['paged']) && $args['posts_per_page'] === -1) {
       $args['posts_per_page'] = static::DEFAULT_POSTS_PER_PAGE_COUNT;
+    }
+
+    // NOTE: Adjust offset parameter to play nice with pagination
+    if ( isset($args['paged'], $args['offset']) ) {
+      $args['offset'] = ( $args['paged'] - 1 ) * $args['posts_per_page'] + $args['offset'];
     }
 
     // Sorting
