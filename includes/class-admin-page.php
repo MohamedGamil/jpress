@@ -1351,7 +1351,7 @@ class AdminPage extends AppbearCore {
           $options['validConfig'] = true;
 
           // NOTE: Debug line
-          dd($public_key, $this->_getLicenseKey(), $responseObject);
+          // dd($public_key, $this->_getLicenseKey(), $responseObject);
 
           update_option( 'appbear-options', $options );
         break;
@@ -1407,7 +1407,7 @@ class AdminPage extends AppbearCore {
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
       // NOTE: Debug line
-      dd($license, $license_data);
+      // dd($license, $license_data);
 
       if ( true === $license_data->success ) {
         $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
