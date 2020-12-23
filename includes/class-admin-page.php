@@ -1513,8 +1513,9 @@ class AdminPage extends AppbearCore {
     }
 
     $response = wp_remote_get($endpoint);
+    $body = json_decode( wp_remote_retrieve_body( $response ), true );
 
-    dd($response);
+    dd($body);
   }
 
   /*
