@@ -81,7 +81,7 @@ define( 'APPBEAR_LICENSE_KEY_OPTION', 'appbear_license_activation_key' );
 /**
  * Public-Key Option Key Name
  */
-define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_license_public_key' );
+define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_license_pub_key' );
 
 
 /**
@@ -99,7 +99,7 @@ define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );
 /**
  * Enable / Disable Displaying Connect to AppBear even if the license is active
  */
-define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', false );
+define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', true );
 
 
 /**

@@ -563,6 +563,7 @@ class AppBear_Options
         'MainPage.sections' => __( 'Sections', 'textdomain' ),
         'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
         'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.main'),
@@ -755,6 +756,7 @@ class AppBear_Options
         'MainPage.sections' => __( 'Sections', 'textdomain' ),
         'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
         'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
         'show_if' => array('type', '=', 'NavigationType.main'),
@@ -1170,12 +1172,12 @@ class AppBear_Options
     ));
 
     $homepage->open_mixed_field(
-    array(
-      'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
-      'options' => array(
-    'show_if' => array('tabsbar_categories_tab', '=', 'true')
-    )
-    )
+      array(
+        'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
+        'options' => array(
+          'show_if' => array('tabsbar_categories_tab', '=', 'true')
+        ),
+      )
     );
     $homepage->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
@@ -1185,7 +1187,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false'
-      )
+      ),
     ));
     $homepage->add_field(array(
       'id' => 'homepage-sections-title',
@@ -3041,6 +3043,22 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
+			'name' => "Contact Us",
+			'default' => "Contact Us",
+			'id' => 'translate-contactUsTitle',
+			'type' => 'text',
+			'grid' => '6-of-6',
+		));
+
+    $translations_section->add_field(array(
+			'name' => 'Contact us for more information.',
+			'default' => "Contact us for more information.",
+			'id' => 'translate-contactUsSubTitle',
+			'type' => 'text',
+			'grid' => '6-of-6',
+		));
+
+    $translations_section->add_field(array(
 			'name' => 'Receiving updates\nfrom server...',
 			'default' => "Receiving updates\n from server...",
 			'id' => 'translate-loadingUpdates',
@@ -3084,22 +3102,6 @@ class AppBear_Options
 			'name' => 'This Url is already set.',
 			'default' => "This Url is already set.",
 			'id' => 'translate-alreadyBaseUrl',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => "Let's talk",
-			'default' => "Let's talk",
-			'id' => 'translate-contactUsTitle',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.',
-			'default' => "Sahifa is your news entertainment music fashion website. We provide you with the latest breaking news and videos straight from entertainment industry world.",
-			'id' => 'translate-contactUsSubTitle',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
@@ -3738,11 +3740,14 @@ class AppBear_Options
 			'name' => __( 'Enter your license key', 'textdomain' ),
 			'type' => 'title',
 			'desc' => (
-        __('You have to activate your license before start controlling application settings, if you do not have key and you need to activate the demo version please type 000 in the Key field.')
+        __('<strong><u>You must purchase a license</u> on <a href="appbear.io" target="_blank">appbear.io</a> to unlock all features of AppBear and get your own mobile app.</strong>')
+        . '<br>'
+        . __('Or you can get instant access to a demo of what your mobile app will look like and experience real-time customizations by installing AppBear from <a href="#" target="_blank">Google Play</a> or <a href="#" target="_blank">Apple App Store</a>.')
+        . '<br>'
         . '<br>'
         . ($publicKey
           ? ( __('Your public key is: ') . "( <strong>{$publicKey}</strong> )" )
-          : ( __('Activate your license by saving changes to obtain a public key.') )
+          : __('Enter and save your license key to activate AppBear.')
         )
       ),
     ));

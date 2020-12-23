@@ -7,6 +7,7 @@ namespace Appbear\Includes;
  * AppBear Admin Page
  */
 class AdminPage extends AppbearCore {
+  const SEND_SILENT_NOTIFICATION_ON_SAVE = false;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
@@ -225,7 +226,7 @@ class AdminPage extends AppbearCore {
 		/**
 		 * Redirect back to the settings page that was submitted
 		 */
-		$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+    $goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
 		wp_redirect( $goback );
 		exit;
 	}
@@ -367,6 +368,8 @@ class AdminPage extends AppbearCore {
               'X-AppBear-Key' => $public_key,
             ),
           ));
+
+          $this->_sendSilentNotification(true);
         break;
 
         // Parsing the configuration to be read in mobile application
@@ -713,16 +716,27 @@ class AdminPage extends AppbearCore {
 
             switch($section['showposts']) {
               case 'categories':
+                $queryURL = '';
                 $selected_categories = explode( ',', $section['categories'][0] );
-                $category = get_category_by_slug( $selected_categories[0] );
-                $ids = '';
 
-                foreach ($section['categories'] as $key => $cat) {
-                  $other = get_category_by_slug($cat);
-                  $ids = ($key == 0) ? $other->term_id : ($ids . ',' . $other->term_id);
+                if (empty($selected_categories) === false) {
+                  $ids = '';
+
+                  foreach ($selected_categories as $idx => $cat) {
+                    $category = get_category_by_slug($cat);
+                    $termId = $category->term_id ? $category->term_id : false;
+
+                    if ( $idx !== 0 && empty($termId) === false ) {
+                      $ids .= ',';
+                    }
+
+                    $ids .= $termId ? $termId : '';
+                  }
+
+                  $queryURL .= empty($ids) === false ? "categories={$ids}" : '';
                 }
 
-                $item['url'] .= '&categories=' . $ids;
+                $item['url'] .= $queryURL;
               break;
 
               case 'tags':
@@ -1351,9 +1365,10 @@ class AdminPage extends AppbearCore {
           $options['validConfig'] = true;
 
           // NOTE: Debug line
-          // dd($options);
+          // dd($public_key, $this->_getLicenseKey(), $responseObject);
 
           update_option( 'appbear-options', $options );
+          $this->_sendSilentNotification();
         break;
       }
 
@@ -1406,10 +1421,12 @@ class AdminPage extends AppbearCore {
     else {
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+      // NOTE: Debug line
+      // dd($license, $license_data);
+
       if ( true === $license_data->success ) {
         $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
 
-        // NOTE: FALSE?
         update_option( APPBEAR_PUBLIC_KEY_OPTION, $publicKey, false );
       }
       else {
@@ -1483,6 +1500,34 @@ class AdminPage extends AppbearCore {
       'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
       'android_bundle' => isset($options) ? $options['android_bundle'] : '',
     ));
+  }
+
+  /**
+   * Send Silent Notification
+   *
+   * @param boolean $translationChanged Did translation change?
+   * @return void
+   */
+  private function _sendSilentNotification($translationChanged = false) {
+    if ( static::SEND_SILENT_NOTIFICATION_ON_SAVE === false ) {
+      return;
+    }
+
+    $base_url = get_home_url();
+    $base_url = substr($base_url, -1) === '/' ? substr($base_url, 0, -1) : $base_url;
+    $licensedBase = str_replace( 'http://', '', str_replace( 'http://', '', $base_url ) );
+    $licensedBase = str_replace( 'https://', '', str_replace( 'https://', '', $licensedBase ) );
+    $endpoint = APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase;
+
+    if ( $translationChanged === true ) {
+      $endpoint .= '&change_translations=true';
+    }
+
+    $response = wp_remote_get($endpoint);
+    $body = wp_remote_retrieve_body( $response );
+
+    // NOTE: Debug line
+    dd($body);
   }
 
   /*
