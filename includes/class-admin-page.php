@@ -1406,10 +1406,12 @@ class AdminPage extends AppbearCore {
     else {
       $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+      // NOTE: Debug line
+      dd($license, $license_data);
+
       if ( true === $license_data->success ) {
         $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
 
-        // NOTE: FALSE?
         update_option( APPBEAR_PUBLIC_KEY_OPTION, $publicKey, false );
       }
       else {
