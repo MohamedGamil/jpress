@@ -225,7 +225,7 @@ class AdminPage extends AppbearCore {
 		/**
 		 * Redirect back to the settings page that was submitted
 		 */
-		$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+    $goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
 		wp_redirect( $goback );
 		exit;
 	}
@@ -287,7 +287,7 @@ class AdminPage extends AppbearCore {
    */
 	public function after_save_fields( $data, $object_id, $updated_fields = array() ) {
     // NOTE: Debug line
-    // dd($data);
+    dd($data);
 
 		if ( $this->id !== $object_id ) {
 			return;

@@ -1170,12 +1170,12 @@ class AppBear_Options
     ));
 
     $homepage->open_mixed_field(
-    array(
-      'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
-      'options' => array(
-    'show_if' => array('tabsbar_categories_tab', '=', 'true')
-    )
-    )
+      array(
+        'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
+        'options' => array(
+          'show_if' => array('tabsbar_categories_tab', '=', 'true')
+        ),
+      )
     );
     $homepage->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
@@ -1185,7 +1185,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false'
-      )
+      ),
     ));
     $homepage->add_field(array(
       'id' => 'homepage-sections-title',
