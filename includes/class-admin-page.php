@@ -1351,7 +1351,7 @@ class AdminPage extends AppbearCore {
           $options['validConfig'] = true;
 
           // NOTE: Debug line
-          dd($responseObject);
+          dd($public_key, $this->_getLicenseKey(), $responseObject);
 
           update_option( 'appbear-options', $options );
         break;
