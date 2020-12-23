@@ -716,21 +716,15 @@ class AdminPage extends AppbearCore {
 
             switch($section['showposts']) {
               case 'categories':
-                // TODO:
-                /* $tabQueryURL = '/wp-json/wl/v1/posts?';
-                $selected_categories = explode( ',', $slide['categories'][0] );
+                $queryURL = '';
+                $selected_categories = explode( ',', $section['categories'][0] );
 
                 if (empty($selected_categories) === false) {
                   $ids = '';
-                  $firstCat = false;
 
                   foreach ($selected_categories as $idx => $cat) {
                     $category = get_category_by_slug($cat);
                     $termId = $category->term_id ? $category->term_id : false;
-
-                    if ($idx === 0) {
-                      $firstCat = $category;
-                    }
 
                     if ( $idx !== 0 && empty($termId) === false ) {
                       $ids .= ',';
@@ -739,21 +733,10 @@ class AdminPage extends AppbearCore {
                     $ids .= $termId ? $termId : '';
                   }
 
-                  $tabQueryURL .= empty($ids) === false ? "categories={$ids}" : '';
+                  $queryURL .= empty($ids) === false ? "categories={$ids}" : '';
                 }
 
-                $item['url']   = $tabQueryURL; */
-
-                $selected_categories = explode( ',', $section['categories'][0] );
-                $category = get_category_by_slug( $selected_categories[0] );
-                $ids = '';
-
-                foreach ($section['categories'] as $key => $cat) {
-                  $other = get_category_by_slug($cat);
-                  $ids = ($key == 0) ? $other->term_id : ($ids . ',' . $other->term_id);
-                }
-
-                $item['url'] .= '&categories=' . $ids;
+                $item['url'] .= $queryURL;
               break;
 
               case 'tags':
