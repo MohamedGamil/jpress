@@ -182,10 +182,14 @@ function appbear_check_license()
 }
 
 
-// FIXME: Missing docs comment
+/**
+ * Parse Shortcodes
+ *
+ * @param string $content
+ * @return string
+ */
 function appbear_shortcodes_parsing($content)
 {
-
 	// NOTE: A couple of things needs to be done here:
 	//            1) Revise each replacement
 	//            2) A better optimized way to replace strings
@@ -200,10 +204,6 @@ function appbear_shortcodes_parsing($content)
 	// ';
 	// $string = preg_replace($pattern, $replacement, $string);
 
-
-	// $pattern = '/\[gallery [\s\S]*\]/i';
-  // preg_match_all($pattern, $content, $matches);
-  // dd($matches, $content);
 
 	$pattern = "/\[tie_list type=\"checklist\"\]\n<ul>\n/i";
 	$string = preg_replace($pattern, "<div class=\"tie_list checklist\">", $content);
@@ -250,21 +250,26 @@ function appbear_shortcodes_parsing($content)
 	// $string = str_replace('</p>', "</div>", $string);
 
 
-	// Gallery Start
+  // Gallery Start
+  // FIXME: This codeblock handles gallery replacements for mobile app,
+  //            but it can only handle one `gallery` shortcode per content,
+  //            and that can pose an issue in posts that use the `gallery`
+  //            shortcode multiple times.
 	$pos = strpos($string, "ids=\"");
 	$new_string  = substr($string, $pos + 5);
 	$second_pos = strpos($new_string, "\"");
 	$ids = substr($new_string, 0, $second_pos);
-	$ids = explode(",", $ids);
-	$output = "";
-	$attr = array();
-	$attr['includes'] = $ids;
-	$html5 = current_theme_supports('html5', 'gallery');
+	$ids = explode( ',', $ids );
+	$output = '';
+	$attr = array( 'include' => $ids );
+  $html5 = current_theme_supports('html5', 'gallery');
+  $columns = 5;
+  $selector = 'appbear-app-gallery';
 	$atts  = shortcode_atts(
 		array(
 			'order'      => 'ASC',
 			'orderby'    => 'menu_order ID',
-			'id'         => $post ? $post->ID : 0,
+			'id'         => absint(get_the_ID()),
 			'itemtag'    => $html5 ? 'figure' : 'dl',
 			'icontag'    => $html5 ? 'div' : 'dt',
 			'captiontag' => $html5 ? 'figcaption' : 'dd',
@@ -276,8 +281,9 @@ function appbear_shortcodes_parsing($content)
 		),
 		$attr,
 		'gallery'
-	);
-	foreach ($ids as &$value) {
+  );
+
+	foreach ($ids as $value) {
 		$_attachments = get_posts(
 			array(
 				'include'        => $atts['include'],
@@ -287,11 +293,14 @@ function appbear_shortcodes_parsing($content)
 			)
 		);
 
-		$attachments = array();
+    $attachments = array();
+
 		foreach ($_attachments as $key => $val) {
 			$attachments[$val->ID] = $_attachments[$key];
-		}
-		$output = "\n";
+    }
+
+    $output = "\n";
+
 		foreach ($attachments as $att_id => $attachment) {
 			if (!empty($atts['link'])) {
 				if ('none' === $atts['link']) {
@@ -303,79 +312,99 @@ function appbear_shortcodes_parsing($content)
 				$output .= wp_get_attachment_link($att_id, $atts['size'], true);
 			}
 			$output .= "\n";
-		}
-		if (apply_filters('use_default_gallery_style', !$html5)) {
-			$type_attr = current_theme_supports('html5', 'style') ? '' : ' type="text/css"';
-			$gallery_style = "
-			               <style{$type_attr}>
-			                       #{$selector} {
-			                               margin: auto;
-			                       }
-			                       #{$selector} .gallery-item {
-			                               float: {$float};
-			                               margin-top: 10px;
-			                               text-align: center;
-			                               width: {$itemwidth}%;
-			                       }
-			                     #{$selector} img {
-			                               border: 2px solid #cfcfcf;
-			                       }
-			                       #{$selector} .gallery-caption {
-			                               margin-left: 0;
-			                       }
-			                       /* see gallery_shortcode() in wp-includes/media.php */
-			               </style>\n\t\t";
-		}
+    }
+
+		// if (apply_filters('use_default_gallery_style', !$html5)) {
+    //   $type_attr = current_theme_supports('html5', 'style') ? '' : ' type="text/css"';
+    //   // $selector = ;
+		// 	$gallery_style = "
+		// 	               <style{$type_attr}>
+		// 	                       #{$selector} {
+		// 	                               margin: auto;
+		// 	                       }
+		// 	                       #{$selector} .gallery-item {
+		// 	                               float: {$float};
+		// 	                               margin-top: 10px;
+		// 	                               text-align: center;
+		// 	                               width: {$itemwidth}%;
+		// 	                       }
+		// 	                     #{$selector} img {
+		// 	                               border: 2px solid #cfcfcf;
+		// 	                       }
+		// 	                       #{$selector} .gallery-caption {
+		// 	                               margin-left: 0;
+		// 	                       }
+		// 	                       /* see gallery_shortcode() in wp-includes/media.php */
+		// 	               </style>\n\t\t";
+    // }
+
+    $gallery_style = '';
+    $itemtag = $atts['itemtag'];
+    $icontag = $atts['icontag'];
+    $captiontag = $atts['captiontag'];
 		$size_class  = sanitize_html_class($atts['size']);
 		$gallery_div = "<div id='1' class='gallery galleryid-1 gallery-columns-4 gallery-size-{$size_class}'>";
 		$output = apply_filters('gallery_style', $gallery_style . $gallery_div);
-		$i = 0;
+    $i = 0;
+
 		foreach ($attachments as $id => $attachment) {
-			$attr = (trim($attachment->post_excerpt)) ? array('aria-describedby' => "$selector-$id") : '';
+      $attr = (trim($attachment->post_excerpt)) ? array('aria-describedby' => "$selector-$id") : '';
+
 			if (!empty($atts['link']) && 'file' === $atts['link']) {
 				$image_output = wp_get_attachment_link($id, $atts['size'], false, false, false, $attr);
 			} elseif (!empty($atts['link']) && 'none' === $atts['link']) {
 				$image_output = wp_get_attachment_image($id, $atts['size'], false, $attr);
 			} else {
 				$image_output = wp_get_attachment_link($id, $atts['size'], true, false, false, $attr);
-			}
+      }
+
 			$image_meta = wp_get_attachment_metadata($id);
 			$orientation = '';
-			if (isset($image_meta['height'], $image_meta['width'])) {
+
+      if (isset($image_meta['height'], $image_meta['width'])) {
 				$orientation = ($image_meta['height'] > $image_meta['width']) ? 'portrait' : 'landscape';
-			}
+      }
+
 			$output .= "<{$itemtag} class='gallery-item'>";
 			$output .= "
                        <{$icontag} class='gallery-icon {$orientation}'>
                                $image_output
                        </{$icontag}>";
+
 			if ($captiontag && trim($attachment->post_excerpt)) {
 				$output .= "
                                <{$captiontag} class='wp-caption-text gallery-caption' id='$selector-$id'>
                                " . wptexturize($attachment->post_excerpt) . "
                                </{$captiontag}>";
-			}
-			$output .= "</{$itemtag}>";
+      }
+
+      $output .= "</{$itemtag}>";
+
 			if (!$html5 && $columns > 0 && 0 === ++$i % $columns) {
 				$output .= '<br style="clear: both" />';
 			}
-		}
+    }
+
 		if (!$html5 && $columns > 0 && 0 !== $i % $columns) {
 			$output .= "
                        <br style='clear: both' />";
-		}
+    }
+
 		$output .= "
                </div>\n";
-	}
-	// print_r($images);
-	// echo"</pre>";
+  }
 
   // DEPRECATED: The following line applies the above logic to the string while omiting the rest of the string,
   //                    this behavior introduce unwanted effect in the mobile app resulting in a missing post content.
   //                    Plus it looks like the gallery shortcode is already pre-applied in the post content, thus the
   //                    entirety of this code block needs proper refactoring.
 	// $pattern = '/\[gallery [\s\S]*\]/i';
-  // $string = preg_replace($pattern, $output, $string);
+	$pattern = '/^\[gallery [0-9\s\w\'\"\=\,]*\]$/im';
+  $string = preg_replace($pattern, $output, $string);
+
+  // NOTE: Debug Line
+  // preg_match_all($pattern, $content, $matches);
+  // dd($matches, $content);
 
 
 	// exit();
