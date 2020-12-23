@@ -1512,7 +1512,9 @@ class AdminPage extends AppbearCore {
       $endpoint .= '&change_translations=true';
     }
 
-    wp_remote_get($endpoint);
+    $response = wp_remote_get($endpoint);
+
+    dd($response);
   }
 
   /*
