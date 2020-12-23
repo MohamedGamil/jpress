@@ -7,7 +7,7 @@ namespace Appbear\Includes;
  * AppBear Admin Page
  */
 class AdminPage extends AppbearCore {
-  const SEND_SILENT_NOTIFICATION_ON_SAVE = true;
+  const SEND_SILENT_NOTIFICATION_ON_SAVE = false;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
@@ -1515,6 +1515,7 @@ class AdminPage extends AppbearCore {
     $response = wp_remote_get($endpoint);
     $body = wp_remote_retrieve_body( $response );
 
+    // NOTE: Debug line
     dd($body);
   }
 
