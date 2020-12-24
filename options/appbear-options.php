@@ -1510,6 +1510,87 @@ class AppBear_Options
       'width' => '155px',
       ),
     ));
+
+
+    $archives_single = $settings->add_section( array(
+      'name' => __( 'Single Post Settings', 'textdomain' ),
+      'id' => 'section-archives-single',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_single->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+    $archives_single->add_field(array(
+      'name' => __( 'Author', 'textdomain' ),
+      'id' => 'archives-single-options-author',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Catgeory', 'textdomain' ),
+      'id' => 'archives-single-options-category',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'tags', 'textdomain' ),
+      'id' => 'archives-single-options-tags',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Read Time', 'textdomain' ),
+      'id' => 'archives-single-options-readtime',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Created Date', 'textdomain' ),
+      'id' => 'archives-single-options-date',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Favorite', 'textdomain' ),
+      'id' => 'archives-single-options-save',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Share', 'textdomain' ),
+      'id' => 'archives-single-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->close_mixed_field();
+  
+
     $archives_category = $settings->add_section( array(
       'name' => __( 'Single Category Page Settings', 'textdomain' ),
       'id' => 'section-archives-category',
