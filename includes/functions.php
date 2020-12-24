@@ -732,7 +732,7 @@ function appbear_seed_default_demo()
       'local-count' => 5,
       'postlayout' => 'PostLayout.cardPost',
       'local-firstfeatured' => 'false',
-      'firstFeatured' => 'PostLayout.featuredPost',
+      'firstFeatured' => 'PostLayout.endThumbPost',
       'separator' => 'false',
       'options-category' => 'true',
       'options-readtime' => 'true',
