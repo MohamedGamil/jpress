@@ -242,7 +242,7 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   private function _canInit() {
-    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
+    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit' && empty($_POST);
 
     return is_admin() === true && (
       ( static::DISABLE_IF_UPDATING === true && $updating === false )
