@@ -20,33 +20,38 @@ function appbear_get_option($name, $default = false)
 	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
-
 /**
- * Get Time Format
+ * Get Reading time for the current global post
+ *
  */
-function appbear_get_time()
+function appbear_get_read_time()
 {
-	$time_format = appbear_get_option('time_format');
 
-	// Human Readable Post Dates
-	if ($time_format == 'modern') {
-		$time_now  = current_time('timestamp');
-		$post_time = get_the_time('U');
+	$post_content = get_post()->post_content;
+	$post_content = strip_shortcodes( strip_tags( $post_content ) );
+	$post_content = preg_split('/\s+/u', $post_content, null, PREG_SPLIT_NO_EMPTY );
 
-		if ($post_time > ($time_now - MONTH_IN_SECONDS)) {
-			// NOTE: Why use `TIELABS_TEXTDOMAIN` ?
-			$since = sprintf(esc_html__('%s ago', TIELABS_TEXTDOMAIN), human_time_diff($post_time, $time_now));
-		} else {
-			$since = get_the_date();
+	if( is_array( $post_content ) ){
+
+		$words_count   = count( $post_content );
+		$words_per_min = apply_filters( 'AppBear/words_per_min', 250 );
+		$reading_time  = round( $words_count / $words_per_min );
+
+		if( $reading_time < 1){
+			$result = esc_html__( 'Less than a minute', 'textdomain' );
 		}
-	}
+		elseif( $reading_time > 60 ){
+			$result = sprintf( esc_html__( '%s hours read', 'textdomain' ), number_format_i18n( floor( $reading_time / 60 ) ) );
+		}
+		else if ( $reading_time == 1 ){
+			$result = esc_html__( '1 minute read', 'textdomain' );
+		}
+		else {
+			$result = sprintf( esc_html__( '%s minutes read', 'textdomain' ), number_format_i18n( $reading_time ) );
+		}
 
-	// Default date format
-	else {
-		$since = get_the_date();
+		return apply_filters( 'AppBear/API/Post/Read_Time', $result, $reading_time, $words_per_min, $words_count );
 	}
-
-	return apply_filters('AppBear/API/Post/Post_Date', $since);
 }
 
 
