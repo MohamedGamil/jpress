@@ -632,7 +632,7 @@ class AdminPage extends AppbearCore {
               $item['url']   = $tabQueryURL;
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
-                $item['title']  =   $slide['title'];
+                $item['title']  =   stripslashes($slide['title']);
               }
               else {
                 $item['title'] = $firstCat !== false ? $firstCat->name : '';
@@ -712,7 +712,7 @@ class AdminPage extends AppbearCore {
             }
 
             if (isset($section["local-section_title"]) && $section["local-section_title"] != 'false') {
-              $item['title']  =   $section['title'];
+              $item['title'] =   stripslashes($section['title']);
 
               if (isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off")) {
                 $item['seeMore']  =   array(
