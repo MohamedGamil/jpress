@@ -378,7 +378,8 @@ class AdminPage extends AppbearCore {
           if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
             appbear_seed_default_demo();
 
-            $data = appbear_get_option('%ALL%');
+            $opts = appbear_get_option('%ALL%');
+            $data = array_merge( $opts, $data );
           }
 
           $options['rtl'] = is_rtl() ? 'true' : 'false';
@@ -492,6 +493,9 @@ class AdminPage extends AppbearCore {
                       case 'MainPage.settings':
                         $navigator['title'] = __('Settings', 'textdomain' );
                       break;
+                      case 'MainPage.contactUs':
+                        $navigator['title'] = __('Contact us', 'textdomain' );
+                      break;
                     }
                   }
                 break;
@@ -554,6 +558,9 @@ class AdminPage extends AppbearCore {
                       break;
                       case 'MainPage.settings':
                         $navigator['title'] = __('Settings', 'textdomain' );
+                      break;
+                      case 'MainPage.contactUs':
+                        $navigator['title'] = __('Contact us', 'textdomain' );
                       break;
                     }
                   }
