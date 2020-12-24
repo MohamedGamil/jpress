@@ -374,9 +374,9 @@ class AdminPage extends AppbearCore {
 
         // NOTE: Parsing the configuration to be read in mobile application
         case APPBEAR_PRIMARY_OPTIONS:
-          // NOTE: Apply default demo data if doing a reset
+          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
           if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
-            appbear_seed_default_demo();
+            appbear_seed_default_demo(true);
 
             $opts = appbear_get_option('%ALL%');
             $data = array_merge( $opts, $data );
@@ -632,7 +632,7 @@ class AdminPage extends AppbearCore {
               $item['url']   = $tabQueryURL;
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
-                $item['title']  =   $slide['title'];
+                $item['title']  =   stripslashes($slide['title']);
               }
               else {
                 $item['title'] = $firstCat !== false ? $firstCat->name : '';
@@ -712,7 +712,7 @@ class AdminPage extends AppbearCore {
             }
 
             if (isset($section["local-section_title"]) && $section["local-section_title"] != 'false') {
-              $item['title']  =   $section['title'];
+              $item['title'] =   stripslashes($section['title']);
 
               if (isset($section["local-enable_see_all"]) && !($section["local-enable_see_all"] == 'false'||$section["local-enable_see_all"]=="off")) {
                 $item['seeMore']  =   array(

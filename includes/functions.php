@@ -654,9 +654,10 @@ function appbear_notice($message, $type = 'success', $isDismissable = true, $isI
 /**
  * Seed Default AppBear Demo Options
  *
+ * @param boolean $hardReset Force applying default options
  * @return void
  */
-function appbear_seed_default_demo()
+function appbear_seed_default_demo($hardReset = false)
 {
   $hasChanges = false;
   $options = appbear_get_option('%ALL%');
@@ -664,7 +665,7 @@ function appbear_seed_default_demo()
   $bottomTabs = isset($options['bottombar_tabs']) ? $options['bottombar_tabs'] : array();
   $sections = isset($options['sections']) ? $options['sections'] : array();
 
-  if (empty($menuItems) === true) {
+  if (empty($menuItems) === true || $hardReset === true) {
     $hasChanges = true;
     $options['navigators'] = array();
     $options['navigators'][] = array(
@@ -682,7 +683,7 @@ function appbear_seed_default_demo()
     );
   }
 
-  if (empty($bottomTabs) === true) {
+  if (empty($bottomTabs) === true || $hardReset === true) {
     $hasChanges = true;
     $options['bottombar_tabs'] = array();
     $options['bottombar_tabs'][] = array(
@@ -701,7 +702,7 @@ function appbear_seed_default_demo()
     );
   }
 
-  if (empty($sections) === true) {
+  if (empty($sections) === true || $hardReset === true) {
     $hasChanges = true;
     $categories = get_terms( 'category', array() );
     $categories = is_wp_error( $categories ) ? array() : $categories;
@@ -742,7 +743,7 @@ function appbear_seed_default_demo()
     );
   }
 
-  if ( $hasChanges === true ) {
+  if ( $hasChanges === true || $hardReset === true) {
     // NOTE: Debug line
     // dd($options);
 

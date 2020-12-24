@@ -48,7 +48,7 @@ class App_Bear_Activator {
    * @return void
    */
   public static function seedDefaultDemo() {
-    appbear_seed_default_demo();
+    appbear_seed_default_demo(false);
   }
 
   /**
