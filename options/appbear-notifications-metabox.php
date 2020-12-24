@@ -140,7 +140,7 @@ class AppBear_Notifications_Metabox {
     // dd( $response );
 
     if ( is_wp_error( $response ) === false ) {
-      $data = json_decode( wp_remote_retrieve_body( $response ) );
+      $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
       if ( isset($data['success']) && $data['success'] ) {
         $usageData = isset($data['data']) ? $data['data'] : [
