@@ -24,7 +24,7 @@ class App_Bear_Activator {
 
   /**
    * Internal storage of 3rd-party themes options,
-   * and plugin's options changes
+   * plugin's options changes.
    *
    * @var array
    */
@@ -37,8 +37,19 @@ class App_Bear_Activator {
 	 * @since    0.0.2
 	 */
 	public static function activate() {
+    static::seedDefaultDemo();
     static::jannahThemeIntegration();
 	}
+
+  /**
+   * Apply Default Demo to Plugin Options
+   *
+	 * @since    0.0.12
+   * @return void
+   */
+  public static function seedDefaultDemo() {
+    appbear_seed_default_demo();
+  }
 
   /**
    * Integration with Jannah Theme
@@ -152,8 +163,7 @@ class App_Bear_Activator {
    */
   private static function _commitOptionsChanges() {
     $options = static::$_pluginOptions;
-    $current = get_option( APPBEAR_PRIMARY_OPTIONS );
-    $current = is_array($current) ? $current : array();
+    $current = appbear_get_option('%ALL%');
     $changes = array_merge( $current, $options );
 
     update_option( APPBEAR_PRIMARY_OPTIONS, $changes, false );

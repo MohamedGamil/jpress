@@ -134,13 +134,13 @@ class AppBear_Notifications_Metabox {
       return;
     }
 
-    $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
+    $response = AppbearAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
 
     // NOTE: Debug line
     // dd( $response );
 
     if ( is_wp_error( $response ) === false ) {
-      $data = json_decode( wp_remote_retrieve_body( $response ) );
+      $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
       if ( isset($data['success']) && $data['success'] ) {
         $usageData = isset($data['data']) ? $data['data'] : [
@@ -242,7 +242,7 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   private function _canInit() {
-    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit';
+    $updating = isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit' && empty($_POST);
 
     return is_admin() === true && (
       ( static::DISABLE_IF_UPDATING === true && $updating === false )

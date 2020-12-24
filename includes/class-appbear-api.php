@@ -68,8 +68,10 @@ class AppbearAPI {
    */
   public static function send_notification($title, $body, $type = 'post', $ID = '') {
     $params = array(
-      'title' => $title,
-      'body' => $body,
+      'notification' => array(
+        'title' => $title,
+        'body' => $body,
+      ),
       'data' => array(
         'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
         'type' => $type,

@@ -647,14 +647,14 @@ class AppBear_Options
       'id' => 'styling-themeMode_light-bottomBarInActiveColor',
       //'name' => __( 'Light Mode', 'textdomain' ),
       'type' => 'colorpicker',
-      'default' => '#BCBCBC',
+      'default' => '#8A8A8A',
     ));
 
     $appbear_bottombar_styling->add_field(array(
       'id' => 'styling-themeMode_dark-bottomBarInActiveColor',
       'name' => __( 'Dark Mode', 'textdomain' ),
       'type' => 'colorpicker',
-      'default' => '#838483',
+      'default' => '#C3C3C3',
       'options' => array(
         'show_if' => array('switch_theme_mode', '=', 'true'),
       )
@@ -1196,24 +1196,25 @@ class AppBear_Options
       'grid' => '5-of-6',
       'default' => __( 'Home', 'textdomain' ),
       'options' => array(
-    'show_if' => array('local-hompage_title', '=', 'true')
+        'show_if' => array('local-hompage_title', '=', 'true')
       )
     ));
     $homepage->close_mixed_field();
+
     $section = $homepage->add_group( array(
       'name' => __( 'Homepage Sections', 'textdomain' ),
       'id' => 'sections',
       'options' => array(
-      'add_item_text' => __('New Section', 'textdomain'),
+        'add_item_text' => __('New Section', 'textdomain'),
       ),
       'controls' => array(
-      'name' =>  __('Section', 'textdomain').' #',
-      'readonly_name' => false,
-      'images' => true,
-      'position' => 'left',
-      'default_image' => APPBEAR_URL . '/img/transparent.png',
-      'image_field_id' => 'postlayout',
-      'height' => '190px',
+        'name' =>  __('Section', 'textdomain').' #',
+        'readonly_name' => false,
+        'images' => true,
+        'position' => 'left',
+        'default_image' => APPBEAR_URL . '/img/transparent.png',
+        'image_field_id' => 'postlayout',
+        'height' => '190px',
       ),
     ));
     $section->open_mixed_field(array('name' =>  __('Section Title', 'textdomain' )));
@@ -1234,7 +1235,7 @@ class AppBear_Options
       'grid' => '5-of-6',
       'desc' => __( 'If you don\'t need this section to have title, then switch it off', 'textdomain' ),
       'options' => array(
-    'show_if' => array('local-section_title', '=', 'true')
+        'show_if' => array('local-section_title', '=', 'true')
       )
     ));
     $section->close_mixed_field();
@@ -1249,7 +1250,7 @@ class AppBear_Options
         'off_value' => 'false'
       ),
       'options' => array(
-    'show_if' => array('local-section_title', '=', 'true')
+        'show_if' => array('local-section_title', '=', 'true')
       )
     ));
     $section->add_field(array(
@@ -1280,7 +1281,7 @@ class AppBear_Options
       'items' => AppbearItems::terms( 'category' ),
       'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
       'options' => array(
-    'show_if' => array('showposts', '=', 'categories')
+        'show_if' => array('showposts', '=', 'categories')
       )
     ));
     $section->add_field(array(
@@ -1291,7 +1292,7 @@ class AppBear_Options
       'items' => AppbearItems::terms( 'post_tag' ),
       'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
       'options' => array(
-    'show_if' => array('showposts', '=', 'tags')
+        'show_if' => array('showposts', '=', 'tags')
       )
     ));
     $section->close_mixed_field();
@@ -1313,7 +1314,7 @@ class AppBear_Options
       'grid' => '5-of-6',
       'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
       'options' => array(
-    'show_if' => array('local-enable_exclude_posts', '=', 'true')
+        'show_if' => array('local-enable_exclude_posts', '=', 'true')
       )
     ));
     $section->close_mixed_field();
@@ -1335,8 +1336,8 @@ class AppBear_Options
       'grid' => '5-of-6',
       'desc' => __( 'Number of posts to pass over', 'textdomain' ),
       'options' => array(
-      'show_unit'=>false,
-    'show_if' => array('local-enable_offset_posts', '=', 'true')
+        'show_unit' => false,
+        'show_if' => array('local-enable_offset_posts', '=', 'true')
       )
     ));
     $section->close_mixed_field();
@@ -1417,8 +1418,8 @@ class AppBear_Options
       'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
       ),
       'options' => array(
-      'width' => '155px',
-    'show_if' => array('local-firstfeatured', '=', 'true')
+        'width' => '155px',
+        'show_if' => array('local-firstfeatured', '=', 'true')
       )
     ));
     $section->add_field(array(
@@ -2136,8 +2137,8 @@ class AppBear_Options
       'name' => __( 'iOS ID', 'textdomain' ),
       'id' => 'advertisement_ios_interstatial_id_text',
       'type' => 'text',
-    'options'	=>	array(
-    'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
+      'options'	=>	array(
+        'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
       ),
     ));
 
@@ -2177,8 +2178,8 @@ class AppBear_Options
       'name' => __( 'Android ID', 'textdomain' ),
       'id' => 'advertisement_android_rewarded_id_text',
       'type' => 'text',
-    'options'	=>	array(
-    'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
+      'options'	=>	array(
+        'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
       ),
     ));
     $admob->add_field(
@@ -2186,8 +2187,8 @@ class AppBear_Options
       'name' => __( 'iOS ID', 'textdomain' ),
       'id' => 'advertisement_android_rewarded_ios_text',
       'type' => 'text',
-    'options'	=>	array(
-    'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
+      'options'	=>	array(
+        'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
       ),
     ));
     $admob->close_mixed_field();
@@ -2813,8 +2814,8 @@ class AppBear_Options
       'name' => __( 'About us page',   'textdomain' ),
       'type' => 'select',
       'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
-    'options'	=>	array(
-    'show_if' => array('local-settingspage-aboutus', '=', 'true')
+      'options'	=>	array(
+        'show_if' => array('local-settingspage-aboutus', '=', 'true')
       ),
     ));
 
@@ -2858,8 +2859,8 @@ class AppBear_Options
       'grid' => '5-of-6',
       'default' => get_bloginfo( 'admin_email' ),
       'options' => array(
-      'desc_tooltip' => true,
-    'show_if' => array('settingspage-contactus', '=', 'true')
+        'desc_tooltip' => true,
+        'show_if' => array('settingspage-contactus', '=', 'true')
       )
     ));
 
