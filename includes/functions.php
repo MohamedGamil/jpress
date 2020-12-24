@@ -55,6 +55,36 @@ function appbear_get_read_time()
 }
 
 
+
+/**
+ * Get Time Format
+ */
+function appbear_get_time()
+{
+	$time_format = appbear_get_option('time_format');
+
+	// Human Readable Post Dates
+	if ($time_format == 'modern') {
+		$time_now  = current_time('timestamp');
+		$post_time = get_the_time('U');
+
+		if ($post_time > ($time_now - MONTH_IN_SECONDS)) {
+			// NOTE: Why use `TIELABS_TEXTDOMAIN` ?
+			$since = sprintf(esc_html__('%s ago', TIELABS_TEXTDOMAIN), human_time_diff($post_time, $time_now));
+		} else {
+			$since = get_the_date();
+		}
+	}
+
+	// Default date format
+	else {
+		$since = get_the_date();
+	}
+
+	return apply_filters('AppBear/API/Post/Post_Date', $since);
+}
+
+
 /**
  * Get Post Format
  *
