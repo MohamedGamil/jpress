@@ -374,9 +374,9 @@ class AdminPage extends AppbearCore {
 
         // NOTE: Parsing the configuration to be read in mobile application
         case APPBEAR_PRIMARY_OPTIONS:
-          // NOTE: Apply default demo data if doing a reset
+          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
           if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
-            appbear_seed_default_demo();
+            appbear_seed_default_demo(true);
 
             $opts = appbear_get_option('%ALL%');
             $data = array_merge( $opts, $data );
