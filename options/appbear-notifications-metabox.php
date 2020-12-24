@@ -137,7 +137,7 @@ class AppBear_Notifications_Metabox {
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['body'], 'post', $postID );
 
     // NOTE: Debug line
-    dd( $response );
+    // dd( $response );
 
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
