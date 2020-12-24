@@ -849,7 +849,14 @@ class AdminPage extends AppbearCore {
           */
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
-          $options['archives']['single']['answerButton'] = "true";
+
+          // TODO: Options for these?
+          $options['archives']['single'] = array(
+            'save' => 'true',
+            'share' => 'true',
+            'textSize' => 'true',
+            'answerButton' => 'true',
+          );
 
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
           $options['archives']['category']['options']['count'] = $data['local-archives-category-count'];

@@ -15,7 +15,7 @@ jQuery(document).ready(function($){
             });
         });
     });
-});  
+});
 
 function appbear_image_uploader_trigger( $thisElement ){
 
