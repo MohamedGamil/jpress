@@ -850,13 +850,35 @@ class AdminPage extends AppbearCore {
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
 
-          // TODO: Options for these?
-          $options['archives']['single'] = array(
-            'save' => 'true',
-            'share' => 'true',
-            'textSize' => 'true',
-            'answerButton' => 'true',
-          );
+          
+          if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
+            $options['archives']['single']['category'] = $data['archives-single-options-category'];
+          }
+
+          if (isset($data['archives-single-options-author']) && $data['archives-single-options-author'] != 'false') {
+            $options['archives']['single']['author'] = $data['archives-single-options-author'];
+          }
+
+          if (isset($data['archives-single-options-tags']) && $data['archives-single-options-tags'] != 'false') {
+            $options['archives']['single']['tags'] = $data['archives-single-options-tags'];
+          }
+
+          if (isset($data['archives-single-options-readtime']) && $data['archives-single-options-readtime'] != 'false') {
+            $options['archives']['single']['readTime'] = $data['archives-single-options-readtime'];
+          }
+
+          if (isset($data['archives-single-options-date']) && $data['archives-single-options-date'] != 'false') {
+            $options['archives']['single']['date'] = $data['archives-single-options-date'];
+          }
+
+          if (isset($data['archives-single-options-save']) && $data['archives-single-options-save'] != 'false') {
+            $options['archives']['single']['save'] = $data['archives-single-options-save'];
+          }
+
+          if (isset($data['archives-single-options-share']) && $data['archives-single-options-share'] != 'false') {
+            $options['archives']['single']['share'] = $data['archives-single-options-share'];
+          }
+ 
 
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
           $options['archives']['category']['options']['count'] = $data['local-archives-category-count'];
