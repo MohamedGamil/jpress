@@ -217,7 +217,7 @@ class AppBear_Endpoints {
       'date'          => appbear_get_time(),
       'modified'      => get_post_modified_time(),
       'comment_count' => (int) get_comments_number(),
-      'read_time'     => '1 min read', // @fouad
+      'read_time'     => appbear_get_read_time(), // @fouad
       'author'        => array(
         'name' => get_the_author(),
       ),
