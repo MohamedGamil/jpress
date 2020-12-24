@@ -730,7 +730,7 @@ function appbear_seed_default_demo()
       'local-offset_posts_unit' => 'px',
       'local-sort' => 'latest',
       'local-count' => 5,
-      'postlayout' => 'PostLayout.imagePost',
+      'postlayout' => 'PostLayout.cardPost',
       'local-firstfeatured' => 'false',
       'firstFeatured' => 'PostLayout.featuredPost',
       'separator' => 'false',
