@@ -330,7 +330,7 @@ class AdminPage extends AppbearCore {
       }
 
       switch($this->id) {
-        // Parsing the translations to be read in mobile application
+        // NOTE: Parsing the translations to be read in mobile application
         case 'appbear-translations':
           $translationsKeys = array(
             'back', 'skip', 'done', 'contactUs', 'loadingUpdates', 'baseUrl', 'baseUrlTitle', 'baseUrlDesc', 'emptyBaseUrl', 'alreadyBaseUrl',
@@ -372,8 +372,15 @@ class AdminPage extends AppbearCore {
           $this->_sendSilentNotification(true);
         break;
 
-        // Parsing the configuration to be read in mobile application
+        // NOTE: Parsing the configuration to be read in mobile application
         case APPBEAR_PRIMARY_OPTIONS:
+          // NOTE: Apply default demo data if doing a reset
+          if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
+            appbear_seed_default_demo();
+
+            $data = appbear_get_option('%ALL%');
+          }
+
           $options['rtl'] = is_rtl() ? 'true' : 'false';
           $options['themeMode'] = str_replace( '_', '.', $data['thememode'] );
 

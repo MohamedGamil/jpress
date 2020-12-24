@@ -11,7 +11,12 @@ defined('ABSPATH') || exit; // Exit if accessed directly
  */
 function appbear_get_option($name, $default = false)
 {
-	$opts = get_option(APPBEAR_PRIMARY_OPTIONS);
+  $opts = get_option(APPBEAR_PRIMARY_OPTIONS);
+
+  if ( $name === '%ALL%' ) {
+    return is_array($opts) && empty($opts) === false ? $opts : array();
+  }
+
 	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
@@ -106,7 +111,7 @@ function appbear_post_video($post_id = null)
  *
  * @param string $file Template File Path
  */
-function appbear_get_template($templatePath, $vars = [])
+function appbear_get_template($templatePath, $vars = array())
 {
 	// NOTE: Should be substitued with a template file..
 	$prefix = APPBEAR_DIR . 'templates';
@@ -643,6 +648,106 @@ function appbear_shortcodes_parsing($content)
 function appbear_notice($message, $type = 'success', $isDismissable = true, $isInstant = false)
 {
   \Appbear_Notice::notice($type, $message, $isDismissable, $isInstant);
+}
+
+
+/**
+ * Seed Default AppBear Demo Options
+ *
+ * @return void
+ */
+function appbear_seed_default_demo()
+{
+  $hasChanges = false;
+  $options = appbear_get_option('%ALL%');
+  $menuItems = isset($options['navigators']) ? $options['navigators'] : array();
+  $bottomTabs = isset($options['bottombar_tabs']) ? $options['bottombar_tabs'] : array();
+  $sections = isset($options['sections']) ? $options['sections'] : array();
+
+  if (empty($menuItems) === true) {
+    $hasChanges = true;
+    $options['navigators'] = array();
+    $options['navigators'][] = array(
+        'navigators_type' => 'default',
+        'navigators_visibility' => 'visible',
+        'navigators_name' => 'Menu Item #1',
+        'type' => 'NavigationType.main',
+        'side_menu_tab_icon' => 'true',
+        'icon' => '0xe800',
+        'main' => 'MainPage.home',
+        'category' => '',
+        'page' => '',
+        'cutomized_title' => 'false',
+        'title' => '',
+    );
+  }
+
+  if (empty($bottomTabs) === true) {
+    $hasChanges = true;
+    $options['bottombar_tabs'] = array();
+    $options['bottombar_tabs'][] = array(
+        'bottombar_tabs_type' => 'default',
+        'bottombar_tabs_visibility' => 'visible',
+        'bottombar_tabs_name' => 'Tab #1',
+        'type' => 'NavigationType.main',
+        'bottom_bar_icon_enable' => 'true',
+        'icon' => '0xe800',
+        'main' => 'MainPage.home',
+        'category' => '',
+        'page' => '',
+        'title_enable' => 'false',
+        'cutomized_title' => 'false',
+        'title' => '',
+    );
+  }
+
+  if (empty($sections) === true) {
+    $hasChanges = true;
+    $categories = get_terms( 'category', array() );
+    $categories = is_wp_error( $categories ) ? array() : $categories;
+    $firstCategory = false;
+
+    if (count($categories) > 0) {
+      $first = reset($categories);
+      $firstCategory = $first->slug;
+    }
+
+    $options['sections'] = array();
+    $options['sections'][] = array(
+      'sections_type' => 'default',
+      'sections_visibility' => 'visible',
+      'local-section_title' => 'true',
+      'title' => '',
+      'local-enable_see_all' => 'false',
+      'local-enable_load_more' => 'false',
+      'showposts' => 'categories',
+      'categories' => $firstCategory ? array( $firstCategory ) : array(),
+      'tags' => array(),
+      'local-enable_exclude_posts' => 'false',
+      'local-exclude_posts' => '',
+      'local-enable_offset_posts' => 'false',
+      'local-offset_posts' => '0',
+      'local-offset_posts_unit' => 'px',
+      'local-sort' => 'latest',
+      'local-count' => 5,
+      'postlayout' => 'PostLayout.imagePost',
+      'local-firstfeatured' => 'false',
+      'firstFeatured' => 'PostLayout.featuredPost',
+      'separator' => 'false',
+      'options-category' => 'true',
+      'options-readtime' => 'true',
+      'options-date' => 'false',
+      'options-save' => 'true',
+      'options-share' => 'false',
+    );
+  }
+
+  if ( $hasChanges === true ) {
+    // NOTE: Debug line
+    // dd($options);
+
+    update_option( APPBEAR_PRIMARY_OPTIONS, $options, false );
+  }
 }
 
 
