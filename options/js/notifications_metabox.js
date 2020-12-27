@@ -2,14 +2,37 @@
  * Notifications Meta box
  */
 (function ($) {
+  "use strict";
 
   let
-    $postTitle = null,
     $widget = null,
     $groups = null,
     $checkbox = null,
-    $inputs = null;
+    $inputs = null,
+    locks = {};
 
+
+  /**
+   * Lock / Unlock post editor save action
+   *
+   * @param {*} lockIt
+   * @param {*} handle
+   * @param {*} message
+   */
+  function _lock( lockIt, handle, message ) {
+    if ( !!lockIt ) {
+      if ( ! locks[ handle ] ) {
+        locks[ handle ] = true;
+        wp.data.dispatch( 'core/editor' ).lockPostSaving( handle );
+
+        _addAlert( message, 'error', handle, false );
+      }
+    } else if ( locks[ handle ] ) {
+      locks[ handle ] = false;
+      wp.data.dispatch( 'core/editor' ).unlockPostSaving( handle );
+      wp.data.dispatch( 'core/notices' ).removeNotice( handle );
+    }
+  }
 
   /**
    * Get post title
@@ -18,6 +41,29 @@
    */
   function _getPostTitle() {
     return String(wp.data.select( 'core/editor' ).getEditedPostAttribute( 'title' )).trim();
+  }
+
+  /**
+   * Display an alert or a snackbar
+   *
+   * @param {*} handle
+   * @param {*} message
+   * @param {*} type
+   * @param {*} isDismissible
+   */
+  function _addAlert( message, type = 'error', handle = 'appbear-notifications', isDismissible = true, isSnackbar = false ) {
+    const opts = {
+      id: handle,
+      isDismissible: isDismissible === true,
+    };
+
+    if (isSnackbar === true) {
+      opts.type = 'snackbar';
+    }
+
+    message = String(message).trim();
+
+    wp.data.dispatch( 'core/notices' ).createNotice( type, message, opts );
   }
 
   /**
@@ -47,8 +93,16 @@
       $titleInput.val(postTitle);
     }
 
-    $postTitle.on('keyup', function (event) {
+    wp.data.subscribe((_e) => {
       $titleInput.val( _getPostTitle() );
+
+      console.info($checkbox.prop('checked') === true, $titleInput.val().length === 0);
+
+      _lock(
+        $checkbox.prop('checked') === true && $titleInput.val().length === 0,
+        'appbear-notifications',
+        'You must enter a push notification title and message before saving!'
+      );
     });
   }
 
@@ -65,10 +119,8 @@
     }
 
     const _callback = () => {
-      $postTitle = $('#post-title-0, #post-title-1');
       $widget = $('#appbear-notifications-metabox');
 
-      // console.info($postTitle, $widget);
       _run();
     };
 
