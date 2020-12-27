@@ -65,6 +65,32 @@ class AppbearAPI {
   }
 
   /**
+   * Save translations request
+   *
+   * @param array $translations Translations array
+   * @return array|WP_ERROR The response or WP_Error on failure.
+   */
+  public static function save_translations(array $translations) {
+    $endpoint = '/wp-json/appbear-edd-addon/v1/notifications';
+    $translations = array( 'data' => array( 'translations' => $translations ) );
+
+    return static::_send( $endpoint, $translations );
+  }
+
+  /**
+   * Save settings request
+   *
+   * @param array $options Settings options array
+   * @return array|WP_ERROR The response or WP_Error on failure.
+   */
+  public static function save_settings(array $options) {
+    $endpoint = '/wp-json/appbear-edd-addon/v1/settings';
+    $options = array( 'settings' => $options );
+
+    return static::_send( $endpoint, $options );
+  }
+
+  /**
    * Send a new push notification
    *
    * @param string $title
@@ -122,12 +148,14 @@ class AppbearAPI {
   /**
    * Send request using `wp_remote_post`,
    *
+   * @TODO: Handling responses in class instead of returning the default WordPress response
    * @param string $endpoint Endpoint relative URL
    * @param array $body Request parameters
    * @param boolean $includeAuthHeaders Include authentication headers (TRUE / FALSE)
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   protected static function _send($endpoint = '', $body = array(), $includeAuthHeaders = true) {
+    $endpoint = substr($endpoint, 0) === '/' ? $endpoint : "/{$endpoint}";
     $headers = static::_headers($includeAuthHeaders);
     $opts = array_merge(
       static::$_opts,
