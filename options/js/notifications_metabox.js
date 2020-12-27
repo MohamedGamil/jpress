@@ -9,6 +9,8 @@
     $groups = null,
     $checkbox = null,
     $inputs = null,
+    $titleInput = null,
+    $msgInput = null,
     locks = {};
 
 
@@ -20,8 +22,11 @@
    * @param {*} message
    */
   function _lock( lockIt, handle, message ) {
+    console.info( {handle, lockIt} );
+
     if ( !!lockIt ) {
       if ( ! locks[ handle ] ) {
+
         locks[ handle ] = true;
         wp.data.dispatch( 'core/editor' ).lockPostSaving( handle );
 
@@ -76,10 +81,10 @@
     $groups = $widget.find('.anm_field').filter(idx => idx > 0);
     $inputs = $groups.find('input, textarea');
     $checkbox = $widget.find('.anm_checkbox:first');
+    $titleInput = $inputs.filter('[name="appbear_notifications_title"]');
+    $msgInput = $inputs.filter('[name="appbear_notifications_message"]');
 
-    const
-      $titleInput = $inputs.filter('[name="appbear_notifications_title"]'),
-      postTitle = _getPostTitle();
+    const postTitle = _getPostTitle();
 
     $checkbox.on('change', function (event) {
       $groups.hide();
@@ -87,6 +92,8 @@
       if ( $checkbox.prop('checked') === true ) {
         $groups.show();
       }
+
+      _inputChecks();
     });
 
     if (String($titleInput.val()).trim().length === 0 && postTitle) {
@@ -94,16 +101,50 @@
     }
 
     wp.data.subscribe((_e) => {
-      $titleInput.val( _getPostTitle() );
+      if ( _getPostTitle().length > 0 ) {
+        $titleInput.val( _getPostTitle() );
+      }
 
-      console.info($checkbox.prop('checked') === true, $titleInput.val().length === 0);
-
-      _lock(
-        $checkbox.prop('checked') === true && $titleInput.val().length === 0,
-        'appbear-notifications',
-        'You must enter a push notification title and message before saving!'
-      );
+      _inputChecks();
     });
+
+    $titleInput.add($msgInput).on('input', () => {
+      _inputChecks();
+    });
+  }
+
+  /**
+   * Run inputs checks
+   */
+  function _inputChecks() {
+    const
+      isChecked = $checkbox.prop('checked') === true,
+      titleLength = $titleInput.val().length,
+      msgLength = $msgInput.val().length;
+
+    console.info({ isChecked, titleLength, msgLength });
+
+    _lock(
+      isChecked && ( titleLength === 0 || msgLength === 0 ),
+      'appbear-notifications',
+      'You must enter a push notification title and message!'
+    );
+  }
+
+  /**
+   * Register plugin checks
+   */
+  function _registerPlugin() {
+    wp.plugins.registerPlugin(
+      'appbear-notifications-metabox-checks',
+      {
+        render: () => {
+          _inputChecks();
+
+          return React.createElement('div', null, '');
+        },
+      }
+    );
   }
 
   /**
@@ -122,6 +163,7 @@
       $widget = $('#appbear-notifications-metabox');
 
       _run();
+      _registerPlugin();
     };
 
     window._wpLoadBlockEditor.then(() => setTimeout( _callback, 1000 ));

@@ -169,7 +169,12 @@ class AppBear_Notifications_Metabox {
    */
   public function enqueue_scripts() {
     wp_enqueue_style( 'appbear-notifications-metabox', APPBEAR_URL . 'options/css/notifications_metabox.css' );
-    wp_enqueue_script( 'appbear-notifications-metabox', APPBEAR_URL . 'options/js/notifications_metabox.js', array('jquery') );
+
+    wp_enqueue_script(
+      'appbear-notifications-metabox',
+      APPBEAR_URL . 'options/js/notifications_metabox.js',
+      array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
+    );
   }
 
   /**
