@@ -22,8 +22,6 @@
    * @param {*} message
    */
   function _lock( lockIt, handle, message ) {
-    console.info( {handle, lockIt} );
-
     if ( !!lockIt ) {
       if ( ! locks[ handle ] ) {
 
@@ -56,7 +54,7 @@
    * @param {*} type
    * @param {*} isDismissible
    */
-  function _addAlert( message, type = 'error', handle = 'appbear-notifications', isDismissible = true, isSnackbar = false ) {
+  function _addAlert( message, type = 'success', handle = 'appbear-notifications', isDismissible = true, isSnackbar = false ) {
     const opts = {
       id: handle,
       isDismissible: isDismissible === true,
@@ -86,6 +84,10 @@
 
     const postTitle = _getPostTitle();
 
+    if (String($titleInput.val()).trim().length === 0 && postTitle) {
+      $titleInput.val(postTitle);
+    }
+
     $checkbox.on('change', function (event) {
       $groups.hide();
 
@@ -96,9 +98,9 @@
       _inputChecks();
     });
 
-    if (String($titleInput.val()).trim().length === 0 && postTitle) {
-      $titleInput.val(postTitle);
-    }
+    $titleInput.add($msgInput).on('input', () => {
+      _inputChecks();
+    });
 
     wp.data.subscribe((_e) => {
       if ( _getPostTitle().length > 0 ) {
@@ -106,10 +108,24 @@
       }
 
       _inputChecks();
-    });
 
-    $titleInput.add($msgInput).on('input', () => {
-      _inputChecks();
+      const
+      $editor = wp.data.select( 'core/editor' ),
+      didSuccess = $editor.didPostSaveRequestSucceed();
+
+      // FIXME: These call invokations result in callback hell and infinite regression!
+
+      // if ($editor.isSavingPost()) {
+      //   return;
+      // }
+
+      // if (didSuccess) {
+      //   _addAlert('Push notification sent successfully.');
+      // } else {
+      //   _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
+      // }
+
+      console.info({ $editor });
     });
   }
 
@@ -126,7 +142,7 @@
 
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
-      'appbear-notifications',
+      'appbear-notifications-checks',
       'You must fill push notification Title and Message inputs before saving!'
     );
   }

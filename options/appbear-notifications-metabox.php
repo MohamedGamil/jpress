@@ -15,7 +15,7 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
-  const DISABLE_IF_UPDATING = true;
+  const DISABLE_IF_UPDATING = false;
 
   /**
    * Internal initilization state &
@@ -137,7 +137,7 @@ class AppBear_Notifications_Metabox {
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
 
     // NOTE: Debug line
-    // dd( $inputs, $response );
+    dd( $inputs, $response );
 
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -228,6 +228,7 @@ class AppBear_Notifications_Metabox {
     $message = __($message, 'textdomain') ?? __('AppBear Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
 
     // TODO: ...
+    appbear_notice($message, 'error');
   }
 
   /**
@@ -239,6 +240,7 @@ class AppBear_Notifications_Metabox {
     $message = __($message, 'textdomain') ?? __('AppBear notification sent successfully.', 'textdomain');
 
     // TODO: ...
+    appbear_notice($message);
   }
 
   /**
