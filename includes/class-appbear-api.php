@@ -143,6 +143,8 @@ class AppbearAPI {
     );
 
     static::$_headers = $headers;
+
+    return [ static::$_opts, static::$_headers ];
   }
 
   /**
@@ -155,17 +157,18 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   protected static function _send($endpoint = '', $body = array(), $includeAuthHeaders = true) {
+    static::_headers($includeAuthHeaders);
+
     $endpoint = substr($endpoint, 0) === '/' ? $endpoint : "/{$endpoint}";
-    $headers = static::_headers($includeAuthHeaders);
     $opts = array_merge(
       static::$_opts,
       array(
-        'headers' => $headers,
+        'headers' => static::$_headers,
         'body' => json_encode($body),
       )
     );
 
-    dd($opts);
+    dd($endpoint, $opts);
 
     return wp_remote_post( APPBEAR_STORE_URL . $endpoint, $opts );
   }
