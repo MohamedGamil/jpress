@@ -850,7 +850,6 @@ class AdminPage extends AppbearCore {
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
 
-          
           if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
             $options['archives']['single']['category'] = $data['archives-single-options-category'];
           }
@@ -878,7 +877,6 @@ class AdminPage extends AppbearCore {
           if (isset($data['archives-single-options-share']) && $data['archives-single-options-share'] != 'false') {
             $options['archives']['single']['share'] = $data['archives-single-options-share'];
           }
- 
 
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
           $options['archives']['category']['options']['count'] = $data['local-archives-category-count'];
@@ -1372,6 +1370,7 @@ class AdminPage extends AppbearCore {
           $options['relatedPostsApi'] = "/wp-json/wl/v1/posts?related_id=";
           $options['lang'] = "en";
           $options['validConfig'] = "true";
+          $options['ttsLanguage'] = appbear_get_tts_locale();
 
           update_option( 'appbear_default_lang', $options['lang'] );
 
@@ -1407,8 +1406,9 @@ class AdminPage extends AppbearCore {
           $options['copyrights'] = get_home_url();
           $options['validConfig'] = true;
 
-          // NOTE: Debug line
+          // NOTE: Debug lines
           // dd($public_key, $this->_getLicenseKey(), $responseObject);
+          // dd($options);
 
           update_option( 'appbear-options', $options );
           $this->_sendSilentNotification();
