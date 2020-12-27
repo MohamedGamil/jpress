@@ -2,6 +2,8 @@
 
 namespace Appbear\Includes;
 
+use Appbear\Includes\AppbearAPI;
+
 
 /**
  * AppBear Admin Page
@@ -353,21 +355,8 @@ class AdminPage extends AppbearCore {
           $translations = str_replace( '\\', '', $translations );
           update_option( 'appbear-language', $translations );
 
-          $public_key = appbear_get_public_key();
-          $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/notifications';
-          $response = wp_remote_post( $url, array(
-            'body' => json_encode(
-                array(
-                  'data' => array(
-                    'translations' => true
-                  )
-                )
-            ),
-            'headers' => array(
-              'Content-Type' => 'application/json; charset=utf-8',
-              'X-AppBear-Key' => $public_key,
-            ),
-          ));
+          // Save translations request
+          $response = AppbearAPI::save_translations($translations);
 
           $this->_sendSilentNotification(true);
         break;
@@ -1374,6 +1363,8 @@ class AdminPage extends AppbearCore {
 
           update_option( 'appbear_default_lang', $options['lang'] );
 
+          $options = $this->_removeEmptyOptions($options);
+
           $new_version = 1;
           $old_version = get_option( 'appbear_version' );
 
@@ -1383,20 +1374,8 @@ class AdminPage extends AppbearCore {
 
           update_option( 'appbear_version', $new_version );
 
-          $public_key = appbear_get_public_key();
-          $url  = APPBEAR_STORE_URL . '/wp-json/appbear-edd-addon/v1/settings';
-
-          $response = wp_remote_post( $url, array(
-            'body' => json_encode(
-                array(
-                  'settings' => $this->_removeEmptyOptions($options)
-                )
-            ),
-            'headers' => array(
-              'Content-Type' => 'application/json; charset=utf-8',
-              'X-AppBear-Key' => $public_key,
-            ),
-          ));
+          // Save settings request
+          $response = AppbearAPI::save_settings($options);
 
           // Parse response then update deeplinking options
           $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -1570,7 +1549,7 @@ class AdminPage extends AppbearCore {
     $body = wp_remote_retrieve_body( $response );
 
     // NOTE: Debug line
-    dd($body);
+    // dd($body);
   }
 
   /*
