@@ -1408,7 +1408,7 @@ class AdminPage extends AppbearCore {
 
           // NOTE: Debug lines
           // dd($public_key, $this->_getLicenseKey(), $responseObject);
-          dd($options);
+          // dd($options);
 
           update_option( 'appbear-options', $options );
           $this->_sendSilentNotification();
