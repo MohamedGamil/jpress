@@ -12,6 +12,15 @@
 
 
   /**
+   * Get post title
+   *
+   * @returns {string}
+   */
+  function _getPostTitle() {
+    return String(wp.data.select( 'core/editor' ).getEditedPostAttribute( 'title' )).trim();
+  }
+
+  /**
    * Run
    *
    * @private
@@ -22,7 +31,9 @@
     $inputs = $groups.find('input, textarea');
     $checkbox = $widget.find('.anm_checkbox:first');
 
-    const $titleInput = $inputs.filter('[name="appbear_notifications_title"]');
+    const
+      $titleInput = $inputs.filter('[name="appbear_notifications_title"]'),
+      postTitle = _getPostTitle();
 
     $checkbox.on('change', function (event) {
       $groups.hide();
@@ -32,13 +43,12 @@
       }
     });
 
-    if (String($titleInput.val()).trim().length === 0 && $postTitle.length > 0) {
-      $titleInput.val($postTitle.val());
+    if (String($titleInput.val()).trim().length === 0 && postTitle) {
+      $titleInput.val(postTitle);
     }
 
     $postTitle.on('keyup', function (event) {
-      const title = String($postTitle.val()).trim();
-      $titleInput.val( title );
+      $titleInput.val( _getPostTitle() );
     });
   }
 
@@ -49,15 +59,16 @@
    * @returns {void}
    */
   function _hook() {
-    if (typeof _wpLoadBlockEditor === 'undefined') {
+    if (typeof _wpLoadBlockEditor === 'undefined' || typeof wp === 'undefined') {
+      console.warn('Notifications metabox is not properly loaded!');
       return;
     }
 
     const _callback = () => {
-      $postTitle = $('#post-title-0');
+      $postTitle = $('#post-title-0, #post-title-1');
       $widget = $('#appbear-notifications-metabox');
 
-      console.info($postTitle, $widget);
+      // console.info($postTitle, $widget);
       _run();
     };
 
