@@ -788,6 +788,51 @@ function appbear_seed_default_demo($hardReset = false)
 
 
 /**
+ * Get TTS Language Code
+ *
+ * @since 0.0.15
+ * @return void
+ */
+function appbear_get_tts_locale()
+{
+  $locale = get_locale();
+  $pts = explode('_', $locale);
+  $lang = strtolower(reset($pts));
+  $langUpper = strtoupper($lang);
+  $langDefault = "{$lang}-{$langUpper}";
+
+  switch ($lang) {
+    // Standard locales format (German, Spanish, French, Indonesian, Italian, Dutch, Polish, Russian)
+    case 'de':
+    case 'es':
+    case 'fr':
+    case 'id':
+    case 'it':
+    case 'nl':
+    case 'pl':
+    case 'ru':
+      return $langDefault;
+
+    // Special cases (English, Arabic, Hindu, Japanese, Korean, Brazilian, Chinese)
+    case 'en':
+      return 'en-US';
+    case 'ar':
+      return 'ar-SA';
+    case 'hi':
+      return 'hi-IN';
+    case 'ja':
+      return 'ja-JP';
+    case 'ko':
+      return 'ko-KR';
+    case 'pt':
+      return 'pt-BR';
+    case 'zh':
+      return 'zh-CN';
+  }
+}
+
+
+/**
  * Check if dev mode is active
  */
 function _appbear_is_dev_mode()

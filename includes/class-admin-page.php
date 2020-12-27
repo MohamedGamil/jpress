@@ -1370,7 +1370,7 @@ class AdminPage extends AppbearCore {
           $options['relatedPostsApi'] = "/wp-json/wl/v1/posts?related_id=";
           $options['lang'] = "en";
           $options['validConfig'] = "true";
-          $options['ttsLanguage'] = get_locale();
+          $options['ttsLanguage'] = appbear_get_tts_locale();
 
           update_option( 'appbear_default_lang', $options['lang'] );
 
@@ -1408,7 +1408,7 @@ class AdminPage extends AppbearCore {
 
           // NOTE: Debug lines
           // dd($public_key, $this->_getLicenseKey(), $responseObject);
-          // dd($options);
+          dd($options);
 
           update_option( 'appbear-options', $options );
           $this->_sendSilentNotification();
