@@ -165,6 +165,8 @@ class AppbearAPI {
       )
     );
 
+    dd($opts);
+
     return wp_remote_post( APPBEAR_STORE_URL . $endpoint, $opts );
   }
 }
