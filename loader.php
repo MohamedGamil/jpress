@@ -9,7 +9,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * AppBear Loader
  */
-class AppbearLoader148
+class AppbearLoader
 {
   /**
    * Plugin Version
@@ -39,10 +39,12 @@ class AppbearLoader148
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function init() {
-		// FIXME: Plugin initialization logic should be borken to use multiple actions
+		// NOTE: Plugin initialization logic is borken to use multiple actions
 		//           i.e. `wp_loaded` action should initialize theme specific integrations, and
-		//          `init` action should initialize general plugin logic
-		add_action( 'init', array( $this, 'load_appbear' ), $this->priority );
+    //          `init` action should initialize top-level general plugin logic
+
+    add_action( 'init', array( $this, 'load_appbear' ), $this->priority );
+		add_action( 'wp_loaded', array( $this, 'appbear_themes_init' ), $this->priority );
 	}
 
 	/*
@@ -55,6 +57,9 @@ class AppbearLoader148
 		if ( class_exists( 'Appbear', false ) ) {
 			return;
 		}
+
+    // Run the pre-init hook (Before initialization)
+		do_action( 'appbear_init' );
 
 		// Appbear constants
 		$this->constants();
@@ -69,19 +74,17 @@ class AppbearLoader148
 		$this->includes();
 
 		// AppBear generic initialization
-		$this->appBear();
+		$this->appbear_core_init();
 
-		// AppBear themes integrations
-		$this->appBear_themes();
+		Appbear::init( $this->version );
 
-		//Appbear hooks
+    // Run the admin-only post-init hook (After admin initialization)
 		if ( is_admin() ) {
 			do_action( 'appbear_admin_init' );
     }
 
-		do_action( 'appbear_init' );
-
-		Appbear::init( $this->version );
+    // Run the post-init hook (After initialization)
+		do_action( 'appbear_post_init' );
 	}
 
 	/*
@@ -107,7 +110,6 @@ class AppbearLoader148
 		}
 	}
 
-
 	/*
 	|---------------------------------------------------------------------------------------------------
 	| Class autoloader
@@ -131,15 +133,15 @@ class AppbearLoader148
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| appBear files
+	| AppBear Core Initialization
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function appBear() {
+	public function appbear_core_init() {
 		if ( $this->_cannotInit() ) {
 			return;
     }
 
-		if ( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && ! APPBEAR_HIDE_DEMO ) ) {
+		if ( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && APPBEAR_HIDE_DEMO === false ) ) {
 			if ( ( $appBearOptsClass = APPBEAR_DIR . '/options/appbear-options.php' ) && file_exists( $appBearOptsClass ) ) {
         require_once $appBearOptsClass;
 
@@ -172,13 +174,18 @@ class AppbearLoader148
    *
    * @return void
    */
-	public function appBear_themes() {
+	public function appbear_themes_init() {
 		if ( $this->_cannotInit() ) {
 			return;
     }
 
+    // Run the pre-themes-init hook (Before themes-integrations initialization)
+		do_action( 'appbear_themes_init' );
+
     // NOTE: Themes specific integrations go here..
-		include plugin_dir_path( __FILE__ ) . '/themes/tielabs.php'; // to be chnaged to load files febending on the current active theme
+    // TODO: To be chnaged to load files febending on the current active theme
+
+		include plugin_dir_path( __FILE__ ) . '/themes/tielabs.php';
   }
 
 	/*

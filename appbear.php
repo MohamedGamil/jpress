@@ -76,7 +76,7 @@ register_deactivation_hook( __FILE__, 'appbear_deactivate_hook' );
  */
 require_once plugin_dir_path( __FILE__ ) . '/loader.php';
 
-if ( class_exists( 'AppbearLoader148', false ) && defined('APPBEAR_DID_INIT') === false ) {
-  $loader = new AppbearLoader148( APPBEAR_VERSION, APPBEAR_PRIORITY );
+if ( class_exists( 'AppbearLoader', false ) && defined('APPBEAR_DID_INIT') === false ) {
+  $loader = new AppbearLoader( APPBEAR_VERSION, APPBEAR_PRIORITY );
   $loader->init();
 }
