@@ -15,7 +15,9 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
-  const DISABLE_IF_UPDATING = true;
+
+  // FIXME: Should be TRUE
+  const DISABLE_IF_UPDATING = false;
 
   /**
    * Internal initilization state &
@@ -57,7 +59,7 @@ class AppBear_Notifications_Metabox {
 
     add_action( 'add_meta_boxes', array ( $this, 'add_meta_box' ), 1, 2 );
     add_action( 'save_post', array ( $this, 'save_post' ), 1, 3 );
-    add_action( 'admin_enqueue_scripts', array ( $this, 'enqueue_scripts' ), 1, 2 );
+    add_action( 'enqueue_block_editor_assets', array ( $this, 'enqueue_scripts' ), 1, 2 );
   }
 
   /**
@@ -167,7 +169,12 @@ class AppBear_Notifications_Metabox {
    */
   public function enqueue_scripts() {
     wp_enqueue_style( 'appbear-notifications-metabox', APPBEAR_URL . 'options/css/notifications_metabox.css' );
-    wp_enqueue_script( 'appbear-notifications-metabox', APPBEAR_URL . 'options/js/notifications_metabox.js', array('jquery') );
+
+    wp_enqueue_script(
+      'appbear-notifications-metabox',
+      APPBEAR_URL . 'options/js/notifications_metabox.js',
+      array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
+    );
   }
 
   /**

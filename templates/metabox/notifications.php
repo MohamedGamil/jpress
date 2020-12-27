@@ -26,7 +26,7 @@
           <strong><?php _e('Send notification for this post', 'textdomain') ?></strong>
         </label>
     </p>
-    <p class="meta-options anm_field">
+    <p class="meta-options anm_field" <?php echo $checked === false ? 'style="display: none;"' : ''; ?>>
         <label for="appbear_notifications_title"><?php _e('Notification Title', 'textdomain') ?></label>
         <input
           <?php echo $disabled ? 'disabled="disabled"' : ''; ?>
@@ -35,7 +35,7 @@
           id="appbear_notifications_title"
           required />
     </p>
-    <p class="meta-options anm_field">
+    <p class="meta-options anm_field" <?php echo $checked === false ? 'style="display: none;"' : ''; ?>>
         <label for="appbear_notifications_message"><?php _e('Notification Message', 'textdomain') ?></label>
         <textarea
           <?php echo $disabled ? 'disabled="disabled"' : ''; ?>

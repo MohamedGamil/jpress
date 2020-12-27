@@ -152,6 +152,8 @@ class AppBear_Demos_Endpoints
       return false;
     }
 
+    // NOTE: This file contains some hardcoded values that may require revision!
+
     switch ( $request['demo'] ) {
       case 1:
         $demo_data = array (
