@@ -230,6 +230,7 @@ class AppBear_Notifications_Metabox {
     $message = __($message, 'textdomain') ?? __('AppBear Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
 
     // TODO: ...
+    appbear_notice($message, 'error');
   }
 
   /**
@@ -241,6 +242,7 @@ class AppBear_Notifications_Metabox {
     $message = __($message, 'textdomain') ?? __('AppBear notification sent successfully.', 'textdomain');
 
     // TODO: ...
+    appbear_notice($message);
   }
 
   /**
