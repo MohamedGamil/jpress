@@ -20,6 +20,7 @@ function appbear_get_option($name, $default = false)
 	return isset($opts[$name]) && $opts[$name] ? $opts[$name] : $default;
 }
 
+
 /**
  * Get Reading time for the current global post
  *
@@ -53,7 +54,6 @@ function appbear_get_read_time()
 		return apply_filters( 'AppBear/API/Post/Read_Time', $result, $reading_time, $words_per_min, $words_count );
 	}
 }
-
 
 
 /**
