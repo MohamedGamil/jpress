@@ -11,7 +11,9 @@
     $inputs = null,
     $titleInput = null,
     $msgInput = null,
-    locks = {};
+    locks = {},
+    didSave = false,
+    didSuccess = false;
 
 
   /**
@@ -92,10 +94,9 @@
       $groups.hide();
 
       if ( $checkbox.prop('checked') === true ) {
+        _inputChecks();
         $groups.show();
       }
-
-      _inputChecks();
     });
 
     $titleInput.add($msgInput).on('input', () => {
@@ -109,23 +110,20 @@
 
       _inputChecks();
 
-      const
-      $editor = wp.data.select( 'core/editor' ),
-      didSuccess = $editor.didPostSaveRequestSucceed();
-
       // FIXME: These call invokations result in callback hell and infinite regression!
 
-      // if ($editor.isSavingPost()) {
+      // console.info({ didSave, didSuccess });
+
+      // if (didSave === false) {
       //   return;
       // }
 
       // if (didSuccess) {
       //   _addAlert('Push notification sent successfully.');
+      //   $checkbox.prop('checked', false);
       // } else {
       //   _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
       // }
-
-      console.info({ $editor });
     });
   }
 
@@ -138,12 +136,12 @@
       titleLength = $titleInput.val().length,
       msgLength = $msgInput.val().length;
 
-    console.info({ isChecked, titleLength, msgLength });
+    // console.info({ isChecked, titleLength, msgLength });
 
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
       'appbear-notifications-checks',
-      'You must fill push notification Title and Message inputs before saving!'
+      'You must fill the title and notification message before saving!'
     );
   }
 
@@ -155,9 +153,22 @@
       'appbear-notifications-metabox-checks',
       {
         render: () => {
+          const
+          $el = React.createElement('div', null, ''),
+          $editor = wp.data.select( 'core/editor' );
+
+          // console.info({ $editor });
+
           _inputChecks();
 
-          return React.createElement('div', null, '');
+          if ($editor.isSavingPost()) {
+            didSave = true;
+            return $el;
+          }
+
+          didSuccess = $editor.didPostSaveRequestSucceed();
+
+          return $el;
         },
       }
     );
