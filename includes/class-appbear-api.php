@@ -159,7 +159,7 @@ class AppbearAPI {
   protected static function _send($endpoint = '', $body = array(), $includeAuthHeaders = true) {
     static::_headers($includeAuthHeaders);
 
-    $endpoint = substr($endpoint, 1) === '/' ? $endpoint : "/{$endpoint}";
+    $endpoint = substr($endpoint, 0, 1) === '/' ? $endpoint : "/{$endpoint}";
     $opts = array_merge(
       static::$_opts,
       array(
@@ -168,6 +168,7 @@ class AppbearAPI {
       )
     );
 
+    // NOTE: Debug line
     dd($endpoint, $opts);
 
     return wp_remote_post( APPBEAR_STORE_URL . $endpoint, $opts );
