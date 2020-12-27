@@ -78,7 +78,7 @@ class AppbearLoader
 
 		Appbear::init( $this->version );
 
-    // Run the admin-only post-init hook (After admin initialization)
+    // Run the admin-only post-init hook (AppBear Admin Initialization)
 		if ( is_admin() ) {
 			do_action( 'appbear_admin_init' );
     }
