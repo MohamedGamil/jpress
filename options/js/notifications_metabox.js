@@ -127,7 +127,7 @@
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
       'appbear-notifications',
-      'You must enter a push notification title and message!'
+      'You must fill push notification Title and Message inputs before saving!'
     );
   }
 

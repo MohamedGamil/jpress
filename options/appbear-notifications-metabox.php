@@ -15,9 +15,7 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
-
-  // FIXME: Should be TRUE
-  const DISABLE_IF_UPDATING = false;
+  const DISABLE_IF_UPDATING = true;
 
   /**
    * Internal initilization state &
