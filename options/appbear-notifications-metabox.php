@@ -153,7 +153,7 @@ class AppBear_Notifications_Metabox {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
       if ( isset($data['success']) && $data['success'] ) {
-        $usageData = isset($data['data']) ? $data['data'] : [
+        $usageData = isset($data['data']) && is_null($data['data']) === false ? $data['data'] : [
           'remaining' => -1,
           'sent_count' => -1,
           'plan_total' => -1,
@@ -203,6 +203,9 @@ class AppBear_Notifications_Metabox {
     foreach ($data as &$field) {
       $field = $field === '?' ? $field : (int) $field;
     }
+
+    // NOTE: Debug line..
+    // dd($this->_metadata());
 
     return $data;
   }

@@ -838,6 +838,7 @@ class AdminPage extends AppbearCore {
           */
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
+          $options['archives']['single']['textToSpeech'] = 'true';
 
           if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
             $options['archives']['single']['category'] = $data['archives-single-options-category'];
