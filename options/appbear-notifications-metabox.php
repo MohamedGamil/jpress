@@ -204,6 +204,8 @@ class AppBear_Notifications_Metabox {
       $field = $field === '?' ? $field : (int) $field;
     }
 
+    dd($data);
+
     return $data;
   }
 
