@@ -178,6 +178,7 @@ class AppBear_Notifications_Metabox {
    * Enqueue Scripts
    */
   public function enqueue_scripts() {
+    dd(1);die;
     wp_enqueue_style( 'appbear-notifications-metabox', APPBEAR_URL . 'options/css/notifications_metabox.css' );
 
     wp_enqueue_script(
