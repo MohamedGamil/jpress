@@ -326,7 +326,7 @@ class AppBear_Options
     $deeplinkingAttrs = $canDeeplinking === false ? array( 'disabled' => 'disabled' ) : array();
     $section_header_1->add_field(array(
       'name' => __( 'Enable Deeplinking Widget', 'textdomain' ),
-      'desc' => $canDeeplinking ? '' : __('This option can be enabled after activating your license, then saving settings for the first time.'),
+      'desc' => $canDeeplinking ? '' : __('This option can be enabled after activating your license, then saving settings for the first time. Also make sure to follow <a href="https://developer.android.com/training/app-links/verify-site-associations.html#request-verify" target="_blank">Android documentation</a> to ensure that deeplinking works without issues.'),
       'id' => 'is_deeplinking_widget_enabled',
       'type' => 'switcher',
       'default'	=>	$canDeeplinking ? 'true' : 'false',
@@ -1589,7 +1589,7 @@ class AppBear_Options
       )
     ));
     $archives_single->close_mixed_field();
-  
+
 
     $archives_category = $settings->add_section( array(
       'name' => __( 'Single Category Page Settings', 'textdomain' ),
