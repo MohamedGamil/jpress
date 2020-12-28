@@ -57,7 +57,7 @@ class AppBear_Notifications_Metabox {
 
     add_action( 'add_meta_boxes', array ( $this, 'add_meta_box' ), 1, 2 );
     add_action( 'save_post', array ( $this, 'save_post' ), 1, 3 );
-    add_action( 'wp_insert_post_empty_content', array ( $this, 'save_post_validation' ), PHP_INT_MAX, 2 );
+    // add_action( 'wp_insert_post_empty_content', array ( $this, 'save_post_validation' ), PHP_INT_MAX, 2 );
     add_action( 'enqueue_block_editor_assets', array ( $this, 'enqueue_scripts' ), 1, 2 );
   }
 
