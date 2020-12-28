@@ -12,8 +12,8 @@
     $titleInput = null,
     $msgInput = null,
     locks = {},
-    didSave = false,
-    didSuccess = false;
+    shouldStopCopyingTitle = false,
+    shouldDisplayNotice = false;
 
 
   /**
@@ -72,6 +72,15 @@
   }
 
   /**
+   * Destroy notification widget and run unhooks routine
+   */
+  function _demolish() {
+    // FIXME: This causes issues with submission
+    // $checkbox.prop('checked', false);
+    // $widget.remove();
+  }
+
+  /**
    * Run
    *
    * @private
@@ -99,31 +108,42 @@
       }
     });
 
-    $titleInput.add($msgInput).on('input', () => {
+    $titleInput.add($msgInput).on('input', (event) => {
+      if ($(event.target).is($titleInput)) {
+        shouldStopCopyingTitle = true;
+      }
+
       _inputChecks();
     });
 
-    wp.data.subscribe((_e) => {
-      if ( _getPostTitle().length > 0 ) {
+    const unsubscribe = wp.data.subscribe((_e) => {
+      if ( _getPostTitle().length > 0 && shouldStopCopyingTitle === false ) {
         $titleInput.val( _getPostTitle() );
       }
 
       _inputChecks();
 
-      // FIXME: These call invokations result in callback hell and infinite regression!
+      const
+        $editor = wp.data.select( 'core/editor' ),
+        isSaving = $editor.isSavingPost(),
+        isAutoSaving = $editor.isAutosavingPost(),
+        didSuccess = $editor.didPostSaveRequestSucceed();
 
-      // console.info({ didSave, didSuccess });
+      if (isSaving && isAutoSaving === false) {
+        shouldDisplayNotice = true;
+        return;
+      }
 
-      // if (didSave === false) {
-      //   return;
-      // }
+      if (shouldDisplayNotice === true) {
+        unsubscribe();
+        _demolish();
 
-      // if (didSuccess) {
-      //   _addAlert('Push notification sent successfully.');
-      //   $checkbox.prop('checked', false);
-      // } else {
-      //   _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
-      // }
+        if (didSuccess) {
+          _addAlert('Push notification sent successfully.');
+        } else {
+          _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
+        }
+      }
     });
   }
 
@@ -141,7 +161,7 @@
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
       'appbear-notifications-checks',
-      'You must fill the title and notification message before saving!'
+      'Please fill the post title and notification message before saving.'
     );
   }
 
@@ -153,22 +173,9 @@
       'appbear-notifications-metabox-checks',
       {
         render: () => {
-          const
-          $el = React.createElement('div', null, ''),
-          $editor = wp.data.select( 'core/editor' );
-
-          // console.info({ $editor });
-
           _inputChecks();
 
-          if ($editor.isSavingPost()) {
-            didSave = true;
-            return $el;
-          }
-
-          didSuccess = $editor.didPostSaveRequestSucceed();
-
-          return $el;
+          return React.createElement('div', null, '');
         },
       }
     );
