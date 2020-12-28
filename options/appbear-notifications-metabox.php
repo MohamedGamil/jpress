@@ -205,7 +205,7 @@ class AppBear_Notifications_Metabox {
     }
 
     // NOTE: Debug line..
-    dd($this->_metadata());
+    // dd($this->_metadata());
 
     return $data;
   }
