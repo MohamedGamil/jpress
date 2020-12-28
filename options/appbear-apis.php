@@ -119,80 +119,25 @@ class AppBear_Endpoints {
 	 * @return array()
 	 */
 	public function do_posts( $request ) {
-    $args = array(
-      'post_type'      => ! empty( $request['post'] )  ? $request['post']  : 'post',
-      'posts_per_page' => ! empty( $request['count'] ) ? $request['count'] : -1,
-    );
+    $sections = isset($request['sections']) ? $request['sections'] : array();
 
-    $argsPairs = array(
-      'paged' => 'page',
-      'cat' => 'categories',
-      'offset' => 'offset',
-      's' => 's',
-    );
+    if (empty($sections) === false) {
+      $response = [];
 
-    $arrayPairs = array(
-      'tag__in' => 'tags',
-      'post__in' => 'ids',
-      'post__not_in' => 'exclude',
-    );
+      foreach ($sections as $section) {
+        $params = [];
 
-    // NOTE: Arguments Pairs [ "Pagination", "Categories", "Tags", "Inclusive / Exclusive Posts by IDs", "Offsetting", "Search" ]
-    foreach ( $argsPairs as $key => $requestKey ) {
-      if ( isset($request[$requestKey]) ) {
-        $args[ $key ] = $request[ $requestKey ];
+        @parse_str( $section, $params );
+
+        $response[] = $this->_queryPosts($params);
       }
-    }
 
-    foreach ( $arrayPairs as $key => $requestKey ) {
-      if ( isset($request[$requestKey]) ) {
-        $args[ $key ] = explode( ',', $request[ $requestKey ] );
-      }
-    }
-
-    // NOTE: Introduce default value for count parameter to prevent pagination issues
-    if (isset($args['paged']) && $args['posts_per_page'] === -1) {
-      $args['posts_per_page'] = static::DEFAULT_POSTS_PER_PAGE_COUNT;
-    }
-
-    // NOTE: Adjust offset parameter to play nice with pagination
-    if ( isset($args['paged'], $args['offset']) ) {
-      $args['offset'] = ( $args['paged'] - 1 ) * $args['posts_per_page'] + $args['offset'];
-    }
-
-    // Sorting
-    if ( isset( $request['sort'] ) ) {
-      $args['order']   = '';
-      $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
-    }
-
-    // The Query
-    $posts = new WP_Query( $args );
-
-    // The Loop
-    if ( $posts->have_posts() ) {
-      $data = array(
-        'status'      => true,
-        'count'       => ( $args['posts_per_page'] == -1 ) ? (int) $posts->found_posts : (int) $args['posts_per_page'],
-        'count_total' => (int)$posts->found_posts,
-        'pages'       => ( $args['posts_per_page'] == -1 ) ? 1 : ceil( $posts->found_posts / $args['posts_per_page'] ),
-        'posts'       => array(),
+      return array(
+        'sections' => $response,
       );
-
-      while ( $posts->have_posts() ) {
-        $posts->the_post();
-        $data['posts'][] = $this->get_post_data();
-      }
-
-      return $data;
     }
 
-    return array(
-      'status'      => false,
-      'count'       => 0,
-      'count_total' => 0,
-      'pages'       => 0,
-    );
+    return $this->_queryPosts($request);
 	}
 
 
@@ -443,7 +388,7 @@ class AppBear_Endpoints {
    * @since 1.0
    * @return void
    */
-  function do_categories() {
+  public function do_categories() {
     $metadata = AppBear_Categories::get_metadata();
 
     foreach( $metadata as $key => &$cat ) {
@@ -488,7 +433,7 @@ class AppBear_Endpoints {
    * @since 1.0
    * @return array()
    */
-  function do_page( $request ) {
+  public function do_page( $request ) {
     if ( ! empty( $request['id'] ) ) {
 
       $page = get_post( $request['id'] );
@@ -545,13 +490,11 @@ class AppBear_Endpoints {
     $result = wp_insert_comment($data);
 
 		if ($result > 0) {
-			$respones = array();
 			$response['status'] = true;
 			$response['message'] = 'Comment added successfuly';
 			return $response;
     }
     else {
-			$respones = array();
 			$response['status'] = false;
 			$response['message'] = 'failure';
 			return $response;
@@ -562,7 +505,7 @@ class AppBear_Endpoints {
   /*
    * Contact us action
    */
-  function do_contact_us() {
+  public function do_contact_us() {
     $data = [];
     $response = [];
     $error = false;
@@ -641,7 +584,7 @@ class AppBear_Endpoints {
   /*
    * Options
    */
-  function do_options() {
+  public function do_options() {
     return get_option('appbear-options');
   }
 
@@ -649,7 +592,7 @@ class AppBear_Endpoints {
   /*
    * Translations
    */
-  function do_translations() {
+  public function do_translations() {
     return get_option('appbear-language');
   }
 
@@ -657,7 +600,7 @@ class AppBear_Endpoints {
   /*
    * Dev Mode
    */
-  function do_dev_mode( $request ) {
+  public function do_dev_mode( $request ) {
     if ( ! empty( $request['action'] ) ) {
       switch ( $request['action'] ) {
         case 'add':
@@ -671,5 +614,88 @@ class AppBear_Endpoints {
         break;
       }
     }
+  }
+
+  /**
+   * Query Posts
+   *
+   * @param array $request Request parameters
+   * @return array
+   */
+  protected function _queryPosts($request) {
+    $args = array(
+      'post_type'      => ! empty( $request['post'] )  ? $request['post']  : 'post',
+      'posts_per_page' => ! empty( $request['count'] ) ? $request['count'] : -1,
+    );
+
+    $argsPairs = array(
+      'paged' => 'page',
+      'cat' => 'categories',
+      'offset' => 'offset',
+      's' => 's',
+    );
+
+    $arrayPairs = array(
+      'tag__in' => 'tags',
+      'post__in' => 'ids',
+      'post__not_in' => 'exclude',
+    );
+
+    // NOTE: Arguments Pairs [ "Pagination", "Categories", "Tags", "Inclusive / Exclusive Posts by IDs", "Offsetting", "Search" ]
+    foreach ( $argsPairs as $key => $requestKey ) {
+      if ( isset($request[$requestKey]) ) {
+        $args[ $key ] = $request[ $requestKey ];
+      }
+    }
+
+    foreach ( $arrayPairs as $key => $requestKey ) {
+      if ( isset($request[$requestKey]) ) {
+        $args[ $key ] = explode( ',', $request[ $requestKey ] );
+      }
+    }
+
+    // NOTE: Introduce default value for count parameter to prevent pagination issues
+    if (isset($args['paged']) && $args['posts_per_page'] === -1) {
+      $args['posts_per_page'] = static::DEFAULT_POSTS_PER_PAGE_COUNT;
+    }
+
+    // NOTE: Adjust offset parameter to play nice with pagination
+    if ( isset($args['paged'], $args['offset']) ) {
+      $args['offset'] = ( $args['paged'] - 1 ) * $args['posts_per_page'] + $args['offset'];
+    }
+
+    // Sorting
+    if ( isset( $request['sort'] ) ) {
+      $args['order']   = '';
+      $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
+    }
+
+    // The Query
+    $posts = new WP_Query( $args );
+
+    // The Loop
+    if ( $posts->have_posts() ) {
+      $data = array(
+        'status'      => true,
+        'count'       => ( $args['posts_per_page'] == -1 ) ? (int) $posts->found_posts : (int) $args['posts_per_page'],
+        'count_total' => (int)$posts->found_posts,
+        'pages'       => ( $args['posts_per_page'] == -1 ) ? 1 : ceil( $posts->found_posts / $args['posts_per_page'] ),
+        'posts'       => array(),
+      );
+
+      while ( $posts->have_posts() ) {
+        $posts->the_post();
+        $data['posts'][] = $this->get_post_data();
+      }
+
+      return $data;
+    }
+
+    return array(
+      'status'      => false,
+      'count'       => 0,
+      'count_total' => 0,
+      'pages'       => 0,
+    );
   }
 }
