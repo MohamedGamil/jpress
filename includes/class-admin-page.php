@@ -685,6 +685,7 @@ class AdminPage extends AppbearCore {
           * Homepage array
           */
           $options['homePage']['sections'] = array();
+          $options['homePage']['sections_url'] = '/wp-json/wl/v1/posts?';
 
           foreach($data['sections'] as $key => $section) {
             if ($key === 1000) {
@@ -830,8 +831,16 @@ class AdminPage extends AppbearCore {
 
             array_push($options['homePage']['sections'], $item);
 
-            // dd($options['homePage']['sections'][0]);
+            $urlPts = explode('?', $item['url']);
+            $urlParams = end($urlPts);
+            $options['homePage']['sections_url'] .= '&sections[]=' . urlencode($urlParams);
+
+            // NOTE: Debug line..
+            // dd($item);
           }
+
+          // NOTE: Debug line..
+          // dd($options['homePage']['sections_url']);
 
           /*
           * archives array
