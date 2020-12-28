@@ -34,6 +34,7 @@
           name="appbear_notifications_title"
           id="appbear_notifications_title"
           required />
+          <!-- readonly -->
     </p>
     <p class="meta-options anm_field" <?php echo $checked === false ? 'style="display: none;"' : ''; ?>>
         <label for="appbear_notifications_message"><?php _e('Notification Message', 'textdomain') ?></label>

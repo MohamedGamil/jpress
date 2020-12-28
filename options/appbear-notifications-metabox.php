@@ -15,9 +15,7 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
-
-  // FIXME: Should be TRUE
-  const DISABLE_IF_UPDATING = false;
+  const DISABLE_IF_UPDATING = true;
 
   /**
    * Internal initilization state &
@@ -59,6 +57,7 @@ class AppBear_Notifications_Metabox {
 
     add_action( 'add_meta_boxes', array ( $this, 'add_meta_box' ), 1, 2 );
     add_action( 'save_post', array ( $this, 'save_post' ), 1, 3 );
+    // add_action( 'wp_insert_post_empty_content', array ( $this, 'save_post_validation' ), PHP_INT_MAX, 2 );
     add_action( 'enqueue_block_editor_assets', array ( $this, 'enqueue_scripts' ), 1, 2 );
   }
 
@@ -97,6 +96,15 @@ class AppBear_Notifications_Metabox {
     echo appbear_get_template('metabox/notifications', $data);
   }
 
+  public function save_post_validation($maybeEmpty, $post) {
+    if (empty($_POST) === true) {
+      return false;
+    }
+
+    // dd($post);
+    return true;
+  }
+
   /**
    * Save post action hook
    *
@@ -105,7 +113,7 @@ class AppBear_Notifications_Metabox {
    */
   public function save_post( $postID, $post, $update ) {
     // Skip auto-saves and requests with an invalid license state
-    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || empty($_POST) === true || $this->_isValidLicense() === false ) {
+    if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || empty($_POST) === true || $this->_isValidLicense() === false /* || current_user_can( 'edit_post', $postID ) === false */ ) {
       return;
     }
 
@@ -128,12 +136,12 @@ class AppBear_Notifications_Metabox {
     }
 
     if ($inputs['send'] !== 'on') {
-      return;
+      return true;
     }
 
-    if ( empty($inputs['title']) === true ) {
-      $this->_serveSubmitError('Input Error! Please submit at least a notification title, and you may add a notification message.');
-      return;
+    if ( empty($inputs['title']) === true || empty($inputs['message']) === true ) {
+      $this->_serveSubmitError('Input Error! Please submit notification title and message.');
+      return false;
     }
 
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
@@ -157,21 +165,23 @@ class AppBear_Notifications_Metabox {
 
         $this->_update($usageData);
         $this->_serveSuccessMessage();
-        return;
+        return true;
       }
     }
 
     $this->_serveSubmitError();
+
+    return false;
   }
 
   /**
    * Enqueue Scripts
    */
   public function enqueue_scripts() {
-    wp_enqueue_style( 'appbear-notifications-metabox', APPBEAR_URL . 'options/css/notifications_metabox.css' );
+    wp_enqueue_style( 'appbear-notifications-metabox-css', APPBEAR_URL . 'options/css/notifications_metabox.css' );
 
     wp_enqueue_script(
-      'appbear-notifications-metabox',
+      'appbear-notifications-metabox-js',
       APPBEAR_URL . 'options/js/notifications_metabox.js',
       array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
     );
@@ -228,21 +238,22 @@ class AppBear_Notifications_Metabox {
    */
   protected function _serveSubmitError($message = null) {
     $message = __($message, 'textdomain') ?? __('AppBear Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
+    $error = new WP_Error(400, $message, $message);
 
-    // TODO: ...
-    appbear_notice($message, 'error');
+    wp_die($message);
   }
 
   /**
    * Present an success message
    *
+   * @FIXME: This is useless since WordPress does not appear to allow any server-side responses on post submission hook.
    * @return void
    */
   protected function _serveSuccessMessage($message = null) {
     $message = __($message, 'textdomain') ?? __('AppBear notification sent successfully.', 'textdomain');
 
     // TODO: ...
-    appbear_notice($message);
+    // appbear_notice($message);
   }
 
   /**

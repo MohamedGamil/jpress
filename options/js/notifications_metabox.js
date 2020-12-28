@@ -11,7 +11,9 @@
     $inputs = null,
     $titleInput = null,
     $msgInput = null,
-    locks = {};
+    locks = {},
+    shouldStopCopyingTitle = false,
+    shouldDisplayNotice = false;
 
 
   /**
@@ -70,6 +72,15 @@
   }
 
   /**
+   * Destroy notification widget and run unhooks routine
+   */
+  function _demolish() {
+    // FIXME: This causes issues with submission
+    // $checkbox.prop('checked', false);
+    // $widget.remove();
+  }
+
+  /**
    * Run
    *
    * @private
@@ -92,40 +103,47 @@
       $groups.hide();
 
       if ( $checkbox.prop('checked') === true ) {
+        _inputChecks();
         $groups.show();
+      }
+    });
+
+    $titleInput.add($msgInput).on('input', (event) => {
+      if ($(event.target).is($titleInput)) {
+        shouldStopCopyingTitle = true;
       }
 
       _inputChecks();
     });
 
-    $titleInput.add($msgInput).on('input', () => {
-      _inputChecks();
-    });
-
-    wp.data.subscribe((_e) => {
-      if ( _getPostTitle().length > 0 ) {
+    const unsubscribe = wp.data.subscribe((_e) => {
+      if ( _getPostTitle().length > 0 && shouldStopCopyingTitle === false ) {
         $titleInput.val( _getPostTitle() );
       }
 
       _inputChecks();
 
       const
-      $editor = wp.data.select( 'core/editor' ),
-      didSuccess = $editor.didPostSaveRequestSucceed();
+        $editor = wp.data.select( 'core/editor' ),
+        isSaving = $editor.isSavingPost(),
+        isAutoSaving = $editor.isAutosavingPost(),
+        didSuccess = $editor.didPostSaveRequestSucceed();
 
-      // FIXME: These call invokations result in callback hell and infinite regression!
+      if (isSaving && isAutoSaving === false) {
+        shouldDisplayNotice = true;
+        return;
+      }
 
-      // if ($editor.isSavingPost()) {
-      //   return;
-      // }
+      if (shouldDisplayNotice === true) {
+        unsubscribe();
+        _demolish();
 
-      // if (didSuccess) {
-      //   _addAlert('Push notification sent successfully.');
-      // } else {
-      //   _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
-      // }
-
-      console.info({ $editor });
+        if (didSuccess) {
+          _addAlert('Push notification sent successfully.');
+        } else {
+          _addAlert('Unable to send push notification, please check your inputs and plan limits!', 'error');
+        }
+      }
     });
   }
 
@@ -138,12 +156,12 @@
       titleLength = $titleInput.val().length,
       msgLength = $msgInput.val().length;
 
-    console.info({ isChecked, titleLength, msgLength });
+    // console.info({ isChecked, titleLength, msgLength });
 
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
       'appbear-notifications-checks',
-      'You must fill push notification Title and Message inputs before saving!'
+      'Please fill the post title and notification message before saving.'
     );
   }
 
