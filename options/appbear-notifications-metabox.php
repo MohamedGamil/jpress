@@ -147,13 +147,13 @@ class AppBear_Notifications_Metabox {
     $response = AppbearAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
 
     // NOTE: Debug line
-    dd( $inputs, $response );
+    // dd( $inputs, $response );
 
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
       if ( isset($data['success']) && $data['success'] ) {
-        $usageData = isset($data['data']) ? $data['data'] : [
+        $usageData = isset($data['data']) && is_null($data['data']) === false ? $data['data'] : [
           'remaining' => -1,
           'sent_count' => -1,
           'plan_total' => -1,
