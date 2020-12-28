@@ -15,7 +15,7 @@ use Appbear\Includes\AppbearAPI;
  */
 class AppBear_Notifications_Metabox {
   const OPTION_KEY = 'appbear_post_push_notifications';
-  const DISABLE_IF_UPDATING = false;
+  const DISABLE_IF_UPDATING = true;
 
   /**
    * Internal initilization state &
@@ -178,13 +178,12 @@ class AppBear_Notifications_Metabox {
    * Enqueue Scripts
    */
   public function enqueue_scripts() {
-    dd(1);die;
     wp_enqueue_style( 'appbear-notifications-metabox-css', APPBEAR_URL . 'options/css/notifications_metabox.css' );
 
     wp_enqueue_script(
       'appbear-notifications-metabox-js',
       APPBEAR_URL . 'options/js/notifications_metabox.js',
-      array( 'jquery' )
+      array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
     );
   }
 
