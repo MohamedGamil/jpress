@@ -184,7 +184,7 @@ class AppBear_Notifications_Metabox {
     wp_enqueue_script(
       'appbear-notifications-metabox',
       APPBEAR_URL . 'options/js/notifications_metabox.js',
-      array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
+      array( 'jquery' )
     );
   }
 
