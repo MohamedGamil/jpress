@@ -860,7 +860,7 @@ function dd() {
   @ob_flush();
 
   header('Content-Type: text/html; charset=UTF-8');
-  echo "<body style='background: #1c1c1c; color: #FFF'><pre>\n";
+  echo "<body style=\"background: #1c1c1c; color: #FFF\"><pre style=\"font-family: 'Fira Code', 'Courier New', Courier, monospace;\">\n";
 
   foreach($args as $k => $arg) {
       $kk = $k + 1;

@@ -26,14 +26,15 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   public static function check_license($licenseKey) {
+    $homeURL = trailingslashit(get_home_url());
     $api_params = array(
       'edd_action' => 'check_license',
       'license' => $licenseKey,
       'item_name' => urlencode( APPBEAR_ITEM_NAME ),
 
       // FIXME: These parameters should cleaned for correct use case
-      'url' => home_url(),
-      'site_url' => home_url(),
+      'url' => $homeURL,
+      'site_url' => $homeURL,
     );
 
     return wp_remote_post( APPBEAR_STORE_URL, array(
@@ -51,11 +52,15 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   public static function activate_license($licenseKey) {
+    $homeURL = trailingslashit(get_home_url());
     $api_params = array(
       'edd_action' => 'activate_license',
       'license'    => $licenseKey,
       'item_name'  => urlencode( APPBEAR_ITEM_NAME ), // the name of our product in EDD
-      'url'        => home_url()
+
+      // FIXME: These parameters should cleaned for correct use case
+      'url' => $homeURL,
+      'site_url' => $homeURL,
     );
 
     $requestOpts = array(
@@ -136,7 +141,11 @@ class AppbearAPI {
     );
 
     if ($includeAuthHeaders) {
-      $headers['X-AppBear-Key'] = appbear_get_public_key();
+      /** @deprecated 0.1.0 DEPRECATED: using the following header should be ommited from requests  */
+      $headers['X-APPBEAR-KEY'] = appbear_get_public_key();
+
+      $headers['X-EDD-KEY'] = appbear_get_license_key();
+      $headers['X-EDD-URL'] = trailingslashit(get_home_url());
     }
 
     static::$_opts = array(
