@@ -278,9 +278,9 @@ class AppBear_Endpoints {
       //'hierarchical' => 'threaded',
     );
 
-    $get_comments = get_comments( $post->ID, $this_post, $args );
+    $get_comments = get_comments( $args );
 
-    dd($get_comments);
+    dd($post->ID, $this_post, $get_comments);
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
