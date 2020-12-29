@@ -245,7 +245,8 @@ class AppBear_Endpoints {
     // Tags
     // To do. create a function that work with cats. and tags
     $this_post['tags'] = array();
-    $tags = get_the_tags( $this_post['id'] );
+    $postID = $this_post['id'];
+    $tags = get_the_tags( $postID );
 
     if ( ! empty( $tags ) ) {
       foreach ( $tags as $single_tag ) {
@@ -268,14 +269,14 @@ class AppBear_Endpoints {
     $comments = array();
 
     $args = array(
-      'post_id' => $this_post['id'],
+      'post_id' => $postID,
       'status' => 'approve',
       'order' => 'ASC',
       'post_status' => 'publish',
       'type' => 'comment',
 
       // 'lang' => get_locale(),
-      //'hierarchical' => 'threaded',
+      // 'hierarchical' => 'threaded',
     );
 
     $get_comments = get_comments( $args );
@@ -283,13 +284,13 @@ class AppBear_Endpoints {
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
-      if ( $comment->comment_parent == 0 ) {
+      if ( absint($comment->comment_parent) === 0 ) {
         // Set the avatar
-        $comment = $this->prepare_comment( $comment );
+        $comment = $this->_prepare_comment( $comment );
 
         // Get Child replies
         $child_comments = get_comments( array(
-          'post_id'       => $post->ID,
+          'post_id'       => $postID,
           'status'        => 'approve',
           'order'         => 'ASC',
           'type'          => 'comment',
@@ -299,7 +300,7 @@ class AppBear_Endpoints {
         $replies = array();
 
         foreach ( $child_comments as $reply ) {
-          $replies[] = $this->prepare_comment( $reply );
+          $replies[] = $this->_prepare_comment( $reply );
         }
 
         $comment['replies'] = $replies;
@@ -307,26 +308,12 @@ class AppBear_Endpoints {
       }
     }
 
+    // NOTE: Debug line
+    // dd( 2, $comments );
+
     $this_post['comments'] = $comments;
 
     return array( 'post' => $this_post );
-  }
-
-
-  /**
-   * Prepare comment
-   */
-  private function prepare_comment( $comment ) {
-    return array(
-      'comment_ID'         => $comment->comment_ID,
-      'comment_author'     => $comment->comment_author,
-      'comment_author_url' => $comment->comment_author_url,
-      'comment_date'       => $comment->comment_date,
-      'comment_content'    => $comment->comment_content,
-      'comment_parent'     => $comment->comment_parent,
-      'author_avatar'      => get_avatar_url( $comment->comment_author_email ),
-      'replies'            => array(),
-    );
   }
 
 
@@ -466,7 +453,7 @@ class AppBear_Endpoints {
    * @since 1.0
    * @return array()
    */
-	function do_add_comment() {
+	public function do_add_comment() {
 		$param = $_GET;
     $data = array();
 
@@ -619,6 +606,7 @@ class AppBear_Endpoints {
     }
   }
 
+
   /**
    * Query Posts
    *
@@ -699,6 +687,26 @@ class AppBear_Endpoints {
       'count'       => 0,
       'count_total' => 0,
       'pages'       => 0,
+    );
+  }
+
+
+  /**
+   * Prepare comment
+   *
+   * @param WP_Comment $comment Comment Object
+   * @return array Processed Comment Array
+   */
+  private function _prepare_comment( $comment ) {
+    return array(
+      'comment_ID' => $comment->comment_ID,
+      'comment_author' => $comment->comment_author,
+      'comment_author_url' => $comment->comment_author_url,
+      'comment_date' => $comment->comment_date,
+      'comment_content' => $comment->comment_content,
+      'comment_parent' => $comment->comment_parent,
+      'author_avatar' => get_avatar_url( $comment->comment_author_email ),
+      'replies' => array(),
     );
   }
 }
