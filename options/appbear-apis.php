@@ -272,9 +272,9 @@ class AppBear_Endpoints {
       'status' => 'approve',
       'order' => 'ASC',
       'post_status' => 'publish',
-      'lang' => get_locale(),
+      'type' => 'comment',
+      'lang' => 'en_US',
 
-      // 'type' => 'comment',
       //'hierarchical' => 'threaded',
     );
 
