@@ -1392,7 +1392,7 @@ class AdminPage extends AppbearCore {
           $this->_updateDeeplinkingOptions( $responseObject );
 
           $options['baseUrl'] = trailingslashit(get_home_url());
-          $options['copyrights'] = get_home_url();
+          $options['copyrights'] = APPBEAR_COPYRIGHTS_URL;
           $options['validConfig'] = true;
 
           // NOTE: Debug lines
