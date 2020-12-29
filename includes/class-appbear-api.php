@@ -30,7 +30,10 @@ class AppbearAPI {
       'edd_action' => 'check_license',
       'license' => $licenseKey,
       'item_name' => urlencode( APPBEAR_ITEM_NAME ),
-      'url'       => home_url()
+
+      // FIXME: These parameters should cleaned for correct use case
+      'url' => home_url(),
+      'site_url' => home_url(),
     );
 
     return wp_remote_post( APPBEAR_STORE_URL, array(
@@ -67,14 +70,13 @@ class AppbearAPI {
   /**
    * Save translations request
    *
-   * @param array $translations Translations array
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
-  public static function save_translations(array $translations) {
+  public static function save_translations() {
     $endpoint = '/wp-json/appbear-edd-addon/v1/notifications';
-    $translations = array( 'data' => array( 'translations' => $translations ) );
+    $data = array( 'data' => array( 'translations' => true ) );
 
-    return static::_send( $endpoint, $translations );
+    return static::_send( $endpoint, $data );
   }
 
   /**
