@@ -285,10 +285,10 @@ class AppBear_Endpoints {
     foreach ( $get_comments as $comment ) {
       if ( $comment->comment_parent === 0 ) {
         // Set the avatar
-        $comment = $this->prepare_comment( $comment );
+        $commentArray = $this->_prepare_comment( $comment );
 
-      dd($comment);
-      // Get Child replies
+        dd($commentArray);
+        // Get Child replies
         $child_comments = get_comments( array(
           'post_id'       => $post->ID,
           'status'        => 'approve',
@@ -300,7 +300,7 @@ class AppBear_Endpoints {
         $replies = array();
 
         foreach ( $child_comments as $reply ) {
-          $replies[] = $this->prepare_comment( $reply );
+          $replies[] = $this->_prepare_comment( $reply );
         }
 
         $comment['replies'] = $replies;
@@ -314,23 +314,6 @@ class AppBear_Endpoints {
     $this_post['comments'] = $comments;
 
     return array( 'post' => $this_post );
-  }
-
-
-  /**
-   * Prepare comment
-   */
-  private function prepare_comment( $comment ) {
-    return array(
-      'comment_ID'         => $comment->comment_ID,
-      'comment_author'     => $comment->comment_author,
-      'comment_author_url' => $comment->comment_author_url,
-      'comment_date'       => $comment->comment_date,
-      'comment_content'    => $comment->comment_content,
-      'comment_parent'     => $comment->comment_parent,
-      'author_avatar'      => get_avatar_url( $comment->comment_author_email ),
-      'replies'            => array(),
-    );
   }
 
 
@@ -470,7 +453,7 @@ class AppBear_Endpoints {
    * @since 1.0
    * @return array()
    */
-	function do_add_comment() {
+	public function do_add_comment() {
 		$param = $_GET;
     $data = array();
 
@@ -623,6 +606,7 @@ class AppBear_Endpoints {
     }
   }
 
+
   /**
    * Query Posts
    *
@@ -703,6 +687,26 @@ class AppBear_Endpoints {
       'count'       => 0,
       'count_total' => 0,
       'pages'       => 0,
+    );
+  }
+
+
+  /**
+   * Prepare comment
+   *
+   * @param WP_Comment $comment Comment Object
+   * @return array Processed Comment Array
+   */
+  private function _prepare_comment( $comment ) {
+    return array(
+      'comment_ID' => $comment->comment_ID,
+      'comment_author' => $comment->comment_author,
+      'comment_author_url' => $comment->comment_author_url,
+      'comment_date' => $comment->comment_date,
+      'comment_content' => $comment->comment_content,
+      'comment_parent' => $comment->comment_parent,
+      'author_avatar' => get_avatar_url( $comment->comment_author_email ),
+      'replies' => array(),
     );
   }
 }
