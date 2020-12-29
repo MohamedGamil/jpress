@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.1.0' );
+define( 'APPBEAR_VERSION', '0.1.2' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -76,12 +76,6 @@ define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_settings' );
  * License Option Key Name
  */
 define( 'APPBEAR_LICENSE_KEY_OPTION', 'appbear_license_activation_key' );
-
-
-/**
- * Public-Key Option Key Name
- */
-define( 'APPBEAR_PUBLIC_KEY_OPTION', 'appbear_license_pub_key' );
 
 
 /**

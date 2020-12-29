@@ -3816,21 +3816,19 @@ class AppBear_Options
 			'id' => 'section-general-activation',
     ));
 
-    $publicKey = appbear_get_public_key();
+    $isValidLicense = appbear_check_license() === true;
 		$activation_section->add_field(array(
 			'id' => 'custom-title',
 			'name' => __( 'Enter your license key', 'textdomain' ),
 			'type' => 'title',
 			'desc' => (
-        __('<strong><u>You must purchase a license</u> on <a href="appbear.io" target="_blank">appbear.io</a> to unlock all features of AppBear and get your own mobile app.</strong>')
+        '<br>'
+        . __('<strong><u>You must purchase a license</u> on <a href="appbear.io" target="_blank">appbear.io</a> to unlock all features of AppBear and get your own mobile app.</strong>')
         . '<br>'
         . __('Or you can get instant access to a demo of what your mobile app will look like and experience real-time customizations by installing AppBear from <a href="#" target="_blank">Google Play</a> or <a href="#" target="_blank">Apple App Store</a>.')
         . '<br>'
         . '<br>'
-        . ($publicKey
-          ? ( __('Your public key is: ') . "( <strong>{$publicKey}</strong> )" )
-          : __('Enter and save your license key to activate AppBear.')
-        )
+        . ( $isValidLicense === false ? __('Enter and save your license key to activate AppBear.') : '' )
       ),
     ));
 
@@ -3842,10 +3840,10 @@ class AppBear_Options
 			'grid' => '6-of-6',
     ));
 
-    if ( get_option(APPBEAR_LICENSE_STATUS_KEY_OPTION) === 'valid' && empty($publicKey) === false ) {
+    if ( get_option(APPBEAR_LICENSE_STATUS_KEY_OPTION) === 'valid' ) {
       $activation_section->add_field(array(
         'name' => '<strong style="color:green">'. __('License Active!') .'</strong>',
-        'id' => APPBEAR_PUBLIC_KEY_OPTION,
+        'id' => 'appbear-license-status',
         'type' => '__text',
         'grid' => '6-of-6',
         'options' => array(
@@ -3856,7 +3854,7 @@ class AppBear_Options
     } else {
       $activation_section->add_field(array(
         'name' => '<strong style="color:red">'. __('License Inactive!') .'</strong>',
-        'id' => APPBEAR_PUBLIC_KEY_OPTION,
+        'id' => 'appbear-license-status',
         'type' => '__text',
         'grid' => '6-of-6',
         'options' => array(
