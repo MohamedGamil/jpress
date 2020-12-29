@@ -1458,11 +1458,7 @@ class AdminPage extends AppbearCore {
       // dd($license, $license_data);
 
       if ( true === $license_data->success ) {
-        $publicKey = isset($license_data->public_key) && $license_data->public_key ? $license_data->public_key : '';
-
-        if (empty($publicKey) === false) {
-          update_option( APPBEAR_PUBLIC_KEY_OPTION, $publicKey, false );
-        }
+        // TODO: Do something if license has been successfully activated!
       }
       else {
         $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';

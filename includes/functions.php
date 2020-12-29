@@ -177,15 +177,6 @@ function appbear_get_template($templatePath, $vars = array())
 
 
 /**
- * Get public key
- */
-function appbear_get_public_key()
-{
-  return trim( get_option( APPBEAR_PUBLIC_KEY_OPTION ) );
-}
-
-
-/**
  * Get license key
  */
 function appbear_get_license_key()
@@ -218,7 +209,7 @@ function appbear_get_deeplinking_opts($asArray = false)
  */
 function appbear_check_license()
 {
-  return ( get_option( APPBEAR_LICENSE_STATUS_KEY_OPTION ) === 'valid' && empty(appbear_get_public_key()) === false ) || _appbear_is_dev_mode();
+  return ( get_option( APPBEAR_LICENSE_STATUS_KEY_OPTION ) === 'valid' ) || _appbear_is_dev_mode();
 }
 
 
