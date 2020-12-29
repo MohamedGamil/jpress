@@ -141,9 +141,6 @@ class AppbearAPI {
     );
 
     if ($includeAuthHeaders) {
-      /** @deprecated 0.1.0 DEPRECATED: using the following header should be ommited from requests  */
-      $headers['X-APPBEAR-KEY'] = appbear_get_public_key();
-
       $headers['X-EDD-KEY'] = appbear_get_license_key();
       $headers['X-EDD-URL'] = trailingslashit(get_home_url());
     }
