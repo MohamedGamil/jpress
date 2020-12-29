@@ -271,7 +271,7 @@ class AppBear_Endpoints {
       'post_id' => $post->ID,
       'status' => 'approve',
       'order' => 'ASC',
-      'post_status' => 'public',
+      'post_status' => 'publish',
       'lang' => get_locale(),
 
       // 'type' => 'comment',
