@@ -268,12 +268,14 @@ class AppBear_Endpoints {
     $comments = array();
 
     $args = array(
-      'post_id'       => $post->ID,
-      'status'        => 'approve',
-      'order'         => 'ASC',
-      'type'          => 'comment',
-      'lang'          => get_locale(),
-      //'hierarchical'  => 'threaded',
+      'post_id' => $post->ID,
+      'status' => 'approve',
+      'order' => 'ASC',
+      'post_status' => 'public',
+      'lang' => get_locale(),
+
+      // 'type' => 'comment',
+      //'hierarchical' => 'threaded',
     );
 
     $get_comments = get_comments( $args );
