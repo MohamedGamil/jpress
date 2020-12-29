@@ -356,7 +356,7 @@ class AdminPage extends AppbearCore {
           update_option( 'appbear-language', $translations );
 
           // Save translations request
-          $response = AppbearAPI::save_translations($translations);
+          $response = AppbearAPI::save_translations();
 
           $this->_sendSilentNotification(true);
         break;
@@ -1361,7 +1361,6 @@ class AdminPage extends AppbearCore {
           $options['basicUrls']["selectDemo"] = "/wp-json/wl/v1/selectDemo";
           $options['basicUrls']["demos"] = "/wp-json/wl/v1/demos";
 
-          $options['baseUrl'] = get_home_url().'/';
           $options['defaultLayout'] = "Layout.standard";
           $options['searchApi'] = "/wp-json/wl/v1/posts?s=";
           $options['commentsApi'] = "/wp-json/wl/v1/comments?id=";
@@ -1392,12 +1391,14 @@ class AdminPage extends AppbearCore {
 
           $this->_updateDeeplinkingOptions( $responseObject );
 
+          $options['baseUrl'] = trailingslashit(get_home_url());
           $options['copyrights'] = get_home_url();
           $options['validConfig'] = true;
 
           // NOTE: Debug lines
           // dd($public_key, $this->_getLicenseKey(), $responseObject);
           // dd($options);
+          // echo json_encode($options);die;
 
           update_option( 'appbear-options', $options );
           $this->_sendSilentNotification();
