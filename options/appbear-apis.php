@@ -277,7 +277,8 @@ class AppBear_Endpoints {
 
     $get_comments = get_comments( $args );
 
-    // NOTE: May require a limit paramter
+    dd($get_comments);
+    // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
       if ( $comment->comment_parent == 0 ) {
