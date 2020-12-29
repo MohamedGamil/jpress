@@ -283,8 +283,8 @@ class AppBear_Endpoints {
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
-      dd(0, $comment);
-      if ( $comment->comment_parent === 0 ) {
+      dd(0, $comment, $comment->comment_parent);
+      if ( absint($comment->comment_parent) === 0 ) {
         // Set the avatar
         $comment = $this->_prepare_comment( $comment );
 
