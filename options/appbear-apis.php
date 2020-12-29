@@ -269,8 +269,8 @@ class AppBear_Endpoints {
 
     $args = array(
       'post_id' => $post->ID,
-      'status' => 'approve',
-      'order' => 'ASC',
+      // 'status' => 'approve',
+      // 'order' => 'ASC',
 
       // 'post_status' => 'publish',
       // 'type' => 'comment',
