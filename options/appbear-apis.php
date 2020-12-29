@@ -283,7 +283,8 @@ class AppBear_Endpoints {
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
-      if ( $comment->comment_parent == 0 ) {
+      dd($comment);
+      if ( $comment->comment_parent === 0 ) {
         // Set the avatar
         $comment = $this->prepare_comment( $comment );
 
@@ -308,7 +309,7 @@ class AppBear_Endpoints {
     }
 
     // NOTE: Debug line
-    dd($comments, $comment['replies']);
+    dd($comments );
 
     $this_post['comments'] = $comments;
 
