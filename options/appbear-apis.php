@@ -307,6 +307,9 @@ class AppBear_Endpoints {
       }
     }
 
+    // NOTE: Debug line
+    dd($comments, $comment['replies']);
+
     $this_post['comments'] = $comments;
 
     return array( 'post' => $this_post );
