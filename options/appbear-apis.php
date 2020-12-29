@@ -280,9 +280,6 @@ class AppBear_Endpoints {
 
     $get_comments = get_comments( $args );
 
-    // NOTE: Debug line
-    // dd($post->ID, $this_post, $get_comments);
-
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
