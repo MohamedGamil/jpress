@@ -283,12 +283,12 @@ class AppBear_Endpoints {
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
-      dd($comment);
       if ( $comment->comment_parent === 0 ) {
         // Set the avatar
         $comment = $this->prepare_comment( $comment );
 
-        // Get Child replies
+      dd($comment);
+      // Get Child replies
         $child_comments = get_comments( array(
           'post_id'       => $post->ID,
           'status'        => 'approve',
