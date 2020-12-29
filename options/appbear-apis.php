@@ -276,7 +276,7 @@ class AppBear_Endpoints {
       'type' => 'comment',
 
       // 'lang' => get_locale(),
-      //'hierarchical' => 'threaded',
+      // 'hierarchical' => 'threaded',
     );
 
     $get_comments = get_comments( $args );
@@ -309,7 +309,7 @@ class AppBear_Endpoints {
     }
 
     // NOTE: Debug line
-    dd( 2, $comments );
+    // dd( 2, $comments );
 
     $this_post['comments'] = $comments;
 
