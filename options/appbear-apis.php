@@ -245,7 +245,8 @@ class AppBear_Endpoints {
     // Tags
     // To do. create a function that work with cats. and tags
     $this_post['tags'] = array();
-    $tags = get_the_tags( $this_post['id'] );
+    $postID = $this_post['id'];
+    $tags = get_the_tags( $postID );
 
     if ( ! empty( $tags ) ) {
       foreach ( $tags as $single_tag ) {
@@ -268,7 +269,7 @@ class AppBear_Endpoints {
     $comments = array();
 
     $args = array(
-      'post_id' => $this_post['id'],
+      'post_id' => $postID,
       'status' => 'approve',
       'order' => 'ASC',
       'post_status' => 'publish',
@@ -289,7 +290,7 @@ class AppBear_Endpoints {
 
         // Get Child replies
         $child_comments = get_comments( array(
-          'post_id'       => $post->ID,
+          'post_id'       => $postID,
           'status'        => 'approve',
           'order'         => 'ASC',
           'type'          => 'comment',
@@ -304,7 +305,6 @@ class AppBear_Endpoints {
 
         $comment['replies'] = $replies;
         $comments[] = $comment;
-        dd(1, $comment);
       }
     }
 
