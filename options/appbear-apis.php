@@ -268,19 +268,21 @@ class AppBear_Endpoints {
     $comments = array();
 
     $args = array(
-      'post_id' => $post->ID,
-      // 'status' => 'approve',
-      // 'order' => 'ASC',
+      'post_id' => $this_post['id'],
+      'status' => 'approve',
+      'order' => 'ASC',
+      'post_status' => 'publish',
+      'type' => 'comment',
 
-      // 'post_status' => 'publish',
-      // 'type' => 'comment',
       // 'lang' => get_locale(),
       //'hierarchical' => 'threaded',
     );
 
     $get_comments = get_comments( $args );
 
-    dd($post->ID, $this_post, $get_comments);
+    // NOTE: Debug line
+    // dd($post->ID, $this_post, $get_comments);
+
     // NOTE: May require a limit parameter
 
     foreach ( $get_comments as $comment ) {
