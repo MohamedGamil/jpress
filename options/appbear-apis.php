@@ -287,7 +287,6 @@ class AppBear_Endpoints {
         // Set the avatar
         $comment = $this->_prepare_comment( $comment );
 
-        dd(1, $comment);
         // Get Child replies
         $child_comments = get_comments( array(
           'post_id'       => $post->ID,
@@ -305,6 +304,7 @@ class AppBear_Endpoints {
 
         $comment['replies'] = $replies;
         $comments[] = $comment;
+        dd(1, $comment);
       }
     }
 
