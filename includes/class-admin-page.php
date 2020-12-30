@@ -9,7 +9,6 @@ use Appbear\Includes\AppbearAPI;
  * AppBear Admin Page
  */
 class AdminPage extends AppbearCore {
-  const SEND_SILENT_NOTIFICATION_ON_SAVE = false;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
@@ -318,11 +317,10 @@ class AdminPage extends AppbearCore {
 
 		// Add settings error
 		if ( isset( $data[APPBEAR_LICENSE_KEY_OPTION] ) ) {
-      $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] );
-
+      $updated = $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] ) === true;
       $settingsURL = admin_url('admin.php?page=appbear-settings');
 
-      if (static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL )) {
+      if ( $updated && static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL ) ) {
         exit;
       }
     }
@@ -358,7 +356,6 @@ class AdminPage extends AppbearCore {
           // Save translations request
           $response = AppbearAPI::save_translations($translations);
 
-          $this->_sendSilentNotification(true);
         break;
 
         // NOTE: Parsing the configuration to be read in mobile application
@@ -1407,7 +1404,6 @@ class AdminPage extends AppbearCore {
           // echo json_encode($options);die;
 
           update_option( 'appbear-options', $options );
-          $this->_sendSilentNotification();
         break;
       }
 
@@ -1436,10 +1432,11 @@ class AdminPage extends AppbearCore {
     return $options;
   }
 
-  /*
+  /**
    * Update license key
    *
    * @param string $licenseKey License key
+   * @return boolean
    */
   private function _updateLicenseKey( $licenseKey ) {
     update_option( APPBEAR_LICENSE_KEY_OPTION, $licenseKey, false );
@@ -1464,7 +1461,7 @@ class AdminPage extends AppbearCore {
       // dd($license, $license_data);
 
       if ( true === $license_data->success ) {
-        // TODO: Do something if license has been successfully activated!
+        return true;
       }
       else {
         $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';
@@ -1504,6 +1501,8 @@ class AdminPage extends AppbearCore {
             break;
         }
       }
+
+      return false;
     }
 
     // Check if anything passed on a message constituting a failure
@@ -1537,34 +1536,6 @@ class AdminPage extends AppbearCore {
       'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
       'android_bundle' => isset($options) ? $options['android_bundle'] : '',
     ));
-  }
-
-  /**
-   * Send Silent Notification
-   *
-   * @param boolean $translationChanged Did translation change?
-   * @return void
-   */
-  private function _sendSilentNotification($translationChanged = false) {
-    if ( static::SEND_SILENT_NOTIFICATION_ON_SAVE === false ) {
-      return;
-    }
-
-    $base_url = get_home_url();
-    $base_url = substr($base_url, -1) === '/' ? substr($base_url, 0, -1) : $base_url;
-    $licensedBase = str_replace( 'http://', '', str_replace( 'http://', '', $base_url ) );
-    $licensedBase = str_replace( 'https://', '', str_replace( 'https://', '', $licensedBase ) );
-    $endpoint = APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase;
-
-    if ( $translationChanged === true ) {
-      $endpoint .= '&change_translations=true';
-    }
-
-    $response = wp_remote_get($endpoint);
-    $body = wp_remote_retrieve_body( $response );
-
-    // NOTE: Debug line
-    // dd($body);
   }
 
   /*
