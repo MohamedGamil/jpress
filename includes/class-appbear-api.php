@@ -75,11 +75,12 @@ class AppbearAPI {
   /**
    * Save translations request
    *
+   * @param array $translations Translations array
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
-  public static function save_translations() {
-    $endpoint = '/wp-json/appbear-edd-addon/v1/notifications';
-    $data = array( 'data' => array( 'translations' => true ) );
+  public static function save_translations($translations) {
+    $endpoint = '/wp-json/appbear-edd-addon/v1/settings';
+    $data = array( 'data' => array( 'translations' => $translations ) );
 
     return static::_send( $endpoint, $data );
   }
