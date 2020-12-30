@@ -329,6 +329,10 @@ class AdminPage extends AppbearCore {
 				return -1;
       }
 
+      $updated = true;
+      $updatedMessage = __('Your settings has been updated successfully', 'textdomain');
+      $updatedClass = 'updated';
+
       switch($this->id) {
         // NOTE: Parsing the translations to be read in mobile application
         case 'appbear-translations':
@@ -1392,6 +1396,7 @@ class AdminPage extends AppbearCore {
           else {
             // Reset & invalidate license key / status
             appbear_invalidate_license(true);
+            $updated = false;
           }
 
           $options['baseUrl'] = trailingslashit(get_home_url());
@@ -1408,7 +1413,15 @@ class AdminPage extends AppbearCore {
       }
 
       // update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $isValidLicense ? 'valid' : 'invalid', false );
-      add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', ' . __('Your settings has been updated successfully'), 'updated' );
+
+      if ( $updated === false ) {
+        $updatedMessage = __('Error! Unable to completely save your settings, please check your license key and plan limits.', 'textdomain');
+        $updatedClass = 'error';
+      }
+
+      $updatedMessage = $this->arg( 'saved_message' ) . ', ' . $updatedMessage;
+
+      add_settings_error( $this->settings_notice_key(), $this->id, $updatedMessage, $updatedClass );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
 		}
   }
