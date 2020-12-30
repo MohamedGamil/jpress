@@ -97,7 +97,7 @@ class AppBear_Options
 
     if( $old && $old !== $new ) {
       // new license has been entered, so must reactivate
-      delete_option( APPBEAR_LICENSE_STATUS_KEY_OPTION );
+      appbear_invalidate_license();
     }
 
     return $new;

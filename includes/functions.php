@@ -9,8 +9,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly
  * @param string $name Option name
  * @param mixed $default Option default value
  */
-function appbear_get_option($name, $default = false)
-{
+function appbear_get_option($name, $default = false) {
   $opts = get_option(APPBEAR_PRIMARY_OPTIONS);
 
   if ( $name === '%ALL%' ) {
@@ -25,9 +24,7 @@ function appbear_get_option($name, $default = false)
  * Get Reading time for the current global post
  *
  */
-function appbear_get_read_time()
-{
-
+function appbear_get_read_time() {
 	$post_content = get_post()->post_content;
 	$post_content = strip_shortcodes( strip_tags( $post_content ) );
 	$post_content = preg_split('/\s+/u', $post_content, null, PREG_SPLIT_NO_EMPTY );
@@ -59,8 +56,7 @@ function appbear_get_read_time()
 /**
  * Get Time Format
  */
-function appbear_get_time()
-{
+function appbear_get_time() {
 	$time_format = appbear_get_option('time_format');
 
 	// Human Readable Post Dates
@@ -90,8 +86,7 @@ function appbear_get_time()
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_format($post_id = null)
-{
+function appbear_post_format($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -110,8 +105,7 @@ function appbear_post_format($post_id = null)
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_gallery($post_id = null)
-{
+function appbear_post_gallery($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -128,8 +122,7 @@ function appbear_post_gallery($post_id = null)
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_video($post_id = null)
-{
+function appbear_post_video($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -146,8 +139,7 @@ function appbear_post_video($post_id = null)
  *
  * @param string $file Template File Path
  */
-function appbear_get_template($templatePath, $vars = array())
-{
+function appbear_get_template($templatePath, $vars = array()) {
 	// NOTE: Should be substitued with a template file..
 	$prefix = APPBEAR_DIR . 'templates';
 	$templatePath = str_replace('.php', '', $templatePath);
@@ -179,8 +171,7 @@ function appbear_get_template($templatePath, $vars = array())
 /**
  * Get license key
  */
-function appbear_get_license_key()
-{
+function appbear_get_license_key() {
   return trim( get_option( APPBEAR_LICENSE_KEY_OPTION ) );
 }
 
@@ -188,8 +179,7 @@ function appbear_get_license_key()
 /**
  * Get deeplinking options
  */
-function appbear_get_deeplinking_opts($asArray = false)
-{
+function appbear_get_deeplinking_opts($asArray = false) {
   $widgetEnabled = appbear_get_option('is_deeplinking_widget_enabled', false);
   $deeplinkingOpts = get_option( APPBEAR_DEEPLINKING_OPTION );
 
@@ -207,9 +197,25 @@ function appbear_get_deeplinking_opts($asArray = false)
 /**
  * Check current license validity
  */
-function appbear_check_license()
-{
+function appbear_check_license() {
   return ( get_option( APPBEAR_LICENSE_STATUS_KEY_OPTION ) === 'valid' ) || _appbear_is_dev_mode();
+}
+
+
+/**
+ * Invalidate license status and optionally reset license key
+ *
+ * @param boolean $resetLicenseKey
+ * @return void
+ */
+function appbear_invalidate_license($resetLicenseKey = false) {
+  if ($resetLicenseKey === true) {
+    delete_option( APPBEAR_LICENSE_KEY_OPTION );
+  }
+
+  delete_option( APPBEAR_LICENSE_STATUS_KEY_OPTION );
+
+  do_action('appbear_license_deactivated');
 }
 
 
@@ -219,8 +225,7 @@ function appbear_check_license()
  * @param string $content
  * @return string
  */
-function appbear_shortcodes_parsing($content)
-{
+function appbear_shortcodes_parsing($content) {
 	// NOTE: A couple of things needs to be done here:
 	//            1) Revise each replacement
 	//            2) A better optimized way to replace strings
@@ -671,8 +676,7 @@ function appbear_shortcodes_parsing($content)
  * @param string $isInstant  Is alert instant (Not Flash)
  * @return void
  */
-function appbear_notice($message, $type = 'success', $isDismissable = true, $isInstant = false)
-{
+function appbear_notice($message, $type = 'success', $isDismissable = true, $isInstant = false) {
   \Appbear_Notice::notice($type, $message, $isDismissable, $isInstant);
 }
 
@@ -683,8 +687,7 @@ function appbear_notice($message, $type = 'success', $isDismissable = true, $isI
  * @param boolean $hardReset Force applying default options
  * @return void
  */
-function appbear_seed_default_demo($hardReset = false)
-{
+function appbear_seed_default_demo($hardReset = false) {
   $hasChanges = false;
   $options = appbear_get_option('%ALL%');
   $menuItems = isset($options['navigators']) ? $options['navigators'] : array();
@@ -784,8 +787,7 @@ function appbear_seed_default_demo($hardReset = false)
  * @since 0.0.15
  * @return void
  */
-function appbear_get_tts_locale()
-{
+function appbear_get_tts_locale() {
   $locale = get_locale();
   $pts = explode('_', $locale);
   $lang = strtolower(reset($pts));
@@ -826,8 +828,7 @@ function appbear_get_tts_locale()
 /**
  * Check if dev mode is active
  */
-function _appbear_is_dev_mode()
-{
+function _appbear_is_dev_mode() {
   return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
 }
 
