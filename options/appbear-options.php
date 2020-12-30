@@ -125,7 +125,6 @@ class AppBear_Options
    */
   protected function _initOptions() {
     $this->_initSettingsPage();
-    $this->_initTranslationsPage();
   }
 
 
@@ -168,6 +167,7 @@ class AppBear_Options
           // 'typography' => '<i class="appbear-icon appbear-icon-font"></i>'.__( 'Typography', 'textdomain' ),
           'advertisement' => '<i class="appbear-icon appbear-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
           'settings' => '<i class="appbear-icon appbear-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
+          'translations' => '<i class="appbear-icon appbear-icon-language"></i>'.__( 'Translations', 'textdomain' ),
           'import' => '<i class="appbear-icon appbear-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
       ),
       'options' => array(
@@ -1581,6 +1581,16 @@ class AppBear_Options
     $archives_single->add_field(array(
       'name' => __( 'Share', 'textdomain' ),
       'id' => 'archives-single-options-share',
+      'type' => 'switcher',
+      'default'	=>	'true',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      )
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Text to Speech', 'textdomain' ),
+      'id' => 'archives-single-options-tts',
       'type' => 'switcher',
       'default'	=>	'true',
       'options' => array(
@@ -3005,13 +3015,11 @@ class AppBear_Options
       ),
     ));
 
-    $settings->open_mixed_field(
-    array(
+    $settings->open_mixed_field( array(
       'name' => __('Development Mode', 'textdomain' ),
       'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
-    'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
-    )
-    );
+      'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
+    ));
 
     $settings->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
@@ -3024,67 +3032,14 @@ class AppBear_Options
       )
     ));
 
-
     $settings->close_mixed_field();
-
     $settings->close_tab_item('settings');
 
 
-    // NOTE: Import / Export Page
-    $settings->open_tab_item('import');
-    $settings->add_import_field(array(
-      'name' => 'Select Demo',
-      'default' => 'http://appbearframework.com/demos/blank.json',
-      'desc' => 'Choose a demo, then click import button',
-      'items' => array(
-        APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
-        APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
-        APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
-        APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
-        APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
-        APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
-        APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
-        APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
-      ),
-      'options' => array(
-        'import_from_file' => false,
-        'import_from_url' => false,
-        'width' => '200px'
-      )
-    ));
+    // NOTE: Translations Page
+    $settings->open_tab_item('translations');
 
-    $settings->add_export_field(array(
-      'name' => 'Export',
-      'desc' => 'Download and make a backup of your options.',
-    ));
-    $settings->close_tab_item('import');
-
-    $settings->close_tab('main-tab');
-  }
-
-
-  /*
-   * Initialize translaions page options
-   */
-  protected function _initTranslationsPage() {
-		$translations_arg = array(
-			'id' => 'appbear-translations',
-			'title' => 'appBear Translations',
-			'menu_title' => 'Translations',
-			'icon' => APPBEAR_URL . 'img/appbear-light-small.png',//Menu icon
-			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
-			'layout' => 'wide',//wide
-			'header' => array(
-				'icon' => '<img src="' . APPBEAR_URL . 'img/a-logo.svg"/>',
-				'desc' => 'No coding required. Your app syncs with your site automatically.',
-			),
-			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
-			'capability' => 'manage_options',
-			'parent' => APPBEAR_PRIMARY_OPTIONS,
-		);
-		$translations = appbear_new_admin_page( $translations_arg );
-
-		$translations_section	=	$translations->add_section( array(
+		$translations_section	=	$settings->add_section( array(
 			'name' => 'Tanslations',
 			'id' => 'section-general-header',
 			'options' => array(
@@ -3778,6 +3733,40 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '6-of-6',
     ));
+
+    $settings->close_tab_item('translations');
+
+
+    // NOTE: Import / Export Page
+    $settings->open_tab_item('import');
+    $settings->add_import_field(array(
+      'name' => 'Select Demo',
+      'default' => 'http://appbearframework.com/demos/blank.json',
+      'desc' => 'Choose a demo, then click import button',
+      'items' => array(
+        APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
+        APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
+        APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
+        APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
+        APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
+        APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
+        APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
+        APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
+      ),
+      'options' => array(
+        'import_from_file' => false,
+        'import_from_url' => false,
+        'width' => '200px'
+      )
+    ));
+
+    $settings->add_export_field(array(
+      'name' => 'Export',
+      'desc' => 'Download and make a backup of your options.',
+    ));
+    $settings->close_tab_item('import');
+
+    $settings->close_tab('main-tab');
   }
 
 

@@ -329,13 +329,23 @@ class AdminPage extends AppbearCore {
 				return -1;
       }
 
+      $options = array();
       $updated = true;
       $updatedMessage = __('Your settings has been updated successfully', 'textdomain');
       $updatedClass = 'updated';
 
       switch($this->id) {
-        // NOTE: Parsing the translations to be read in mobile application
-        case 'appbear-translations':
+        // NOTE: Parsing the configuration to be read in mobile application
+        case APPBEAR_PRIMARY_OPTIONS:
+          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
+          if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
+            appbear_seed_default_demo(true);
+
+            $opts = appbear_get_option('%ALL%');
+            $data = array_merge( $opts, $data );
+          }
+
+          // NOTE: Parsing the translations to be read in mobile application
           $translationsKeys = array(
             'back', 'skip', 'done', 'contactUs', 'loadingUpdates', 'baseUrl', 'baseUrlTitle', 'baseUrlDesc', 'emptyBaseUrl', 'alreadyBaseUrl',
             'contactUsTitle', 'contactUsSubTitle', 'yourName', 'yourEmail', 'yourMessage', 'send', 'settings', 'aboutUs', 'layout', 'textSize',
@@ -348,28 +358,13 @@ class AdminPage extends AppbearCore {
             'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demosHint', 'getOur',
             'appBear', 'plugin', 'next',
           );
-          $translations = array();
+
+          $options['translations'] = array();
 
           foreach ( $translationsKeys as $key ) {
-            $translations[$key] = $data[ 'translate-' . $key ];
-          }
-
-          $translations = str_replace( '\\', '', $translations );
-          update_option( 'appbear-language', $translations );
-
-          // Save translations request
-          $response = AppbearAPI::save_translations($translations);
-
-        break;
-
-        // NOTE: Parsing the configuration to be read in mobile application
-        case APPBEAR_PRIMARY_OPTIONS:
-          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
-          if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
-            appbear_seed_default_demo(true);
-
-            $opts = appbear_get_option('%ALL%');
-            $data = array_merge( $opts, $data );
+            if ( isset($data[ 'translate-' . $key ]) && empty($data[ 'translate-' . $key ]) === false ) {
+              $options['translations'][$key] = $data[ 'translate-' . $key ];
+            }
           }
 
           $options['rtl'] = is_rtl() ? 'true' : 'false';
@@ -848,7 +843,6 @@ class AdminPage extends AppbearCore {
           */
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
-          $options['archives']['single']['textToSpeech'] = 'true';
 
           if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
             $options['archives']['single']['category'] = $data['archives-single-options-category'];
@@ -876,6 +870,10 @@ class AdminPage extends AppbearCore {
 
           if (isset($data['archives-single-options-share']) && $data['archives-single-options-share'] != 'false') {
             $options['archives']['single']['share'] = $data['archives-single-options-share'];
+          }
+
+          if (isset($data['archives-single-options-tts']) && $data['archives-single-options-tts'] != 'false') {
+            $options['archives']['single']['textToSpeech'] = $data['archives-single-options-tts'];
           }
 
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
