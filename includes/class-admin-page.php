@@ -356,7 +356,7 @@ class AdminPage extends AppbearCore {
           update_option( 'appbear-language', $translations );
 
           // Save translations request
-          $response = AppbearAPI::save_translations();
+          $response = AppbearAPI::save_translations($translations);
 
           $this->_sendSilentNotification(true);
         break;
