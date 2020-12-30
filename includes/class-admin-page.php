@@ -9,7 +9,6 @@ use Appbear\Includes\AppbearAPI;
  * AppBear Admin Page
  */
 class AdminPage extends AppbearCore {
-  const SEND_SILENT_NOTIFICATION_ON_SAVE = false;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
@@ -318,11 +317,10 @@ class AdminPage extends AppbearCore {
 
 		// Add settings error
 		if ( isset( $data[APPBEAR_LICENSE_KEY_OPTION] ) ) {
-      $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] );
-
+      $updated = $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] ) === true;
       $settingsURL = admin_url('admin.php?page=appbear-settings');
 
-      if (static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL )) {
+      if ( $updated && static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL ) ) {
         exit;
       }
     }
@@ -331,9 +329,23 @@ class AdminPage extends AppbearCore {
 				return -1;
       }
 
+      $options = array();
+      $updated = true;
+      $updatedMessage = __('Your settings has been updated successfully', 'textdomain');
+      $updatedClass = 'updated';
+
       switch($this->id) {
-        // NOTE: Parsing the translations to be read in mobile application
-        case 'appbear-translations':
+        // NOTE: Parsing the configuration to be read in mobile application
+        case APPBEAR_PRIMARY_OPTIONS:
+          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
+          if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
+            appbear_seed_default_demo(true);
+
+            $opts = appbear_get_option('%ALL%');
+            $data = array_merge( $opts, $data );
+          }
+
+          // NOTE: Parsing the translations to be read in mobile application
           $translationsKeys = array(
             'back', 'skip', 'done', 'contactUs', 'loadingUpdates', 'baseUrl', 'baseUrlTitle', 'baseUrlDesc', 'emptyBaseUrl', 'alreadyBaseUrl',
             'contactUsTitle', 'contactUsSubTitle', 'yourName', 'yourEmail', 'yourMessage', 'send', 'settings', 'aboutUs', 'layout', 'textSize',
@@ -346,29 +358,13 @@ class AdminPage extends AppbearCore {
             'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demosHint', 'getOur',
             'appBear', 'plugin', 'next',
           );
-          $translations = array();
+
+          $options['translations'] = array();
 
           foreach ( $translationsKeys as $key ) {
-            $translations[$key] = $data[ 'translate-' . $key ];
-          }
-
-          $translations = str_replace( '\\', '', $translations );
-          update_option( 'appbear-language', $translations );
-
-          // Save translations request
-          $response = AppbearAPI::save_translations($translations);
-
-          $this->_sendSilentNotification(true);
-        break;
-
-        // NOTE: Parsing the configuration to be read in mobile application
-        case APPBEAR_PRIMARY_OPTIONS:
-          // NOTE: Apply default demo data if doing a reset with a hard reset to default options
-          if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
-            appbear_seed_default_demo(true);
-
-            $opts = appbear_get_option('%ALL%');
-            $data = array_merge( $opts, $data );
+            if ( isset($data[ 'translate-' . $key ]) && empty($data[ 'translate-' . $key ]) === false ) {
+              $options['translations'][$key] = $data[ 'translate-' . $key ];
+            }
           }
 
           $options['rtl'] = is_rtl() ? 'true' : 'false';
@@ -847,7 +843,6 @@ class AdminPage extends AppbearCore {
           */
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
           $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
-          $options['archives']['single']['textToSpeech'] = 'true';
 
           if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
             $options['archives']['single']['category'] = $data['archives-single-options-category'];
@@ -875,6 +870,10 @@ class AdminPage extends AppbearCore {
 
           if (isset($data['archives-single-options-share']) && $data['archives-single-options-share'] != 'false') {
             $options['archives']['single']['share'] = $data['archives-single-options-share'];
+          }
+
+          if (isset($data['archives-single-options-tts']) && $data['archives-single-options-tts'] != 'false') {
+            $options['archives']['single']['textToSpeech'] = $data['archives-single-options-tts'];
           }
 
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
@@ -1395,6 +1394,7 @@ class AdminPage extends AppbearCore {
           else {
             // Reset & invalidate license key / status
             appbear_invalidate_license(true);
+            $updated = false;
           }
 
           $options['baseUrl'] = trailingslashit(get_home_url());
@@ -1407,12 +1407,19 @@ class AdminPage extends AppbearCore {
           // echo json_encode($options);die;
 
           update_option( 'appbear-options', $options );
-          $this->_sendSilentNotification();
         break;
       }
 
       // update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $isValidLicense ? 'valid' : 'invalid', false );
-      add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ).', ' . __('Your settings has been updated successfully'), 'updated' );
+
+      if ( $updated === false ) {
+        $updatedMessage = __('Error! Unable to completely save your settings, please check your license key and plan limits.', 'textdomain');
+        $updatedClass = 'error';
+      }
+
+      $updatedMessage = $this->arg( 'saved_message' ) . ', ' . $updatedMessage;
+
+      add_settings_error( $this->settings_notice_key(), $this->id, $updatedMessage, $updatedClass );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
 		}
   }
@@ -1436,10 +1443,11 @@ class AdminPage extends AppbearCore {
     return $options;
   }
 
-  /*
+  /**
    * Update license key
    *
    * @param string $licenseKey License key
+   * @return boolean
    */
   private function _updateLicenseKey( $licenseKey ) {
     update_option( APPBEAR_LICENSE_KEY_OPTION, $licenseKey, false );
@@ -1464,7 +1472,7 @@ class AdminPage extends AppbearCore {
       // dd($license, $license_data);
 
       if ( true === $license_data->success ) {
-        // TODO: Do something if license has been successfully activated!
+        return true;
       }
       else {
         $errorKey = isset($license_data->error) ? $license_data->error : 'invalid';
@@ -1504,6 +1512,8 @@ class AdminPage extends AppbearCore {
             break;
         }
       }
+
+      return false;
     }
 
     // Check if anything passed on a message constituting a failure
@@ -1537,34 +1547,6 @@ class AdminPage extends AppbearCore {
       'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
       'android_bundle' => isset($options) ? $options['android_bundle'] : '',
     ));
-  }
-
-  /**
-   * Send Silent Notification
-   *
-   * @param boolean $translationChanged Did translation change?
-   * @return void
-   */
-  private function _sendSilentNotification($translationChanged = false) {
-    if ( static::SEND_SILENT_NOTIFICATION_ON_SAVE === false ) {
-      return;
-    }
-
-    $base_url = get_home_url();
-    $base_url = substr($base_url, -1) === '/' ? substr($base_url, 0, -1) : $base_url;
-    $licensedBase = str_replace( 'http://', '', str_replace( 'http://', '', $base_url ) );
-    $licensedBase = str_replace( 'https://', '', str_replace( 'https://', '', $licensedBase ) );
-    $endpoint = APPBEAR_STORE_URL . '/?edd_action=send_silent_fcm_message&site_url=' . $licensedBase;
-
-    if ( $translationChanged === true ) {
-      $endpoint .= '&change_translations=true';
-    }
-
-    $response = wp_remote_get($endpoint);
-    $body = wp_remote_retrieve_body( $response );
-
-    // NOTE: Debug line
-    // dd($body);
   }
 
   /*

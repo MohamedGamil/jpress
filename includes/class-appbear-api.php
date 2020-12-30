@@ -31,10 +31,7 @@ class AppbearAPI {
       'edd_action' => 'check_license',
       'license' => $licenseKey,
       'item_name' => urlencode( APPBEAR_ITEM_NAME ),
-
-      // FIXME: These parameters should cleaned for correct use case
       'url' => $homeURL,
-      'site_url' => $homeURL,
     );
 
     return wp_remote_post( APPBEAR_STORE_URL, array(
@@ -57,10 +54,7 @@ class AppbearAPI {
       'edd_action' => 'activate_license',
       'license'    => $licenseKey,
       'item_name'  => urlencode( APPBEAR_ITEM_NAME ), // the name of our product in EDD
-
-      // FIXME: These parameters should cleaned for correct use case
       'url' => $homeURL,
-      'site_url' => $homeURL,
     );
 
     $requestOpts = array(
