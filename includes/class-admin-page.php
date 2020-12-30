@@ -1389,7 +1389,13 @@ class AdminPage extends AppbearCore {
           // Parse response then update deeplinking options
           $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
 
-          $this->_updateDeeplinkingOptions( $responseObject );
+          if (isset($responseObject['success']) && (bool) $responseObject['success'] === true) {
+            $this->_updateDeeplinkingOptions( $responseObject );
+          }
+          else {
+            // Reset & invalidate license key / status
+            appbear_invalidate_license(true);
+          }
 
           $options['baseUrl'] = trailingslashit(get_home_url());
           $options['copyrights'] = APPBEAR_COPYRIGHTS_URL;
