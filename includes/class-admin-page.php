@@ -781,9 +781,8 @@ class AdminPage extends AppbearCore {
               $item['firstFeatured']  =   $section['firstFeatured'];
             }
 
-            // FIXME: Should be removed, this options does not exist!
             if (isset($section["separator"]) && $section["separator"] != 'false') {
-              $item['separator']  =   $section['separator'];
+              $item['separator'] = $section['separator'];
             }
 
             $item_options["sort"]  = $slide['local-sort'];
