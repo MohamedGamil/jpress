@@ -1064,13 +1064,16 @@ class AppBear_Options
       'type' => 'select',
       'default' => '3',
       'items' => array(
-        '1' => 1,
-        '3' => 3,
-        '5' => 5,
-        '6' => 6,
-        '7' => 7,
-        '9' => 9,
-        '10' => 10,
+        '1' => __( '1 Post', 'textdomain' ),
+        '2' => __( '2 Posts', 'textdomain' ),
+        '3' => __( '3 Posts', 'textdomain' ),
+        '4' => __( '4 Posts', 'textdomain' ),
+        '5' => __( '5 Posts', 'textdomain' ),
+        '6' => __( '6 Posts', 'textdomain' ),
+        '7' => __( '7 Posts', 'textdomain' ),
+        '8' => __( '8 Posts', 'textdomain' ),
+        '9' => __( '9 Posts', 'textdomain' ),
+        '10' => __( '10 Posts', 'textdomain' ),
       ),
       'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
     ));

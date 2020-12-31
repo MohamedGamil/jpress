@@ -586,7 +586,7 @@ class AdminPage extends AppbearCore {
               unset($slide['tabsbaritems_visibility']);
               unset($slide['tabsbaritems_name']);
 
-              $item = array();
+              $item = $item_options = array();
 
               $tabQueryURL = '/wp-json/wl/v1/posts?';
               $selected_categories = explode(',', $slide['categories'][0]);
@@ -614,6 +614,8 @@ class AdminPage extends AppbearCore {
               }
 
               $item['url']   = $tabQueryURL;
+              $item['url'] .= "&count=" . ( isset($slide['tabs-count']) ? $slide['tabs-count'] : '3' );
+              $item['url'] .= "&sort=" . ( isset($slide['tabs-sort']) ? $slide['tabs-sort'] : 'latest' );
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
                 $item['title']  = stripslashes($slide['title']);
@@ -627,9 +629,9 @@ class AdminPage extends AppbearCore {
                 $item['seperator']  =   $slide['tabs-seperator'];
               }
 
-              if (isset($slide["local-tabs-firstfeatured"]) && $slide["local-tabs-firstfeatured"] != 'false') {
-                $options['tabs']['firstFeatured']  = $slide['tabs-firstfeatured'];
-              }
+              // if (isset($slide["local-tabs-firstfeatured"]) && $slide["local-tabs-firstfeatured"] != 'false') {
+              //   $options['tabs']['firstFeatured']  = $slide['tabs-firstfeatured'];
+              // }
 
               $item["sort"]  = $slide['tabs-sort'];
               $item["count"] = $slide['tabs-count'];
@@ -666,6 +668,9 @@ class AdminPage extends AppbearCore {
 
               // NOTE: Debug line
               // dd($item);
+
+              // TODO: Should the above options become nested inside an options array?
+              // $item['options'] = array_merge( array( 'category' => true ), $item_options);
 
               array_push($options['tabs']['tabs'], $item);
             }
@@ -769,6 +774,7 @@ class AdminPage extends AppbearCore {
             }
 
             $item['url'] .= "&count=" . ( isset($section['local-count']) ? $section['local-count'] : '3' );
+            $item['url'] .= "&sort=" . ( isset($section['local-sort']) ? $section['local-sort'] : 'latest' );
 
             $item['postLayout'] = $section['postlayout'];
 
@@ -776,17 +782,13 @@ class AdminPage extends AppbearCore {
               $item['firstFeatured']  =   $section['firstFeatured'];
             }
 
+            // FIXME: Should be removed, this options does not exist!
             if (isset($section["separator"]) && $section["separator"] != 'false') {
               $item['separator']  =   $section['separator'];
             }
 
-            if (isset($section["options-sort"]) && $section["options-sort"] != 'false') {
-              $item_options["sort"]  =   $section['options-sort'];
-            }
-
-            if (isset($section["options-count"]) && $section["options-count"] != 'false') {
-              $item_options["count"] =   $section['options-count'];
-            }
+            $item_options["sort"]  = $slide['local-sort'];
+            $item_options["count"] = $slide['local-count'];
 
             if (isset($section["options-category"]) && $section["options-category"] != 'false') {
               $item_options["category"]  =   $section["options-category"];
@@ -817,6 +819,7 @@ class AdminPage extends AppbearCore {
             }
 
             // NOTE: Ensure all options are sent correctly
+            // FIXME: Category should not be selected by default, but it is left for now to prevent app content crashing!
             $item['options'] = array_merge( array( 'category' => true ), $item_options);
 
             array_push($options['homePage']['sections'], $item);
