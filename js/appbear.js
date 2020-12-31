@@ -221,7 +221,8 @@ window.APPBEAR = (function (window, document, $) {
 
           for (const iconKey of itemsKeys) {
             const
-              iconClass = items[iconKey],
+              isFontAwesome = iconKey.substr(0, 3) === 'fa-',
+              iconClass = isFontAwesome ? iconKey : items[iconKey],
               iconSize = optSize - 14,
               fontSize = `${iconSize}px`,
               dataKey = `font ${iconKey}`,

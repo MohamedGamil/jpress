@@ -21,6 +21,45 @@
  * @author     AppBear <info@appbear.io>
  */
 class App_Bear_Activator {
+  const JANNAH_SOCIAL_ICONS = [
+    'facebook' => '0xe95d',
+    'twitter' => '0xe961',
+    'pinterest' => '',
+    'dribbble' => '',
+    'linkedin' => '',
+    'flickr' => '',
+    'youtube' => '0xe96c',
+    'reddit' => '',
+    'tumblr' => '',
+    'vimeo' => '',
+    'wordpress' => '',
+    'yelp' => '',
+    'last.fm' => '',
+    'xing' => '',
+    'deviantart' => '',
+    'apple' => '0xe97d',
+    'foursquare' => '',
+    'github' => '',
+    'soundcloud' => '',
+    'behance' => '',
+    'instagram' => '0xe95e',
+    'paypal' => '0xe9ae',
+    'spotify' => '',
+    'google_play' => '',
+    '500px' => '',
+    'vk.com' => '',
+    'odnoklassniki' => '',
+    'bitbucket' => '',
+    'mixcloud' => '',
+    'medium' => '',
+    'twitch' => '',
+    'viadeo' => '',
+    'snapchat' => '0xe9b7',
+    'telegram' => '',
+    'tripadvisor' => '',
+    'steam' => '',
+    'tiktok' => '',
+  ];
 
   /**
    * Internal storage of 3rd-party themes options,
@@ -96,6 +135,9 @@ class App_Bear_Activator {
     if ( empty($options['logo_inverted']) === false ) {
       static::_updateOption( 'logo-dark', $options['logo_inverted'] );
     }
+    elseif ( empty($options['logo_inverted']) === true && empty($options['logo']) === false ) {
+      static::_updateOption( 'logo-dark', $options['logo'] );
+    }
   }
 
   /**
@@ -107,11 +149,11 @@ class App_Bear_Activator {
   private static function _applyColorsOptions() {
     $options = static::$_themeOptions;
 
-    if ( empty($options['global_color']) === true ) {
+    if ( isset($options['global_color']) === false || ( isset($options['global_color']) && empty($options['global_color']) === true ) ) {
       return;
     }
 
-    $skinMode = $options['dark_skin'] === 'true' ? 'dark' : 'light';
+    $skinMode = isset($options['dark_skin']) && $options['dark_skin'] === 'true' ? 'dark' : 'light';
     $optKey = "styling-themeMode_{$skinMode}-primary";
 
     static::_updateOption( $optKey, $options['global_color'] );
@@ -130,12 +172,18 @@ class App_Bear_Activator {
       $social = array();
 
       foreach ( $options['social'] as $key => $item ) {
-        $social[] = array(
+        $socialTitle = ucfirst( str_replace('_', ' ', $key) );
+        $socialItem = array(
           'social_link_title' => 'true',
-          'title' => ucfirst($key),
+          'title' => $socialTitle,
           'url' => $item,
-          'icon' => '',
         );
+
+        if ( ($socialIcon = static::_guessSocialIcon($key)) !== false ) {
+          $socialItem['icon'] = $socialIcon;
+        }
+
+        $social[] = $socialItem;
       }
 
       static::_updateOption( 'social_enabled', 'true' );
@@ -166,6 +214,26 @@ class App_Bear_Activator {
     $current = appbear_get_option('%ALL%');
     $changes = array_merge( $current, $options );
 
+    // NOTE: Debug line
+    // dd($options);
+
     update_option( APPBEAR_PRIMARY_OPTIONS, $changes, false );
+  }
+
+  /**
+   * Guess a social icon by given social network name / key
+   *
+   * @since 0.1.6
+   * @param string $networkName
+   * @return string|boolean network icon, or false if it does not exist or empty
+   */
+  private static function _guessSocialIcon($networkName) {
+    $networkName = strtolower($networkName);
+
+    if ( isset(static::JANNAH_SOCIAL_ICONS[$networkName]) && empty(static::JANNAH_SOCIAL_ICONS[$networkName]) === false ) {
+      return static::JANNAH_SOCIAL_ICONS[$networkName];
+    }
+
+    return false;
   }
 }

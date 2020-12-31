@@ -2791,7 +2791,12 @@ class AppBear_Options
       'id' => 'icon',
       'type' => 'icon_selector',
       'default' => '0xe95d',
-      'items' => array_merge( AppbearItems::icon_fonts() ),
+      'items' => array_merge(
+        AppbearItems::icon_fonts()
+
+        // NOTE: Uncomment to allow font-awesome icons
+        // , AppbearItems::icons()
+      ),
       'options' => array(
         'wrap_height' => '220px',
         'size' => '36px',
@@ -3393,16 +3398,16 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
-			'name' => 'Removed from favourites',
-			'default' => "Removed from favourites",
+			'name' => 'Removed from favorites',
+			'default' => "Removed from favorites",
 			'id' => 'translate-removedToFav',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
 
     $translations_section->add_field(array(
-			'name' => 'Added to favourites',
-			'default' => "Added to favourites",
+			'name' => 'Added to favorites',
+			'default' => "Added to favorites",
 			'id' => 'translate-addedToFav',
 			'type' => 'text',
 			'grid' => '6-of-6',

@@ -471,7 +471,7 @@ class AdminPage extends AppbearCore {
                       case 'MainPage.sections':
                         $navigator['title'] = __('Categories', 'textdomain' );
                       break;
-                      case 'MainPage.favorites':
+                      case 'MainPage.favourites':
                         $navigator['title'] = __('Favorites', 'textdomain' );
                       break;
                       case 'MainPage.settings':
@@ -537,7 +537,7 @@ class AdminPage extends AppbearCore {
                       case 'MainPage.sections':
                         $navigator['title'] = __('Categories', 'textdomain' );
                       break;
-                      case 'MainPage.favorites':
+                      case 'MainPage.favourites':
                         $navigator['title'] = __('Favorites', 'textdomain' );
                       break;
                       case 'MainPage.settings':
@@ -633,44 +633,43 @@ class AdminPage extends AppbearCore {
               //   $options['tabs']['firstFeatured']  = $slide['tabs-firstfeatured'];
               // }
 
-              $item["sort"]  = $slide['tabs-sort'];
-              $item["count"] = $slide['tabs-count'];
+              $item['postLayout'] = $slide['tabs-postlayout'];
+              $item_options["sort"]  = $slide['tabs-sort'];
+              $item_options["count"] = $slide['tabs-count'];
 
               if (isset($slide["tabs-options-category"]) && $slide["tabs-options-category"] != 'false') {
-                $item["category"]  = $slide["tabs-options-category"];
+                $item_options["category"]  = $slide["tabs-options-category"];
               }
 
               if (isset($slide["tabs-options-author"]) && $slide["tabs-options-author"] != 'false') {
-                $item["author"]  = $slide["tabs-options-author"];
+                $item_options["author"]  = $slide["tabs-options-author"];
               }
 
               if (isset($slide["tabs-options-readtime"]) && $slide["tabs-options-readtime"] != 'false') {
-                $item["readTime"]  = $slide["tabs-options-readtime"];
+                $item_options["readTime"]  = $slide["tabs-options-readtime"];
               }
 
               if (isset($slide["tabs-options-date"]) && $slide["tabs-options-date"] != 'false') {
-                $item["date"]  = $slide["tabs-options-date"];
+                $item_options["date"]  = $slide["tabs-options-date"];
               }
 
               if (isset($slide["tabs-options-share"]) && $slide["tabs-options-share"] != 'false') {
-                $item["share"] = $slide["tabs-options-share"];
+                $item_options["share"] = $slide["tabs-options-share"];
               }
 
               if (isset($slide["tabs-options-save"]) && $slide["tabs-options-save"] != 'false') {
-                $item["save"]  = $slide["tabs-options-save"];
+                $item_options["save"]  = $slide["tabs-options-save"];
               }
 
               if (isset($slide["tabs-options-tags"]) && $slide["tabs-options-tags"] != 'false') {
-                $item["tags"]  = $slide["tabs-options-tags"];
+                $item_options["tags"]  = $slide["tabs-options-tags"];
               }
 
-              $item['postLayout'] = $slide['tabs-postlayout'];
+              // TODO: Should the above options become nested inside an options array?
+              $item['options'] = array_merge( array( 'category' => 'true' ), $item_options);
 
               // NOTE: Debug line
               // dd($item);
-
-              // TODO: Should the above options become nested inside an options array?
-              // $item['options'] = array_merge( array( 'category' => true ), $item_options);
 
               array_push($options['tabs']['tabs'], $item);
             }
@@ -820,7 +819,7 @@ class AdminPage extends AppbearCore {
 
             // NOTE: Ensure all options are sent correctly
             // FIXME: Category should not be selected by default, but it is left for now to prevent app content crashing!
-            $item['options'] = array_merge( array( 'category' => true ), $item_options);
+            $item['options'] = array_merge( array( 'category' => 'true' ), $item_options);
 
             array_push($options['homePage']['sections'], $item);
 
