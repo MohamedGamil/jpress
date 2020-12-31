@@ -614,8 +614,8 @@ class AdminPage extends AppbearCore {
               }
 
               $item['url']   = $tabQueryURL;
-              $item['url'] .= "&count=" . ( isset($section['tabs-count']) ? $section['tabs-count'] : '3' );
-              $item['url'] .= "&sort=" . ( isset($section['tabs-sort']) ? $section['tabs-sort'] : 'latest' );
+              $item['url'] .= "&count=" . ( isset($slide['tabs-count']) ? $slide['tabs-count'] : '3' );
+              $item['url'] .= "&sort=" . ( isset($slide['tabs-sort']) ? $slide['tabs-sort'] : 'latest' );
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
                 $item['title']  = stripslashes($slide['title']);
@@ -1399,7 +1399,7 @@ class AdminPage extends AppbearCore {
           $options['validConfig'] = true;
 
           // NOTE: Debug lines
-          dd($options, $responseObject);
+          // dd($options, $responseObject);
           // dd($public_key, $this->_getLicenseKey(), $responseObject);
           // echo json_encode($options);die;
 
