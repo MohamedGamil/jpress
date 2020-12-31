@@ -135,6 +135,9 @@ class App_Bear_Activator {
     if ( empty($options['logo_inverted']) === false ) {
       static::_updateOption( 'logo-dark', $options['logo_inverted'] );
     }
+    elseif ( empty($options['logo_inverted']) === true && empty($options['logo']) === false ) {
+      static::_updateOption( 'logo-dark', $options['logo'] );
+    }
   }
 
   /**
