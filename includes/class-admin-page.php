@@ -334,9 +334,12 @@ class AdminPage extends AppbearCore {
       $updatedMessage = __('Your settings has been updated successfully', 'textdomain');
       $updatedClass = 'updated';
 
+      // NOTE: The following swtich statement is useless prior to the last update but may come handy in a future update.
       switch($this->id) {
+
         // NOTE: Parsing the configuration to be read in mobile application
         case APPBEAR_PRIMARY_OPTIONS:
+
           // NOTE: Apply default demo data if doing a reset with a hard reset to default options
           if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
             appbear_seed_default_demo(true);
@@ -347,16 +350,12 @@ class AdminPage extends AppbearCore {
 
           // NOTE: Parsing the translations to be read in mobile application
           $translationsKeys = array(
-            'back', 'skip', 'done', 'contactUs', 'loadingUpdates', 'baseUrl', 'baseUrlTitle', 'baseUrlDesc', 'emptyBaseUrl', 'alreadyBaseUrl',
-            'contactUsTitle', 'contactUsSubTitle', 'yourName', 'yourEmail', 'yourMessage', 'send', 'settings', 'aboutUs', 'layout', 'textSize',
-            'aA', 'darkMode', 'rateApp', 'shareApp', 'privacyPolicy', 'termsAndConditions', 'poweredBy', 'logout', 'relatedPosts', 'leaveComment',
-            'commentsCount', 'reply', 'replyTo', 'By', 'cancel', 'submit', 'comment', 'name', 'postComment', 'postReply', 'lets', 'noFav', 'noPosts',
-            'mustNotBeEmpty', 'loadingMore', 'loadingMoreQuestions', 'someThingWentWrong', 'search', 'noMore', 'removedToFav', 'addedToFav',
-            'typeToSearch', 'version', 'yourVersionUpToDate', 'yourVersionNotUpToDate', 'upgradeHint', 'aboutApp', 'tapsLeft', 'devModeActive',
-            'noResults', 'noSections', 'noMainPage', 'noBoards', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments',
-            'seeMore', 'confirmDemoTitle', 'confirmDemoMessage', 'chooseYourDemo', 'confirmResetTitle', 'confirmResetMessage', 'yes', 'reset',
-            'customDemo', 'customDemoTitle', 'customDemoBody', 'confirmCustomDemoTitle', 'confirmCustomDemoMessage', 'demosHint', 'getOur',
-            'appBear', 'plugin', 'next',
+            'back', 'skip', 'done', 'contactUs', 'contactUsTitle', 'contactUsSubTitle', 'yourName', 'yourEmail', 'yourMessage', 'send', 'settings',
+            'aboutUs', 'layout', 'textSize', 'aA', 'darkMode', 'rateApp', 'shareApp', 'privacyPolicy', 'termsAndConditions', 'poweredBy', 'logout',
+            'relatedPosts', 'leaveComment', 'commentsCount', 'reply', 'replyTo', 'By', 'cancel', 'submit', 'comment', 'name', 'postComment',
+            'postReply', 'lets', 'noFav', 'noPosts', 'mustNotBeEmpty', 'loadingMore', 'loadingMoreQuestions', 'someThingWentWrong', 'search',
+            'noMore', 'removedToFav', 'addedToFav', 'typeToSearch', 'version', 'yourVersionUpToDate', 'yourVersionNotUpToDate', 'aboutApp',
+            'noResults', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments', 'seeMore', 'yes', 'next', 'By',
           );
 
           $options['translations'] = array();
@@ -1408,6 +1407,7 @@ class AdminPage extends AppbearCore {
 
           update_option( 'appbear-options', $options );
         break;
+
       }
 
       // update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $isValidLicense ? 'valid' : 'invalid', false );

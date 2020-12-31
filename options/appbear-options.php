@@ -3096,54 +3096,6 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
-			'name' => 'Receiving updates\nfrom server...',
-			'default' => "Receiving updates\n from server...",
-			'id' => 'translate-loadingUpdates',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Base URL',
-			'default' => "Base URL",
-			'id' => 'translate-baseUrl',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Change Base Url',
-			'default' => "Change Base Url",
-			'id' => 'translate-baseUrlTitle',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.',
-			'default' => "Change the url where the data comes from, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer.",
-			'id' => 'translate-baseUrlDesc',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Url should not be empty.',
-			'default' => "Url should not be empty.",
-			'id' => 'translate-emptyBaseUrl',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'This Url is already set.',
-			'default' => "This Url is already set.",
-			'id' => 'translate-alreadyBaseUrl',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
 			'name' => 'Your Name',
 			'default' => "Your Name",
 			'id' => 'translate-yourName',
@@ -3488,33 +3440,9 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
-			'name' => 'Continue clicking to activate development mode',
-			'default' => "Continue clicking to activate development mode",
-			'id' => 'translate-upgradeHint',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
 			'name' => 'About app',
 			'default' => "About app",
 			'id' => 'translate-aboutApp',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Taps left',
-			'default' => "Taps left",
-			'id' => 'translate-tapsLeft',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'Development Mode is active',
-			'default' => "Development Mode is active",
-			'id' => 'translate-devModeActive',
 			'type' => 'text',
 			'grid' => '6-of-6',
 		));
@@ -3528,29 +3456,6 @@ class AppBear_Options
 		));
 
     $translations_section->add_field(array(
-			'name' => 'No Sections',
-			'default' => "Please add home sections from admin panel",
-			'id' => 'translate-noSections',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'No Main Page',
-			'default' => "At least one main page must be added from admin panel",
-			'id' => 'translate-noMainPage',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-
-    $translations_section->add_field(array(
-			'name' => 'No Boards',
-			'default' => "No boarding slides",
-			'id' => 'translate-noBoards',
-			'type' => 'text',
-			'grid' => '6-of-6',
-		));
-			$translations_section->add_field(array(
 			'name' => 'Error Page Title',
 			'default' => "Oops",
 			'id' => 'translate-errorPageTitle',
@@ -3599,46 +3504,6 @@ class AppBear_Options
     ));
 
     $translations_section->add_field(array(
-      'name' => 'Confirm Demo Title',
-      'default' => "Confirm Demo Title",
-      'id' => 'translate-confirmDemoTitle',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Confirm Demo Message',
-      'default' => "Confirm Demo Message",
-      'id' => 'translate-confirmDemoMessage',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Choose Your Demo',
-      'default' => "Choose Your Demo",
-      'id' => 'translate-chooseYourDemo',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Confirm Reset Title',
-      'default' => "Confirm Reset Title",
-      'id' => 'translate-confirmResetTitle',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Confirm Reset Message',
-      'default' => "Confirm Reset Message",
-      'id' => 'translate-confirmResetMessage',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
       'name' => 'Yes',
       'default' => "Yes",
       'id' => 'translate-yes',
@@ -3647,89 +3512,17 @@ class AppBear_Options
     ));
 
     $translations_section->add_field(array(
-      'name' => 'Reset',
-      'default' => "Reset",
-      'id' => 'translate-reset',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Custom Demo',
-      'default' => "Custom Demo",
-      'id' => 'translate-customDemo',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Custom Demo Title',
-      'default' => "Custom Demo Title",
-      'id' => 'translate-customDemoTitle',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Custom Demo Body',
-      'default' => "Custom Demo Body",
-      'id' => 'translate-customDemoBody',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Confirm Custom Demo Title',
-      'default' => "Confirm Custom Demo Title",
-      'id' => 'translate-confirmCustomDemoTitle',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Confirm Custom Demo Message',
-      'default' => "Confirm Custom Demo Message",
-      'id' => 'translate-confirmCustomDemoMessage',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'This page intended for demo purposes only',
-      'default' => "This page intended for demo purposes only",
-      'id' => 'translate-demosHint',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Get Our',
-      'default' => "Get Our",
-      'id' => 'translate-getOur',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'AppBear',
-      'default' => "AppBear",
-      'id' => 'translate-appBear',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
-      'name' => 'Plugin',
-      'default' => "Plugin",
-      'id' => 'translate-plugin',
-      'type' => 'text',
-      'grid' => '6-of-6',
-    ));
-
-    $translations_section->add_field(array(
       'name' => 'Next',
       'default' => "Next",
       'id' => 'translate-next',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+
+    $translations_section->add_field(array(
+      'name' => 'By',
+      'default' => "By",
+      'id' => 'translate-By',
       'type' => 'text',
       'grid' => '6-of-6',
     ));
