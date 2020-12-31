@@ -471,7 +471,7 @@ class AdminPage extends AppbearCore {
                       case 'MainPage.sections':
                         $navigator['title'] = __('Categories', 'textdomain' );
                       break;
-                      case 'MainPage.favorites':
+                      case 'MainPage.favourites':
                         $navigator['title'] = __('Favorites', 'textdomain' );
                       break;
                       case 'MainPage.settings':
@@ -537,7 +537,7 @@ class AdminPage extends AppbearCore {
                       case 'MainPage.sections':
                         $navigator['title'] = __('Categories', 'textdomain' );
                       break;
-                      case 'MainPage.favorites':
+                      case 'MainPage.favourites':
                         $navigator['title'] = __('Favorites', 'textdomain' );
                       break;
                       case 'MainPage.settings':
