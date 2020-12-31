@@ -824,10 +824,11 @@ class AppBear_Options
     $settings->open_tab_item('homepage');
 
     $tabs = $settings->add_section( array(
-      'name' => __( 'Homepage tabs', 'textdomain' ),
+      'name' => __( 'Home Page tabs', 'textdomain' ),
       'id' => 'section-homepage-tabs',
       'options' => array( 'toggle' => true )
     ));
+
     $tabs->add_field(array(
       'name' => __( 'Enable Tabs', 'textdomain' ),
       'id' => 'tabsbar_categories_tab',
@@ -838,6 +839,37 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
+
+    $tabs->open_mixed_field(
+      array(
+        'name' =>  __('Customize Home Page Title in tabs', 'textdomain' ),
+        'options' => array(
+          'show_if' => array('tabsbar_categories_tab', '=', 'true')
+        ),
+      )
+    );
+    $tabs->add_field(array(
+      'name' => __( 'Enabled', 'textdomain' ),
+      'id' => 'local-hompage_title',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+    $tabs->add_field(array(
+      'id' => 'homepage-sections-title',
+      'name' => __( 'Title', 'textdomain' ),
+      'type' => 'text',
+      'grid' => '5-of-6',
+      'default' => __( 'Home', 'textdomain' ),
+      'options' => array(
+        'show_if' => array('local-hompage_title', '=', 'true')
+      )
+    ));
+    $tabs->close_mixed_field();
+
     $tabs->add_field( array(
       'name' => __( 'Layout', 'textdomain' ),
       'id' => 'tabs-tabslayout',
@@ -857,7 +889,6 @@ class AppBear_Options
       ),
     ));
 
-
     $tabs->open_mixed_field(array('name' => __('Background color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
     $tabs->add_field(array(
       'id' => 'styling-themeMode_light-tabbarbackgroundcolor',
@@ -876,7 +907,6 @@ class AppBear_Options
       ),
     ));
     $tabs->close_mixed_field();
-
 
     $tabs->open_mixed_field(array('name' => __('InActive Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
     $tabs->add_field(array(
@@ -935,7 +965,6 @@ class AppBear_Options
     ));
     $tabs->close_mixed_field();
 
-
     $homepage_tabs = $tabs->add_group( array(
       'name' => __('Tabs', 'textdomain'),
       'id' => 'tabsbaritems',
@@ -984,8 +1013,8 @@ class AppBear_Options
     ));
     $homepage_tabs->close_mixed_field();
 
-    $tabs->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-    $tabs->add_field(array(
+    $homepage_tabs->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $homepage_tabs->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
       'id' => 'local-tabs-exclude_posts',
       'type' => 'switcher',
@@ -995,7 +1024,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'id' => 'tabs-exclude_posts',
       'name' => __( 'Posts ID/IDs', 'textdomain' ),
       'type' => 'text',
@@ -1005,9 +1034,9 @@ class AppBear_Options
         'show_if' => array('local-tabs-exclude_posts', '=', 'true')
       )
     ));
-    $tabs->close_mixed_field();
-    $tabs->open_mixed_field(array('name' => __('Offset', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-    $tabs->add_field(array(
+    $homepage_tabs->close_mixed_field();
+    $homepage_tabs->open_mixed_field(array('name' => __('Offset', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $homepage_tabs->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
       'id' => 'local-tabs-offset_posts',
       'type' => 'switcher',
@@ -1017,7 +1046,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'id' => 'tabs-offset_posts',
       'name' => __( 'Offset Count', 'textdomain' ),
       'type' => 'number',
@@ -1028,8 +1057,8 @@ class AppBear_Options
         'show_if' => array('local-tabs-offset_posts', '=', 'true')
       )
     ));
-    $tabs->close_mixed_field();
-    $tabs->add_field(array(
+    $homepage_tabs->close_mixed_field();
+    $homepage_tabs->add_field(array(
       'name' => __( 'Number of posts to show', 'textdomain' ),
       'id' => 'tabs-count',
       'type' => 'select',
@@ -1045,7 +1074,7 @@ class AppBear_Options
       ),
       'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Sort Order', 'textdomain' ),
       'id' => 'tabs-sort',
       'type' => 'select',
@@ -1059,7 +1088,7 @@ class AppBear_Options
       ),
       'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
     ));
-    $tabs->add_field( array(
+    $homepage_tabs->add_field( array(
       'id' => 'tabs-postlayout',
       'name' => __( 'Posts Layout', 'textdomain' ),
       'type' => 'image_selector',
@@ -1082,7 +1111,7 @@ class AppBear_Options
         'show_if' => array('tabsbar_categories_tab', '=', 'true')
       ),
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Is first post "Featured"?', 'textdomain' ),
       'id' => 'local-tabs-firstfeatured',
       'type' => 'switcher',
@@ -1094,7 +1123,7 @@ class AppBear_Options
         'show_if' => array('tabsbar_categories_tab', '=', 'true')
       ),
     ));
-    $tabs->add_field( array(
+    $homepage_tabs->add_field( array(
       'id' => 'tabs-firstfeatured',
       'name' => __( 'Featured Post Layout', 'textdomain' ),
       'type' => 'image_selector',
@@ -1108,11 +1137,11 @@ class AppBear_Options
       ),
       'options' => array(
         'width' => '155px',
-        'show_if' => array('tabsbar_categories_tab', '=', 'true')
+        'show_if' => array('local-tabs-firstfeatured', '=', 'true')
       ),
     ));
-    $tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
-    $tabs->add_field(array(
+    $homepage_tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+    $homepage_tabs->add_field(array(
       'name' => __( 'Catgeory', 'textdomain' ),
       'id' => 'tabs-options-category',
       'type' => 'switcher',
@@ -1122,7 +1151,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Read Time', 'textdomain' ),
       'id' => 'tabs-options-readtime',
       'type' => 'switcher',
@@ -1132,7 +1161,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Created Date', 'textdomain' ),
       'id' => 'tabs-options-date',
       'type' => 'switcher',
@@ -1142,7 +1171,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Favorite', 'textdomain' ),
       'id' => 'tabs-options-save',
       'type' => 'switcher',
@@ -1152,7 +1181,7 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->add_field(array(
+    $homepage_tabs->add_field(array(
       'name' => __( 'Share', 'textdomain' ),
       'id' => 'tabs-options-share',
       'type' => 'switcher',
@@ -1162,47 +1191,16 @@ class AppBear_Options
         'off_value' => 'false'
       )
     ));
-    $tabs->close_mixed_field();
-
+    $homepage_tabs->close_mixed_field();
 
     $homepage = $settings->add_section( array(
-      'name' => __( 'Personalize the home page', 'textdomain' ),
+      'name' => __( 'Home Page Sections', 'textdomain' ),
       'id' => 'section-homepage-builder',
       'options' => array( 'toggle' => true )
     ));
 
-    $homepage->open_mixed_field(
-      array(
-        'name' =>  __('Customize Homepage Title in tabs', 'textdomain' ),
-        'options' => array(
-          'show_if' => array('tabsbar_categories_tab', '=', 'true')
-        ),
-      )
-    );
-    $homepage->add_field(array(
-      'name' => __( 'Enabled', 'textdomain' ),
-      'id' => 'local-hompage_title',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-    $homepage->add_field(array(
-      'id' => 'homepage-sections-title',
-      'name' => __( 'Title', 'textdomain' ),
-      'type' => 'text',
-      'grid' => '5-of-6',
-      'default' => __( 'Home', 'textdomain' ),
-      'options' => array(
-        'show_if' => array('local-hompage_title', '=', 'true')
-      )
-    ));
-    $homepage->close_mixed_field();
-
     $section = $homepage->add_group( array(
-      'name' => __( 'Homepage Sections', 'textdomain' ),
+      'name' => __( 'Home Page Sections', 'textdomain' ),
       'id' => 'sections',
       'options' => array(
         'add_item_text' => __('New Section', 'textdomain'),
@@ -2617,7 +2615,7 @@ class AppBear_Options
 
     $font->close_mixed_field();
 
-    $font->open_mixed_field(array('name' => __('Subtitle 2', 'textdomain' ),'desc' => __( 'Example: Bottom Bar and Homepage tabs Text')));
+    $font->open_mixed_field(array('name' => __('Subtitle 2', 'textdomain' ),'desc' => __( 'Example: Bottom Bar and Home Page tabs Text')));
 
     $font->add_field( array(
       'id' => 'section-typography-font-subtitle2-size',

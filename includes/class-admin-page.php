@@ -586,14 +586,14 @@ class AdminPage extends AppbearCore {
               unset($slide['tabsbaritems_visibility']);
               unset($slide['tabsbaritems_name']);
 
-              $item   =   $item_options   =   array();
+              $item = array();
 
               $tabQueryURL = '/wp-json/wl/v1/posts?';
-              $selected_categories = explode(',',$slide['categories'][0]);
+              $selected_categories = explode(',', $slide['categories'][0]);
+              $firstCat = false;
 
               if (empty($selected_categories) === false) {
                 $ids = '';
-                $firstCat = false;
 
                 foreach ($selected_categories as $idx => $cat) {
                   $category = get_category_by_slug($cat);
@@ -616,64 +616,59 @@ class AdminPage extends AppbearCore {
               $item['url']   = $tabQueryURL;
 
               if ($slide['customized-title'] == true && $slide['title'] != '') {
-                $item['title']  =   stripslashes($slide['title']);
+                $item['title']  = stripslashes($slide['title']);
               }
               else {
                 $item['title'] = $firstCat !== false ? $firstCat->name : '';
               }
+
+              // FIXME: Should be removed, this options does not exist!
+              if (isset($slide["local-tabs-seperator"]) && $slide["local-tabs-seperator"] != 'false') {
+                $item['seperator']  =   $slide['tabs-seperator'];
+              }
+
+              if (isset($slide["local-tabs-firstfeatured"]) && $slide["local-tabs-firstfeatured"] != 'false') {
+                $options['tabs']['firstFeatured']  = $slide['tabs-firstfeatured'];
+              }
+
+              $item["sort"]  = $slide['tabs-sort'];
+              $item["count"] = $slide['tabs-count'];
+
+              if (isset($slide["tabs-options-category"]) && $slide["tabs-options-category"] != 'false') {
+                $item["category"]  = $slide["tabs-options-category"];
+              }
+
+              if (isset($slide["tabs-options-author"]) && $slide["tabs-options-author"] != 'false') {
+                $item["author"]  = $slide["tabs-options-author"];
+              }
+
+              if (isset($slide["tabs-options-readtime"]) && $slide["tabs-options-readtime"] != 'false') {
+                $item["readTime"]  = $slide["tabs-options-readtime"];
+              }
+
+              if (isset($slide["tabs-options-date"]) && $slide["tabs-options-date"] != 'false') {
+                $item["date"]  = $slide["tabs-options-date"];
+              }
+
+              if (isset($slide["tabs-options-share"]) && $slide["tabs-options-share"] != 'false') {
+                $item["share"] = $slide["tabs-options-share"];
+              }
+
+              if (isset($slide["tabs-options-save"]) && $slide["tabs-options-save"] != 'false') {
+                $item["save"]  = $slide["tabs-options-save"];
+              }
+
+              if (isset($slide["tabs-options-tags"]) && $slide["tabs-options-tags"] != 'false') {
+                $item["tags"]  = $slide["tabs-options-tags"];
+              }
+
+              $item['postLayout'] = $slide['tabs-postlayout'];
 
               // NOTE: Debug line
               // dd($item);
 
               array_push($options['tabs']['tabs'], $item);
             }
-
-            if (isset($data["local-tabs-firstfeatured"]) && $data["local-tabs-firstfeatured"] != 'false') {
-              $options['tabs']['firstFeatured']  =   $data['tabs-firstfeatured'];
-            }
-
-            if (isset($data["local-tabs-seperator"]) && $data["local-tabs-seperator"] != 'false') {
-              $item_options['seperator']  =   $data['tabs-seperator'];
-            }
-
-            if (isset($data["tabs-options-sort"]) && $data["tabs-options-sort"] != 'false') {
-              $item_options["sort"]  =   $data['tabs-options-sort'];
-            }
-
-            if (isset($data["tabs-options-count"]) && $data["tabs-options-count"] != 'false') {
-              $item_options["count"] =   $data['tabs-options-count'];
-            }
-
-            if (isset($data["tabs-options-category"]) && $data["tabs-options-category"] != 'false') {
-              $item_options["category"]  =   $data["tabs-options-category"];
-            }
-
-            if (isset($data["tabs-options-author"]) && $data["tabs-options-author"] != 'false') {
-              $item_options["author"]  =   $data["tabs-options-author"];
-            }
-
-            if (isset($data["tabs-options-readtime"]) && $data["tabs-options-readtime"] != 'false') {
-              $item_options["readTime"]  =   $data["tabs-options-readtime"];
-            }
-
-            if (isset($data["tabs-options-date"]) && $data["tabs-options-date"] != 'false') {
-              $item_options["date"]  =   $data["tabs-options-date"];
-            }
-
-            if (isset($data["tabs-options-share"]) && $data["tabs-options-share"] != 'false') {
-              $item_options["share"] =   $data["tabs-options-share"];
-            }
-
-            if (isset($data["tabs-options-save"]) && $data["tabs-options-save"] != 'false') {
-              $item_options["save"]  =   $data["tabs-options-save"];
-            }
-
-            if (isset($data["tabs-options-tags"]) && $data["tabs-options-tags"] != 'false') {
-              $item_options["tags"]  =   $data["tabs-options-tags"];
-            }
-
-            $options['tabs']['postLayout'] = $data['tabs-postlayout'];
-            $options['tabs']['options'] = $item_options;
           }
 
           /*
