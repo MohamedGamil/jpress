@@ -2259,24 +2259,23 @@ class AppBear_Options
     $settings->open_tab_item('advertisement');
 
     $admob = $settings->add_section( array(
-      'name' => __( 'Admob advertisement platform', 'textdomain' ),
+      'name' => __( 'Advertisements Settings', 'textdomain' ),
       'id' => 'section-advertisement-admob',
-      'options' => array( 'toggle' => true )
+      'options' => array( 'toggle' => false )
     ));
 
-    $admob->add_field(
-    array(
-      'name' => __( 'Android App ID', 'textdomain' ),
-      'id' => 'advertisement_android_app_id_text',
-      'type' => 'text',
-    ));
+    // $admob->add_field(
+    // array(
+    //   'name' => __( 'Android App ID', 'textdomain' ),
+    //   'id' => 'advertisement_android_app_id_text',
+    //   'type' => 'text',
+    // ));
 
-    $admob->add_field(
-    array(
-      'name' => __( 'iOS App ID', 'textdomain' ),
-      'id' => 'advertisement_ios_app_id_text',
-      'type' => 'text',
-    ));
+    // $admob->add_field(array(
+    //   'name' => __( 'iOS App ID', 'textdomain' ),
+    //   'id' => 'advertisement_ios_app_id_text',
+    //   'type' => 'text',
+    // ));
 
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
 
