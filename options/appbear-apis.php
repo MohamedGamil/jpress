@@ -385,6 +385,7 @@ class AppBear_Endpoints {
    */
   public function do_categories() {
     $metadata = AppBear_Categories::get_metadata();
+    $singleCatOptions = $this->_getSingleCategoryOptions();
 
     foreach( $metadata as $key => &$cat ) {
       $cat = isset($cat['image']) && $cat['image'] ? $cat['image'] : '';
@@ -409,6 +410,8 @@ class AppBear_Endpoints {
       }
 
       $category->url = "wp-json/appbear/v1/posts?categories=" . $category->term_id;
+      $category = array_merge((array) $category, $singleCatOptions);
+
       $the_cats[] = $category;
     }
 
@@ -716,5 +719,58 @@ class AppBear_Endpoints {
       'author_avatar' => get_avatar_url( $comment->comment_author_email ),
       'replies' => array(),
     );
+  }
+
+
+  /**
+   * Get Single Category Options
+   *
+   * @return array
+   */
+  private function _getSingleCategoryOptions() {
+    $appbearOpts = appbear_get_option('%ALL%');
+    $linkType = $appbearOpts['single_cat_ad_image_link_type'];
+    $linkValue = $appbearOpts['single_cat_ad_image_link_url'];
+
+    switch ($linkType) {
+      case 'NavigationType.category':
+        $category = get_category_by_slug($appbearOpts['single_cat_ad_image_link_category']);
+
+        if (empty($category) === false) {
+          $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+        }
+        break;
+
+      case 'NavigationType.page':
+        $post = get_post($appbearOpts['single_cat_ad_image_link_page']);
+
+        if ($post) {
+          $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+        }
+        break;
+
+      case 'NavigationType.main':
+        $linkValue = $appbearOpts['single_cat_ad_image_link_main'];
+        break;
+    }
+
+    $imageAd = array(
+      'img' => $appbearOpts['single_cat_ad_image_file'],
+      'type' => $linkType,
+      'value' => $linkValue,
+    );
+
+    $singleCatOptions = array(
+      'adType' => str_replace('PostLayout.', '', $appbearOpts['local_ads_single_cat_type']),
+      'htmlAd' => array(
+        'content' => $appbearOpts['single_cat_ad_section_html'],
+      ),
+      'imageAd' => $imageAd,
+    );
+
+    // NOTE: Debug line
+    // dd($singleCatOptions);
+
+    return $singleCatOptions;
   }
 }

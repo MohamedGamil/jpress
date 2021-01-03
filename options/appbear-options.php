@@ -2103,7 +2103,7 @@ class AppBear_Options
 
     $archives_category->add_field(array(
       'name' => __( 'Show Ad Every', 'textdomain' ),
-      'id' => 'local_ads_single_cat_offset',
+      'id' => 'ads_single_cat_offset',
       'type' => 'number',
       'default' => '1',
       'options' => array(
