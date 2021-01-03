@@ -13,13 +13,14 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  */
 class AppBear_Endpoints {
   const DEFAULT_POSTS_PER_PAGE_COUNT = 10;
+  const AD_SECTION_KEYWORD = 'advert';
 
   /**
    * Endpoint namespace.
    *
    * @var string
    */
-  protected $namespace = 'wl/v1';
+  protected $namespace = 'appbear/v1';
 
   /**
    * Internal initilization state &
@@ -126,12 +127,14 @@ class AppBear_Endpoints {
 
       foreach ($sections as $section) {
         $params = [];
+        $isAdvert = true;
 
-        if ($section !== 'advert') {
+        if ( $section !== static::AD_SECTION_KEYWORD ) {
+          $isAdvert = false;
           @parse_str( $section, $params );
         }
 
-        $response[] = $this->_queryPosts($params);
+        $response[] = $this->_queryPosts($params, $isAdvert);
       }
 
       return array(
@@ -191,7 +194,7 @@ class AppBear_Endpoints {
     foreach ( $categories as $category ) {
       $the_category['term_id'] = $category->term_id;
       $the_category['name']    = $category->name;
-      $the_category['url']     = 'wp-json/wl/v1/posts?categories='. $category->term_id;
+      $the_category['url']     = 'wp-json/appbear/v1/posts?categories='. $category->term_id;
       break;
     }
 
@@ -405,7 +408,7 @@ class AppBear_Endpoints {
         $category->image_url =  $imageUrl;
       }
 
-      $category->url = "wp-json/wl/v1/posts?categories=" . $category->term_id;
+      $category->url = "wp-json/appbear/v1/posts?categories=" . $category->term_id;
       $the_cats[] = $category;
     }
 
@@ -613,9 +616,10 @@ class AppBear_Endpoints {
    * Query Posts
    *
    * @param array $request Request parameters
+   * @param boolean $forceEmpty Force an empty response (Like in case of a query on a home page advert section)
    * @return array
    */
-  protected function _queryPosts($request) {
+  protected function _queryPosts($request, $forceEmpty = false) {
     $args = array(
       'post_type'      => ! empty( $request['post'] )  ? $request['post']  : 'post',
       'posts_per_page' => ! empty( $request['count'] ) ? $request['count'] : -1,
@@ -663,25 +667,27 @@ class AppBear_Endpoints {
       $args['orderby'] = str_replace( 'Sort.', '', $request['sort'] );
     }
 
-    // The Query
-    $posts = new WP_Query( $args );
+    if ($forceEmpty === false) {
+      // The Query
+      $posts = new WP_Query( $args );
 
-    // The Loop
-    if ( $posts->have_posts() ) {
-      $data = array(
-        'status'      => true,
-        'count'       => ( $args['posts_per_page'] == -1 ) ? (int) $posts->found_posts : (int) $args['posts_per_page'],
-        'count_total' => (int)$posts->found_posts,
-        'pages'       => ( $args['posts_per_page'] == -1 ) ? 1 : ceil( $posts->found_posts / $args['posts_per_page'] ),
-        'posts'       => array(),
-      );
+      // The Loop
+      if ( $posts->have_posts() ) {
+        $data = array(
+          'status'      => true,
+          'count'       => ( $args['posts_per_page'] == -1 ) ? (int) $posts->found_posts : (int) $args['posts_per_page'],
+          'count_total' => (int)$posts->found_posts,
+          'pages'       => ( $args['posts_per_page'] == -1 ) ? 1 : ceil( $posts->found_posts / $args['posts_per_page'] ),
+          'posts'       => array(),
+        );
 
-      while ( $posts->have_posts() ) {
-        $posts->the_post();
-        $data['posts'][] = $this->get_post_data();
+        while ( $posts->have_posts() ) {
+          $posts->the_post();
+          $data['posts'][] = $this->get_post_data();
+        }
+
+        return $data;
       }
-
-      return $data;
     }
 
     return array(
