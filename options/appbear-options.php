@@ -1236,8 +1236,8 @@ class AppBear_Options
         'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
         'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
         'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
         'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
       ),
       'options' => array(
         'width' => '155px',
@@ -1286,10 +1286,10 @@ class AppBear_Options
       'type' => 'radio',
       'default' => 'url',
       'items' => array(
-        'url' => __( 'Full URL', 'textdomain' ),
-        'main' => __( 'Main Page', 'textdomain' ),
-        'category' => __( 'Category', 'textdomain' ),
-        'page' => __( 'Page', 'textdomain' ),
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
       ),
     ));
     $section->add_field(array(
@@ -1298,7 +1298,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '2-of-6',
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'url'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.url'),
       ),
     ));
     $section->add_field(array(
@@ -1315,7 +1315,7 @@ class AppBear_Options
         'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'main'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.main'),
       ),
     ));
     $section->add_field(array(
@@ -1325,7 +1325,7 @@ class AppBear_Options
       'attributes' => array( 'required' => true ),
       'items' => AppbearItems::terms( 'category' ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'category'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.category'),
       ),
     ));
     $section->add_field(array(
@@ -1335,7 +1335,7 @@ class AppBear_Options
       'attributes' => array( 'required' => true ),
       'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'page'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.page'),
       ),
     ));
     $section->add_field(array(
