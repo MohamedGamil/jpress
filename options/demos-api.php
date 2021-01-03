@@ -18,7 +18,7 @@ class AppBear_Demos_Endpoints
   *
   * @var string
   */
-  protected $namespace = 'wl/v1';
+  protected $namespace = 'appbear/v1';
 
   /**
    * Internal initilization state &
@@ -219,22 +219,22 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -258,9 +258,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => '',
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'postLayout' => 'PostLayout.cardPost',
                 'options' =>
                 array (
@@ -278,7 +278,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat1',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -310,7 +310,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.startThumbPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -382,30 +382,30 @@ class AppBear_Demos_Endpoints
           array (
             'textSize' => 'true',
             'rateApp' => 'true',
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
             'demos' => 'true',
           ),
           'basicUrls' =>
           array (
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -476,37 +476,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -527,11 +527,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.cardPost',
@@ -551,7 +551,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat3',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -585,7 +585,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -666,9 +666,9 @@ class AppBear_Demos_Endpoints
               'android' => 'https://play.google.com/store/apps/details?id=com.jannah.app',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
@@ -688,25 +688,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -756,7 +756,7 @@ class AppBear_Demos_Endpoints
                 'icon' => '0xe802',
                 'title_enable' => 'false',
                 'title' => 'Creative',
-                'url' => '/wp-json/wl/v1/posts?categories=31',
+                'url' => '/wp-json/appbear/v1/posts?categories=31',
               ),
               3 =>
               array (
@@ -786,37 +786,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -837,11 +837,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.cardPost',
@@ -861,7 +861,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat2',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -895,7 +895,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -975,9 +975,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
@@ -997,25 +997,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -1082,11 +1082,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.cardPost',
@@ -1106,7 +1106,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat5',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -1140,7 +1140,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -1193,9 +1193,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1039',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1039',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
@@ -1214,25 +1214,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -1282,7 +1282,7 @@ class AppBear_Demos_Endpoints
                 'icon' => '0xe802',
                 'title_enable' => 'true',
                 'title' => 'Videos',
-                'url' => '/wp-json/wl/v1/posts?categories=2',
+                'url' => '/wp-json/appbear/v1/posts?categories=2',
               ),
               3 =>
               array (
@@ -1312,37 +1312,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -1363,11 +1363,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.imagePost',
@@ -1387,7 +1387,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat4',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -1421,7 +1421,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -1501,9 +1501,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/08/logo-demo-55.png',
@@ -1523,25 +1523,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -1609,7 +1609,7 @@ class AppBear_Demos_Endpoints
                 'icon' => '0xe979',
                 'title_enable' => 'true',
                 'title' => 'Privacy',
-                'url' => '/wp-json/wl/v1/page?id=1037',
+                'url' => '/wp-json/appbear/v1/page?id=1037',
               ),
             ),
           ),
@@ -1621,37 +1621,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -1672,11 +1672,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.imagePost',
@@ -1696,7 +1696,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat3',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -1730,7 +1730,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -1810,9 +1810,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
@@ -1832,25 +1832,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL,
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -1921,37 +1921,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -1972,11 +1972,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
+                'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest&count=9',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=13,28,11,17&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.minimalPost',
                 'firstFeatured' => 'PostLayout.cardPost',
@@ -1996,7 +1996,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat2',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -2030,7 +2030,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -2111,9 +2111,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png',
@@ -2133,25 +2133,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL . '/',
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -2204,7 +2204,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe962',
                 'title' => 'TieLabs App',
-                'url' => '/wp-json/wl/v1/page?id=1046',
+                'url' => '/wp-json/appbear/v1/page?id=1046',
               ),
               1 =>
               array (
@@ -2212,7 +2212,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe97d',
                 'title' => 'Technology',
-                'url' => '/wp-json/wl/v1/posts?categories=30',
+                'url' => '/wp-json/appbear/v1/posts?categories=30',
               ),
               2 =>
               array (
@@ -2220,7 +2220,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe9b2',
                 'title' => 'Football',
-                'url' => '/wp-json/wl/v1/posts?categories=32',
+                'url' => '/wp-json/appbear/v1/posts?categories=32',
               ),
               3 =>
               array (
@@ -2228,7 +2228,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xf0c3',
                 'title' => 'World',
-                'url' => '/wp-json/wl/v1/posts?categories=2',
+                'url' => '/wp-json/appbear/v1/posts?categories=2',
               ),
               4 =>
               array (
@@ -2236,7 +2236,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe972',
                 'title' => 'Help',
-                'url' => '/wp-json/wl/v1/page?id=1038',
+                'url' => '/wp-json/appbear/v1/page?id=1038',
               ),
             ),
           ),
@@ -2290,37 +2290,37 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=32',
+                'url' => '/wp-json/appbear/v1/posts?&categories=32',
                 'title' => 'Football',
               ),
               1 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=33',
+                'url' => '/wp-json/appbear/v1/posts?&categories=33',
                 'title' => 'Racing',
               ),
               2 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=28',
+                'url' => '/wp-json/appbear/v1/posts?&categories=28',
                 'title' => 'Sports',
               ),
               3 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
               4 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=26',
+                'url' => '/wp-json/appbear/v1/posts?&categories=26',
                 'title' => 'Life Style',
               ),
               5 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=11',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11',
                 'title' => 'Travel',
               ),
               6 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=2',
+                'url' => '/wp-json/appbear/v1/posts?&categories=2',
                 'title' => 'World',
               ),
             ),
@@ -2341,11 +2341,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest&count=3',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=1,32,26,29,30&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.startThumbPostCompact',
                 'firstFeatured' => 'PostLayout.featuredPost',
@@ -2365,9 +2365,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'TRENDING NEWS',
-                  'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=3',
                 'postLayout' => 'PostLayout.endThumbPost',
                 'separator' => 'true',
                 'options' =>
@@ -2383,9 +2383,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'LIVE NEWS',
-                  'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=4',
+                'url' => '/wp-json/appbear/v1/posts?&categories=31,16,32,13,21,26,27,33,28,29,19,30,11,1,2,17&offset=0&sort=latest&count=4',
                 'postLayout' => 'PostLayout.relatedPost',
                 'options' =>
                 array (
@@ -2400,9 +2400,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'TRAVEL NEWS',
-                  'url' => '/wp-json/wl/v1/posts?&categories=11&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=11&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=11&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=11&offset=0&sort=latest&count=3',
                 'postLayout' => 'PostLayout.startThumbPostCompact',
                 'options' =>
                 array (
@@ -2418,7 +2418,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat1',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -2452,7 +2452,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -2533,9 +2533,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1046',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1046',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => APPBEAR_STORE_URL . '/wp-content/uploads/2020/07/logo-demo-6-white.png',
@@ -2555,25 +2555,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => APPBEAR_STORE_URL . '/',
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'validConfig' => 'true',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
@@ -2627,7 +2627,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe962',
                 'title' => 'سليدر #١٨',
-                'url' => '/wp-json/wl/v1/page?id=3815',
+                'url' => '/wp-json/appbear/v1/page?id=3815',
               ),
               1 =>
               array (
@@ -2635,7 +2635,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe97d',
                 'title' => 'الحياة والمجتمع',
-                'url' => '/wp-json/wl/v1/posts?categories=6',
+                'url' => '/wp-json/appbear/v1/posts?categories=6',
               ),
               2 =>
               array (
@@ -2643,7 +2643,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe9b2',
                 'title' => 'السباحة',
-                'url' => '/wp-json/wl/v1/posts?categories=140',
+                'url' => '/wp-json/appbear/v1/posts?categories=140',
               ),
               3 =>
               array (
@@ -2651,7 +2651,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xf0c3',
                 'title' => 'التكنولوجيا',
-                'url' => '/wp-json/wl/v1/posts?categories=64',
+                'url' => '/wp-json/appbear/v1/posts?categories=64',
               ),
               4 =>
               array (
@@ -2659,7 +2659,7 @@ class AppBear_Demos_Endpoints
                 'side_menu_tab_icon' => 'true',
                 'icon' => '0xe972',
                 'title' => 'مساعدة',
-                'url' => '/wp-json/wl/v1/page?id=3815',
+                'url' => '/wp-json/appbear/v1/page?id=3815',
               ),
             ),
           ),
@@ -2711,11 +2711,11 @@ class AppBear_Demos_Endpoints
             array (
               0 =>
               array (
-                'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest&count=3',
                 'seeMore' =>
                 array (
                   'name' => NULL,
-                  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest',
                 ),
                 'postLayout' => 'PostLayout.startThumbPostCompact',
                 'firstFeatured' => 'PostLayout.featuredPost',
@@ -2735,9 +2735,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'الأخبار المهمة',
-                  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest&count=3',
                 'postLayout' => 'PostLayout.endThumbPost',
                 'separator' => 'true',
                 'options' =>
@@ -2753,9 +2753,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'أحداث مباشرة',
-                  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=4',
+                'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest&count=4',
                 'postLayout' => 'PostLayout.relatedPost',
                 'options' =>
                 array (
@@ -2770,9 +2770,9 @@ class AppBear_Demos_Endpoints
                 'seeMore' =>
                 array (
                   'name' => 'أخبار السفر',
-                  'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest',
+                  'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest',
                 ),
-                'url' => '/wp-json/wl/v1/posts?&categories=&offset=0&sort=latest&count=3',
+                'url' => '/wp-json/appbear/v1/posts?&categories=&offset=0&sort=latest&count=3',
                 'postLayout' => 'PostLayout.startThumbPostCompact',
                 'options' =>
                 array (
@@ -2788,7 +2788,7 @@ class AppBear_Demos_Endpoints
             'categories' =>
             array (
               'layout' => 'CategoriesLayout.cat1',
-              'url' => '/wp-json/wl/v1/categories',
+              'url' => '/wp-json/appbear/v1/categories',
             ),
             'single' =>
             array (
@@ -2822,7 +2822,7 @@ class AppBear_Demos_Endpoints
             'favorites' =>
             array (
               'postLayout' => 'PostLayout.minimalPost',
-              'url' => '/wp-json/wl/v1/posts?&ids=',
+              'url' => '/wp-json/appbear/v1/posts?&ids=',
               'options' =>
               array (
                 'count' => '10',
@@ -2904,9 +2904,9 @@ class AppBear_Demos_Endpoints
               'android' => '',
               'ios' => '',
             ),
-            'privacyPolicy' => '/wp-json/wl/v1/page?id=1039',
-            'termsAndConditions' => '/wp-json/wl/v1/page?id=1037',
-            'contactUs' => '/wp-json/wl/v1/contact-us',
+            'privacyPolicy' => '/wp-json/appbear/v1/page?id=1039',
+            'termsAndConditions' => '/wp-json/appbear/v1/page?id=1037',
+            'contactUs' => '/wp-json/appbear/v1/contact-us',
             'aboutApp' =>
             array (
               'aboutLogoLight' => 'http://Array/2020/07/logo-demo-6-white.png',
@@ -2924,25 +2924,25 @@ class AppBear_Demos_Endpoints
           ),
           'basicUrls' =>
           array (
-            'devMode' => 'wp-json/wl/v1/dev-mode',
-            'getPost' => '/wp-json/wl/v1/post',
-            'submitComment' => '/wp-json/wl/v1/add-comment',
+            'devMode' => 'wp-json/appbear/v1/dev-mode',
+            'getPost' => '/wp-json/appbear/v1/post',
+            'submitComment' => '/wp-json/appbear/v1/add-comment',
             'removeUrl' => '/?edd_action=remove_development_token',
             'saveToken' => '/?edd_action=save_token',
-            'translations' => '/wp-json/wl/v1/translations',
-            'getPostWPJSON' => '/wp-json/wl/v1/post',
-            'getTags' => '/wp-json/wl/v1/posts?tags=',
-            'getTagsPosts' => '/wp-json/wl/v1/posts?tags=',
-            'login' => '/wp-json/wl/v1/login',
-            'selectDemo' => '/wp-json/wl/v1/selectDemo',
-            'demos' => '/wp-json/wl/v1/demos',
+            'translations' => '/wp-json/appbear/v1/translations',
+            'getPostWPJSON' => '/wp-json/appbear/v1/post',
+            'getTags' => '/wp-json/appbear/v1/posts?tags=',
+            'getTagsPosts' => '/wp-json/appbear/v1/posts?tags=',
+            'login' => '/wp-json/appbear/v1/login',
+            'selectDemo' => '/wp-json/appbear/v1/selectDemo',
+            'demos' => '/wp-json/appbear/v1/demos',
           ),
           'baseUrl' => 'https://jannah.tielabs.com/appbear-rtl/',
           'defaultLayout' => 'Layout.standard',
-          'searchApi' => '/wp-json/wl/v1/posts?s=',
-          'commentsApi' => '/wp-json/wl/v1/comments?id=',
-          'commentAdd' => '/wp-json/wl/v1/add-comment',
-          'relatedPostsApi' => '/wp-json/wl/v1/posts?related_id=',
+          'searchApi' => '/wp-json/appbear/v1/posts?s=',
+          'commentsApi' => '/wp-json/appbear/v1/comments?id=',
+          'commentAdd' => '/wp-json/appbear/v1/add-comment',
+          'relatedPostsApi' => '/wp-json/appbear/v1/posts?related_id=',
           'lang' => 'en',
           'copyrights' => APPBEAR_COPYRIGHTS_URL,
           'validConfig' => 'true',

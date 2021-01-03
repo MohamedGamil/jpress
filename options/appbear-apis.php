@@ -19,7 +19,7 @@ class AppBear_Endpoints {
    *
    * @var string
    */
-  protected $namespace = 'wl/v1';
+  protected $namespace = 'appbear/v1';
 
   /**
    * Internal initilization state &
@@ -191,7 +191,7 @@ class AppBear_Endpoints {
     foreach ( $categories as $category ) {
       $the_category['term_id'] = $category->term_id;
       $the_category['name']    = $category->name;
-      $the_category['url']     = 'wp-json/wl/v1/posts?categories='. $category->term_id;
+      $the_category['url']     = 'wp-json/appbear/v1/posts?categories='. $category->term_id;
       break;
     }
 
@@ -405,7 +405,7 @@ class AppBear_Endpoints {
         $category->image_url =  $imageUrl;
       }
 
-      $category->url = "wp-json/wl/v1/posts?categories=" . $category->term_id;
+      $category->url = "wp-json/appbear/v1/posts?categories=" . $category->term_id;
       $the_cats[] = $category;
     }
 

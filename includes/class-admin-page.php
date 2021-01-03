@@ -444,7 +444,7 @@ class AdminPage extends AppbearCore {
                   }
 
                   unset($navigator['main']);
-                  $navigator['url']   = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
+                  $navigator['url']   = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                 break;
 
                 case 'NavigationType.page':
@@ -458,7 +458,7 @@ class AdminPage extends AppbearCore {
                     $navigator['title'] = $post->post_title;
                   }
 
-                  $navigator['url']   = '/wp-json/wl/v1/page?id=' . $post->ID;
+                  $navigator['url']   = '/wp-json/appbear/v1/page?id=' . $post->ID;
                   unset($navigator['main']);
                 break;
 
@@ -516,7 +516,7 @@ class AdminPage extends AppbearCore {
                     $navigator['title'] = $category->name;
                   }
                   unset($navigator['main']);
-                  $navigator['url']   = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
+                  $navigator['url']   = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                 break;
                 case 'NavigationType.page':
                   $post = get_post($navigator['page']);
@@ -525,7 +525,7 @@ class AdminPage extends AppbearCore {
                   if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
                     $navigator['title'] = $post->post_title;
                   }
-                  $navigator['url']   = '/wp-json/wl/v1/page?id=' . $post->ID;
+                  $navigator['url']   = '/wp-json/appbear/v1/page?id=' . $post->ID;
                   unset($navigator['main']);
                 break;
                 case 'NavigationType.main':
@@ -588,7 +588,7 @@ class AdminPage extends AppbearCore {
 
               $item = $item_options = array();
 
-              $tabQueryURL = '/wp-json/wl/v1/posts?';
+              $tabQueryURL = '/wp-json/appbear/v1/posts?';
               $selected_categories = explode(',', $slide['categories'][0]);
               $firstCat = false;
 
@@ -679,7 +679,7 @@ class AdminPage extends AppbearCore {
           * Homepage array
           */
           $options['homePage']['sections'] = array();
-          $options['homePage']['sections_url'] = '/wp-json/wl/v1/posts?';
+          $options['homePage']['sections_url'] = '/wp-json/appbear/v1/posts?';
 
           foreach($data['sections'] as $key => $section) {
             if ($key === 1000) {
@@ -718,7 +718,7 @@ class AdminPage extends AppbearCore {
                       $category = get_category_by_slug($section['ad_image_link_category']);
 
                       if (empty($category) === false) {
-                        $linkValue = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
+                        $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                       }
                       break;
 
@@ -726,7 +726,7 @@ class AdminPage extends AppbearCore {
                       $post = get_post($section['ad_image_link_page']);
 
                       if ($post) {
-                        $linkValue = '/wp-json/wl/v1/page?id=' . $post->ID;
+                        $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
                       }
                       break;
 
@@ -767,7 +767,7 @@ class AdminPage extends AppbearCore {
               $item['loadMore']  =   "true";
             }
 
-            $item['url'] = '/wp-json/wl/v1/posts?';
+            $item['url'] = '/wp-json/appbear/v1/posts?';
 
             switch($section['showposts']) {
               case 'categories':
@@ -893,7 +893,7 @@ class AdminPage extends AppbearCore {
           * archives array
           */
           $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
-          $options['archives']['categories']['url'] = "/wp-json/wl/v1/categories";
+          $options['archives']['categories']['url'] = "/wp-json/appbear/v1/categories";
 
           if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] != 'false') {
             $options['archives']['single']['category'] = $data['archives-single-options-category'];
@@ -990,7 +990,7 @@ class AdminPage extends AppbearCore {
           }
 
           $options['archives']['favorites']['postLayout'] = $data['archives-favorites-postlayout'];
-          $options['archives']['favorites']['url'] = '/wp-json/wl/v1/posts?&ids=';
+          $options['archives']['favorites']['url'] = '/wp-json/appbear/v1/posts?&ids=';
           $options['archives']['favorites']['options']['count'] = $data['local-archives-favorites-count'];
 
           if (isset($data['archives-favorites-options-category']) && $data['archives-favorites-options-category'] != 'false') {
@@ -1199,19 +1199,19 @@ class AdminPage extends AppbearCore {
           }
 
           if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] != 'false') {
-            $options['settingsPage']['aboutUs'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-aboutUs'];
+            $options['settingsPage']['aboutUs'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-aboutUs'];
           }
 
           if (isset($data['settingspage-privacyPolicy']) && $data['settingspage-privacyPolicy'] != '') {
-            $options['settingsPage']['privacyPolicy'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-privacyPolicy'];
+            $options['settingsPage']['privacyPolicy'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-privacyPolicy'];
           }
 
           if (isset($data['settingspage-termsAndConditions']) && $data['settingspage-termsAndConditions'] != '') {
-            $options['settingsPage']['termsAndConditions'] = "/wp-json/wl/v1/page?id=" . $data['settingspage-termsAndConditions'];
+            $options['settingsPage']['termsAndConditions'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-termsAndConditions'];
           }
 
           if (isset($data['settingspage-contactus']) && $data['settingspage-contactus'] != 'false') {
-            $options['settingsPage']['contactUs'] = "/wp-json/wl/v1/contact-us";
+            $options['settingsPage']['contactUs'] = "/wp-json/appbear/v1/contact-us";
           }
 
           if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] != 'false') {
@@ -1232,7 +1232,7 @@ class AdminPage extends AppbearCore {
               $options['settingsPage']['devMode']["count"] = "3";
               $options['settingsPage']['devMode']["addUrl"] = "/?edd_action=save_development_token";
               $options['settingsPage']['devMode']["removeUrl"] = "/?edd_action=remove_development_token";
-              $options['basicUrls']["devMode"] =  "wp-json/wl/v1/dev-mode";
+              $options['basicUrls']["devMode"] =  "wp-json/appbear/v1/dev-mode";
             }
           }
 
@@ -1399,23 +1399,23 @@ class AdminPage extends AppbearCore {
             $options['typography']['bodyText2']["fontTransform"]    = $data['section-typography-font-body2-transform'];
           }
 
-          $options['basicUrls']["getPost"] = "/wp-json/wl/v1/post";
-          $options['basicUrls']["submitComment"] = "/wp-json/wl/v1/add-comment";
+          $options['basicUrls']["getPost"] = "/wp-json/appbear/v1/post";
+          $options['basicUrls']["submitComment"] = "/wp-json/appbear/v1/add-comment";
           $options['basicUrls']["removeUrl"] = "/?edd_action=remove_development_token";
           $options['basicUrls']["saveToken"] = "/?edd_action=save_token";
-          $options['basicUrls']["translations"] = "/wp-json/wl/v1/translations";
-          $options['basicUrls']["getPostWPJSON"] = "/wp-json/wl/v1/post";
-          $options['basicUrls']["getTags"] = "/wp-json/wl/v1/posts?tags=";
-          $options['basicUrls']["getTagsPosts"] = "/wp-json/wl/v1/posts?tags=";
-          $options['basicUrls']["login"] = "/wp-json/wl/v1/login";
-          $options['basicUrls']["selectDemo"] = "/wp-json/wl/v1/selectDemo";
-          $options['basicUrls']["demos"] = "/wp-json/wl/v1/demos";
+          $options['basicUrls']["translations"] = "/wp-json/appbear/v1/translations";
+          $options['basicUrls']["getPostWPJSON"] = "/wp-json/appbear/v1/post";
+          $options['basicUrls']["getTags"] = "/wp-json/appbear/v1/posts?tags=";
+          $options['basicUrls']["getTagsPosts"] = "/wp-json/appbear/v1/posts?tags=";
+          $options['basicUrls']["login"] = "/wp-json/appbear/v1/login";
+          $options['basicUrls']["selectDemo"] = "/wp-json/appbear/v1/selectDemo";
+          $options['basicUrls']["demos"] = "/wp-json/appbear/v1/demos";
 
           $options['defaultLayout'] = "Layout.standard";
-          $options['searchApi'] = "/wp-json/wl/v1/posts?s=";
-          $options['commentsApi'] = "/wp-json/wl/v1/comments?id=";
-          $options['commentAdd'] = "/wp-json/wl/v1/add-comment";
-          $options['relatedPostsApi'] = "/wp-json/wl/v1/posts?related_id=";
+          $options['searchApi'] = "/wp-json/appbear/v1/posts?s=";
+          $options['commentsApi'] = "/wp-json/appbear/v1/comments?id=";
+          $options['commentAdd'] = "/wp-json/appbear/v1/add-comment";
+          $options['relatedPostsApi'] = "/wp-json/appbear/v1/posts?related_id=";
           $options['lang'] = "en";
           $options['validConfig'] = "true";
           $options['ttsLanguage'] = appbear_get_tts_locale();
