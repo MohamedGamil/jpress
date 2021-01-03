@@ -386,12 +386,12 @@ APPBEAR.events = (function (window, document, $) {
           }
 
           // NOTE: Debug Line
-          console.info({ n: 'multi', $row, show_if, show });
+          // console.info({ n: 'multi', $row, show_if, show });
         } else {
           show = _shouldDisplayField(field_value, show_if);
 
           // NOTE: Debug Line
-          console.info({ n: 'single', $row, show_if, show });
+          // console.info({ n: 'single', $row, show_if, show });
         }
       }
 

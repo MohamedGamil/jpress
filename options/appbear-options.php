@@ -1218,28 +1218,29 @@ class AppBear_Options
       ),
     ));
 
-    $section->add_field(array(
-      'name' => __( "Enable Advertisements", 'textdomain' ),
-      'id' => 'local_is_ads',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-    $section->add_field(array(
-      'name' => __( 'Ads Layout', 'textdomain' ),
-      'id' => 'ad_section_layout',
-      'type' => 'select',
-      'default' => 'PostLayout.adMob',
+    $section->add_field( array(
+      'id' => 'postlayout',
+      'name' => __( 'Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
       'items' => array(
-        'PostLayout.adMob' => __( 'AdMob Banner', 'textdomain' ),
-        'PostLayout.htmlAd' => __( 'HTML Ad', 'textdomain' ),
-        'PostLayout.imageAd' => __( 'Image Ad', 'textdomain' ),
+        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+        'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'true'),
+        'width' => '155px',
       ),
     ));
 
@@ -1257,10 +1258,7 @@ class AppBear_Options
         'full_banner' => __( 'Full Banner', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array(
-          array('local_is_ads', '=', 'true'),
-          array('ad_section_layout', '=', 'PostLayout.adMob'),
-        ),
+        'show_if' => array('postlayout', '=', 'PostLayout.adMob'),
       ),
     ));
     $section->add_field(array(
@@ -1272,20 +1270,14 @@ class AppBear_Options
       'default' => '<p>HTML Content goes here.</p>',
       'options' => array(
         'desc_tooltip' => true,
-        'show_if' => array(
-          array('local_is_ads', '=', 'true'),
-          array('ad_section_layout', '=', 'PostLayout.htmlAd'),
-        ),
+        'show_if' => array('postlayout', '=', 'PostLayout.htmlAd'),
       )
     ));
 
     $section->open_mixed_field(array(
       'name' =>  __('Image Ad Options', 'textdomain' ),
       'options' => array(
-        'show_if' => array(
-          array('local_is_ads', '=', 'true'),
-          array('ad_section_layout', '=', 'PostLayout.imageAd'),
-        ),
+        'show_if' => array('postlayout', '=', 'PostLayout.imageAd'),
       ),
     ));
     $section->add_field(array(
@@ -1298,9 +1290,6 @@ class AppBear_Options
         'main' => __( 'Main Page', 'textdomain' ),
         'category' => __( 'Category', 'textdomain' ),
         'page' => __( 'Page', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.imageAd'),
       ),
     ));
     $section->add_field(array(
@@ -1360,7 +1349,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' =>  __('Section Title', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1393,7 +1382,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1404,14 +1393,14 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       )
     ));
 
     $section->open_mixed_field(array(
       'name' =>  __('Show posts by', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1424,7 +1413,7 @@ class AppBear_Options
         'tags' => __( 'Tags', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field( array(
@@ -1455,7 +1444,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' => __('Exclude Posts', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1482,7 +1471,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' => __('Offset', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1520,7 +1509,7 @@ class AppBear_Options
         'title' => __( 'Alphabetically', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1541,37 +1530,14 @@ class AppBear_Options
         '10' => __( '10 Posts', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
-      ),
-    ));
-    $section->add_field( array(
-      'id' => 'postlayout',
-      'name' => __( 'Posts Layout', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'PostLayout.startThumbPost',
-      'items' => array(
-        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-        'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
-        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-      ),
-      'options' => array(
-        'width' => '155px',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
 
     $section->open_mixed_field(array(
       'name' =>  __('Featured post', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1582,7 +1548,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
       'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
     ));
@@ -1613,13 +1579,13 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       )
     ));
     $section->open_mixed_field(array(
       'name' => __('Advanced Settings', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
