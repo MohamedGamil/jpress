@@ -1645,28 +1645,6 @@ class AppBear_Options
 
     // NOTE: Archives Page
     $settings->open_tab_item('archives');
-    $archives_categories = $settings->add_section( array(
-      'name' => __( 'Categories List Page Settings', 'textdomain' ),
-      'id' => 'section-archives-categories',
-      'options' => array( 'toggle' => true )
-    ));
-    $archives_categories->add_field( array(
-      'id' => 'archives-categories-postlayout',
-      'name' => __( 'Categories Page Layout', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'CategoriesLayout.cat1',
-      'items' => array(
-      'CategoriesLayout.cat1' => APPBEAR_URL . 'options/img/categories/cat_1.png',
-      'CategoriesLayout.cat2' => APPBEAR_URL . 'options/img/categories/cat_2.png',
-      'CategoriesLayout.cat3' => APPBEAR_URL . 'options/img/categories/cat_3.png',
-      'CategoriesLayout.cat4' => APPBEAR_URL . 'options/img/categories/cat_4.png',
-      'CategoriesLayout.cat5' => APPBEAR_URL . 'options/img/categories/cat_5.png',
-      ),
-      'options' => array(
-      'width' => '155px',
-      ),
-    ));
-
 
     $archives_single = $settings->add_section( array(
       'name' => __( 'Single Post Settings', 'textdomain' ),
@@ -1756,6 +1734,261 @@ class AppBear_Options
     ));
     $archives_single->close_mixed_field();
 
+    $archives_single->add_field(array(
+      'name' => __( 'Enable Ads After Post', 'textdomain' ),
+      'id' => 'local_ads_after_post',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $archives_single->add_field( array(
+      'id' => 'local_ads_after_post_type',
+      'name' => __( 'After Post Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_after_post', '=', 'true'),
+      ),
+    ));
+
+    $archives_single->add_field(array(
+      'name' => __( 'After Post Ad HTML Code', 'textdomain' ),
+      'id' => 'after_post_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $archives_single->open_mixed_field(array(
+      'name' =>  __('After Post Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'after_post_ad_image_file',
+      'type' => 'file',
+    ));
+    $archives_single->close_mixed_field();
+
+    $archives_categories = $settings->add_section( array(
+      'name' => __( 'Categories List Page Settings', 'textdomain' ),
+      'id' => 'section-archives-categories',
+      'options' => array( 'toggle' => true )
+    ));
+    $archives_categories->add_field( array(
+      'id' => 'archives-categories-postlayout',
+      'name' => __( 'Categories Page Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'CategoriesLayout.cat1',
+      'items' => array(
+      'CategoriesLayout.cat1' => APPBEAR_URL . 'options/img/categories/cat_1.png',
+      'CategoriesLayout.cat2' => APPBEAR_URL . 'options/img/categories/cat_2.png',
+      'CategoriesLayout.cat3' => APPBEAR_URL . 'options/img/categories/cat_3.png',
+      'CategoriesLayout.cat4' => APPBEAR_URL . 'options/img/categories/cat_4.png',
+      'CategoriesLayout.cat5' => APPBEAR_URL . 'options/img/categories/cat_5.png',
+      ),
+      'options' => array(
+      'width' => '155px',
+      ),
+    ));
+
+    $archives_single->add_field(array(
+      'name' => __( 'Enable Ads Before Comments', 'textdomain' ),
+      'id' => 'local_ads_before_comments',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $archives_single->add_field( array(
+      'id' => 'local_ads_before_comments_type',
+      'name' => __( 'Before Comments Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_before_comments', '=', 'true'),
+      ),
+    ));
+
+    $archives_single->add_field(array(
+      'name' => __( 'Before Comments Ad HTML Code', 'textdomain' ),
+      'id' => 'before_comments_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $archives_single->open_mixed_field(array(
+      'name' =>  __('Before Comments Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'before_comments_ad_image_file',
+      'type' => 'file',
+    ));
+    $archives_single->close_mixed_field();
 
     $archives_category = $settings->add_section( array(
       'name' => __( 'Single Category Page Settings', 'textdomain' ),

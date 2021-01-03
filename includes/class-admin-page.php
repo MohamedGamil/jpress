@@ -1024,33 +1024,118 @@ class AdminPage extends AppbearCore {
           /*
           * Ads (adMob) arrays
           */
+          $options['adMob'] = array(
+            'html' => array( 'positions' => [] ),
+            'image' => array( 'positions' => [] ),
+            'banner' => array( 'positions' => [] ),
+            'interstatial' => array( 'positions' => [] ),
+          );
+
+          if (isset($data['local_ads_after_post']) && $data['local_ads_after_post'] === 'true') {
+            switch($data['local_ads_after_post_type']) {
+              case 'PostLayout.adMob':
+                $options['adMob']['banner']['positions']['afterPost'] = 'true';
+                break;
+              case 'PostLayout.htmlAd':
+                $options['adMob']['html']['positions']['afterPost']['content'] = $data['after_post_ad_section_html'];
+                break;
+              case 'PostLayout.imageAd':
+                $linkValue = $data['after_post_ad_image_link_url'];
+                $linkType = $data['after_post_ad_image_link_type'];
+
+                switch ($linkType) {
+                  case 'NavigationType.category':
+                    $category = get_category_by_slug($data['ad_image_link_category']);
+
+                    if (empty($category) === false) {
+                      $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+                    }
+                    break;
+
+                  case 'NavigationType.page':
+                    $post = get_post($data['ad_image_link_page']);
+
+                    if ($post) {
+                      $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+                    }
+                    break;
+
+                  case 'NavigationType.main':
+                    $linkValue = $data['ad_image_link_main'];
+                    break;
+                }
+
+                $options['adMob']['image']['positions']['afterPost'] = array(
+                  'img' => $data['after_post_ad_image_file'],
+                  'type' => $linkType,
+                  'value' => $linkValue,
+                );
+                break;
+            }
+          }
+
+          if (isset($data['local_ads_before_comments']) && $data['local_ads_before_comments'] === 'true') {
+            switch($data['local_ads_before_comments_type']) {
+              case 'PostLayout.adMob':
+                $options['adMob']['banner']['positions']['beforeComments'] = 'true';
+                break;
+              case 'PostLayout.htmlAd':
+                $options['adMob']['html']['positions']['beforeComments']['content'] = $data['before_comments_ad_section_html'];
+                break;
+              case 'PostLayout.imageAd':
+                $linkValue = $data['before_comments_ad_image_link_url'];
+                $linkType = $data['before_comments_ad_image_link_type'];
+
+                switch ($linkType) {
+                  case 'NavigationType.category':
+                    $category = get_category_by_slug($data['ad_image_link_category']);
+
+                    if (empty($category) === false) {
+                      $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+                    }
+                    break;
+
+                  case 'NavigationType.page':
+                    $post = get_post($data['ad_image_link_page']);
+
+                    if ($post) {
+                      $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+                    }
+                    break;
+
+                  case 'NavigationType.main':
+                    $linkValue = $data['ad_image_link_main'];
+                    break;
+                }
+
+                $options['adMob']['image']['positions']['beforeComments'] = array(
+                  'img' => $data['before_comments_ad_image_file'],
+                  'type' => $linkType,
+                  'value' => $linkValue,
+                );
+                break;
+            }
+          }
+
           if (isset($data['local-admob_banner']) && $data['local-admob_banner'] !== 'false') {
-            $options['adMob']['banner']['androidBannerId']   =  $data['advertisement_android_banner_id_text'];
-            $options['adMob']['banner']['iosBannerId']   =  $data['advertisement_ios_banner_id_text'];
+            $options['adMob']['banner']['androidBannerId'] = $data['advertisement_android_banner_id_text'];
+            $options['adMob']['banner']['iosBannerId'] = $data['advertisement_ios_banner_id_text'];
 
             if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false') {
-              $options['adMob']['banner']['positions']['top']   =  $data['advertisement_top_toggle'];
+              $options['adMob']['banner']['positions']['top'] = $data['advertisement_top_toggle'];
             }
 
             if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false') {
-              $options['adMob']['banner']['positions']['bottom']   =  $data['advertisement_bottom_toggle'];
-            }
-
-            if (isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false') {
-              $options['adMob']['banner']['positions']['afterPost']   =  $data['advertisement_after_post_toggel'];
+              $options['adMob']['banner']['positions']['bottom'] = $data['advertisement_bottom_toggle'];
             }
           }
 
           if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false') {
-            $options['adMob']['interstatial']['androidInterstatialId']   =  $data['advertisement_android_interstatial_id_text'];
-            $options['adMob']['interstatial']['iosInterstatialId']   =  $data['advertisement_ios_interstatial_id_text'];
+            $options['adMob']['interstatial']['androidInterstatialId'] = $data['advertisement_android_interstatial_id_text'];
+            $options['adMob']['interstatial']['iosInterstatialId'] = $data['advertisement_ios_interstatial_id_text'];
 
             if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false') {
-              $options['adMob']['interstatial']['positions']['beforePost']   =  $data['advertisement_interstatial_before_post_toggle'];
-            }
-
-            if (isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false') {
-              $options['adMob']['interstatial']['positions']['beforeComment']   =  $data['advertisement_interstatial_before_comment_toggle'];
+              $options['adMob']['interstatial']['positions']['beforePost'] = $data['advertisement_interstatial_before_post_toggle'];
             }
           }
 
