@@ -127,7 +127,9 @@ class AppBear_Endpoints {
       foreach ($sections as $section) {
         $params = [];
 
-        @parse_str( $section, $params );
+        if ($section !== 'advert') {
+          @parse_str( $section, $params );
+        }
 
         $response[] = $this->_queryPosts($params);
       }

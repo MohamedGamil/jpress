@@ -691,6 +691,63 @@ class AdminPage extends AppbearCore {
 
             $item = $item_options = array();
 
+            $item['postLayout'] = $section['postlayout'];
+
+            // NOTE: Ads Sections
+            if ( in_array($section['postlayout'], [ 'PostLayout.adMob', 'PostLayout.imageAd', 'PostLayout.htmlAd' ]) ) {
+              switch($section['postlayout']) {
+                // AdMob
+                case 'PostLayout.adMob':
+                  $item['adSize'] = $section['admob_banner_size'];
+                  break;
+
+                // HTML Ad
+                case 'PostLayout.htmlAd':
+                  $item['htmlAd'] = array(
+                    'content' => $section['ad_section_html'],
+                  );
+                  break;
+
+                // Image Ad
+                case 'PostLayout.imageAd':
+                  $linkValue = $section['ad_image_link_url'];
+                  $linkType = $section['ad_image_link_type'];
+
+                  switch ($linkType) {
+                    case 'NavigationType.category':
+                      $category = get_category_by_slug($section['ad_image_link_category']);
+
+                      if (empty($category) === false) {
+                        $linkValue = '/wp-json/wl/v1/posts?categories=' . $category->term_id;
+                      }
+                      break;
+
+                    case 'NavigationType.page':
+                      $post = get_post($section['ad_image_link_page']);
+
+                      if ($post) {
+                        $linkValue = '/wp-json/wl/v1/page?id=' . $post->ID;
+                      }
+                      break;
+
+                    case 'NavigationType.main':
+                      $linkValue = $section['ad_image_link_main'];
+                      break;
+                  }
+
+                  $item['imageAd'] = array(
+                    'img' => $section['ad_image_file'],
+                    'type' => $linkType,
+                    'value' => $linkValue,
+                  );
+                  break;
+              }
+
+              array_push($options['homePage']['sections'], $item);
+              $options['homePage']['sections_url'] .= '&sections[]=advert';
+              continue;
+            }
+
             if ($section['local-hompage_title'] == true && $section['homepage-sections-title'] != '') {
               $item['hometab'] = $data['homepage-sections-title'];
             }
@@ -775,8 +832,6 @@ class AdminPage extends AppbearCore {
             $item['url'] .= "&count=" . ( isset($section['local-count']) ? $section['local-count'] : '3' );
             $item['url'] .= "&sort=" . ( isset($section['local-sort']) ? $section['local-sort'] : 'latest' );
 
-            $item['postLayout'] = $section['postlayout'];
-
             if (isset($section["local-firstfeatured"]) && $section["local-firstfeatured"] != 'false') {
               $item['firstFeatured']  =   $section['firstFeatured'];
             }
@@ -824,6 +879,7 @@ class AdminPage extends AppbearCore {
 
             $urlPts = explode('?', $item['url']);
             $urlParams = end($urlPts);
+
             $options['homePage']['sections_url'] .= '&sections[]=' . urlencode($urlParams);
 
             // NOTE: Debug line..

@@ -684,7 +684,7 @@ class AppBear_Options
       'name' => __( 'Bottom Bar Tabs', 'textdomain' ),
       'id' => 'section-bottombar-tabs',
       'options' => array(
-      'toggle' => true,
+        'toggle' => true,
         'show_if' => array('menu_type', '!=', 'sidemenu'),
       ),
     ));
@@ -696,7 +696,6 @@ class AppBear_Options
       'options' => array(
       'add_item_text' => __('New Tab', 'textdomain'),
         'show_if' => array('menu_type', '!=', 'sidemenu'),
-
       ),
       'controls' => array(
       'name' =>  __('Tab', 'textdomain').' #',
@@ -1219,37 +1218,32 @@ class AppBear_Options
       ),
     ));
 
-    $section->add_field(array(
-      'name' => __( "Enable Advertisements", 'textdomain' ),
-      'id' => 'local_is_ads',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-    $section->add_field(array(
-      'name' => __( 'Ads Type', 'textdomain' ),
-      'id' => 'ad_section_layout',
-      'type' => 'select',
-      'default' => 'PostLayout.adMob',
+    $section->add_field( array(
+      'id' => 'postlayout',
+      'name' => __( 'Posts Layout', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.startThumbPost',
       'items' => array(
-        'PostLayout.adMob' => __( 'AdMob Banner', 'textdomain' ),
-        'PostLayout.htmlAd' => __( 'HTML Ad', 'textdomain' ),
-        'PostLayout.imageAd' => __( 'Image Ad', 'textdomain' ),
+        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+        'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
+        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'true'),
+        'width' => '155px',
       ),
     ));
 
-    $section->open_mixed_field(array(
-      'name' =>  __('Ad Options', 'textdomain' ),
-      'options' => array(
-        'show_if' => array('local_is_ads', '=', 'true'),
-      ),
-    ));
     $section->add_field(array(
       'name' => __( 'AdMob Banner Size', 'textdomain' ),
       'id' => 'admob_banner_size',
@@ -1258,13 +1252,13 @@ class AppBear_Options
       'items' => array(
         'banner' => __( 'Banner', 'textdomain' ),
         'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-        'smart_banner' => __( 'smart_banner', 'textdomain' ),
-        'Medium_banner' => __( 'medium Banner', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
         'large_banner' => __( 'Large Banner', 'textdomain' ),
         'full_banner' => __( 'Full Banner', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.adMob'),
+        'show_if' => array('postlayout', '=', 'PostLayout.adMob'),
       ),
     ));
     $section->add_field(array(
@@ -1276,18 +1270,14 @@ class AppBear_Options
       'default' => '<p>HTML Content goes here.</p>',
       'options' => array(
         'desc_tooltip' => true,
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.htmlAd')
+        'show_if' => array('postlayout', '=', 'PostLayout.htmlAd'),
       )
     ));
-    $section->close_mixed_field();
 
     $section->open_mixed_field(array(
       'name' =>  __('Image Ad Options', 'textdomain' ),
       'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.imageAd'),
-
-        // BUG: all `hide_if` conditions are not working!
-        'hide_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', '=', 'PostLayout.imageAd'),
       ),
     ));
     $section->add_field(array(
@@ -1296,13 +1286,10 @@ class AppBear_Options
       'type' => 'radio',
       'default' => 'url',
       'items' => array(
-        'url' => __( 'Full URL', 'textdomain' ),
-        'main' => __( 'Main Page', 'textdomain' ),
-        'category' => __( 'Category', 'textdomain' ),
-        'page' => __( 'Page', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.imageAd'),
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
       ),
     ));
     $section->add_field(array(
@@ -1311,7 +1298,7 @@ class AppBear_Options
       'type' => 'text',
       'grid' => '2-of-6',
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'url'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.url'),
       ),
     ));
     $section->add_field(array(
@@ -1328,7 +1315,7 @@ class AppBear_Options
         'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'main'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.main'),
       ),
     ));
     $section->add_field(array(
@@ -1338,7 +1325,7 @@ class AppBear_Options
       'attributes' => array( 'required' => true ),
       'items' => AppbearItems::terms( 'category' ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'category'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.category'),
       ),
     ));
     $section->add_field(array(
@@ -1348,7 +1335,7 @@ class AppBear_Options
       'attributes' => array( 'required' => true ),
       'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
       'options' => array(
-        'show_if' => array('ad_image_link_type', '=', 'page'),
+        'show_if' => array('ad_image_link_type', '=', 'NavigationType.page'),
       ),
     ));
     $section->add_field(array(
@@ -1362,7 +1349,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' =>  __('Section Title', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1395,7 +1382,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1406,14 +1393,14 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       )
     ));
 
     $section->open_mixed_field(array(
       'name' =>  __('Show posts by', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1426,7 +1413,7 @@ class AppBear_Options
         'tags' => __( 'Tags', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field( array(
@@ -1457,7 +1444,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' => __('Exclude Posts', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1484,7 +1471,7 @@ class AppBear_Options
     $section->open_mixed_field(array(
       'name' => __('Offset', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1522,7 +1509,7 @@ class AppBear_Options
         'title' => __( 'Alphabetically', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1543,37 +1530,14 @@ class AppBear_Options
         '10' => __( '10 Posts', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
-      ),
-    ));
-    $section->add_field( array(
-      'id' => 'postlayout',
-      'name' => __( 'Posts Layout', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'PostLayout.startThumbPost',
-      'items' => array(
-        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-        'PostLayout.relatedPost' => APPBEAR_URL . 'options/img/blocks/relatedPost.png',
-        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
-      ),
-      'options' => array(
-        'width' => '155px',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
 
     $section->open_mixed_field(array(
       'name' =>  __('Featured post', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
@@ -1584,7 +1548,7 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
       'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
     ));
@@ -1615,13 +1579,13 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false',
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       )
     ));
     $section->open_mixed_field(array(
       'name' => __('Advanced Settings', 'textdomain' ),
       'options' => array(
-        'show_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
       ),
     ));
     $section->add_field(array(
