@@ -684,7 +684,7 @@ class AppBear_Options
       'name' => __( 'Bottom Bar Tabs', 'textdomain' ),
       'id' => 'section-bottombar-tabs',
       'options' => array(
-      'toggle' => true,
+        'toggle' => true,
         'show_if' => array('menu_type', '!=', 'sidemenu'),
       ),
     ));
@@ -696,7 +696,6 @@ class AppBear_Options
       'options' => array(
       'add_item_text' => __('New Tab', 'textdomain'),
         'show_if' => array('menu_type', '!=', 'sidemenu'),
-
       ),
       'controls' => array(
       'name' =>  __('Tab', 'textdomain').' #',
@@ -1244,12 +1243,6 @@ class AppBear_Options
       ),
     ));
 
-    $section->open_mixed_field(array(
-      'name' =>  __('Ad Options', 'textdomain' ),
-      'options' => array(
-        'show_if' => array('local_is_ads', '=', 'true'),
-      ),
-    ));
     $section->add_field(array(
       'name' => __( 'AdMob Banner Size', 'textdomain' ),
       'id' => 'admob_banner_size',
@@ -1264,7 +1257,10 @@ class AppBear_Options
         'full_banner' => __( 'Full Banner', 'textdomain' ),
       ),
       'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.adMob'),
+        'show_if' => array(
+          array('local_is_ads', '=', 'true'),
+          array('ad_section_layout', '=', 'PostLayout.adMob'),
+        ),
       ),
     ));
     $section->add_field(array(
@@ -1276,18 +1272,20 @@ class AppBear_Options
       'default' => '<p>HTML Content goes here.</p>',
       'options' => array(
         'desc_tooltip' => true,
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.htmlAd')
+        'show_if' => array(
+          array('local_is_ads', '=', 'true'),
+          array('ad_section_layout', '=', 'PostLayout.htmlAd'),
+        ),
       )
     ));
-    $section->close_mixed_field();
 
     $section->open_mixed_field(array(
       'name' =>  __('Image Ad Options', 'textdomain' ),
       'options' => array(
-        'show_if' => array('ad_section_layout', '=', 'PostLayout.imageAd'),
-
-        // BUG: all `hide_if` conditions are not working!
-        'hide_if' => array('local_is_ads', '=', 'false'),
+        'show_if' => array(
+          array('local_is_ads', '=', 'true'),
+          array('ad_section_layout', '=', 'PostLayout.imageAd'),
+        ),
       ),
     ));
     $section->add_field(array(

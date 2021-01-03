@@ -1,7 +1,44 @@
 APPBEAR.events = (function (window, document, $) {
   'use strict';
+
   var appbear_events = {};
   var appbear;
+
+  /**
+   * Whether to display a field or not based on a given condition
+   *
+   * @param {any} field_value_
+   * @param {Array} condition_
+   * @returns {Boolean}
+   */
+  function _shouldDisplayField(field_value_, condition_) {
+    let value_ = '';
+    let operator_ = '==';
+    let show_ = true;
+
+    if (condition_.length == 2) {
+      value_ = condition_[1];
+    }
+    else if (condition_.length == 3) {
+      value_ = condition_[2];
+      operator_ = !is_empty(condition_[1]) ? condition_[1] : operator_;
+      operator_ = operator_ == '=' ? '==' : operator_;
+    }
+
+    if ($.inArray(operator_, ['==', '!=', '>', '>=', '<', '<=']) > -1) {
+      show_ = appbear.compare_values_by_operator(field_value_, operator_, value_);
+    }
+    else if ($.inArray(operator_, ['in', 'not in']) > -1) {
+      if (!is_empty(value_) && $.isArray(value_)) {
+        show_ = operator_ == 'in' ? $.inArray(field_value_, value_) > -1 : $.inArray(field_value_, value_) == -1;
+      }
+    }
+
+    // NOTE: Debug line..
+    // console.info({ value_, field_value_, operator_, show_, condition_ })
+
+    return show_;
+  }
 
   appbear_events.init = function () {
     var $appbear = $('.appbear');
@@ -286,14 +323,18 @@ APPBEAR.events = (function (window, document, $) {
   appbear_events.show_hide_row = function ($el, field_value, type) {
     var prefix = $el.closest('.appbear').data('prefix');
     var $id = $el.closest('.appbear-row').data('field-id');
+
     if ($el.parents('.appbear-group-wrap').length > 0) {
       var $row_changed = $el.parents('.appbear-group-item').find('.condition_' + $id);
-    } else {
+    }
+    else {
       var $row_changed = $('.condition_' + $id);
     }
+
     var value = '';
     var operator = '==';
     var $rows = $row_changed;
+
     // var $group_item = $row_changed.closest('.appbear-group-item');
     // if ($group_item.length) {
     //   $rows = $group_item.find('.appbear-row');
@@ -308,19 +349,19 @@ APPBEAR.events = (function (window, document, $) {
     // }
 
     $rows.each(function (index, el) {
-      var $row = $(el);
+      let $row = $(el);
+      let data_show_hide = $row.data('show-hide');
 
-      var data_show_hide = $row.data('show-hide');
       if (typeof data_show_hide === 'undefined' || data_show_hide == null) {
         return;
       }
 
-      var show_if = data_show_hide.show_if;
-      var hide_if = data_show_hide.hide_if;
-      var show = true;
-      var hide = false;
-      var check_show = true;
-      var check_hide = true;
+      let show = true;
+      let show_if = data_show_hide.show_if;
+      let hide_if = data_show_hide.hide_if;
+      let hide = false;
+      let check_show = true;
+      let check_hide = true;
 
       if (is_empty(show_if) || is_empty(show_if[0])) {
         check_show = false;
@@ -334,27 +375,24 @@ APPBEAR.events = (function (window, document, $) {
       //   return true;
       // }
 
-
       if (check_show) {
         if ($.isArray(show_if[0])) {
+          for (const condition_ of show_if) {
+            // if (show === false) {
+            //   break;
+            // }
 
+            show = _shouldDisplayField(field_value, condition_);
+          }
+
+          // NOTE: Debug Line
+          console.info({ n: 'multi', $row, show_if, show });
         } else {
-          if (show_if.length == 2) {
-            value = show_if[1];
-          } else if (show_if.length == 3) {
-            value = show_if[2];
-            operator = !is_empty(show_if[1]) ? show_if[1] : operator;
-            operator = operator == '=' ? '==' : operator;
-          }
-          if ($.inArray(operator, ['==', '!=', '>', '>=', '<', '<=']) > -1) {
-            show = appbear.compare_values_by_operator(field_value, operator, value);
-          } else if ($.inArray(operator, ['in', 'not in']) > -1) {
-            if (!is_empty(value) && $.isArray(value)) {
-              show = operator == 'in' ? $.inArray(field_value, value) > -1 : $.inArray(field_value, value) == -1;
-            }
-          }
-        }
+          show = _shouldDisplayField(field_value, show_if);
 
+          // NOTE: Debug Line
+          console.info({ n: 'single', $row, show_if, show });
+        }
       }
 
       if (check_hide) {
@@ -377,6 +415,7 @@ APPBEAR.events = (function (window, document, $) {
           }
         }
       }
+
       if (check_show) {
         if (check_hide) {
           if (show) {
@@ -433,20 +472,24 @@ APPBEAR.events = (function (window, document, $) {
   appbear_events.show_row = function ($row) {
     var data_show_hide = $row.data('show-hide');
     var delay = parseInt(data_show_hide.delay);
+
     if (data_show_hide.effect == 'slide') {
       $row.slideDown(delay, function () {
         if ($row.hasClass('appbear-row-mixed')) {
           $row.css('display', 'inline-block');
         }
       });
-    } else if (data_show_hide.effect == 'fade') {
+    }
+    else if (data_show_hide.effect == 'fade') {
       $row.fadeIn(delay, function () {
         if ($row.hasClass('appbear-row-mixed')) {
           $row.css('display', 'inline-block');
         }
       });
-    } else {
+    }
+    else {
       $row.show();
+
       if ($row.hasClass('appbear-row-mixed')) {
         $row.css('display', 'inline-block');
       }

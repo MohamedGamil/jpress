@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Appbear\Includes;
 
@@ -95,17 +95,29 @@ class FieldBuilder {
 		$row_id = Functions::get_id_attribute_by_name( $this->field->get_name() );
 		$content_class = "appbear-content";
 
-		if( $this->field->in_mixed ){
+		if ( $this->field->in_mixed ){
 			$content_class .= "-mixed";
-		}
+    }
+
 		$data_show_hide = json_encode(array(
 			'show_if' => (array) $options['show_if'],
 			'hide_if' => (array) $options['hide_if'],
 			'effect' => $options['show_hide_effect'],
 			'delay' => $options['show_hide_delay'],
-		));
-		if(isset($options['show_if'][0])){
-			$row_class .= " condition_".$options['show_if'][0];
+    ));
+
+		if (isset($options['show_if'][0])) {
+      $isMulti = is_array($options['show_if'][0]);
+
+      if ($isMulti) {
+        foreach ($options['show_if'] as $showIfCondition) {
+          $row_class .= " condition_" . $showIfCondition[0];
+        }
+      } else {
+        $row_class .= " condition_" . $options['show_if'][0];
+      }
+
+      // dd($row_class);
 		}
 
 		$return .= "<div id='{$this->field->arg( 'row_id' )}' class='$row_class' data-row-level='{$this->field->get_row_level()}' data-field-id='{$this->field->id}' data-field-type='$type'  data-show-hide='$data_show_hide'>";
@@ -180,10 +192,10 @@ class FieldBuilder {
 		// }
 		$item_tab = '';
 		$i = 0;
-		
 
-		$conditions	=	(isset($options['conditions']) ?$options['conditions'] : false);
-		
+
+    $conditions	=	(isset($options['conditions']) ?$options['conditions'] : false);
+
 		foreach ( $items as $key => $display ){
 			$active = $i == 0 ? ' active' : ''; $i++;
 			$sub_items = '';
@@ -206,7 +218,7 @@ class FieldBuilder {
 			}
 			$show_hide = $hide_if = $show_if = '';
 			if($options['conditions'] && isset($options['conditions'][$key])){
-				
+
 				if(isset($options['conditions'][$key]['show_if'][0])){
 					$show_if = $options['conditions'][$key]['show_if'];
 					$item_class .= ' condition_'.$show_if[0];
@@ -221,7 +233,7 @@ class FieldBuilder {
 				));
 				$show_hide = "data-show-hide='$data_show_hide'";
 			}
-			
+
 			//Show
 			$show = true;
 			if( empty( $show_if ) || empty( $show_if[0] ) ){
@@ -275,7 +287,7 @@ class FieldBuilder {
 							$hide = $operator == 'in' ? in_array( $field_value, $value ) : ! in_array( $field_value, $value );
 						}
 					}
-				}
+        }
 			}
 
 			$style = '';
@@ -849,39 +861,25 @@ class FieldBuilder {
 		$hide_class = 'appbear-hide';
 		$field_class = $this->field;
 
+    // NOTE: Debug Line..
+    // if (empty($hide_if) === false) dd($hide_if);
+
 		//Show
 		if( empty( $show_if ) || empty( $show_if[0] ) ){
 			$show = true;
 		} else if( is_array( $show_if[0] ) ){
+      // NOTE: Debug Line..
+      // dd($show_if);
 
+      foreach ($show_if as $condition) {
+        if ($show === false) {
+          break;
+        }
+
+        $show = $this->_should_display_field($condition);
+      }
 		} else {
-			$get_appbear = \Appbear::get($this->field->get_appbear()->id);
-			if($get_appbear->get_field_value($show_if[0]) == ''){
-				$parent = $this->field->get_parent();
-				$field = $parent->get_field( $show_if[0] );
-				if($field != null)
-				$field_value = $field->get_value();
-			}else{
-				$field_value = $get_appbear->get_field_value($show_if[0]);
-			}
-			if(isset($field_value) && $field_value){
-				$value = '';
-				$operator = '==';
-				if( count( $show_if ) == 2 ){
-					$value = isset( $show_if[1] ) ? $show_if[1] : '';
-				} else if( count( $show_if ) == 3 ){
-					$value = isset( $show_if[2] ) ? $show_if[2] : '';
-					$operator = ! empty( $show_if[1] ) ? $show_if[1] : $operator;
-					$operator = $operator == '=' ? '==' : $operator;
-				}
-				if( in_array( $operator,  array('==', '!=', '>', '>=', '<', '<=') ) ){
-					$show = Functions::compare_values_by_operator( $field_value, $operator, $value );
-				} else if( in_array( $operator,  array('in', 'not in' ) ) ){
-					if( ! empty( $value ) && is_array( $value ) ){
-						$show = $operator == 'in' ? in_array( $field_value, $value ) : ! in_array( $field_value, $value );
-					}
-				}
-			}
+      $show = $this->_should_display_field($show_if);
 		}
 
 		//Hide
@@ -954,5 +952,49 @@ class FieldBuilder {
 
 
 
+  /**
+   * Whether to display a field or not based on a given condition
+   *
+   * @param array $condition
+   * @return boolean
+   */
+  private function _should_display_field($condition) {
+    $get_appbear = \Appbear::get($this->field->get_appbear()->id);
+    $show = true;
 
+    if ( $get_appbear->get_field_value($condition[0]) == '' ) {
+      $parent = $this->field->get_parent();
+      $field = $parent->get_field( $condition[0] );
+      if($field != null)
+      $field_value = $field->get_value();
+    }
+    else {
+      $field_value = $get_appbear->get_field_value($condition[0]);
+    }
+
+    if ( isset($field_value) && $field_value ) {
+      $value = '';
+      $operator = '==';
+
+      if ( count( $condition ) == 2 ) {
+        $value = isset( $condition[1] ) ? $condition[1] : '';
+      }
+      elseif ( count( $condition ) == 3 ) {
+        $value = isset( $condition[2] ) ? $condition[2] : '';
+        $operator = ! empty( $condition[1] ) ? $condition[1] : $operator;
+        $operator = $operator == '=' ? '==' : $operator;
+      }
+
+      if ( in_array( $operator,  array('==', '!=', '>', '>=', '<', '<=') ) ) {
+        $show = Functions::compare_values_by_operator( $field_value, $operator, $value );
+      }
+      elseif ( in_array( $operator,  array('in', 'not in' ) ) ) {
+        if( ! empty( $value ) && is_array( $value ) ){
+          $show = $operator == 'in' ? in_array( $field_value, $value ) : ! in_array( $field_value, $value );
+        }
+      }
+    }
+
+    return $show;
+  }
 }
