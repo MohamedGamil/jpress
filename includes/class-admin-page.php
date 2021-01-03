@@ -927,6 +927,7 @@ class AdminPage extends AppbearCore {
             $options['archives']['single']['textToSpeech'] = $data['archives-single-options-tts'];
           }
 
+          $options['archives']['category']['adsCount'] = $data['ads_single_cat_offset'];
           $options['archives']['category']['postLayout'] = $data['archives-category-postlayout'];
           $options['archives']['category']['options']['count'] = $data['local-archives-category-count'];
 

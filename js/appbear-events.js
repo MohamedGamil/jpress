@@ -375,6 +375,7 @@ APPBEAR.events = (function (window, document, $) {
       //   return true;
       // }
 
+      // BUG: The current way of showing/hiding rows is buggy and results in an wanted behavior while using multiple conditions.
       if (check_show) {
         if ($.isArray(show_if[0])) {
           for (const condition_ of show_if) {
