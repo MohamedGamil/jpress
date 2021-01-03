@@ -1022,58 +1022,35 @@ class AdminPage extends AppbearCore {
           }
 
           /*
-          * adMob array
+          * Ads (adMob) arrays
           */
-          if (!(!isset($data['advertisement_android_app_id_text']) || $data['advertisement_android_app_id_text'] == '') || !(!isset($data['advertisement_ios_app_id_text']) || $data['advertisement_ios_app_id_text'] == '')) {
-            if (isset($data['advertisement_android_app_id_text']) && $data['advertisement_android_app_id_text'] != '') {
-              $options['adMob']['androidAppId']   =  $data['advertisement_android_app_id_text'];
+          if (isset($data['local-admob_banner']) && $data['local-admob_banner'] !== 'false') {
+            $options['adMob']['banner']['androidBannerId']   =  $data['advertisement_android_banner_id_text'];
+            $options['adMob']['banner']['iosBannerId']   =  $data['advertisement_ios_banner_id_text'];
+
+            if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false') {
+              $options['adMob']['banner']['positions']['top']   =  $data['advertisement_top_toggle'];
             }
 
-            if (isset($data['advertisement_ios_app_id_text']) && $data['advertisement_ios_app_id_text'] != '') {
-              $options['adMob']['iosAppId']   =  $data['advertisement_ios_app_id_text'];
+            if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false') {
+              $options['adMob']['banner']['positions']['bottom']   =  $data['advertisement_bottom_toggle'];
             }
 
-            if (isset($data['local-admob_banner']) && $data['local-admob_banner'] != 'false') {
-              $options['adMob']['banner']['androidBannerId']   =  $data['advertisement_android_banner_id_text'];
-              $options['adMob']['banner']['iosBannerId']   =  $data['advertisement_ios_banner_id_text'];
+            if (isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false') {
+              $options['adMob']['banner']['positions']['afterPost']   =  $data['advertisement_after_post_toggel'];
+            }
+          }
 
-              if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false') {
-                $options['adMob']['banner']['positions']['top']   =  $data['advertisement_top_toggle'];
-              }
+          if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false') {
+            $options['adMob']['interstatial']['androidInterstatialId']   =  $data['advertisement_android_interstatial_id_text'];
+            $options['adMob']['interstatial']['iosInterstatialId']   =  $data['advertisement_ios_interstatial_id_text'];
 
-              if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false') {
-                $options['adMob']['banner']['positions']['bottom']   =  $data['advertisement_bottom_toggle'];
-              }
-
-              if (isset($data['advertisement_after_post_toggel']) && $data['advertisement_after_post_toggel'] != 'false') {
-                $options['adMob']['banner']['positions']['afterPost']   =  $data['advertisement_after_post_toggel'];
-              }
+            if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false') {
+              $options['adMob']['interstatial']['positions']['beforePost']   =  $data['advertisement_interstatial_before_post_toggle'];
             }
 
-            if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false') {
-              $options['adMob']['interstatial']['androidInterstatialId']   =  $data['advertisement_android_interstatial_id_text'];
-              $options['adMob']['interstatial']['iosInterstatialId']   =  $data['advertisement_ios_interstatial_id_text'];
-
-              if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false') {
-                $options['adMob']['interstatial']['positions']['beforePost']   =  $data['advertisement_interstatial_before_post_toggle'];
-              }
-
-              if (isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false') {
-                $options['adMob']['interstatial']['positions']['beforeComment']   =  $data['advertisement_interstatial_before_comment_toggle'];
-              }
-            }
-
-            if (isset($data['local-advertisement_android_rewarded']) && $data['local-advertisement_android_rewarded'] != 'false') {
-              $options['adMob']['rewarded']['androidRewardedId']   =  $data['advertisement_android_rewarded_id_text'];
-              $options['adMob']['rewarded']['iosRewardedId']   =  $data['advertisement_android_rewarded_ios_text'];
-
-              if (isset($data['advertisement_rewarded_before_post_toggle']) && $data['advertisement_rewarded_before_post_toggle'] != 'false') {
-                $options['adMob']['rewarded']['positions']['beforePost']   =  $data['advertisement_rewarded_before_post_toggle'];
-              }
-
-              if (isset($data['advertisement_rewarded_before_comment_toggle']) && $data['advertisement_rewarded_before_comment_toggle'] != 'false') {
-                $options['adMob']['rewarded']['positions']['beforeComment']   =  $data['advertisement_rewarded_before_comment_toggle'];
-              }
+            if (isset($data['advertisement_interstatial_before_comment_toggle']) && $data['advertisement_interstatial_before_comment_toggle'] != 'false') {
+              $options['adMob']['interstatial']['positions']['beforeComment']   =  $data['advertisement_interstatial_before_comment_toggle'];
             }
           }
 

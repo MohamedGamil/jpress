@@ -2264,21 +2264,7 @@ class AppBear_Options
       'options' => array( 'toggle' => false )
     ));
 
-    // $admob->add_field(
-    // array(
-    //   'name' => __( 'Android App ID', 'textdomain' ),
-    //   'id' => 'advertisement_android_app_id_text',
-    //   'type' => 'text',
-    // ));
-
-    // $admob->add_field(array(
-    //   'name' => __( 'iOS App ID', 'textdomain' ),
-    //   'id' => 'advertisement_ios_app_id_text',
-    //   'type' => 'text',
-    // ));
-
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
-
     $admob->add_field(array(
       'name' => __( 'Enabled', 'textdomain' ),
       'id' => 'local-admob_banner',
@@ -2287,99 +2273,52 @@ class AppBear_Options
       'options' => array(
         'on_value' => 'true',
         'off_value' => 'false'
-      )
+      ),
     ));
 
-    $admob->add_field(
-      array(
-        'name' => __( 'Android ID', 'textdomain' ),
-        'id' => 'advertisement_android_banner_id_text',
-        'type' => 'text',
-        'options'	=>	array(
+    $admob->add_field(array(
+      'name' => __( 'Android ID', 'textdomain' ),
+      'id' => 'advertisement_android_banner_id_text',
+      'type' => 'text',
+      'options'	=>	array(
         'show_if' => array('local-admob_banner', '=', 'true')
       ),
     ));
 
-    $admob->add_field(
-      array(
-        'name' => __( 'iOS ID', 'textdomain' ),
-        'id' => 'advertisement_ios_banner_id_text',
-        'type' => 'text',
-        'options'	=>	array(
+    $admob->add_field(array(
+      'name' => __( 'iOS ID', 'textdomain' ),
+      'id' => 'advertisement_ios_banner_id_text',
+      'type' => 'text',
+      'options'	=>	array(
         'show_if' => array('local-admob_banner', '=', 'true')
       ),
-    ));
-
-    $admob->close_mixed_field();
-
-    $admob->open_mixed_field(array('name' => __('Admob Banner Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-admob_banner', '=', 'true')),));
-
-    $admob->add_field(
-      array(
-        'name' => __( 'Above the Top Bar', 'textdomain' ),
-        'id' => 'advertisement_top_toggle',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value' => 'true',
-          'off_value' => 'false'
-        )
-    ));
-
-    $admob->add_field(
-      array(
-        'name' => __( 'Above the Bottom Bar', 'textdomain' ),
-        'id' => 'advertisement_bottom_toggle',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value' => 'true',
-          'off_value' => 'false'
-        )
-    ));
-
-
-    $admob->add_field(
-      array(
-        'name' => __( 'At the end of the Posts', 'textdomain' ),
-        'id' => 'advertisement_after_post_toggel',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value' => 'true',
-          'off_value' => 'false'
-        )
     ));
 
     $admob->close_mixed_field();
 
     $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
 
-    $admob->add_field(
-      array(
-        'name' => __( 'Enable', 'textdomain' ),
-        'id' => 'local-advertisement_admob_interstatial',
-        'type' => 'switcher',
-        'default'	=>	'false',
-        'options' => array(
-          'on_value' => 'true',
-          'off_value' => 'false'
-        )
+    $admob->add_field(array(
+      'name' => __( 'Enable', 'textdomain' ),
+      'id' => 'local-advertisement_admob_interstatial',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
     ));
 
-
-    $admob->add_field(
-      array(
-        'name' => __( 'Android ID', 'textdomain' ),
-        'id' => 'advertisement_android_interstatial_id_text',
-        'type' => 'text',
-        'options'	=>	array(
+    $admob->add_field(array(
+      'name' => __( 'Android ID', 'textdomain' ),
+      'id' => 'advertisement_android_interstatial_id_text',
+      'type' => 'text',
+      'options'	=>	array(
         'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
       ),
     ));
 
-    $admob->add_field(
-    array(
+    $admob->add_field(array(
       'name' => __( 'iOS ID', 'textdomain' ),
       'id' => 'advertisement_ios_interstatial_id_text',
       'type' => 'text',
@@ -2389,69 +2328,6 @@ class AppBear_Options
     ));
 
     $admob->close_mixed_field();
-
-    $admob->open_mixed_field(array('name' => __('Admob Interstatial Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_admob_interstatial', '=', 'true')),));
-
-    $admob->add_field(
-    array(
-      'name' => __( 'Before View Post', 'textdomain' ),
-      'id' => 'advertisement_interstatial_before_post_toggle',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      )
-    ));
-    $admob->close_mixed_field();
-
-    $admob->open_mixed_field(array('name' => __('Admob Rewarded', 'textdomain' )));
-
-    $admob->add_field(
-    array(
-      'name' => __( 'Enable', 'textdomain' ),
-      'id' => 'local-advertisement_android_rewarded',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      )
-    ));
-
-    $admob->add_field(
-    array(
-      'name' => __( 'Android ID', 'textdomain' ),
-      'id' => 'advertisement_android_rewarded_id_text',
-      'type' => 'text',
-      'options'	=>	array(
-        'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
-      ),
-    ));
-    $admob->add_field(
-    array(
-      'name' => __( 'iOS ID', 'textdomain' ),
-      'id' => 'advertisement_android_rewarded_ios_text',
-      'type' => 'text',
-      'options'	=>	array(
-        'show_if' => array('local-advertisement_android_rewarded', '=', 'true')
-      ),
-    ));
-    $admob->close_mixed_field();
-    $admob->open_mixed_field(array('name' => __('Admob Rewarded Positions', 'textdomain' ),'options'	=>	array('show_if' => array('local-advertisement_android_rewarded', '=', 'true')),));
-    $admob->add_field(
-    array(
-      'name' => __( 'Before View Post', 'textdomain' ),
-      'id' => 'advertisement_rewarded_before_post_toggle',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      )
-    ));
-    $admob->close_mixed_field();
-
 
     $settings->close_tab_item('advertisement');
 

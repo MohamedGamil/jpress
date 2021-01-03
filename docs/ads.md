@@ -1,6 +1,16 @@
 ## HOME SECTIONS (ADMOB):
 
 ```json
+"adMob-Test": {
+  "android:jannah": "ca-app-pub-9216879499173985~3925222398",
+  "banner:android:ID": "ca-app-pub-9216879499173985/4434512373",
+  "interstatial:android:ID": "ca-app-pub-9216879499173985/3158935636",
+  "": ""
+}
+```
+
+
+```json
 "sections": [
   {
     "title": "section 1",
