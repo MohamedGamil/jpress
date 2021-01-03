@@ -1230,7 +1230,7 @@ class AppBear_Options
       ),
     ));
     $section->add_field(array(
-      'name' => __( 'Ads Type', 'textdomain' ),
+      'name' => __( 'Ads Layout', 'textdomain' ),
       'id' => 'ad_section_layout',
       'type' => 'select',
       'default' => 'PostLayout.adMob',
@@ -1258,8 +1258,8 @@ class AppBear_Options
       'items' => array(
         'banner' => __( 'Banner', 'textdomain' ),
         'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-        'smart_banner' => __( 'smart_banner', 'textdomain' ),
-        'Medium_banner' => __( 'medium Banner', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
         'large_banner' => __( 'Large Banner', 'textdomain' ),
         'full_banner' => __( 'Full Banner', 'textdomain' ),
       ),
