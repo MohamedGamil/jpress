@@ -2261,7 +2261,7 @@ class AppBear_Options
     $admob = $settings->add_section( array(
       'name' => __( 'Advertisements Settings', 'textdomain' ),
       'id' => 'section-advertisement-admob',
-      'options' => array( 'toggle' => false )
+      'options' => array( 'toggle' => true )
     ));
 
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
@@ -2327,7 +2327,7 @@ class AppBear_Options
     $admob->close_mixed_field();
 
     $admob = $settings->add_section( array(
-      'name' => __( 'Single Post Settings', 'textdomain' ),
+      'name' => __( 'Single Post Ads Settings', 'textdomain' ),
       'id' => 'ads-section-archives-single',
       'options' => array( 'toggle' => true )
     ));
@@ -2636,7 +2636,7 @@ class AppBear_Options
     $admob->close_mixed_field();
 
     $admob = $settings->add_section( array(
-      'name' => __( 'Single Category Page Settings', 'textdomain' ),
+      'name' => __( 'Single Category Page Ads Settings', 'textdomain' ),
       'id' => 'ads-section-archives-category',
       'options' => array( 'toggle' => true )
     ));
@@ -2659,7 +2659,7 @@ class AppBear_Options
       'default' => '1',
       'options' => array(
         // 'show_unit' => false,
-        'unit' => 'Post(s)',
+        'unit' => 'Posts',
         'show_if' => array('local_ads_single_cat', '=', 'true'),
       ),
       'attributes' => array(
