@@ -151,6 +151,7 @@ class AppbearLoader
 		}
 
 		// Options & Plugin Custom Classes
+		include plugin_dir_path( __FILE__ ) . '/options/appbear-ads-shortcode.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-categories.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
 		include plugin_dir_path( __FILE__ ) . '/options/appbear-notifications-metabox.php';
@@ -164,6 +165,7 @@ class AppbearLoader
     AppBear_Endpoints::run();
     AppBear_Demos_Endpoints::run();
     AppBear_Deeplinking::run();
+    AppBear_Ads_Shortcode::run();
     AppBear_Categories::run();
     AppBear_Notifications_Metabox::run();
     Appbear_Notice::run();
