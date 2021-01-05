@@ -4183,6 +4183,14 @@ class AppBear_Options
       'grid' => '6-of-6',
     ));
 
+    $translations_section->add_field(array(
+      'name' => 'Please Add Items to the Side menu',
+      'default' => "Please Add Items to the Side menu",
+      'id' => 'translate-addToSideNav',
+      'type' => 'text',
+      'grid' => '6-of-6',
+    ));
+
     $settings->close_tab_item('translations');
 
 

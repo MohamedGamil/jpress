@@ -355,7 +355,7 @@ class AdminPage extends AppbearCore {
             'relatedPosts', 'leaveComment', 'commentsCount', 'reply', 'replyTo', 'By', 'cancel', 'submit', 'comment', 'name', 'postComment',
             'postReply', 'lets', 'noFav', 'noPosts', 'mustNotBeEmpty', 'loadingMore', 'loadingMoreQuestions', 'someThingWentWrong', 'search',
             'noMore', 'removedToFav', 'addedToFav', 'typeToSearch', 'version', 'yourVersionUpToDate', 'yourVersionNotUpToDate', 'aboutApp',
-            'noResults', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments', 'seeMore', 'yes', 'next', 'By',
+            'noResults', 'errorPageTitle', 'retry', 'noInternet', 'checkInternet', 'noComments', 'seeMore', 'yes', 'next', 'By', 'addToSideNav',
           );
 
           $options['translations'] = array();
