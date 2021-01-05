@@ -1734,6 +1734,33 @@ class AppBear_Options
     ));
     $archives_single->close_mixed_field();
 
+    $archives_single->open_mixed_field(array('name' => __('Interstatial Ad', 'textdomain' )));
+    $archives_single->add_field(array(
+      'name' => __( 'Enable Interstatial Before Post View', 'textdomain' ),
+      'id' => 'local_ads_interstatial_before_post',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+    $archives_single->add_field(array(
+      'name' => __( 'Show Interstatial Ad Every', 'textdomain' ),
+      'id' => 'local_ads_interstatial_before_post_offset',
+      'type' => 'number',
+      'default' => '1',
+      'options' => array(
+        'unit' => 'Post Views',
+        'show_if' => array('local_ads_interstatial_before_post', '=', 'true'),
+      ),
+      'attributes' => array(
+        'min' => 1,
+        'max' => 99,
+      ),
+    ));
+    $archives_single->close_mixed_field();
+
     $archives_single->add_field(array(
       'name' => __( 'Enable Ads After Post', 'textdomain' ),
       'id' => 'local_ads_after_post',
@@ -2177,7 +2204,7 @@ class AppBear_Options
 
     $archives_category->add_field(array(
       'name' => __( 'AdMob Banner Size', 'textdomain' ),
-      'id' => 'after_post_admob_banner_size',
+      'id' => 'single_cat_admob_banner_size',
       'type' => 'select',
       'default' => 'banner',
       'items' => array(
