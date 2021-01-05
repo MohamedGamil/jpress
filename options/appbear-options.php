@@ -1284,7 +1284,7 @@ class AppBear_Options
       'name' => __( 'Link Type', 'textdomain' ),
       'id' => 'ad_image_link_type',
       'type' => 'radio',
-      'default' => 'url',
+      'default' => 'NavigationType.url',
       'items' => array(
         'NavigationType.url' => __( 'Full URL', 'textdomain' ),
         'NavigationType.main' => __( 'Main Page', 'textdomain' ),
@@ -1811,7 +1811,7 @@ class AppBear_Options
       'name' => __( 'Link Type', 'textdomain' ),
       'id' => 'after_post_ad_image_link_type',
       'type' => 'radio',
-      'default' => 'url',
+      'default' => 'NavigationType.url',
       'items' => array(
         'NavigationType.url' => __( 'Full URL', 'textdomain' ),
         'NavigationType.main' => __( 'Main Page', 'textdomain' ),
@@ -1949,7 +1949,7 @@ class AppBear_Options
       'name' => __( 'Link Type', 'textdomain' ),
       'id' => 'before_comments_ad_image_link_type',
       'type' => 'radio',
-      'default' => 'url',
+      'default' => 'NavigationType.url',
       'items' => array(
         'NavigationType.url' => __( 'Full URL', 'textdomain' ),
         'NavigationType.main' => __( 'Main Page', 'textdomain' ),
@@ -2204,7 +2204,7 @@ class AppBear_Options
       'name' => __( 'Link Type', 'textdomain' ),
       'id' => 'single_cat_ad_image_link_type',
       'type' => 'radio',
-      'default' => 'url',
+      'default' => 'NavigationType.url',
       'items' => array(
         'NavigationType.url' => __( 'Full URL', 'textdomain' ),
         'NavigationType.main' => __( 'Main Page', 'textdomain' ),
