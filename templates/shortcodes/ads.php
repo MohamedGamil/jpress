@@ -1,5 +1,5 @@
 <?php
-  $type = isset($type) && in_array( str_replace('PostLayout.', '', $type) , [ 'adMob', 'htmlAd', 'imageAd' ]) ? $type : 'adMob';
+  $type = isset($type) && in_array( $type, [ 'adMob', 'htmlAd', 'imageAd' ]) ? $type : 'adMob';
   $size = isset($size) && empty($size) === false ? $size : 'banner';
   $content = isset($content) && empty($content) === false ? $content : '';
   $image = isset($image) && empty($image) === false ? $image : '';

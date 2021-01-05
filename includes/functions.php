@@ -195,6 +195,118 @@ function appbear_get_deeplinking_opts($asArray = false) {
 
 
 /**
+ * Get deeplinking options
+ */
+function appbear_get_ads_in_post_options($asArray = false) {
+  $allOpts = appbear_get_option('%ALL%');
+  $opts = array(
+    'enabled' => 'local_ads_in_post',
+    'offset' => 'local_ads_in_post_paragraph_offset',
+    'type' => 'local_ads_in_post_type',
+    'size' => 'in_post_admob_banner_size',
+    'content' => 'in_post_ad_section_html',
+    'image' => 'in_post_ad_image_file',
+    'action' => 'in_post_ad_image_link_type',
+    'target' => 'in_post_ad_image_link_url',
+    'linkMain' => 'in_post_ad_image_link_main',
+    'linkCategory' => 'in_post_ad_image_link_category',
+    'linkPage' => 'in_post_ad_image_link_page',
+  );
+
+  foreach ($opts as $key => $param) {
+    $opts[$key] = isset($allOpts[$param]) ? $allOpts[$param] : '';
+
+    if ($key === 'enabled') {
+      $opts[$key] = $opts[$key] === 'true';
+    }
+  }
+
+  switch($opts['type']) {
+    case 'PostLayout.adMob':
+      $opts = array(
+        'enabled' => $opts['enabled'],
+        'offset' => $opts['offset'],
+        'type' => $opts['type'],
+        'size' => $opts['size'],
+      );
+      break;
+
+    case 'PostLayout.htmlAd':
+      $opts = array(
+        'enabled' => $opts['enabled'],
+        'offset' => $opts['offset'],
+        'type' => $opts['type'],
+        'content' => $opts['content'],
+      );
+      break;
+
+    case 'PostLayout.imageAd':
+      $linkValue = $opts['target'];
+      $linkType = $opts['action'];
+      $linkTitle = '';
+
+      switch ($linkType) {
+        case 'NavigationType.category':
+          $category = get_category_by_slug($opts['linkCategory']);
+
+          if (empty($category) === false) {
+            $linkTitle = $category->name;
+            $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+          }
+          break;
+
+        case 'NavigationType.page':
+          $post = get_post($opts['linkPage']);
+
+          if ($post) {
+            $linkTitle = $post->post_title;
+            $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+          }
+          break;
+
+        case 'NavigationType.main':
+          $linkValue = $opts['linkMain'];
+
+          switch($linkValue) {
+            case 'MainPage.home':
+              $linkTitle = __('Home', 'textdomain' );
+            break;
+            case 'MainPage.optss':
+              $linkTitle = __('Categories', 'textdomain' );
+            break;
+            case 'MainPage.favourites':
+              $linkTitle = __('Favorites', 'textdomain' );
+            break;
+            case 'MainPage.settings':
+              $linkTitle = __('Settings', 'textdomain' );
+            break;
+            case 'MainPage.contactUs':
+              $linkTitle = __('Contact us', 'textdomain' );
+            break;
+          }
+          break;
+      }
+
+      $opts = array(
+        'enabled' => $opts['enabled'],
+        'offset' => $opts['offset'],
+        'type' => $opts['type'],
+        'image' => $opts['image'],
+        'action' => $linkType,
+        'target' => $linkValue,
+        'targetTitle' => $linkTitle,
+      );
+      break;
+  }
+
+  // NOTE: Debug line..
+  // dd($opts);
+
+  return $asArray ? $opts : (Object) $opts;
+}
+
+
+/**
  * Check current license validity
  */
 function appbear_check_license() {

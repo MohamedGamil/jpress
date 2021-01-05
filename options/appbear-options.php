@@ -2332,6 +2332,160 @@ class AppBear_Options
       'options' => array( 'toggle' => true )
     ));
 
+    $admob->add_field(array(
+      'name' => __( 'Enable Ads Inside Post Content', 'textdomain' ),
+      'id' => 'local_ads_in_post',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Show In-Post Ad After', 'textdomain' ),
+      'id' => 'local_ads_in_post_paragraph_offset',
+      'type' => 'select',
+      'default' => '2',
+      'items' => array(
+        '1' => __( '1 Paragraph', 'textdomain' ),
+        '2' => __( '2 Paragraphs', 'textdomain' ),
+        '3' => __( '3 Paragraphs', 'textdomain' ),
+        '4' => __( '4 Paragraphs', 'textdomain' ),
+        '5' => __( '5 Paragraphs', 'textdomain' ),
+        '6' => __( '6 Paragraphs', 'textdomain' ),
+      ),
+      'options' => array('show_if' => array('local_ads_in_post', '=', 'true'))
+    ));
+
+    $admob->add_field( array(
+      'id' => 'local_ads_in_post_type',
+      'name' => __( 'In-Post Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_in_post', '=', 'true'),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'In-Post AdMob Banner Size', 'textdomain' ),
+      'id' => 'in_post_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_in_post', '=', 'true'),
+          array('local_ads_in_post_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'In-Post Ad HTML Code', 'textdomain' ),
+      'id' => 'in_post_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_in_post', '=', 'true'),
+          array('local_ads_in_post_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $admob->open_mixed_field(array(
+      'name' =>  __('In-Post Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_in_post', '=', 'true'),
+          array('local_ads_in_post_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'in_post_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'NavigationType.url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'in_post_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'in_post_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'in_post_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'in_post_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'in_post_ad_image_file',
+      'type' => 'file',
+    ));
+    $admob->close_mixed_field();
+
     $admob->open_mixed_field(array('name' => __('Interstitial Ad', 'textdomain' )));
     $admob->add_field(array(
       'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
