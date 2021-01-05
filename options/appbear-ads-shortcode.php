@@ -90,6 +90,9 @@ class AppBear_Ads_Shortcode {
     $attributes['type'] = $this->_parseFriendlyType($attributes['type']);
     $attributes['content'] = html_entity_decode($content);
 
+    // NOTE: Debug line..
+    // dd($attributes);
+
     return appbear_get_template('shortcodes/ads', $attributes);
   }
 

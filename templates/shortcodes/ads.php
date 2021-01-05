@@ -35,7 +35,7 @@
 
   <?php if ($isHtml === true): ?>
     <div class="htmlAd">
-      <?php echo $content; ?>
+      <?php echo $content . "\n"; ?>
     </div>
   <?php endif; ?>
 
