@@ -162,10 +162,10 @@ class AppbearLoader
     include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
 
     // Init Classes
+    AppBear_Ads_Shortcode::run();
     AppBear_Endpoints::run();
     AppBear_Demos_Endpoints::run();
     AppBear_Deeplinking::run();
-    AppBear_Ads_Shortcode::run();
     AppBear_Categories::run();
     AppBear_Notifications_Metabox::run();
     Appbear_Notice::run();

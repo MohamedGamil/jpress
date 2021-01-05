@@ -19,6 +19,7 @@ class AppBear_Ads_Shortcode {
     'htmlAd' => [ 'html' ],
     'imageAd' => [ 'image', 'img' ],
   ];
+  const PARAGRAPH_DELIMITER = '</p>';
 
   /**
    * Internal initilization state &
@@ -64,6 +65,41 @@ class AppBear_Ads_Shortcode {
     }
 
     add_shortcode( static::SHORTCODE_NAME, array ( $this, 'appbear_ad_shortcode' ) );
+    add_filter( 'the_content', array( $this, 'article_inline_ad' ) );
+  }
+
+  /**
+   * Filter Post Content to insert inline ads, based on the global single in-post ad settings.
+   *
+   * @param string $content Post Content
+   * @return string
+   */
+  public function article_inline_ad( $content ) {
+    if ( ( is_singular('post') || $this->_isRestful() ) && ! is_admin() ) {
+      $inPostAds = appbear_get_ads_in_post_options();
+
+      if ($inPostAds->enabled === false) {
+        return $content;
+      }
+
+      $delimiter = static::PARAGRAPH_DELIMITER;
+      $paragraphs = explode($delimiter, $content);
+      $adCode = $this->appbear_ad_shortcode((array) $inPostAds);
+
+      foreach ( $paragraphs as $index => $paragraph ){
+        if ( trim( $paragraph ) ) {
+          $paragraphs[$index] .= $delimiter;
+        }
+
+        if ( $inPostAds->offset == ($index + 1) ) {
+          $paragraphs[$index] .= $adCode;
+        }
+      }
+
+      $content = implode( '', $paragraphs );
+    }
+
+    return $content;
   }
 
   /**
@@ -114,7 +150,16 @@ class AppBear_Ads_Shortcode {
       }
     }
 
-    return $type;
+    return str_replace('PostLayout.', '', $type);
+  }
+
+  /**
+   * Is a RESTful API Request?
+   *
+   * @return boolean
+   */
+  private function _isRestful() {
+    return strpos($_SERVER[ 'REQUEST_URI' ], '/wp-json/') !== false;
   }
 
   /**
