@@ -1026,12 +1026,13 @@ class AdminPage extends AppbearCore {
           * Ads (adMob) arrays
           */
           $options['adMob'] = array(
-            'html' => array( 'positions' => [] ),
-            'image' => array( 'positions' => [] ),
-            'banner' => array( 'positions' => [] ),
-            'interstatial' => array( 'positions' => [] ),
+            'bannerAndroidId' => '',
+            'bannerIosId' => '',
+            'interstitialAndroidId' => '',
+            'interstitialIosId' => '',
           );
 
+          /*
           if (isset($data['local_ads_after_post']) && $data['local_ads_after_post'] === 'true') {
             switch($data['local_ads_after_post_type']) {
               case 'PostLayout.adMob':
@@ -1117,27 +1118,28 @@ class AdminPage extends AppbearCore {
                 break;
             }
           }
+          */
 
           if (isset($data['local-admob_banner']) && $data['local-admob_banner'] !== 'false') {
-            $options['adMob']['banner']['androidBannerId'] = $data['advertisement_android_banner_id_text'];
-            $options['adMob']['banner']['iosBannerId'] = $data['advertisement_ios_banner_id_text'];
+            $options['adMob']['bannerAndroidId'] = $data['advertisement_android_banner_id_text'];
+            $options['adMob']['bannerIosId'] = $data['advertisement_ios_banner_id_text'];
 
-            if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false') {
-              $options['adMob']['banner']['positions']['top'] = $data['advertisement_top_toggle'];
-            }
+            // if (isset($data['advertisement_top_toggle']) && $data['advertisement_top_toggle'] != 'false') {
+            //   $options['adMob']['banner']['positions']['top'] = $data['advertisement_top_toggle'];
+            // }
 
-            if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false') {
-              $options['adMob']['banner']['positions']['bottom'] = $data['advertisement_bottom_toggle'];
-            }
+            // if (isset($data['advertisement_bottom_toggle']) && $data['advertisement_bottom_toggle'] != 'false') {
+            //   $options['adMob']['banner']['positions']['bottom'] = $data['advertisement_bottom_toggle'];
+            // }
           }
 
           if (isset($data['local-advertisement_admob_interstatial']) && $data['local-advertisement_admob_interstatial'] != 'false') {
-            $options['adMob']['interstatial']['androidInterstatialId'] = $data['advertisement_android_interstatial_id_text'];
-            $options['adMob']['interstatial']['iosInterstatialId'] = $data['advertisement_ios_interstatial_id_text'];
+            $options['adMob']['interstitialAndroidId'] = $data['advertisement_android_interstatial_id_text'];
+            $options['adMob']['interstitialIosId'] = $data['advertisement_ios_interstatial_id_text'];
 
-            if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false') {
-              $options['adMob']['interstatial']['positions']['beforePost'] = $data['advertisement_interstatial_before_post_toggle'];
-            }
+            // if (isset($data['advertisement_interstatial_before_post_toggle']) && $data['advertisement_interstatial_before_post_toggle'] != 'false') {
+            //   $options['adMob']['interstatial']['positions']['beforePost'] = $data['advertisement_interstatial_before_post_toggle'];
+            // }
           }
 
           /*

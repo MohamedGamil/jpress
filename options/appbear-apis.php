@@ -385,7 +385,6 @@ class AppBear_Endpoints {
    */
   public function do_categories() {
     $metadata = AppBear_Categories::get_metadata();
-    $singleCatOptions = $this->_getSingleCategoryOptions();
 
     foreach( $metadata as $key => &$cat ) {
       $cat = isset($cat['image']) && $cat['image'] ? $cat['image'] : '';
@@ -410,9 +409,8 @@ class AppBear_Endpoints {
       }
 
       $category->url = "wp-json/appbear/v1/posts?categories=" . $category->term_id;
-      $category = array_merge((array) $category, $singleCatOptions);
 
-      $the_cats[] = $category;
+      $the_cats[] = (array) $category;
     }
 
     $data = array(
@@ -723,8 +721,9 @@ class AppBear_Endpoints {
 
 
   /**
-   * Get Single Category Options
+   * DEPRECATED: Get Single Category Options
    *
+   * @deprecated 0.2.0 Will be removed!
    * @return array
    */
   private function _getSingleCategoryOptions() {
