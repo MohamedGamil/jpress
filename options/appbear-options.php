@@ -1734,9 +1734,9 @@ class AppBear_Options
     ));
     $archives_single->close_mixed_field();
 
-    $archives_single->open_mixed_field(array('name' => __('Interstatial Ad', 'textdomain' )));
+    $archives_single->open_mixed_field(array('name' => __('Interstitial Ad', 'textdomain' )));
     $archives_single->add_field(array(
-      'name' => __( 'Enable Interstatial Before Post View', 'textdomain' ),
+      'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
       'id' => 'local_ads_interstatial_before_post',
       'type' => 'switcher',
       'default'	=>	'false',
@@ -1746,7 +1746,7 @@ class AppBear_Options
       ),
     ));
     $archives_single->add_field(array(
-      'name' => __( 'Show Interstatial Ad Every', 'textdomain' ),
+      'name' => __( 'Show Interstitial Ad Every', 'textdomain' ),
       'id' => 'local_ads_interstatial_before_post_offset',
       'type' => 'number',
       'default' => '1',
@@ -2752,7 +2752,7 @@ class AppBear_Options
 
     $admob->close_mixed_field();
 
-    $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
+    $admob->open_mixed_field(array('name' => __('Admob Interstitial', 'textdomain' )));
 
     $admob->add_field(array(
       'name' => __( 'Enable', 'textdomain' ),
