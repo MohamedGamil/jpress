@@ -2176,6 +2176,27 @@ class AppBear_Options
     ));
 
     $archives_category->add_field(array(
+      'name' => __( 'AdMob Banner Size', 'textdomain' ),
+      'id' => 'after_post_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_single_cat', '=', 'true'),
+          array('local_ads_single_cat_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $archives_category->add_field(array(
       'name' => __( 'Ad HTML Code', 'textdomain' ),
       'id' => 'single_cat_ad_section_html',
       'type' => 'textarea',
