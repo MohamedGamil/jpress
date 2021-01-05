@@ -1651,6 +1651,7 @@ class AppBear_Options
       'id' => 'section-archives-single',
       'options' => array( 'toggle' => true )
     ));
+
     $archives_single->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
     $archives_single->add_field(array(
       'name' => __( 'Author', 'textdomain' ),
@@ -1734,309 +1735,6 @@ class AppBear_Options
     ));
     $archives_single->close_mixed_field();
 
-    $archives_single->open_mixed_field(array('name' => __('Interstatial Ad', 'textdomain' )));
-    $archives_single->add_field(array(
-      'name' => __( 'Enable Interstatial Before Post View', 'textdomain' ),
-      'id' => 'local_ads_interstatial_before_post',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Show Interstatial Ad Every', 'textdomain' ),
-      'id' => 'local_ads_interstatial_before_post_offset',
-      'type' => 'number',
-      'default' => '1',
-      'options' => array(
-        'unit' => 'Post Views',
-        'show_if' => array('local_ads_interstatial_before_post', '=', 'true'),
-      ),
-      'attributes' => array(
-        'min' => 1,
-        'max' => 99,
-      ),
-    ));
-    $archives_single->close_mixed_field();
-
-    $archives_single->add_field(array(
-      'name' => __( 'Enable Ads After Post', 'textdomain' ),
-      'id' => 'local_ads_after_post',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-
-    $archives_single->add_field( array(
-      'id' => 'local_ads_after_post_type',
-      'name' => __( 'After Post Ad Type', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'PostLayout.adMob',
-      'items' => array(
-        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
-      ),
-      'options' => array(
-        'width' => '155px',
-        'show_if' => array('local_ads_after_post', '=', 'true'),
-      ),
-    ));
-
-    $archives_single->add_field(array(
-      'name' => __( 'After Post AdMob Banner Size', 'textdomain' ),
-      'id' => 'after_post_admob_banner_size',
-      'type' => 'select',
-      'default' => 'banner',
-      'items' => array(
-        'banner' => __( 'Banner', 'textdomain' ),
-        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-        'large_banner' => __( 'Large Banner', 'textdomain' ),
-        'full_banner' => __( 'Full Banner', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_after_post', '=', 'true'),
-          array('local_ads_after_post_type', '=', 'PostLayout.adMob'),
-        ),
-      ),
-    ));
-
-    $archives_single->add_field(array(
-      'name' => __( 'After Post Ad HTML Code', 'textdomain' ),
-      'id' => 'after_post_ad_section_html',
-      'type' => 'textarea',
-      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
-      'grid' => '5-of-6',
-      'default' => '<p>HTML Content goes here.</p>',
-      'options' => array(
-        'desc_tooltip' => true,
-        'show_if' => array(
-          array('local_ads_after_post', '=', 'true'),
-          array('local_ads_after_post_type', '=', 'PostLayout.htmlAd'),
-        ),
-      ),
-    ));
-
-    $archives_single->open_mixed_field(array(
-      'name' =>  __('After Post Image Ad Options', 'textdomain' ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_after_post', '=', 'true'),
-          array('local_ads_after_post_type', '=', 'PostLayout.imageAd'),
-        ),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Link Type', 'textdomain' ),
-      'id' => 'after_post_ad_image_link_type',
-      'type' => 'radio',
-      'default' => 'NavigationType.url',
-      'items' => array(
-        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-        'NavigationType.category' => __( 'Category', 'textdomain' ),
-        'NavigationType.page' => __( 'Page', 'textdomain' ),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Link URL', 'textdomain' ),
-      'id' => 'after_post_ad_image_link_url',
-      'type' => 'text',
-      'grid' => '2-of-6',
-      'options' => array(
-        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.url'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Main Pages', 'textdomain' ),
-      'id' => 'after_post_ad_image_link_main',
-      'type' => 'select',
-      'default' => 'MainPage.home',
-      'attributes' => array( 'required' => true ),
-      'items' => array(
-        'MainPage.home' => __( 'Home', 'textdomain' ),
-        'MainPage.sections' => __( 'Sections', 'textdomain' ),
-        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-        'MainPage.settings' => __( 'Settings', 'textdomain' ),
-        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.main'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Categories', 'textdomain' ),
-      'id' => 'after_post_ad_image_link_category',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::terms( 'category' ),
-      'options' => array(
-        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.category'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Pages', 'textdomain' ),
-      'id' => 'after_post_ad_image_link_page',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
-      'options' => array(
-        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.page'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Ad Image', 'textdomain' ),
-      'id' => 'after_post_ad_image_file',
-      'type' => 'file',
-    ));
-    $archives_single->close_mixed_field();
-
-    $archives_single->add_field(array(
-      'name' => __( 'Enable Ads Before Comments', 'textdomain' ),
-      'id' => 'local_ads_before_comments',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-
-    $archives_single->add_field( array(
-      'id' => 'local_ads_before_comments_type',
-      'name' => __( 'Before Comments Ad Type', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'PostLayout.adMob',
-      'items' => array(
-        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
-      ),
-      'options' => array(
-        'width' => '155px',
-        'show_if' => array('local_ads_before_comments', '=', 'true'),
-      ),
-    ));
-
-    $archives_single->add_field(array(
-      'name' => __( 'Before Comments AdMob Banner Size', 'textdomain' ),
-      'id' => 'before_comments_admob_banner_size',
-      'type' => 'select',
-      'default' => 'banner',
-      'items' => array(
-        'banner' => __( 'Banner', 'textdomain' ),
-        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-        'large_banner' => __( 'Large Banner', 'textdomain' ),
-        'full_banner' => __( 'Full Banner', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_before_comments', '=', 'true'),
-          array('local_ads_before_comments_type', '=', 'PostLayout.adMob'),
-        ),
-      ),
-    ));
-
-    $archives_single->add_field(array(
-      'name' => __( 'Before Comments Ad HTML Code', 'textdomain' ),
-      'id' => 'before_comments_ad_section_html',
-      'type' => 'textarea',
-      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
-      'grid' => '5-of-6',
-      'default' => '<p>HTML Content goes here.</p>',
-      'options' => array(
-        'desc_tooltip' => true,
-        'show_if' => array(
-          array('local_ads_before_comments', '=', 'true'),
-          array('local_ads_before_comments_type', '=', 'PostLayout.htmlAd'),
-        ),
-      ),
-    ));
-
-    $archives_single->open_mixed_field(array(
-      'name' =>  __('Before Comments Image Ad Options', 'textdomain' ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_before_comments', '=', 'true'),
-          array('local_ads_before_comments_type', '=', 'PostLayout.imageAd'),
-        ),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Link Type', 'textdomain' ),
-      'id' => 'before_comments_ad_image_link_type',
-      'type' => 'radio',
-      'default' => 'NavigationType.url',
-      'items' => array(
-        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-        'NavigationType.category' => __( 'Category', 'textdomain' ),
-        'NavigationType.page' => __( 'Page', 'textdomain' ),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Link URL', 'textdomain' ),
-      'id' => 'before_comments_ad_image_link_url',
-      'type' => 'text',
-      'grid' => '2-of-6',
-      'options' => array(
-        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.url'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Main Pages', 'textdomain' ),
-      'id' => 'before_comments_ad_image_link_main',
-      'type' => 'select',
-      'default' => 'MainPage.home',
-      'attributes' => array( 'required' => true ),
-      'items' => array(
-        'MainPage.home' => __( 'Home', 'textdomain' ),
-        'MainPage.sections' => __( 'Sections', 'textdomain' ),
-        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-        'MainPage.settings' => __( 'Settings', 'textdomain' ),
-        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.main'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Categories', 'textdomain' ),
-      'id' => 'before_comments_ad_image_link_category',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::terms( 'category' ),
-      'options' => array(
-        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.category'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Pages', 'textdomain' ),
-      'id' => 'before_comments_ad_image_link_page',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
-      'options' => array(
-        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.page'),
-      ),
-    ));
-    $archives_single->add_field(array(
-      'name' => __( 'Ad Image', 'textdomain' ),
-      'id' => 'before_comments_ad_image_file',
-      'type' => 'file',
-    ));
-    $archives_single->close_mixed_field();
-
     $archives_categories = $settings->add_section( array(
       'name' => __( 'Categories List Page Settings', 'textdomain' ),
       'id' => 'section-archives-categories',
@@ -2070,16 +1768,16 @@ class AppBear_Options
       'type' => 'image_selector',
       'default' => 'PostLayout.startThumbPost',
       'items' => array(
-      'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
-      'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
-      'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
-      'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
-      'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
-      'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
-      'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
-      'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
-      'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
-      'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
+        'PostLayout.cardPost' => APPBEAR_URL . 'options/img/blocks/cardPost.png',
+        'PostLayout.endThumbPost' => APPBEAR_URL . 'options/img/blocks/endThumbPost.png',
+        'PostLayout.featuredMetaPost' => APPBEAR_URL . 'options/img/blocks/featuredMetaPost.png',
+        'PostLayout.featuredPost' => APPBEAR_URL . 'options/img/blocks/featuredPost.png',
+        'PostLayout.gridPost' => APPBEAR_URL . 'options/img/blocks/gridPost.png',
+        'PostLayout.imagePost' => APPBEAR_URL . 'options/img/blocks/imagePost.png',
+        'PostLayout.minimalPost' => APPBEAR_URL . 'options/img/blocks/minimalPost.png',
+        'PostLayout.simplePost' => APPBEAR_URL . 'options/img/blocks/simplePost.png',
+        'PostLayout.startThumbPost' => APPBEAR_URL . 'options/img/blocks/startThumbPost.png',
+        'PostLayout.startThumbPostCompact' => APPBEAR_URL . 'options/img/blocks/startThumbPostCompact.png',
       ),
       'options' => array(
       'width' => '155px',
@@ -2156,160 +1854,6 @@ class AppBear_Options
         'on_value' => 'true',
         'off_value' => 'false'
       )
-    ));
-    $archives_category->close_mixed_field();
-
-    $archives_category->add_field(array(
-      'name' => __( 'Enable Ads', 'textdomain' ),
-      'id' => 'local_ads_single_cat',
-      'type' => 'switcher',
-      'default'	=>	'false',
-      'options' => array(
-        'on_value' => 'true',
-        'off_value' => 'false'
-      ),
-    ));
-
-    $archives_category->add_field(array(
-      'name' => __( 'Show Ad Every', 'textdomain' ),
-      'id' => 'ads_single_cat_offset',
-      'type' => 'number',
-      'default' => '1',
-      'options' => array(
-        // 'show_unit' => false,
-        'unit' => 'Post(s)',
-        'show_if' => array('local_ads_single_cat', '=', 'true'),
-      ),
-      'attributes' => array(
-        'min' => 1,
-        'max' => 99,
-      ),
-    ));
-
-    $archives_category->add_field( array(
-      'id' => 'local_ads_single_cat_type',
-      'name' => __( 'Ad Type', 'textdomain' ),
-      'type' => 'image_selector',
-      'default' => 'PostLayout.adMob',
-      'items' => array(
-        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
-      ),
-      'options' => array(
-        'width' => '155px',
-        'show_if' => array('local_ads_single_cat', '=', 'true'),
-      ),
-    ));
-
-    $archives_category->add_field(array(
-      'name' => __( 'AdMob Banner Size', 'textdomain' ),
-      'id' => 'single_cat_admob_banner_size',
-      'type' => 'select',
-      'default' => 'banner',
-      'items' => array(
-        'banner' => __( 'Banner', 'textdomain' ),
-        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-        'large_banner' => __( 'Large Banner', 'textdomain' ),
-        'full_banner' => __( 'Full Banner', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_single_cat', '=', 'true'),
-          array('local_ads_single_cat_type', '=', 'PostLayout.adMob'),
-        ),
-      ),
-    ));
-
-    $archives_category->add_field(array(
-      'name' => __( 'Ad HTML Code', 'textdomain' ),
-      'id' => 'single_cat_ad_section_html',
-      'type' => 'textarea',
-      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
-      'grid' => '5-of-6',
-      'default' => '<p>HTML Content goes here.</p>',
-      'options' => array(
-        'desc_tooltip' => true,
-        'show_if' => array(
-          array('local_ads_single_cat', '=', 'true'),
-          array('local_ads_single_cat_type', '=', 'PostLayout.htmlAd'),
-        ),
-      ),
-    ));
-
-    $archives_category->open_mixed_field(array(
-      'name' =>  __(' Image Ad Options', 'textdomain' ),
-      'options' => array(
-        'show_if' => array(
-          array('local_ads_single_cat', '=', 'true'),
-          array('local_ads_single_cat_type', '=', 'PostLayout.imageAd'),
-        ),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Link Type', 'textdomain' ),
-      'id' => 'single_cat_ad_image_link_type',
-      'type' => 'radio',
-      'default' => 'NavigationType.url',
-      'items' => array(
-        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-        'NavigationType.category' => __( 'Category', 'textdomain' ),
-        'NavigationType.page' => __( 'Page', 'textdomain' ),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Link URL', 'textdomain' ),
-      'id' => 'single_cat_ad_image_link_url',
-      'type' => 'text',
-      'grid' => '2-of-6',
-      'options' => array(
-        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.url'),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Main Pages', 'textdomain' ),
-      'id' => 'single_cat_ad_image_link_main',
-      'type' => 'select',
-      'default' => 'MainPage.home',
-      'attributes' => array( 'required' => true ),
-      'items' => array(
-        'MainPage.home' => __( 'Home', 'textdomain' ),
-        'MainPage.sections' => __( 'Sections', 'textdomain' ),
-        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-        'MainPage.settings' => __( 'Settings', 'textdomain' ),
-        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
-      ),
-      'options' => array(
-        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.main'),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Categories', 'textdomain' ),
-      'id' => 'single_cat_ad_image_link_category',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::terms( 'category' ),
-      'options' => array(
-        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.category'),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Pages', 'textdomain' ),
-      'id' => 'single_cat_ad_image_link_page',
-      'type' => 'select',
-      'attributes' => array( 'required' => true ),
-      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
-      'options' => array(
-        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.page'),
-      ),
-    ));
-    $archives_category->add_field(array(
-      'name' => __( 'Ad Image', 'textdomain' ),
-      'id' => 'single_cat_ad_image_file',
-      'type' => 'file',
     ));
     $archives_category->close_mixed_field();
 
@@ -2717,7 +2261,7 @@ class AppBear_Options
     $admob = $settings->add_section( array(
       'name' => __( 'Advertisements Settings', 'textdomain' ),
       'id' => 'section-advertisement-admob',
-      'options' => array( 'toggle' => false )
+      'options' => array( 'toggle' => true )
     ));
 
     $admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
@@ -2749,11 +2293,9 @@ class AppBear_Options
         'show_if' => array('local-admob_banner', '=', 'true')
       ),
     ));
-
     $admob->close_mixed_field();
 
-    $admob->open_mixed_field(array('name' => __('Admob Interstatial', 'textdomain' )));
-
+    $admob->open_mixed_field(array('name' => __('Admob Interstitial', 'textdomain' )));
     $admob->add_field(array(
       'name' => __( 'Enable', 'textdomain' ),
       'id' => 'local-advertisement_admob_interstatial',
@@ -2782,7 +2324,475 @@ class AppBear_Options
         'show_if' => array('local-advertisement_admob_interstatial', '=', 'true')
       ),
     ));
+    $admob->close_mixed_field();
 
+    $admob = $settings->add_section( array(
+      'name' => __( 'Single Post Ads Settings', 'textdomain' ),
+      'id' => 'ads-section-archives-single',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $admob->open_mixed_field(array('name' => __('Interstitial Ad', 'textdomain' )));
+    $admob->add_field(array(
+      'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
+      'id' => 'local_ads_interstatial_before_post',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Show Interstitial Ad Every', 'textdomain' ),
+      'id' => 'local_ads_interstatial_before_post_offset',
+      'type' => 'number',
+      'default' => '1',
+      'options' => array(
+        'unit' => 'Post Views',
+        'show_if' => array('local_ads_interstatial_before_post', '=', 'true'),
+      ),
+      'attributes' => array(
+        'min' => 1,
+        'max' => 99,
+      ),
+    ));
+    $admob->close_mixed_field();
+
+    $admob->add_field(array(
+      'name' => __( 'Enable Ads After Post', 'textdomain' ),
+      'id' => 'local_ads_after_post',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $admob->add_field( array(
+      'id' => 'local_ads_after_post_type',
+      'name' => __( 'After Post Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_after_post', '=', 'true'),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'After Post AdMob Banner Size', 'textdomain' ),
+      'id' => 'after_post_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'After Post Ad HTML Code', 'textdomain' ),
+      'id' => 'after_post_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $admob->open_mixed_field(array(
+      'name' =>  __('After Post Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'NavigationType.url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'after_post_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'after_post_ad_image_file',
+      'type' => 'file',
+    ));
+    $admob->close_mixed_field();
+
+    $admob->add_field(array(
+      'name' => __( 'Enable Ads Before Comments', 'textdomain' ),
+      'id' => 'local_ads_before_comments',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $admob->add_field( array(
+      'id' => 'local_ads_before_comments_type',
+      'name' => __( 'Before Comments Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_before_comments', '=', 'true'),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Before Comments AdMob Banner Size', 'textdomain' ),
+      'id' => 'before_comments_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Before Comments Ad HTML Code', 'textdomain' ),
+      'id' => 'before_comments_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $admob->open_mixed_field(array(
+      'name' =>  __('Before Comments Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'NavigationType.url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'before_comments_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'before_comments_ad_image_file',
+      'type' => 'file',
+    ));
+    $admob->close_mixed_field();
+
+    $admob = $settings->add_section( array(
+      'name' => __( 'Single Category Page Ads Settings', 'textdomain' ),
+      'id' => 'ads-section-archives-category',
+      'options' => array( 'toggle' => true )
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Enable Ads', 'textdomain' ),
+      'id' => 'local_ads_single_cat',
+      'type' => 'switcher',
+      'default'	=>	'false',
+      'options' => array(
+        'on_value' => 'true',
+        'off_value' => 'false'
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Show Ad Every', 'textdomain' ),
+      'id' => 'ads_single_cat_offset',
+      'type' => 'number',
+      'default' => '1',
+      'options' => array(
+        // 'show_unit' => false,
+        'unit' => 'Posts',
+        'show_if' => array('local_ads_single_cat', '=', 'true'),
+      ),
+      'attributes' => array(
+        'min' => 1,
+        'max' => 99,
+      ),
+    ));
+
+    $admob->add_field( array(
+      'id' => 'local_ads_single_cat_type',
+      'name' => __( 'Ad Type', 'textdomain' ),
+      'type' => 'image_selector',
+      'default' => 'PostLayout.adMob',
+      'items' => array(
+        'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
+        'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
+        'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+      ),
+      'options' => array(
+        'width' => '155px',
+        'show_if' => array('local_ads_single_cat', '=', 'true'),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'AdMob Banner Size', 'textdomain' ),
+      'id' => 'single_cat_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_single_cat', '=', 'true'),
+          array('local_ads_single_cat_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $admob->add_field(array(
+      'name' => __( 'Ad HTML Code', 'textdomain' ),
+      'id' => 'single_cat_ad_section_html',
+      'type' => 'textarea',
+      'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+      'grid' => '5-of-6',
+      'default' => '<p>HTML Content goes here.</p>',
+      'options' => array(
+        'desc_tooltip' => true,
+        'show_if' => array(
+          array('local_ads_single_cat', '=', 'true'),
+          array('local_ads_single_cat_type', '=', 'PostLayout.htmlAd'),
+        ),
+      ),
+    ));
+
+    $admob->open_mixed_field(array(
+      'name' =>  __(' Image Ad Options', 'textdomain' ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_single_cat', '=', 'true'),
+          array('local_ads_single_cat_type', '=', 'PostLayout.imageAd'),
+        ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link Type', 'textdomain' ),
+      'id' => 'single_cat_ad_image_link_type',
+      'type' => 'radio',
+      'default' => 'NavigationType.url',
+      'items' => array(
+        'NavigationType.url' => __( 'Full URL', 'textdomain' ),
+        'NavigationType.main' => __( 'Main Page', 'textdomain' ),
+        'NavigationType.category' => __( 'Category', 'textdomain' ),
+        'NavigationType.page' => __( 'Page', 'textdomain' ),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Link URL', 'textdomain' ),
+      'id' => 'single_cat_ad_image_link_url',
+      'type' => 'text',
+      'grid' => '2-of-6',
+      'options' => array(
+        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.url'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Main Pages', 'textdomain' ),
+      'id' => 'single_cat_ad_image_link_main',
+      'type' => 'select',
+      'default' => 'MainPage.home',
+      'attributes' => array( 'required' => true ),
+      'items' => array(
+        'MainPage.home' => __( 'Home', 'textdomain' ),
+        'MainPage.sections' => __( 'Sections', 'textdomain' ),
+        'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
+        'MainPage.settings' => __( 'Settings', 'textdomain' ),
+        'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.main'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Categories', 'textdomain' ),
+      'id' => 'single_cat_ad_image_link_category',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::terms( 'category' ),
+      'options' => array(
+        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.category'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Pages', 'textdomain' ),
+      'id' => 'single_cat_ad_image_link_page',
+      'type' => 'select',
+      'attributes' => array( 'required' => true ),
+      'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+      'options' => array(
+        'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.page'),
+      ),
+    ));
+    $admob->add_field(array(
+      'name' => __( 'Ad Image', 'textdomain' ),
+      'id' => 'single_cat_ad_image_file',
+      'type' => 'file',
+    ));
     $admob->close_mixed_field();
 
     $settings->close_tab_item('advertisement');

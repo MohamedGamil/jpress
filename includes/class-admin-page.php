@@ -710,12 +710,14 @@ class AdminPage extends AppbearCore {
                 case 'PostLayout.imageAd':
                   $linkValue = $section['ad_image_link_url'];
                   $linkType = $section['ad_image_link_type'];
+                  $linkTitle = '';
 
                   switch ($linkType) {
                     case 'NavigationType.category':
                       $category = get_category_by_slug($section['ad_image_link_category']);
 
                       if (empty($category) === false) {
+                        $linkTitle = $category->name;
                         $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                       }
                       break;
@@ -724,12 +726,31 @@ class AdminPage extends AppbearCore {
                       $post = get_post($section['ad_image_link_page']);
 
                       if ($post) {
+                        $linkTitle = $post->post_title;
                         $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
                       }
                       break;
 
                     case 'NavigationType.main':
                       $linkValue = $section['ad_image_link_main'];
+
+                      switch($linkValue) {
+                        case 'MainPage.home':
+                          $linkTitle = __('Home', 'textdomain' );
+                        break;
+                        case 'MainPage.sections':
+                          $linkTitle = __('Categories', 'textdomain' );
+                        break;
+                        case 'MainPage.favourites':
+                          $linkTitle = __('Favorites', 'textdomain' );
+                        break;
+                        case 'MainPage.settings':
+                          $linkTitle = __('Settings', 'textdomain' );
+                        break;
+                        case 'MainPage.contactUs':
+                          $linkTitle = __('Contact us', 'textdomain' );
+                        break;
+                      }
                       break;
                   }
 
@@ -737,6 +758,7 @@ class AdminPage extends AppbearCore {
                     'img' => $section['ad_image_file'],
                     'action' => $linkType,
                     'target' => $linkValue,
+                    'targetTitle' => $linkTitle,
                   );
                   break;
               }
@@ -946,12 +968,14 @@ class AdminPage extends AppbearCore {
               case 'PostLayout.imageAd':
                 $linkValue = $data['after_post_ad_image_link_url'];
                 $linkType = $data['after_post_ad_image_link_type'];
+                $linkTitle = '';
 
                 switch ($linkType) {
                   case 'NavigationType.category':
                     $category = get_category_by_slug($data['after_post_ad_image_link_category']);
 
                     if (empty($category) === false) {
+                      $linkTitle = $category->name;
                       $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                     }
                     break;
@@ -960,12 +984,31 @@ class AdminPage extends AppbearCore {
                     $post = get_post($data['after_post_ad_image_link_page']);
 
                     if ($post) {
+                      $linkTitle = $post->post_title;
                       $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
                     }
                     break;
 
                   case 'NavigationType.main':
                     $linkValue = $data['after_post_ad_image_link_main'];
+
+                    switch($linkValue) {
+                      case 'MainPage.home':
+                        $linkTitle = __('Home', 'textdomain' );
+                      break;
+                      case 'MainPage.sections':
+                        $linkTitle = __('Categories', 'textdomain' );
+                      break;
+                      case 'MainPage.favourites':
+                        $linkTitle = __('Favorites', 'textdomain' );
+                      break;
+                      case 'MainPage.settings':
+                        $linkTitle = __('Settings', 'textdomain' );
+                      break;
+                      case 'MainPage.contactUs':
+                        $linkTitle = __('Contact us', 'textdomain' );
+                      break;
+                    }
                     break;
                 }
 
@@ -973,6 +1016,7 @@ class AdminPage extends AppbearCore {
                   'img' => $data['after_post_ad_image_file'],
                   'action' => $linkType,
                   'target' => $linkValue,
+                  'targetTitle' => $linkTitle,
                 );
                 break;
             }
@@ -993,12 +1037,14 @@ class AdminPage extends AppbearCore {
               case 'PostLayout.imageAd':
                 $linkValue = $data['before_comments_ad_image_link_url'];
                 $linkType = $data['before_comments_ad_image_link_type'];
+                $linkTitle = '';
 
                 switch ($linkType) {
                   case 'NavigationType.category':
                     $category = get_category_by_slug($data['before_comments_ad_image_link_category']);
 
                     if (empty($category) === false) {
+                      $linkTitle = $category->name;
                       $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                     }
                     break;
@@ -1007,12 +1053,31 @@ class AdminPage extends AppbearCore {
                     $post = get_post($data['before_comments_ad_image_link_page']);
 
                     if ($post) {
+                      $linkTitle = $post->post_title;
                       $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
                     }
                     break;
 
                   case 'NavigationType.main':
                     $linkValue = $data['before_comments_ad_image_link_main'];
+
+                    switch($linkValue) {
+                      case 'MainPage.home':
+                        $linkTitle = __('Home', 'textdomain' );
+                      break;
+                      case 'MainPage.sections':
+                        $linkTitle = __('Categories', 'textdomain' );
+                      break;
+                      case 'MainPage.favourites':
+                        $linkTitle = __('Favorites', 'textdomain' );
+                      break;
+                      case 'MainPage.settings':
+                        $linkTitle = __('Settings', 'textdomain' );
+                      break;
+                      case 'MainPage.contactUs':
+                        $linkTitle = __('Contact us', 'textdomain' );
+                      break;
+                    }
                     break;
                 }
 
@@ -1020,6 +1085,7 @@ class AdminPage extends AppbearCore {
                   'img' => $data['before_comments_ad_image_file'],
                   'action' => $linkType,
                   'target' => $linkValue,
+                  'targetTitle' => $linkTitle,
                 );
                 break;
             }
@@ -1044,12 +1110,14 @@ class AdminPage extends AppbearCore {
               case 'PostLayout.imageAd':
                 $linkValue = $data['single_cat_ad_image_link_url'];
                 $linkType = $data['single_cat_ad_image_link_type'];
+                $linkTitle = '';
 
                 switch ($linkType) {
                   case 'NavigationType.category':
                     $category = get_category_by_slug($data['single_cat_ad_image_link_category']);
 
                     if (empty($category) === false) {
+                      $linkTitle = $category->name;
                       $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
                     }
                     break;
@@ -1058,12 +1126,31 @@ class AdminPage extends AppbearCore {
                     $post = get_post($data['single_cat_ad_image_link_page']);
 
                     if ($post) {
+                      $linkTitle = $post->post_title;
                       $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
                     }
                     break;
 
                   case 'NavigationType.main':
                     $linkValue = $data['single_cat_ad_image_link_main'];
+
+                    switch($linkValue) {
+                      case 'MainPage.home':
+                        $linkTitle = __('Home', 'textdomain' );
+                      break;
+                      case 'MainPage.sections':
+                        $linkTitle = __('Categories', 'textdomain' );
+                      break;
+                      case 'MainPage.favourites':
+                        $linkTitle = __('Favorites', 'textdomain' );
+                      break;
+                      case 'MainPage.settings':
+                        $linkTitle = __('Settings', 'textdomain' );
+                      break;
+                      case 'MainPage.contactUs':
+                        $linkTitle = __('Contact us', 'textdomain' );
+                      break;
+                    }
                     break;
                 }
 
@@ -1071,6 +1158,7 @@ class AdminPage extends AppbearCore {
                   'img' => $data['single_cat_ad_image_file'],
                   'action' => $linkType,
                   'target' => $linkValue,
+                  'targetTitle' => $linkTitle,
                 );
                 break;
             }

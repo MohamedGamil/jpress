@@ -5,6 +5,7 @@
   $image = isset($image) && empty($image) === false ? $image : '';
   $action = isset($action) && empty($action) === false ? $action : '';
   $target = isset($target) && empty($target) === false ? $target : '';
+  $targetTitle = isset($targetTitle) && empty($targetTitle) === false ? $targetTitle : '';
   $isAdmob = $type === 'adMob';
   $isHtml = $type === 'htmlAd';
   $isImage = $type === 'imageAd';
@@ -40,7 +41,7 @@
   <?php endif; ?>
 
   <?php if ($isImage === true): ?>
-    <a class="imageAd" href="<?php echo $target; ?>" type="<?php echo $action; ?>">
+    <a class="imageAd" href="<?php echo $target; ?>" type="<?php echo $action; ?>" title="<?php echo $targetTitle; ?>">
       <img src="<?php echo $image; ?>"></a>
   <?php endif; ?>
 

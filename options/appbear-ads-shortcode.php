@@ -81,6 +81,7 @@ class AppBear_Ads_Shortcode {
       'image' => '',
       'action' => '',
       'target' => '',
+      'targetTitle' => '',
     ), $attributes );
 
     if ( is_null($content) === true ) {
