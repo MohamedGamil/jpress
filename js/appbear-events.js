@@ -379,20 +379,34 @@ APPBEAR.events = (function (window, document, $) {
       if (check_show) {
         if ($.isArray(show_if[0])) {
           for (const condition_ of show_if) {
-            // if (show === false) {
-            //   break;
-            // }
+            if (show === false) {
+              break;
+            }
 
-            show = _shouldDisplayField(field_value, condition_);
+            let
+              targetFieldName = $(`[data-field-id="${condition_[0]}"] input`).attr('name'),
+              $targetField = $(`[name="${targetFieldName}"]`),
+              targetFieldValue = $targetField.val();
+
+            // NOTE: This supports fields of type radio, other types of inputs may require special way to handle value fetching.
+            switch($targetField.attr('type')) {
+              case 'radio':
+                targetFieldValue = $targetField.filter(':checked').val();
+                break;
+            }
+
+            console.info({targetFieldName, targetFieldValue});
+
+            show = _shouldDisplayField(targetFieldValue, condition_);
           }
 
           // NOTE: Debug Line
-          // console.info({ n: 'multi', $row, show_if, show });
+          // console.info({ n: 'multi', field_value, $row, show_if, show });
         } else {
           show = _shouldDisplayField(field_value, show_if);
 
           // NOTE: Debug Line
-          // console.info({ n: 'single', $row, show_if, show });
+          // console.info({ n: 'single', field_value, $row, show_if, show });
         }
       }
 

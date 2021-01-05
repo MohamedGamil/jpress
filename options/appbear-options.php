@@ -1762,6 +1762,27 @@ class AppBear_Options
     ));
 
     $archives_single->add_field(array(
+      'name' => __( 'After Post AdMob Banner Size', 'textdomain' ),
+      'id' => 'after_post_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_after_post', '=', 'true'),
+          array('local_ads_after_post_type', '=', 'PostLayout.adMob'),
+        ),
+      ),
+    ));
+
+    $archives_single->add_field(array(
       'name' => __( 'After Post Ad HTML Code', 'textdomain' ),
       'id' => 'after_post_ad_section_html',
       'type' => 'textarea',
@@ -1875,6 +1896,27 @@ class AppBear_Options
       'options' => array(
         'width' => '155px',
         'show_if' => array('local_ads_before_comments', '=', 'true'),
+      ),
+    ));
+
+    $archives_single->add_field(array(
+      'name' => __( 'Before Comments AdMob Banner Size', 'textdomain' ),
+      'id' => 'before_comments_admob_banner_size',
+      'type' => 'select',
+      'default' => 'banner',
+      'items' => array(
+        'banner' => __( 'Banner', 'textdomain' ),
+        'leaderboard' => __( 'Leaderboard', 'textdomain' ),
+        'smart_banner' => __( 'Smart Banner', 'textdomain' ),
+        'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
+        'large_banner' => __( 'Large Banner', 'textdomain' ),
+        'full_banner' => __( 'Full Banner', 'textdomain' ),
+      ),
+      'options' => array(
+        'show_if' => array(
+          array('local_ads_before_comments', '=', 'true'),
+          array('local_ads_before_comments_type', '=', 'PostLayout.adMob'),
+        ),
       ),
     ));
 
