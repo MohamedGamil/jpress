@@ -81,7 +81,7 @@ define( 'APPBEAR_PRIMARY_OPTIONS', 'appbear-settings' );
 /**
  * Deeplinking Option Key Name
  */
-define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_settings' );
+define( 'APPBEAR_DEEPLINKING_OPTION', 'appbear_deeplinking_configuration' );
 
 
 /**

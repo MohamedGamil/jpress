@@ -363,36 +363,38 @@ class AdminPage extends AppbearCore {
         update_option( 'appbear_default_lang', $options['lang'] );
       }
 
+      // Omit empty values / arrays
       $options = $this->_removeEmptyOptions($options);
-
-      // DEPRECATED: since 0.2.5 and should be removed!
-      // $new_version = 1;
-      // $old_version = get_option( 'appbear_version' );
-      // if (isset($old_version)) {
-      //   $new_version = $old_version + 1;
-      // }
-      // update_option( 'appbear_version', $new_version );
 
       // Save settings request
       $response = AppbearAPI::save_settings($options);
 
+      $options['baseUrl'] = trailingslashit(get_home_url());
+      $options['copyrights'] = APPBEAR_COPYRIGHTS_URL;
+      $options['validConfig'] = 'true';
+
+      update_option( 'appbear-options', $options );
+
       // Parse response then update deeplinking options
       $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
 
+      // NOTE: Debug line
+      // dd($responseObject, $options);
+
+      // NOTE: Handle update response
       if (isset($responseObject['success']) && (bool) $responseObject['success'] === true) {
         $this->_updateDeeplinkingOptions( $responseObject );
+
+        if ( isset($responseObject['version']) && $newVersion = (int) $responseObject['version'] ) {
+          update_option( 'appbear-version', $newVersion, false );
+        }
       }
+
+      // NOTE: Reset & invalidate license key / status
       else {
-        // Reset & invalidate license key / status
         appbear_invalidate_license(true);
         $updated = false;
       }
-
-      $options['baseUrl'] = trailingslashit(get_home_url());
-      $options['copyrights'] = APPBEAR_COPYRIGHTS_URL;
-      $options['validConfig'] = true;
-
-      update_option( 'appbear-options', $options );
 
       if ( $updated === false ) {
         $updatedMessage = __('Error! Unable to completely save your settings, please check your license key and plan limits.', 'textdomain');
@@ -522,13 +524,14 @@ class AdminPage extends AppbearCore {
    */
   private function _updateDeeplinkingOptions(array $options) {
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
-    $options = isset($options['data']) && is_array($options['data']) ? $options['data'] : [];
+    $options = isset($options['data']) && is_array($options['data']) ? $options['data'] : array();
+    $deeplinkingOpts = array(
+      'ios_app_id' => isset($options['ios_app_id']) ? $options['ios_app_id'] : '',
+      'ios_bundle' => isset($options['ios_bundle']) ? $options['ios_bundle'] : '',
+      'android_bundle' => isset($options['android_bundle']) ? $options['android_bundle'] : '',
+    );
 
-    update_option( APPBEAR_DEEPLINKING_OPTION, array(
-      'ios_app_id' => isset($options) ? $options['ios_app_id'] : '',
-      'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
-      'android_bundle' => isset($options) ? $options['android_bundle'] : '',
-    ));
+    update_option( APPBEAR_DEEPLINKING_OPTION, $deeplinkingOpts, false );
   }
 
   /*

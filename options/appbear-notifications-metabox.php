@@ -14,7 +14,7 @@ use Appbear\Includes\AppbearAPI;
  * @since 0.0.5
  */
 class AppBear_Notifications_Metabox {
-  const OPTION_KEY = 'appbear_post_push_notifications';
+  const OPTION_KEY = 'appbear_push_notifications_stats';
   const DISABLE_IF_UPDATING = true;
 
   /**
@@ -152,16 +152,20 @@ class AppBear_Notifications_Metabox {
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-      if ( isset($data['success']) && $data['success'] ) {
+      if ( isset($data['success']) && $data['success'] === true ) {
         $usageData = isset($data['data']) && is_null($data['data']) === false ? $data['data'] : [
           'remaining' => -1,
           'sent_count' => -1,
           'plan_total' => -1,
         ];
 
-        foreach ($usageData as &$opt) {
-          $opt = (int) $opt;
+        foreach ($usageData as $key => $opt) {
+          $opt = is_scalar($opt) ? $opt : -1;
+          $usageData[$key] = max( $opt * 1, -1 );
         }
+
+        // NOTE: Debug line
+        // dd( $usageData );
 
         $this->_update($usageData);
         $this->_serveSuccessMessage();
@@ -205,7 +209,7 @@ class AppBear_Notifications_Metabox {
     }
 
     // NOTE: Debug line..
-    // dd($this->_metadata());
+    // dd($this->_metadata(), $data);
 
     return $data;
   }
@@ -217,8 +221,10 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   protected function _update(array $options = array()) {
+    $oldData = $this->_metadata();
+    $oldData = $oldData === false ? [] : $oldData;
     $meta = array_merge(
-      $this->_metadata(),
+      $oldData,
       $options
     );
 

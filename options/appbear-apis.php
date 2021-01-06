@@ -331,7 +331,7 @@ class AppBear_Endpoints {
    */
   public function do_get_version( $request ) {
     return array(
-      'version' => get_option('appbear_version')
+      'version' => get_option('appbear-version')
     );
   }
 

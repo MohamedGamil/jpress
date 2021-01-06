@@ -102,8 +102,9 @@
     $checkbox.on('change', function (event) {
       $groups.hide();
 
+      _inputChecks();
+
       if ( $checkbox.prop('checked') === true ) {
-        _inputChecks();
         $groups.show();
       }
     });

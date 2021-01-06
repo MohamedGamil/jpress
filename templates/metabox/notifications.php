@@ -50,17 +50,19 @@
     <hr>
     <div class="meta-options anm_notice anm_notice_normal">
       <span href="<?php echo admin_url('admin.php?page=appbear-activation'); ?>" target="_blank">
+        <?php if ( $stats->sent_count > -1 ): ?>
         <strong><?php _e('Total sent:', 'textdomain'); ?></strong>
         <?php
           echo $stats->sent_count === '?'
             ? __('Unknown', 'textdomain')
-            : ( $stats->sent_count === -1 ? __('UNLIMITED', 'textdomain') : $stats->sent_count ); ?>
+            : $stats->sent_count; ?>
         <br>
+        <?php endif; ?>
         <strong><?php _e('Remaining Notifications:', 'textdomain'); ?></strong>
         <?php
           echo $stats->remaining === '?'
             ? __('Unknown', 'textdomain')
-            : ( $stats->remaining === -1 ? __('UNLIMITED', 'textdomain') : $stats->remaining ); ?>
+            : ( $stats->remaining === -1 ? __('Unlimited', 'textdomain') : $stats->remaining ); ?>
         <!-- <br> -->
       </span>
     </div>
