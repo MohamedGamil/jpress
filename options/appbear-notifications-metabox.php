@@ -112,9 +112,6 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   public function save_post( $postID, $post, $update ) {
-    // NOTE: Debug line
-    // dd($this->_get());
-
     // Skip auto-saves and requests with an invalid license state
     if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || empty($_POST) === true || $this->_isValidLicense() === false /* || current_user_can( 'edit_post', $postID ) === false */ ) {
       return;
