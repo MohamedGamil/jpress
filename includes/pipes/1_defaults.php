@@ -46,7 +46,7 @@ $options['basicUrls']["getPostWPJSON"] = "/wp-json/appbear/v1/post";
 $options['basicUrls']["getTags"] = "/wp-json/appbear/v1/posts?tags=";
 $options['basicUrls']["getTagsPosts"] = "/wp-json/appbear/v1/posts?tags=";
 $options['basicUrls']["login"] = "/wp-json/appbear/v1/login";
-$options['basicUrls']["selectDemo"] = "/wp-json/appbear/v1/selectDemo?";
+$options['basicUrls']["selectDemo"] = "/wp-json/appbear/v1/selectDemo";
 $options['basicUrls']["demos"] = "/wp-json/appbear/v1/demos";
 
 // Other settings
