@@ -116,7 +116,7 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function class_autoloader() {
-		include plugin_dir_path( __FILE__ ) . '/includes/class-autoloader.php';
+		include APPBEAR_INCLUDES_DIR . 'class-autoloader.php';
 		Appbear\Includes\Autoloader::run();
 	}
 
@@ -126,9 +126,9 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function includes() {
-		include plugin_dir_path( __FILE__ ) . '/includes/class-appbear.php';
-		include plugin_dir_path( __FILE__ ) . '/includes/class-appbear-items.php';
-		include plugin_dir_path( __FILE__ ) . '/includes/global-functions.php';
+		include APPBEAR_INCLUDES_DIR . 'class-appbear.php';
+		include APPBEAR_INCLUDES_DIR . 'class-appbear-items.php';
+		include APPBEAR_INCLUDES_DIR . 'global-functions.php';
 	}
 
 	/*
@@ -142,7 +142,7 @@ class AppbearLoader
     }
 
 		if ( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && APPBEAR_HIDE_DEMO === false ) ) {
-			if ( ( $appBearOptsClass = APPBEAR_DIR . '/options/appbear-options.php' ) && file_exists( $appBearOptsClass ) ) {
+			if ( ( $appBearOptsClass = APPBEAR_OPTIONS_DIR . 'appbear-options.php' ) && file_exists( $appBearOptsClass ) ) {
         require_once $appBearOptsClass;
 
         $appBearOptsClassInstance = new AppBear_Options();
@@ -151,15 +151,15 @@ class AppbearLoader
 		}
 
 		// Options & Plugin Custom Classes
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-ads-shortcode.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-categories.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-deeplinking.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-notifications-metabox.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-apis.php';
-		include plugin_dir_path( __FILE__ ) . '/options/appbear-notice.php';
-		include plugin_dir_path( __FILE__ ) . '/options/demos-api.php';
-		include plugin_dir_path( __FILE__ ) . '/options/options.php';
-    include plugin_dir_path( __FILE__ ) . '/options/AppBear_subscription.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-ads-shortcode.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-categories.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-deeplinking.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-notifications-metabox.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-apis.php';
+		include APPBEAR_OPTIONS_DIR . 'appbear-notice.php';
+		include APPBEAR_OPTIONS_DIR . 'demos-api.php';
+		include APPBEAR_OPTIONS_DIR . 'options.php';
+    include APPBEAR_OPTIONS_DIR . 'AppBear_subscription.php';
 
     // Init Classes
     AppBear_Ads_Shortcode::run();

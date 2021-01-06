@@ -16,7 +16,7 @@
  * Plugin Name:       AppBear (BETA)
  * Plugin URI:        https://appbear.io
  * Description:       Convert your WordPress site into a Native Mobile App. No coding required. Your app syncs with your site automatically. Increase engagement, loyalty and monetize better on mobile!
- * Version:           0.2.4
+ * Version:           0.2.5
  * Author:            AppBear Team
  * Author URI:        https://appbear.io
  * License:           GPL-2.0+
@@ -42,14 +42,14 @@ if ( ! defined( 'WPINC' ) ) {
  * Load Plugin Constants & Helper Functions
  */
 require_once plugin_dir_path( __FILE__ ) . '/constants.php';
-require_once plugin_dir_path( __FILE__ ) . '/includes/functions.php';
+require_once APPBEAR_INCLUDES_DIR . 'functions.php';
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-appbear-activator.php
  */
 function appbear_activate_hook() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-appbear-activator.php';
+	require_once APPBEAR_INCLUDES_DIR . 'class-appbear-activator.php';
 	App_Bear_Activator::activate();
 }
 
@@ -58,7 +58,7 @@ function appbear_activate_hook() {
  * This action is documented in includes/class-appbear-deactivator.php
  */
 function appbear_deactivate_hook() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-appbear-deactivator.php';
+	require_once APPBEAR_INCLUDES_DIR . 'class-appbear-deactivator.php';
 	App_Bear_Deactivator::deactivate();
 }
 

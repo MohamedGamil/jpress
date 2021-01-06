@@ -195,7 +195,7 @@ function appbear_get_deeplinking_opts($asArray = false) {
 
 
 /**
- * Get deeplinking options
+ * Get in-post ads options
  */
 function appbear_get_ads_in_post_options($asArray = false) {
   $allOpts = appbear_get_option('%ALL%');

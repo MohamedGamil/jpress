@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.2.4' );
+define( 'APPBEAR_VERSION', '0.2.5' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -52,6 +52,18 @@ define( 'APPBEAR_DEEPLINKING_SCHEME',  'appbear' );
  * AppBear Root Directory.
  */
 define( 'APPBEAR_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+
+
+/**
+ * AppBear Includes Directory.
+ */
+define( 'APPBEAR_INCLUDES_DIR', APPBEAR_DIR . 'includes' . DIRECTORY_SEPARATOR );
+
+
+/**
+ * AppBear Options Directory.
+ */
+define( 'APPBEAR_OPTIONS_DIR', APPBEAR_DIR . 'options' . DIRECTORY_SEPARATOR );
 
 
 /**

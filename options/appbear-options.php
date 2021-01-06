@@ -1420,7 +1420,7 @@ class AppBear_Options
       'id' => 'categories',
       'name' => __( 'Categories', 'textdomain' ),
       'type' => 'checkbox',
-      'default' => '$all$',
+      // 'default' => '$all$',
       'items' => AppbearItems::terms( 'category' ),
       'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
       'options' => array(
@@ -1431,7 +1431,7 @@ class AppBear_Options
       'id' => 'tags',
       'name' => __( 'Tags', 'textdomain' ),
       'type' => 'checkbox',
-      'default' => '$all$',
+      // 'default' => '$all$',
       'items' => AppbearItems::terms( 'post_tag' ),
       'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
       'options' => array(
