@@ -265,17 +265,20 @@ class AdminPage extends AppbearCore {
 	*/
 	public function redefine_options($k) {
 		$remove =   array('_wp_http_referer','appbear_id','appbear_nonce_appbear-settings','appbear-save','appbear-import-field');
-		if (is_array($k)) {
+
+    if (is_array($k)) {
 			foreach($k as $key => $value) {
 				if (in_array($key, $remove) || strpos($key, 'local-') !== false) {
 					return false;
 				}
 			}
-		}else{
+    }
+    else {
 			if (in_array($k, $remove) || strpos($k, 'local-') !== false) {
 				return false;
 			}
-		}
+    }
+
 		return true;
 	}
 
@@ -418,6 +421,10 @@ class AdminPage extends AppbearCore {
     foreach ($options as $key => &$opt) {
       if (is_array($opt) && empty($opt) === false) {
         $opt = $this->_removeEmptyOptions($opt);
+
+        if (empty($opt)) {
+          unset($options[$key]);
+        }
       }
       elseif (empty($opt) || is_null($opt) || trim($opt) === '') {
         unset($options[$key]);

@@ -50,7 +50,7 @@
     <hr>
     <div class="meta-options anm_notice anm_notice_normal">
       <span href="<?php echo admin_url('admin.php?page=appbear-activation'); ?>" target="_blank">
-        <?php if ( $stats->sent_count > -1 ): ?>
+        <?php if ( $stats->sent_count > -1 || $stats->sent_count === '?' ): ?>
         <strong><?php _e('Total sent:', 'textdomain'); ?></strong>
         <?php
           echo $stats->sent_count === '?'
