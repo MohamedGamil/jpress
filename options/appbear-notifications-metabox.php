@@ -165,7 +165,7 @@ class AppBear_Notifications_Metabox {
         }
 
         // NOTE: Debug line
-        dd( $usageData );
+        // dd( $usageData );
 
         $this->_update($usageData);
         $this->_serveSuccessMessage();
