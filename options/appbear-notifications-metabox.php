@@ -14,7 +14,7 @@ use Appbear\Includes\AppbearAPI;
  * @since 0.0.5
  */
 class AppBear_Notifications_Metabox {
-  const OPTION_KEY = 'appbear_post_push_notifications_stats';
+  const OPTION_KEY = 'appbear_push_notifications_stats';
   const DISABLE_IF_UPDATING = true;
 
   /**
@@ -113,7 +113,7 @@ class AppBear_Notifications_Metabox {
    */
   public function save_post( $postID, $post, $update ) {
     // NOTE: Debug line
-    dd($this->_get());
+    // dd($this->_get());
 
     // Skip auto-saves and requests with an invalid license state
     if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || empty($_POST) === true || $this->_isValidLicense() === false /* || current_user_can( 'edit_post', $postID ) === false */ ) {
@@ -224,8 +224,10 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   protected function _update(array $options = array()) {
+    $oldData = $this->_metadata();
+    $oldData = $oldData === false ? [] : $oldData;
     $meta = array_merge(
-      $this->_metadata(),
+      $oldData,
       $options
     );
 
