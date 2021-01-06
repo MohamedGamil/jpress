@@ -1083,7 +1083,7 @@ class AppBear_Options
       'default' => 'latest',
       'items' => array(
         'latest' => __( 'Recent Posts', 'textdomain' ),
-        'rand' => __( 'Random Posts', 'textdomain' ),
+        // 'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
         'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
@@ -1503,7 +1503,7 @@ class AppBear_Options
       'default' => 'latest',
       'items' => array(
         'latest' => __( 'Recent Posts', 'textdomain' ),
-        'rand' => __( 'Random Posts', 'textdomain' ),
+        // 'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
         'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
@@ -1790,7 +1790,7 @@ class AppBear_Options
       'default' => 'latest',
       'items' => array(
         'latest' => __( 'Recent Posts', 'textdomain' ),
-        'rand' => __( 'Random Posts', 'textdomain' ),
+        // 'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
         'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
@@ -1890,7 +1890,7 @@ class AppBear_Options
       'default' => 'latest',
       'items' => array(
         'latest' => __( 'Recent Posts', 'textdomain' ),
-        'rand' => __( 'Random Posts', 'textdomain' ),
+        // 'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
         'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
@@ -2000,7 +2000,7 @@ class AppBear_Options
       'default' => 'latest',
       'items' => array(
         'latest' => __( 'Recent Posts', 'textdomain' ),
-        'rand' => __( 'Random Posts', 'textdomain' ),
+        // 'rand' => __( 'Random Posts', 'textdomain' ),
         'modified' => __( 'Last Modified Posts', 'textdomain' ),
         'comment_count' => __( 'Most Commented posts', 'textdomain' ),
         'title' => __( 'Alphabetically', 'textdomain' ),
