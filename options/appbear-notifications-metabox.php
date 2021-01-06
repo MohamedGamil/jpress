@@ -152,6 +152,9 @@ class AppBear_Notifications_Metabox {
     if ( is_wp_error( $response ) === false ) {
       $data = json_decode( wp_remote_retrieve_body( $response ), true );
 
+      // NOTE: Debug line
+      dd( $data );
+
       if ( isset($data['success']) && $data['success'] ) {
         $usageData = isset($data['data']) && is_null($data['data']) === false ? $data['data'] : [
           'remaining' => -1,
