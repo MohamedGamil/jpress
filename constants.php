@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.2.6' );
+define( 'APPBEAR_VERSION', '0.2.7' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -67,6 +67,12 @@ define( 'APPBEAR_OPTIONS_DIR', APPBEAR_DIR . 'options' . DIRECTORY_SEPARATOR );
 
 
 /**
+ * AppBear Plugin Front Controller File (Main Plugin File)
+ */
+define( 'APPBEAR_FC_FILE', APPBEAR_DIR . 'appbear.php' );
+
+
+/**
  * AppBear FontAwesome Version.
  */
 defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
@@ -106,6 +112,12 @@ define( 'APPBEAR_ENABLE_DEBUG_HELPERS', true );
  * Enable / Disable Displaying Connect to AppBear even if the license is active
  */
 define( 'APPBEAR_ENABLE_CONNECT_PAGE_IF_ACTIVE', false );
+
+
+/**
+ * Enable / Disable Plugin Automatic Updates
+ */
+define( 'APPBEAR_ENABLE_AUTO_UPDATE', true );
 
 
 /**

@@ -73,6 +73,9 @@ class AppbearLoader
 		// Includes
 		$this->includes();
 
+		// Automatic Updates
+		$this->autoUpdateInit();
+
 		// AppBear generic initialization
 		$this->appbear_core_init();
 
@@ -129,6 +132,19 @@ class AppbearLoader
 		include APPBEAR_INCLUDES_DIR . 'class-appbear.php';
 		include APPBEAR_INCLUDES_DIR . 'class-appbear-items.php';
 		include APPBEAR_INCLUDES_DIR . 'global-functions.php';
+	}
+
+	/**
+   * Automatic updates initialization
+   *
+   * @since 0.2.7
+   * @return void
+   */
+	public function autoUpdateInit() {
+    include APPBEAR_INCLUDES_DIR . 'class-appbear-auto-update.php';
+
+    // Run the updater
+    App_Bear_Automatic_Updates::run();
 	}
 
 	/*
