@@ -524,15 +524,14 @@ class AdminPage extends AppbearCore {
    */
   private function _updateDeeplinkingOptions(array $options) {
     $options = is_array($options) && count($options) === 1 ? $options[0] : $options;
-    $options = isset($options['data']) && is_array($options['data']) ? $options['data'] : [];
+    $options = isset($options['data']) && is_array($options['data']) ? $options['data'] : array();
+    $deeplinkingOpts = array(
+      'ios_app_id' => isset($options['ios_app_id']) ? $options['ios_app_id'] : '',
+      'ios_bundle' => isset($options['ios_bundle']) ? $options['ios_bundle'] : '',
+      'android_bundle' => isset($options['android_bundle']) ? $options['android_bundle'] : '',
+    );
 
-    dd($options);
-
-    update_option( APPBEAR_DEEPLINKING_OPTION, array(
-      'ios_app_id' => isset($options) ? $options['ios_app_id'] : '',
-      'ios_bundle' => isset($options) ? $options['ios_bundle'] : '',
-      'android_bundle' => isset($options) ? $options['android_bundle'] : '',
-    ));
+    update_option( APPBEAR_DEEPLINKING_OPTION, $deeplinkingOpts, false );
   }
 
   /*
