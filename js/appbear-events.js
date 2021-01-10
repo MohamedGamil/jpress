@@ -11,7 +11,7 @@ APPBEAR.events = (function (window, document, $) {
    * @param {Array} condition_
    * @returns {Boolean}
    */
-  function _shouldDisplayField(field_value_, condition_) {
+  function _shouldDisplayBlock(field_value_, condition_) {
     let value_ = '';
     let operator_ = '==';
     let show_ = true;
@@ -74,6 +74,8 @@ APPBEAR.events = (function (window, document, $) {
     appbear_events.on_change_textarea($appbear);
 
     appbear_events.on_change_wp_editor($appbear);
+
+    appbear_events.init_conditional_items($appbear);
 
   };
 
@@ -371,7 +373,9 @@ APPBEAR.events = (function (window, document, $) {
       let hide = false;
       let check_show = true;
       let check_hide = true;
-      let check_show_items = true;
+
+      // NOTE: DEPRECATED: Forced to be `false` at all time to prevent a relevant code block below from running, temporarily deprecated!
+      let check_show_items = false;
 
       if (is_empty(show_if) || is_empty(show_if[0])) {
         check_show = false;
@@ -413,13 +417,13 @@ APPBEAR.events = (function (window, document, $) {
             // NOTE: Debug Line
             // console.info({targetFieldName, targetFieldValue});
 
-            show = _shouldDisplayField(targetFieldValue, condition_);
+            show = _shouldDisplayBlock(targetFieldValue, condition_);
           }
 
           // NOTE: Debug Line
           // console.info({ n: 'multi', field_value, $row, show_if, show });
         } else {
-          show = _shouldDisplayField(field_value, show_if);
+          show = _shouldDisplayBlock(field_value, show_if);
 
           // NOTE: Debug Line
           // console.info({ n: 'single', field_value, $row, show_if, show });
@@ -476,10 +480,10 @@ APPBEAR.events = (function (window, document, $) {
                     break;
                 }
 
-                showItem = _shouldDisplayField(targetFieldValue, condition_);
+                showItem = _shouldDisplayBlock(targetFieldValue, condition_);
               }
             } else {
-              showItem = _shouldDisplayField(field_value, conditions_);
+              showItem = _shouldDisplayBlock(field_value, conditions_);
             }
           }
 
@@ -598,6 +602,163 @@ APPBEAR.events = (function (window, document, $) {
     } else {
       $row.hide();
     }
+  };
+
+  /**
+   * Init Conditional Items Extension
+   * @param {*} $appbear
+   * @return {void}
+   */
+  appbear_events.init_conditional_items = ($appbear) => {
+    const getRowData = ($row, $items) => {
+      const data_ = $row.data('show-hide-items') || { show_items_if: {} };
+
+      return {
+        data: data_.show_items_if,
+        length: Object.keys(data_.show_items_if).length,
+      };
+    };
+
+    const checkShowItems = ($items, conditions, hide_) => {
+      if (conditions.length === 0) {
+        return;
+      }
+
+      // NOTE: Debug line..
+      console.info({ $items, conditions });
+
+      const _getFieldValue = (fieldName) => {
+        let
+        targetFieldName = $(`[data-field-id="${fieldName}"] input`).attr('name'),
+        $targetField = $(`[name="${targetFieldName}"]`),
+        targetFieldValue = $targetField.val();
+
+        // NOTE: This supports fields of type radio, other types of inputs may require special way to handle value fetching.
+        switch($targetField.attr('type')) {
+          case 'radio':
+            targetFieldValue = $targetField.filter(':checked').val();
+            break;
+        }
+
+        return targetFieldValue;
+      };
+
+      $items.each(function () {
+        const $el = $(this);
+        const key_ = $el.attr('class').replace('appbear-item-image-selector item-key-', '');
+        const conditions_ = is_empty(conditions[key_]) ? [] : conditions[key_];
+
+        if (conditions_.length > 0) {
+          let showItem = true;
+
+          if ( is_empty(conditions_) === false && $.isArray(conditions_) && conditions_.length > 0 ) {
+            let targetFieldValue = false;
+
+            if ($.isArray(conditions_[0])) {
+              for (const condition_ of conditions_) {
+                if (showItem === false) {
+                  continue;
+                }
+
+                targetFieldValue = _getFieldValue(condition_[0]);
+                showItem = _shouldDisplayBlock(targetFieldValue, condition_);
+              }
+            } else {
+              targetFieldValue = _getFieldValue(conditions_[0]);
+              showItem = _shouldDisplayBlock(targetFieldValue, conditions_);
+            }
+
+            // NOTE: Debug line..
+            console.info({ $el, key_, conditions_, showItem, targetFieldValue, hide_ });
+          }
+
+          if (showItem === false && typeof hide_ === 'function') {
+            hide_(key_);
+          }
+        }
+      });
+    };
+
+    $appbear
+    .find('.appbear-row.appbear-type-image_selector')
+    .each(function () {
+      const $row = $(this);
+      const $items = $row.find('.appbear-item-image-selector');
+      const { data: dataShowHideItems, length: dataLength } = getRowData($row, $items);
+      let rowDidInit = $row.data('did-hook-show-items');
+
+      if (rowDidInit === true) {
+        return;
+      } else {
+        $row.data('did-hook-show-items', true);
+        rowDidInit = false;
+      }
+
+      const filterItems = (keys = []) => {
+        let selector = String(keys.join(`, .item-key-`, keys));
+
+        selector = keys.length > 1 && $.isArray(keys) ? selector.substr(3, selector.length) : selector;
+
+        return $items.filter(selector);
+      };
+
+      const hide = (keys = []) => {
+        keys = typeof keys === 'string' ? [ keys ] : keys;
+
+        let $items_ = filterItems(keys);
+
+        // NOTE: Debug line..
+        console.info({ keys, $items_ });
+
+        return $items_.hide();
+      };
+
+      const showAll = () => {
+        return $items.show();
+      };
+
+      showAll();
+      checkShowItems($items, dataShowHideItems, hide);
+
+      if ( dataLength > 0 ) {
+        const selectors = [];
+
+        for (const key_ in dataShowHideItems) {
+          const condition_ = dataShowHideItems[key_];
+          const fieldKey = typeof condition_[0] === 'string' ? condition_[0] : false;
+          const selector_ = `[data-field-id="${fieldKey}"]`;
+
+          if (is_empty(fieldKey)) {
+            continue;
+          }
+
+          selectors.push(selector_);
+        }
+
+        let selectorsParsed = '';
+
+        selectors.map((val, idx) => {
+          selectorsParsed += `${val} .appbear-element, `;
+        });
+
+        selectorsParsed = selectorsParsed.substr(0, selectorsParsed.length - 2);
+
+        // NOTE: Debug line..
+        console.info({ $row, rowDidInit, dataShowHideItems, dataLength, selectors, selectorsParsed });
+
+        // TODO: Hook to inputs changes here
+        $appbear.on('input, statusChange', selectorsParsed, function () {
+          checkShowItems($items, dataShowHideItems, hide);
+
+          // const $el = $(this);
+          // console.info({ $el });
+
+          // $(this).trigger('appbear_changed_value', $(this).val());
+          // appbear_events.show_hide_row($(this), $(this).val(), 'wp_editor');
+        });
+      }
+    });
+
   };
 
   function is_empty(value) {
