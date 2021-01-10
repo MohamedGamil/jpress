@@ -549,48 +549,63 @@ class FieldTypes {
     */
     public function image_selector( $type = '' ) {
         $items = $this->field->arg( 'items' );
+
         if ( Functions::is_empty( $items ) ) {
             return '';
         }
+
         $items_desc = $this->field->arg( 'items_desc' );
         $options = $this->field->arg( 'options' );
         $wrap_class = 'appbear-radiochecks init-image-selector';
+
         if ( $this->field->arg( 'options', 'in_line' ) == false ) {
             $wrap_class .= ' appbear-vertical';
         }
+
         $data_image_chooser = json_encode( $options );
         $return = "<div class='$wrap_class' data-image-selector='$data_image_chooser'>";
+
         foreach( $items as $key => $image ) {
             $item_class = "appbear-item-image-selector item-key-{$key}";
+
             if ( ( $key == 'from_file' || $key == 'from_url' ) && ( $options['import_from_file'] || $options['import_from_url'] ) ) {
                 $item_class .= " appbear-block";
             }
+
             $return .= "<div class='$item_class' style='width: {$options['width']}'>";
             $label_class = "";
+
             if ( ! Functions::get_file_extension( $image ) ) {
                 $label_class .= "no-image";
             }
+
             $return .= "<label class='$label_class'>";
             $return .= $this->build_input( $options['like_checkbox'] ? 'checkbox' : 'radio', $key, array( 'data-image' => $image ) );
             $return .= "<span>$image</span>";
             $return .= "</label>";
+
             if ( isset( $items_desc[$key] ) ) {
                 $return .= "<div class='appbear-item-desc'>";
                 if ( is_array( $items_desc[$key] ) ) {
                     if ( isset( $items_desc[$key]['title'] ) ) {
                         $return .= "<div class='appbear-item-desc-title'>{$items_desc[$key]['title']}</div>";
                     }
+
                     if ( isset( $items_desc[$key]['content'] ) ) {
                         $return .= "<div class='appbear-item-desc-content'>{$items_desc[$key]['content']}</div>";
                     }
                 } else {
                     $return .= "<div class='appbear-item-desc'>{$items_desc[$key]}</div>";
                 }
+
                 $return .= "</div>";
             }
+
             $return .= "</div>";
         }
+
         $return .= "</div>";
+
         return $return;
     }
 

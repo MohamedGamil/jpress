@@ -88,6 +88,36 @@ $admob = $settings->add_section( array(
   'options' => array( 'toggle' => true )
 ));
 
+$admob->open_mixed_field(array(
+  'name' => __('Interstitial Ad', 'textdomain' ),
+  'options' => array( 'show_if' => array('local-advertisement_admob_interstatial', '=', 'true') ),
+));
+$admob->add_field(array(
+  'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
+  'id' => 'local_ads_interstatial_before_post',
+  'type' => 'switcher',
+  'default'	=>	'false',
+  'options' => array(
+    'on_value' => 'true',
+    'off_value' => 'false'
+  ),
+));
+$admob->add_field(array(
+  'name' => __( 'Show Interstitial Ad Every', 'textdomain' ),
+  'id' => 'local_ads_interstatial_before_post_offset',
+  'type' => 'number',
+  'default' => '1',
+  'options' => array(
+    'unit' => 'Post Views',
+    'show_if' => array('local_ads_interstatial_before_post', '=', 'true'),
+  ),
+  'attributes' => array(
+    'min' => 1,
+    'max' => 99,
+  ),
+));
+$admob->close_mixed_field();
+
 $admob->add_field(array(
   'name' => __( 'Enable Ads Inside Post Content', 'textdomain' ),
   'id' => 'local_ads_in_post',
@@ -128,6 +158,9 @@ $admob->add_field( array(
   'options' => array(
     'width' => '155px',
     'show_if' => array('local_ads_in_post', '=', 'true'),
+    'show_items_if' => array(
+      'PostLayout.adMob' => array('local-admob_banner', '=', 'true'),
+    ),
   ),
 ));
 
@@ -146,6 +179,7 @@ $admob->add_field(array(
   ),
   'options' => array(
     'show_if' => array(
+      array('local-admob_banner', '=', 'true'),
       array('local_ads_in_post', '=', 'true'),
       array('local_ads_in_post_type', '=', 'PostLayout.adMob'),
     ),
@@ -242,33 +276,6 @@ $admob->add_field(array(
 ));
 $admob->close_mixed_field();
 
-$admob->open_mixed_field(array('name' => __('Interstitial Ad', 'textdomain' )));
-$admob->add_field(array(
-  'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
-  'id' => 'local_ads_interstatial_before_post',
-  'type' => 'switcher',
-  'default'	=>	'false',
-  'options' => array(
-    'on_value' => 'true',
-    'off_value' => 'false'
-  ),
-));
-$admob->add_field(array(
-  'name' => __( 'Show Interstitial Ad Every', 'textdomain' ),
-  'id' => 'local_ads_interstatial_before_post_offset',
-  'type' => 'number',
-  'default' => '1',
-  'options' => array(
-    'unit' => 'Post Views',
-    'show_if' => array('local_ads_interstatial_before_post', '=', 'true'),
-  ),
-  'attributes' => array(
-    'min' => 1,
-    'max' => 99,
-  ),
-));
-$admob->close_mixed_field();
-
 $admob->add_field(array(
   'name' => __( 'Enable Ads After Post', 'textdomain' ),
   'id' => 'local_ads_after_post',
@@ -293,6 +300,9 @@ $admob->add_field( array(
   'options' => array(
     'width' => '155px',
     'show_if' => array('local_ads_after_post', '=', 'true'),
+    'show_items_if' => array(
+      'PostLayout.adMob' => array('local-admob_banner', '=', 'true'),
+    ),
   ),
 ));
 
@@ -311,6 +321,7 @@ $admob->add_field(array(
   ),
   'options' => array(
     'show_if' => array(
+      array('local-admob_banner', '=', 'true'),
       array('local_ads_after_post', '=', 'true'),
       array('local_ads_after_post_type', '=', 'PostLayout.adMob'),
     ),
@@ -431,6 +442,9 @@ $admob->add_field( array(
   'options' => array(
     'width' => '155px',
     'show_if' => array('local_ads_before_comments', '=', 'true'),
+    'show_items_if' => array(
+      'PostLayout.adMob' => array('local-admob_banner', '=', 'true'),
+    ),
   ),
 ));
 
@@ -449,6 +463,7 @@ $admob->add_field(array(
   ),
   'options' => array(
     'show_if' => array(
+      array('local-admob_banner', '=', 'true'),
       array('local_ads_before_comments', '=', 'true'),
       array('local_ads_before_comments_type', '=', 'PostLayout.adMob'),
     ),
@@ -601,6 +616,9 @@ $admob->add_field( array(
   'options' => array(
     'width' => '155px',
     'show_if' => array('local_ads_single_cat', '=', 'true'),
+    'show_items_if' => array(
+      'PostLayout.adMob' => array('local-admob_banner', '=', 'true'),
+    ),
   ),
 ));
 
@@ -619,6 +637,7 @@ $admob->add_field(array(
   ),
   'options' => array(
     'show_if' => array(
+      array('local-admob_banner', '=', 'true'),
       array('local_ads_single_cat', '=', 'true'),
       array('local_ads_single_cat_type', '=', 'PostLayout.adMob'),
     ),
