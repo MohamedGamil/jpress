@@ -152,6 +152,10 @@
    * Run inputs checks
    */
   function _inputChecks() {
+    if ($($checkbox).length === 0 || $($titleInput).length === 0 || $($msgInput).length === 0) {
+      return;
+    }
+
     const
       isChecked = $checkbox.prop('checked') === true,
       titleLength = $titleInput.val().length,
@@ -196,6 +200,10 @@
 
     const _callback = () => {
       $widget = $('#appbear-notifications-metabox');
+
+      if ($widget.length === 0) {
+        return;
+      }
 
       _run();
       _registerPlugin();
