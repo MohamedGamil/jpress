@@ -106,6 +106,11 @@ class FieldBuilder {
 			'delay' => $options['show_hide_delay'],
     ));
 
+    // NOTE: Passes conditions to support conditional show/hide of items in a multi-choice input
+		$data_show_hide_items = json_encode(array(
+			'show_items_if' => isset($options['show_items_if']) && empty($options['show_items_if']) === false ? (array) $options['show_items_if'] : array(),
+    ));
+
 		if (isset($options['show_if'][0])) {
       $isMulti = is_array($options['show_if'][0]);
 
@@ -116,11 +121,24 @@ class FieldBuilder {
       } else {
         $row_class .= " condition_" . $options['show_if'][0];
       }
-
-      // dd($row_class);
 		}
 
-		$return .= "<div id='{$this->field->arg( 'row_id' )}' class='$row_class' data-row-level='{$this->field->get_row_level()}' data-field-id='{$this->field->id}' data-field-type='$type'  data-show-hide='$data_show_hide'>";
+    // NOTE: BUG: Results in an-unwanted behavior!
+		// if (isset($options['show_items_if']) && empty($options['show_items_if']) === false) {
+    //   foreach ($options['show_items_if'] as $key => $conditions) {
+    //     $isMulti = is_array($conditions[0]);
+
+    //     if ($isMulti) {
+    //       foreach ($conditions as $showIfCondition) {
+    //         $row_class .= " condition_items_" . $showIfCondition[0];
+    //       }
+    //     } else {
+    //       $row_class .= " condition_items_" . $conditions[0];
+    //     }
+    //   }
+		// }
+
+		$return .= "<div id='{$this->field->arg( 'row_id' )}' class='$row_class' data-row-level='{$this->field->get_row_level()}' data-field-id='{$this->field->id}' data-field-type='$type'  data-show-hide='$data_show_hide' data-show-hide-items='$data_show_hide_items'>";
 			$return .= $this->build_label();
 			$return .= "<div class='$content_class appbear-clearfix'>";
 
@@ -827,11 +845,13 @@ class FieldBuilder {
 		$row_class[] = "appbear-row appbear-clearfix appbear-type-{$type}";
 
 		if( $this->field->in_mixed ){
-			$row_class[] = "appbear-row-mixed";
+      $row_class[] = "appbear-row-mixed";
+
 			if( $this->field->is_valid_grid_value( $grid ) ){
 				$row_class[] = "appbear-grid appbear-col-$grid";
 			}
-		}
+    }
+
 		$row_class[] = "appbear-row-id-{$this->field->id}";
 
 		$row_class[] = $this->field->arg( 'row_class' );
