@@ -121,8 +121,6 @@ class FieldBuilder {
       } else {
         $row_class .= " condition_" . $options['show_if'][0];
       }
-
-      // dd($row_class);
 		}
 
     // NOTE: BUG: Results in an-unwanted behavior!

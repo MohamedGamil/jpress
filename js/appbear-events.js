@@ -362,7 +362,6 @@ APPBEAR.events = (function (window, document, $) {
       let data_show_hide_items = $row.data('show-hide-items');
 
       if (typeof data_show_hide === 'undefined' || data_show_hide == null) {
-        console.info({$row})
         return;
       }
 
@@ -490,7 +489,7 @@ APPBEAR.events = (function (window, document, $) {
           showItems[key_] = showItem;
 
           // NOTE: Debug line..
-          console.info({ '0': 'ITEMS:', $row, key_, conditions_, showItem, showItems });
+          // console.info({ '0': 'ITEMS:', $row, key_, conditions_, showItem, showItems });
         }
 
         // NOTE: Supports `image_selector` fields only at the moment.
@@ -502,7 +501,7 @@ APPBEAR.events = (function (window, document, $) {
           $item = $row.find(`.appbear-item-image-selector.item-key-${item_}`);
 
           // NOTE: Debug line..
-          console.info({$item});
+          // console.info({$item});
           // .show();
         }
       }
@@ -606,6 +605,7 @@ APPBEAR.events = (function (window, document, $) {
 
   /**
    * Init Conditional Items Extension
+   *
    * @param {*} $appbear
    * @return {void}
    */
@@ -625,7 +625,7 @@ APPBEAR.events = (function (window, document, $) {
       }
 
       // NOTE: Debug line..
-      console.info({ $items, conditions });
+      // console.info({ $items, conditions });
 
       const _getFieldValue = (fieldName) => {
         let
@@ -650,14 +650,13 @@ APPBEAR.events = (function (window, document, $) {
 
         if (conditions_.length > 0) {
           let showItem = true;
+          let targetFieldValue = false;
 
           if ( is_empty(conditions_) === false && $.isArray(conditions_) && conditions_.length > 0 ) {
-            let targetFieldValue = false;
-
             if ($.isArray(conditions_[0])) {
               for (const condition_ of conditions_) {
                 if (showItem === false) {
-                  continue;
+                  break;
                 }
 
                 targetFieldValue = _getFieldValue(condition_[0]);
@@ -667,13 +666,13 @@ APPBEAR.events = (function (window, document, $) {
               targetFieldValue = _getFieldValue(conditions_[0]);
               showItem = _shouldDisplayBlock(targetFieldValue, conditions_);
             }
-
-            // NOTE: Debug line..
-            console.info({ $el, key_, conditions_, showItem, targetFieldValue, hide_ });
           }
 
+          // NOTE: Debug line..
+          console.info({ $el, key_, conditions_, showItem, targetFieldValue, hide_ });
+
           if (showItem === false && typeof hide_ === 'function') {
-            hide_(key_);
+            console.warn({ hidden: hide_(key_) });
           }
         }
       });
@@ -695,17 +694,24 @@ APPBEAR.events = (function (window, document, $) {
       }
 
       const filterItems = (keys = []) => {
-        let selector = String(keys.join(`, .item-key-`, keys));
+        return $items.filter(function() {
+          const keys_ = keys.map((value_) => String(value_).trim());
+          console.info({ keys_, that: $(this) });
 
-        selector = keys.length > 1 && $.isArray(keys) ? selector.substr(3, selector.length) : selector;
+          for (const key_ of keys_) {
+            if ($(this).attr('class').indexOf(`item-key-${key_}`) > -1) {
+              return true;
+            }
+          }
 
-        return $items.filter(selector);
+          return false;
+        });
       };
 
       const hide = (keys = []) => {
         keys = typeof keys === 'string' ? [ keys ] : keys;
 
-        let $items_ = filterItems(keys);
+        const $items_ = filterItems(keys);
 
         // NOTE: Debug line..
         console.info({ keys, $items_ });
@@ -744,10 +750,11 @@ APPBEAR.events = (function (window, document, $) {
         selectorsParsed = selectorsParsed.substr(0, selectorsParsed.length - 2);
 
         // NOTE: Debug line..
-        console.info({ $row, rowDidInit, dataShowHideItems, dataLength, selectors, selectorsParsed });
+        // console.info({ $row, rowDidInit, dataShowHideItems, dataLength, selectors, selectorsParsed });
 
         // TODO: Hook to inputs changes here
         $appbear.on('input, statusChange', selectorsParsed, function () {
+          showAll();
           checkShowItems($items, dataShowHideItems, hide);
 
           // const $el = $(this);
@@ -758,7 +765,6 @@ APPBEAR.events = (function (window, document, $) {
         });
       }
     });
-
   };
 
   function is_empty(value) {

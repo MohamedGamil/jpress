@@ -566,7 +566,9 @@ class FieldTypes {
         $return = "<div class='$wrap_class' data-image-selector='$data_image_chooser'>";
 
         foreach( $items as $key => $image ) {
-            $item_class = "appbear-item-image-selector item-key-{$key}";
+            // $classKey = str_replace( '.', '_', $key );
+            $classKey = $key;
+            $item_class = "appbear-item-image-selector item-key-{$classKey}";
 
             if ( ( $key == 'from_file' || $key == 'from_url' ) && ( $options['import_from_file'] || $options['import_from_url'] ) ) {
                 $item_class .= " appbear-block";
