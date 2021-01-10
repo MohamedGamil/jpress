@@ -551,6 +551,15 @@ $admob = $settings->add_section( array(
   'options' => array( 'toggle' => true )
 ));
 
+$admob->open_mixed_field(array(
+  'name' =>  __('Enable Single Category Ads', 'textdomain' ),
+  'options' => array(
+    'show_if' => array(
+      // array('local_ads_single_cat', '=', 'true'),
+      // array('local_ads_single_cat_type', '=', 'PostLayout.imageAd'),
+    ),
+  ),
+));
 $admob->add_field(array(
   'name' => __( 'Enable Ads', 'textdomain' ),
   'id' => 'local_ads_single_cat',
@@ -577,6 +586,7 @@ $admob->add_field(array(
     'max' => 99,
   ),
 ));
+$admob->close_mixed_field();
 
 $admob->add_field( array(
   'id' => 'local_ads_single_cat_type',
