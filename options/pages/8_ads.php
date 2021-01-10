@@ -573,7 +573,7 @@ $admob->add_field(array(
 
 $admob->add_field(array(
   'name' => __( 'Show Ad Every', 'textdomain' ),
-  'id' => 'ads_single_cat_offset',
+  'id' => 'local_ads_single_cat_offset',
   'type' => 'number',
   'default' => '1',
   'options' => array(

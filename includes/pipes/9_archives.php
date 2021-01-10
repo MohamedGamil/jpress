@@ -191,7 +191,7 @@ if (isset($data['local_ads_before_comments']) && $data['local_ads_before_comment
 }
 
 $options['archives']['category']['ads'] = array(
-  'adsCount' => $data['ads_single_cat_offset'],
+  'adsCount' => isset($data['local_ads_single_cat_offset']) && empty($data['local_ads_single_cat_offset']) === false ? $data['local_ads_single_cat_offset'] : '',
 );
 
 if (isset($data['local_ads_single_cat']) && $data['local_ads_single_cat'] === 'true') {
