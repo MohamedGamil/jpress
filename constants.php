@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'APPBEAR_VERSION', '0.2.9' );
+define( 'APPBEAR_VERSION', '0.2.10' );
 define( 'APPBEAR_PRIORITY', 952 );
 
 
@@ -75,7 +75,7 @@ define( 'APPBEAR_FC_FILE', APPBEAR_DIR . 'appbear.php' );
 /**
  * AppBear FontAwesome Version.
  */
-defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '5.15.1');
 
 
 /**

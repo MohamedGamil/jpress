@@ -180,6 +180,12 @@ class Functions {
   */
   public static function get_icon( $value ) {
     $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
+    $icons += include APPBEAR_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
+
+    // if (strpos($value, 'fa') !== false) {
+    //   $value = end(explode(' ', $value));
+    // }
+
     return $icons[$value];
   }
 

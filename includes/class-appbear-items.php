@@ -334,16 +334,25 @@ class AppbearItems {
     |---------------------------------------------------------------------------------------------------
     */
     public static function icons( $more_items = array() ){
-        if( Functions::is_fontawesome_version( '5.x' ) ){
-            $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
-        } else{
-            $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
-        }
-        $items = array();
-        foreach( $icons as $icon ){
-            $items[$icon] = "<i class='$icon'></i>$icon";
-        }
-        return Functions::nice_array_merge( $more_items, $items );
+      $icons = false;
+
+      switch(true) {
+        case Functions::is_fontawesome_version( '5.x' ) === true:
+          $icons = include APPBEAR_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
+          break;
+      }
+
+      if ($icons === false) {
+        $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
+      }
+
+      $items = array();
+
+      foreach ( $icons as $key => $icon ) {
+        $items[$icon] = "<i class='$icon'></i>";
+      }
+
+      return Functions::nice_array_merge( $more_items, $items );
     }
 
     /*
@@ -365,7 +374,10 @@ class AppbearItems {
         $items[$k] = "<i class='$icon'></i>";
       }
 
-      return Functions::nice_array_merge( $more_items, $items );
+      // NOTE: Merge FontAwesome Icons by Default
+      $more_items = static::icons($more_items);
+
+      return Functions::nice_array_merge( $items, $more_items );
     }
 
     /*

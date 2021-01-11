@@ -54,6 +54,17 @@ function appbear_get_read_time() {
 
 
 /**
+ * Convert Camelcase to Dashes
+ *
+ * @param string $str
+ * @return string
+ */
+function appbear_camel_to_dash($str) {
+  return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $str));
+}
+
+
+/**
  * Get Time Format
  */
 function appbear_get_time() {

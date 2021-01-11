@@ -221,15 +221,17 @@ window.APPBEAR = (function (window, document, $) {
 
           for (const iconKey of itemsKeys) {
             const
-              isFontAwesome = iconKey.substr(0, 3) === 'fa-',
+              isFontAwesome = iconKey.substr(0, 2) === 'fa',
               iconClass = isFontAwesome ? iconKey : items[iconKey],
+              dataValue = isFontAwesome ? String(iconKey).trim().split(' ').pop() : iconKey,
               iconSize = optSize - 14,
               fontSize = `${iconSize}px`,
               dataKey = `font ${iconKey}`,
               dataType = 'icon font',
               $iconEl = `<i class="${iconClass}" style=""></i>`;
 
-            iconsHTML += `<div class="appbear-item-icon-selector" data-value='${iconKey}' data-key='${dataKey}' data-search='${iconClass}' data-type='${dataType}' style='width: ${opts.size}; height: ${opts.size}; font-size: ${fontSize}'>`;
+            // console.info({ iconKey, dataValue, iconClass, ref: items[iconKey]  });
+            iconsHTML += `<div class="appbear-item-icon-selector" data-value='${dataValue}' data-key='${dataKey}' data-search='${iconClass}' data-type='${dataType}' style='width: ${opts.size}; height: ${opts.size}; font-size: ${fontSize}'>`;
             iconsHTML += $iconEl;
             iconsHTML += "</div>";
           }
