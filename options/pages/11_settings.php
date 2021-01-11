@@ -73,12 +73,8 @@ $socialLinks->add_field( array(
   'id' => 'icon',
   'type' => 'icon_selector',
   'default' => '0xe95d',
-  'items' => array_merge(
-    AppbearItems::icon_fonts()
-
-    // NOTE: Uncomment to allow font-awesome icons
-    // , AppbearItems::icons()
-  ),
+  'items' => AppbearItems::icon_fonts(),
+  'only' => AppbearItems::SOCIAL_ICONS_SUBSET,
   'options' => array(
     'wrap_height' => '220px',
     'size' => '36px',

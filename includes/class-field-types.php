@@ -314,8 +314,25 @@ class FieldTypes {
     */
     public function icon_selector( $type = '' ) {
       $items = $this->field->arg( 'items' );
+      $subset = $this->field->arg( 'only' );
       $options = $this->field->arg( 'options' );
       $value = $this->field->get_value();
+
+      if ( is_array($items) === false ) {
+        $items = array();
+      }
+
+      if ( is_array($subset) === true && count($subset) > 0 ) {
+        foreach ( $items as $key => $item ) {
+          if (substr($key, 0, 2) === 'fa') {
+            $key = end(explode(' ', $key));
+          }
+
+          if (in_array($key, $subset, true) === false) {
+            unset($items[$key]);
+          }
+        }
+      }
 
       $return = '';
       $return .= $this->build_input( 'hidden' );
