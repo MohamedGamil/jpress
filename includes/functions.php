@@ -54,7 +54,7 @@ function appbear_get_read_time() {
 
 
 /**
- * Camelcase to Dashes
+ * Convert Camelcase to Dashes
  *
  * @param string $str
  * @return string

@@ -1,10 +1,9 @@
 <?php
 /**
- * Font Awesome 4.7 icons array
+ * Font Awesome 5.6 icons array
  * http://fontawesome.io/cheatsheet/
  *
- * @version 4.7.0
- * @date 14.11.2016.
+ * @version 5.6.0
  */
 
 return array(

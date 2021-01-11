@@ -113,65 +113,72 @@ class AssetsLoader {
     |---------------------------------------------------------------------------------------------------
     */
     private static function load_styles(){
-        if( self::$css_loaded ){
-            return;
-        }
+      if ( self::$css_loaded ) {
+        return;
+      }
 
-        wp_register_style( 'appbear-sui-icon', APPBEAR_URL . 'libs/semantic-ui/components/icon.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-sui-icon' );
+      wp_register_style( 'appbear-sui-icon', APPBEAR_URL . 'libs/semantic-ui/components/icon.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-sui-icon' );
 
-        wp_register_style( 'appbear-sui-flag', APPBEAR_URL . 'libs/semantic-ui/components/flag.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-sui-flag' );
+      wp_register_style( 'appbear-sui-flag', APPBEAR_URL . 'libs/semantic-ui/components/flag.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-sui-flag' );
 
-        wp_register_style( 'appbear-sui-dropdown', APPBEAR_URL . 'libs/semantic-ui/components/dropdown.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-sui-dropdown' );
+      wp_register_style( 'appbear-sui-dropdown', APPBEAR_URL . 'libs/semantic-ui/components/dropdown.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-sui-dropdown' );
 
-        wp_register_style( 'appbear-sui-transition', APPBEAR_URL . 'libs/semantic-ui/components/transition.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-sui-transition' );
+      wp_register_style( 'appbear-sui-transition', APPBEAR_URL . 'libs/semantic-ui/components/transition.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-sui-transition' );
 
-        wp_register_style( 'appbear-sui-menu', APPBEAR_URL . 'libs/semantic-ui/components/menu.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-sui-menu' );
+      wp_register_style( 'appbear-sui-menu', APPBEAR_URL . 'libs/semantic-ui/components/menu.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-sui-menu' );
 
-        wp_register_style( 'appbear-tipso', APPBEAR_URL . 'libs/tipso/tipso.min.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-tipso' );
+      wp_register_style( 'appbear-tipso', APPBEAR_URL . 'libs/tipso/tipso.min.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-tipso' );
 
-        wp_register_style( 'appbear-switcher', APPBEAR_URL . 'libs/appbear-switcher/appbear-switcher.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-switcher' );
+      wp_register_style( 'appbear-switcher', APPBEAR_URL . 'libs/appbear-switcher/appbear-switcher.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-switcher' );
 
-        wp_register_style( 'appbear-radiocheckbox', APPBEAR_URL . 'libs/icheck/skins/flat/_all.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-radiocheckbox' );
+      wp_register_style( 'appbear-radiocheckbox', APPBEAR_URL . 'libs/icheck/skins/flat/_all.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-radiocheckbox' );
 
-        //tagsinput style
-        wp_register_style( 'tagsinput', APPBEAR_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput.css', array(), self::$version );
-        wp_enqueue_style( 'tagsinput' );
+      //tagsinput style
+      wp_register_style( 'tagsinput', APPBEAR_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput.css', array(), self::$version );
+      wp_enqueue_style( 'tagsinput' );
 
-        wp_register_style( 'tagsinput-typeahead', APPBEAR_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css', array(), self::$version );
-        wp_enqueue_style( 'tagsinput-typeahead' );
+      wp_register_style( 'tagsinput-typeahead', APPBEAR_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css', array(), self::$version );
+      wp_enqueue_style( 'tagsinput-typeahead' );
 
+      //Main styles
+      wp_register_style( 'appbear-icons', APPBEAR_URL . 'css/appbear-icons.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-icons' );
 
-        //Main styles
-        wp_register_style( 'appbear-icons', APPBEAR_URL . 'css/appbear-icons.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-icons' );
+      // FontAwesome
+      switch(true) {
+        // case Functions::is_fontawesome_version( '5.15.1' ) === true:
+          // wp_register_style( 'appbear-font-awesome', APPBEAR_URL . 'css/font-awesome-5.6.3.css', array(), self::$version );
+          // break;
+        case Functions::is_fontawesome_version( '5.x' ) === true:
+            wp_register_style( 'appbear-font-awesome', APPBEAR_URL . 'css/fa-5.15.1.css', array(), self::$version );
+          break;
+        default:
+          wp_register_style( 'appbear-font-awesome', APPBEAR_URL . 'css/font-awesome.css', array(), self::$version );
+          break;
+      }
 
-        if( Functions::is_fontawesome_version( '5.x' ) ){
-            wp_register_style( 'appbear-font-awesome', APPBEAR_URL . 'css/font-awesome-5.6.3.css', array(), self::$version );
-        } else{
-            wp_register_style( 'appbear-font-awesome', APPBEAR_URL . 'css/font-awesome.css', array(), self::$version );
-        }
-        wp_enqueue_style( 'appbear-font-awesome' );
+      wp_enqueue_style( 'appbear-font-awesome' );
 
-        wp_register_style( 'appbear-font-spotlayer', APPBEAR_URL . 'css/font-spotlayer.css', array(), self::$version );
-        wp_enqueue_style( 'appbear-font-spotlayer' );
+      wp_register_style( 'appbear-font-spotlayer', APPBEAR_URL . 'css/font-spotlayer.css', array(), self::$version );
+      wp_enqueue_style( 'appbear-font-spotlayer' );
 
-        if(is_rtl()){
-            wp_register_style( 'appbear-rtl', APPBEAR_URL . 'css/appbear-rtl.css', array(), self::$version );
-            wp_enqueue_style( 'appbear-rtl' );
-        }else{
-            wp_register_style( 'appbear', APPBEAR_URL . 'css/appbear.css', array(), self::$version );
-            wp_enqueue_style( 'appbear' );
-        }
+      if(is_rtl()){
+          wp_register_style( 'appbear-rtl', APPBEAR_URL . 'css/appbear-rtl.css', array(), self::$version );
+          wp_enqueue_style( 'appbear-rtl' );
+      }else{
+          wp_register_style( 'appbear', APPBEAR_URL . 'css/appbear.css', array(), self::$version );
+          wp_enqueue_style( 'appbear' );
+      }
 
-        self::$css_loaded = true;
+      self::$css_loaded = true;
     }
 
     /*

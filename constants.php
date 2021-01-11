@@ -75,7 +75,7 @@ define( 'APPBEAR_FC_FILE', APPBEAR_DIR . 'appbear.php' );
 /**
  * AppBear FontAwesome Version.
  */
-defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '4.x');
+defined('APPBEAR_FONTAWESOME_VERSION') OR define('APPBEAR_FONTAWESOME_VERSION', '5.15.1');
 
 
 /**
