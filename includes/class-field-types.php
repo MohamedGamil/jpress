@@ -2,6 +2,8 @@
 
 namespace Appbear\Includes;
 
+use AppbearItems;
+
 class FieldTypes {
     protected $field = null;
 
@@ -314,8 +316,44 @@ class FieldTypes {
     */
     public function icon_selector( $type = '' ) {
       $items = $this->field->arg( 'items' );
+      $subset = $this->field->arg( 'only' );
       $options = $this->field->arg( 'options' );
       $value = $this->field->get_value();
+
+      if ( is_array($items) === false ) {
+        $items = array();
+      }
+
+      $items1 = $items;
+
+      if ( is_array($subset) === true && count($subset) > 0 ) {
+        foreach ( $items as $key => $item ) {
+          if (substr($key, 0, 2) === 'fa') {
+            $key = end(explode(' ', $key));
+          }
+
+          $found = false;
+
+          foreach ( $subset as $itemKey ) {
+            if ( $key === $itemKey ) {
+              $found = true;
+              break;
+            }
+          }
+
+          // NOTE: DEBUG
+          // if ($found && $key[0] != '0' && !in_array($key, AppbearItems::SOCIAL_ICONS_SUBSET))
+          // dd($key, $found);
+
+          if ($found === false) {
+            unset($items[$key]);
+          }
+        }
+
+        // dd($items);
+        // dd(array_diff($items1, $items));
+      }
+
 
       $return = '';
       $return .= $this->build_input( 'hidden' );
