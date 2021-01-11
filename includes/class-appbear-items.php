@@ -339,9 +339,6 @@ class AppbearItems {
       switch(true) {
         case Functions::is_fontawesome_version( '5.x' ) === true:
           $icons = include APPBEAR_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
-          // case Functions::is_fontawesome_version( '5.15.1' ) === true:
-          // break;
-          // $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
           break;
       }
 
