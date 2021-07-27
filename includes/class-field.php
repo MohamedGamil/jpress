@@ -268,7 +268,7 @@ class Field {
 					'default_type' => 'default',
 					'readonly_name' => true,//Determines whether the control input will be editable. Default: true
 					'images' => false,
-					'default_image' => JPRESS_URL.'/img/transparent.png',
+					'default_image' => JPRESS_URL . 'assets/img/transparent.png',
 					'image_field_id' => '',
 					'position' => 'top',//top, left
 					'width' => '',

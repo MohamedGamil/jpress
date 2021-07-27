@@ -43,41 +43,41 @@ class AssetsLoader {
 
 
         //Libs
-        // wp_register_script( 'jpress-spinner', JPRESS_URL .'libs/spinner/spinner.min.js', array(), self::$version );
+        // wp_register_script( 'jpress-spinner', JPRESS_URL . 'assets/libs/spinner/spinner.min.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-spinner' );
 
-        // wp_register_script( 'jpress-colorpicker', JPRESS_URL .'libs/tinyColorPicker/jqColorPicker.min.js', array(), self::$version );
+        // wp_register_script( 'jpress-colorpicker', JPRESS_URL . 'assets/libs/tinyColorPicker/jqColorPicker.min.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-colorpicker' );
 
-        wp_register_script( 'jpress-radiocheckbox', JPRESS_URL . 'libs/icheck/icheck.min.js', array(), self::$version );
+        wp_register_script( 'jpress-radiocheckbox', JPRESS_URL . 'assets/libs/icheck/icheck.min.js', array(), self::$version );
         wp_enqueue_script( 'jpress-radiocheckbox' );
 
-        // wp_register_script( 'jpress-sui-dropdown', JPRESS_URL .'libs/semantic-ui/components/dropdown.min.js', array(), self::$version );
+        // wp_register_script( 'jpress-sui-dropdown', JPRESS_URL . 'assets/libs/semantic-ui/components/dropdown.min.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-sui-dropdown' );
 
-        // wp_register_script( 'jpress-sui-transition', JPRESS_URL .'libs/semantic-ui/components/transition.min.js', array(), self::$version );
+        // wp_register_script( 'jpress-sui-transition', JPRESS_URL . 'assets/libs/semantic-ui/components/transition.min.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-sui-transition' );
 
-        // wp_register_script( 'jpress-tipso', JPRESS_URL .'libs/tipso/tipso.min.js', array(), self::$version );
+        // wp_register_script( 'jpress-tipso', JPRESS_URL . 'assets/libs/tipso/tipso.min.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-tipso' );
 
-        wp_register_script( 'jpress-ace-editor', JPRESS_URL . 'libs/ace/ace.js', array(), self::$version );
+        wp_register_script( 'jpress-ace-editor', JPRESS_URL . 'assets/libs/ace/ace.js', array(), self::$version );
         wp_enqueue_script( 'jpress-ace-editor' );
 
-        // wp_register_script( 'jpress-switcher', JPRESS_URL .'libs/jpress-switcher/jpress-switcher.js', array(), self::$version );
+        // wp_register_script( 'jpress-switcher', JPRESS_URL . 'assets/libs/jpress-switcher/jpress-switcher.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-switcher' );
 
-        // wp_register_script( 'jpress-img-selector', JPRESS_URL .'libs/jpress-image-selector/jpress-image-selector.js', array(), self::$version );
+        // wp_register_script( 'jpress-img-selector', JPRESS_URL . 'assets/libs/jpress-image-selector/jpress-image-selector.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-img-selector' );
 
-        // wp_register_script( 'jpress-tab', JPRESS_URL .'libs/jpress-tabs/jpress-tabs.js', array(), self::$version );
+        // wp_register_script( 'jpress-tab', JPRESS_URL . 'assets/libs/jpress-tabs/jpress-tabs.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-tab' );
 
-        // wp_register_script( 'jpress-confirm', JPRESS_URL .'libs/jpress-confirm/jpress-confirm.js', array(), self::$version );
+        // wp_register_script( 'jpress-confirm', JPRESS_URL . 'assets/libs/jpress-confirm/jpress-confirm.js', array(), self::$version );
         // wp_enqueue_script( 'jpress-confirm' );
 
         //tagsinput script
-        wp_register_script( 'tagsinput', JPRESS_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js', array( 'jquery' ) );
+        wp_register_script( 'tagsinput', JPRESS_URL . 'assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'tagsinput' );
 
         //Wordpress scripts
@@ -89,17 +89,17 @@ class AssetsLoader {
         }
 
         //deep linking
-        wp_register_script( 'browser-deeplink', JPRESS_URL . 'js/browser-deeplink.js', array( 'jquery' ) );
+        wp_register_script( 'browser-deeplink', JPRESS_URL . 'assets/js/browser-deeplink.js', array( 'jquery' ) );
         wp_enqueue_script( 'browser-deeplink' );
 
         //JPress scripts
-        wp_register_script( 'jpress-libs', JPRESS_URL . 'js/jpress-libs.min.js', array( 'jquery' ) );
+        wp_register_script( 'jpress-libs', JPRESS_URL . 'assets/js/jpress-libs.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jpress-libs' );
 
-        wp_register_script( 'jpress', JPRESS_URL . 'js/jpress.js', $deps_scripts );
+        wp_register_script( 'jpress', JPRESS_URL . 'assets/js/jpress.js', $deps_scripts );
         wp_enqueue_script( 'jpress' );
 
-        wp_register_script( 'jpress-events', JPRESS_URL . 'js/jpress-events.js', $deps_scripts );
+        wp_register_script( 'jpress-events', JPRESS_URL . 'assets/js/jpress-events.js', $deps_scripts );
         wp_enqueue_script( 'jpress-events' );
 
         wp_localize_script( 'jpress', 'JPRESS_JS', self::localization() );
@@ -117,64 +117,64 @@ class AssetsLoader {
         return;
       }
 
-      wp_register_style( 'jpress-sui-icon', JPRESS_URL . 'libs/semantic-ui/components/icon.min.css', array(), self::$version );
+      wp_register_style( 'jpress-sui-icon', JPRESS_URL . 'assets/libs/semantic-ui/components/icon.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-sui-icon' );
 
-      wp_register_style( 'jpress-sui-flag', JPRESS_URL . 'libs/semantic-ui/components/flag.min.css', array(), self::$version );
+      wp_register_style( 'jpress-sui-flag', JPRESS_URL . 'assets/libs/semantic-ui/components/flag.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-sui-flag' );
 
-      wp_register_style( 'jpress-sui-dropdown', JPRESS_URL . 'libs/semantic-ui/components/dropdown.min.css', array(), self::$version );
+      wp_register_style( 'jpress-sui-dropdown', JPRESS_URL . 'assets/libs/semantic-ui/components/dropdown.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-sui-dropdown' );
 
-      wp_register_style( 'jpress-sui-transition', JPRESS_URL . 'libs/semantic-ui/components/transition.min.css', array(), self::$version );
+      wp_register_style( 'jpress-sui-transition', JPRESS_URL . 'assets/libs/semantic-ui/components/transition.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-sui-transition' );
 
-      wp_register_style( 'jpress-sui-menu', JPRESS_URL . 'libs/semantic-ui/components/menu.min.css', array(), self::$version );
+      wp_register_style( 'jpress-sui-menu', JPRESS_URL . 'assets/libs/semantic-ui/components/menu.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-sui-menu' );
 
-      wp_register_style( 'jpress-tipso', JPRESS_URL . 'libs/tipso/tipso.min.css', array(), self::$version );
+      wp_register_style( 'jpress-tipso', JPRESS_URL . 'assets/libs/tipso/tipso.min.css', array(), self::$version );
       wp_enqueue_style( 'jpress-tipso' );
 
-      wp_register_style( 'jpress-switcher', JPRESS_URL . 'libs/jpress-switcher/jpress-switcher.css', array(), self::$version );
+      wp_register_style( 'jpress-switcher', JPRESS_URL . 'assets/libs/jpress-switcher/jpress-switcher.css', array(), self::$version );
       wp_enqueue_style( 'jpress-switcher' );
 
-      wp_register_style( 'jpress-radiocheckbox', JPRESS_URL . 'libs/icheck/skins/flat/_all.css', array(), self::$version );
+      wp_register_style( 'jpress-radiocheckbox', JPRESS_URL . 'assets/libs/icheck/skins/flat/_all.css', array(), self::$version );
       wp_enqueue_style( 'jpress-radiocheckbox' );
 
       //tagsinput style
-      wp_register_style( 'tagsinput', JPRESS_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput.css', array(), self::$version );
+      wp_register_style( 'tagsinput', JPRESS_URL . 'assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css', array(), self::$version );
       wp_enqueue_style( 'tagsinput' );
 
-      wp_register_style( 'tagsinput-typeahead', JPRESS_URL .'libs/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css', array(), self::$version );
+      wp_register_style( 'tagsinput-typeahead', JPRESS_URL . 'assets/libs/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css', array(), self::$version );
       wp_enqueue_style( 'tagsinput-typeahead' );
 
       //Main styles
-      wp_register_style( 'jpress-icons', JPRESS_URL . 'css/jpress-icons.css', array(), self::$version );
+      wp_register_style( 'jpress-icons', JPRESS_URL . 'assets/css/jpress-icons.css', array(), self::$version );
       wp_enqueue_style( 'jpress-icons' );
 
       // FontAwesome
       switch(true) {
         // case Functions::is_fontawesome_version( '5.15.1' ) === true:
-          // wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'css/font-awesome-5.6.3.css', array(), self::$version );
+          // wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'assets/css/font-awesome-5.6.3.css', array(), self::$version );
           // break;
         case Functions::is_fontawesome_version( '5.x' ) === true:
-            wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'css/fa-5.15.1.css', array(), self::$version );
+            wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'assets/css/fa-5.15.1.css', array(), self::$version );
           break;
         default:
-          wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'css/font-awesome.css', array(), self::$version );
+          wp_register_style( 'jpress-font-awesome', JPRESS_URL . 'assets/css/font-awesome.css', array(), self::$version );
           break;
       }
 
       wp_enqueue_style( 'jpress-font-awesome' );
 
-      wp_register_style( 'jpress-font-spotlayer', JPRESS_URL . 'css/font-spotlayer.css', array(), self::$version );
+      wp_register_style( 'jpress-font-spotlayer', JPRESS_URL . 'assets/css/font-spotlayer.css', array(), self::$version );
       wp_enqueue_style( 'jpress-font-spotlayer' );
 
       if(is_rtl()){
-          wp_register_style( 'jpress-rtl', JPRESS_URL . 'css/jpress-rtl.css', array(), self::$version );
+          wp_register_style( 'jpress-rtl', JPRESS_URL . 'assets/css/jpress-rtl.css', array(), self::$version );
           wp_enqueue_style( 'jpress-rtl' );
       }else{
-          wp_register_style( 'jpress', JPRESS_URL . 'css/jpress.css', array(), self::$version );
+          wp_register_style( 'jpress', JPRESS_URL . 'assets/css/jpress.css', array(), self::$version );
           wp_enqueue_style( 'jpress' );
       }
 

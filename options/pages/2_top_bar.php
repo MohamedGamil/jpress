@@ -17,13 +17,13 @@ $settings->add_field(array(
   'name' => __('Logo (Light)', 'textdomain' ),
   'id' => 'logo-light',
   'type' => 'file',
-  'default' => JPRESS_URL .'img/jannah-logo-light.png',
+  'default' => JPRESS_URL . 'assets/img/jannah-logo-light.png',
 ));
 $settings->add_field(array(
   'name' => __('Logo (Dark)', 'textdomain' ),
   'id' => 'logo-dark',
   'type' => 'file',
-  'default' => JPRESS_URL .'img/jannah-logo-dark.png',
+  'default' => JPRESS_URL . 'assets/img/jannah-logo-dark.png',
   'options' => array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   ),

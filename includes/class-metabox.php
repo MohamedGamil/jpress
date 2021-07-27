@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace JPress\Includes;
 
@@ -19,7 +19,7 @@ class Metabox extends JPressCore {
             'priority' => 'high',
             'post_types' => 'post',
             'closed' => false,
-        ) );
+        ));
 
         $this->object_type = 'metabox';
         $this->set_object_id();

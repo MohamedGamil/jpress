@@ -6,9 +6,9 @@ $jpress->add_import_field(array(
   'default' => 'demo-key-2',
   'desc' => 'Choose a demo, then click import button',
   'items' => array(
-    'demo-key-1' => JPRESS_URL.'example/img/demo1.png',
-    'demo-key-2' => JPRESS_URL.'example/img/demo2.png',
-    'demo-key-3' => JPRESS_URL.'example/img/demo3.png'
+    'demo-key-1' => JPRESS_URL . 'example/img/demo1.png',
+    'demo-key-2' => JPRESS_URL . 'example/img/demo2.png',
+    'demo-key-3' => JPRESS_URL . 'example/img/demo3.png'
   ),
   'items_desc' => array(
     'demo-key-1' => array(

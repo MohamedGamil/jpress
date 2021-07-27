@@ -404,7 +404,7 @@ $section = $homepage->add_group( array(
     'readonly_name' => false,
     'images' => true,
     'position' => 'left',
-    'default_image' => JPRESS_URL . '/img/transparent.png',
+    'default_image' => JPRESS_URL . 'assets/img/transparent.png',
     'image_field_id' => 'postlayout',
     'height' => '190px',
   ),
