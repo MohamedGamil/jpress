@@ -43,7 +43,7 @@ $slides = $section_header_2->add_group( array(
   'name' =>  __('Slide', 'textdomain').' #',
   'readonly_name' => false,
   'images' => true,
-  'default_image' => APPBEAR_URL . '/img/transparent.png',
+  'default_image' => JPRESS_URL . '/img/transparent.png',
   'image_field_id' => 'image',
   'height' => '190px',
   ),

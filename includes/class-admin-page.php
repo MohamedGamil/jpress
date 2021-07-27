@@ -6,10 +6,10 @@ use Appbear\Includes\AppbearAPI;
 
 
 /**
- * AppBear Admin Page
+ * JPress Admin Page
  */
 class AdminPage extends AppbearCore {
-  const OPTIONS_FILTERS_DIR = APPBEAR_INCLUDES_DIR . 'pipes' . DIRECTORY_SEPARATOR;
+  const OPTIONS_FILTERS_DIR = JPRESS_INCLUDES_DIR . 'pipes' . DIRECTORY_SEPARATOR;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
   /**
@@ -24,9 +24,9 @@ class AdminPage extends AppbearCore {
 
 		$this->args = wp_parse_args( $args, array(
 			'id' => '',
-			'title' => __( 'Admin Page', 'appbear' ),
+			'title' => __( 'Admin Page', 'jpress' ),
 			'menu_side_title' => false,
-			'menu_title' => __( 'Appbear Page', 'appbear' ),
+			'menu_title' => __( 'Appbear Page', 'jpress' ),
 			'parent' => false,
 			'capability' => 'manage_options',
 			'position' => null,
@@ -66,8 +66,8 @@ class AdminPage extends AppbearCore {
 	private function hooks() {
 		add_action( 'admin_init', array( $this, 'init' ) );
 		add_action( 'admin_menu', array( $this, 'add_admin_page' ), 101 );//101 para que se agrege después de otros items
-		add_action( "admin_action_appbear_process_form_{$this->object_id}", array( $this, 'admin_action_appbear_process_form' ), 10 );
-		add_action( "appbear_after_save_fields_admin-page_{$this->object_id}", array( $this, 'after_save_fields' ), 10, 3 );
+		add_action( "admin_action_jpress_process_form_{$this->object_id}", array( $this, 'admin_action_jpress_process_form' ), 10 );
+		add_action( "jpress_after_save_fields_admin-page_{$this->object_id}", array( $this, 'after_save_fields' ), 10, 3 );
 	}
 
 	/*
@@ -131,10 +131,10 @@ class AdminPage extends AppbearCore {
 			settings_errors( $this->settings_notice_key() );
 		}
 
-		$display .= "<div class='wrap appbear-wrap-admin-page'>";
+		$display .= "<div class='wrap jpress-wrap-admin-page'>";
 		if ( ! empty( $this->args['title'] ) && empty( $this->args['header'] ) ) {
-			$display .= "<h1 class='appbear-admin-page-title'>";
-			$display .= "<i class='appbear-icon appbear-icon-cog'></i>";
+			$display .= "<h1 class='jpress-admin-page-title'>";
+			$display .= "<i class='jpress-icon jpress-icon-cog'></i>";
 			$display .= esc_html( get_admin_page_title() );
 			$display .= "</h1>";
 		}
@@ -153,13 +153,13 @@ class AdminPage extends AppbearCore {
 		$args = wp_parse_args( $form_options, $this->arg( 'form_options' ) );
 
 		//Form action
-		$args['action'] = "admin.php?action=appbear_process_form_{$this->object_id}";
+		$args['action'] = "admin.php?action=jpress_process_form_{$this->object_id}";
 
 		$form .= $args['insert_before'];
-		$form .= "<form id='{$args['id']}' class='appbear-form' action='{$args['action']}' method='{$args['method']}' enctype='multipart/form-data'>";
+		$form .= "<form id='{$args['id']}' class='jpress-form' action='{$args['action']}' method='{$args['method']}' enctype='multipart/form-data'>";
 		$form .= wp_referer_field( false );
-		$form .= "<input type='hidden' name='appbear_id' value='{$this->object_id}'>";
-		$form .= $this->build_appbear( $this->get_object_id(), false );
+		$form .= "<input type='hidden' name='jpress_id' value='{$this->object_id}'>";
+		$form .= $this->build_jpress( $this->get_object_id(), false );
 		if ( empty( $this->args['header'] ) ) {
 			$form .= $this->get_form_buttons( $args );
 		}
@@ -220,7 +220,7 @@ class AdminPage extends AppbearCore {
 	| Save Options
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function admin_action_appbear_process_form() {
+	public function admin_action_jpress_process_form() {
 		if ( $this->can_save_form() ) {
 			$this->save_fields( $this->get_object_id(), $_POST );
 		}
@@ -242,7 +242,7 @@ class AdminPage extends AppbearCore {
 		$args = $this->arg( 'form_options' );
 		$save_button = $args['save_button_name'];
 
-		if ( ! isset( $_POST[$save_button] ) && ! isset( $_POST['appbear-reset'] ) && ! isset( $_POST['appbear-import'] ) ) {
+		if ( ! isset( $_POST[$save_button] ) && ! isset( $_POST['jpress-reset'] ) && ! isset( $_POST['jpress-import'] ) ) {
 			return false;
 		}
 
@@ -264,7 +264,7 @@ class AdminPage extends AppbearCore {
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function redefine_options($k) {
-		$remove =   array('_wp_http_referer','appbear_id','appbear_nonce_appbear-settings','appbear-save','appbear-import-field');
+		$remove =   array('_wp_http_referer','jpress_id','jpress_nonce_jpress-settings','jpress-save','jpress-import-field');
 
     if (is_array($k)) {
 			foreach($k as $key => $value) {
@@ -301,7 +301,7 @@ class AdminPage extends AppbearCore {
 		}
 
 		//Para evitar error cuando se está guardando campos automáticamente al activar un plugin o tema
-    //$appbear->save_fields(0, array( 'display_message_on_save' => false ));
+    //$jpress->save_fields(0, array( 'display_message_on_save' => false ));
 
 		if ( isset( $data['display_message_on_save'] ) && $data['display_message_on_save'] == false ) {
 			return;
@@ -322,9 +322,9 @@ class AdminPage extends AppbearCore {
 		}
 
 		// NOTE: Add settings error
-		if ( isset( $data[APPBEAR_LICENSE_KEY_OPTION] ) ) {
-      $updated = $this->_updateLicenseKey( $data[APPBEAR_LICENSE_KEY_OPTION] ) === true;
-      $settingsURL = admin_url('admin.php?page=appbear-settings');
+		if ( isset( $data[JPRESS_LICENSE_KEY_OPTION] ) ) {
+      $updated = $this->_updateLicenseKey( $data[JPRESS_LICENSE_KEY_OPTION] ) === true;
+      $settingsURL = admin_url('admin.php?page=jpress-settings');
 
       if ( $updated && static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL ) ) {
         exit;
@@ -339,10 +339,10 @@ class AdminPage extends AppbearCore {
       $updatedClass = 'updated';
 
       // NOTE: Apply default demo data if doing a reset with a hard reset to default options
-      if (isset($data['appbear-reset']) && $data['appbear-reset'] === 'true') {
-        appbear_seed_default_demo(true);
+      if (isset($data['jpress-reset']) && $data['jpress-reset'] === 'true') {
+        jpress_seed_default_demo(true);
 
-        $opts = appbear_get_option('%ALL%');
+        $opts = jpress_get_option('%ALL%');
         $data = array_merge( $opts, $data );
       }
 
@@ -363,7 +363,7 @@ class AdminPage extends AppbearCore {
       include static::OPTIONS_FILTERS_DIR . '14_typography.php';
 
       if (isset($options['lang']) === true) {
-        update_option( 'appbear_default_lang', $options['lang'] );
+        update_option( 'jpress_default_lang', $options['lang'] );
       }
 
       // Omit empty values / arrays
@@ -373,10 +373,10 @@ class AdminPage extends AppbearCore {
       $response = AppbearAPI::save_settings($options);
 
       $options['baseUrl'] = trailingslashit(get_home_url());
-      $options['copyrights'] = APPBEAR_COPYRIGHTS_URL;
+      $options['copyrights'] = JPRESS_COPYRIGHTS_URL;
       $options['validConfig'] = 'true';
 
-      update_option( 'appbear-options', $options );
+      update_option( 'jpress-options', $options );
 
       // Parse response then update deeplinking options
       $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -389,13 +389,13 @@ class AdminPage extends AppbearCore {
         $this->_updateDeeplinkingOptions( $responseObject );
 
         if ( isset($responseObject['version']) && $newVersion = (int) $responseObject['version'] ) {
-          update_option( 'appbear-version', $newVersion, false );
+          update_option( 'jpress-version', $newVersion, false );
         }
       }
 
       // NOTE: Reset & invalidate license key / status
       else {
-        appbear_invalidate_license(true);
+        jpress_invalidate_license(true);
         $updated = false;
       }
 
@@ -441,7 +441,7 @@ class AdminPage extends AppbearCore {
    * @return boolean
    */
   private function _updateLicenseKey( $licenseKey ) {
-    update_option( APPBEAR_LICENSE_KEY_OPTION, $licenseKey, false );
+    update_option( JPRESS_LICENSE_KEY_OPTION, $licenseKey, false );
 
     // NOTE: Why re-fetch key if we can just use "$licenseKey"?
     $license = $this->_getLicenseKey();
@@ -491,7 +491,7 @@ class AdminPage extends AppbearCore {
             break;
 
           case 'item_name_mismatch' :
-            $message = sprintf( __( 'This appears to be an invalid license key for %s.' ), APPBEAR_ITEM_NAME );
+            $message = sprintf( __( 'This appears to be an invalid license key for %s.' ), JPRESS_ITEM_NAME );
             break;
 
           case 'no_activations_left':
@@ -509,13 +509,13 @@ class AdminPage extends AppbearCore {
 
     // Check if anything passed on a message constituting a failure
     if ( ! empty( $message ) ) {
-      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $license_data->error, false );
+      update_option( JPRESS_LICENSE_STATUS_KEY_OPTION, $license_data->error, false );
 
       add_settings_error( $this->settings_notice_key(), $this->id, $message, 'error' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
     }
     else {
-      update_option( APPBEAR_LICENSE_STATUS_KEY_OPTION, $license_data->license, false );
+      update_option( JPRESS_LICENSE_STATUS_KEY_OPTION, $license_data->license, false );
       add_settings_error( $this->settings_notice_key(), $this->id, $this->arg( 'saved_message' ) . ', ' . __('Your license has been activated successfully'), 'updated' );
       set_transient( 'settings_errors', get_settings_errors(), 30 );
     }
@@ -538,13 +538,13 @@ class AdminPage extends AppbearCore {
       'android_bundle' => isset($options['android_bundle']) ? $options['android_bundle'] : '',
     );
 
-    update_option( APPBEAR_DEEPLINKING_OPTION, $deeplinkingOpts, false );
+    update_option( JPRESS_DEEPLINKING_OPTION, $deeplinkingOpts, false );
   }
 
   /*
    * Get license key
    */
   private function _getLicenseKey() {
-    return appbear_get_license_key();
+    return jpress_get_license_key();
   }
 }

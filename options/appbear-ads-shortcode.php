@@ -4,15 +4,15 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 /**
- * AppBear_Ads_Shortcode Class
+ * JPress_Ads_Shortcode Class
  *
  * This class handles categories fields implementation
  *
  *
  * @since 0.2.2
  */
-class AppBear_Ads_Shortcode {
-  const SHORTCODE_NAME = 'appbear_ad';
+class JPress_Ads_Shortcode {
+  const SHORTCODE_NAME = 'jpress_ad';
   const ALLOWED_AD_TYPES = [ 'adMob', 'htmlAd', 'imageAd' ];
   const AD_TYPES_FRIENDLY_NAMES = [
     'adMob' => [ 'admob', 'ad' ],
@@ -45,7 +45,7 @@ class AppBear_Ads_Shortcode {
       return;
     }
 
-    static::$_localInstance = new AppBear_Ads_Shortcode();
+    static::$_localInstance = new JPress_Ads_Shortcode();
     static::$_didInit = true;
   }
 
@@ -64,7 +64,7 @@ class AppBear_Ads_Shortcode {
       return;
     }
 
-    add_shortcode( static::SHORTCODE_NAME, array ( $this, 'appbear_ad_shortcode' ) );
+    add_shortcode( static::SHORTCODE_NAME, array ( $this, 'jpress_ad_shortcode' ) );
     add_filter( 'the_content', array( $this, 'article_inline_ad' ) );
   }
 
@@ -76,7 +76,7 @@ class AppBear_Ads_Shortcode {
    */
   public function article_inline_ad( $content ) {
     if ( ( is_singular('post') || $this->_isRestful() ) && ! is_admin() ) {
-      $inPostAds = appbear_get_ads_in_post_options();
+      $inPostAds = jpress_get_ads_in_post_options();
 
       if ($inPostAds->enabled === false) {
         return $content;
@@ -84,7 +84,7 @@ class AppBear_Ads_Shortcode {
 
       $delimiter = static::PARAGRAPH_DELIMITER;
       $paragraphs = explode($delimiter, $content);
-      $adCode = $this->appbear_ad_shortcode((array) $inPostAds);
+      $adCode = $this->jpress_ad_shortcode((array) $inPostAds);
 
       foreach ( $paragraphs as $index => $paragraph ){
         if ( trim( $paragraph ) ) {
@@ -103,13 +103,13 @@ class AppBear_Ads_Shortcode {
   }
 
   /**
-   * Render AppBear Ads Shortcode
+   * Render JPress Ads Shortcode
    *
    * @param array $attributes
    * @param string $content
    * @return string
    */
-  public function appbear_ad_shortcode( $attributes, $content = null ) {
+  public function jpress_ad_shortcode( $attributes, $content = null ) {
     $attributes = shortcode_atts( array(
       'type' => 'adMob',
       'size' => 'banner',
@@ -130,7 +130,7 @@ class AppBear_Ads_Shortcode {
     // NOTE: Debug line..
     // dd($attributes);
 
-    return appbear_get_template('shortcodes/ads', $attributes);
+    return jpress_get_template('shortcodes/ads', $attributes);
   }
 
   /**

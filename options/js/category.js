@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
-    var image_path = $(".appbear-img-path");
+    var image_path = $(".jpress-img-path");
     image_path.each(function(){
-        appbear_image_uploader_trigger( jQuery(this) );
+        jpress_image_uploader_trigger( jQuery(this) );
     });
 });
 
@@ -11,13 +11,13 @@ jQuery(document).ready(function($){
         wp.ajax.post( "delete_category_image", {id : jQuery('#ajaxtestdel_postid').val()} ).done(function(response) {
             $img.fadeOut( 'fast',function() {
                 $img.hide();
-                $img.closest('.option-item').find('.appbear-img-path').attr( 'value', '' );
+                $img.closest('.option-item').find('.jpress-img-path').attr( 'value', '' );
             });
         });
     });
 });
 
-function appbear_image_uploader_trigger( $thisElement ){
+function jpress_image_uploader_trigger( $thisElement ){
 
 var thisElementID      = $thisElement.attr('id').replace('#',''),
         $thisElementParent = $thisElement.closest('.option-item'),
@@ -34,26 +34,26 @@ if( $thisElement.hasClass('tie-background-path') ){
     uploaderTypeStyles = true;
 }
 
-appbear_set_uploader( thisElementID, uploaderTypeStyles );
+jpress_set_uploader( thisElementID, uploaderTypeStyles );
 }
 
 
 
-function appbear_set_uploader( field, styling ) {
-    var appbear_bg_uploader;
+function jpress_set_uploader( field, styling ) {
+    var jpress_bg_uploader;
 
      jQuery(document).on('click', '#upload_'+field+'_button', function( event ){
 
     event.preventDefault();
-    appbear_bg_uploader = wp.media.frames.appbear_bg_uploader = wp.media({
+    jpress_bg_uploader = wp.media.frames.jpress_bg_uploader = wp.media({
         title: 'Choose Image',
         library: {type: 'image' },
         button: {text: 'Select'},
         multiple: false
     });
 
-    appbear_bg_uploader.on( 'select', function() {
-        var selection = appbear_bg_uploader.state().get('selection');
+    jpress_bg_uploader.on( 'select', function() {
+        var selection = jpress_bg_uploader.state().get('selection');
         selection.map( function( attachment ) {
 
             attachment = attachment.toJSON();
@@ -77,6 +77,6 @@ function appbear_set_uploader( field, styling ) {
         });
     });
 
-    appbear_bg_uploader.open();
+    jpress_bg_uploader.open();
     });
 }

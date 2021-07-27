@@ -3,11 +3,11 @@
 /**
  * Fired during plugin activation
  *
- * @link       http://appbear.io
+ * @link       http://jpress.io
  * @since      0.0.2
  *
- * @package    App_Bear
- * @subpackage App_Bear/includes
+ * @package    JPress
+ * @subpackage JPress/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      0.0.2
- * @package    App_Bear
- * @subpackage App_Bear/includes
- * @author     AppBear <info@appbear.io>
+ * @package    JPress
+ * @subpackage JPress/includes
+ * @author     JPress <info@jpress.io>
  */
-class App_Bear_Activator {
+class JPress_Activator {
   const JANNAH_SOCIAL_ICONS = [
     'facebook' => '0xe95d',
     'twitter' => '0xe961',
@@ -87,7 +87,7 @@ class App_Bear_Activator {
    * @return void
    */
   public static function seedDefaultDemo() {
-    appbear_seed_default_demo(false);
+    jpress_seed_default_demo(false);
   }
 
   /**
@@ -211,13 +211,13 @@ class App_Bear_Activator {
    */
   private static function _commitOptionsChanges() {
     $options = static::$_pluginOptions;
-    $current = appbear_get_option('%ALL%');
+    $current = jpress_get_option('%ALL%');
     $changes = array_merge( $current, $options );
 
     // NOTE: Debug line
     // dd($options);
 
-    update_option( APPBEAR_PRIMARY_OPTIONS, $changes, false );
+    update_option( JPRESS_PRIMARY_OPTIONS, $changes, false );
   }
 
   /**

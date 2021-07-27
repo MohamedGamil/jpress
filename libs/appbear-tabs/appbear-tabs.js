@@ -13,10 +13,10 @@
 
     this.options = $.extend({}, this._defaultOptions, options, this.$el.data());
 
-    this.$nav    = this.$el.find('.appbear-tab-nav').first();
+    this.$nav    = this.$el.find('.jpress-tab-nav').first();
     this.$links  = this.$nav.find('a');
-    this.$body = this.$el.find('.appbear-tab-body').first();
-    this.$panels = this.$body.find('> .appbear-tab-content');
+    this.$body = this.$el.find('.jpress-tab-body').first();
+    this.$panels = this.$body.find('> .jpress-tab-content');
 
     this._checkType();
 
@@ -41,13 +41,13 @@
   Plugin.prototype._setup = function ( $item_active ){
     if( ! $item_active ){
       $item_active = this.$links.eq(0).parent();
-      if( $item_active.hasClass('appbear-item-has-childs') ){
+      if( $item_active.hasClass('jpress-item-has-childs') ){
         $item_active = this.$links.eq(1).parent();
       }
     }
     var _url = $item_active.data('tab'); //store the first links url
     this.$panels.hide(); //hide all tab panels
-    this.$body.find('> .appbear-tab-content[data-tab="'+_url+'"]').show();
+    this.$body.find('> .jpress-tab-content[data-tab="'+_url+'"]').show();
     this._updateActive(_url);
   };
 
@@ -62,15 +62,15 @@
       var _text = $item.find('a').html(); //store the links text/title
       var _class = '';
       if( $item.length ){
-        _class = $item.attr('class').replace('appbear-item', '');
+        _class = $item.attr('class').replace('jpress-item', '');
         _class = _class.replace('active', '');
       }
       var data = $item.data('item') ? 'item="'+$item.data('item')+'"' : 'parent="'+$item.data('parent')+'"';
 
-      self.$panels.eq(i).before('<h3 class="appbear-accordion-title '+_class+'" data-'+ data+'><a href="' + _link + '"><span>' + _text + '</span></a></h3>'); //add the accordion title
+      self.$panels.eq(i).before('<h3 class="jpress-accordion-title '+_class+'" data-'+ data+'><a href="' + _link + '"><span>' + _text + '</span></a></h3>'); //add the accordion title
     });
 
-    this.$links = this.$links.add( this.$panels.parent().find('> .appbear-accordion-title > a') ); //update the links variable after new items have been created
+    this.$links = this.$links.add( this.$panels.parent().find('> .jpress-accordion-title > a') ); //update the links variable after new items have been created
   };
 
   Plugin.prototype._events = function (){
@@ -80,8 +80,8 @@
       event.preventDefault(); //prevent default action
       var link = this;
 
-      if( $(link).parent().hasClass('appbear-item-has-childs') ){
-        link = $(link).parent().next('.appbear-item-child').find('a');
+      if( $(link).parent().hasClass('jpress-item-has-childs') ){
+        link = $(link).parent().next('.jpress-item-child').find('a');
         self.openCloseChildItems(this);
         self.openCloseChildItems(link);
       } else {
@@ -101,24 +101,24 @@
       });
     }
 
-    this.$links.parent().on('click', '.appbear-toggle-icon', function(event) {
+    this.$links.parent().on('click', '.jpress-toggle-icon', function(event) {
       event.preventDefault();
       var $item = $(this).parent();
       var $toggle = $(this);
       var data_item = $item.data('item');
-      if( $item.hasClass('appbear-open') ){
-        $item.removeClass('appbear-open');
-        $toggle.find('i').removeClass('appbear-icon-chevron-up').addClass('appbear-icon-chevron-down');
-        $item.siblings('.appbear-item-child').each(function(index, el) {
+      if( $item.hasClass('jpress-open') ){
+        $item.removeClass('jpress-open');
+        $toggle.find('i').removeClass('jpress-icon-chevron-up').addClass('jpress-icon-chevron-down');
+        $item.siblings('.jpress-item-child').each(function(index, el) {
           if( $(el).data('parent') == data_item ){
             $(el).slideUp();
           }
         });
       } else {
-        $item.addClass('appbear-open');
+        $item.addClass('jpress-open');
         $item.find('a').trigger('click');
-        $toggle.find('i').removeClass('appbear-icon-chevron-down').addClass('appbear-icon-chevron-up');
-        $item.siblings('.appbear-item-child').each(function(index, el) {
+        $toggle.find('i').removeClass('jpress-icon-chevron-down').addClass('jpress-icon-chevron-up');
+        $item.siblings('.jpress-item-child').each(function(index, el) {
           if( $(el).data('parent') == data_item ){
             $(el).slideDown();
           }
@@ -130,25 +130,25 @@
   Plugin.prototype.openCloseChildItems = function (trigger){
     var $item = $(trigger).parent();
     var data_item = $item.data('item');
-    if( $item.hasClass('appbear-accordion-title') ){
+    if( $item.hasClass('jpress-accordion-title') ){
       return;
     }
     if( data_item ){
-      var $toggle = $item.find('.appbear-toggle-icon');
-      $item.siblings('.appbear-item-parent').removeClass('appbear-open').find('.appbear-toggle-icon i').removeClass('appbear-icon-chevron-up').addClass('appbear-icon-chevron-down');
+      var $toggle = $item.find('.jpress-toggle-icon');
+      $item.siblings('.jpress-item-parent').removeClass('jpress-open').find('.jpress-toggle-icon i').removeClass('jpress-icon-chevron-up').addClass('jpress-icon-chevron-down');
       var has_childs = false;
-      $item.siblings('.appbear-item-child').each(function(index, el) {
+      $item.siblings('.jpress-item-child').each(function(index, el) {
         if( $(el).data('parent') == data_item ){
           $(el).slideDown();
           has_childs = true;
-          $toggle.find('i').removeClass('appbear-icon-chevron-down').addClass('appbear-icon-chevron-up');
+          $toggle.find('i').removeClass('jpress-icon-chevron-down').addClass('jpress-icon-chevron-up');
         } else {
           $(el).slideUp();
-          $toggle.find('i').removeClass('appbear-icon-chevron-up').addClass('appbear-icon-chevron-down');
+          $toggle.find('i').removeClass('jpress-icon-chevron-up').addClass('jpress-icon-chevron-down');
         }
       });
       if( has_childs ){
-        $item.addClass('appbear-open');
+        $item.addClass('jpress-open');
       }
     }
   };
@@ -166,7 +166,7 @@
       if( $.isFunction(this.options.change) ){
         this.options.change.call(this.$el, $(_newPanel));
       }
-      $(document).trigger('appbear-tabs.change', [this.$el, $(_newPanel)]);
+      $(document).trigger('jpress-tabs.change', [this.$el, $(_newPanel)]);
 
     } else if (this.$el.hasClass('is-accordion') && _trigger.parent().hasClass('active')) {
       if (this.options.collapsible === true) {
@@ -176,15 +176,15 @@
   };
 
   Plugin.prototype._initialise = function (){
-    this.$el.addClass('appbear-tabs appbear-tabs-initialized');
+    this.$el.addClass('jpress-tabs jpress-tabs-initialized');
     if( $.isFunction(this.options.initialised) ){
       this.options.initialised.call(this.$el);
     }
-    $(document).trigger('appbear-tabs.initialised', [this.$el]);
+    $(document).trigger('jpress-tabs.initialised', [this.$el]);
 
     //Fix first tab item with childs
-    this.$links.eq(0).parent().find('.appbear-toggle-icon').trigger('click');
-    this.$links.eq(0).parent().find('.appbear-toggle-icon').trigger('click');
+    this.$links.eq(0).parent().find('.jpress-toggle-icon').trigger('click');
+    this.$links.eq(0).parent().find('.jpress-toggle-icon').trigger('click');
     this.$links.eq(0).trigger('click');
   };
 
@@ -195,16 +195,16 @@
       this._removeClasses();
     }
 
-    this.$body.find('>.appbear-tab-content[data-tab="'+panel+'"]').stop(true, true).slideDown(this.options.speed);
+    this.$body.find('>.jpress-tab-content[data-tab="'+panel+'"]').stop(true, true).slideDown(this.options.speed);
 
     this._updateActive(panel);
   };
 
   Plugin.prototype._accordionCollapse = function (panel){
     this.$nav.find('a[href="' + panel + '"]').parent().removeClass('active');
-    this.$body.find('>.appbear-accordion-title > a[href="' + panel + '"]').parent().removeClass('active');
+    this.$body.find('>.jpress-accordion-title > a[href="' + panel + '"]').parent().removeClass('active');
 
-    this.$body.find('>.appbear-tab-content[data-tab="'+panel+'"]').stop(true, true).slideUp(this.options.speed);
+    this.$body.find('>.jpress-tab-content[data-tab="'+panel+'"]').stop(true, true).slideUp(this.options.speed);
   };
 
   Plugin.prototype._tabs = function (panel){
@@ -214,7 +214,7 @@
 
     this._updateActive(panel);
 
-    this.$body.find('>.appbear-tab-content[data-tab="'+panel+'"]').show();
+    this.$body.find('>.jpress-tab-content[data-tab="'+panel+'"]').show();
   };
 
   Plugin.prototype._removeClasses = function (){
@@ -223,7 +223,7 @@
 
   Plugin.prototype._updateActive = function (panel){
     this.$nav.find('a[href="' + panel + '"]').parent().addClass('active');
-    this.$body.find('>.appbear-accordion-title > a[href="' + panel + '"]').parent().addClass('active');
+    this.$body.find('>.jpress-accordion-title > a[href="' + panel + '"]').parent().addClass('active');
   };
 
   Plugin.prototype._checkType = function (){
@@ -248,15 +248,15 @@
 
 
 
-  $.fn.appbearTabs = function (options){
+  $.fn.jpressTabs = function (options){
     var args = Array.prototype.slice.call(arguments, 1);
 
     return this.each(function (){
       var _this = $(this),
-        _data = _this.data('appbear-tabs');
+        _data = _this.data('jpress-tabs');
 
       if (!_data){
-        _this.data('appbear-tabs', (_data = new Plugin(this, options)));
+        _this.data('jpress-tabs', (_data = new Plugin(this, options)));
       }
 
       if (typeof options === "string" ){

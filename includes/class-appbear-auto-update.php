@@ -7,29 +7,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Performs Automatic Updates.
  *
- * @link       http://appbear.io
+ * @link       http://jpress.io
  * @since      0.2.7
  *
- * @package    App_Bear
- * @subpackage App_Bear/includes
+ * @package    JPress
+ * @subpackage JPress/includes
  */
 
 
 // Require the updater class
-require_once APPBEAR_INCLUDES_DIR . 'class-appbear-updater.php';
+require_once JPRESS_INCLUDES_DIR . 'class-jpress-updater.php';
 
 
 /**
  * Performs Automatic Updates.
  *
- * This class handles automatic updates and checking for newer version of AppBear plugin.
+ * This class handles automatic updates and checking for newer version of JPress plugin.
  *
  * @since      0.2.7
- * @package    App_Bear
- * @subpackage App_Bear/includes
- * @author     AppBear <info@appbear.io>
+ * @package    JPress
+ * @subpackage JPress/includes
+ * @author     JPress <info@jpress.io>
  */
-class App_Bear_Automatic_Updates {
+class JPress_Automatic_Updates {
   /**
    * Internal initilization state &
    * internal singlton instance.
@@ -49,7 +49,7 @@ class App_Bear_Automatic_Updates {
       return;
     }
 
-    static::$_localInstance = new App_Bear_Automatic_Updates();
+    static::$_localInstance = new JPress_Automatic_Updates();
     static::$_didInit = true;
   }
 
@@ -84,15 +84,15 @@ class App_Bear_Automatic_Updates {
     }
 
     $args = array(
-      'version' => APPBEAR_VERSION,
-      'item_id' => APPBEAR_ITEM_ID,
-      'license' => appbear_get_license_key(),
-      'author' => 'AppBear Team',
+      'version' => JPRESS_VERSION,
+      'item_id' => JPRESS_ITEM_ID,
+      'license' => jpress_get_license_key(),
+      'author' => 'JPress Team',
       'beta' => false,
     );
 
     // Setup the updater
-    new App_Bear_Updater( APPBEAR_STORE_URL, APPBEAR_FC_FILE, $args );
+    new JPress_Updater( JPRESS_STORE_URL, JPRESS_FC_FILE, $args );
   }
 
   /**

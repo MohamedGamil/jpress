@@ -151,9 +151,9 @@ $admob->add_field( array(
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
-    'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-    'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-    'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+    'PostLayout.adMob' => JPRESS_URL . 'options/img/blocks/ad.png',
+    'PostLayout.htmlAd' => JPRESS_URL . 'options/img/blocks/adHtml.png',
+    'PostLayout.imageAd' => JPRESS_URL . 'options/img/blocks/aimg.png',
   ),
   'options' => array(
     'width' => '155px',
@@ -293,9 +293,9 @@ $admob->add_field( array(
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
-    'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-    'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-    'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+    'PostLayout.adMob' => JPRESS_URL . 'options/img/blocks/ad.png',
+    'PostLayout.htmlAd' => JPRESS_URL . 'options/img/blocks/adHtml.png',
+    'PostLayout.imageAd' => JPRESS_URL . 'options/img/blocks/aimg.png',
   ),
   'options' => array(
     'width' => '155px',
@@ -435,9 +435,9 @@ $admob->add_field( array(
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
-    'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-    'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-    'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+    'PostLayout.adMob' => JPRESS_URL . 'options/img/blocks/ad.png',
+    'PostLayout.htmlAd' => JPRESS_URL . 'options/img/blocks/adHtml.png',
+    'PostLayout.imageAd' => JPRESS_URL . 'options/img/blocks/aimg.png',
   ),
   'options' => array(
     'width' => '155px',
@@ -609,9 +609,9 @@ $admob->add_field( array(
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
-    'PostLayout.adMob' => APPBEAR_URL . 'options/img/blocks/ad.png',
-    'PostLayout.htmlAd' => APPBEAR_URL . 'options/img/blocks/adHtml.png',
-    'PostLayout.imageAd' => APPBEAR_URL . 'options/img/blocks/aimg.png',
+    'PostLayout.adMob' => JPRESS_URL . 'options/img/blocks/ad.png',
+    'PostLayout.htmlAd' => JPRESS_URL . 'options/img/blocks/adHtml.png',
+    'PostLayout.imageAd' => JPRESS_URL . 'options/img/blocks/aimg.png',
   ),
   'options' => array(
     'width' => '155px',

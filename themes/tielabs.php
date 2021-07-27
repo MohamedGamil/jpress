@@ -2,8 +2,8 @@
 
 
 
-add_filter( 'AppBear/API/Post/Post_Format', 'appbear_theme_tielabs_post_format', 10, 2 );
-function appbear_theme_tielabs_post_format( $format, $post_id ){
+add_filter( 'JPress/API/Post/Post_Format', 'jpress_theme_tielabs_post_format', 10, 2 );
+function jpress_theme_tielabs_post_format( $format, $post_id ){
 
   $get_format = get_post_meta( $post_id, 'tie_post_head', true );
 
@@ -22,8 +22,8 @@ function appbear_theme_tielabs_post_format( $format, $post_id ){
 
 
 
-add_filter( 'AppBear/API/Post/Post_Gallery', 'appbear_theme_tielabs_post_format_gallery', 10, 2 );
-function appbear_theme_tielabs_post_format_gallery( $images, $post_id ){
+add_filter( 'JPress/API/Post/Post_Gallery', 'jpress_theme_tielabs_post_format_gallery', 10, 2 );
+function jpress_theme_tielabs_post_format_gallery( $images, $post_id ){
 
   $get_images = get_post_meta( $post_id, 'tie_post_gallery', true );
 
@@ -41,8 +41,8 @@ function appbear_theme_tielabs_post_format_gallery( $images, $post_id ){
 
 
 
-add_filter( 'AppBear/API/Post/Post_Video', 'appbear_theme_tielabs_post_format_video', 10, 2 );
-function appbear_theme_tielabs_post_format_video( $video, $post_id ){
+add_filter( 'JPress/API/Post/Post_Video', 'jpress_theme_tielabs_post_format_video', 10, 2 );
+function jpress_theme_tielabs_post_format_video( $video, $post_id ){
 
   return get_post_meta( $post_id, 'tie_video_url', true );
 }

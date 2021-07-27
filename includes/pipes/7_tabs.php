@@ -34,7 +34,7 @@ if (isset($data['tabsbar_categories_tab']) && $data['tabsbar_categories_tab'] !=
 
     $item = $item_options = array();
 
-    $tabQueryURL = '/wp-json/appbear/v1/posts?';
+    $tabQueryURL = '/wp-json/jpress/v1/posts?';
     $selected_categories = explode(',', $slide['categories'][0]);
     $firstCat = false;
 

@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      0.0.2
  *
- * @package    App_Bear
- * @subpackage App_Bear/includes
+ * @package    JPress
+ * @subpackage JPress/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      0.0.2
- * @package    App_Bear
- * @subpackage App_Bear/includes
- * @author     AppBear <info@appbear.io>
+ * @package    JPress
+ * @subpackage JPress/includes
+ * @author     JPress <info@jpress.io>
  */
-class App_Bear_Deactivator {
+class JPress_Deactivator {
 
 	/**
 	 * Short Description. (use period)

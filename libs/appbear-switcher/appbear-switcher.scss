@@ -32,7 +32,7 @@ $base-color:  #CAD0D9;
 $off-color: $base-color;
 $on-color: #35a4e7;
 
-.appbear-sw-wrap {
+.jpress-sw-wrap {
 	display: inline-block;
 	direction: ltr;
 	height: 25px;
@@ -43,7 +43,7 @@ $on-color: #35a4e7;
   	display: none !important;
   }
 
-	.appbear-sw-inner {
+	.jpress-sw-inner {
 		display: inline-block;
 		position: relative;
 		width: 58px;
@@ -54,11 +54,11 @@ $on-color: #35a4e7;
 		cursor: pointer;
 		// transition: all .2s ease-in-out;
 
-		&.appbear-sw-has-icons {
+		&.jpress-sw-has-icons {
 			width: 50px;
 		}
 
-		.appbear-sw-blob {
+		.jpress-sw-blob {
 			display: inline-block;
 			position: absolute;
 			top: 3px;
@@ -71,7 +71,7 @@ $on-color: #35a4e7;
 			transition: left .2s linear;
 		}
 
-		.appbear-sw-toggle {
+		.jpress-sw-toggle {
 			font-family: "Trebuchet MS", Helvetica, sans-serif;
 		  font-size: 12px;
 			letter-spacing: 1px;
@@ -92,12 +92,12 @@ $on-color: #35a4e7;
 				color: darken($base-color, 30%);
 				font-weight: normal;
 			}
-			&.appbear-sw-toggle-on {
+			&.jpress-sw-toggle-on {
 				left: -20px;
 				z-index: 6;
 				color: white;
 			}
-			&.appbear-sw-toggle-off {
+			&.jpress-sw-toggle-off {
 				right: -20px;
 				z-index: 5;
 				i {
@@ -108,53 +108,53 @@ $on-color: #35a4e7;
 
 		}
 
-		&.appbear-sw-on {
+		&.jpress-sw-on {
 			background: $on-color;
 		  box-shadow: 0 0 2px darken($on-color, 5%) inset;
 		  i {
 		  	color: white !important;
 		  }
-		  .appbear-sw-blob {
+		  .jpress-sw-blob {
 				left: 34px;
 			}
-			.appbear-sw-toggle-on {
+			.jpress-sw-toggle-on {
 				left: 10px;
 				opacity: 1;
 			}
-			&.appbear-sw-has-icons {
-				.appbear-sw-blob {
+			&.jpress-sw-has-icons {
+				.jpress-sw-blob {
 					left: 26px;
 				}
-				.appbear-sw-toggle-on {
+				.jpress-sw-toggle-on {
 					left: 8px;
 				}
 			}
 		}
 
 
-		&.appbear-sw-off {
+		&.jpress-sw-off {
 			background: $off-color;
 			box-shadow: 0px 0px 2px darken($off-color, 15%) inset;
 
-			.appbear-sw-blob {
+			.jpress-sw-blob {
 				left: 6px;
 			}
-			.appbear-sw-toggle-off {
+			.jpress-sw-toggle-off {
 				right: 6px;
 				opacity: 1;
 			}
 
-			&.appbear-sw-has-icons {
-				.appbear-sw-blob {
+			&.jpress-sw-has-icons {
+				.jpress-sw-blob {
 					left: 6px;
 				}
-				.appbear-sw-toggle-off {
+				.jpress-sw-toggle-off {
 					right: 8px;
 				}
 			}
 		}
 
-		&.appbear-sw-disabled {
+		&.jpress-sw-disabled {
 			opacity: 0.4;
 			filter: alpha(opacity=65);
 			cursor: default;

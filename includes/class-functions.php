@@ -179,8 +179,8 @@ class Functions {
   |---------------------------------------------------------------------------------------------------
   */
   public static function get_icon( $value ) {
-    $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
-    $icons += include APPBEAR_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
+    $icons = include JPRESS_DIR . 'includes/data/icons-spotlayer-framework.php';
+    $icons += include JPRESS_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
 
     // if (strpos($value, 'fa') !== false) {
     //   $value = end(explode(' ', $value));
@@ -480,7 +480,7 @@ class Functions {
         $return['provider'] = strtolower( self::get_oembed_provider( $oembed_url ) );
       }
       else{
-        $return['message'] = "<span class='appbear-preview-error'>" . sprintf( __( "No oEmbed results found for %s. See", 'appbear' ), $maybe_link ) . " <a href='http://codex.wordpress.org/Embeds' target='_blank'>Wordpress Embeds</a></span>";
+        $return['message'] = "<span class='jpress-preview-error'>" . sprintf( __( "No oEmbed results found for %s. See", 'jpress' ), $maybe_link ) . " <a href='http://codex.wordpress.org/Embeds' target='_blank'>Wordpress Embeds</a></span>";
       }
     }
 
@@ -601,6 +601,6 @@ class Functions {
   */
   public static function is_fontawesome_version( $version = '4.x' ) {
     $version = str_replace(array('.', 'x', 'X'), '', $version);
-    return Functions::starts_with($version, APPBEAR_FONTAWESOME_VERSION );
+    return Functions::starts_with($version, JPRESS_FONTAWESOME_VERSION );
   }
 }

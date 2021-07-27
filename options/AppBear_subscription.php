@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @author Easy Digital Downloads
  * @version 1.8.0
  */
-class AppBear_subscription {
+class JPress_subscription {
 
 	// FIXME: Missing docs comment
 	private $api_url     = '';

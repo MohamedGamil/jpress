@@ -169,7 +169,7 @@ class AppbearItems {
   |---------------------------------------------------------------------------------------------------
   */
   public static function web_safe_fonts( $more_items = array() ){
-      $web_safe_fonts = include APPBEAR_DIR . 'includes/data/web-safe-fonts.php';
+      $web_safe_fonts = include JPRESS_DIR . 'includes/data/web-safe-fonts.php';
       $items = array();
       foreach( $web_safe_fonts as $key => $font ){
           $items[$key] = $font;
@@ -183,7 +183,7 @@ class AppbearItems {
   |---------------------------------------------------------------------------------------------------
   */
   public static function dart_google_fonts( $more_items = array() ){
-      $web_safe_fonts = include APPBEAR_DIR . 'includes/data/dart-google-fonts.php';
+      $web_safe_fonts = include JPRESS_DIR . 'includes/data/dart-google-fonts.php';
       $items = array();
       foreach( $web_safe_fonts as $font ){
           $items[$font] = $font;
@@ -397,7 +397,7 @@ class AppbearItems {
   |---------------------------------------------------------------------------------------------------
   */
   public static function countries_icons( $more_items = array() ){
-      $countries = include APPBEAR_DIR . 'includes/data/countries-icons.php';
+      $countries = include JPRESS_DIR . 'includes/data/countries-icons.php';
       $items = array();
       foreach( $countries as $country ){
           $value = $country['value'];
@@ -421,12 +421,12 @@ class AppbearItems {
 
     switch(true) {
       case Functions::is_fontawesome_version( '5.x' ) === true:
-        $icons = include APPBEAR_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
+        $icons = include JPRESS_DIR . 'includes/data/fa-5.15.1/icons-font-awesome-5.15.1.php';
         break;
     }
 
     if ($icons === false) {
-      $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
+      $icons = include JPRESS_DIR . 'includes/data/icons-font-awesome.php';
     }
 
     $items = array();
@@ -445,12 +445,12 @@ class AppbearItems {
   */
   public static function icon_fonts( $more_items = array() ){
     // if( Functions::is_fontawesome_version( '5.x' ) ){
-    //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
+    //     $icons = include JPRESS_DIR . 'includes/data/icons-font-awesome-5.6.3.php';
     // } else{
-    //     $icons = include APPBEAR_DIR . 'includes/data/icons-font-awesome.php';
+    //     $icons = include JPRESS_DIR . 'includes/data/icons-font-awesome.php';
     // }
 
-    $icons = include APPBEAR_DIR . 'includes/data/icons-spotlayer-framework.php';
+    $icons = include JPRESS_DIR . 'includes/data/icons-spotlayer-framework.php';
     $items = array();
 
     foreach( $icons as $k => $icon ){
@@ -469,7 +469,7 @@ class AppbearItems {
 	|---------------------------------------------------------------------------------------------------
 	*/
   public static function countries( $more_items = array() ){
-    $countries = include APPBEAR_DIR . 'includes/data/countries.php';
+    $countries = include JPRESS_DIR . 'includes/data/countries.php';
     return Functions::nice_array_merge( $more_items, $countries );
   }
 
@@ -479,7 +479,7 @@ class AppbearItems {
 	|---------------------------------------------------------------------------------------------------
 	*/
   public static function eu_countries( $more_items = array() ){
-    $eu_countries = include APPBEAR_DIR . 'includes/data/eu-countries.php';
+    $eu_countries = include JPRESS_DIR . 'includes/data/eu-countries.php';
     return Functions::nice_array_merge( $more_items, $eu_countries );
   }
 }

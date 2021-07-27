@@ -25,7 +25,7 @@
   Plugin.prototype = {
     init : function () {
       var _ = this;
-      if( _.$el.hasClass('appbear-image-selector') ){
+      if( _.$el.hasClass('jpress-image-selector') ){
         return;
       }
       _.build();
@@ -34,7 +34,7 @@
 
     build: function () {
       var _ = this;
-      _.$el.addClass('appbear-image-selector');
+      _.$el.addClass('jpress-image-selector');
       _.$el.find('input').each(function(index, item) {
         var $input = $(item);
         var src = $input.data('image');
@@ -63,7 +63,7 @@
 
     active : function(){
       var $input = $(this);
-      var $el = $input.closest('.appbear-image-selector');
+      var $el = $input.closest('.jpress-image-selector');
       var options = $el.data('image-selector');
 
       if( options.like_checkbox ){
@@ -109,14 +109,14 @@
 
     destroy: function () {
       $(this).each(function() {
-        $(this).removeClass('appbear-image-selector').find('img').remove();
+        $(this).removeClass('jpress-image-selector').find('img').remove();
       });
       return true;
     },
 
     disable_all: function () {
       var $input = $(this);
-      var $el = $input.closest('.appbear-image-selector');
+      var $el = $input.closest('.jpress-image-selector');
       var options = $el.data('image-selector');
       if( options.like_checkbox ){
         $el.find('input').removeAttr( 'checked' ).prop('checked', false);
@@ -144,15 +144,15 @@
   }
 
   $(document).ready(function($) {
-    $(document).on('click.img_selector', '.appbear-image-selector input', function(event) {
-      $(this).appbearImageSelector('active');
+    $(document).on('click.img_selector', '.jpress-image-selector input', function(event) {
+      $(this).jpressImageSelector('active');
     });
-    $(document).on('img_selector_disable_all', '.appbear-image-selector input', function(event) {
-      $(this).appbearImageSelector('disable_all');
+    $(document).on('img_selector_disable_all', '.jpress-image-selector input', function(event) {
+      $(this).jpressImageSelector('disable_all');
     });
   });
 
-  $.fn.appbearImageSelector = function ( options ) {
+  $.fn.jpressImageSelector = function ( options ) {
     if ( Plugin.prototype[options] && options != 'init' && options != 'build' && options != 'is_empty' ) {
       return Plugin.prototype[options].apply( this, Array.prototype.slice.call( arguments, 1) );
     } else if ( typeof options === 'object' || ! options ) {

@@ -6,15 +6,15 @@ use Appbear\Includes\AppbearAPI;
 
 
 /**
- * AppBear_Notifications_Metabox Class
+ * JPress_Notifications_Metabox Class
  *
  * This class handles push notifications fields implementation
  *
  *
  * @since 0.0.5
  */
-class AppBear_Notifications_Metabox {
-  const OPTION_KEY = 'appbear_push_notifications_stats';
+class JPress_Notifications_Metabox {
+  const OPTION_KEY = 'jpress_push_notifications_stats';
   const DISABLE_IF_UPDATING = true;
 
   /**
@@ -35,7 +35,7 @@ class AppBear_Notifications_Metabox {
       return;
     }
 
-    static::$_localInstance = new AppBear_Notifications_Metabox();
+    static::$_localInstance = new JPress_Notifications_Metabox();
     static::$_didInit = true;
   }
 
@@ -68,8 +68,8 @@ class AppBear_Notifications_Metabox {
    */
   public function add_meta_box( $taxonomy ) {
     add_meta_box(
-      'appbear-notifications-metabox',
-      esc_html__( 'AppBear Push Notifications', 'textdomain' ),
+      'jpress-notifications-metabox',
+      esc_html__( 'JPress Push Notifications', 'textdomain' ),
       array( $this, 'display_meta_box' ),
       'post',
       'side',
@@ -93,7 +93,7 @@ class AppBear_Notifications_Metabox {
       'activated' => $this->_isValidLicense() === true,
     );
 
-    echo appbear_get_template('metabox/notifications', $data);
+    echo jpress_get_template('metabox/notifications', $data);
   }
 
   public function save_post_validation($maybeEmpty, $post) {
@@ -123,15 +123,15 @@ class AppBear_Notifications_Metabox {
     }
 
     $fields = [
-      'appbear_notifications_send',
-      'appbear_notifications_title',
-      'appbear_notifications_message',
+      'jpress_notifications_send',
+      'jpress_notifications_title',
+      'jpress_notifications_message',
     ];
 
     $inputs = [];
 
     foreach ($fields as $field) {
-      $key = str_replace('appbear_notifications_', '', $field);
+      $key = str_replace('jpress_notifications_', '', $field);
       $inputs[$key] = isset($_POST[$field]) ? trim(sanitize_text_field($_POST[$field])) : '';
     }
 
@@ -182,11 +182,11 @@ class AppBear_Notifications_Metabox {
    * Enqueue Scripts
    */
   public function enqueue_scripts() {
-    wp_enqueue_style( 'appbear-notifications-metabox-css', APPBEAR_URL . 'options/css/notifications_metabox.css' );
+    wp_enqueue_style( 'jpress-notifications-metabox-css', JPRESS_URL . 'options/css/notifications_metabox.css' );
 
     wp_enqueue_script(
-      'appbear-notifications-metabox-js',
-      APPBEAR_URL . 'options/js/notifications_metabox.js',
+      'jpress-notifications-metabox-js',
+      JPRESS_URL . 'options/js/notifications_metabox.js',
       array( 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-edit-post', 'word-count', )
     );
   }
@@ -246,7 +246,7 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   protected function _serveSubmitError($message = null) {
-    $message = __($message, 'textdomain') ?? __('AppBear Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
+    $message = __($message, 'textdomain') ?? __('JPress Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
     $error = new WP_Error(400, $message, $message);
 
     wp_die($message);
@@ -259,10 +259,10 @@ class AppBear_Notifications_Metabox {
    * @return void
    */
   protected function _serveSuccessMessage($message = null) {
-    $message = __($message, 'textdomain') ?? __('AppBear notification sent successfully.', 'textdomain');
+    $message = __($message, 'textdomain') ?? __('JPress notification sent successfully.', 'textdomain');
 
     // TODO: ...
-    // appbear_notice($message);
+    // jpress_notice($message);
   }
 
   /**
@@ -300,6 +300,6 @@ class AppBear_Notifications_Metabox {
    * @return boolean
    */
   private function _isValidLicense() {
-    return appbear_check_license();
+    return jpress_check_license();
   }
 }

@@ -5,12 +5,12 @@
 	* */
 
 
-.appbear-notification-metabox-wrapper {
+.jpress-notification-metabox-wrapper {
 	display: block;
 	padding-top: 10px;
 }
-	.appbear-notification-metabox-wrapper .anm_notice a,
-	.appbear-notification-metabox-wrapper .anm_notice span {
+	.jpress-notification-metabox-wrapper .anm_notice a,
+	.jpress-notification-metabox-wrapper .anm_notice span {
 		display: block;
 		margin-bottom: 10px;
 		padding: 10px;
@@ -20,8 +20,8 @@
 		text-decoration: none;
 		line-height: 1.8;
 	}
-	.appbear-notification-metabox-wrapper .anm_notice.anm_notice_normal a,
-	.appbear-notification-metabox-wrapper .anm_notice.anm_notice_normal span {
+	.jpress-notification-metabox-wrapper .anm_notice.anm_notice_normal a,
+	.jpress-notification-metabox-wrapper .anm_notice.anm_notice_normal span {
 		background: #e9e9e9;
 	}
 

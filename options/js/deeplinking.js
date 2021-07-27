@@ -54,14 +54,14 @@
         return;
       }
 
-      window.location = _isAndroid() ? AppBear_Deeplinking.android_url : AppBear_Deeplinking.ios_url;
+      window.location = _isAndroid() ? JPress_Deeplinking.android_url : JPress_Deeplinking.ios_url;
     }, 100);
 
-    if ( !!AppBear_Deeplinking.base_url_android && _isAndroid() ) {
-      window.location = !!AppBear_Deeplinking.deeplink_url_android ? AppBear_Deeplinking.deeplink_url_android : AppBear_Deeplinking.base_url_android;
+    if ( !!JPress_Deeplinking.base_url_android && _isAndroid() ) {
+      window.location = !!JPress_Deeplinking.deeplink_url_android ? JPress_Deeplinking.deeplink_url_android : JPress_Deeplinking.base_url_android;
     }
-    else if ( !!AppBear_Deeplinking.base_url_ios && _isIOS() ) {
-      window.location = !!AppBear_Deeplinking.deeplink_url_ios ? AppBear_Deeplinking.deeplink_url_ios : AppBear_Deeplinking.base_url_ios;
+    else if ( !!JPress_Deeplinking.base_url_ios && _isIOS() ) {
+      window.location = !!JPress_Deeplinking.deeplink_url_ios ? JPress_Deeplinking.deeplink_url_ios : JPress_Deeplinking.base_url_ios;
     }
   }
 
@@ -72,16 +72,16 @@
    * @returns {void}
    */
   function _update() {
-    if (!!AppBear_Deeplinking.bg_color) {
-      $widget.css('background-color', AppBear_Deeplinking.bg_color);
+    if (!!JPress_Deeplinking.bg_color) {
+      $widget.css('background-color', JPress_Deeplinking.bg_color);
     }
 
-    if (!!AppBear_Deeplinking.fg_color) {
+    if (!!JPress_Deeplinking.fg_color) {
       // .find('.text-content').find('a, p')
-      $widget.add($widget.find('.text-content a')).css('color', AppBear_Deeplinking.fg_color);
+      $widget.add($widget.find('.text-content a')).css('color', JPress_Deeplinking.fg_color);
     }
 
-    $widget.find('a.appbear-appstore-link').hide();
+    $widget.find('a.jpress-appstore-link').hide();
 
     if (_appInstalled === true) {
       return;
@@ -103,8 +103,8 @@
    * @returns {Boolean} true/false
    */
   function _checks() {
-    if (!window['AppBear_Deeplinking']) {
-      throw new Error('AppBear deeplinking settings not found!');
+    if (!window['JPress_Deeplinking']) {
+      throw new Error('JPress deeplinking settings not found!');
     }
 
     if (_isMobile() === false) {
@@ -136,15 +136,15 @@
       </div>
     `;
     // <div class="store-buttons tie-col-md-4">
-    //   <a href="#" target="_blank" class="appbear-appstore-link google-play"></a>
-    //   <a href="#" target="_blank" class="appbear-appstore-link appstore"></a>
+    //   <a href="#" target="_blank" class="jpress-appstore-link google-play"></a>
+    //   <a href="#" target="_blank" class="jpress-appstore-link appstore"></a>
     // </div>
 
     $widget.append(HTML);
     $body.append($widget);
 
-    $widget.find('a.google-play').attr('href', AppBear_Deeplinking.android_url);
-    $widget.find('a.appstore').attr('href', AppBear_Deeplinking.ios_url);
+    $widget.find('a.google-play').attr('href', JPress_Deeplinking.android_url);
+    $widget.find('a.appstore').attr('href', JPress_Deeplinking.ios_url);
 
     _update();
 
@@ -155,7 +155,7 @@
 
     $widget.on('click', '.deeplinking-open-post', function(event) {
       event.preventDefault();
-      // AppBear_Deeplinking.open();
+      // JPress_Deeplinking.open();
       _detectApp();
     });
   }

@@ -9,8 +9,8 @@ defined('ABSPATH') || exit; // Exit if accessed directly
  * @param string $name Option name
  * @param mixed $default Option default value
  */
-function appbear_get_option($name, $default = false) {
-  $opts = get_option(APPBEAR_PRIMARY_OPTIONS);
+function jpress_get_option($name, $default = false) {
+  $opts = get_option(JPRESS_PRIMARY_OPTIONS);
 
   if ( $name === '%ALL%' ) {
     return is_array($opts) && empty($opts) === false ? $opts : array();
@@ -24,7 +24,7 @@ function appbear_get_option($name, $default = false) {
  * Get Reading time for the current global post
  *
  */
-function appbear_get_read_time() {
+function jpress_get_read_time() {
 	$post_content = get_post()->post_content;
 	$post_content = strip_shortcodes( strip_tags( $post_content ) );
 	$post_content = preg_split('/\s+/u', $post_content, null, PREG_SPLIT_NO_EMPTY );
@@ -32,7 +32,7 @@ function appbear_get_read_time() {
 	if( is_array( $post_content ) ){
 
 		$words_count   = count( $post_content );
-		$words_per_min = apply_filters( 'AppBear/words_per_min', 250 );
+		$words_per_min = apply_filters( 'JPress/words_per_min', 250 );
 		$reading_time  = round( $words_count / $words_per_min );
 
 		if( $reading_time < 1){
@@ -48,7 +48,7 @@ function appbear_get_read_time() {
 			$result = sprintf( esc_html__( '%s minutes read', 'textdomain' ), number_format_i18n( $reading_time ) );
 		}
 
-		return apply_filters( 'AppBear/API/Post/Read_Time', $result, $reading_time, $words_per_min, $words_count );
+		return apply_filters( 'JPress/API/Post/Read_Time', $result, $reading_time, $words_per_min, $words_count );
 	}
 }
 
@@ -59,7 +59,7 @@ function appbear_get_read_time() {
  * @param string $str
  * @return string
  */
-function appbear_camel_to_dash($str) {
+function jpress_camel_to_dash($str) {
   return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $str));
 }
 
@@ -67,8 +67,8 @@ function appbear_camel_to_dash($str) {
 /**
  * Get Time Format
  */
-function appbear_get_time() {
-	$time_format = appbear_get_option('time_format');
+function jpress_get_time() {
+	$time_format = jpress_get_option('time_format');
 
 	// Human Readable Post Dates
 	if ($time_format == 'modern') {
@@ -88,7 +88,7 @@ function appbear_get_time() {
 		$since = get_the_date();
 	}
 
-	return apply_filters('AppBear/API/Post/Post_Date', $since);
+	return apply_filters('JPress/API/Post/Post_Date', $since);
 }
 
 
@@ -97,7 +97,7 @@ function appbear_get_time() {
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_format($post_id = null) {
+function jpress_post_format($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -107,7 +107,7 @@ function appbear_post_format($post_id = null) {
 	$post_format = $post_format ? $post_format : 'standard';
 
 	// Allow themes to chnage this and apply their custom post formats
-	return apply_filters('AppBear/API/Post/Post_Format', $post_format, $post_id);
+	return apply_filters('JPress/API/Post/Post_Format', $post_format, $post_id);
 }
 
 
@@ -116,7 +116,7 @@ function appbear_post_format($post_id = null) {
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_gallery($post_id = null) {
+function jpress_post_gallery($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -124,7 +124,7 @@ function appbear_post_gallery($post_id = null) {
 	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
-	return apply_filters('AppBear/API/Post/Post_Gallery', array(), $post_id);
+	return apply_filters('JPress/API/Post/Post_Gallery', array(), $post_id);
 }
 
 
@@ -133,7 +133,7 @@ function appbear_post_gallery($post_id = null) {
  *
  * @param int $post_id Post ID (Optional for current post ID)
  */
-function appbear_post_video($post_id = null) {
+function jpress_post_video($post_id = null) {
 	if (( $post_id = $post_id ?? get_the_ID() ) === false) {
 		return null;
 	}
@@ -141,7 +141,7 @@ function appbear_post_video($post_id = null) {
 	// TODO: Empty function default logic? may need work!
 
 	// Allow themes to chnage this
-	return apply_filters('AppBear/API/Post/Post_Video', '', $post_id);
+	return apply_filters('JPress/API/Post/Post_Video', '', $post_id);
 }
 
 
@@ -150,9 +150,9 @@ function appbear_post_video($post_id = null) {
  *
  * @param string $file Template File Path
  */
-function appbear_get_template($templatePath, $vars = array()) {
+function jpress_get_template($templatePath, $vars = array()) {
 	// NOTE: Should be substitued with a template file..
-	$prefix = APPBEAR_DIR . 'templates';
+	$prefix = JPRESS_DIR . 'templates';
 	$templatePath = str_replace('.php', '', $templatePath);
   $path = $prefix . DIRECTORY_SEPARATOR . $templatePath . '.php';
 
@@ -172,7 +172,7 @@ function appbear_get_template($templatePath, $vars = array()) {
     $getOutputBuffer = ob_get_clean();
 
     // Apply filters on template output before using it
-    return apply_filters('AppBear/API/Template', $getOutputBuffer, $templatePath, $vars);
+    return apply_filters('JPress/API/Template', $getOutputBuffer, $templatePath, $vars);
 	}
 
   throw new Error("Template '{$templatePath}' not found!");
@@ -182,17 +182,17 @@ function appbear_get_template($templatePath, $vars = array()) {
 /**
  * Get license key
  */
-function appbear_get_license_key() {
-  return trim( get_option( APPBEAR_LICENSE_KEY_OPTION ) );
+function jpress_get_license_key() {
+  return trim( get_option( JPRESS_LICENSE_KEY_OPTION ) );
 }
 
 
 /**
  * Get deeplinking options
  */
-function appbear_get_deeplinking_opts($asArray = false) {
-  $widgetEnabled = appbear_get_option('is_deeplinking_widget_enabled', false);
-  $deeplinkingOpts = get_option( APPBEAR_DEEPLINKING_OPTION );
+function jpress_get_deeplinking_opts($asArray = false) {
+  $widgetEnabled = jpress_get_option('is_deeplinking_widget_enabled', false);
+  $deeplinkingOpts = get_option( JPRESS_DEEPLINKING_OPTION );
 
   $opts = (Object) array(
     'widget_enabled' => $widgetEnabled,
@@ -208,8 +208,8 @@ function appbear_get_deeplinking_opts($asArray = false) {
 /**
  * Get in-post ads options
  */
-function appbear_get_ads_in_post_options($asArray = false) {
-  $allOpts = appbear_get_option('%ALL%');
+function jpress_get_ads_in_post_options($asArray = false) {
+  $allOpts = jpress_get_option('%ALL%');
   $opts = array(
     'enabled' => 'local_ads_in_post',
     'offset' => 'local_ads_in_post_paragraph_offset',
@@ -262,7 +262,7 @@ function appbear_get_ads_in_post_options($asArray = false) {
 
           if (empty($category) === false) {
             $linkTitle = $category->name;
-            $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+            $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
           }
           break;
 
@@ -271,7 +271,7 @@ function appbear_get_ads_in_post_options($asArray = false) {
 
           if ($post) {
             $linkTitle = $post->post_title;
-            $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+            $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
           }
           break;
 
@@ -320,8 +320,8 @@ function appbear_get_ads_in_post_options($asArray = false) {
 /**
  * Check current license validity
  */
-function appbear_check_license() {
-  return ( get_option( APPBEAR_LICENSE_STATUS_KEY_OPTION ) === 'valid' ) || _appbear_is_dev_mode();
+function jpress_check_license() {
+  return ( get_option( JPRESS_LICENSE_STATUS_KEY_OPTION ) === 'valid' ) || _jpress_is_dev_mode();
 }
 
 
@@ -331,14 +331,14 @@ function appbear_check_license() {
  * @param boolean $resetLicenseKey
  * @return void
  */
-function appbear_invalidate_license($resetLicenseKey = false) {
+function jpress_invalidate_license($resetLicenseKey = false) {
   if ($resetLicenseKey === true) {
-    delete_option( APPBEAR_LICENSE_KEY_OPTION );
+    delete_option( JPRESS_LICENSE_KEY_OPTION );
   }
 
-  delete_option( APPBEAR_LICENSE_STATUS_KEY_OPTION );
+  delete_option( JPRESS_LICENSE_STATUS_KEY_OPTION );
 
-  do_action('appbear_license_deactivated');
+  do_action('jpress_license_deactivated');
 }
 
 
@@ -348,7 +348,7 @@ function appbear_invalidate_license($resetLicenseKey = false) {
  * @param string $content
  * @return string
  */
-function appbear_shortcodes_parsing($content) {
+function jpress_shortcodes_parsing($content) {
 	// NOTE: A couple of things needs to be done here:
 	//            1) Revise each replacement
 	//            2) A better optimized way to replace strings
@@ -423,7 +423,7 @@ function appbear_shortcodes_parsing($content) {
 	$attr = array( 'include' => $ids );
   $html5 = current_theme_supports('html5', 'gallery');
   $columns = 5;
-  $selector = 'appbear-app-gallery';
+  $selector = 'jpress-app-gallery';
 	$atts  = shortcode_atts(
 		array(
 			'order'      => 'ASC',
@@ -799,20 +799,20 @@ function appbear_shortcodes_parsing($content) {
  * @param string $isInstant  Is alert instant (Not Flash)
  * @return void
  */
-function appbear_notice($message, $type = 'success', $isDismissable = true, $isInstant = false) {
+function jpress_notice($message, $type = 'success', $isDismissable = true, $isInstant = false) {
   \Appbear_Notice::notice($type, $message, $isDismissable, $isInstant);
 }
 
 
 /**
- * Seed Default AppBear Demo Options
+ * Seed Default JPress Demo Options
  *
  * @param boolean $hardReset Force applying default options
  * @return void
  */
-function appbear_seed_default_demo($hardReset = false) {
+function jpress_seed_default_demo($hardReset = false) {
   $hasChanges = false;
-  $options = appbear_get_option('%ALL%');
+  $options = jpress_get_option('%ALL%');
   $menuItems = isset($options['navigators']) ? $options['navigators'] : array();
   $bottomTabs = isset($options['bottombar_tabs']) ? $options['bottombar_tabs'] : array();
   $sections = isset($options['sections']) ? $options['sections'] : array();
@@ -899,7 +899,7 @@ function appbear_seed_default_demo($hardReset = false) {
     // NOTE: Debug line
     // dd($options);
 
-    update_option( APPBEAR_PRIMARY_OPTIONS, $options, false );
+    update_option( JPRESS_PRIMARY_OPTIONS, $options, false );
   }
 }
 
@@ -910,7 +910,7 @@ function appbear_seed_default_demo($hardReset = false) {
  * @since 0.0.15
  * @return void
  */
-function appbear_get_tts_locale() {
+function jpress_get_tts_locale() {
   $locale = get_locale();
   $pts = explode('_', $locale);
   $lang = strtolower(reset($pts));
@@ -951,8 +951,8 @@ function appbear_get_tts_locale() {
 /**
  * Check if dev mode is active
  */
-function _appbear_is_dev_mode() {
-  return APPBEAR_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
+function _jpress_is_dev_mode() {
+  return JPRESS_ENABLE_LICENSE_DEBUG_MODE === true && in_array($_SERVER['REMOTE_ADDR'], [ '127.0.0.1', '::1' ]);
 }
 
 
@@ -962,11 +962,11 @@ if (!function_exists('dd')):
  * Simple debugging helper functions
  *
  * @since      0.0.2
- * @package    App_Bear
- * @subpackage App_Bear/options
+ * @package    JPress
+ * @subpackage JPress/options
  */
 function dd() {
-  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+  if (!JPRESS_ENABLE_DEBUG_HELPERS) return;
 
   $args = func_get_args();
   $newLine = "\n\n------------------%s------------------\n\n\n";
@@ -1008,7 +1008,7 @@ function dd() {
 }
 
 function ddjson() {
-  if (!APPBEAR_ENABLE_DEBUG_HELPERS) return;
+  if (!JPRESS_ENABLE_DEBUG_HELPERS) return;
 
   header('Content-Type: application/json; charset=UTF-8');
   $args = func_get_args();

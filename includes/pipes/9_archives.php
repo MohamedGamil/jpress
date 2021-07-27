@@ -12,7 +12,7 @@ if (isset($data, $options) === false) exit;
 
 
 $options['archives']['categories']['layout'] = $data['archives-categories-postlayout'];
-$options['archives']['categories']['url'] = "/wp-json/appbear/v1/categories";
+$options['archives']['categories']['url'] = "/wp-json/jpress/v1/categories";
 
 if (isset($data['archives-single-options-category']) && $data['archives-single-options-category'] !== 'false') {
   $options['archives']['single']['category'] = $data['archives-single-options-category'];
@@ -75,7 +75,7 @@ if (isset($data['local_ads_after_post']) && $data['local_ads_after_post'] === 't
 
           if (empty($category) === false) {
             $linkTitle = $category->name;
-            $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+            $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
           }
           break;
 
@@ -84,7 +84,7 @@ if (isset($data['local_ads_after_post']) && $data['local_ads_after_post'] === 't
 
           if ($post) {
             $linkTitle = $post->post_title;
-            $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+            $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
           }
           break;
 
@@ -144,7 +144,7 @@ if (isset($data['local_ads_before_comments']) && $data['local_ads_before_comment
 
           if (empty($category) === false) {
             $linkTitle = $category->name;
-            $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+            $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
           }
           break;
 
@@ -153,7 +153,7 @@ if (isset($data['local_ads_before_comments']) && $data['local_ads_before_comment
 
           if ($post) {
             $linkTitle = $post->post_title;
-            $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+            $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
           }
           break;
 
@@ -217,7 +217,7 @@ if (isset($data['local_ads_single_cat']) && $data['local_ads_single_cat'] === 't
 
           if (empty($category) === false) {
             $linkTitle = $category->name;
-            $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+            $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
           }
           break;
 
@@ -226,7 +226,7 @@ if (isset($data['local_ads_single_cat']) && $data['local_ads_single_cat'] === 't
 
           if ($post) {
             $linkTitle = $post->post_title;
-            $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+            $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
           }
           break;
 
@@ -326,7 +326,7 @@ if (isset($data['archives-search-options-share']) && $data['archives-search-opti
 }
 
 $options['archives']['favorites']['postLayout'] = $data['archives-favorites-postlayout'];
-$options['archives']['favorites']['url'] = '/wp-json/appbear/v1/posts?&ids=';
+$options['archives']['favorites']['url'] = '/wp-json/jpress/v1/posts?&ids=';
 $options['archives']['favorites']['options']['count'] = $data['local-archives-favorites-count'];
 
 if (isset($data['archives-favorites-options-category']) && $data['archives-favorites-options-category'] !== 'false') {

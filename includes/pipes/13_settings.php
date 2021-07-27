@@ -41,19 +41,19 @@ if (isset($data['local-settingspage-share']) && $data['local-settingspage-share'
 }
 
 if (isset($data['local-settingspage-aboutus']) && $data['local-settingspage-aboutus'] !== 'false') {
-  $options['settingsPage']['aboutUs'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-aboutUs'];
+  $options['settingsPage']['aboutUs'] = "/wp-json/jpress/v1/page?id=" . $data['settingspage-aboutUs'];
 }
 
 if (isset($data['settingspage-privacyPolicy']) && $data['settingspage-privacyPolicy'] != '') {
-  $options['settingsPage']['privacyPolicy'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-privacyPolicy'];
+  $options['settingsPage']['privacyPolicy'] = "/wp-json/jpress/v1/page?id=" . $data['settingspage-privacyPolicy'];
 }
 
 if (isset($data['settingspage-termsAndConditions']) && $data['settingspage-termsAndConditions'] != '') {
-  $options['settingsPage']['termsAndConditions'] = "/wp-json/appbear/v1/page?id=" . $data['settingspage-termsAndConditions'];
+  $options['settingsPage']['termsAndConditions'] = "/wp-json/jpress/v1/page?id=" . $data['settingspage-termsAndConditions'];
 }
 
 if (isset($data['settingspage-contactus']) && $data['settingspage-contactus'] !== 'false') {
-  $options['settingsPage']['contactUs'] = "/wp-json/appbear/v1/contact-us";
+  $options['settingsPage']['contactUs'] = "/wp-json/jpress/v1/contact-us";
 }
 
 if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-aboutapp'] !== 'false') {
@@ -74,7 +74,7 @@ if (isset($data['local-settingspage-aboutapp']) && $data['local-settingspage-abo
     $options['settingsPage']['devMode']["count"] = "3";
     $options['settingsPage']['devMode']["addUrl"] = "/?edd_action=save_development_token";
     $options['settingsPage']['devMode']["removeUrl"] = "/?edd_action=remove_development_token";
-    $options['basicUrls']["devMode"] =  "wp-json/appbear/v1/dev-mode";
+    $options['basicUrls']["devMode"] =  "wp-json/jpress/v1/dev-mode";
   }
 }
 

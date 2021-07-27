@@ -29,7 +29,7 @@
   content: '\e801';
 }
 
-.appbear-sw-wrap {
+.jpress-sw-wrap {
   display: inline-block;
   direction: ltr;
   height: 25px;
@@ -37,11 +37,11 @@
   margin-bottom: 3px !important;
 }
 
-.appbear-sw-wrap input {
+.jpress-sw-wrap input {
   display: none !important;
 }
 
-.appbear-sw-wrap .appbear-sw-inner {
+.jpress-sw-wrap .jpress-sw-inner {
   display: inline-block;
   position: relative;
   width: 58px;
@@ -52,11 +52,11 @@
   cursor: pointer;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-has-icons {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-has-icons {
   width: 50px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-blob {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-blob {
   display: inline-block;
   position: absolute;
   top: 3px;
@@ -69,7 +69,7 @@
   transition: left .2s linear;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-toggle {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-toggle {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 1px;
@@ -83,7 +83,7 @@
   opacity: 0;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-toggle i {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-toggle i {
   display: inline-block;
   font-size: 16px;
   line-height: 17px;
@@ -91,71 +91,71 @@
   font-weight: normal;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-toggle.appbear-sw-toggle-on {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-toggle.jpress-sw-toggle-on {
   left: -20px;
   z-index: 6;
   color: white;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-toggle.appbear-sw-toggle-off {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-toggle.jpress-sw-toggle-off {
   right: -20px;
   z-index: 5;
 }
 
-.appbear-sw-wrap .appbear-sw-inner .appbear-sw-toggle.appbear-sw-toggle-off i {
+.jpress-sw-wrap .jpress-sw-inner .jpress-sw-toggle.jpress-sw-toggle-off i {
   font-size: 17px;
   color: inherit !important;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #35a4e7;
   box-shadow: 0 0 2px #1e9ae4 inset;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on i {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on i {
   color: white !important;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on .appbear-sw-blob {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on .jpress-sw-blob {
   left: 34px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on .appbear-sw-toggle-on {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on .jpress-sw-toggle-on {
   left: 10px;
   opacity: 1;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on.appbear-sw-has-icons .appbear-sw-blob {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on.jpress-sw-has-icons .jpress-sw-blob {
   left: 26px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-on.appbear-sw-has-icons .appbear-sw-toggle-on {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-on.jpress-sw-has-icons .jpress-sw-toggle-on {
   left: 8px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-off {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-off {
   background: #CAD0D9;
   box-shadow: 0px 0px 2px #9da8b9 inset;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-off .appbear-sw-blob {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-off .jpress-sw-blob {
   left: 6px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-off .appbear-sw-toggle-off {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-off .jpress-sw-toggle-off {
   right: 6px;
   opacity: 1;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-off.appbear-sw-has-icons .appbear-sw-blob {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-off.jpress-sw-has-icons .jpress-sw-blob {
   left: 6px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-off.appbear-sw-has-icons .appbear-sw-toggle-off {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-off.jpress-sw-has-icons .jpress-sw-toggle-off {
   right: 8px;
 }
 
-.appbear-sw-wrap .appbear-sw-inner.appbear-sw-disabled {
+.jpress-sw-wrap .jpress-sw-inner.jpress-sw-disabled {
   opacity: 0.4;
   filter: alpha(opacity=65);
   cursor: default;

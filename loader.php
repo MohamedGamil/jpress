@@ -7,7 +7,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 /**
- * AppBear Loader
+ * JPress Loader
  */
 class AppbearLoader
 {
@@ -43,8 +43,8 @@ class AppbearLoader
 		//           i.e. `wp_loaded` action should initialize theme specific integrations, and
     //          `init` action should initialize top-level general plugin logic
 
-    add_action( 'init', array( $this, 'load_appbear' ), $this->priority );
-		add_action( 'wp_loaded', array( $this, 'appbear_themes_init' ), $this->priority );
+    add_action( 'init', array( $this, 'load_jpress' ), $this->priority );
+		add_action( 'wp_loaded', array( $this, 'jpress_themes_init' ), $this->priority );
 	}
 
 	/*
@@ -52,14 +52,14 @@ class AppbearLoader
 	| Init Appbear
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function load_appbear() {
+	public function load_jpress() {
 		// NOTE: Is the following line added to prevent scope collesions for multiple versions of this plugin?
 		if ( class_exists( 'Appbear', false ) ) {
 			return;
 		}
 
     // Run the pre-init hook (Before initialization)
-		do_action( 'appbear_init' );
+		do_action( 'jpress_init' );
 
 		// Appbear constants
 		$this->constants();
@@ -76,18 +76,18 @@ class AppbearLoader
 		// Automatic Updates
 		$this->autoUpdateInit();
 
-		// AppBear generic initialization
-		$this->appbear_core_init();
+		// JPress generic initialization
+		$this->jpress_core_init();
 
 		Appbear::init( $this->version );
 
-    // Run the admin-only post-init hook (AppBear Admin Initialization)
+    // Run the admin-only post-init hook (JPress Admin Initialization)
 		if ( is_admin() ) {
-			do_action( 'appbear_admin_init' );
+			do_action( 'jpress_admin_init' );
     }
 
     // Run the post-init hook (After initialization)
-		do_action( 'appbear_post_init' );
+		do_action( 'jpress_post_init' );
 	}
 
 	/*
@@ -96,8 +96,8 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function constants() {
-    define('APPBEAR_DID_INIT', true);
-    define( 'APPBEAR_URL', trailingslashit( $this->_get_url() ) );
+    define('JPRESS_DID_INIT', true);
+    define( 'JPRESS_URL', trailingslashit( $this->_get_url() ) );
   }
 
 	/*
@@ -106,10 +106,10 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function localization() {
-		$loaded = load_plugin_textdomain( 'appbear', false, trailingslashit ( plugin_basename( APPBEAR_DIR ) ). 'languages/' );
+		$loaded = load_plugin_textdomain( 'jpress', false, trailingslashit ( plugin_basename( JPRESS_DIR ) ). 'languages/' );
 
 		if ( ! $loaded ) {
-			load_textdomain( 'appbear', APPBEAR_DIR . 'languages/appbear-' . get_locale() . '.mo' );
+			load_textdomain( 'jpress', JPRESS_DIR . 'languages/jpress-' . get_locale() . '.mo' );
 		}
 	}
 
@@ -119,7 +119,7 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function class_autoloader() {
-		include APPBEAR_INCLUDES_DIR . 'class-autoloader.php';
+		include JPRESS_INCLUDES_DIR . 'class-autoloader.php';
 		Appbear\Includes\Autoloader::run();
 	}
 
@@ -129,9 +129,9 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function includes() {
-		include APPBEAR_INCLUDES_DIR . 'class-appbear.php';
-		include APPBEAR_INCLUDES_DIR . 'class-appbear-items.php';
-		include APPBEAR_INCLUDES_DIR . 'global-functions.php';
+		include JPRESS_INCLUDES_DIR . 'class-jpress.php';
+		include JPRESS_INCLUDES_DIR . 'class-jpress-items.php';
+		include JPRESS_INCLUDES_DIR . 'global-functions.php';
 	}
 
 	/**
@@ -141,49 +141,49 @@ class AppbearLoader
    * @return void
    */
 	public function autoUpdateInit() {
-    include APPBEAR_INCLUDES_DIR . 'class-appbear-auto-update.php';
+    include JPRESS_INCLUDES_DIR . 'class-jpress-auto-update.php';
 
     // Run the updater
-    App_Bear_Automatic_Updates::run();
+    JPress_Automatic_Updates::run();
 	}
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| AppBear Core Initialization
+	| JPress Core Initialization
 	|---------------------------------------------------------------------------------------------------
 	*/
-	public function appbear_core_init() {
+	public function jpress_core_init() {
 		if ( $this->_cannotInit() ) {
 			return;
     }
 
-		if ( ! defined( 'APPBEAR_HIDE_DEMO' ) || ( defined( 'APPBEAR_HIDE_DEMO' ) && APPBEAR_HIDE_DEMO === false ) ) {
-			if ( ( $appBearOptsClass = APPBEAR_OPTIONS_DIR . 'appbear-options.php' ) && file_exists( $appBearOptsClass ) ) {
+		if ( ! defined( 'JPRESS_HIDE_DEMO' ) || ( defined( 'JPRESS_HIDE_DEMO' ) && JPRESS_HIDE_DEMO === false ) ) {
+			if ( ( $appBearOptsClass = JPRESS_OPTIONS_DIR . 'jpress-options.php' ) && file_exists( $appBearOptsClass ) ) {
         require_once $appBearOptsClass;
 
-        $appBearOptsClassInstance = new AppBear_Options();
+        $appBearOptsClassInstance = new JPress_Options();
         $appBearOptsClassInstance->run();
 			}
 		}
 
 		// Options & Plugin Custom Classes
-		include APPBEAR_OPTIONS_DIR . 'appbear-ads-shortcode.php';
-		include APPBEAR_OPTIONS_DIR . 'appbear-categories.php';
-		include APPBEAR_OPTIONS_DIR . 'appbear-deeplinking.php';
-		include APPBEAR_OPTIONS_DIR . 'appbear-notifications-metabox.php';
-		include APPBEAR_OPTIONS_DIR . 'appbear-apis.php';
-		include APPBEAR_OPTIONS_DIR . 'appbear-notice.php';
-		include APPBEAR_OPTIONS_DIR . 'demos-api.php';
-		include APPBEAR_OPTIONS_DIR . 'options.php';
-    include APPBEAR_OPTIONS_DIR . 'AppBear_subscription.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-ads-shortcode.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-categories.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-deeplinking.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-notifications-metabox.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-apis.php';
+		include JPRESS_OPTIONS_DIR . 'jpress-notice.php';
+		include JPRESS_OPTIONS_DIR . 'demos-api.php';
+		include JPRESS_OPTIONS_DIR . 'options.php';
+    include JPRESS_OPTIONS_DIR . 'JPress_subscription.php';
 
     // Init Classes
-    AppBear_Ads_Shortcode::run();
-    AppBear_Endpoints::run();
-    AppBear_Demos_Endpoints::run();
-    AppBear_Deeplinking::run();
-    AppBear_Categories::run();
-    AppBear_Notifications_Metabox::run();
+    JPress_Ads_Shortcode::run();
+    JPress_Endpoints::run();
+    JPress_Demos_Endpoints::run();
+    JPress_Deeplinking::run();
+    JPress_Categories::run();
+    JPress_Notifications_Metabox::run();
     Appbear_Notice::run();
   }
 
@@ -192,13 +192,13 @@ class AppbearLoader
    *
    * @return void
    */
-	public function appbear_themes_init() {
+	public function jpress_themes_init() {
 		if ( $this->_cannotInit() ) {
 			return;
     }
 
     // Run the pre-themes-init hook (Before themes-integrations initialization)
-		do_action( 'appbear_themes_init' );
+		do_action( 'jpress_themes_init' );
 
     // NOTE: Themes specific integrations go here..
     // TODO: To be chnaged to load files febending on the current active theme
@@ -212,16 +212,16 @@ class AppbearLoader
 	|---------------------------------------------------------------------------------------------------
 	*/
 	private function _get_url() {
-		if ( stripos( APPBEAR_DIR, 'themes') !== false ) {
-      $temp = explode( 'themes', APPBEAR_DIR );
-			$appbear_url = content_url() . '/themes' . $temp[1];
+		if ( stripos( JPRESS_DIR, 'themes') !== false ) {
+      $temp = explode( 'themes', JPRESS_DIR );
+			$jpress_url = content_url() . '/themes' . $temp[1];
 		} else {
       $dirs = explode(DIRECTORY_SEPARATOR, __DIR__);
       $pluginDirName = end($dirs);
-      $appbear_url = plugins_url() . "/{$pluginDirName}";
+      $jpress_url = plugins_url() . "/{$pluginDirName}";
     }
 
-		return str_replace( "\\", "/", $appbear_url );
+		return str_replace( "\\", "/", $jpress_url );
   }
 
   /**

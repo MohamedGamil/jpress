@@ -23,7 +23,7 @@ class FieldTypes {
     */
     public function __call( $field_type, $arguments ) {
         ob_start();
-        do_action( "appbear_build_{$field_type}", $this->field->get_appbear(), $this->field, $this->field->get_value(), $this );
+        do_action( "jpress_build_{$field_type}", $this->field->get_jpress(), $this->field, $this->field->get_value(), $this );
         return ob_get_clean();
     }
 
@@ -51,7 +51,7 @@ class FieldTypes {
         $default_attributes = array(
             'name' => $this->field->get_name(),
             'id' => Functions::get_id_attribute_by_name( $this->field->get_name() ),
-            'class' => "appbear-element appbear-btn appbear-btn-{$options['size']} appbear-btn-{$options['color']}"
+            'class' => "jpress-element jpress-btn jpress-btn-{$options['size']} jpress-btn-{$options['color']}"
         );
         if ( $options['tag'] != 'a' ) {
             $default_attributes['type'] = 'button';
@@ -88,7 +88,7 @@ class FieldTypes {
         $language = $this->field->arg( 'options', 'language' );
         $theme = $this->field->arg( 'options', 'theme' );
         $height = $this->field->arg( 'options', 'height' );
-        $return .= "<div class='appbear-code-editor' id='{$id}-ace' data-language='$language' data-theme='$theme' style='height: $height'>$value</div>";
+        $return .= "<div class='jpress-code-editor' id='{$id}-ace' data-language='$language' data-theme='$theme' style='height: $height'>$value</div>";
         $return .= $this->build_textarea( 'code_editor' );
         return $return;
     }
@@ -103,13 +103,13 @@ class FieldTypes {
         $value = $this->field->validate_colorpicker( $value );
         $return = '';
         if ( $this->field->arg( 'options', 'show_default_button' ) ) {
-            $return .= "<div class='appbear-colorpicker-default-btn' title='" . __( 'Set default color', 'appbear' ) . "'>";
-            $return .= "<i class='appbear-icon appbear-icon-eraser'></i>";
+            $return .= "<div class='jpress-colorpicker-default-btn' title='" . __( 'Set default color', 'jpress' ) . "'>";
+            $return .= "<i class='jpress-icon jpress-icon-eraser'></i>";
             $return .= "</div>";
         }
         $return .= $this->build_input( 'text', $value );
-        $return .= "<div class='appbear-colorpicker-preview'>";
-        $return .= "<span class='appbear-colorpicker-color' value='$value'></span>";
+        $return .= "<div class='jpress-colorpicker-preview'>";
+        $return .= "<span class='jpress-colorpicker-color' value='$value'></span>";
         $return .= "</div>";
 
         return $return;
@@ -126,7 +126,7 @@ class FieldTypes {
         $return .= $this->build_input( 'tagsinput', $value );
         if ( $this->field->arg( 'options', 'show_default_button' ) ) {
             $return .= '<div class="input-group-btn">';
-            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'appbear' ) .'</button>';
+            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'jpress' ) .'</button>';
             $return .= '</div>';
         }
         $return .= "</div>";
@@ -140,7 +140,7 @@ class FieldTypes {
         $return .= $this->build_input( 'tagsinput', $value );
         if ( $this->field->arg( 'options', 'show_default_button' ) ) {
             $return .= '<div class="input-group-btn">';
-            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'appbear' ) .'</button>';
+            $return .= '<button class="btn btn-tiffany" type="button">' . __( 'Add', 'jpress' ) .'</button>';
             $return .= '</div>';
         }
         $return .= "</div>";
@@ -190,20 +190,20 @@ class FieldTypes {
         $attachment_field = $this->field->get_parent()->get_field( $this->field->id . '_id' );
         $attachment_name = $attachment_field->get_name( $this->field->index );
 
-        $btn_class = "appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-upload-file {$options['upload_file_class']}";
-        $wrap_class = "appbear-wrap-preview appbear-wrap-preview-file";
+        $btn_class = "jpress-btn-input jpress-btn jpress-btn-icon jpress-btn-small jpress-btn-teal jpress-upload-file {$options['upload_file_class']}";
+        $wrap_class = "jpress-wrap-preview jpress-wrap-preview-file";
 
         if ( $options['multiple'] === true ) {
-            $btn_class .= " appbear-btn-preview-multiple";
-            $wrap_class .= " appbear-wrap-preview-multiple";
+            $btn_class .= " jpress-btn-preview-multiple";
+            $wrap_class .= " jpress-wrap-preview-multiple";
         } else {
             $return .= $this->build_input( 'text' );
         }
 
-        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'appbear-video-full-width' : '';
+        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'jpress-video-full-width' : '';
 
-        $return .= "<a class='$btn_class' data-field-name='$name' title='{$options['upload_file_text']}'><i class='appbear-icon appbear-icon-upload'></i></a>";
-        $return .= "<ul class='$wrap_class $full_width appbear-clearfix' data-field-name='$attachment_name' data-preview-size='$data_preview_size' data-synchronize-selector='{$options['synchronize_selector']}'>";
+        $return .= "<a class='$btn_class' data-field-name='$name' title='{$options['upload_file_text']}'><i class='jpress-icon jpress-icon-upload'></i></a>";
+        $return .= "<ul class='$wrap_class $full_width jpress-clearfix' data-field-name='$attachment_name' data-preview-size='$data_preview_size' data-synchronize-selector='{$options['synchronize_selector']}'>";
 
         if ( ! Functions::is_empty( $value ) ) {
             if ( $options['multiple'] === true ) {
@@ -244,26 +244,26 @@ class FieldTypes {
             $attachment_id = Functions::get_attachment_id_by_url( $value );
         }
 
-        $item_class = 'appbear-preview-item appbear-preview-file';
+        $item_class = 'jpress-preview-item jpress-preview-file';
         $item_body = '';
         $inputs = $multiple == true ? $this->build_input( 'hidden', $value, array(), 'esc_attr', array( 'id' ) ) : '';
-        $inputs .= "<input type='hidden' name='{$attachment_name}' value='{$attachment_id}' class='appbear-attachment-id'>";
+        $inputs .= "<input type='hidden' name='{$attachment_name}' value='{$attachment_id}' class='jpress-attachment-id'>";
 
         if ( $this->is_image_file( $value ) ) {
-            $item_class .= ' appbear-preview-image';
+            $item_class .= ' jpress-preview-image';
             if ( ! empty( $attachment_id ) ) {
                 $width = (int) $preview_size['width'];
                 $height = ( $preview_size['height'] == 'auto' ) ? $width : (int) $preview_size['height'];
                 //array( $width, $height ) add custom size added by "add_image_size"
-                $item_body = wp_get_attachment_image( $attachment_id, array( $width, $height ), false, array( 'class' => 'appbear-image appbear-preview-handler' ) );
+                $item_body = wp_get_attachment_image( $attachment_id, array( $width, $height ), false, array( 'class' => 'jpress-image jpress-preview-handler' ) );
             }
             if ( empty( $attachment_id ) || empty( $item_body ) ) {
-                $item_body = "<img src='$value' style='width: {$preview_size['width']}; height: {$preview_size['height']}' class='appbear-image appbear-preview-handler'>";
+                $item_body = "<img src='$value' style='width: {$preview_size['width']}; height: {$preview_size['height']}' class='jpress-image jpress-preview-handler'>";
             }
         } else if ( $this->is_video_file( $value ) ) {
-            $item_class .= ' appbear-preview-video';
+            $item_class .= ' jpress-preview-video';
             $extension = Functions::get_file_extension( $value );
-            $item_body = "<div class='appbear-video'>";
+            $item_body = "<div class='jpress-video'>";
             $item_body .= "<video controls style='width: {$preview_size['width']}; height: {$preview_size['height']}'>";
             $item_body .= "<source src='$value' type='video/$extension'>";
             $item_body .= "</video>";
@@ -279,13 +279,13 @@ class FieldTypes {
                 $file_name = wp_basename( get_attached_file( $attachment_id ) );
                 $file_icon_url = wp_mime_type_icon( $attachment_id );
             }
-            $item_body = "<img src='$file_icon_url' class='appbear-preview-icon-file appbear-preview-handler'><a href='$file_link' class='appbear-preview-download-link'>$file_name</a><span class='appbear-preview-mime appbear-preview-handler'>$file_mime</span>";
+            $item_body = "<img src='$file_icon_url' class='jpress-preview-icon-file jpress-preview-handler'><a href='$file_link' class='jpress-preview-download-link'>$file_name</a><span class='jpress-preview-mime jpress-preview-handler'>$file_mime</span>";
         }
 
         $return .= "<li class='{$item_class}'>";
         $return .= $inputs;
         $return .= $item_body;
-        $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'><i class='appbear-icon appbear-icon-times-circle'></i></a>";
+        $return .= "<a class='jpress-btn jpress-btn-iconize jpress-btn-small jpress-btn-red jpress-remove-preview'><i class='jpress-icon jpress-icon-times-circle'></i></a>";
         $return .= "</li>";
 
         return $return;
@@ -357,8 +357,8 @@ class FieldTypes {
 
       $return = '';
       $return .= $this->build_input( 'hidden' );
-      $return .= "<div class='appbear-icon-actions appbear-clearfix'>";
-      $return .= "<div class='appbear-icon-active appbear-item-icon-selector'>";
+      $return .= "<div class='jpress-icon-actions jpress-clearfix'>";
+      $return .= "<div class='jpress-icon-active jpress-item-icon-selector'>";
 
       if ( Functions::ends_with( '.svg', $value ) ) {
         $return .= "<img src='$value'>";
@@ -370,22 +370,22 @@ class FieldTypes {
       $return .= "</div>";
 
       if ( false === $options['hide_search'] ) {
-        $return .= "<input type='text' class='appbear-search-icon' placeholder='Search icon...'>";
+        $return .= "<input type='text' class='jpress-search-icon' placeholder='Search icon...'>";
       }
 
       // BUG: Buttons are not working as intended!
       if ( false === $options['hide_buttons'] ) {
-        $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='all'>All</a>";
-        $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='font'>Icon font</a>";
-        $return .= "<a class='appbear-btn appbear-btn-small appbear-btn-teal' data-search='.svg'>SVG</a>";
+        $return .= "<a class='jpress-btn jpress-btn-small jpress-btn-teal' data-search='all'>All</a>";
+        $return .= "<a class='jpress-btn jpress-btn-small jpress-btn-teal' data-search='font'>Icon font</a>";
+        $return .= "<a class='jpress-btn jpress-btn-small jpress-btn-teal' data-search='.svg'>SVG</a>";
       }
 
       $return .= "</div>";
 
       $data = json_encode( $options );
       $itemsJson = json_encode( $this->_prepareIconsItems($items) );
-      $return .= "<script>APPBEAR_JS._field_icons['{$this->field->id}'] = $itemsJson;</script>";
-      $return .= "<div class='appbear-icons-wrap appbear-clearfix' data-options='{$data}' style='height:{$options['wrap_height']} '>";
+      $return .= "<script>JPRESS_JS._field_icons['{$this->field->id}'] = $itemsJson;</script>";
+      $return .= "<div class='jpress-icons-wrap jpress-clearfix' data-options='{$data}' style='height:{$options['wrap_height']} '>";
 
       /*
       $icons_html = '';
@@ -407,7 +407,7 @@ class FieldTypes {
             $icon = preg_replace( '/(<i\b[^><]*)>/i', '$1 style="">', $icon );
           }
 
-          $icons_html .= "<div class='appbear-item-icon-selector' data-value='$k' data-key='$key' data-search='". Functions::get_icon( $k ) ."' data-type='$type' style='width: {$options['size']}; height: {$options['size']}; font-size: {$font_size}'>";
+          $icons_html .= "<div class='jpress-item-icon-selector' data-value='$k' data-key='$key' data-search='". Functions::get_icon( $k ) ."' data-type='$type' style='width: {$options['size']}; height: {$options['size']}; font-size: {$font_size}'>";
           $icons_html .= $icon;
           $icons_html .= "</div>";
         }
@@ -429,27 +429,27 @@ class FieldTypes {
     public function image( $type = '' ) {
         $return = '';
         $value = $this->field->get_value();
-        $image_class = 'appbear-element-image ' . $this->field->arg( 'options', 'image_class' );
+        $image_class = 'jpress-element-image ' . $this->field->arg( 'options', 'image_class' );
 
         if ( $this->field->arg( 'options', 'hide_input' ) ) {
             $return .= $this->build_input( 'hidden' );
         } else {
             $return .= $this->build_input( 'text' );
-            $return .= "<a class='appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-get-image' title='Preview'><i class='appbear-icon appbear-icon-refresh'></i></a>";
+            $return .= "<a class='jpress-btn-input jpress-btn jpress-btn-icon jpress-btn-small jpress-btn-teal jpress-get-image' title='Preview'><i class='jpress-icon jpress-icon-refresh'></i></a>";
         }
 
-        $return .= "<ul class='appbear-wrap-preview appbear-wrap-image appbear-clearfix' data-image-class='{$image_class}'>";
-        $return .= "<li class='appbear-preview-item appbear-preview-image'>";
+        $return .= "<ul class='jpress-wrap-preview jpress-wrap-image jpress-clearfix' data-image-class='{$image_class}'>";
+        $return .= "<li class='jpress-preview-item jpress-preview-image'>";
         $return .= "<img src='{$value}' class='{$image_class}'";
         if ( empty( $value ) ) {
             $return .= " style='display: none;'";
         }
         $return .= ">";
-        $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'";
+        $return .= "<a class='jpress-btn jpress-btn-iconize jpress-btn-small jpress-btn-red jpress-remove-preview'";
         if ( empty( $value ) ) {
             $return .= " style='display: none;'";
         }
-        $return .= "><i class='appbear-icon appbear-icon-times-circle'></i></a>";
+        $return .= "><i class='jpress-icon jpress-icon-times-circle'></i></a>";
         $return .= "</li>";
         $return .= "</ul>";
         return $return;
@@ -465,7 +465,7 @@ class FieldTypes {
         $items = $this->field->arg( 'items' );
         $items_desc = $this->field->arg( 'items_desc' );
         $options = $this->field->arg( 'options' );
-        $import_settings = $this->field->get_appbear()->arg( 'import_settings' );
+        $import_settings = $this->field->get_jpress()->arg( 'import_settings' );
         if ( ! Functions::is_empty( $items ) ) {
             $has_images = false;
             foreach( $items as $item_key => $item_val ) {
@@ -485,48 +485,48 @@ class FieldTypes {
                 if ( is_array( $import_data ) ) {
                     foreach( $import_data as $import_key => $import_val ) {
                         if ( Functions::starts_with( 'import_', $import_key ) ) {
-                            $return .= "<input type='hidden' name='appbear-import-data[$item_key][$import_key]' value='$import_val'>";
+                            $return .= "<input type='hidden' name='jpress-import-data[$item_key][$import_key]' value='$import_val'>";
                         }
                     }
                 }
             }
         }
 
-        $return .= "<div class='appbear-wrap-import-inputs'></div>";
+        $return .= "<div class='jpress-wrap-import-inputs'></div>";
 
         if ( $options['import_from_file'] ) {
-            $return .= "<div class='appbear-wrap-input-file'>";
-            $return .= "<input type='file' name='appbear-import-file'>";
+            $return .= "<div class='jpress-wrap-input-file'>";
+            $return .= "<input type='file' name='jpress-import-file'>";
             $return .= "</div>";
         }
         if ( $options['import_from_url'] ) {
-            $return .= "<div class='appbear-wrap-input-url'>";
-            $placeholder = __( 'Enter a valid json url', 'appbear' );
-            $return .= "<input type='text' name='appbear-import-url' placeholder='$placeholder'>";
+            $return .= "<div class='jpress-wrap-input-url'>";
+            $placeholder = __( 'Enter a valid json url', 'jpress' );
+            $return .= "<input type='text' name='jpress-import-url' placeholder='$placeholder'>";
             $return .= "</div>";
         }
 
         if ( $import_settings['show_authentication_fields'] ) {
             $auth_fields = '
-<div class="appbear-row appbear-clearfix appbear-type-mixed appbear-show" style="margin-left: -25px; margin-bottom: 15px;">
-    <div class="appbear-label"><label class="appbear-element-label">'.$options["label_text_auth_fields"].'</label>
-        <div class="appbear-field-description">'.$options["desc_text_auth_fields"].'</div>
+<div class="jpress-row jpress-clearfix jpress-type-mixed jpress-show" style="margin-left: -25px; margin-bottom: 15px;">
+    <div class="jpress-label"><label class="jpress-element-label">'.$options["label_text_auth_fields"].'</label>
+        <div class="jpress-field-description">'.$options["desc_text_auth_fields"].'</div>
     </div>
-    <div class="appbear-content appbear-clearfix">
-        <div class="appbear-wrap-mixed appbear-clearfix">
-            <div class="appbear-row appbear-clearfix appbear-type-text appbear-row-mixed appbear-grid appbear-col-2-of-8 appbear-row-id-appbear-import-username appbear-show">
-                <div class="appbear-label-mixed"><label class="appbear-element-label">Username</label></div>
-                <div class="appbear-content-mixed appbear-clearfix">
-                    <div class="appbear-field appbear-field-id-appbear-import-username">
-                        <input type="text" name="appbear-import-username" class="appbear-element-text">
+    <div class="jpress-content jpress-clearfix">
+        <div class="jpress-wrap-mixed jpress-clearfix">
+            <div class="jpress-row jpress-clearfix jpress-type-text jpress-row-mixed jpress-grid jpress-col-2-of-8 jpress-row-id-jpress-import-username jpress-show">
+                <div class="jpress-label-mixed"><label class="jpress-element-label">Username</label></div>
+                <div class="jpress-content-mixed jpress-clearfix">
+                    <div class="jpress-field jpress-field-id-jpress-import-username">
+                        <input type="text" name="jpress-import-username" class="jpress-element-text">
                     </div>
                 </div>
             </div>
-            <div class="appbear-row appbear-clearfix appbear-type-text appbear-row-mixed appbear-grid appbear-col-2-of-8 appbear-row-id-appbear-import-password appbear-show">
-                <div class="appbear-label-mixed"><label class="appbear-element-label">Password</label></div>
-                <div class="appbear-content-mixed appbear-clearfix">
-                    <div class="appbear-field appbear-field-id-appbear-import-password ">
-                        <input type="password" name="appbear-import-password" class="appbear-element-text">
+            <div class="jpress-row jpress-clearfix jpress-type-text jpress-row-mixed jpress-grid jpress-col-2-of-8 jpress-row-id-jpress-import-password jpress-show">
+                <div class="jpress-label-mixed"><label class="jpress-element-label">Password</label></div>
+                <div class="jpress-content-mixed jpress-clearfix">
+                    <div class="jpress-field jpress-field-id-jpress-import-password ">
+                        <input type="password" name="jpress-import-password" class="jpress-element-text">
                     </div>
                 </div>
             </div>
@@ -536,7 +536,7 @@ class FieldTypes {
             $return .= $auth_fields;
         }
 
-        $return .= "<input type='button' name='appbear-import' id='appbear-import' class='appbear-btn appbear-btn-{$this->field->get_appbear()->arg( 'skin' )}' value='{$options['import_button_text']}'>";
+        $return .= "<input type='button' name='jpress-import' id='jpress-import' class='jpress-btn jpress-btn-{$this->field->get_jpress()->arg( 'skin' )}' value='{$options['import_button_text']}'>";
 
         return $return;
     }
@@ -545,11 +545,11 @@ class FieldTypes {
         $return = '';
         $options = $this->field->arg( 'options' );
         $file_base_name = $options['export_file_name'];
-        $data = $this->field->get_appbear()->get_fields_data( 'json' );
+        $data = $this->field->get_jpress()->get_fields_data( 'json' );
         $file_name = $file_base_name . '-' . date( 'd-m-Y' ) . '.json';
         $return .= "<textarea>$data</textarea>";
 
-        $dir = APPBEAR_DIR;
+        $dir = JPRESS_DIR;
         if ( is_dir( $dir . 'backups' ) ) {
             $dir = $dir . 'backups/';
         } else {
@@ -571,11 +571,11 @@ class FieldTypes {
         }
 
         if ( false !== file_put_contents( $dir . $file_name, $data ) ) {
-            $file_url = APPBEAR_URL . $file_name;
+            $file_url = JPRESS_URL . $file_name;
             if ( stripos( $dir, 'backups' ) !== false ) {
-                $file_url = APPBEAR_URL . 'backups/' . $file_name;
+                $file_url = JPRESS_URL . 'backups/' . $file_name;
             }
-            $return .= "<a href='$file_url' id='appbear-export-btn' class='appbear-btn appbear-btn-{$this->field->get_appbear()->arg( 'skin' )}' target='_blank' download>{$options['export_button_text']}</a>";
+            $return .= "<a href='$file_url' id='jpress-export-btn' class='jpress-btn jpress-btn-{$this->field->get_jpress()->arg( 'skin' )}' target='_blank' download>{$options['export_button_text']}</a>";
         }
         return $return;
     }
@@ -594,10 +594,10 @@ class FieldTypes {
 
         $items_desc = $this->field->arg( 'items_desc' );
         $options = $this->field->arg( 'options' );
-        $wrap_class = 'appbear-radiochecks init-image-selector';
+        $wrap_class = 'jpress-radiochecks init-image-selector';
 
         if ( $this->field->arg( 'options', 'in_line' ) == false ) {
-            $wrap_class .= ' appbear-vertical';
+            $wrap_class .= ' jpress-vertical';
         }
 
         $data_image_chooser = json_encode( $options );
@@ -606,10 +606,10 @@ class FieldTypes {
         foreach( $items as $key => $image ) {
             // $classKey = str_replace( '.', '_', $key );
             $classKey = $key;
-            $item_class = "appbear-item-image-selector item-key-{$classKey}";
+            $item_class = "jpress-item-image-selector item-key-{$classKey}";
 
             if ( ( $key == 'from_file' || $key == 'from_url' ) && ( $options['import_from_file'] || $options['import_from_url'] ) ) {
-                $item_class .= " appbear-block";
+                $item_class .= " jpress-block";
             }
 
             $return .= "<div class='$item_class' style='width: {$options['width']}'>";
@@ -625,17 +625,17 @@ class FieldTypes {
             $return .= "</label>";
 
             if ( isset( $items_desc[$key] ) ) {
-                $return .= "<div class='appbear-item-desc'>";
+                $return .= "<div class='jpress-item-desc'>";
                 if ( is_array( $items_desc[$key] ) ) {
                     if ( isset( $items_desc[$key]['title'] ) ) {
-                        $return .= "<div class='appbear-item-desc-title'>{$items_desc[$key]['title']}</div>";
+                        $return .= "<div class='jpress-item-desc-title'>{$items_desc[$key]['title']}</div>";
                     }
 
                     if ( isset( $items_desc[$key]['content'] ) ) {
-                        $return .= "<div class='appbear-item-desc-content'>{$items_desc[$key]['content']}</div>";
+                        $return .= "<div class='jpress-item-desc-content'>{$items_desc[$key]['content']}</div>";
                     }
                 } else {
-                    $return .= "<div class='appbear-item-desc'>{$items_desc[$key]}</div>";
+                    $return .= "<div class='jpress-item-desc'>{$items_desc[$key]}</div>";
                 }
 
                 $return .= "</div>";
@@ -674,25 +674,25 @@ class FieldTypes {
             $unit_value = $options['unit'];
         }
         $return = $this->build_input( 'text', '', array( 'data-default-unit' => $options['unit'] ), 'esc_attr', array( 'min', 'max', 'step', 'precision' ) );
-        $return .= "<div class='appbear-unit appbear-noselect appbear-unit-has-picker-{$has_unit_picker}' data-default-unit='{$options['unit']}'>";
+        $return .= "<div class='jpress-unit jpress-noselect jpress-unit-has-picker-{$has_unit_picker}' data-default-unit='{$options['unit']}'>";
 
-        $return .= "<input type='hidden' name='{$unit_field_name}' value='{$unit_value}' class='appbear-unit-number'>";
+        $return .= "<input type='hidden' name='{$unit_field_name}' value='{$unit_value}' class='jpress-unit-number'>";
         if ( $options['show_unit'] ) {
             $unit_text = $has_unit_picker ? $unit_picker[$unit_value] : $unit_value;
             //$title = $unit_text == '#' ? 'Without unit' : '';
             $return .= "<span>{$unit_text}</span>";
         }
         if ( $has_unit_picker && $options['show_unit'] ) {
-            $return .= "<i class='appbear-icon appbear-icon-caret-down appbear-unit-picker'></i>";
-            $return .= "<div class='appbear-units-dropdown'>";
+            $return .= "<i class='jpress-icon jpress-icon-caret-down jpress-unit-picker'></i>";
+            $return .= "<div class='jpress-units-dropdown'>";
             foreach( $unit_picker as $unit => $display ) {
                 //$title = $display == '#' ? 'Without unit' : '';
-                $return .= "<div class='appbear-unit-item' data-value='$unit'>$display</div>";
+                $return .= "<div class='jpress-unit-item' data-value='$unit'>$display</div>";
             }
             $return .= "</div>";
         }
-        $return .= "<a href='javascript:;' class='appbear-spinner-control' data-spin='up'><i class='appbear-icon appbear-icon-caret-up appbear-spinner-handler'></i></a>";
-        $return .= "<a href='javascript:;' class='appbear-spinner-control' data-spin='down'><i class='appbear-icon appbear-icon-caret-down appbear-spinner-handler'></i></a>";
+        $return .= "<a href='javascript:;' class='jpress-spinner-control' data-spin='up'><i class='jpress-icon jpress-icon-caret-up jpress-spinner-handler'></i></a>";
+        $return .= "<a href='javascript:;' class='jpress-spinner-control' data-spin='down'><i class='jpress-icon jpress-icon-caret-down jpress-spinner-handler'></i></a>";
         $return .= "</div>";
         return $return;
     }
@@ -706,14 +706,14 @@ class FieldTypes {
         global $post, $wp_embed;
         $return = '';
         $oembed_url = $this->field->get_value();
-        $oembed_class = 'appbear-element-oembed ' . $this->field->arg( 'options', 'oembed_class' );
+        $oembed_class = 'jpress-element-oembed ' . $this->field->arg( 'options', 'oembed_class' );
         $preview_size = $this->field->arg( 'options', 'preview_size' );
         $data_preview_size = json_encode( $preview_size );
         $return .= $this->build_input( 'text' );
-        $return .= "<a class='appbear-btn-input appbear-btn appbear-btn-icon appbear-btn-small appbear-btn-teal appbear-get-oembed' title='{$this->field->arg( 'options', 'get_preview_text' )}'><i class='appbear-icon appbear-icon-refresh'></i></a>";
-        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'appbear-oembed-full-width' : '';
+        $return .= "<a class='jpress-btn-input jpress-btn jpress-btn-icon jpress-btn-small jpress-btn-teal jpress-get-oembed' title='{$this->field->arg( 'options', 'get_preview_text' )}'><i class='jpress-icon jpress-icon-refresh'></i></a>";
+        $full_width = Functions::ends_with( '100%', $preview_size['width'] ) ? 'jpress-oembed-full-width' : '';
 
-        $return .= "<ul class='appbear-wrap-preview appbear-wrap-oembed $full_width appbear-clearfix' data-preview-size='$data_preview_size' data-preview-onload='{$this->field->arg( 'options', 'preview_onload' )}'>";
+        $return .= "<ul class='jpress-wrap-preview jpress-wrap-oembed $full_width jpress-clearfix' data-preview-size='$data_preview_size' data-preview-onload='{$this->field->arg( 'options', 'preview_onload' )}'>";
 
         /*
         Oembed relentiza la carga de la página. Ahora lo hacemos mediante Ajax, es mucho más rápido.
@@ -723,11 +723,11 @@ class FieldTypes {
             $oembed = Functions::get_oembed( $oembed_url, $preview_size );
             if ( $oembed['success'] ) {
                 $provider = strtolower( Functions::get_oembed_provider( $oembed_url ) );
-                $return .= "<li class='appbear-preview-item appbear-preview-oembed'>";
-                    $return .= "<div class='appbear-oembed appbear-oembed-provider-$provider $oembed_class'>";
+                $return .= "<li class='jpress-preview-item jpress-preview-oembed'>";
+                    $return .= "<div class='jpress-oembed jpress-oembed-provider-$provider $oembed_class'>";
                         $return .= $oembed['oembed'];
                     $return .= "</div>";
-                    $return .= "<a class='appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview'><i class='appbear-icon appbear-icon-times-circle'></i></a>";
+                    $return .= "<a class='jpress-btn jpress-btn-iconize jpress-btn-small jpress-btn-red jpress-remove-preview'><i class='jpress-icon jpress-icon-times-circle'></i></a>";
                 $return .= "</li>";
             } else {
                 $return .= $oembed['message'];
@@ -750,12 +750,12 @@ class FieldTypes {
         if ( Functions::is_empty( $items ) ) {
             return '';
         }
-        $wrap_class = "appbear-radiochecks init-icheck";
+        $wrap_class = "jpress-radiochecks init-icheck";
         if ( $this->field->arg( 'options', 'in_line' ) == false ) {
-            $wrap_class .= ' appbear-vertical';
+            $wrap_class .= ' jpress-vertical';
         }
         if ( $this->field->arg( 'options', 'sortable' ) ) {
-            $wrap_class .= ' appbear-sortable';
+            $wrap_class .= ' jpress-sortable';
         }
         $return = "<div class='$wrap_class'>";
         $temp = array();
@@ -803,7 +803,7 @@ class FieldTypes {
         $attributes['data-switcher'] = json_encode( $this->field->arg( 'options' ) );
         $attributes = Functions::nice_array_merge(
             $attributes,
-            array( 'class' => 'appbear-element-switcher' ),
+            array( 'class' => 'jpress-element-switcher' ),
             array(),
             array( 'class' => ' ' )
         );
@@ -825,7 +825,7 @@ class FieldTypes {
             if ( $helper == 'maxlength' && $maxlength = $this->field->arg( 'attributes', 'maxlength' ) ) {
                 $helper = strlen( $value ) . '/' . $maxlength;
             }
-            $return .= "<span class='appbear-field-helper'>$helper</span>";
+            $return .= "<span class='jpress-field-helper'>$helper</span>";
         }
         return $return;
     }
@@ -839,7 +839,7 @@ class FieldTypes {
         $title_class = $this->field->arg( 'attributes', 'class' );
         $title = $this->field->arg( 'name' );
         if ( ! empty( $title ) ) {
-            return "<h3 class='appbear-field-title $title_class'>$title</h3>";
+            return "<h3 class='jpress-field-title $title_class'>$title</h3>";
         }
         return '';
     }
@@ -866,7 +866,7 @@ class FieldTypes {
         $element_attributes = array(
             'name' => $this->field->get_name(),
             'id' => Functions::get_id_attribute_by_name( $this->field->get_name() ),
-            'class' => "appbear-element appbear-element-{$type}"
+            'class' => "jpress-element jpress-element-{$type}"
         );
 
         // Une todos los atributos. Evita el reemplazo de ('name', 'id', 'value', 'checked')
@@ -925,7 +925,7 @@ class FieldTypes {
             'data-initial-value' => $value,//Valor inicial al cargar la página
             'data-prev-value' => $value,//Valor anterior al valor actual. Usado para (Ctrl + z)
             'data-temp-value' => $value,//Valor temporal. Usado para (Ctrl + z)
-            'class' => "appbear-element appbear-element-{$type}"
+            'class' => "jpress-element jpress-element-{$type}"
         );
 
         if ( $type == 'radio' && $value == $field_value ) {
@@ -1006,7 +1006,7 @@ class FieldTypes {
             if ( is_array( $display ) ) {
                 if ( ! Functions::is_empty( $display ) ) {
                     $items_select .= "<div class='divider'></div>";
-                    $items_select .= "<div class='header'><i class='appbear-icon appbear-icon-tags'></i>$key</div>";
+                    $items_select .= "<div class='header'><i class='jpress-icon jpress-icon-tags'></i>$key</div>";
                     if ( $options['sort'] ) {
                         $display = Functions::sort( $display, $options['sort'], $options['sort_by_values'] ? 'value' : 'key' );
                     }
@@ -1021,7 +1021,7 @@ class FieldTypes {
             }
         }
 
-        $dropdown_class = "appbear-element appbear-element-$type ui fluid selection dropdown";
+        $dropdown_class = "jpress-element jpress-element-$type ui fluid selection dropdown";
 
         if ( $options['search'] === true ) {
             $dropdown_class .= " search";
@@ -1059,7 +1059,7 @@ class FieldTypes {
         $return .= "<i class='dropdown icon'></i>";
         $return .= "<div class='default text'>{$attributes['placeholder']}</div>";
         $return .= "<div class='menu'>";
-        $return .= "<div class='appbear-ui-inner-menu'>";
+        $return .= "<div class='jpress-ui-inner-menu'>";
         $return .= $items_select;
         $return .= "</div>";
         $return .= "</div>";

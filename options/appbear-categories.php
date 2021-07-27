@@ -4,15 +4,15 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 /**
- * AppBear_Categories Class
+ * JPress_Categories Class
  *
  * This class handles categories fields implementation
  *
  *
  * @since 0.0.5
  */
-class AppBear_Categories {
-  const OPTION_KEY = 'appbear_categories_metadata';
+class JPress_Categories {
+  const OPTION_KEY = 'jpress_categories_metadata';
 
   /**
    * Internal initilization state &
@@ -39,7 +39,7 @@ class AppBear_Categories {
       return;
     }
 
-    static::$_localInstance = new AppBear_Categories();
+    static::$_localInstance = new JPress_Categories();
     static::$_didInit = true;
   }
 
@@ -81,7 +81,7 @@ class AppBear_Categories {
    */
   public function add_category_image( $taxonomy ) {
     $data = array( 'taxonomy' => $taxonomy );
-    echo appbear_get_template('categories/category_image_field', $data);
+    echo jpress_get_template('categories/category_image_field', $data);
   }
 
   /**
@@ -100,7 +100,7 @@ class AppBear_Categories {
       'image' => $image,
     );
 
-    echo appbear_get_template('categories/category_image_field_update', $data);
+    echo jpress_get_template('categories/category_image_field_update', $data);
   }
 
   /**
@@ -111,8 +111,8 @@ class AppBear_Categories {
    * @return void
    */
   public function save_category_image( $term_id, $tt_id ) {
-    if( isset( $_POST['appbear-category-image-id'] ) && '' !== $_POST['appbear-category-image-id'] ){
-      $image = $_POST['appbear-category-image-id'];
+    if( isset( $_POST['jpress-category-image-id'] ) && '' !== $_POST['jpress-category-image-id'] ){
+      $image = $_POST['jpress-category-image-id'];
 
       $this->_update($term_id, array(
         'image' => $image,
@@ -129,7 +129,7 @@ class AppBear_Categories {
    */
   public function updated_category_image( $term_id, $tt_id ) {
     $this->_updateOrDelete($term_id, array(
-      'image' => isset($_POST['appbear-category-image-id']) ? $_POST['appbear-category-image-id'] : '',
+      'image' => isset($_POST['jpress-category-image-id']) ? $_POST['jpress-category-image-id'] : '',
     ));
   }
 
@@ -138,7 +138,7 @@ class AppBear_Categories {
    */
   public function enqueue_scripts() {
     wp_enqueue_media();
-    wp_enqueue_script( 'appbear-categories-init', APPBEAR_URL . 'options/js/cat_image.js', array('jquery') );
+    wp_enqueue_script( 'jpress-categories-init', JPRESS_URL . 'options/js/cat_image.js', array('jquery') );
   }
 
   /**

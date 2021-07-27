@@ -2,24 +2,24 @@
 |-----------------------------------------------------------------------------------------
 | Principal
 |-----------------------------------------------------------------------------------------
-|.appbear
+|.jpress
 */
 html {
   overflow-x: inherit; }
 
-.appbear-clearfix:before,
-.appbear-clearfix:after {
+.jpress-clearfix:before,
+.jpress-clearfix:after {
   content: "";
   display: table; }
 
-.appbear-clearfix:after {
+.jpress-clearfix:after {
   clear: both; }
 
-.appbear-clearfix {
+.jpress-clearfix {
   zoom: 1;
   /* For IE 6/7 (trigger hasLayout) */ }
 
-.appbear {
+.jpress {
   position: relative;
   display: block;
   margin: 0 auto;
@@ -30,107 +30,107 @@ html {
   font-family: "Open Sans", Verdana, Geneva, sans-serif;
   color: #5e6672;
   background-color: white; }
-.appbear a:active, .appbear a:focus, .appbear a:visited, .appbear a:link {
+.jpress a:active, .jpress a:focus, .jpress a:visited, .jpress a:link {
   text-decoration: none;
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none; }
-.appbear input, .appbear label, .appbear textarea, .appbear keygen, .appbear select, .appbear button {
+.jpress input, .jpress label, .jpress textarea, .jpress keygen, .jpress select, .jpress button {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", Verdana, Geneva, sans-serif; }
-.appbear.appbear-radius input,
-.appbear.appbear-radius textarea,
-.appbear.appbear-radius .appbear-unit,
-.appbear.appbear-radius .appbear-colorpicker-preview,
-.appbear.appbear-radius .appbear-colorpicker-color,
-.appbear.appbear-radius .ui.dropdown.selection,
-.appbear.appbear-radius .ui.dropdown .menu,
-.appbear.appbear-radius .appbear-btn,
-.appbear.appbear-radius .appbear-group-control-item,
-.appbear.appbear-radius .appbear-preview-img img,
-.appbear.appbear-radius .appbear-item-icon-selector,
-.appbear.appbear-radius .appbear-field-helper {
+.jpress.jpress-radius input,
+.jpress.jpress-radius textarea,
+.jpress.jpress-radius .jpress-unit,
+.jpress.jpress-radius .jpress-colorpicker-preview,
+.jpress.jpress-radius .jpress-colorpicker-color,
+.jpress.jpress-radius .ui.dropdown.selection,
+.jpress.jpress-radius .ui.dropdown .menu,
+.jpress.jpress-radius .jpress-btn,
+.jpress.jpress-radius .jpress-group-control-item,
+.jpress.jpress-radius .jpress-preview-img img,
+.jpress.jpress-radius .jpress-item-icon-selector,
+.jpress.jpress-radius .jpress-field-helper {
   border-radius: 3px; }
-.appbear * {
+.jpress * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
   font-size: inherit; }
-.appbear *:focus {
+.jpress *:focus {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none; }
-.appbear .last,
-.appbear .appbear-last {
+.jpress .last,
+.jpress .jpress-last {
   margin-left: 0; }
-.appbear img {
+.jpress img {
   max-width: 100%;
   height: auto; }
-.appbear iframe, .appbear video, .appbear audio, .appbear embed, .appbear object {
+.jpress iframe, .jpress video, .jpress audio, .jpress embed, .jpress object {
   max-width: 100%; }
-.appbear .appbear-block {
+.jpress .jpress-block {
   display: block; }
-.appbear .appbear-show {
+.jpress .jpress-show {
   display: block; }
-.appbear .appbear-show.appbear-row-mixed {
+.jpress .jpress-show.jpress-row-mixed {
   display: inline-block; }
-.appbear .appbear-hide {
+.jpress .jpress-hide {
   display: none; }
-.appbear .appbear-color-grey {
+.jpress .jpress-color-grey {
   color: #CAD0D9; }
-.appbear .appbear-color-dark {
+.jpress .jpress-color-dark {
   color: #252C3A; }
-.appbear .appbear-color-blue {
+.jpress .jpress-color-blue {
   color: #3380DA; }
-.appbear .appbear-color-lightblue {
+.jpress .jpress-color-lightblue {
   color: #1694DE; }
-.appbear .appbear-color-green {
+.jpress .jpress-color-green {
   color: #00AA8C; }
-.appbear .appbear-color-teal {
+.jpress .jpress-color-teal {
   color: #00B5AD; }
-.appbear .appbear-color-red {
+.jpress .jpress-color-red {
   color: #E56464; }
-.appbear .appbear-color-pink {
+.jpress .jpress-color-pink {
   color: #F86196; }
-.appbear .appbear-color-purple {
+.jpress .jpress-color-purple {
   color: #6515DD; }
-.appbear .appbear-color-bluepurple {
+.jpress .jpress-color-bluepurple {
   color: #5274EB; }
-.appbear .appbear-color-yellow {
+.jpress .jpress-color-yellow {
   color: #FC9F2E; }
-.appbear .appbear-color-orange {
+.jpress .jpress-color-orange {
   color: #F86A5E; }
-.appbear .appbear-br-3 {
+.jpress .jpress-br-3 {
   border-radius: 3px; }
-.appbear .appbear-br-4 {
+.jpress .jpress-br-4 {
   border-radius: 4px; }
-.appbear .appbear-br-5 {
+.jpress .jpress-br-5 {
   border-radius: 5px; }
-.appbear .appbear-br-6 {
+.jpress .jpress-br-6 {
   border-radius: 6px; }
-.appbear .appbear-opacity-0 {
+.jpress .jpress-opacity-0 {
   opacity: 0; }
-.appbear .appbear-opacity-10 {
+.jpress .jpress-opacity-10 {
   opacity: 0.1; }
-.appbear .appbear-opacity-20 {
+.jpress .jpress-opacity-20 {
   opacity: 0.2; }
-.appbear .appbear-opacity-30 {
+.jpress .jpress-opacity-30 {
   opacity: 0.3; }
-.appbear .appbear-opacity-40 {
+.jpress .jpress-opacity-40 {
   opacity: 0.4; }
-.appbear .appbear-opacity-50 {
+.jpress .jpress-opacity-50 {
   opacity: 0.5; }
-.appbear .appbear-opacity-60 {
+.jpress .jpress-opacity-60 {
   opacity: 0.6; }
-.appbear .appbear-opacity-70 {
+.jpress .jpress-opacity-70 {
   opacity: 0.7; }
-.appbear .appbear-opacity-80 {
+.jpress .jpress-opacity-80 {
   opacity: 0.8; }
-.appbear .appbear-opacity-90 {
+.jpress .jpress-opacity-90 {
   opacity: 0.9; }
-.appbear .appbear-opacity-100 {
+.jpress .jpress-opacity-100 {
   opacity: 1; }
-.appbear .appbear-noselect {
+.jpress .jpress-noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -144,41 +144,41 @@ html {
   user-select: none;
   /* Non-prefixed version, currently not supported by any browser */
   cursor: default; }
-.appbear .appbear-sortable-placeholder {
+.jpress .jpress-sortable-placeholder {
   border: 2px dashed #b5beca;
   border-radius: 0 !important; }
-.appbear .appbear-icon {
+.jpress .jpress-icon {
   font-size: 1em; }
-.appbear .arrow.icon {
+.jpress .arrow.icon {
   position: relative;
   left: auto;
   bottom: auto;
   top: auto;
   z-index: 0; }
-.appbear ::-webkit-input-placeholder {
+.jpress ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #bbc3ce !important; }
-.appbear ::-moz-placeholder {
+.jpress ::-moz-placeholder {
   /* Firefox 19+ */
   color: #bbc3ce !important; }
-.appbear :-ms-input-placeholder {
+.jpress :-ms-input-placeholder {
   /* IE 10+ */
   color: #bbc3ce !important; }
-.appbear :-moz-placeholder {
+.jpress :-moz-placeholder {
   /* Firefox 18- */
   color: #bbc3ce !important; }
 
-.postbox.appbear-postbox {
+.postbox.jpress-postbox {
   border-color: #d6dbe2;
   -webkit-box-shadow: 0 1px 1px rgba(214, 219, 226, 0.4);
   box-shadow: 0 1px 1px rgba(214, 219, 226, 0.4); }
-.postbox.appbear-postbox .hndle {
+.postbox.jpress-postbox .hndle {
   border-bottom: 1px solid #d6dbe2; }
-.postbox.appbear-postbox .inside {
+.postbox.jpress-postbox .inside {
   padding: 0px;
   margin-top: 0 !important;
   margin-bottom: 0 !important; }
-.postbox.appbear-postbox .inside .appbear {
+.postbox.jpress-postbox .inside .jpress {
   border: 0; }
 
 .wp-import-messages {
@@ -221,7 +221,7 @@ html {
 | Header
 |-----------------------------------------------------------------------------------------
 */
-.appbear-header {
+.jpress-header {
   position: relative;
   color: white;
   background: #3380DA;
@@ -230,7 +230,7 @@ html {
   min-height: 65px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px; }
-.appbear-header .appbear-header-title {
+.jpress-header .jpress-header-title {
   display: table-cell;
   width: 25%;
   height: 100%;
@@ -241,13 +241,13 @@ html {
   border-top-left-radius: 4px;
   vertical-align: middle;
   border-left: 1px solid #2778d7; }
-.appbear-boxed .appbear-header .appbear-header-title {
+.jpress-boxed .jpress-header .jpress-header-title {
   width: 25.8%; }
-.appbear.appbear-has-main-tab .appbear-header .appbear-header-title {
+.jpress.jpress-has-main-tab .jpress-header .jpress-header-title {
   width: 230px; }
-.appbear-header.appbear-has-logo .appbear-header-title h3 {
+.jpress-header.jpress-has-logo .jpress-header-title h3 {
   text-align: center; }
-.appbear-header .appbear-header-title h3 {
+.jpress-header .jpress-header-title h3 {
   color: white;
   font-size: 20px;
   display: block;
@@ -259,21 +259,21 @@ html {
   box-shadow: none;
   text-shadow: none;
   text-align: center; }
-.appbear-header .appbear-header-title h3:hover {
+.jpress-header .jpress-header-title h3:hover {
   color: white; }
-.appbear-header .appbear-header-title i {
+.jpress-header .jpress-header-title i {
   font-size: inherit;
   opacity: 0.98;
   vertical-align: top;
   line-height: 1.25;
   margin-left: 4px; }
-.appbear-header .appbear-header-title img {
+.jpress-header .jpress-header-title img {
   display: block;
   max-width: 180px;
   margin: 0 auto 8px; }
-.appbear-header .appbear-header-title .appbear-header-icon {
+.jpress-header .jpress-header-title .jpress-header-icon {
   display: inline-block; }
-.appbear-header .appbear-header-content {
+.jpress-header .jpress-header-content {
   position: relative;
   z-index: 1;
   display: table-cell;
@@ -283,15 +283,15 @@ html {
   background: #313a4d;
   border-top-right-radius: 4px;
   vertical-align: middle; }
-.appbear-header .appbear-header-content p {
+.jpress-header .jpress-header-content p {
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7); }
-.appbear-header .appbear-header-content a {
+.jpress-header .jpress-header-content a {
   color: white;
   text-decoration: underline; }
-.appbear-admin-page .appbear-header .appbear-header-content {
+.jpress-admin-page .jpress-header .jpress-header-content {
   padding-left: 330px; }
-.appbear-header .appbear-header-actions {
+.jpress-header .jpress-header-actions {
   display: block;
   position: absolute;
   top: 0;
@@ -299,27 +299,27 @@ html {
   z-index: 51;
   text-align: center;
   font-size: 13px; }
-.appbear-header .appbear-header-actions .appbear-form-btn > i,
-.appbear-header .appbear-header-actions .appbear-btn > i {
+.jpress-header .jpress-header-actions .jpress-form-btn > i,
+.jpress-header .jpress-header-actions .jpress-btn > i {
   margin-right: 8px;
   vertical-align: baseline;
   line-height: 1em; }
-.appbear-header .appbear-header-actions.appbear-actions-sticky {
+.jpress-header .jpress-header-actions.jpress-actions-sticky {
   position: fixed !important;
   z-index: 100005;
   top: 0px !important;
   left: 20px;
   line-height: 32px;
   height: 32px; }
-.appbear-header .appbear-header-actions.appbear-actions-sticky .appbear-form-btn,
-.appbear-header .appbear-header-actions.appbear-actions-sticky .appbear-btn {
+.jpress-header .jpress-header-actions.jpress-actions-sticky .jpress-form-btn,
+.jpress-header .jpress-header-actions.jpress-actions-sticky .jpress-btn {
   height: 32px;
   line-height: 32px;
   margin: 0;
   border-radius: 0;
   padding-top: 0 !important;
   padding-bottom: 0 !important; }
-.appbear-header.appbear-has-logo .appbear-header-actions {
+.jpress-header.jpress-has-logo .jpress-header-actions {
   top: 15px; }
 
 /*
@@ -327,20 +327,20 @@ html {
 | Footer
 |-----------------------------------------------------------------------------------------
 */
-.appbear-footer {
+.jpress-footer {
   display: table;
   width: 100%;
   height: 22px; }
-.appbear-footer .appbear-footer-title {
+.jpress-footer .jpress-footer-title {
   display: table-cell;
   width: 25%;
   height: 100%; }
-.appbear-boxed .appbear-footer .appbear-footer-title {
+.jpress-boxed .jpress-footer .jpress-footer-title {
   width: 25.8%; }
-.appbear.appbear-has-main-tab .appbear-footer .appbear-footer-title {
+.jpress.jpress-has-main-tab .jpress-footer .jpress-footer-title {
   background: #313a4d;
   width: 230px; }
-.appbear-footer .appbear-footer-content {
+.jpress-footer .jpress-footer-content {
   position: relative;
   z-index: 1;
   display: table-cell;
@@ -350,11 +350,11 @@ html {
   vertical-align: middle;
   text-align: left;
   color: #8f9bae; }
-.appbear-footer .appbear-footer-content span {
+.jpress-footer .jpress-footer-content span {
   font-size: 10px; }
 
 @media only screen and (max-width: 768px) {
-  .appbear-footer {
+  .jpress-footer {
     display: none; } }
 
 /*
@@ -362,19 +362,19 @@ html {
 | Admin pages
 |-----------------------------------------------------------------------------------------
 */
-.appbear-wrap-admin-page.wrap {
+.jpress-wrap-admin-page.wrap {
   margin: 20px 0 0 20px; }
 
-.appbear-wrap-admin-page .appbear-admin-page-title {
+.jpress-wrap-admin-page .jpress-admin-page-title {
   margin-bottom: 8px;
   font-weight: 400; }
-.appbear-wrap-admin-page .appbear-admin-page-title i {
+.jpress-wrap-admin-page .jpress-admin-page-title i {
   padding-left: 8px; }
 
-.appbear-wrap-admin-page .appbear {
+.jpress-wrap-admin-page .jpress {
   background: white; }
 
-.appbear-form {
+.jpress-form {
   margin: 0;
   padding: 0; }
 
@@ -383,14 +383,14 @@ html {
 | Submit Buttons
 |-----------------------------------------------------------------------------------------
 */
-.appbear-form .appbear-form-btn {
+.jpress-form .jpress-form-btn {
   margin-top: 15px;
   margin-left: 8px;
   border-radius: 3px; }
 
-.appbear-header-actions input[type="button"],
-.appbear-header-actions input[type="submit"],
-.appbear-header-actions .appbear-btn {
+.jpress-header-actions input[type="button"],
+.jpress-header-actions input[type="submit"],
+.jpress-header-actions .jpress-btn {
   margin-top: 15px;
   margin-left: 8px;
   margin-right: 8px;
@@ -400,11 +400,11 @@ html {
 |-----------------------------------------------------------------------------------------
 | Filas
 |-----------------------------------------------------------------------------------------
-|.appbear-row
-|		.appbear-label
-|		.appbear-content
+|.jpress-row
+|		.jpress-label
+|		.jpress-content
 */
-.appbear-row {
+.jpress-row {
   display: block;
   border-top: 1px solid #d6dbe2;
   /*border-bottom: 1px solid #d6dbe2;*/
@@ -414,9 +414,9 @@ html {
   max-width: 100%;
   /*background: white;*/
 }
-.appbear-header + .appbear-row {
+.jpress-header + .jpress-row {
   margin-top: 0; }
-.appbear-row .appbear-label {
+.jpress-row .jpress-label {
   position: relative;
   float: right;
   width: 25%;
@@ -425,7 +425,7 @@ html {
   border-left: 1px solid #d6dbe2;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-.appbear-row .appbear-label label {
+.jpress-row .jpress-label label {
   position: relative;
   font-size: 13px;
   color: #5e6672;
@@ -433,73 +433,73 @@ html {
   line-height: 1.4;
   font-weight: bold;
   font-weight: 600; }
-.appbear-row .appbear-label .appbear-required-field {
+.jpress-row .jpress-label .jpress-required-field {
   padding-right: 5px;
   color: red;
   font-size: 1em; }
-.appbear-row .appbear-content {
+.jpress-row .jpress-content {
   position: relative;
   display: block;
   width: 100%;
   padding: 15px 25px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-.appbear-row .appbear-type-icon_selector .appbear-content .appbear-field {
+.jpress-row .jpress-type-icon_selector .jpress-content .jpress-field {
   width: 150px;
 }
-.appbear-row .appbear-content .appbear-field {
+.jpress-row .jpress-content .jpress-field {
   position: relative;
   display: inline-block;
   line-height: 1.6;
   min-height: 22px;
   max-width: 100%; }
-.appbear-row .appbear-label + .appbear-content {
+.jpress-row .jpress-label + .jpress-content {
   float: right;
   width: 75%;
   margin-right: -1px;
   margin-left: -1px;
   border-right: 1px solid #d6dbe2; }
-.appbear-group-item .appbear-row .appbear-content {
+.jpress-group-item .jpress-row .jpress-content {
   margin-right: -1px;
   margin-left: -1px; }
-.appbear-row.appbear-type-group > .appbear-content {
+.jpress-row.jpress-type-group > .jpress-content {
   display: table; }
-.appbear-row.appbear-type-group > .appbear-label {
+.jpress-row.jpress-type-group > .jpress-label {
   position: relative;
   width: 100% !important;
   border-bottom: 0;
   border-left: 0; }
-.appbear-row.appbear-type-group > .appbear-label .appbear-element-label {
+.jpress-row.jpress-type-group > .jpress-label .jpress-element-label {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
   top: auto; }
-.appbear-row.appbear-type-group > .appbear-label .appbear-btn {
+.jpress-row.jpress-type-group > .jpress-label .jpress-btn {
   margin-right: 6px;
   margin-bottom: 6px; }
-.appbear-row.appbear-type-group > .appbear-label .appbear-btn:first-of-type {
+.jpress-row.jpress-type-group > .jpress-label .jpress-btn:first-of-type {
   margin-right: 15px; }
-.appbear-row.appbear-type-group > .appbear-label + .appbear-content {
+.jpress-row.jpress-type-group > .jpress-label + .jpress-content {
   width: 100% !important;
   padding: 5px 25px 10px; }
-.appbear-row .appbear-field-description {
+.jpress-row .jpress-field-description {
   margin-top: 8px;
   line-height: 1.5;
   color: #798392;
   font-size: 12px;
   font-style: italic; }
-.appbear-row .appbear-field-description > .appbear-field-description-title {
+.jpress-row .jpress-field-description > .jpress-field-description-title {
   display: block;
   color: #768090;
   line-height: inherit; }
-.appbear-row .appbear-field-description a, .appbear-row .appbear-field-description a:focus {
+.jpress-row .jpress-field-description a, .jpress-row .jpress-field-description a:focus {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
   color: #2F74E1; }
-.appbear-row .appbear-field-description a:hover {
+.jpress-row .jpress-field-description a:hover {
   color: #1e62cf; }
-.appbear-row div.appbear-tooltip-handler.appbear-icon {
+.jpress-row div.jpress-tooltip-handler.jpress-icon {
   position: absolute;
   top: -1px;
   left: 0;
@@ -517,35 +517,35 @@ html {
   -o-transition: 0.2s all ease;
   transition: 0.2s all ease;
   line-height: 16px; }
-.appbear-row div.appbear-tooltip-handler.appbear-icon:hover {
+.jpress-row div.jpress-tooltip-handler.jpress-icon:hover {
   color: #808ea4; }
-.appbear-row .appbear-wrap-mixed + .appbear-field-description:not(.appbear-tooltip-handler) {
+.jpress-row .jpress-wrap-mixed + .jpress-field-description:not(.jpress-tooltip-handler) {
   margin-top: 0;
   margin-bottom: 10px; }
 
-.appbear-separator {
+.jpress-separator {
   height: 20px;
   width: 100%;
   background: #e9ecef; }
 
-.appbear-main-tab + .appbear-separator,
-.appbear-tab .appbear-separator:last-child,
-.appbear-wide .appbear-separator:last-child {
+.jpress-main-tab + .jpress-separator,
+.jpress-tab .jpress-separator:last-child,
+.jpress-wide .jpress-separator:last-child {
   display: none; }
 
 /*
 |-----------------------------------------------------------------------------------------
 | Campos mixtos
 |-----------------------------------------------------------------------------------------
-|.appbear-wrap-mixed
-|		.appbear-row-mixed
-|			.appbear-label-mixed
-|			.appbear-content-mixed
+|.jpress-wrap-mixed
+|		.jpress-row-mixed
+|			.jpress-label-mixed
+|			.jpress-content-mixed
 */
-.appbear-row.appbear-type-mixed .appbear-content {
+.jpress-row.jpress-type-mixed .jpress-content {
   padding-bottom: 0px; }
 
-.appbear-row-mixed {
+.jpress-row-mixed {
   float: right;
   margin-top: 0;
   margin-left: 2.5%;
@@ -553,43 +553,43 @@ html {
   display: inline-block;
   vertical-align: top;
   border: 0; }
-.appbear-row-mixed:last-child {
+.jpress-row-mixed:last-child {
   margin-left: 0px; }
-.appbear-row-mixed .appbear-label-mixed {
+.jpress-row-mixed .jpress-label-mixed {
   line-height: 16px;
   margin-top: -5px;
   margin-bottom: 5px; }
-.appbear-row-mixed .appbear-label-mixed label {
+.jpress-row-mixed .jpress-label-mixed label {
   font-size: 11px;
   display: inline-block;
   font-weight: 600; }
-.appbear-row-mixed .appbear-label-mixed i {
+.jpress-row-mixed .jpress-label-mixed i {
   color: #afb8c6;
   cursor: pointer;
   line-height: 1;
   font-size: 1.2em; }
-.appbear-row-mixed .appbear-label-mixed i:hover {
+.jpress-row-mixed .jpress-label-mixed i:hover {
   color: #808ea4; }
-.appbear-row-mixed .appbear-content-mixed {
+.jpress-row-mixed .jpress-content-mixed {
   line-height: 0px; }
 
 /*
 |-----------------------------------------------------------------------------------------
 | Campos de grupo
 |-----------------------------------------------------------------------------------------
-|.appbear-wrap-group
-|		.appbear-item-group
-|			.appbear-row-group
-|				.appbear-label-group
-|				.appbear-content-group
-|		.appbear-add-item
+|.jpress-wrap-group
+|		.jpress-item-group
+|			.jpress-row-group
+|				.jpress-label-group
+|				.jpress-content-group
+|		.jpress-add-item
 */
-.appbear-source-item {
+.jpress-source-item {
   display: none !important; }
 
-.appbear-group-wrap {
+.jpress-group-wrap {
   width: 100%; }
-.appbear-group-wrap .appbear-group-item {
+.jpress-group-wrap .jpress-group-item {
   display: none;
   width: 100%;
   margin-bottom: 15px;
@@ -597,13 +597,13 @@ html {
   padding: 0px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-.appbear-group-wrap .appbear-group-item.appbear-active {
+.jpress-group-wrap .jpress-group-item.jpress-active {
   display: block; }
 
-.appbear-group-control {
+.jpress-group-control {
   list-style: none;
   margin: 0 -6px; }
-.appbear-group-control > li {
+.jpress-group-control > li {
   position: relative;
   display: inline-block;
   width: auto;
@@ -623,15 +623,15 @@ html {
   transition: border 0.1s ease-in;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
-.appbear-group-control > li .appbear-inner {
+.jpress-group-control > li .jpress-inner {
   position: relative;
   width: 100%;
   overflow: hidden; }
-.appbear-sortable.appbear-group-control > li .appbear-inner {
+.jpress-sortable.jpress-group-control > li .jpress-inner {
   cursor: move; }
-.appbear-group-control > li .appbear-inner input {
+.jpress-group-control > li .jpress-inner input {
   border: none; }
-.appbear-group-control > li .appbear-inner img {
+.jpress-group-control > li .jpress-inner img {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -639,14 +639,14 @@ html {
   max-width: 100%;
   line-height: 0;
   margin: auto; }
-.appbear-group-control > li .appbear-inner .appbear-readonly-name {
+.jpress-group-control > li .jpress-inner .jpress-readonly-name {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0); }
-.appbear-group-control > li .appbear-actions {
+.jpress-group-control > li .jpress-actions {
   position: absolute;
   left: 0px;
   bottom: 0px;
@@ -664,60 +664,60 @@ html {
   -webkit-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in; }
-.appbear-sortable.appbear-group-control > li .appbear-actions {
+.jpress-sortable.jpress-group-control > li .jpress-actions {
   cursor: move; }
-.appbear-group-control > li .appbear-actions .appbear-actions-left {
+.jpress-group-control > li .jpress-actions .jpress-actions-left {
   float: right;
   line-height: 1; }
-.appbear-group-control > li .appbear-actions .appbear-actions-right {
+.jpress-group-control > li .jpress-actions .jpress-actions-right {
   float: left;
   line-height: 1; }
-.appbear-group-control > li .appbear-actions .appbear-info-order-item {
+.jpress-group-control > li .jpress-actions .jpress-info-order-item {
   float: right;
   display: inline-block;
   line-height: 1; }
-.appbear-group-control > li .appbear-actions .appbear-btn {
+.jpress-group-control > li .jpress-actions .jpress-btn {
   margin-left: 8px;
   color: #2f384a;
   -webkit-transition: none;
   -o-transition: none;
   transition: none; }
-.appbear-group-control > li .appbear-actions .appbear-btn:last-child {
+.jpress-group-control > li .jpress-actions .jpress-btn:last-child {
   margin-left: 0; }
-.appbear-group-control > li .appbear-actions .appbear-btn:hover {
+.jpress-group-control > li .jpress-actions .jpress-btn:hover {
   color: black; }
-.appbear-group-control > li .appbear-actions .appbear-btn i {
+.jpress-group-control > li .jpress-actions .jpress-btn i {
   opacity: 0.9;
   font-size: 1.12em;
   color: inherit; }
-.appbear-group-control > li .appbear-actions .appbear-btn i.dashicons {
+.jpress-group-control > li .jpress-actions .jpress-btn i.dashicons {
   font-size: 1.18em;
   width: 1.18em;
   height: 1em; }
-.appbear-group-control > li:hover {
+.jpress-group-control > li:hover {
   border-color: #afb8c6; }
-.appbear-group-control > li:hover .appbear-actions {
+.jpress-group-control > li:hover .jpress-actions {
   background: #b2bbc8; }
-.appbear-group-control > li.appbear-active, .appbear-group-control > li.appbear-multiple-active {
+.jpress-group-control > li.jpress-active, .jpress-group-control > li.jpress-multiple-active {
   border-color: #3380DA; }
-.appbear-group-control > li.appbear-active .appbear-inner p, .appbear-group-control > li.appbear-multiple-active .appbear-inner p {
+.jpress-group-control > li.jpress-active .jpress-inner p, .jpress-group-control > li.jpress-multiple-active .jpress-inner p {
   color: #1b202a; }
-.appbear-group-control > li.appbear-active .appbear-inner input, .appbear-group-control > li.appbear-multiple-active .appbear-inner input {
+.jpress-group-control > li.jpress-active .jpress-inner input, .jpress-group-control > li.jpress-multiple-active .jpress-inner input {
   color: #252C3A; }
-.appbear-group-control > li.appbear-active .appbear-actions, .appbear-group-control > li.appbear-multiple-active .appbear-actions {
+.jpress-group-control > li.jpress-active .jpress-actions, .jpress-group-control > li.jpress-multiple-active .jpress-actions {
   color: #eef0f3;
   background: #3380DA; }
-.appbear-group-control > li.appbear-active .appbear-actions .appbear-btn, .appbear-group-control > li.appbear-multiple-active .appbear-actions .appbear-btn {
+.jpress-group-control > li.jpress-active .jpress-actions .jpress-btn, .jpress-group-control > li.jpress-multiple-active .jpress-actions .jpress-btn {
   color: #eef0f3; }
-.appbear-group-control > li.appbear-active .appbear-actions .appbear-btn:hover, .appbear-group-control > li.appbear-multiple-active .appbear-actions .appbear-btn:hover {
+.jpress-group-control > li.jpress-active .jpress-actions .jpress-btn:hover, .jpress-group-control > li.jpress-multiple-active .jpress-actions .jpress-btn:hover {
   color: white !important; }
-.appbear-group-control > li.appbear-active .appbear-actions i, .appbear-group-control > li.appbear-multiple-active .appbear-actions i {
+.jpress-group-control > li.jpress-active .jpress-actions i, .jpress-group-control > li.jpress-multiple-active .jpress-actions i {
   color: inherit; }
-.appbear-group-control > li.appbear-multiple-active {
+.jpress-group-control > li.jpress-multiple-active {
   border-color: #5e9be2; }
-.appbear-group-control > li.appbear-multiple-active .appbear-actions {
+.jpress-group-control > li.jpress-multiple-active .jpress-actions {
   background: #5e9be2; }
-.appbear-group-control > li .appbear-wrap-image {
+.jpress-group-control > li .jpress-wrap-image {
   position: absolute;
   z-index: 1;
   overflow: hidden;
@@ -729,63 +729,63 @@ html {
   background: #FFF !important;
   padding: 10px;
 }
-.appbear-group-control > li .appbear-control-image {
+.jpress-group-control > li .jpress-control-image {
   overflow: hidden;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center; }
-.appbear-group-control.appbear-has-images .appbear-group-control-item {
+.jpress-group-control.jpress-has-images .jpress-group-control-item {
   width: 162px; }
-.appbear-group-control.appbear-has-images .appbear-group-control-item .appbear-inner {
+.jpress-group-control.jpress-has-images .jpress-group-control-item .jpress-inner {
   width: 100%;
   min-height: 70px;
   height: 100%; }
-.appbear-group-control.appbear-position-left {
+.jpress-group-control.jpress-position-left {
   display: table-cell;
   vertical-align: top; }
-.appbear-group-control.appbear-position-left + .appbear-group-wrap {
+.jpress-group-control.jpress-position-left + .jpress-group-wrap {
   display: table-cell;
   vertical-align: top;
   padding-right: 20px; }
-.appbear-group-control.appbear-position-left .appbear-group-control-item,
-.appbear-group-control.appbear-position-left .appbear-sortable-placeholder {
+.jpress-group-control.jpress-position-left .jpress-group-control-item,
+.jpress-group-control.jpress-position-left .jpress-sortable-placeholder {
   margin: 0 0 10px 0; }
 
 /*
 |-----------------------------------------------------------------------------------------
 | Campos repetibles
 |-----------------------------------------------------------------------------------------
-|.appbear-wrap-repeat
-|		.appbear-item-repeat
-|			.appbear-field
-|			.appbear-remove-item
-|		.appbear-add-item
+|.jpress-wrap-repeat
+|		.jpress-item-repeat
+|			.jpress-field
+|			.jpress-remove-item
+|		.jpress-add-item
 */
-.appbear-repeatable-wrap {
+.jpress-repeatable-wrap {
   padding-left: 20px;
   padding-bottom: 28px;
   display: block;
   max-width: 100%; }
-.appbear-repeatable-wrap.appbear-sortable {
+.jpress-repeatable-wrap.jpress-sortable {
   padding-left: 35px; }
-.appbear-repeatable-wrap.appbear-sortable .appbear-remove-repeatable-item {
+.jpress-repeatable-wrap.jpress-sortable .jpress-remove-repeatable-item {
   left: -38px; }
-.appbear-repeatable-wrap.appbear-sortable .appbear-sort-item {
+.jpress-repeatable-wrap.jpress-sortable .jpress-sort-item {
   display: inline-block !important; }
-.appbear-repeatable-wrap .appbear-sort-item {
+.jpress-repeatable-wrap .jpress-sort-item {
   display: none !important; }
-.appbear-repeatable-wrap .appbear-sort-item,
-.appbear-repeatable-wrap .appbear-remove-repeatable-item {
+.jpress-repeatable-wrap .jpress-sort-item,
+.jpress-repeatable-wrap .jpress-remove-repeatable-item {
   position: absolute;
   top: 5px;
   left: -21px; }
-.appbear-repeatable-wrap .appbear-repeatable-item {
+.jpress-repeatable-wrap .jpress-repeatable-item {
   position: relative;
   margin-bottom: 13px; }
-.appbear-repeatable-wrap .appbear-repeatable-item .appbear-field {
+.jpress-repeatable-wrap .jpress-repeatable-item .jpress-field {
   display: block; }
-.appbear-repeatable-wrap .appbear-add-repeatable-item {
+.jpress-repeatable-wrap .jpress-add-repeatable-item {
   position: absolute; }
 
 /*
@@ -793,109 +793,109 @@ html {
 | Grid
 |-----------------------------------------------------------------------------------------
 */
-.appbear-row-mixed.appbear-grid > .appbear-content-mixed > .appbear-field,
-.appbear-row-mixed.appbear-grid > .appbear-content-mixed > .appbear-repeatable-wrap {
+.jpress-row-mixed.jpress-grid > .jpress-content-mixed > .jpress-field,
+.jpress-row-mixed.jpress-grid > .jpress-content-mixed > .jpress-repeatable-wrap {
   display: block; }
 
-.appbear-grid.new-row {
+.jpress-grid.new-row {
   clear: both; }
 
-.appbear-field.appbear-col-6-of-6,
-.appbear-repeatable-wrap.appbear-col-6-of-6 {
+.jpress-field.jpress-col-6-of-6,
+.jpress-repeatable-wrap.jpress-col-6-of-6 {
   width: 100%; }
 
-.appbear-field.appbear-col-5-of-6,
-.appbear-repeatable-wrap.appbear-col-5-of-6 {
+.jpress-field.jpress-col-5-of-6,
+.jpress-repeatable-wrap.jpress-col-5-of-6 {
   width: 83.33%; }
 
-.appbear-field.appbear-col-4-of-6,
-.appbear-repeatable-wrap.appbear-col-4-of-6 {
+.jpress-field.jpress-col-4-of-6,
+.jpress-repeatable-wrap.jpress-col-4-of-6 {
   width: 66.66%; }
 
-.appbear-field.appbear-col-3-of-6,
-.appbear-repeatable-wrap.appbear-col-3-of-6 {
+.jpress-field.jpress-col-3-of-6,
+.jpress-repeatable-wrap.jpress-col-3-of-6 {
   width: 50%; }
 
-.appbear-field.appbear-col-2-of-6,
-.appbear-repeatable-wrap.appbear-col-2-of-6 {
+.jpress-field.jpress-col-2-of-6,
+.jpress-repeatable-wrap.jpress-col-2-of-6 {
   width: 33.33%; }
 
-.appbear-field.appbear-col-1-of-6,
-.appbear-repeatable-wrap.appbear-col-1-of-6 {
+.jpress-field.jpress-col-1-of-6,
+.jpress-repeatable-wrap.jpress-col-1-of-6 {
   width: 16.66%; }
 
-.appbear-field.appbear-col-8-of-8,
-.appbear-repeatable-wrap.appbear-col-8-of-8 {
+.jpress-field.jpress-col-8-of-8,
+.jpress-repeatable-wrap.jpress-col-8-of-8 {
   width: 100%; }
 
-.appbear-field.appbear-col-7-of-8,
-.appbear-repeatable-wrap.appbear-col-7-of-8 {
+.jpress-field.jpress-col-7-of-8,
+.jpress-repeatable-wrap.jpress-col-7-of-8 {
   width: 87.5%; }
 
-.appbear-field.appbear-col-6-of-8,
-.appbear-repeatable-wrap.appbear-col-6-of-8 {
+.jpress-field.jpress-col-6-of-8,
+.jpress-repeatable-wrap.jpress-col-6-of-8 {
   width: 75%; }
 
-.appbear-field.appbear-col-5-of-8,
-.appbear-repeatable-wrap.appbear-col-5-of-8 {
+.jpress-field.jpress-col-5-of-8,
+.jpress-repeatable-wrap.jpress-col-5-of-8 {
   width: 62.5%; }
 
-.appbear-field.appbear-col-4-of-8,
-.appbear-repeatable-wrap.appbear-col-4-of-8 {
+.jpress-field.jpress-col-4-of-8,
+.jpress-repeatable-wrap.jpress-col-4-of-8 {
   width: 50%; }
 
-.appbear-field.appbear-col-3-of-8,
-.appbear-repeatable-wrap.appbear-col-3-of-8 {
+.jpress-field.jpress-col-3-of-8,
+.jpress-repeatable-wrap.jpress-col-3-of-8 {
   width: 37.5%; }
 
-.appbear-field.appbear-col-2-of-8,
-.appbear-repeatable-wrap.appbear-col-2-of-8 {
+.jpress-field.jpress-col-2-of-8,
+.jpress-repeatable-wrap.jpress-col-2-of-8 {
   width: 25%; }
 
-.appbear-field.appbear-col-1-of-8,
-.appbear-repeatable-wrap.appbear-col-1-of-8 {
+.jpress-field.jpress-col-1-of-8,
+.jpress-repeatable-wrap.jpress-col-1-of-8 {
   width: 12.5%; }
 
-.appbear-row-mixed.appbear-col-6-of-6 {
+.jpress-row-mixed.jpress-col-6-of-6 {
   width: 100%; }
 
-.appbear-row-mixed.appbear-col-5-of-6 {
+.jpress-row-mixed.jpress-col-5-of-6 {
   width: 82.91%; }
 
-.appbear-row-mixed.appbear-col-4-of-6 {
+.jpress-row-mixed.jpress-col-4-of-6 {
   width: 65.83%; }
 
-.appbear-row-mixed.appbear-col-3-of-6 {
+.jpress-row-mixed.jpress-col-3-of-6 {
   width: 48.75%; }
 
-.appbear-row-mixed.appbear-col-2-of-6 {
+.jpress-row-mixed.jpress-col-2-of-6 {
   width: 31.66%; }
 
-.appbear-row-mixed.appbear-col-1-of-6 {
+.jpress-row-mixed.jpress-col-1-of-6 {
   width: 14.58%; }
 
-.appbear-row-mixed.appbear-col-8-of-8 {
+.jpress-row-mixed.jpress-col-8-of-8 {
   width: 100%; }
 
-.appbear-row-mixed.appbear-col-7-of-8 {
+.jpress-row-mixed.jpress-col-7-of-8 {
   width: 87.18%; }
 
-.appbear-row-mixed.appbear-col-6-of-8 {
+.jpress-row-mixed.jpress-col-6-of-8 {
   width: 74.37%; }
 
-.appbear-row-mixed.appbear-col-5-of-8 {
+.jpress-row-mixed.jpress-col-5-of-8 {
   width: 61.56%; }
 
-.appbear-row-mixed.appbear-col-4-of-8 {
+.jpress-row-mixed.jpress-col-4-of-8 {
   width: 48.75%; }
 
-.appbear-row-mixed.appbear-col-3-of-8 {
+.jpress-row-mixed.jpress-col-3-of-8 {
   width: 35.93%; }
 
-.appbear-row-mixed.appbear-col-2-of-8 {
+.jpress-row-mixed.jpress-col-2-of-8 {
   width: 23.12%; }
 
-.appbear-row-mixed.appbear-col-1-of-8 {
+.jpress-row-mixed.jpress-col-1-of-8 {
   width: 10.31%; }
 
 /*
@@ -903,25 +903,25 @@ html {
 | Tab
 |-----------------------------------------------------------------------------------------
 */
-.appbear-tab {
+.jpress-tab {
   position: relative; }
 
-.appbear-row + .appbear-tab:not(.appbear-main-tab) {
+.jpress-row + .jpress-tab:not(.jpress-main-tab) {
   border-top: 1px solid #d6dbe2; }
 
-.appbear-tab-header {
+.jpress-tab-header {
   position: relative;
   width: 100%;
   background: #f1f2f5; }
-.appbear-tab-header .appbear-tab-nav {
+.jpress-tab-header .jpress-tab-nav {
   display: block; }
-.appbear-tab-header .appbear-tab-menu {
+.jpress-tab-header .jpress-tab-menu {
   border-bottom: 1px solid #d6dbe2; }
-.appbear-tab-header .appbear-tab-menu .appbear-item {
+.jpress-tab-header .jpress-tab-menu .jpress-item {
   float: right;
   position: relative;
   padding: 0 25px; }
-.appbear-tab-header .appbear-tab-menu .appbear-item a {
+.jpress-tab-header .jpress-tab-menu .jpress-item a {
   position: relative;
   display: block;
   height: 46px;
@@ -932,16 +932,16 @@ html {
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase; }
-.appbear-tab-header .appbear-tab-menu .appbear-item a:hover {
+.jpress-tab-header .jpress-tab-menu .jpress-item a:hover {
   color: #292c32; }
-.appbear-tab-header .appbear-tab-menu .appbear-item i {
+.jpress-tab-header .jpress-tab-menu .jpress-item i {
   width: 16px;
   margin-left: 5px;
   text-align: center;
   color: inherit; }
-.appbear-tab-header .appbear-tab-menu .appbear-item.active a {
+.jpress-tab-header .jpress-tab-menu .jpress-item.active a {
   color: #292c32; }
-.appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -951,20 +951,20 @@ html {
   height: 3px;
   width: 100%; }
 
-.appbear-tab-body > .appbear-tab-content {
+.jpress-tab-body > .jpress-tab-content {
   display: block; }
-.appbear-tab-body > .appbear-tab-content:first-of-type {
+.jpress-tab-body > .jpress-tab-content:first-of-type {
   display: block; }
 
-.appbear-tab-body > .appbear-tab-content,
-.appbear-tab-body > .appbear-accordion-title {
+.jpress-tab-body > .jpress-tab-content,
+.jpress-tab-body > .jpress-accordion-title {
   display: none; }
 
-.appbear-main-tab > .appbear-tab-header,
-.appbear-tab-dark > .appbear-tab-header {
+.jpress-main-tab > .jpress-tab-header,
+.jpress-tab-dark > .jpress-tab-header {
   background: #313a4d; }
-.appbear-main-tab > .appbear-tab-header:before,
-.appbear-tab-dark > .appbear-tab-header:before {
+.jpress-main-tab > .jpress-tab-header:before,
+.jpress-tab-dark > .jpress-tab-header:before {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -973,30 +973,30 @@ html {
   width: 1px;
   height: 100%;
   background: #313a4d; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu {
   border-right: 1px solid #3d485f !important;
   border-left: 1px solid #3d485f !important;
   border-bottom: 0; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item {
   position: relative;
   padding: 0 !important; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.active, .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.active,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open {
   background: #272e3d; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.active a, .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open a,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.active a,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open a {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active a, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open a,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active a,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open a {
   color: white; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after, .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open a:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open a:after {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open a:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open a:after {
   display: none; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.active:after, .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.active:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:after {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active:after, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1004,43 +1004,43 @@ html {
   background: #3380DA;
   height: 5px;
   width: 100%; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.active:first-child:after, .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:first-child:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.active:first-child:after,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:first-child:after {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after {
   border-right: 1px solid #3380DA;
   left: -1px; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item a,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item a {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item a,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item a {
   height: 54px;
   line-height: 54px;
   padding: 0 25px;
   color: rgba(255, 255, 255, 0.7);
   border-left: 1px solid #272e3d;
   border-bottom: 1px solid #272e3d; }
-.appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item a:hover,
-.appbear-tab-dark > .appbear-tab-header .appbear-tab-menu .appbear-item a:hover {
+.jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item a:hover,
+.jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item a:hover {
   color: white; }
 
-.appbear-header + .appbear-main-tab.appbear-tab-left > .appbear-tab-header {
+.jpress-header + .jpress-main-tab.jpress-tab-left > .jpress-tab-header {
   border-top: 1px solid #272e3d; }
 
-.appbear-tab.appbear-tab-left {
+.jpress-tab.jpress-tab-left {
   display: table;
   width: 100%; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header {
+.jpress-tab.jpress-tab-left > .jpress-tab-header {
   width: 230px;
   height: 100%;
   display: table-cell;
   padding-bottom: 30px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu {
   border-right: 0 !important; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item {
   width: 100%;
   height: auto;
   line-height: 40px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.active a, .appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open a {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.active a, .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open a {
   color: white; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.active:after, .appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:after {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.active:after, .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1048,27 +1048,27 @@ html {
   background: #3380DA;
   height: 100%;
   width: 5px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.active:first-child:after, .appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-open:first-child:after {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after, .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after {
   border-right: 0;
   left: 0px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item a {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item a {
   height: auto;
   line-height: 24px;
   padding: 10px 20px 10px 5px;
   color: rgba(255, 255, 255, 0.7);
   border-left: 0;
   border-bottom: 0; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item a:hover {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item a:hover {
   color: white; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.active.appbear-item-child {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.active.jpress-item-child {
   display: block; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-item-child {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-item-child {
   display: none;
   background: #2b3343; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-item-child a {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-item-child a {
   padding-right: 35px;
   font-size: 12px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item.appbear-item-child:after {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-item-child:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1076,7 +1076,7 @@ html {
   background: #3380DA;
   height: 100%;
   width: 5px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item .appbear-toggle-icon {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item .jpress-toggle-icon {
   position: absolute;
   top: 10px;
   left: 15px;
@@ -1088,30 +1088,30 @@ html {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item .appbear-toggle-icon:hover {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item .jpress-toggle-icon:hover {
   color: white; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item .appbear-toggle-icon i {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item .jpress-toggle-icon i {
   display: block; }
-.appbear-tab.appbear-tab-left > .appbear-tab-header .appbear-tab-menu .appbear-item .appbear-toggle-icon + a {
+.jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item .jpress-toggle-icon + a {
   padding-left: 30px; }
-.appbear-tab.appbear-tab-left > .appbear-tab-body {
+.jpress-tab.jpress-tab-left > .jpress-tab-body {
   display: table-cell;
   width: auto; }
 
-.appbear-tab.is-accordion .appbear-tab-header {
+.jpress-tab.is-accordion .jpress-tab-header {
   width: 100% !important;
   background: #3380DA; }
 
-.appbear-tab.is-accordion .appbear-tab-nav {
+.jpress-tab.is-accordion .jpress-tab-nav {
   display: none; }
 
-.appbear-tab.is-accordion .appbear-accordion-title {
+.jpress-tab.is-accordion .jpress-accordion-title {
   display: block;
   margin: 0;
   padding: 0;
   width: 100%;
   background: #f1f2f5; }
-.appbear-tab.is-accordion .appbear-accordion-title a {
+.jpress-tab.is-accordion .jpress-accordion-title a {
   position: relative;
   display: block;
   padding: 0 20px 0 10px;
@@ -1123,15 +1123,15 @@ html {
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 1px solid #d6dbe2; }
-.appbear-tab.is-accordion .appbear-accordion-title a:hover {
+.jpress-tab.is-accordion .jpress-accordion-title a:hover {
   color: #292c32; }
-.appbear-tab.is-accordion .appbear-accordion-title a span {
+.jpress-tab.is-accordion .jpress-accordion-title a span {
   position: relative;
   display: inline-block;
   padding: 10px 0 10px 0; }
-.appbear-tab.is-accordion .appbear-accordion-title.active a {
+.jpress-tab.is-accordion .jpress-accordion-title.active a {
   color: #292c32; }
-.appbear-tab.is-accordion .appbear-accordion-title.active a span:after {
+.jpress-tab.is-accordion .jpress-accordion-title.active a span:after {
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -1140,29 +1140,29 @@ html {
   background: #3380DA;
   height: 3px;
   width: 100%; }
-.appbear-tab.is-accordion .appbear-accordion-title i {
+.jpress-tab.is-accordion .jpress-accordion-title i {
   width: 16px;
   margin-left: 5px;
   text-align: center; }
 
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title {
   background: #313a4d; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title a, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title a {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title a, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title a {
   padding: 0;
   color: rgba(255, 255, 255, 0.7);
   border-bottom: 1px solid #272e3d;
   line-height: 24px;
   border-right: 0;
   border-left: 0; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title a:hover, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title a:hover {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title a:hover, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title a:hover {
   color: white; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title a span, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title a span {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title a span, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title a span {
   padding: 10px 20px 10px 5px; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title.active, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title.active {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title.active, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title.active {
   background: #272e3d; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title.active a, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title.active a {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title.active a, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title.active a {
   color: white; }
-.appbear-tab.is-accordion.appbear-main-tab > .appbear-tab-body > .appbear-accordion-title.active span:after, .appbear-tab.is-accordion.appbear-tab-dark > .appbear-tab-body > .appbear-accordion-title.active span:after {
+.jpress-tab.is-accordion.jpress-main-tab > .jpress-tab-body > .jpress-accordion-title.active span:after, .jpress-tab.is-accordion.jpress-tab-dark > .jpress-tab-body > .jpress-accordion-title.active span:after {
   position: absolute;
   bottom: auto;
   left: 0;
@@ -1172,11 +1172,11 @@ html {
   height: 100%;
   width: 5px; }
 
-.appbear-tab.is-accordion.appbear-tab-left > .appbear-tab-header {
+.jpress-tab.is-accordion.jpress-tab-left > .jpress-tab-header {
   display: block;
   padding-bottom: 0; }
 
-.appbear-tab.is-accordion.appbear-tab-left > .appbear-tab-body {
+.jpress-tab.is-accordion.jpress-tab-left > .jpress-tab-body {
   display: block; }
 
 /*
@@ -1184,14 +1184,14 @@ html {
 | Tab
 |-----------------------------------------------------------------------------------------
 */
-.appbear-section {
+.jpress-section {
   background: white; }
-.appbear-section .appbear-section-header {
+.jpress-section .jpress-section-header {
   position: relative;
   padding: 15px 25px;
   background: #f1f2f5;
   border-bottom: 1px solid #d6dbe2; }
-.appbear-section .appbear-section-header .appbear-section-title {
+.jpress-section .jpress-section-header .jpress-section-title {
   display: inline-block;
   margin: 0 !important;
   padding: 0px 0 0 20px !important;
@@ -1209,49 +1209,49 @@ html {
   -webkit-box-shadow: none;
   box-shadow: none;
   text-shadow: none; }
-.appbear-section .appbear-section-header .appbear-section-title:hover {
+.jpress-section .jpress-section-header .jpress-section-title:hover {
   color: #292c32; }
-.appbear-section .appbear-section-header .appbear-field-description {
+.jpress-section .jpress-section-header .jpress-field-description {
   display: inline-block;
   line-height: 1.4;
   color: #77869d;
   font-size: 13px;
   font-style: italic; }
-.appbear-section .appbear-toggle-icon {
+.jpress-section .jpress-toggle-icon {
   position: absolute;
   top: 12px;
   left: 20px;
   padding: 2px 6px 3px;
   cursor: pointer;
   opacity: 0.6; }
-.appbear-section .appbear-toggle-icon:hover {
+.jpress-section .jpress-toggle-icon:hover {
   opacity: 1; }
 
-.appbear-section.appbear-toggle-1.appbear-toggle-header .appbear-section-header {
+.jpress-section.jpress-toggle-1.jpress-toggle-header .jpress-section-header {
   cursor: pointer; }
-.appbear-section.appbear-toggle-1.appbear-toggle-header .appbear-section-header .appbear-section-title {
+.jpress-section.jpress-toggle-1.jpress-toggle-header .jpress-section-header .jpress-section-title {
   cursor: pointer; }
 
-.appbear-section.appbear-toggle-1.appbear-toggle-open .appbear-section-body {
+.jpress-section.jpress-toggle-1.jpress-toggle-open .jpress-section-body {
   display: block; }
 
-.appbear-section.appbear-toggle-1.appbear-toggle-close .appbear-section-body {
+.jpress-section.jpress-toggle-1.jpress-toggle-close .jpress-section-body {
   display: none; }
 
-.appbear-separator + .appbear-section .appbear-section-header {
+.jpress-separator + .jpress-section .jpress-section-header {
   border-top: 1px solid #d6dbe2; }
 
-.appbear-tab.appbear-main-tab .appbear-tab .appbear-section {
+.jpress-tab.jpress-main-tab .jpress-tab .jpress-section {
   margin: 20px 25px; }
-.appbear-tab.appbear-main-tab .appbear-tab .appbear-section .appbear-section-header {
+.jpress-tab.jpress-main-tab .jpress-tab .jpress-section .jpress-section-header {
   border-top: 1px solid #d6dbe2;
   border-right: 1px solid #d6dbe2;
   border-left: 1px solid #d6dbe2; }
-.appbear-tab.appbear-main-tab .appbear-tab .appbear-section .appbear-section-body {
+.jpress-tab.jpress-main-tab .jpress-tab .jpress-section .jpress-section-body {
   border-right: 1px solid #d6dbe2;
   border-left: 1px solid #d6dbe2; }
 
-.appbear-tab.appbear-main-tab .appbear-tab .appbear-separator.appbear-separator-section {
+.jpress-tab.jpress-main-tab .jpress-tab .jpress-separator.jpress-separator-section {
   display: none; }
 
 /*
@@ -1259,113 +1259,113 @@ html {
 | Boxed Layout
 |-----------------------------------------------------------------------------------------
 */
-.appbear.appbear-boxed {
+.jpress.jpress-boxed {
   background: #e9ecef; }
-.appbear.appbear-boxed .appbear-row:not(.appbear-row-mixed) {
+.jpress.jpress-boxed .jpress-row:not(.jpress-row-mixed) {
   margin: -1px 20px;
   background: white;
   border: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-row:not(.appbear-row-mixed):first-child {
+.jpress.jpress-boxed .jpress-row:not(.jpress-row-mixed):first-child {
   margin-top: 20px; }
-.appbear.appbear-boxed .appbear-row:not(.appbear-row-mixed):last-child {
+.jpress.jpress-boxed .jpress-row:not(.jpress-row-mixed):last-child {
   margin-bottom: 20px; }
-.appbear.appbear-boxed .appbear-header + .appbear-row {
+.jpress.jpress-boxed .jpress-header + .jpress-row {
   margin-top: 20px; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) {
   margin-top: 20px; }
-.appbear.appbear-boxed .appbear-tab .appbear-tab:first-child,
-.appbear.appbear-boxed .appbear-tab .appbear-separator + .appbear-tab {
+.jpress.jpress-boxed .jpress-tab .jpress-tab:first-child,
+.jpress.jpress-boxed .jpress-tab .jpress-separator + .jpress-tab {
   margin-top: 0; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) {
   margin-right: 20px;
   margin-left: 20px; }
-.appbear.appbear-boxed .appbear-tab .appbear-tab {
+.jpress.jpress-boxed .jpress-tab .jpress-tab {
   margin-right: 0;
   margin-left: 0; }
-.appbear.appbear-boxed .appbear-tab .appbear-row:not(.appbear-row-mixed) {
+.jpress.jpress-boxed .jpress-tab .jpress-row:not(.jpress-row-mixed) {
   margin-right: 0;
   margin-left: 0; }
-.appbear.appbear-boxed .appbear-tab .appbear-row:not(.appbear-row-mixed):first-child {
+.jpress.jpress-boxed .jpress-tab .jpress-row:not(.jpress-row-mixed):first-child {
   margin-top: 0;
   border-top: 0; }
-.appbear.appbear-boxed .appbear-tab .appbear-row:not(.appbear-row-mixed):last-child {
+.jpress.jpress-boxed .jpress-tab .jpress-row:not(.jpress-row-mixed):last-child {
   margin-bottom: 0; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group {
+.jpress.jpress-boxed .jpress-row.jpress-type-group {
   margin-top: 20px;
   margin-bottom: 20px; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item .appbear-row:not(.appbear-row-mixed) {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item .jpress-row:not(.jpress-row-mixed) {
   margin-top: 0;
   margin-right: 0;
   margin-left: 0;
   border-right: 0;
   border-left: 0; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item .appbear-row:not(.appbear-row-mixed):first-child {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item .jpress-row:not(.jpress-row-mixed):first-child {
   margin-top: -1px;
   border-top: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item .appbear-row:not(.appbear-row-mixed):last-child {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item .jpress-row:not(.jpress-row-mixed):last-child {
   margin-bottom: -1px; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item > .appbear-tab {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item > .jpress-tab {
   margin-right: -1px;
   margin-left: -1px; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item > .appbear-tab:first-child {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item > .jpress-tab:first-child {
   margin-top: -1px; }
-.appbear.appbear-boxed .appbear-row.appbear-type-group .appbear-group-item > .appbear-tab .appbear-row:not(.appbear-row-mixed) {
+.jpress.jpress-boxed .jpress-row.jpress-type-group .jpress-group-item > .jpress-tab .jpress-row:not(.jpress-row-mixed) {
   border-right: 1px solid #d6dbe2;
   border-left: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-tab .appbear-row.appbear-type-group {
+.jpress.jpress-boxed .jpress-tab .jpress-row.jpress-type-group {
   margin-top: 0;
   margin-bottom: 0; }
-.appbear.appbear-boxed .appbear-main-tab > .appbear-tab-body > .appbear-tab-content {
+.jpress.jpress-boxed .jpress-main-tab > .jpress-tab-body > .jpress-tab-content {
   padding: 20px; }
-.appbear.appbear-boxed .appbear-main-tab > .appbear-tab-body > .appbear-tab-content > .appbear-row:not(.appbear-row-mixed):first-child {
+.jpress.jpress-boxed .jpress-main-tab > .jpress-tab-body > .jpress-tab-content > .jpress-row:not(.jpress-row-mixed):first-child {
   border-top: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-tab .appbear-tab-header .appbear-tab-menu,
-.appbear.appbear-boxed .appbear-tab.accordion:not(.appbear-main-tab) .appbear-accordion-title a {
+.jpress.jpress-boxed .jpress-tab .jpress-tab-header .jpress-tab-menu,
+.jpress.jpress-boxed .jpress-tab.accordion:not(.jpress-main-tab) .jpress-accordion-title a {
   border-right: 1px solid #d6dbe2;
   border-left: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab),
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) .appbear-tab-header,
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) .appbear-tab-header .appbear-tab-menu {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab),
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) .jpress-tab-header,
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) .jpress-tab-header .jpress-tab-menu {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) li:first-child:after,
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) .appbear-tab-header li:first-child:after,
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) .appbear-tab-header .appbear-tab-menu li:first-child:after {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) li:first-child:after,
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) .jpress-tab-header li:first-child:after,
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) .jpress-tab-header .jpress-tab-menu li:first-child:after {
   border-top-left-radius: 4px; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-main-tab) {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-main-tab) {
   border-top: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-tab:not(.appbear-tab-light) {
+.jpress.jpress-boxed .jpress-tab:not(.jpress-tab-light) {
   border-top: 0; }
 
-.appbear.appbear-boxed .appbear-section {
+.jpress.jpress-boxed .jpress-section {
   margin-left: 20px;
   margin-right: 20px; }
-.appbear.appbear-boxed .appbear-section:first-child {
+.jpress.jpress-boxed .jpress-section:first-child {
   margin-top: 20px; }
-.appbear.appbear-boxed .appbear-row + .appbear-section {
+.jpress.jpress-boxed .jpress-row + .jpress-section {
   margin-top: 20px; }
-.appbear.appbear-boxed .appbear-section .appbear-section-header {
+.jpress.jpress-boxed .jpress-section .jpress-section-header {
   border: 1px solid #d6dbe2; }
-.appbear.appbear-boxed .appbear-section .appbear-row:not(.appbear-row-mixed) {
+.jpress.jpress-boxed .jpress-section .jpress-row:not(.jpress-row-mixed) {
   margin-right: 0;
   margin-left: 0; }
-.appbear.appbear-boxed .appbear-section .appbear-row:not(.appbear-row-mixed):first-child {
+.jpress.jpress-boxed .jpress-section .jpress-row:not(.jpress-row-mixed):first-child {
   margin-top: 0;
   border-top: 0; }
-.appbear.appbear-boxed .appbear-section .appbear-row:not(.appbear-row-mixed):last-child {
+.jpress.jpress-boxed .jpress-section .jpress-row:not(.jpress-row-mixed):last-child {
   margin-bottom: 0; }
 
-.appbear.appbear-boxed .appbear-header + .appbear-section {
+.jpress.jpress-boxed .jpress-header + .jpress-section {
   margin-top: 20px; }
 
-.appbear.appbear-boxed .appbear-tab .appbear-section {
+.jpress.jpress-boxed .jpress-tab .jpress-section {
   margin-right: 0;
   margin-left: 0; }
 
-.appbear.appbear-boxed .appbear-tab .appbear-section:first-child {
+.jpress.jpress-boxed .jpress-tab .jpress-section:first-child {
   margin-top: 0; }
 
-.appbear.appbear-boxed .appbear-section .appbear-row.appbear-type-group {
+.jpress.jpress-boxed .jpress-section .jpress-row.jpress-type-group {
   margin-top: 0;
   margin-bottom: 0; }
 
@@ -1374,7 +1374,7 @@ html {
 | Confirm
 |-----------------------------------------------------------------------------------------
 */
-.appbear-confirm {
+.jpress-confirm {
   display: none;
   position: fixed;
   top: 200px;
@@ -1392,34 +1392,34 @@ html {
   line-height: 1.6;
   color: #5e6672; }
 @media only screen and (max-width: 768px) {
-  .appbear-confirm {
+  .jpress-confirm {
     width: 80%;
     margin-right: -40%; } }
 @media only screen and (max-width: 468px) {
-  .appbear-confirm {
+  .jpress-confirm {
     width: 90%;
     margin-right: -45%; } }
-.appbear-confirm.appbear-confirm-open {
+.jpress-confirm.jpress-confirm-open {
   display: block;
-  -webkit-animation: appbear_confirm_open .35s;
-  -moz-animation: appbear_confirm_open .35s;
-  -ms-animation: appbear_confirm_open .35s; }
-.appbear-confirm.appbear-confirm-close {
-  -webkit-animation: appbear_confirm_close .35s;
-  -moz-animation: appbear_confirm_close .35s;
-  -ms-animation: appbear_confirm_close .35s; }
-.appbear-confirm .appbear-confirm-header {
+  -webkit-animation: jpress_confirm_open .35s;
+  -moz-animation: jpress_confirm_open .35s;
+  -ms-animation: jpress_confirm_open .35s; }
+.jpress-confirm.jpress-confirm-close {
+  -webkit-animation: jpress_confirm_close .35s;
+  -moz-animation: jpress_confirm_close .35s;
+  -ms-animation: jpress_confirm_close .35s; }
+.jpress-confirm .jpress-confirm-header {
   padding: 10px 20px;
   border-bottom: 1px solid #d6dbe2;
   background: #eef0f3; }
-.appbear-confirm .appbear-confirm-header h3 {
+.jpress-confirm .jpress-confirm-header h3 {
   font-weight: bold;
   font-size: 20px;
   font-family: inherit;
   color: #394459;
   opacity: 0.9;
   filter: alpha(opacity=90); }
-.appbear-confirm .appbear-confirm-close-btn {
+.jpress-confirm .jpress-confirm-close-btn {
   position: absolute;
   top: 13px;
   left: 20px;
@@ -1428,46 +1428,46 @@ html {
   font-size: 22px;
   opacity: 0.7;
   color: #394459; }
-.appbear-confirm .appbear-confirm-close-btn:hover {
+.jpress-confirm .jpress-confirm-close-btn:hover {
   opacity: 1; }
-.appbear-confirm .appbear-confirm-content {
+.jpress-confirm .jpress-confirm-content {
   padding: 20px;
   font-size: 14px; }
-.appbear-confirm .appbear-confirm-content p {
+.jpress-confirm .jpress-confirm-content p {
   margin-bottom: 15px; }
-.appbear-confirm .appbear-confirm-footer {
+.jpress-confirm .jpress-confirm-footer {
   padding: 20px; }
-.appbear-confirm .appbear-btn {
+.jpress-confirm .jpress-btn {
   border-radius: 3px; }
-.appbear-confirm .appbear-cancel-btn,
-.appbear-confirm .appbear-confirm-btn {
+.jpress-confirm .jpress-cancel-btn,
+.jpress-confirm .jpress-confirm-btn {
   margin: 0 10px; }
-.appbear-confirm .appbear-cancel-btn i {
+.jpress-confirm .jpress-cancel-btn i {
   opacity: 0.7;
   filter: alpha(opacity=70); }
-.appbear-confirm .appbear-confirm-loader {
+.jpress-confirm .jpress-confirm-loader {
   font-size: 1.5em;
   text-align: center;
   padding: 50px; }
-.appbear-confirm.transparent-confirm {
+.jpress-confirm.transparent-confirm {
   color: white;
   background: transparent;
   border: transparent; }
-.appbear-confirm.transparent-confirm .appbear-confirm-header {
+.jpress-confirm.transparent-confirm .jpress-confirm-header {
   background: transparent;
   border: 0px; }
-.appbear-confirm.transparent-confirm .appbear-confirm-header h3 {
+.jpress-confirm.transparent-confirm .jpress-confirm-header h3 {
   font-size: 44px;
   color: white;
   opacity: 1; }
-.appbear-confirm.transparent-confirm .appbear-confirm-content {
+.jpress-confirm.transparent-confirm .jpress-confirm-content {
   font-size: 25px; }
-.appbear-confirm.transparent-confirm + .appbear-confirm-overlay {
+.jpress-confirm.transparent-confirm + .jpress-confirm-overlay {
   opacity: 0.92; }
-.appbear-confirm.transparent-confirm .appbear-confirm-close-btn {
+.jpress-confirm.transparent-confirm .jpress-confirm-close-btn {
   color: white; }
 
-.appbear-confirm-overlay {
+.jpress-confirm-overlay {
   display: none;
   position: fixed;
   top: 0;
@@ -1481,7 +1481,7 @@ html {
   opacity: 0.85;
   filter: alpha(opacity=85); }
 
-@-webkit-keyframes appbear_confirm_open {
+@-webkit-keyframes jpress_confirm_open {
   from {
     -webkit-transform: scale(0.5);
     opacity: 0; }
@@ -1492,7 +1492,7 @@ html {
     -webkit-transform: scale(1);
     opacity: 1; } }
 
-@-webkit-keyframes appbear_confirm_close {
+@-webkit-keyframes jpress_confirm_close {
   from {
     -webkit-transform: scale(1);
     opacity: 1; }
@@ -1503,7 +1503,7 @@ html {
     -webkit-transform: scale(0.5);
     opacity: 0; } }
 
-@-moz-keyframes appbear_confirm_open {
+@-moz-keyframes jpress_confirm_open {
   from {
     -moz-transform: scale(0.5);
     opacity: 0; }
@@ -1514,7 +1514,7 @@ html {
     -moz-transform: scale(1);
     opacity: 1; } }
 
-@-moz-keyframes appbear_confirm_close {
+@-moz-keyframes jpress_confirm_close {
   from {
     -moz-transform: scale(1);
     opacity: 1; }
@@ -1525,7 +1525,7 @@ html {
     -moz-transform: scale(0.5);
     opacity: 0; } }
 
-@-ms-keyframes appbear_confirm_open {
+@-ms-keyframes jpress_confirm_open {
   from {
     -ms-transform: scale(0.5);
     opacity: 0; }
@@ -1536,7 +1536,7 @@ html {
     -ms-transform: scale(1);
     opacity: 1; } }
 
-@-ms-keyframes appbear_confirm_close {
+@-ms-keyframes jpress_confirm_close {
   from {
     -ms-transform: scale(1);
     opacity: 1; }
@@ -1552,7 +1552,7 @@ html {
 | Botones
 |-----------------------------------------------------------------------------------------
 */
-.appbear-btn {
+.jpress-btn {
   display: inline-block;
   margin: 0px 0 0px 5px;
   padding: 8px 18px;
@@ -1576,119 +1576,119 @@ html {
   -webkit-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out; }
-.appbear-btn:hover {
+.jpress-btn:hover {
   color: #24272c;
   background: #bbc3ce; }
-.appbear-btn:active, .appbear-btn:focus {
+.jpress-btn:active, .jpress-btn:focus {
   color: #1d2024;
   background: #afb8c6; }
-.appbear-btn.appbear-btn-tiny {
+.jpress-btn.jpress-btn-tiny {
   font-size: 10px;
   padding: 3px 12px; }
-.appbear-btn.appbear-btn-small {
+.jpress-btn.jpress-btn-small {
   font-size: 11px;
   padding: 6px 14px; }
-.appbear-btn.appbear-btn-normal {
+.jpress-btn.jpress-btn-normal {
   font-size: 12px;
   padding: 7px 15px; }
-.appbear-btn.appbear-btn-medium {
+.jpress-btn.jpress-btn-medium {
   font-size: 13px;
   padding: 8px 16px; }
-.appbear-btn.appbear-btn-large {
+.jpress-btn.jpress-btn-large {
   font-size: 16px;
   padding: 11px 22px; }
-.appbear-btn.appbear-btn-big {
+.jpress-btn.jpress-btn-big {
   font-size: 20px;
   padding: 15px 25px; }
-.appbear-btn.appbear-btn-huge {
+.jpress-btn.jpress-btn-huge {
   font-size: 24px;
   padding: 19px 32px; }
-.appbear-btn.appbear-btn-blue {
+.jpress-btn.jpress-btn-blue {
   color: white;
   background: #3380DA; }
-.appbear-btn.appbear-btn-blue:hover {
+.jpress-btn.jpress-btn-blue:hover {
   background: #2676d2; }
-.appbear-btn.appbear-btn-blue:active, .appbear-btn.appbear-btn-blue:focus {
+.jpress-btn.jpress-btn-blue:active, .jpress-btn.jpress-btn-blue:focus {
   background: #2571ca; }
-.appbear-btn.appbear-btn-lightblue {
+.jpress-btn.jpress-btn-lightblue {
   color: white;
   background: #1694DE; }
-.appbear-btn.appbear-btn-lightblue:hover {
+.jpress-btn.jpress-btn-lightblue:hover {
   background: #1488cb; }
-.appbear-btn.appbear-btn-lightblue:active, .appbear-btn.appbear-btn-lightblue:focus {
+.jpress-btn.jpress-btn-lightblue:active, .jpress-btn.jpress-btn-lightblue:focus {
   background: #1381c2; }
-.appbear-btn.appbear-btn-green {
+.jpress-btn.jpress-btn-green {
   color: white;
   background: #00AA8C; }
-.appbear-btn.appbear-btn-green:hover {
+.jpress-btn.jpress-btn-green:hover {
   background: #00967b; }
-.appbear-btn.appbear-btn-green:active, .appbear-btn.appbear-btn-green:focus {
+.jpress-btn.jpress-btn-green:active, .jpress-btn.jpress-btn-green:focus {
   background: #008b73; }
-.appbear-btn.appbear-btn-teal {
+.jpress-btn.jpress-btn-teal {
   color: white;
   background: #00B5AD; }
-.appbear-btn.appbear-btn-teal:hover {
+.jpress-btn.jpress-btn-teal:hover {
   background: #00a19a; }
-.appbear-btn.appbear-btn-teal:active, .appbear-btn.appbear-btn-teal:focus {
+.jpress-btn.jpress-btn-teal:active, .jpress-btn.jpress-btn-teal:focus {
   background: #009690; }
-.appbear-btn.appbear-btn-red {
+.jpress-btn.jpress-btn-red {
   color: white;
   background: #E56464; }
-.appbear-btn.appbear-btn-red:hover {
+.jpress-btn.jpress-btn-red:hover {
   background: #e25353; }
-.appbear-btn.appbear-btn-red:active, .appbear-btn.appbear-btn-red:focus {
+.jpress-btn.jpress-btn-red:active, .jpress-btn.jpress-btn-red:focus {
   background: #e14a4a; }
-.appbear-btn.appbear-btn-pink {
+.jpress-btn.jpress-btn-pink {
   color: white;
   background: #F86196; }
-.appbear-btn.appbear-btn-pink:hover {
+.jpress-btn.jpress-btn-pink:hover {
   background: #f74d89; }
-.appbear-btn.appbear-btn-pink:active, .appbear-btn.appbear-btn-pink:focus {
+.jpress-btn.jpress-btn-pink:active, .jpress-btn.jpress-btn-pink:focus {
   background: #f74483; }
-.appbear-btn.appbear-btn-dark {
+.jpress-btn.jpress-btn-dark {
   color: white;
   background: #252C3A; }
-.appbear-btn.appbear-btn-dark:hover {
+.jpress-btn.jpress-btn-dark:hover {
   background: #1d232e; }
-.appbear-btn.appbear-btn-dark:active, .appbear-btn.appbear-btn-dark:focus {
+.jpress-btn.jpress-btn-dark:active, .jpress-btn.jpress-btn-dark:focus {
   background: #191e27; }
-.appbear-btn.appbear-btn-purple {
+.jpress-btn.jpress-btn-purple {
   color: white;
   background: #6515DD; }
-.appbear-btn.appbear-btn-purple:hover {
+.jpress-btn.jpress-btn-purple:hover {
   background: #5011AE; }
-.appbear-btn.appbear-btn-purple:active, .appbear-btn.appbear-btn-purple:focus {
+.jpress-btn.jpress-btn-purple:active, .jpress-btn.jpress-btn-purple:focus {
   background: #525be0; }
-.appbear-btn.appbear-btn-bluepurple {
+.jpress-btn.jpress-btn-bluepurple {
   color: white;
   background: #5274EB; }
-.appbear-btn.appbear-btn-bluepurple:hover {
+.jpress-btn.jpress-btn-bluepurple:hover {
   background: #4065e9; }
-.appbear-btn.appbear-btn-bluepurple:active, .appbear-btn.appbear-btn-bluepurple:focus {
+.jpress-btn.jpress-btn-bluepurple:active, .jpress-btn.jpress-btn-bluepurple:focus {
   background: #375ee8; }
-.appbear-btn.appbear-btn-yellow {
+.jpress-btn.jpress-btn-yellow {
   color: white;
   background: #FC9F2E; }
-.appbear-btn.appbear-btn-yellow:hover {
+.jpress-btn.jpress-btn-yellow:hover {
   background: #fc961a; }
-.appbear-btn.appbear-btn-yellow:active, .appbear-btn.appbear-btn-yellow:focus {
+.jpress-btn.jpress-btn-yellow:active, .jpress-btn.jpress-btn-yellow:focus {
   background: #fc9110; }
-.appbear-btn.appbear-btn-orange {
+.jpress-btn.jpress-btn-orange {
   color: white;
   background: #F86A5E; }
-.appbear-btn.appbear-btn-orange:hover {
+.jpress-btn.jpress-btn-orange:hover {
   background: #f7584a; }
-.appbear-btn.appbear-btn-orange:active, .appbear-btn.appbear-btn-orange:focus {
+.jpress-btn.jpress-btn-orange:active, .jpress-btn.jpress-btn-orange:focus {
   background: #f74f41; }
-.appbear-btn > .appbear-icon {
+.jpress-btn > .jpress-icon {
   opacity: 0.9;
   margin-left: 4px;
   vertical-align: baseline;
   line-height: 1em; }
-.appbear-btn.appbear-btn-icon > .appbear-icon {
+.jpress-btn.jpress-btn-icon > .jpress-icon {
   vertical-align: baseline;
   margin: 0px; }
-.appbear-btn.appbear-btn-iconize {
+.jpress-btn.jpress-btn-iconize {
   width: 16px;
   height: 16px;
   padding: 0px !important;
@@ -1698,101 +1698,101 @@ html {
   background: transparent !important;
   vertical-align: middle;
   color: #8f9bae; }
-.appbear-btn.appbear-btn-iconize:hover {
+.jpress-btn.jpress-btn-iconize:hover {
   color: #718199; }
-.appbear-btn.appbear-btn-iconize:active, .appbear-btn.appbear-btn-iconize:focus {
+.jpress-btn.jpress-btn-iconize:active, .jpress-btn.jpress-btn-iconize:focus {
   color: #67778f; }
-.appbear-btn.appbear-btn-iconize > .appbear-icon,
-.appbear-btn.appbear-btn-iconize > .dashicons {
+.jpress-btn.jpress-btn-iconize > .jpress-icon,
+.jpress-btn.jpress-btn-iconize > .dashicons {
   margin: 0 -1px 0 0;
   opacity: 1; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-tiny {
+.jpress-btn.jpress-btn-iconize.jpress-btn-tiny {
   width: 14px;
   height: 14px;
   font-size: 14px; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-small {
+.jpress-btn.jpress-btn-iconize.jpress-btn-small {
   width: 16px;
   height: 16px;
   font-size: 16px; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-medium {
+.jpress-btn.jpress-btn-iconize.jpress-btn-medium {
   width: 20px;
   height: 20px;
   font-size: 20px; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-large {
+.jpress-btn.jpress-btn-iconize.jpress-btn-large {
   width: 24px;
   height: 24px;
   font-size: 24px; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-big {
+.jpress-btn.jpress-btn-iconize.jpress-btn-big {
   width: 28px;
   height: 28px;
   font-size: 28px; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-blue {
+.jpress-btn.jpress-btn-iconize.jpress-btn-blue {
   color: #3380DA; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-blue:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-blue:hover {
   color: #246ec5; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-blue:active, .appbear-btn.appbear-btn-iconize.appbear-btn-blue:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-blue:active, .jpress-btn.jpress-btn-iconize.jpress-btn-blue:focus {
   color: #226abd; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-lightblue {
+.jpress-btn.jpress-btn-iconize.jpress-btn-lightblue {
   color: #1694DE; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-lightblue:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-lightblue:hover {
   color: #137ebe; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-lightblue:active, .appbear-btn.appbear-btn-iconize.appbear-btn-lightblue:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-lightblue:active, .jpress-btn.jpress-btn-iconize.jpress-btn-lightblue:focus {
   color: #1278b4; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-green {
+.jpress-btn.jpress-btn-iconize.jpress-btn-green {
   color: #00AA8C; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-green:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-green:hover {
   color: #00866f; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-green:active, .appbear-btn.appbear-btn-iconize.appbear-btn-green:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-green:active, .jpress-btn.jpress-btn-iconize.jpress-btn-green:focus {
   color: #007c66; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-teal {
+.jpress-btn.jpress-btn-iconize.jpress-btn-teal {
   color: #00B5AD; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-teal:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-teal:hover {
   color: #00918b; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-teal:active, .appbear-btn.appbear-btn-iconize.appbear-btn-teal:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-teal:active, .jpress-btn.jpress-btn-iconize.jpress-btn-teal:focus {
   color: #008781; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-red {
+.jpress-btn.jpress-btn-iconize.jpress-btn-red {
   color: #E56464; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-red:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-red:hover {
   color: #e04545; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-red:active, .appbear-btn.appbear-btn-iconize.appbear-btn-red:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-red:active, .jpress-btn.jpress-btn-iconize.jpress-btn-red:focus {
   color: #de3d3d; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-pink {
+.jpress-btn.jpress-btn-iconize.jpress-btn-pink {
   color: #F86196; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-pink:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-pink:hover {
   color: #f63f7f; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-pink:active, .appbear-btn.appbear-btn-iconize.appbear-btn-pink:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-pink:active, .jpress-btn.jpress-btn-iconize.jpress-btn-pink:focus {
   color: #f63579; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-dark {
+.jpress-btn.jpress-btn-iconize.jpress-btn-dark {
   color: #252C3A; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-dark:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-dark:hover {
   color: #171b24; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-dark:active, .appbear-btn.appbear-btn-iconize.appbear-btn-dark:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-dark:active, .jpress-btn.jpress-btn-iconize.jpress-btn-dark:focus {
   color: #13171e; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-purple {
+.jpress-btn.jpress-btn-iconize.jpress-btn-purple {
   color: #6515DD; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-purple:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-purple:hover {
   color: #4e57e0; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-purple:active, .appbear-btn.appbear-btn-iconize.appbear-btn-purple:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-purple:active, .jpress-btn.jpress-btn-iconize.jpress-btn-purple:focus {
   color: #454fde; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-bluepurple {
+.jpress-btn.jpress-btn-iconize.jpress-btn-bluepurple {
   color: #5274EB; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-bluepurple:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-bluepurple:hover {
   color: #325ae7; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-bluepurple:active, .appbear-btn.appbear-btn-iconize.appbear-btn-bluepurple:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-bluepurple:active, .jpress-btn.jpress-btn-iconize.jpress-btn-bluepurple:focus {
   color: #2953e6; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-yellow {
+.jpress-btn.jpress-btn-iconize.jpress-btn-yellow {
   color: #FC9F2E; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-yellow:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-yellow:hover {
   color: #fb8f0b; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-yellow:active, .appbear-btn.appbear-btn-iconize.appbear-btn-yellow:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-yellow:active, .jpress-btn.jpress-btn-iconize.jpress-btn-yellow:focus {
   color: #f98a04; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-orange {
+.jpress-btn.jpress-btn-iconize.jpress-btn-orange {
   color: #F86A5E; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-orange:hover {
+.jpress-btn.jpress-btn-iconize.jpress-btn-orange:hover {
   color: #f74a3c; }
-.appbear-btn.appbear-btn-iconize.appbear-btn-orange:active, .appbear-btn.appbear-btn-iconize.appbear-btn-orange:focus {
+.jpress-btn.jpress-btn-iconize.jpress-btn-orange:active, .jpress-btn.jpress-btn-iconize.jpress-btn-orange:focus {
   color: #f64132; }
-.appbear-btn.appbear-btn-input {
+.jpress-btn.jpress-btn-input {
   position: absolute;
   top: 0;
   left: 0;
@@ -1801,9 +1801,9 @@ html {
   -webkit-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out; }
-.appbear-btn.appbear-btn-input i {
+.jpress-btn.jpress-btn-input i {
   font-size: 1.2em; }
-.appbear-btn[disabled] {
+.jpress-btn[disabled] {
   opacity: 0.5 !important;
   pointer-events: none !important; }
 
@@ -1864,7 +1864,7 @@ html {
 | Semantic UI
 |-----------------------------------------------------------------------------------------
 */
-.appbear .ui.dropdown.selection {
+.jpress .ui.dropdown.selection {
   border: 2px solid #CAD0D9;
   min-height: 28px;
   min-width: 180px;
@@ -1873,21 +1873,21 @@ html {
   margin: 0px;
   color: #575e6a;
   background: #FFF; }
-.appbear .ui.dropdown.selection.visible, .appbear .ui.dropdown.selection.active {
+.jpress .ui.dropdown.selection.visible, .jpress .ui.dropdown.selection.active {
   z-index: 101; }
-.appbear .ui.dropdown.selection:focus {
+.jpress .ui.dropdown.selection:focus {
   border: 2px solid #CAD0D9; }
-.appbear .ui.dropdown.selection:hover {
+.jpress .ui.dropdown.selection:hover {
   border-color: #b8c0cc; }
-.appbear .ui.dropdown.selection.active {
+.jpress .ui.dropdown.selection.active {
   border-color: #448bdd; }
-.appbear .ui.dropdown.selection.active:hover {
+.jpress .ui.dropdown.selection.active:hover {
   border-color: #448bdd; }
-.appbear .ui.dropdown.selection.active .menu {
+.jpress .ui.dropdown.selection.active .menu {
   border-color: #448bdd !important; }
-.appbear .ui.dropdown.selection > .search.icon,
-.appbear .ui.dropdown.selection > .delete.icon,
-.appbear .ui.dropdown.selection > .dropdown.icon {
+.jpress .ui.dropdown.selection > .search.icon,
+.jpress .ui.dropdown.selection > .delete.icon,
+.jpress .ui.dropdown.selection > .dropdown.icon {
   top: 0px;
   left: 8px;
   margin: 0px;
@@ -1895,122 +1895,122 @@ html {
   line-height: 24px;
   font-size: 15px;
   color: #95a1b3; }
-.appbear .ui.dropdown.selection .menu {
+.jpress .ui.dropdown.selection .menu {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px; }
-.appbear .ui.dropdown.selection .menu .item {
+.jpress .ui.dropdown.selection .menu .item {
   padding: 6px 12px !important; }
-.appbear .ui.dropdown.selection .text {
+.jpress .ui.dropdown.selection .text {
   margin: 0px; }
-.appbear .ui.dropdown.selection .text > img.image {
+.jpress .ui.dropdown.selection .text > img.image {
   max-height: 16px;
   margin-top: -3px;
   margin-left: 8px; }
-.appbear .ui.dropdown.selection .text > i {
+.jpress .ui.dropdown.selection .text > i {
   margin-left: 10px; }
-.appbear .ui.dropdown.selection.search > input.search {
+.jpress .ui.dropdown.selection.search > input.search {
   padding: 4px 12px 4px 24px;
   margin: 0px;
   color: #575e6a; }
-.appbear .ui.dropdown.selection.search > .text {
+.jpress .ui.dropdown.selection.search > .text {
   margin: 0px;
   line-height: 16px; }
-.appbear .ui.dropdown.selection.multiple > input.search {
+.jpress .ui.dropdown.selection.multiple > input.search {
   padding: 0px; }
-.appbear .ui.dropdown.selection .ui.label {
+.jpress .ui.dropdown.selection .ui.label {
   padding: 3px 6px;
   font-size: 12px;
   line-height: 14px;
   color: inherit; }
-.appbear .ui.dropdown.selection .ui.label:hover {
+.jpress .ui.dropdown.selection .ui.label:hover {
   color: #252C3A; }
-.appbear .ui.dropdown.selection .ui.label img {
+.jpress .ui.dropdown.selection .ui.label img {
   max-height: 12px;
   width: auto;
   vertical-align: middle; }
-.appbear .ui.dropdown.selection .ui.label i {
+.jpress .ui.dropdown.selection .ui.label i {
   vertical-align: middle; }
-.appbear .ui.dropdown.selection.loading > .dropdown.icon {
+.jpress .ui.dropdown.selection.loading > .dropdown.icon {
   font-size: 11px;
   top: -2px; }
 
-.appbear .ui.dropdown.selection .menu {
+.jpress .ui.dropdown.selection .menu {
   border: 2px solid #CAD0D9;
   margin: 0px -2px;
   min-width: calc(100% + 4px);
   width: calc(100% + 4px);
   background: #FFF;
   padding-left: 2px; }
-.appbear .ui.dropdown.selection .menu .appbear-ui-inner-menu {
+.jpress .ui.dropdown.selection .menu .jpress-ui-inner-menu {
   overflow-x: hidden;
   overflow-y: auto; }
-.appbear .ui.dropdown.selection .menu .item {
+.jpress .ui.dropdown.selection .menu .item {
   line-height: 14px;
   font-size: 13px;
   color: #575e6a;
   border-top: 1px solid transparent;
   cursor: pointer; }
-.appbear .ui.dropdown.selection .menu .item:hover {
+.jpress .ui.dropdown.selection .menu .item:hover {
   background: #e8eaee; }
-.appbear .ui.dropdown.selection .menu .item > img {
+.jpress .ui.dropdown.selection .menu .item > img {
   max-height: 16px;
   margin-left: 8px;
   width: auto;
   vertical-align: middle;
   display: inline-block; }
-.appbear .ui.dropdown.selection .menu .item > i {
+.jpress .ui.dropdown.selection .menu .item > i {
   margin-left: 10px;
   width: 14px;
   text-align: center; }
-.appbear .ui.dropdown.selection .menu .active.item,
-.appbear .ui.dropdown.selection .menu .selected.item {
+.jpress .ui.dropdown.selection .menu .active.item,
+.jpress .ui.dropdown.selection .menu .selected.item {
   color: #575e6a;
   background: transparent;
   font-weight: bold; }
-.appbear .ui.dropdown.selection .menu .divider {
+.jpress .ui.dropdown.selection .menu .divider {
   border-top: 1px solid #e2e5ea;
   height: 0;
   margin: 5px 0; }
-.appbear .ui.dropdown.selection .menu .header {
+.jpress .ui.dropdown.selection .menu .header {
   margin: 0px 0 2px;
   padding: 6px 12px !important;
   color: #575e6a;
   font-size: 13px;
   font-weight: normal;
   text-transform: uppercase; }
-.appbear .ui.dropdown.selection .menu .header i {
+.jpress .ui.dropdown.selection .menu .header i {
   opacity: 0.8;
   margin-left: 5px; }
 
 @media only screen and (max-width: 767px) {
-  .appbear .ui.selection.dropdown .appbear-ui-inner-menu {
+  .jpress .ui.selection.dropdown .jpress-ui-inner-menu {
     max-height: 7.01428571rem; } }
 
 @media only screen and (min-width: 768px) {
-  .appbear .ui.selection.dropdown .appbear-ui-inner-menu {
+  .jpress .ui.selection.dropdown .jpress-ui-inner-menu {
     max-height: 9.68571429rem; } }
 
 @media only screen and (min-width: 992px) {
-  .appbear .ui.selection.dropdown .appbear-ui-inner-menu {
+  .jpress .ui.selection.dropdown .jpress-ui-inner-menu {
     max-height: 15.02857143rem; } }
 
 @media only screen and (min-width: 1920px) {
-  .appbear .ui.selection.dropdown .appbear-ui-inner-menu {
+  .jpress .ui.selection.dropdown .jpress-ui-inner-menu {
     max-height: 20.37142857rem; } }
 
-.appbear .ui.label {
+.jpress .ui.label {
   cursor: pointer;
   font-size: 13px;
   line-height: 16px;
   vertical-align: top; }
-.appbear .ui.label:hover {
+.jpress .ui.label:hover {
   background: #e8eaee;
   color: #3b4048; }
-.appbear .ui.label.active {
+.jpress .ui.label.active {
   background: #dfe2e8;
   color: #343940; }
-.appbear .ui.label > .close.icon,
-.appbear .ui.label > .delete.icon {
+.jpress .ui.label > .close.icon,
+.jpress .ui.label > .delete.icon {
   cursor: pointer;
   margin-left: 0;
   margin-right: 8px;
@@ -2019,11 +2019,11 @@ html {
   -webkit-transition: background .1s ease;
   -o-transition: background .1s ease;
   transition: background .1s ease; }
-.appbear .ui.label > .close.icon:hover,
-.appbear .ui.label > .delete.icon:hover {
+.jpress .ui.label > .close.icon:hover,
+.jpress .ui.label > .delete.icon:hover {
   color: rgba(0, 0, 0, 0.8);
   opacity: 0.8; }
-.appbear .ui.label .flag {
+.jpress .ui.label .flag {
   font-size: 10px; }
 
 /*
@@ -2034,29 +2034,29 @@ html {
 /*-----------------------------------------------------------------------------------------
 | General
 -----------------------------------------------------------------------------------------*/
-.appbear input[type],
-.appbear select, .appbear textarea,
-.appbear input[type]:focus,
-.appbear select:focus, .appbear textarea:focus {
+.jpress input[type],
+.jpress select, .jpress textarea,
+.jpress input[type]:focus,
+.jpress select:focus, .jpress textarea:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none; }
 
-.appbear label {
+.jpress label {
   cursor: pointer;
   color: #5e6672;
   display: inline-block; }
 
-.appbear input[type="text"],
-.appbear input[type="email"],
-.appbear input[type="number"],
-.appbear input[type="password"],
-.appbear input[type="search"],
-.appbear input[type="tel"],
-.appbear input[type="url"],
-.appbear input[type="date"],
-.appbear input[type="time"],
-.appbear textarea {
+.jpress input[type="text"],
+.jpress input[type="email"],
+.jpress input[type="number"],
+.jpress input[type="password"],
+.jpress input[type="search"],
+.jpress input[type="tel"],
+.jpress input[type="url"],
+.jpress input[type="date"],
+.jpress input[type="time"],
+.jpress textarea {
   height: 28px;
   width: 100%;
   padding: 0 12px;
@@ -2070,31 +2070,31 @@ html {
   -webkit-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out; }
-.appbear input[type="text"]:hover,
-.appbear input[type="email"]:hover,
-.appbear input[type="number"]:hover,
-.appbear input[type="password"]:hover,
-.appbear input[type="search"]:hover,
-.appbear input[type="tel"]:hover,
-.appbear input[type="url"]:hover,
-.appbear input[type="date"]:hover,
-.appbear input[type="time"]:hover,
-.appbear textarea:hover {
+.jpress input[type="text"]:hover,
+.jpress input[type="email"]:hover,
+.jpress input[type="number"]:hover,
+.jpress input[type="password"]:hover,
+.jpress input[type="search"]:hover,
+.jpress input[type="tel"]:hover,
+.jpress input[type="url"]:hover,
+.jpress input[type="date"]:hover,
+.jpress input[type="time"]:hover,
+.jpress textarea:hover {
   border-color: #b8c0cc; }
-.appbear input[type="text"]:focus,
-.appbear input[type="email"]:focus,
-.appbear input[type="number"]:focus,
-.appbear input[type="password"]:focus,
-.appbear input[type="search"]:focus,
-.appbear input[type="tel"]:focus,
-.appbear input[type="url"]:focus,
-.appbear input[type="date"]:focus,
-.appbear input[type="time"]:focus,
-.appbear textarea:focus {
+.jpress input[type="text"]:focus,
+.jpress input[type="email"]:focus,
+.jpress input[type="number"]:focus,
+.jpress input[type="password"]:focus,
+.jpress input[type="search"]:focus,
+.jpress input[type="tel"]:focus,
+.jpress input[type="url"]:focus,
+.jpress input[type="date"]:focus,
+.jpress input[type="time"]:focus,
+.jpress textarea:focus {
   border-color: #448bdd; }
 
-.appbear input[type="checkbox"],
-.appbear input[type="radio"] {
+.jpress input[type="checkbox"],
+.jpress input[type="radio"] {
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -2102,7 +2102,7 @@ html {
   vertical-align: middle;
   display: inline-block; }
 
-.appbear textarea {
+.jpress textarea {
   height: auto;
   min-height: 60px;
   padding-top: 8px;
@@ -2110,46 +2110,46 @@ html {
   line-height: 1.5;
   display: block; }
 
-.appbear .appbear-radiochecks > label,
-.appbear .appbear-radiochecks .appbear-item-image-selector {
+.jpress .jpress-radiochecks > label,
+.jpress .jpress-radiochecks .jpress-item-image-selector {
   display: inline-block;
   margin: 0 0 8px 15px;
   font-size: 13px;
   line-height: 1.6; }
-.appbear .appbear-radiochecks > label:last-child,
-.appbear .appbear-radiochecks .appbear-item-image-selector:last-child {
+.jpress .jpress-radiochecks > label:last-child,
+.jpress .jpress-radiochecks .jpress-item-image-selector:last-child {
   margin-left: 0px; }
-.appbear .appbear-radiochecks > label > label,
-.appbear .appbear-radiochecks .appbear-item-image-selector > label {
+.jpress .jpress-radiochecks > label > label,
+.jpress .jpress-radiochecks .jpress-item-image-selector > label {
   display: block; }
 
-.appbear .appbear-radiochecks.appbear-vertical > label,
-.appbear .appbear-radiochecks.appbear-vertical .appbear-item-image-selector {
+.jpress .jpress-radiochecks.jpress-vertical > label,
+.jpress .jpress-radiochecks.jpress-vertical .jpress-item-image-selector {
   display: block; }
 
-.appbear .appbear-radiochecks .appbear-item-desc {
+.jpress .jpress-radiochecks .jpress-item-desc {
   padding: 6px 0;
   line-height: 1.6;
   text-align: center; }
-.appbear .appbear-radiochecks .appbear-item-desc-title {
+.jpress .jpress-radiochecks .jpress-item-desc-title {
   font-weight: bold; }
-.appbear .appbear-radiochecks .appbear-item-desc-content {
+.jpress .jpress-radiochecks .jpress-item-desc-content {
   padding-top: 8px; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Hidden
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-hidden {
+.jpress .jpress-type-hidden {
   display: none !important; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Title
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-title .appbear-content {
+.jpress .jpress-type-title .jpress-content {
   padding-right: 25px;
   padding-top: 10px !important;
   padding-bottom: 10px !important; }
-.appbear .appbear-type-title .appbear-content .appbear-field-title {
+.jpress .jpress-type-title .jpress-content .jpress-field-title {
   margin: 0 !important;
   padding: 0px !important;
   font-size: 14px !important;
@@ -2165,41 +2165,41 @@ html {
   -webkit-box-shadow: none;
   box-shadow: none;
   text-shadow: none; }
-.appbear .appbear-type-title .appbear-content .appbear-field-title:hover {
+.jpress .jpress-type-title .jpress-content .jpress-field-title:hover {
   color: #444a53; }
-.appbear .appbear-type-title .appbear-content .appbear-field-description {
+.jpress .jpress-type-title .jpress-content .jpress-field-description {
   margin-top: 2px; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Text, Textarea, Code Editor
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-text.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-textarea.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-code_editor.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-wp_editor.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-file.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-oembed.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-image.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-import.appbear-row-mixed:not(.appbear-grid):not(.not-full-width),
-.appbear .appbear-type-export.appbear-row-mixed:not(.appbear-grid):not(.not-full-width) {
+.jpress .jpress-type-text.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-textarea.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-code_editor.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-wp_editor.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-file.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-oembed.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-image.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-import.jpress-row-mixed:not(.jpress-grid):not(.not-full-width),
+.jpress .jpress-type-export.jpress-row-mixed:not(.jpress-grid):not(.not-full-width) {
   width: 100%; }
 
-.appbear .appbear-type-text .appbear-field,
-.appbear .appbear-type-textarea .appbear-field,
-.appbear .appbear-type-code_editor .appbear-field,
-.appbear .appbear-type-wp_editor .appbear-field,
-.appbear .appbear-type-file .appbear-field,
-.appbear .appbear-type-oembed .appbear-field,
-.appbear .appbear-type-image .appbear-field,
-.appbear .appbear-type-import .appbear-field,
-.appbear .appbear-type-export .appbear-field ,
-.appbear .appbear-type-tagsinput .appbear-field{
+.jpress .jpress-type-text .jpress-field,
+.jpress .jpress-type-textarea .jpress-field,
+.jpress .jpress-type-code_editor .jpress-field,
+.jpress .jpress-type-wp_editor .jpress-field,
+.jpress .jpress-type-file .jpress-field,
+.jpress .jpress-type-oembed .jpress-field,
+.jpress .jpress-type-image .jpress-field,
+.jpress .jpress-type-import .jpress-field,
+.jpress .jpress-type-export .jpress-field ,
+.jpress .jpress-type-tagsinput .jpress-field{
   display: block !important; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Text
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-text .appbear-has-helper .appbear-field-helper {
+.jpress .jpress-type-text .jpress-has-helper .jpress-field-helper {
   position: absolute;
   top: 0;
   left: 0;
@@ -2213,76 +2213,76 @@ html {
   background: #CAD0D9;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
-.appbear .appbear-type-text .appbear-has-helper .appbear-field-helper i {
+.jpress .jpress-type-text .jpress-has-helper .jpress-field-helper i {
   line-height: inherit; }
 
-.appbear .appbear-type-text .appbear-has-helper input {
+.jpress .jpress-type-text .jpress-has-helper input {
   padding-left: 32px; }
 
-.appbear .appbear-type-text .appbear-has-helper input:focus + .appbear-field-helper {
+.jpress .jpress-type-text .jpress-has-helper input:focus + .jpress-field-helper {
   background: #448bdd;
   color: white; }
 
-.appbear .appbear-type-text .appbear-field.appbear-error .appbear-element {
+.jpress .jpress-type-text .jpress-field.jpress-error .jpress-element {
   border-color: #E56464; }
-.appbear .appbear-type-text .appbear-field.appbear-error .appbear-element + .appbear-field-helper {
+.jpress .jpress-type-text .jpress-field.jpress-error .jpress-element + .jpress-field-helper {
   background: #E56464;
   color: white; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Code Editor
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-code_editor .appbear-code-editor {
+.jpress .jpress-type-code_editor .jpress-code-editor {
   position: relative;
   height: 200px; }
-.appbear .appbear-type-code_editor .appbear-code-editor * {
+.jpress .jpress-type-code_editor .jpress-code-editor * {
   font-size: 15px; }
 
-.appbear .appbear-type-code_editor .appbear-code-editor + textarea {
+.jpress .jpress-type-code_editor .jpress-code-editor + textarea {
   display: none !important; }
 
 /*-----------------------------------------------------------------------------------------
 | Type WP Editor
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-wp_editor .mce-edit-area {
+.jpress .jpress-type-wp_editor .mce-edit-area {
   margin-left: 1px; }
 
-.appbear .appbear-type-wp_editor .appbear-repeatable-wrap .appbear-repeatable-item {
+.jpress .jpress-type-wp_editor .jpress-repeatable-wrap .jpress-repeatable-item {
   margin-bottom: 30px; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Select
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-select .ui.selection.dropdown {
+.jpress .jpress-type-select .ui.selection.dropdown {
   -webkit-transition: border-color .25s ease-in-out;
   -o-transition: border-color .25s ease-in-out;
   transition: border-color .25s ease-in-out; }
 
-.appbear .appbear-type-select.appbear-grid .ui.dropdown.selection,
-.appbear .appbear-type-select .appbear-grid .ui.dropdown.selection {
+.jpress .jpress-type-select.jpress-grid .ui.dropdown.selection,
+.jpress .jpress-type-select .jpress-grid .ui.dropdown.selection {
   max-width: 100%;
   min-width: 100%; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Radio & Checkbox
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-radio .appbear-content,
-.appbear .appbear-type-checkbox .appbear-content {
+.jpress .jpress-type-radio .jpress-content,
+.jpress .jpress-type-checkbox .jpress-content {
   padding-bottom: 7px; }
 
-.appbear .appbear-type-radio .appbear-field,
-.appbear .appbear-type-checkbox .appbear-field {
+.jpress .jpress-type-radio .jpress-field,
+.jpress .jpress-type-checkbox .jpress-field {
   margin-bottom: -8px; }
 
-.appbear .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress .jpress-type-import .jpress-field .iradio_flat-blue {
   margin: 0px 0 3px 5px;
   -webkit-transform: scale(0.9);
   -ms-transform: scale(0.9);
   transform: scale(0.9);
   background-image: url("../img/icheck/blue.png"); }
 
-.appbear .appbear-type-checkbox .appbear-field .icheckbox_flat-blue {
+.jpress .jpress-type-checkbox .jpress-field .icheckbox_flat-blue {
   margin: 0px 0 3px 5px;
   -webkit-transform: scale(0.9);
   -ms-transform: scale(0.9);
@@ -2292,29 +2292,29 @@ html {
 /*-----------------------------------------------------------------------------------------
 | Type image_selector
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-wrap-import-inputs {
+.jpress .jpress-wrap-import-inputs {
   margin: 20px 0; }
-.appbear .appbear-wrap-import-inputs .item-key-from_file,
-.appbear .appbear-wrap-import-inputs .item-key-from_url {
+.jpress .jpress-wrap-import-inputs .item-key-from_file,
+.jpress .jpress-wrap-import-inputs .item-key-from_url {
   width: 140px !important;
   display: inline-block !important; }
 
-.appbear .appbear-type-image_selector .appbear-content,
-.appbear .appbear-type-import .appbear-content {
+.jpress .jpress-type-image_selector .jpress-content,
+.jpress .jpress-type-import .jpress-content {
   padding-bottom: 5px; }
 
-.appbear .appbear-type-image_selector .appbear-radiochecks > .appbear-item-image-selector,
-.appbear .appbear-type-import .appbear-radiochecks > .appbear-item-image-selector {
+.jpress .jpress-type-image_selector .jpress-radiochecks > .jpress-item-image-selector,
+.jpress .jpress-type-import .jpress-radiochecks > .jpress-item-image-selector {
   margin-bottom: 15px; }
-.appbear .appbear-type-image_selector .appbear-radiochecks > .appbear-item-image-selector label span,
-.appbear .appbear-type-import .appbear-radiochecks > .appbear-item-image-selector label span {
+.jpress .jpress-type-image_selector .jpress-radiochecks > .jpress-item-image-selector label span,
+.jpress .jpress-type-import .jpress-radiochecks > .jpress-item-image-selector label span {
   display: none; }
-.appbear .appbear-type-image_selector .appbear-radiochecks > .appbear-item-image-selector label.no-image span,
-.appbear .appbear-type-import .appbear-radiochecks > .appbear-item-image-selector label.no-image span {
+.jpress .jpress-type-image_selector .jpress-radiochecks > .jpress-item-image-selector label.no-image span,
+.jpress .jpress-type-import .jpress-radiochecks > .jpress-item-image-selector label.no-image span {
   display: inline-block; }
 
-.appbear .appbear-type-image_selector .appbear-radiochecks img,
-.appbear .appbear-type-import .appbear-radiochecks img {
+.jpress .jpress-type-image_selector .jpress-radiochecks img,
+.jpress .jpress-type-import .jpress-radiochecks img {
   display: block;
   max-width: 100px;
   height: auto;
@@ -2324,40 +2324,40 @@ html {
   -webkit-transition: all .15s ease-in-out;
   -o-transition: all .15s ease-in-out;
   transition: all .15s ease-in-out; }
-.appbear .appbear-type-image_selector .appbear-radiochecks img:hover,
-.appbear .appbear-type-import .appbear-radiochecks img:hover {
+.jpress .jpress-type-image_selector .jpress-radiochecks img:hover,
+.jpress .jpress-type-import .jpress-radiochecks img:hover {
   border-color: #b8c0cc; }
-.appbear .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #448bdd; }
 
 /*-----------------------------------------------------------------------------------------
 | Type image_selector
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-icon_selector .appbear-field {
+.jpress .jpress-type-icon_selector .jpress-field {
   display: block; }
 
-.appbear .appbear-type-icon_selector .appbear-loader {
+.jpress .jpress-type-icon_selector .jpress-loader {
   margin-top: 30px;
   margin-right: 40%;
   font-size: 20px; }
 
-.appbear .appbear-type-icon_selector .appbear-icon-actions {
+.jpress .jpress-type-icon_selector .jpress-icon-actions {
   margin-bottom: 10px;
   display: block; }
-.appbear .appbear-type-icon_selector .appbear-icon-actions .appbear-btn {
+.jpress .jpress-type-icon_selector .jpress-icon-actions .jpress-btn {
   vertical-align: top;
   margin-left: 8px; }
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector i {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector i {
   font-size: 22px !important;
   line-height: 24px !important; }
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector img {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector img {
   max-width: 100%;
   max-height: 100%;
   height: auto; }
 
 /*
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector {
   float: none;
   display: inline-block;
   width: 28px;
@@ -2367,13 +2367,13 @@ html {
   padding: 1px;
   border: 0px solid transparent;
   cursor: default; }
- .appbear .appbear-type-icon_selector .appbear-search-icon {
+ .jpress .jpress-type-icon_selector .jpress-search-icon {
   width: 150px;
   display: inline-block;
   margin-left: 20px;
   margin-bottom: 8px; }
 
-.appbear .appbear-type-icon_selector .appbear-icons-wrap {
+.jpress .jpress-type-icon_selector .jpress-icons-wrap {
   width: 100%;
   display: block;
   overflow: auto;
@@ -2389,17 +2389,17 @@ html {
 START CAHNGES
 
 *****/
-.appbear-search-icon.d-block, .appbear-icons-wrap.d-block {
+.jpress-search-icon.d-block, .jpress-icons-wrap.d-block {
   display: block !important;
 }
-.appbear-search-icon, .appbear-icons-wrap {
+.jpress-search-icon, .jpress-icons-wrap {
   display: none !important;
 }
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector img {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector img {
   width: 26px;
   float: right;
 }
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector {
   float: none;
   display: block;
   width: auto;
@@ -2412,7 +2412,7 @@ START CAHNGES
   text-align: right;
   cursor: pointer;
 }
-.appbear .appbear-type-icon_selector .appbear-icon-active.appbear-item-icon-selector:after {
+.jpress .jpress-type-icon_selector .jpress-icon-active.jpress-item-icon-selector:after {
   content: "";
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -2426,7 +2426,7 @@ START CAHNGES
   margin: 2px;
   float: left;
 }
-.appbear .appbear-type-icon_selector .appbear-search-icon {
+.jpress .jpress-type-icon_selector .jpress-search-icon {
   width: 180px;
   display: inline-block;
   margin-bottom: 8px;
@@ -2434,7 +2434,7 @@ START CAHNGES
   z-index: 2;
 }
 
-.appbear .appbear-type-icon_selector .appbear-icons-wrap {
+.jpress .jpress-type-icon_selector .jpress-icons-wrap {
   width: 100%;
   min-width: 180px;
   display: block;
@@ -2455,7 +2455,7 @@ START CAHNGES
 END CAHNGES
 
 *****/
-.appbear .appbear-type-icon_selector .appbear-item-icon-selector {
+.jpress .jpress-type-icon_selector .jpress-item-icon-selector {
   margin-top: 15px;
   margin-left: 15px;
   float: right;
@@ -2468,61 +2468,61 @@ END CAHNGES
   display: block;
   color: #5e6672;
   cursor: pointer; }
-.appbear .appbear-type-icon_selector .appbear-item-icon-selector i {
+.jpress .jpress-type-icon_selector .jpress-item-icon-selector i {
   font-size: 1em;
   vertical-align: top;
   line-height: 1em;
   color: inherit; }
-.appbear .appbear-type-icon_selector .appbear-item-icon-selector img {
+.jpress .jpress-type-icon_selector .jpress-item-icon-selector img {
   max-width: 100%;
   max-height: 100%;
   height: auto; }
-.appbear .appbear-type-icon_selector .appbear-item-icon-selector:hover {
+.jpress .jpress-type-icon_selector .jpress-item-icon-selector:hover {
   border-color: #b8c0cc; }
-.appbear .appbear-type-icon_selector .appbear-item-icon-selector.appbear-active {
+.jpress .jpress-type-icon_selector .jpress-item-icon-selector.jpress-active {
   border-color: #448bdd; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Import Export
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-import .appbear-content {
+.jpress .jpress-type-import .jpress-content {
   padding-bottom: 15px; }
 
-.appbear .appbear-type-import .appbear-wrap-input-file,
-.appbear .appbear-type-import .appbear-wrap-input-url {
+.jpress .jpress-type-import .jpress-wrap-input-file,
+.jpress .jpress-type-import .jpress-wrap-input-url {
   display: none;
   margin: 15px 0; }
 
-.appbear .appbear-type-import .appbear-field[data-default="from_file"] .appbear-wrap-input-file {
+.jpress .jpress-type-import .jpress-field[data-default="from_file"] .jpress-wrap-input-file {
   display: block; }
 
-.appbear .appbear-type-import .appbear-field[data-default="from_url"] .appbear-wrap-input-url {
+.jpress .jpress-type-import .jpress-field[data-default="from_url"] .jpress-wrap-input-url {
   display: block; }
 
-.appbear .appbear-type-import .appbear-block {
+.jpress .jpress-type-import .jpress-block {
   display: block; }
 
-.appbear .appbear-type-export textarea {
+.jpress .jpress-type-export textarea {
   min-height: 300px;
   margin-bottom: 15px; }
 
 /*-----------------------------------------------------------------------------------------
 | Type Image
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-image .appbear-element-text {
+.jpress .jpress-type-image .jpress-element-text {
   margin-bottom: 15px; }
 
-.appbear .appbear-type-image .appbear-remove-preview {
+.jpress .jpress-type-image .jpress-remove-preview {
   display: none; }
 
-.appbear .appbear-type-image .appbear-element-text + a + ul .appbear-remove-preview {
+.jpress .jpress-type-image .jpress-element-text + a + ul .jpress-remove-preview {
   display: inline-block; }
 
-.appbear .appbear-type-image .appbear-wrap-image .appbear-preview-item {
+.jpress .jpress-type-image .jpress-wrap-image .jpress-preview-item {
   margin-top: 0;
   cursor: default; }
 
-.appbear .appbear-type-image .appbear-wrap-image img {
+.jpress .jpress-type-image .jpress-wrap-image img {
   max-width: 100%;
   width: 100%;
   height: auto; }
@@ -2530,10 +2530,10 @@ END CAHNGES
 /*-----------------------------------------------------------------------------------------
 | Type Number
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-number input {
+.jpress .jpress-type-number input {
   width: 152px; }
 
-.appbear .appbear-type-number .appbear-unit {
+.jpress .jpress-type-number .jpress-unit {
   position: absolute;
   top: 0;
   left: 0;
@@ -2553,24 +2553,24 @@ END CAHNGES
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-.appbear .appbear-type-number .appbear-has-unit .appbear-unit {
+.jpress .jpress-type-number .jpress-has-unit .jpress-unit {
   width: auto;
   padding: 0 6px; }
 
-.appbear .appbear-type-number .appbear-has-unit input {
+.jpress .jpress-type-number .jpress-has-unit input {
   padding-left: 32px; }
 
-.appbear .appbear-type-number .appbear-has-unit.appbear-has-spinner input {
+.jpress .jpress-type-number .jpress-has-unit.jpress-has-spinner input {
   padding-left: 40px; }
 
-.appbear .appbear-type-number .appbear-has-unit input:hover + .appbear-unit {
+.jpress .jpress-type-number .jpress-has-unit input:hover + .jpress-unit {
   background: #b8c0cc; }
 
-.appbear .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #448bdd;
   color: white; }
 
-.appbear .appbear-type-number a.appbear-spinner-control {
+.jpress .jpress-type-number a.jpress-spinner-control {
   display: none;
   position: absolute;
   left: 6px;
@@ -2581,43 +2581,43 @@ END CAHNGES
   line-height: 13px;
   text-align: center;
   color: #95a1b3; }
-.appbear .appbear-type-number a.appbear-spinner-control:hover {
+.jpress .jpress-type-number a.jpress-spinner-control:hover {
   color: #5a687d; }
-.appbear .appbear-type-number a.appbear-spinner-control[data-spin="up"] {
+.jpress .jpress-type-number a.jpress-spinner-control[data-spin="up"] {
   top: 1px; }
-.appbear .appbear-type-number a.appbear-spinner-control[data-spin="down"] {
+.jpress .jpress-type-number a.jpress-spinner-control[data-spin="down"] {
   bottom: 2px; }
-.appbear .appbear-type-number a.appbear-spinner-control i {
+.jpress .jpress-type-number a.jpress-spinner-control i {
   width: 1em;
   margin: 0;
   line-height: inherit; }
 
-.appbear .appbear-type-number .appbear-has-spinner {
+.jpress .jpress-type-number .jpress-has-spinner {
   position: relative; }
-.appbear .appbear-type-number .appbear-has-spinner.appbear-show-spinner a.appbear-spinner-control {
+.jpress .jpress-type-number .jpress-has-spinner.jpress-show-spinner a.jpress-spinner-control {
   display: inline-block; }
-.appbear .appbear-type-number .appbear-has-spinner input {
+.jpress .jpress-type-number .jpress-has-spinner input {
   padding-left: 18px; }
-.appbear .appbear-type-number .appbear-has-spinner:hover a.appbear-spinner-control {
+.jpress .jpress-type-number .jpress-has-spinner:hover a.jpress-spinner-control {
   display: inline-block; }
-.appbear .appbear-type-number .appbear-has-spinner.appbear-has-unit a.appbear-spinner-control {
+.jpress .jpress-type-number .jpress-has-spinner.jpress-has-unit a.jpress-spinner-control {
   left: -16px; }
 
-.appbear .appbear-type-number .appbear-grid input,
-.appbear .appbear-type-number.appbear-grid input {
+.jpress .jpress-type-number .jpress-grid input,
+.jpress .jpress-type-number.jpress-grid input {
   width: 100%; }
 
-.appbear .appbear-type-number .appbear-repeatable-wrap {
+.jpress .jpress-type-number .jpress-repeatable-wrap {
   display: inline-block; }
 
-.appbear .appbear-type-number .appbear-unit-has-picker-1 {
+.jpress .jpress-type-number .jpress-unit-has-picker-1 {
   cursor: pointer; }
 
-.appbear .appbear-type-number .appbear-unit-picker {
+.jpress .jpress-type-number .jpress-unit-picker {
   padding: 2px 3px 2px 0px;
   vertical-align: initial; }
 
-.appbear .appbear-type-number .appbear-units-dropdown {
+.jpress .jpress-type-number .jpress-units-dropdown {
   display: none;
   position: absolute;
   top: 100%;
@@ -2631,14 +2631,14 @@ END CAHNGES
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px; }
 
-.appbear .appbear-type-number .appbear-unit-item {
+.jpress .jpress-type-number .jpress-unit-item {
   font-size: 11px;
   display: block;
   width: 100%;
   cursor: pointer;
   text-transform: uppercase;
   line-height: 22px; }
-.appbear .appbear-type-number .appbear-unit-item:hover {
+.jpress .jpress-type-number .jpress-unit-item:hover {
   background: #e8eaee; }
 
 /*-----------------------------------------------------------------------------------------
@@ -2647,15 +2647,15 @@ END CAHNGES
 .cp-color-picker {
   z-index: 200; }
 
-.appbear .appbear-type-colorpicker .appbear-field {
+.jpress .jpress-type-colorpicker .jpress-field {
   position: relative; }
-.appbear .appbear-type-colorpicker .appbear-field input {
+.jpress .jpress-type-colorpicker .jpress-field input {
   width: 118px;
   padding-left: 26px; }
-.appbear .appbear-type-colorpicker .appbear-field.appbear-has-alpha input {
+.jpress .jpress-type-colorpicker .jpress-field.jpress-has-alpha input {
   width: 198px; }
 
-.appbear .appbear-type-colorpicker .appbear-colorpicker-preview {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-preview {
   position: absolute;
   top: 4px;
   left: 4px;
@@ -2663,20 +2663,20 @@ END CAHNGES
   height: 20px;
   background: url("../img/alpha.png") repeat;
   cursor: pointer; }
-.appbear .appbear-type-colorpicker .appbear-colorpicker-preview span {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-preview span {
   border: 1px solid rgba(0, 0, 0, 0.4);
   display: block;
   width: 100%;
   height: 100%; }
 
-.appbear .appbear-type-colorpicker .appbear-grid input,
-.appbear .appbear-type-colorpicker.appbear-grid input {
+.jpress .jpress-type-colorpicker .jpress-grid input,
+.jpress .jpress-type-colorpicker.jpress-grid input {
   width: 100% !important; }
 
-.appbear .appbear-type-colorpicker .appbear-repeatable-wrap {
+.jpress .jpress-type-colorpicker .jpress-repeatable-wrap {
   display: inline-block; }
 
-.appbear .appbear-type-colorpicker .appbear-colorpicker-default-btn {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-default-btn {
   position: absolute;
   top: 4px;
   left: 3px;
@@ -2684,24 +2684,24 @@ END CAHNGES
   height: 20px;
   cursor: pointer;
   text-align: center; }
-.appbear .appbear-type-colorpicker .appbear-colorpicker-default-btn i {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-default-btn i {
   font-size: 1.1em;
   line-height: 20px;
   vertical-align: top;
   color: #868e9c; }
-.appbear .appbear-type-colorpicker .appbear-colorpicker-default-btn + input {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-default-btn + input {
   padding-right: 22px; }
-.appbear .appbear-type-colorpicker .appbear-colorpicker-default-btn:hover i {
+.jpress .jpress-type-colorpicker .jpress-colorpicker-default-btn:hover i {
   color: #59616d; }
 
 /*-----------------------------------------------------------------------------------------
 | Preview files
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-wrap-preview {
+.jpress .jpress-wrap-preview {
   max-width: 100%;
   list-style: none;
   line-height: 1.6; }
-.appbear .appbear-wrap-preview .appbear-preview-item {
+.jpress .jpress-wrap-preview .jpress-preview-item {
   float: right;
   position: relative;
   display: inline-block;
@@ -2709,48 +2709,48 @@ END CAHNGES
   cursor: pointer;
   min-height: 16px;
   line-height: 1; }
-.appbear .appbear-wrap-preview .appbear-preview-item:last-child {
+.jpress .jpress-wrap-preview .jpress-preview-item:last-child {
   margin-left: 0; }
-.appbear .appbear-wrap-preview .appbear-preview-item .appbear-preview-icon-file {
+.jpress .jpress-wrap-preview .jpress-preview-item .jpress-preview-icon-file {
   float: right;
   margin-left: 14px;
   max-width: 24px; }
-.appbear .appbear-wrap-preview .appbear-preview-item .appbear-preview-download-link {
+.jpress .jpress-wrap-preview .jpress-preview-item .jpress-preview-download-link {
   font-weight: bold; }
-.appbear .appbear-wrap-preview .appbear-preview-item .appbear-preview-mime {
+.jpress .jpress-wrap-preview .jpress-preview-item .jpress-preview-mime {
   padding: 5px 0;
   line-height: 1;
   display: block; }
-.appbear .appbear-wrap-preview .appbear-preview-item .appbear-remove-preview {
+.jpress .jpress-wrap-preview .jpress-preview-item .jpress-remove-preview {
   position: absolute;
   top: -10px;
   left: 18px;
   opacity: 0.8; }
-.appbear .appbear-wrap-preview .appbear-preview-item.appbear-preview-oembed .appbear-remove-preview,
-.appbear .appbear-wrap-preview .appbear-preview-item.appbear-preview-video .appbear-remove-preview {
+.jpress .jpress-wrap-preview .jpress-preview-item.jpress-preview-oembed .jpress-remove-preview,
+.jpress .jpress-wrap-preview .jpress-preview-item.jpress-preview-video .jpress-remove-preview {
   position: absolute;
   top: -12px;
   left: -12px;
   left: auto; }
-.appbear .appbear-wrap-preview .appbear-preview-item.appbear-preview-image .appbear-remove-preview {
+.jpress .jpress-wrap-preview .jpress-preview-item.jpress-preview-image .jpress-remove-preview {
   position: absolute;
   top: -10px;
   left: -10px;
   left: auto; }
 
-.appbear .appbear-btn-input:not(.appbear-btn-preview-multiple) {
+.jpress .jpress-btn-input:not(.jpress-btn-preview-multiple) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
 /*-----------------------------------------------------------------------------------------
 | Type File
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-file input {
+.jpress .jpress-type-file input {
   width: 100%;
   padding-left: 50px;
   max-width: 100%; }
 
-.appbear .appbear-type-file img.appbear-image {
+.jpress .jpress-type-file img.jpress-image {
   display: block;
   padding: 3px;
   border: 1px solid #CAD0D9;
@@ -2760,33 +2760,33 @@ END CAHNGES
   height: auto;
   background: white; }
 
-.appbear .appbear-type-file .appbear-upload-file i {
+.jpress .jpress-type-file .jpress-upload-file i {
   font-size: 1.2em; }
 
-.appbear .appbear-type-file .appbear-has-multiple .appbear-upload-file {
+.jpress .jpress-type-file .jpress-has-multiple .jpress-upload-file {
   position: relative; }
 
-.appbear .appbear-type-file .appbear-grid input,
-.appbear .appbear-type-file.appbear-grid input {
+.jpress .jpress-type-file .jpress-grid input,
+.jpress .jpress-type-file.jpress-grid input {
   width: 100%; }
 
-.appbear .appbear-type-file .appbear-wrap-preview-file .appbear-preview-video {
+.jpress .jpress-type-file .jpress-wrap-preview-file .jpress-preview-video {
   padding: 3px;
   border: 1px solid #CAD0D9;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-left: 0px; }
 
-.appbear .appbear-type-file .appbear-wrap-preview-file.appbear-video-full-width .appbear-preview-video {
+.jpress .jpress-type-file .jpress-wrap-preview-file.jpress-video-full-width .jpress-preview-video {
   display: block;
   width: 100%; }
-.appbear .appbear-type-file .appbear-wrap-preview-file.appbear-video-full-width .appbear-preview-video video {
+.jpress .jpress-type-file .jpress-wrap-preview-file.jpress-video-full-width .jpress-preview-video video {
   width: 100% !important;
   min-height: 100px; }
 
-.appbear .appbear-type-file .appbear-video {
+.jpress .jpress-type-file .jpress-video {
   background: #000; }
-.appbear .appbear-type-file .appbear-video video {
+.jpress .jpress-type-file .jpress-video video {
   display: block;
   width: 100%;
   height: 100%;
@@ -2799,27 +2799,27 @@ END CAHNGES
 /*-----------------------------------------------------------------------------------------
 | Type oEmbed
 -----------------------------------------------------------------------------------------*/
-.appbear .appbear-type-oembed input {
+.jpress .jpress-type-oembed input {
   padding-left: 50px; }
 
-.appbear .appbear-type-oembed .appbear-wrap-oembed .appbear-preview-oembed {
+.jpress .jpress-type-oembed .jpress-wrap-oembed .jpress-preview-oembed {
   padding: 3px;
   border: 1px solid #CAD0D9;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-left: 0px; }
 
-.appbear .appbear-type-oembed .appbear-wrap-oembed.appbear-oembed-full-width .appbear-preview-oembed {
+.jpress .jpress-type-oembed .jpress-wrap-oembed.jpress-oembed-full-width .jpress-preview-oembed {
   display: block;
   width: 100%; }
-.appbear .appbear-type-oembed .appbear-wrap-oembed.appbear-oembed-full-width .appbear-preview-oembed iframe {
+.jpress .jpress-type-oembed .jpress-wrap-oembed.jpress-oembed-full-width .jpress-preview-oembed iframe {
   width: 100% !important;
   min-height: 100px; }
 
-.appbear .appbear-type-oembed .appbear-wrap-oembed .appbear-preview-oembed .appbear-oembed-provider-soundcloud iframe {
+.jpress .jpress-type-oembed .jpress-wrap-oembed .jpress-preview-oembed .jpress-oembed-provider-soundcloud iframe {
   min-height: 100px; }
 
-.appbear .appbear-type-oembed .appbear-wrap-oembed .appbear-preview-error {
+.jpress .jpress-type-oembed .jpress-wrap-oembed .jpress-preview-error {
   display: inline-block;
   margin-top: 5px; }
 
@@ -2828,37 +2828,37 @@ END CAHNGES
 | Sidebar
 |-----------------------------------------------------------------------------------------
 */
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-row .appbear-label {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-row .jpress-label {
   width: 100%;
   border-left: 0px;
   padding-bottom: 0;
   margin-bottom: -8px; }
 
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-row .appbear-label + .appbear-content {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-row .jpress-label + .jpress-content {
   width: 100%;
   padding: 15px 25px;
   border-right: 0px;
   margin-right: 0;
   margin-left: 0; }
 
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-row.appbear-type-group > .appbear-label {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-row.jpress-type-group > .jpress-label {
   margin-bottom: 0px;
   padding-bottom: 15px; }
 
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-row.appbear-row-mixed.appbear-grid {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-row.jpress-row-mixed.jpress-grid {
   width: 100%;
   margin-left: 0; }
 
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-header {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-header {
   display: block;
   height: auto;
   max-height: initial; }
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-header .appbear-header-title {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-header .jpress-header-title {
   display: block;
   width: 100%;
   border-left: 0;
   border-top-right-radius: 4px; }
-#post-body:not(.appbear-columns-1) #side-sortables .appbear .appbear-header .appbear-header-content {
+#post-body:not(.jpress-columns-1) #side-sortables .jpress .jpress-header .jpress-header-content {
   display: block;
   width: 100%;
   border-top-right-radius: 0px; }
@@ -2869,80 +2869,80 @@ END CAHNGES
 |-----------------------------------------------------------------------------------------
 */
 @media only screen and (max-width: 1024px) {
-  #post-body.columns-2 .appbear .appbear-row .appbear-label {
+  #post-body.columns-2 .jpress .jpress-row .jpress-label {
     width: 100%;
     border-left: 0px;
     padding-bottom: 0;
     margin-bottom: -8px; }
-  #post-body.columns-2 .appbear .appbear-row .appbear-label + .appbear-content {
+  #post-body.columns-2 .jpress .jpress-row .jpress-label + .jpress-content {
     width: 100%;
     padding: 15px 25px;
     border-right: 0px;
     margin-right: 0;
     margin-left: 0; }
-  #post-body.columns-2 .appbear .appbear-row.appbear-type-group > .appbear-label {
+  #post-body.columns-2 .jpress .jpress-row.jpress-type-group > .jpress-label {
     margin-bottom: 0px;
     padding-bottom: 15px; }
-  #post-body.columns-2:not(.appbear-columns-1) .appbear .appbear-tab.appbear-tab-left .appbear-row.appbear-row-mixed.appbear-grid {
+  #post-body.columns-2:not(.jpress-columns-1) .jpress .jpress-tab.jpress-tab-left .jpress-row.jpress-row-mixed.jpress-grid {
     width: 100%;
     margin-left: 0; } }
 
 @media only screen and (max-width: 850px) {
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-content {
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-content {
     padding-left: 0; }
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-content > p {
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-content > p {
     display: none; }
-  #post-body .appbear .appbear-row .appbear-label,
-  .appbear-wrap-admin-page .appbear .appbear-row .appbear-label {
+  #post-body .jpress .jpress-row .jpress-label,
+  .jpress-wrap-admin-page .jpress .jpress-row .jpress-label {
     width: 100%;
     border-left: 0px;
     padding-bottom: 0;
     margin-bottom: -8px; }
-  #post-body .appbear .appbear-row .appbear-label + .appbear-content,
-  .appbear-wrap-admin-page .appbear .appbear-row .appbear-label + .appbear-content {
+  #post-body .jpress .jpress-row .jpress-label + .jpress-content,
+  .jpress-wrap-admin-page .jpress .jpress-row .jpress-label + .jpress-content {
     width: 100%;
     padding: 15px 25px;
     border-right: 0px;
     margin-right: 0;
     margin-left: 0; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-label,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-label {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-label,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-label {
     margin-bottom: 0px;
     padding-bottom: 15px; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-label .appbear-add-group-item,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-label .appbear-add-group-item {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-label .jpress-add-group-item,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-label .jpress-add-group-item {
     margin-bottom: 8px;
     margin-left: 0px; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-content,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-content {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-content,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-content {
     display: block; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control {
     display: block;
     width: 100%; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control > li,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control > li {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control > li,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control > li {
     margin: 0 6px 20px 6px; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control.appbear-group-control + .appbear-group-wrap,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-control.appbear-group-control + .appbear-group-wrap {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control.jpress-group-control + .jpress-group-wrap,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-control.jpress-group-control + .jpress-group-wrap {
     padding-right: 0; }
-  #post-body .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-wrap,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-type-group > .appbear-content > .appbear-group-wrap {
+  #post-body .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-wrap,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-type-group > .jpress-content > .jpress-group-wrap {
     display: block; } }
 
 @media only screen and (max-width: 600px) {
-  #post-body .appbear .appbear-header .appbear-header-title,
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-title {
+  #post-body .jpress .jpress-header .jpress-header-title,
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-title {
     width: 100% !important;
     border-top-right-radius: 4px; }
-  #post-body .appbear .appbear-header .appbear-header-title h3,
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-title h3 {
+  #post-body .jpress .jpress-header .jpress-header-title h3,
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-title h3 {
     text-align: center; }
-  #post-body .appbear .appbear-header .appbear-header-content,
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-content {
+  #post-body .jpress .jpress-header .jpress-header-content,
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-content {
     display: none; }
-  #post-body .appbear .appbear-header .appbear-header-actions,
-  .appbear-wrap-admin-page .appbear .appbear-header .appbear-header-actions {
+  #post-body .jpress .jpress-header .jpress-header-actions,
+  .jpress-wrap-admin-page .jpress .jpress-header .jpress-header-actions {
     position: relative;
     top: auto;
     left: auto;
@@ -2950,12 +2950,12 @@ END CAHNGES
     width: auto;
     padding-bottom: 17px;
     margin: 15px -25px -15px; }
-  #post-body .appbear .appbear-row.appbear-grid,
-  .appbear-wrap-admin-page .appbear .appbear-row.appbear-grid {
+  #post-body .jpress .jpress-row.jpress-grid,
+  .jpress-wrap-admin-page .jpress .jpress-row.jpress-grid {
     width: 100%;
     margin-left: 0; }
-  #post-body .appbear .appbear-row .appbear-field.appbear-grid,
-  .appbear-wrap-admin-page .appbear .appbear-row .appbear-field.appbear-grid {
+  #post-body .jpress .jpress-row .jpress-field.jpress-grid,
+  .jpress-wrap-admin-page .jpress .jpress-row .jpress-field.jpress-grid {
     width: 100%;
     margin-left: 0; } }
 
@@ -2964,477 +2964,477 @@ END CAHNGES
 | Skins
 |-----------------------------------------------------------------------------------------
 */
-.tipso_bubble.appbear-skin-blue .tipso_title > h3 {
+.tipso_bubble.jpress-skin-blue .tipso_title > h3 {
   border-bottom-color: #448bdd; }
 
-.appbear.appbear-skin-blue .appbear-header {
+.jpress.jpress-skin-blue .jpress-header {
   background: #3380DA; }
-.appbear.appbear-skin-blue .appbear-header .appbear-header-title {
+.jpress.jpress-skin-blue .jpress-header .jpress-header-title {
   background: #3380DA;
   border-left-color: #2778d7; }
 
-.appbear.appbear-skin-blue input[type="text"]:focus,
-.appbear.appbear-skin-blue input[type="number"]:focus,
-.appbear.appbear-skin-blue textarea:focus {
+.jpress.jpress-skin-blue input[type="text"]:focus,
+.jpress.jpress-skin-blue input[type="number"]:focus,
+.jpress.jpress-skin-blue textarea:focus {
   border-color: #448bdd; }
 
-.appbear.appbear-skin-blue .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-blue .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-blue .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-blue .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-blue .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-blue .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/blue.png"); }
 
-.appbear.appbear-skin-blue .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-blue .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-blue .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-blue .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #448bdd; }
 
-.appbear.appbear-skin-blue .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-blue .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #448bdd; }
 
-.appbear.appbear-skin-blue .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-blue .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #448bdd;
   -webkit-box-shadow: 0 0 2px #2f7dd9 inset;
   box-shadow: 0 0 2px #2f7dd9 inset; }
 
-.appbear.appbear-skin-blue .ui.dropdown.selection.active {
+.jpress.jpress-skin-blue .ui.dropdown.selection.active {
   border-color: #448bdd; }
-.appbear.appbear-skin-blue .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-blue .ui.dropdown.selection.active:hover {
   border-color: #448bdd; }
-.appbear.appbear-skin-blue .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-blue .ui.dropdown.selection.active .menu {
   border-color: #448bdd !important; }
 
-.appbear.appbear-skin-blue .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-blue .jpress-group-control > li.jpress-active {
   border-color: #3380DA; }
-.appbear.appbear-skin-blue .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-blue .jpress-group-control > li.jpress-active .jpress-actions {
   background: #3380DA; }
 
-.appbear.appbear-skin-blue .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-blue .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #3380DA; }
 
-.appbear.appbear-skin-blue .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-blue .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #3380DA; }
 
-.appbear.appbear-skin-blue .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-blue .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #3380DA; }
 
-.tipso_bubble.appbear-skin-lightblue .tipso_title > h3 {
+.tipso_bubble.jpress-skin-lightblue .tipso_title > h3 {
   border-bottom-color: #209ee9; }
 
-.appbear.appbear-skin-lightblue .appbear-header {
+.jpress.jpress-skin-lightblue .jpress-header {
   background: #1694DE; }
-.appbear.appbear-skin-lightblue .appbear-header .appbear-header-title {
+.jpress.jpress-skin-lightblue .jpress-header .jpress-header-title {
   background: #1694DE;
   border-left-color: #158bd0; }
 
-.appbear.appbear-skin-lightblue input[type="text"]:focus,
-.appbear.appbear-skin-lightblue input[type="number"]:focus,
-.appbear.appbear-skin-lightblue textarea:focus {
+.jpress.jpress-skin-lightblue input[type="text"]:focus,
+.jpress.jpress-skin-lightblue input[type="number"]:focus,
+.jpress.jpress-skin-lightblue textarea:focus {
   border-color: #209ee9; }
 
-.appbear.appbear-skin-lightblue .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-lightblue .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-lightblue .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-lightblue .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-lightblue .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-lightblue .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/lightblue.png"); }
 
-.appbear.appbear-skin-lightblue .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-lightblue .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-lightblue .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-lightblue .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #209ee9; }
 
-.appbear.appbear-skin-lightblue .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-lightblue .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #209ee9; }
 
-.appbear.appbear-skin-lightblue .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-lightblue .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #209ee9;
   -webkit-box-shadow: 0 0 2px #1691d9 inset;
   box-shadow: 0 0 2px #1691d9 inset; }
 
-.appbear.appbear-skin-lightblue .ui.dropdown.selection.active {
+.jpress.jpress-skin-lightblue .ui.dropdown.selection.active {
   border-color: #209ee9; }
-.appbear.appbear-skin-lightblue .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-lightblue .ui.dropdown.selection.active:hover {
   border-color: #209ee9; }
-.appbear.appbear-skin-lightblue .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-lightblue .ui.dropdown.selection.active .menu {
   border-color: #209ee9 !important; }
 
-.appbear.appbear-skin-lightblue .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-lightblue .jpress-group-control > li.jpress-active {
   border-color: #1694DE; }
-.appbear.appbear-skin-lightblue .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-lightblue .jpress-group-control > li.jpress-active .jpress-actions {
   background: #1694DE; }
 
-.appbear.appbear-skin-lightblue .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-lightblue .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #1694DE; }
 
-.appbear.appbear-skin-lightblue .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-lightblue .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #1694DE; }
 
-.appbear.appbear-skin-lightblue .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-lightblue .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #1694DE; }
 
-.tipso_bubble.appbear-skin-green .tipso_title > h3 {
+.tipso_bubble.jpress-skin-green .tipso_title > h3 {
   border-bottom-color: #00b494; }
 
-.appbear.appbear-skin-green .appbear-header {
+.jpress.jpress-skin-green .jpress-header {
   background: #00AA8C; }
-.appbear.appbear-skin-green .appbear-header .appbear-header-title {
+.jpress.jpress-skin-green .jpress-header .jpress-header-title {
   background: #00AA8C;
   border-left-color: #009b7f; }
 
-.appbear.appbear-skin-green input[type="text"]:focus,
-.appbear.appbear-skin-green input[type="number"]:focus,
-.appbear.appbear-skin-green textarea:focus {
+.jpress.jpress-skin-green input[type="text"]:focus,
+.jpress.jpress-skin-green input[type="number"]:focus,
+.jpress.jpress-skin-green textarea:focus {
   border-color: #00b494; }
 
-.appbear.appbear-skin-green .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-green .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-green .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-green .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-green .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-green .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/green.png"); }
 
-.appbear.appbear-skin-green .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-green .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-green .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-green .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #00b494; }
 
-.appbear.appbear-skin-green .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-green .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #00b494; }
 
-.appbear.appbear-skin-green .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-green .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #00b494;
   -webkit-box-shadow: 0 0 2px #009b7f inset;
   box-shadow: 0 0 2px #009b7f inset; }
 
-.appbear.appbear-skin-green .ui.dropdown.selection.active {
+.jpress.jpress-skin-green .ui.dropdown.selection.active {
   border-color: #00b494; }
-.appbear.appbear-skin-green .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-green .ui.dropdown.selection.active:hover {
   border-color: #00b494; }
-.appbear.appbear-skin-green .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-green .ui.dropdown.selection.active .menu {
   border-color: #00b494 !important; }
 
-.appbear.appbear-skin-green .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-green .jpress-group-control > li.jpress-active {
   border-color: #00AA8C; }
-.appbear.appbear-skin-green .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-green .jpress-group-control > li.jpress-active .jpress-actions {
   background: #00AA8C; }
 
-.appbear.appbear-skin-green .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-green .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #00AA8C; }
 
-.appbear.appbear-skin-green .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-green .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #00AA8C; }
 
-.appbear.appbear-skin-green .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-green .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #00AA8C; }
 
-.tipso_bubble.appbear-skin-teal .tipso_title > h3 {
+.tipso_bubble.jpress-skin-teal .tipso_title > h3 {
   border-bottom-color: #00bab2; }
 
-.appbear.appbear-skin-teal .appbear-header {
+.jpress.jpress-skin-teal .jpress-header {
   background: #00B5AD; }
-.appbear.appbear-skin-teal .appbear-header .appbear-header-title {
+.jpress.jpress-skin-teal .jpress-header .jpress-header-title {
   background: #00B5AD;
   border-left-color: #00a69e; }
 
-.appbear.appbear-skin-teal input[type="text"]:focus,
-.appbear.appbear-skin-teal input[type="number"]:focus,
-.appbear.appbear-skin-teal textarea:focus {
+.jpress.jpress-skin-teal input[type="text"]:focus,
+.jpress.jpress-skin-teal input[type="number"]:focus,
+.jpress.jpress-skin-teal textarea:focus {
   border-color: #00bab2; }
 
-.appbear.appbear-skin-teal .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-teal .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-teal .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-teal .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-teal .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-teal .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/teal.png"); }
 
-.appbear.appbear-skin-teal .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-teal .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-teal .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-teal .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #00bab2; }
 
-.appbear.appbear-skin-teal .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-teal .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #00bab2; }
 
-.appbear.appbear-skin-teal .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-teal .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #00bab2;
   -webkit-box-shadow: 0 0 2px #00a19a inset;
   box-shadow: 0 0 2px #00a19a inset; }
 
-.appbear.appbear-skin-teal .ui.dropdown.selection.active {
+.jpress.jpress-skin-teal .ui.dropdown.selection.active {
   border-color: #00bab2; }
-.appbear.appbear-skin-teal .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-teal .ui.dropdown.selection.active:hover {
   border-color: #00bab2; }
-.appbear.appbear-skin-teal .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-teal .ui.dropdown.selection.active .menu {
   border-color: #00bab2 !important; }
 
-.appbear.appbear-skin-teal .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-teal .jpress-group-control > li.jpress-active {
   border-color: #00B5AD; }
-.appbear.appbear-skin-teal .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-teal .jpress-group-control > li.jpress-active .jpress-actions {
   background: #00B5AD; }
 
-.appbear.appbear-skin-teal .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-teal .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #00B5AD; }
 
-.appbear.appbear-skin-teal .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-teal .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #00B5AD; }
 
-.appbear.appbear-skin-teal .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-teal .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #00B5AD; }
 
-.tipso_bubble.appbear-skin-pink .tipso_title > h3 {
+.tipso_bubble.jpress-skin-pink .tipso_title > h3 {
   border-bottom-color: #f979a6; }
 
-.appbear.appbear-skin-pink .appbear-header {
+.jpress.jpress-skin-pink .jpress-header {
   background: #F86196; }
-.appbear.appbear-skin-pink .appbear-header .appbear-header-title {
+.jpress.jpress-skin-pink .jpress-header .jpress-header-title {
   background: #F86196;
   border-left-color: #f7528c; }
 
-.appbear.appbear-skin-pink input[type="text"]:focus,
-.appbear.appbear-skin-pink input[type="number"]:focus,
-.appbear.appbear-skin-pink textarea:focus {
+.jpress.jpress-skin-pink input[type="text"]:focus,
+.jpress.jpress-skin-pink input[type="number"]:focus,
+.jpress.jpress-skin-pink textarea:focus {
   border-color: #f979a6; }
 
-.appbear.appbear-skin-pink .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-pink .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-pink .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-pink .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-pink .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-pink .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/pink.png"); }
 
-.appbear.appbear-skin-pink .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-pink .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-pink .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-pink .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #f979a6; }
 
-.appbear.appbear-skin-pink .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-pink .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #f979a6; }
 
-.appbear.appbear-skin-pink .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-pink .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #f979a6;
   -webkit-box-shadow: 0 0 2px #f86196 inset;
   box-shadow: 0 0 2px #f86196 inset; }
 
-.appbear.appbear-skin-pink .ui.dropdown.selection.active {
+.jpress.jpress-skin-pink .ui.dropdown.selection.active {
   border-color: #f979a6; }
-.appbear.appbear-skin-pink .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-pink .ui.dropdown.selection.active:hover {
   border-color: #f979a6; }
-.appbear.appbear-skin-pink .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-pink .ui.dropdown.selection.active .menu {
   border-color: #f979a6 !important; }
 
-.appbear.appbear-skin-pink .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-pink .jpress-group-control > li.jpress-active {
   border-color: #F86196; }
-.appbear.appbear-skin-pink .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-pink .jpress-group-control > li.jpress-active .jpress-actions {
   background: #F86196; }
 
-.appbear.appbear-skin-pink .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-pink .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #F86196; }
 
-.appbear.appbear-skin-pink .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-pink .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #F86196; }
 
-.appbear.appbear-skin-pink .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-pink .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #F86196; }
 
-.tipso_bubble.appbear-skin-purple .tipso_title > h3 {
+.tipso_bubble.jpress-skin-purple .tipso_title > h3 {
   border-bottom-color: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-header {
+.jpress.jpress-skin-purple .jpress-header {
   background: #6515DD; }
-.appbear.appbear-skin-purple .appbear-header .appbear-header-title {
+.jpress.jpress-skin-purple .jpress-header .jpress-header-title {
   background: #6515DD;
   border-left-color: #5011AE; }
 
-.appbear.appbear-skin-purple input[type="text"]:focus,
-.appbear.appbear-skin-purple input[type="number"]:focus,
-.appbear.appbear-skin-purple textarea:focus {
+.jpress.jpress-skin-purple input[type="text"]:focus,
+.jpress.jpress-skin-purple input[type="number"]:focus,
+.jpress.jpress-skin-purple textarea:focus {
   border-color: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-purple .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-purple .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-purple .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-purple .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-purple .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/purple.png"); }
 
-.appbear.appbear-skin-purple .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-purple .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-purple .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-purple .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-purple .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-purple .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #6515DD;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
 
-.appbear.appbear-skin-purple .ui.dropdown.selection.active {
+.jpress.jpress-skin-purple .ui.dropdown.selection.active {
   border-color: #6515DD; }
-.appbear.appbear-skin-purple .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-purple .ui.dropdown.selection.active:hover {
   border-color: #6515DD; }
-.appbear.appbear-skin-purple .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-purple .ui.dropdown.selection.active .menu {
   border-color: #6515DD !important; }
 
-.appbear.appbear-skin-purple .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-purple .jpress-group-control > li.jpress-active {
   border-color: #6515DD; }
-.appbear.appbear-skin-purple .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-purple .jpress-group-control > li.jpress-active .jpress-actions {
   background: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-purple .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-purple .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #6515DD; }
 
-.appbear.appbear-skin-purple .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-purple .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #6515DD; }
 
-.tipso_bubble.appbear-skin-bluepurple .tipso_title > h3 {
+.tipso_bubble.jpress-skin-bluepurple .tipso_title > h3 {
   border-bottom-color: #6986ee; }
 
-.appbear.appbear-skin-bluepurple .appbear-header {
+.jpress.jpress-skin-bluepurple .jpress-header {
   background: #5274EB; }
-.appbear.appbear-skin-bluepurple .appbear-header .appbear-header-title {
+.jpress.jpress-skin-bluepurple .jpress-header .jpress-header-title {
   background: #5274EB;
   border-left-color: #4469e9; }
 
-.appbear.appbear-skin-bluepurple input[type="text"]:focus,
-.appbear.appbear-skin-bluepurple input[type="number"]:focus,
-.appbear.appbear-skin-bluepurple textarea:focus {
+.jpress.jpress-skin-bluepurple input[type="text"]:focus,
+.jpress.jpress-skin-bluepurple input[type="number"]:focus,
+.jpress.jpress-skin-bluepurple textarea:focus {
   border-color: #6986ee; }
 
-.appbear.appbear-skin-bluepurple .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-bluepurple .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-bluepurple .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-bluepurple .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-bluepurple .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-bluepurple .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/bluepurple.png"); }
 
-.appbear.appbear-skin-bluepurple .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-bluepurple .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-bluepurple .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-bluepurple .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #6986ee; }
 
-.appbear.appbear-skin-bluepurple .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-bluepurple .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #6986ee; }
 
-.appbear.appbear-skin-bluepurple .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-bluepurple .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #6986ee;
   -webkit-box-shadow: 0 0 2px #5274eb inset;
   box-shadow: 0 0 2px #5274eb inset; }
 
-.appbear.appbear-skin-bluepurple .ui.dropdown.selection.active {
+.jpress.jpress-skin-bluepurple .ui.dropdown.selection.active {
   border-color: #6986ee; }
-.appbear.appbear-skin-bluepurple .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-bluepurple .ui.dropdown.selection.active:hover {
   border-color: #6986ee; }
-.appbear.appbear-skin-bluepurple .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-bluepurple .ui.dropdown.selection.active .menu {
   border-color: #6986ee !important; }
 
-.appbear.appbear-skin-bluepurple .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-bluepurple .jpress-group-control > li.jpress-active {
   border-color: #5274EB; }
-.appbear.appbear-skin-bluepurple .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-bluepurple .jpress-group-control > li.jpress-active .jpress-actions {
   background: #5274EB; }
 
-.appbear.appbear-skin-bluepurple .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-bluepurple .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #5274EB; }
 
-.appbear.appbear-skin-bluepurple .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-bluepurple .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #5274EB; }
 
-.appbear.appbear-skin-bluepurple .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-bluepurple .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #5274EB; }
 
-.tipso_bubble.appbear-skin-yellow .tipso_title > h3 {
+.tipso_bubble.jpress-skin-yellow .tipso_title > h3 {
   border-bottom-color: #fca63d; }
 
-.appbear.appbear-skin-yellow .appbear-header {
+.jpress.jpress-skin-yellow .jpress-header {
   background: #FC9F2E; }
-.appbear.appbear-skin-yellow .appbear-header .appbear-header-title {
+.jpress.jpress-skin-yellow .jpress-header .jpress-header-title {
   background: #FC9F2E;
   border-left-color: #fc981f; }
 
-.appbear.appbear-skin-yellow input[type="text"]:focus,
-.appbear.appbear-skin-yellow input[type="number"]:focus,
-.appbear.appbear-skin-yellow textarea:focus {
+.jpress.jpress-skin-yellow input[type="text"]:focus,
+.jpress.jpress-skin-yellow input[type="number"]:focus,
+.jpress.jpress-skin-yellow textarea:focus {
   border-color: #fca63d; }
 
-.appbear.appbear-skin-yellow .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-yellow .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-yellow .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-yellow .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-yellow .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-yellow .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/yellow.png"); }
 
-.appbear.appbear-skin-yellow .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-yellow .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-yellow .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-yellow .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #fca63d; }
 
-.appbear.appbear-skin-yellow .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-yellow .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #fca63d; }
 
-.appbear.appbear-skin-yellow .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-yellow .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #fca63d;
   -webkit-box-shadow: 0 0 2px #fc9a24 inset;
   box-shadow: 0 0 2px #fc9a24 inset; }
 
-.appbear.appbear-skin-yellow .ui.dropdown.selection.active {
+.jpress.jpress-skin-yellow .ui.dropdown.selection.active {
   border-color: #fca63d; }
-.appbear.appbear-skin-yellow .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-yellow .ui.dropdown.selection.active:hover {
   border-color: #fca63d; }
-.appbear.appbear-skin-yellow .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-yellow .ui.dropdown.selection.active .menu {
   border-color: #fca63d !important; }
 
-.appbear.appbear-skin-yellow .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-yellow .jpress-group-control > li.jpress-active {
   border-color: #FC9F2E; }
-.appbear.appbear-skin-yellow .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-yellow .jpress-group-control > li.jpress-active .jpress-actions {
   background: #FC9F2E; }
 
-.appbear.appbear-skin-yellow .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-yellow .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #FC9F2E; }
 
-.appbear.appbear-skin-yellow .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-yellow .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #FC9F2E; }
 
-.appbear.appbear-skin-yellow .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-yellow .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #FC9F2E; }
 
-.tipso_bubble.appbear-skin-orange .tipso_title > h3 {
+.tipso_bubble.jpress-skin-orange .tipso_title > h3 {
   border-bottom-color: #f97c72; }
 
-.appbear.appbear-skin-orange .appbear-header {
+.jpress.jpress-skin-orange .jpress-header {
   background: #F86A5E; }
-.appbear.appbear-skin-orange .appbear-header .appbear-header-title {
+.jpress.jpress-skin-orange .jpress-header .jpress-header-title {
   background: #F86A5E;
   border-left-color: #f75c4f; }
 
-.appbear.appbear-skin-orange input[type="text"]:focus,
-.appbear.appbear-skin-orange input[type="number"]:focus,
-.appbear.appbear-skin-orange textarea:focus {
+.jpress.jpress-skin-orange input[type="text"]:focus,
+.jpress.jpress-skin-orange input[type="number"]:focus,
+.jpress.jpress-skin-orange textarea:focus {
   border-color: #f97c72; }
 
-.appbear.appbear-skin-orange .appbear-type-radio .appbear-field .iradio_flat-blue,
-.appbear.appbear-skin-orange .appbear-type-checkbox .appbear-field .icheckbox_flat-blue,
-.appbear.appbear-skin-orange .appbear-type-import .appbear-field .iradio_flat-blue {
+.jpress.jpress-skin-orange .jpress-type-radio .jpress-field .iradio_flat-blue,
+.jpress.jpress-skin-orange .jpress-type-checkbox .jpress-field .icheckbox_flat-blue,
+.jpress.jpress-skin-orange .jpress-type-import .jpress-field .iradio_flat-blue {
   background-image: url("../img/icheck/orange.png"); }
 
-.appbear.appbear-skin-orange .appbear-type-image_selector .appbear-radiochecks img.appbear-active,
-.appbear.appbear-skin-orange .appbear-type-import .appbear-radiochecks img.appbear-active {
+.jpress.jpress-skin-orange .jpress-type-image_selector .jpress-radiochecks img.jpress-active,
+.jpress.jpress-skin-orange .jpress-type-import .jpress-radiochecks img.jpress-active {
   border-color: #f97c72; }
 
-.appbear.appbear-skin-orange .appbear-type-number .appbear-has-unit input:focus + .appbear-unit {
+.jpress.jpress-skin-orange .jpress-type-number .jpress-has-unit input:focus + .jpress-unit {
   background: #f97c72; }
 
-.appbear.appbear-skin-orange .appbear-type-switcher .appbear-sw-wrap .appbear-sw-inner.appbear-sw-on {
+.jpress.jpress-skin-orange .jpress-type-switcher .jpress-sw-wrap .jpress-sw-inner.jpress-sw-on {
   background: #f97c72;
   -webkit-box-shadow: 0 0 2px #f86559 inset;
   box-shadow: 0 0 2px #f86559 inset; }
 
-.appbear.appbear-skin-orange .ui.dropdown.selection.active {
+.jpress.jpress-skin-orange .ui.dropdown.selection.active {
   border-color: #f97c72; }
-.appbear.appbear-skin-orange .ui.dropdown.selection.active:hover {
+.jpress.jpress-skin-orange .ui.dropdown.selection.active:hover {
   border-color: #f97c72; }
-.appbear.appbear-skin-orange .ui.dropdown.selection.active .menu {
+.jpress.jpress-skin-orange .ui.dropdown.selection.active .menu {
   border-color: #f97c72 !important; }
 
-.appbear.appbear-skin-orange .appbear-group-control > li.appbear-active {
+.jpress.jpress-skin-orange .jpress-group-control > li.jpress-active {
   border-color: #F86A5E; }
-.appbear.appbear-skin-orange .appbear-group-control > li.appbear-active .appbear-actions {
+.jpress.jpress-skin-orange .jpress-group-control > li.jpress-active .jpress-actions {
   background: #F86A5E; }
 
-.appbear.appbear-skin-orange .appbear-tab-header .appbear-tab-menu .appbear-item.active a:after {
+.jpress.jpress-skin-orange .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
   background: #F86A5E; }
 
-.appbear.appbear-skin-orange .appbear-main-tab > .appbear-tab-header > .appbear-title-tab-menu {
+.jpress.jpress-skin-orange .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
   background: #F86A5E; }
 
-.appbear.appbear-skin-orange .appbear-main-tab > .appbear-tab-header .appbear-tab-menu .appbear-item:after {
+.jpress.jpress-skin-orange .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
   background: #F86A5E; }
 
 
-.appbear .input-group {
+.jpress .input-group {
   height: auto;
   width: 100%;
   padding: 0;
@@ -3515,7 +3515,7 @@ END CAHNGES
   -moz-osx-font-smoothing: grayscale;
 }
 
-.appbear .bootstrap-tagsinput input[type="text"] {
+.jpress .bootstrap-tagsinput input[type="text"] {
   border: 0;
   width: auto;
 }
@@ -3539,10 +3539,10 @@ END CAHNGES
   cursor: pointer;
 }
 
-.appbear-group-wrap .appbear-group-item.appbear-active {
+.jpress-group-wrap .jpress-group-item.jpress-active {
   border: 2px solid #6515DD !important;
   border-radius: 3px !important;
 }
-.appbear-group-wrap .appbear-group-item .appbear-row {
+.jpress-group-wrap .jpress-group-item .jpress-row {
   margin-top: 0 !important;
 }

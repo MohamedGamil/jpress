@@ -4,14 +4,14 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 /**
- * AppBear_Endpoints Class
+ * JPress_Endpoints Class
  *
  * This class handles all API Endpoints
  *
  *
  * @since 0.0.1
  */
-class AppBear_Endpoints {
+class JPress_Endpoints {
   const DEFAULT_POSTS_PER_PAGE_COUNT = 10;
   const AD_SECTION_KEYWORD = 'advert';
 
@@ -20,7 +20,7 @@ class AppBear_Endpoints {
    *
    * @var string
    */
-  protected $namespace = 'appbear/v1';
+  protected $namespace = 'jpress/v1';
 
   /**
    * Internal initilization state &
@@ -40,7 +40,7 @@ class AppBear_Endpoints {
       return;
     }
 
-    static::$_localInstance = new AppBear_Endpoints();
+    static::$_localInstance = new JPress_Endpoints();
     static::$_didInit = true;
   }
 
@@ -164,25 +164,25 @@ class AppBear_Endpoints {
       'title'         => get_the_title(),
       'title_plain'   => the_title_attribute('echo=0'),
       'excerpt'       => get_the_excerpt(),
-      'date'          => appbear_get_time(),
+      'date'          => jpress_get_time(),
       'modified'      => get_post_modified_time(),
       'comment_count' => (int) get_comments_number(),
-      'read_time'     => appbear_get_read_time(), // @fouad
+      'read_time'     => jpress_get_read_time(), // @fouad
       'author'        => array(
         'name' => get_the_author(),
       ),
     );
 
     // Post Format
-    $format = appbear_post_format();
+    $format = jpress_post_format();
 
     $the_post['format'] = $format;
 
     if ( $format == 'gallery' ) {
-      $the_post['gallery'] = appbear_post_gallery();
+      $the_post['gallery'] = jpress_post_gallery();
     }
     elseif ( $format == 'video' ) {
-      $the_post['video'] = appbear_post_video();
+      $the_post['video'] = jpress_post_video();
     }
 
     // Return only the first category
@@ -194,7 +194,7 @@ class AppBear_Endpoints {
     foreach ( $categories as $category ) {
       $the_category['term_id'] = $category->term_id;
       $the_category['name']    = $category->name;
-      $the_category['url']     = 'wp-json/appbear/v1/posts?categories='. $category->term_id;
+      $the_category['url']     = 'wp-json/jpress/v1/posts?categories='. $category->term_id;
       break;
     }
 
@@ -213,7 +213,7 @@ class AppBear_Endpoints {
       );
     }
 
-    return apply_filters( 'AppBear/API/Post/data', $the_post );
+    return apply_filters( 'JPress/API/Post/data', $the_post );
   }
 
 
@@ -244,7 +244,7 @@ class AppBear_Endpoints {
     $this_post = $this->get_post_data();
 
     // $this_post['content'] = apply_filters( 'the_content', $post->post_content );
-    $this_post['content'] = appbear_shortcodes_parsing( $post->post_content );
+    $this_post['content'] = jpress_shortcodes_parsing( $post->post_content );
     $this_post['content'] = apply_filters( 'the_content', $this_post['content'] );
 
     // Tags
@@ -331,7 +331,7 @@ class AppBear_Endpoints {
    */
   public function do_get_version( $request ) {
     return array(
-      'version' => get_option('appbear-version')
+      'version' => get_option('jpress-version')
     );
   }
 
@@ -384,7 +384,7 @@ class AppBear_Endpoints {
    * @return void
    */
   public function do_categories() {
-    $metadata = AppBear_Categories::get_metadata();
+    $metadata = JPress_Categories::get_metadata();
 
     foreach( $metadata as $key => &$cat ) {
       $cat = isset($cat['image']) && $cat['image'] ? $cat['image'] : '';
@@ -408,7 +408,7 @@ class AppBear_Endpoints {
         $category->image_url =  $imageUrl;
       }
 
-      $category->url = "wp-json/appbear/v1/posts?categories=" . $category->term_id;
+      $category->url = "wp-json/jpress/v1/posts?categories=" . $category->term_id;
 
       $the_cats[] = (array) $category;
     }
@@ -435,12 +435,12 @@ class AppBear_Endpoints {
       $page = get_post( $request['id'] );
 
       if ( $page ) {
-        return apply_filters( 'AppBear/API/Page/data', array(
+        return apply_filters( 'JPress/API/Page/data', array(
           'status' => true,
           'id'     => $page->ID,
           'post' => array(
             'title'   => $page->post_title,
-            'content' => appbear_shortcodes_parsing( $page->post_content ),
+            'content' => jpress_shortcodes_parsing( $page->post_content ),
           ),
         ));
       }
@@ -507,8 +507,8 @@ class AppBear_Endpoints {
     $error = false;
     $errorMessages = [];
 
-    $to = appbear_get_option('local-settingspage-contactus');
-    $subject = __( 'Contact Us Message', 'appbear' );
+    $to = jpress_get_option('local-settingspage-contactus');
+    $subject = __( 'Contact Us Message', 'jpress' );
 
     foreach (['name', 'email', 'message'] as $field) {
       // NOTE: Should use $_POST instead?
@@ -517,29 +517,29 @@ class AppBear_Endpoints {
 
       if (empty($data[$field])) {
         $error = true;
-        $errorMessages[] = __( "'{$capitalizedField}' input is empty!", 'appbear' );
+        $errorMessages[] = __( "'{$capitalizedField}' input is empty!", 'jpress' );
       }
     }
 
     // Validate email address input
     if ($error === false && filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
       $error = true;
-      $errorMessages[] = __( 'Invalid Email Address!', 'appbear' );
+      $errorMessages[] = __( 'Invalid Email Address!', 'jpress' );
     }
 
     // Validate owner/admin email address setting
     if (!$to) {
       $error = true;
-      $errorMessages[] = __( 'Missing admin email address setting!', 'appbear' );
+      $errorMessages[] = __( 'Missing admin email address setting!', 'jpress' );
     }
 
     // Proceed if passing empty fields checks..
     if ($error === false) {
-      $defaultLogo = appbear_get_template('contact_us/contact_us_logo');
-      $customLogo = appbear_get_option('logo');
-      $themeMode = appbear_get_option('thememode');
-      $logoLight = appbear_get_option('logo-light');
-      $logoDark = appbear_get_option('logo-dark');
+      $defaultLogo = jpress_get_template('contact_us/contact_us_logo');
+      $customLogo = jpress_get_option('logo');
+      $themeMode = jpress_get_option('thememode');
+      $logoLight = jpress_get_option('logo-light');
+      $logoDark = jpress_get_option('logo-dark');
 
       if ($customLogo) {
         foreach ( ['light', 'dark' ] as $logoMode ) {
@@ -553,13 +553,13 @@ class AppBear_Endpoints {
         $logo = $defaultLogo;
       }
 
-      $body = appbear_get_template('contact_us/contact_us', compact('data'));
+      $body = jpress_get_template('contact_us/contact_us', compact('data'));
       $headers = ['Content-Type: text/html; charset=UTF-8'];
       $result = @wp_mail($to, $subject, $body, $headers);
 
       if ($result === false) {
         $error = true;
-        $errorMessages[] = __( 'Error! Unable to send email message!', 'appbear' );
+        $errorMessages[] = __( 'Error! Unable to send email message!', 'jpress' );
       }
     }
 
@@ -570,7 +570,7 @@ class AppBear_Endpoints {
       $response['error'] = implode("\n", $errorMessages);
     } else {
       $response['status'] = true;
-      $response['message'] = __( 'Your message was sent successfuly.', 'appbear' );
+      $response['message'] = __( 'Your message was sent successfuly.', 'jpress' );
     }
 
     return $response;
@@ -581,7 +581,7 @@ class AppBear_Endpoints {
    * Options
    */
   public function do_options() {
-    return get_option('appbear-options');
+    return get_option('jpress-options');
   }
 
 
@@ -589,7 +589,7 @@ class AppBear_Endpoints {
    * Translations
    */
   public function do_translations() {
-    return get_option('appbear-language');
+    return get_option('jpress-language');
   }
 
 
@@ -727,42 +727,42 @@ class AppBear_Endpoints {
    * @return array
    */
   private function _getSingleCategoryOptions() {
-    $appbearOpts = appbear_get_option('%ALL%');
-    $linkType = $appbearOpts['single_cat_ad_image_link_type'];
-    $linkValue = $appbearOpts['single_cat_ad_image_link_url'];
+    $jpressOpts = jpress_get_option('%ALL%');
+    $linkType = $jpressOpts['single_cat_ad_image_link_type'];
+    $linkValue = $jpressOpts['single_cat_ad_image_link_url'];
 
     switch ($linkType) {
       case 'NavigationType.category':
-        $category = get_category_by_slug($appbearOpts['single_cat_ad_image_link_category']);
+        $category = get_category_by_slug($jpressOpts['single_cat_ad_image_link_category']);
 
         if (empty($category) === false) {
-          $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+          $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
         }
         break;
 
       case 'NavigationType.page':
-        $post = get_post($appbearOpts['single_cat_ad_image_link_page']);
+        $post = get_post($jpressOpts['single_cat_ad_image_link_page']);
 
         if ($post) {
-          $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+          $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
         }
         break;
 
       case 'NavigationType.main':
-        $linkValue = $appbearOpts['single_cat_ad_image_link_main'];
+        $linkValue = $jpressOpts['single_cat_ad_image_link_main'];
         break;
     }
 
     $imageAd = array(
-      'img' => $appbearOpts['single_cat_ad_image_file'],
+      'img' => $jpressOpts['single_cat_ad_image_file'],
       'type' => $linkType,
       'value' => $linkValue,
     );
 
     $singleCatOptions = array(
-      'adType' => str_replace('PostLayout.', '', $appbearOpts['local_ads_single_cat_type']),
+      'adType' => str_replace('PostLayout.', '', $jpressOpts['local_ads_single_cat_type']),
       'htmlAd' => array(
-        'content' => $appbearOpts['single_cat_ad_section_html'],
+        'content' => $jpressOpts['single_cat_ad_section_html'],
       ),
       'imageAd' => $imageAd,
     );

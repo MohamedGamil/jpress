@@ -92,10 +92,10 @@ class AppbearCore {
             'form_options' => array(),
             'import_settings' => array(),
             'export_settings' => array(),
-            'saved_message' => __( 'Settings updated', 'appbear' ),
-            'reset_message' => __( 'Settings reset', 'appbear' ),
-            'import_message' => __( 'Settings imported', 'appbear' ),
-            'import_message_error' => __( 'There were problems importing the data. Please try again.', 'appbear' ),
+            'saved_message' => __( 'Settings updated', 'jpress' ),
+            'reset_message' => __( 'Settings reset', 'jpress' ),
+            'import_message' => __( 'Settings imported', 'jpress' ),
+            'import_message_error' => __( 'There were problems importing the data. Please try again.', 'jpress' ),
             'insert_before' => '',
             'insert_after' => '',
             'css_options' => array(),
@@ -108,7 +108,7 @@ class AppbearCore {
 
         if( is_array( $this->args['header'] ) && ! empty( $this->args['header'] ) || $this->args['header'] === true ){
             $header_defaults = array(
-                'icon' => '<i class="appbear-icon appbear-icon-cog"></i>',
+                'icon' => '<i class="jpress-icon jpress-icon-cog"></i>',
                 'desc' => '',
                 'class' => '',
                 'submit-buttons-sticky' => true,
@@ -120,8 +120,8 @@ class AppbearCore {
             }
         }
         $development_mode = '';
-        if(get_option('appbear-settings-development') > 0){
-            $development_mode = ' '.__( 'To Deveopment Devices', 'appbear' );
+        if(get_option('jpress-settings-development') > 0){
+            $development_mode = ' '.__( 'To Deveopment Devices', 'jpress' );
         }
         $this->args['form_options'] = wp_parse_args( $this->args['form_options'], array(
             'id' => $this->args['id'],
@@ -129,11 +129,11 @@ class AppbearCore {
             'method' => 'post',
             'show_save_button' => $this->object_type == 'admin-page' ? true : false,
             'show_reset_button' => $this->object_type == 'admin-page' ? true : false,
-            'save_button_id' => 'appbear-save',
-            'save_button_name' => 'appbear-save',
-            'save_button_text' => __( 'Save Changes', 'appbear' ).$development_mode,
+            'save_button_id' => 'jpress-save',
+            'save_button_name' => 'jpress-save',
+            'save_button_text' => __( 'Save Changes', 'jpress' ).$development_mode,
             'save_button_class' => '',
-            'reset_button_text' => __( 'Reset to Defaults', 'appbear' ),
+            'reset_button_text' => __( 'Reset to Defaults', 'jpress' ),
             'reset_button_class' => '',
             'insert_after_buttons' => '',
             'insert_before_buttons' => '',
@@ -149,8 +149,8 @@ class AppbearCore {
 
         $this->args['css_options'] = wp_parse_args( $this->args['css_options'], array(
             'save' => false,
-            'output_path' => APPBEAR_DIR . 'css/',
-            'output_name' => "appbear-css-{$this->id}.css",
+            'output_path' => JPRESS_DIR . 'css/',
+            'output_name' => "jpress-css-{$this->id}.css",
             'output_style' => 'compact'//'compact', 'compressed'
         ) );
 
@@ -167,12 +167,12 @@ class AppbearCore {
         $save_btn = '';
         $reset_btn = '';
         if( $args['show_save_button'] ){
-            //$save_btn = "<input type='submit' name='{$args['save_button_name']}' id='{$args['save_button_id']}' class='appbear-form-btn appbear-btn appbear-btn-{$this->arg( 'skin' )} {$args['save_button_class']}' value='{$args['save_button_text']}'>";
-            $save_btn = "<button type='submit' name='{$args['save_button_name']}' id='{$args['save_button_id']}' class='appbear-form-btn appbear-btn appbear-btn-{$this->arg( 'skin' )} {$args['save_button_class']}'>{$args['save_button_text']}</button>";
+            //$save_btn = "<input type='submit' name='{$args['save_button_name']}' id='{$args['save_button_id']}' class='jpress-form-btn jpress-btn jpress-btn-{$this->arg( 'skin' )} {$args['save_button_class']}' value='{$args['save_button_text']}'>";
+            $save_btn = "<button type='submit' name='{$args['save_button_name']}' id='{$args['save_button_id']}' class='jpress-form-btn jpress-btn jpress-btn-{$this->arg( 'skin' )} {$args['save_button_class']}'>{$args['save_button_text']}</button>";
         }
         if( $args['show_reset_button'] ){
-            //$reset_btn = "<input type='button' name='appbear-reset' id='appbear-reset' class='appbear-form-btn appbear-btn {$args['reset_button_class']}' value='{$args['reset_button_text']}'>";
-            $reset_btn = "<button type='button' name='appbear-reset' id='appbear-reset' class='appbear-form-btn appbear-btn {$args['reset_button_class']}'>{$args['reset_button_text']}</button>";
+            //$reset_btn = "<input type='button' name='jpress-reset' id='jpress-reset' class='jpress-form-btn jpress-btn {$args['reset_button_class']}' value='{$args['reset_button_text']}'>";
+            $reset_btn = "<button type='button' name='jpress-reset' id='jpress-reset' class='jpress-form-btn jpress-btn {$args['reset_button_class']}'>{$args['reset_button_text']}</button>";
         }
         return $args['insert_before_buttons'] . $save_btn . $reset_btn . $args['insert_after_buttons'];
     }
@@ -362,7 +362,7 @@ class AppbearCore {
     */
     public function add_import_field( $field_args = array(), &$parent_object = null ){
         $field_args['type'] = 'import';
-        $field_args['id'] = 'appbear-import-field';
+        $field_args['id'] = 'jpress-import-field';
         return $this->add_field( $field_args, $parent_object );
     }
 
@@ -373,7 +373,7 @@ class AppbearCore {
     */
     public function add_export_field( $field_args = array(), &$parent_object = null ){
         $field_args['type'] = 'export';
-        $field_args['id'] = 'appbear-export-field';
+        $field_args['id'] = 'jpress-export-field';
         return $this->add_field( $field_args, $parent_object );
     }
 
@@ -690,7 +690,7 @@ class AppbearCore {
     | Función principal para crear todos los campos
     |---------------------------------------------------------------------------------------------------
     */
-    public function build_appbear( $object_id = 0, $echo = false ){
+    public function build_jpress( $object_id = 0, $echo = false ){
         $return = "";
         $return .= $this->create_nonce();
 
@@ -700,15 +700,15 @@ class AppbearCore {
             $this->set_object_id();
         }
 
-        $skin = 'appbear-skin-' . $this->arg( 'skin' );
+        $skin = 'jpress-skin-' . $this->arg( 'skin' );
 
-        $appbear_class = "appbear appbear-{$this->object_type} appbear-clearfix appbear-radius appbear-{$this->arg('layout')} {$this->arg('class')} $skin";
+        $jpress_class = "jpress jpress-{$this->object_type} jpress-clearfix jpress-radius jpress-{$this->arg('layout')} {$this->arg('class')} $skin";
 
         if( $this->main_tab ){
-            $appbear_class .= ' appbear-has-main-tab';
+            $jpress_class .= ' jpress-has-main-tab';
         }
         $return .= $this->arg( 'insert_before' );
-        $return .= "<div id='appbear-{$this->id}' class='$appbear_class' data-skin='$skin' data-prefix='$this->fields_prefix' data-object-id='$this->object_id' data-object-type='$this->object_type'>";
+        $return .= "<div id='jpress-{$this->id}' class='$jpress_class' data-skin='$skin' data-prefix='$this->fields_prefix' data-object-id='$this->object_id' data-object-type='$this->object_type'>";
         $return .= $this->build_header();
         $return .= $this->build_fields();
         $return .= $this->build_footer();
@@ -752,7 +752,7 @@ class AppbearCore {
     */
     public function get_nonce(){
         if( empty( $this->nonce ) ){
-            $this->nonce = sanitize_text_field( 'appbear_nonce_' . $this->id );
+            $this->nonce = sanitize_text_field( 'jpress_nonce_' . $this->id );
         }
         return $this->nonce;
     }
@@ -771,11 +771,11 @@ class AppbearCore {
 
         $style = "<style>";
         $style .= "
-			.appbear-postbox#{$this->id} > .hndle,
-			.appbear-postbox#{$this->id} > .handlediv {
+			.jpress-postbox#{$this->id} > .hndle,
+			.jpress-postbox#{$this->id} > .handlediv {
 				display: none !important;
 			}
-			.appbear-postbox#{$this->id} > button {
+			.jpress-postbox#{$this->id} > button {
 				display: none !important;
 			}
 		";
@@ -783,19 +783,19 @@ class AppbearCore {
 
         $icon = ! empty( $header['icon'] ) ? trim( $header['icon'] ) : '';
 
-        $header_class = 'appbear-header appbear-clearfix ' . $header['class'];
+        $header_class = 'jpress-header jpress-clearfix ' . $header['class'];
         if( Functions::starts_with( '<img', $icon ) ){
-            $header_class .= ' appbear-has-logo';
+            $header_class .= ' jpress-has-logo';
         }
 
         $return .= "<div class='$header_class'>";
-        $return .= "<div class='appbear-header-title'>";
+        $return .= "<div class='jpress-header-title'>";
         $return .= "<h3>$icon</h3>";
-        $return .= "<div class='appbear-header-actions' data-sticky='{$header['submit-buttons-sticky']}'>";
+        $return .= "<div class='jpress-header-actions' data-sticky='{$header['submit-buttons-sticky']}'>";
         $return .= $this->get_form_buttons();
         $return .= "</div>";
         $return .= "</div>";
-        $return .= "<div class='appbear-header-content'>";
+        $return .= "<div class='jpress-header-content'>";
         $return .= "<p>{$header['desc']}</p>";
         $return .= "</div>";
 
@@ -814,9 +814,9 @@ class AppbearCore {
         if( $footer === null ){
             return '';
         }
-        $return .= "<div class='appbear-footer'>";
-        $return .= "<div class='appbear-footer-content'>";
-        $return .= $footer === true ? "<span>Appbear Framework v" . APPBEAR_VERSION . "</span>" : $footer;
+        $return .= "<div class='jpress-footer'>";
+        $return .= "<div class='jpress-footer-content'>";
+        $return .= $footer === true ? "<span>Appbear Framework v" . JPRESS_VERSION . "</span>" : $footer;
         $return .= "</div>";
         $return .= "</div>";
         return $return;
@@ -830,7 +830,7 @@ class AppbearCore {
     */
     public function save_fields( $post_id = 0, $data = array() ){
         $data = ! empty( $data ) ? $data : $_POST;
-        $data = apply_filters( 'appbear_filter_data_for_save', $data );
+        $data = apply_filters( 'jpress_filter_data_for_save', $data );
 
         //Importante para indicar donde guardar los datos
         if( isset( $_POST['post_ID'] ) ){
@@ -840,11 +840,11 @@ class AppbearCore {
         $updated_fields = array();
 
         //Comprobamos si debemos importar datos
-        if( isset( $data['appbear-import'] ) || isset( $data['appbear-import2'] ) ){
+        if( isset( $data['jpress-import'] ) || isset( $data['jpress-import2'] ) ){
             $this->import = true;
             $settings = $this->arg( 'import_settings' );
             $importer = new Importer( $this, $data, $settings );
-            $import_data = $importer->get_import_appbear_data();
+            $import_data = $importer->get_import_jpress_data();
             if( $import_data !== false ){
                 $data = wp_parse_args( $import_data, $data );
             } else{
@@ -852,9 +852,9 @@ class AppbearCore {
             }
         }
 
-        do_action( "appbear_before_save_fields", $data, $this->object_id, $this );
-        do_action( "appbear_before_save_fields_{$this->object_type}", $data, $this->object_id, $this );
-        do_action( "appbear_before_save_fields_{$this->object_type}_{$this->object_id}", $data, $this->object_id, $this );
+        do_action( "jpress_before_save_fields", $data, $this->object_id, $this );
+        do_action( "jpress_before_save_fields_{$this->object_type}", $data, $this->object_id, $this );
+        do_action( "jpress_before_save_fields_{$this->object_type}_{$this->object_id}", $data, $this->object_id, $this );
 
         foreach( $this->fields_objects as $field ){
             if( $field->arg( 'type' ) == 'section' ){
@@ -872,9 +872,9 @@ class AppbearCore {
             }
         }
 
-        do_action( "appbear_after_save_fields", $data, $this->object_id, $updated_fields, $this );
-        do_action( "appbear_after_save_fields_{$this->object_type}", $data, $this->object_id, $updated_fields, $this );
-        do_action( "appbear_after_save_fields_{$this->object_type}_{$this->object_id}", $data, $this->object_id, $updated_fields, $this );
+        do_action( "jpress_after_save_fields", $data, $this->object_id, $updated_fields, $this );
+        do_action( "jpress_after_save_fields_{$this->object_type}", $data, $this->object_id, $updated_fields, $this );
+        do_action( "jpress_after_save_fields_{$this->object_type}_{$this->object_id}", $data, $this->object_id, $updated_fields, $this );
 
         //Construye el css de los campos que tienen selector establecido
         $this->generate_css_file( $field );
@@ -893,7 +893,7 @@ class AppbearCore {
         }
 
         //Para resetear las opciones, debe ir antes de todo sino no funciona
-        if( isset( $data['appbear-reset'] ) ){
+        if( isset( $data['jpress-reset'] ) ){
             $value = $field->arg( 'default' );
             $this->reset = true;
         }
@@ -910,17 +910,17 @@ class AppbearCore {
             $field->value = null;
         }
 
-        $value = apply_filters( "appbear_filter_field_value_{$field->id}", $value );
+        $value = apply_filters( "jpress_filter_field_value_{$field->id}", $value );
 
-        do_action( "appbear_before_save_field", $field->id, $value, $field );
-        do_action( "appbear_before_save_field_{$field->id}", $value, $field );
+        do_action( "jpress_before_save_field", $field->id, $value, $field );
+        do_action( "jpress_before_save_field_{$field->id}", $value, $field );
 
         $saved = $field->save( $value );
         $updated = $saved['updated'];
         $value = $saved['value'];
 
-        do_action( "appbear_after_save_field", $field->id, $value, $field, $updated );
-        do_action( "appbear_after_save_field_{$field->id}", $value, $field, $updated );
+        do_action( "jpress_after_save_field", $field->id, $value, $field, $updated );
+        do_action( "jpress_after_save_field_{$field->id}", $value, $field, $updated );
 
         //Preparamos el css a construir
         if( $field->arg( 'type' ) != 'group' ){

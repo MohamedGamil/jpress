@@ -62,7 +62,7 @@
 	/* padding-right: 10px; */
 }
 
-.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+.deeplinking-public-widget-inner .store-buttons .jpress-appstore-link {
 	display: inline-block;
 	vertical-align: top;
 	width: 40%;
@@ -70,10 +70,10 @@
 	background-repeat: no-repeat;
 	background-position: center;
 }
-	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.google-play {
+	.deeplinking-public-widget-inner .store-buttons .jpress-appstore-link.google-play {
 		background-image: url('../img/google_play_badge_en.svg');	
 	}
-	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link.appstore {
+	.deeplinking-public-widget-inner .store-buttons .jpress-appstore-link.appstore {
 		background-image: url('../img/appstore_badge_en.svg');	
 	}
 
@@ -111,7 +111,7 @@
 		text-align: center;
 	}
 
-	.deeplinking-public-widget-inner .store-buttons .appbear-appstore-link {
+	.deeplinking-public-widget-inner .store-buttons .jpress-appstore-link {
 		display: block;
 		width: 100%;
 		height: 30px;

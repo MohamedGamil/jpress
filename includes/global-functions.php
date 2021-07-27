@@ -8,8 +8,8 @@ use Appbear\Includes\AdminPage as AdminPage;
 | Obtiene todas las instancias de Appbear
 |---------------------------------------------------------------------------------------------------
 */
-function appbear_get_all(){
-  return Appbear::get_all_appbears();
+function jpress_get_all(){
+  return Appbear::get_all_jpresss();
 }
 
 /*
@@ -17,8 +17,8 @@ function appbear_get_all(){
 | Obtiene una instancia de Appbear
 |---------------------------------------------------------------------------------------------------
 */
-function appbear_get( $appbear_id ){
-  return Appbear::get( $appbear_id );
+function jpress_get( $jpress_id ){
+  return Appbear::get( $jpress_id );
 }
 
 /*
@@ -26,7 +26,7 @@ function appbear_get( $appbear_id ){
 | Nuevo metabox
 |---------------------------------------------------------------------------------------------------
 */
-function appbear_new_metabox( $options = array() ){
+function jpress_new_metabox( $options = array() ){
   return new Metabox( $options );
 }
 
@@ -35,7 +35,7 @@ function appbear_new_metabox( $options = array() ){
 | Nueva página de opciones
 |---------------------------------------------------------------------------------------------------
 */
-function appbear_new_admin_page( $options = array() ){
+function jpress_new_admin_page( $options = array() ){
   return new AdminPage( $options );
 }
 
@@ -44,8 +44,8 @@ function appbear_new_admin_page( $options = array() ){
 | Retorna el valor de una opción
 |---------------------------------------------------------------------------------------------------
 */
-function appbear_get_field_value( $appbear_id, $field_id = '', $default = '', $post_id = '' ){
-  return Appbear::get_field_value( $appbear_id, $field_id, $default, $post_id );
+function jpress_get_field_value( $jpress_id, $field_id = '', $default = '', $post_id = '' ){
+  return Appbear::get_field_value( $jpress_id, $field_id, $default, $post_id );
 }
 
 /*
@@ -53,15 +53,15 @@ function appbear_get_field_value( $appbear_id, $field_id = '', $default = '', $p
 | Código Corto que Retorna el valor de una opción
 |---------------------------------------------------------------------------------------------------
 */
-add_shortcode( 'appbear_get_field_value', 'appbear_get_field_value_shortcode' );
-function appbear_get_field_value_shortcode( $atts ) {
+add_shortcode( 'jpress_get_field_value', 'jpress_get_field_value_shortcode' );
+function jpress_get_field_value_shortcode( $atts ) {
     $a = shortcode_atts( array(
-        'appbear_id' => null,
+        'jpress_id' => null,
         'field_id' => '',
         'default' => '',
         'post_id' => '',
     ), $atts );
-    return appbear_get_field_value( $a['appbear_id'], $a['field_id'], $a['default'], $a['post_id'] );
+    return jpress_get_field_value( $a['jpress_id'], $a['field_id'], $a['default'], $a['post_id'] );
 }
 
 
@@ -70,7 +70,7 @@ function appbear_get_field_value_shortcode( $atts ) {
 | Nuevo formulario basado en Appbear
 |---------------------------------------------------------------------------------------------------
 */
-// function appbear_new_form( $appbear_id = '', $form_args = array(), $echo = false ){
-//   return AdminPage::get_form( $appbear_id, $form_args, $echo );
+// function jpress_new_form( $jpress_id = '', $form_args = array(), $echo = false ){
+//   return AdminPage::get_form( $jpress_id, $form_args, $echo );
 // }
 

@@ -13,21 +13,21 @@ defined( 'ABSPATH' ) || exit;
 
 // NOTE: Bottom Bar Page
 $settings->open_tab_item('bottombar');
-$appbear_bottombar_styling = $settings->add_section( array(
+$jpress_bottombar_styling = $settings->add_section( array(
   'name' => __( 'Bottom Bar Styling', 'textdomain' ),
   'id' => 'section-bottombar-styling',
   'options' => array( 'toggle' => true )
 ));
 
-$appbear_bottombar_styling->open_mixed_field(array('name' => __('Bottom bar background color', 'textdomain' )));
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->open_mixed_field(array('name' => __('Bottom bar background color', 'textdomain' )));
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_light-bottomBarBackgroundColor',
   //'name' => __( 'Light Mode', 'textdomain' ),
   'type' => 'colorpicker',
   'default' => '#BCBCBC',
 ));
 
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_dark-bottomBarBackgroundColor',
   'name' => __( 'Dark Mode', 'textdomain' ),
   'type' => 'colorpicker',
@@ -36,17 +36,17 @@ $appbear_bottombar_styling->add_field(array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   )
 ));
-$appbear_bottombar_styling->close_mixed_field();
+$jpress_bottombar_styling->close_mixed_field();
 
-$appbear_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->open_mixed_field(array('name' => __('InActive tab text color', 'textdomain' )));
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_light-bottomBarInActiveColor',
   //'name' => __( 'Light Mode', 'textdomain' ),
   'type' => 'colorpicker',
   'default' => '#8A8A8A',
 ));
 
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_dark-bottomBarInActiveColor',
   'name' => __( 'Dark Mode', 'textdomain' ),
   'type' => 'colorpicker',
@@ -55,17 +55,17 @@ $appbear_bottombar_styling->add_field(array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   )
 ));
-$appbear_bottombar_styling->close_mixed_field();
+$jpress_bottombar_styling->close_mixed_field();
 
-$appbear_bottombar_styling->open_mixed_field(array('name' => __('Active tab text color', 'textdomain' )));
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->open_mixed_field(array('name' => __('Active tab text color', 'textdomain' )));
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_light-bottomBarActiveColor',
   //'name' => __( 'Light Mode', 'textdomain' ),
   'type' => 'colorpicker',
   'default' => '#0088ff',
 ));
 
-$appbear_bottombar_styling->add_field(array(
+$jpress_bottombar_styling->add_field(array(
   'id' => 'styling-themeMode_dark-bottomBarActiveColor',
   'name' => __( 'Dark Mode', 'textdomain' ),
   'type' => 'colorpicker',
@@ -74,9 +74,9 @@ $appbear_bottombar_styling->add_field(array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   )
 ));
-$appbear_bottombar_styling->close_mixed_field();
+$jpress_bottombar_styling->close_mixed_field();
 
-$appbear_bottombar_tabs = $settings->add_section( array(
+$jpress_bottombar_tabs = $settings->add_section( array(
   'name' => __( 'Bottom Bar Tabs', 'textdomain' ),
   'id' => 'section-bottombar-tabs',
   'options' => array(
@@ -86,7 +86,7 @@ $appbear_bottombar_tabs = $settings->add_section( array(
 ));
 
 
-$tabs = $appbear_bottombar_tabs->add_group( array(
+$tabs = $jpress_bottombar_tabs->add_group( array(
   'name' => __('Tabs', 'textdomain'),
   'id' => 'bottombar_tabs',
   'options' => array(

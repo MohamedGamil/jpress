@@ -15,17 +15,17 @@ defined( 'ABSPATH' ) || exit;
 $settings->open_tab_item('import');
 $settings->add_import_field(array(
   'name' => 'Select Demo',
-  'default' => 'http://appbearframework.com/demos/blank.json',
+  'default' => 'http://jpressframework.com/demos/blank.json',
   'desc' => 'Choose a demo, then click import button',
   'items' => array(
-    APPBEAR_URL . 'options/demos/demo1.json' => APPBEAR_URL . 'options/img/demos/demo1.jpg',
-    APPBEAR_URL . 'options/demos/demo2.json' => APPBEAR_URL . 'options/img/demos/demo2.jpg',
-    APPBEAR_URL . 'options/demos/demo3.json' => APPBEAR_URL . 'options/img/demos/demo3.jpg',
-    APPBEAR_URL . 'options/demos/demo4.json' => APPBEAR_URL . 'options/img/demos/demo4.jpg',
-    APPBEAR_URL . 'options/demos/demo5.json' => APPBEAR_URL . 'options/img/demos/demo5.jpg',
-    APPBEAR_URL . 'options/demos/demo6.json' => APPBEAR_URL . 'options/img/demos/demo6.jpg',
-    APPBEAR_URL . 'options/demos/demo7.json' => APPBEAR_URL . 'options/img/demos/demo7.jpg',
-    APPBEAR_URL . 'options/demos/demo8.json' => APPBEAR_URL . 'options/img/demos/demo8.jpg'
+    JPRESS_URL . 'options/demos/demo1.json' => JPRESS_URL . 'options/img/demos/demo1.jpg',
+    JPRESS_URL . 'options/demos/demo2.json' => JPRESS_URL . 'options/img/demos/demo2.jpg',
+    JPRESS_URL . 'options/demos/demo3.json' => JPRESS_URL . 'options/img/demos/demo3.jpg',
+    JPRESS_URL . 'options/demos/demo4.json' => JPRESS_URL . 'options/img/demos/demo4.jpg',
+    JPRESS_URL . 'options/demos/demo5.json' => JPRESS_URL . 'options/img/demos/demo5.jpg',
+    JPRESS_URL . 'options/demos/demo6.json' => JPRESS_URL . 'options/img/demos/demo6.jpg',
+    JPRESS_URL . 'options/demos/demo7.json' => JPRESS_URL . 'options/img/demos/demo7.jpg',
+    JPRESS_URL . 'options/demos/demo8.json' => JPRESS_URL . 'options/img/demos/demo8.jpg'
   ),
   'options' => array(
     'import_from_file' => false,

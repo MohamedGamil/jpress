@@ -2,10 +2,10 @@
 
 
 /**
- * AppBear Notices Helpers
+ * JPress Notices Helpers
  */
 class Appbear_Notice {
-  const OPTION_KEY = 'appbear_flash_notices';
+  const OPTION_KEY = 'jpress_flash_notices';
 
   /**
    * Instant notices bag.
@@ -150,7 +150,7 @@ class Appbear_Notice {
     $notices = array_merge( static::$_notices, $this->_getNotices() );
 
     foreach ( $notices as $notice ) {
-      $html .= appbear_get_template( 'alerts/notice', $notice );
+      $html .= jpress_get_template( 'alerts/notice', $notice );
     }
 
     if (empty($html) === false) {

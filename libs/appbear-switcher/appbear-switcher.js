@@ -27,7 +27,7 @@
     Plugin.prototype = {
         init: function () {
             var _ = this;
-            if (_.$el.parent().hasClass('appbear-sw-wrap')) {
+            if (_.$el.parent().hasClass('jpress-sw-wrap')) {
                 return;
             }
             if (_.$el.attr('type') == 'hidden' || _.$el.attr('type') == 'checkbox') {
@@ -40,8 +40,8 @@
             var _ = this;
             var $input = _.$el;
             var has_icons = false;
-            var html_toggle_on = '<div class="appbear-sw-toggle appbear-sw-toggle-on">';
-            var html_toggle_off = '<div class="appbear-sw-toggle appbear-sw-toggle-off">';
+            var html_toggle_on = '<div class="jpress-sw-toggle jpress-sw-toggle-on">';
+            var html_toggle_off = '<div class="jpress-sw-toggle jpress-sw-toggle-off">';
             if (_.options.on_text !== '' && _.options.off_text !== '') {
                 html_toggle_on = html_toggle_on + _.options.on_text + '</div>';
                 html_toggle_off = html_toggle_off + _.options.off_text + '</div>';
@@ -57,23 +57,23 @@
             var is_disabled = $input.is(':disabled') ? true : false;
 
             var status_classes = '';
-            status_classes += _.is_on() ? 'appbear-sw-on' : 'appbear-sw-off';
-            status_classes += is_disabled ? ' appbear-sw-disabled' : '';
-            status_classes += has_icons ? ' appbear-sw-has-icons' : '';
+            status_classes += _.is_on() ? 'jpress-sw-on' : 'jpress-sw-off';
+            status_classes += is_disabled ? ' jpress-sw-disabled' : '';
+            status_classes += has_icons ? ' jpress-sw-has-icons' : '';
 
             var switcher_body =
-                '<div class="appbear-sw-inner ' + status_classes + '">' +
-                '<div class="appbear-sw-blob"></div>' +
+                '<div class="jpress-sw-inner ' + status_classes + '">' +
+                '<div class="jpress-sw-blob"></div>' +
                 html_toggle_on + html_toggle_off +
                 '</div>';
 
-            $input.wrap('<div class="appbear-sw-wrap"></div>');
+            $input.wrap('<div class="jpress-sw-wrap"></div>');
             $input.parent().append(switcher_body);
-            $input.parent().find('.appbear-sw-inner').addClass('appbear-sw-type-' + $input.attr('type'));
+            $input.parent().find('.jpress-sw-inner').addClass('jpress-sw-type-' + $input.attr('type'));
         },
 
         is_on: function () {
-            if (this.$el.next('.appbear-sw-inner').hasClass('appbear-sw-on')) {
+            if (this.$el.next('.jpress-sw-inner').hasClass('jpress-sw-on')) {
                 return true;
             }
             if (this.$el.attr('type') == 'checkbox') {
@@ -88,7 +88,7 @@
 
         set_on: function () {
             var $input = $(this);
-            if (!$input.parent().hasClass('appbear-sw-wrap')) {
+            if (!$input.parent().hasClass('jpress-sw-wrap')) {
                 return;
             }
             var options = $input.data('switcher');
@@ -99,7 +99,7 @@
                 $input.val(options.on_value);
             }
 
-            $input.parent().find('.appbear-sw-inner').removeClass('appbear-sw-off').addClass('appbear-sw-on');
+            $input.parent().find('.jpress-sw-inner').removeClass('jpress-sw-off').addClass('jpress-sw-on');
 
             //Eventos
             $input.trigger('changeOn');
@@ -110,7 +110,7 @@
 
         set_off: function () {
             var $input = $(this);
-            if (!$input.parent().hasClass('appbear-sw-wrap')) {
+            if (!$input.parent().hasClass('jpress-sw-wrap')) {
                 return;
             }
             var options = $input.data('switcher');
@@ -121,7 +121,7 @@
                 $input.val(options.off_value);
             }
 
-            $input.parent().find('.appbear-sw-inner').removeClass('appbear-sw-on').addClass('appbear-sw-off');
+            $input.parent().find('.jpress-sw-inner').removeClass('jpress-sw-on').addClass('jpress-sw-off');
 
             //Eventos
             $input.trigger('changeOff');
@@ -132,7 +132,7 @@
 
         destroy: function () {
             $(this).each(function () {
-                $(this).parents('.appbear-sw-wrap').children().not('input').remove();
+                $(this).parents('.jpress-sw-wrap').children().not('input').remove();
                 $(this).unwrap();
             });
             return true;
@@ -141,25 +141,25 @@
 
     //Eventos
     $(document).ready(function () {
-        $(document).on('click tap', '.appbear .appbear-sw-inner:not(.appbear-sw-disabled)', function (e) {
+        $(document).on('click tap', '.jpress .jpress-sw-inner:not(.jpress-sw-disabled)', function (e) {
             var $input = $(this).parent().find('input');
-            if ($(this).hasClass('appbear-sw-on')) {
-                $input.appbearSwitcher('set_off');
+            if ($(this).hasClass('jpress-sw-on')) {
+                $input.jpressSwitcher('set_off');
             } else {
-                $input.appbearSwitcher('set_on');
+                $input.jpressSwitcher('set_on');
             }
         });
 
-        $(document).on('change', '.appbear .appbear-sw-wrap input', function (e) {
-            if ($(this).next('.appbear-sw-inner').hasClass('appbear-sw-on')) {
-                $(this).appbearSwitcher('set_off');
+        $(document).on('change', '.jpress .jpress-sw-wrap input', function (e) {
+            if ($(this).next('.jpress-sw-inner').hasClass('jpress-sw-on')) {
+                $(this).jpressSwitcher('set_off');
             } else {
-                $(this).appbearSwitcher('set_on');
+                $(this).jpressSwitcher('set_on');
             }
         });
     });
 
-    $.fn.appbearSwitcher = function (options) {
+    $.fn.jpressSwitcher = function (options) {
         if (Plugin.prototype[options] && options != 'init' && options != 'build' && options != 'is_on') {
             return Plugin.prototype[options].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof options === 'object' || !options) {

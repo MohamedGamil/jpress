@@ -13,7 +13,7 @@ if (isset($data, $options) === false) exit;
 
 // NOTE: Set default "sections" & "sections_url" values
 $options['homePage']['sections'] = array();
-$options['homePage']['sections_url'] = '/wp-json/appbear/v1/posts?';
+$options['homePage']['sections_url'] = '/wp-json/jpress/v1/posts?';
 
 foreach($data['sections'] as $key => $section) {
   if ($key === 1000) {
@@ -52,7 +52,7 @@ foreach($data['sections'] as $key => $section) {
 
             if (empty($category) === false) {
               $linkTitle = $category->name;
-              $linkValue = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+              $linkValue = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
             }
             break;
 
@@ -61,7 +61,7 @@ foreach($data['sections'] as $key => $section) {
 
             if ($post) {
               $linkTitle = $post->post_title;
-              $linkValue = '/wp-json/appbear/v1/page?id=' . $post->ID;
+              $linkValue = '/wp-json/jpress/v1/page?id=' . $post->ID;
             }
             break;
 
@@ -121,7 +121,7 @@ foreach($data['sections'] as $key => $section) {
     $item['loadMore']  =   "true";
   }
 
-  $item['url'] = '/wp-json/appbear/v1/posts?';
+  $item['url'] = '/wp-json/jpress/v1/posts?';
 
   switch($section['showposts']) {
     case 'categories':

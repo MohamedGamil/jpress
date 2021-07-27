@@ -6,11 +6,11 @@ class Ajax {
 
 	public function __construct(  ) {
 		//Ajax oembed
-		add_action( 'wp_ajax_appbear_get_oembed', array( $this, 'get_oembed_ajax' ) );
-		add_action( 'wp_ajax_nopriv_appbear_get_oembed', array( $this, 'get_oembed_ajax' ) );
+		add_action( 'wp_ajax_jpress_get_oembed', array( $this, 'get_oembed_ajax' ) );
+		add_action( 'wp_ajax_nopriv_jpress_get_oembed', array( $this, 'get_oembed_ajax' ) );
 
-		add_action( 'wp_ajax_appbear_get_items', array( $this, 'get_items_ajax' ) );
-		add_action( 'wp_ajax_nopriv_appbear_get_items', array( $this, 'get_items_ajax' ) );
+		add_action( 'wp_ajax_jpress_get_items', array( $this, 'get_items_ajax' ) );
+		add_action( 'wp_ajax_nopriv_jpress_get_items', array( $this, 'get_items_ajax' ) );
 
 	}
 
@@ -26,7 +26,7 @@ class Ajax {
 		if( ! isset( $_POST['ajax_nonce'] ) || ! isset( $_POST['oembed_url'] ) ) {
 			die();
 		}
-		if( ! wp_verify_nonce( $_POST['ajax_nonce'], 'appbear_ajax_nonce' ) ){
+		if( ! wp_verify_nonce( $_POST['ajax_nonce'], 'jpress_ajax_nonce' ) ){
 			die();
 		}
 
@@ -48,7 +48,7 @@ class Ajax {
 		if( ! isset( $_POST['ajax_nonce'] ) ) {
 			die();
 		}
-		if( ! wp_verify_nonce( $_POST['ajax_nonce'], 'appbear_ajax_nonce' ) ){
+		if( ! wp_verify_nonce( $_POST['ajax_nonce'], 'jpress_ajax_nonce' ) ){
 			die();
 		}
 		$response = array();

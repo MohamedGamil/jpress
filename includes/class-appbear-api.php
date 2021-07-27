@@ -4,7 +4,7 @@ namespace Appbear\Includes;
 
 
 /**
- * AppBear RESTFul API Adapter
+ * JPress RESTFul API Adapter
  */
 class AppbearAPI {
   const TIMEOUT_DURATION = 15;
@@ -30,11 +30,11 @@ class AppbearAPI {
     $api_params = array(
       'edd_action' => 'check_license',
       'license' => $licenseKey,
-      'item_name' => urlencode( APPBEAR_ITEM_NAME ),
+      'item_name' => urlencode( JPRESS_ITEM_NAME ),
       'url' => $homeURL,
     );
 
-    return wp_remote_post( APPBEAR_STORE_URL, array(
+    return wp_remote_post( JPRESS_STORE_URL, array(
       'timeout' => static::TIMEOUT_DURATION,
       'sslverify' => static::VERYIFY_SSL,
       'body' => $api_params,
@@ -53,7 +53,7 @@ class AppbearAPI {
     $api_params = array(
       'edd_action' => 'activate_license',
       'license'    => $licenseKey,
-      'item_name'  => urlencode( APPBEAR_ITEM_NAME ), // the name of our product in EDD
+      'item_name'  => urlencode( JPRESS_ITEM_NAME ), // the name of our product in EDD
       'url' => $homeURL,
     );
 
@@ -63,7 +63,7 @@ class AppbearAPI {
       'body' => $api_params,
     );
 
-    return wp_remote_post( APPBEAR_STORE_URL, $requestOpts );
+    return wp_remote_post( JPRESS_STORE_URL, $requestOpts );
   }
 
   /**
@@ -73,7 +73,7 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   public static function save_translations($translations) {
-    $endpoint = '/wp-json/appbear-edd-addon/v1/settings';
+    $endpoint = '/wp-json/jpress-edd-addon/v1/settings';
     $data = array( 'data' => array( 'translations' => $translations ) );
 
     return static::_send( $endpoint, $data );
@@ -86,7 +86,7 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   public static function save_settings(array $options) {
-    $endpoint = '/wp-json/appbear-edd-addon/v1/settings';
+    $endpoint = '/wp-json/jpress-edd-addon/v1/settings';
     $options = array( 'settings' => $options );
 
     return static::_send( $endpoint, $options );
@@ -102,7 +102,7 @@ class AppbearAPI {
    * @return array|WP_ERROR The response or WP_Error on failure.
    */
   public static function send_notification($title, $body, $type = 'post', $ID = '') {
-    $endpoint = '/wp-json/appbear-edd-addon/v1/notifications';
+    $endpoint = '/wp-json/jpress-edd-addon/v1/notifications';
     $params = array(
       'title' => $title,
       'body' => $body,
@@ -136,7 +136,7 @@ class AppbearAPI {
     );
 
     if ($includeAuthHeaders) {
-      $headers['X-EDD-KEY'] = appbear_get_license_key();
+      $headers['X-EDD-KEY'] = jpress_get_license_key();
       $headers['X-EDD-URL'] = trailingslashit(get_home_url());
     }
 
@@ -174,6 +174,6 @@ class AppbearAPI {
     // NOTE: Debug line
     // dd($endpoint, $opts);
 
-    return wp_remote_post( APPBEAR_STORE_URL . $endpoint, $opts );
+    return wp_remote_post( JPRESS_STORE_URL . $endpoint, $opts );
   }
 }

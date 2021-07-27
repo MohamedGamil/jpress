@@ -1,8 +1,8 @@
 APPBEAR.events = (function (window, document, $) {
   'use strict';
 
-  var appbear_events = {};
-  var appbear;
+  var jpress_events = {};
+  var jpress;
 
   /**
    * Whether to display a field or not based on a given condition
@@ -26,7 +26,7 @@ APPBEAR.events = (function (window, document, $) {
     }
 
     if ($.inArray(operator_, ['==', '!=', '>', '>=', '<', '<=']) > -1) {
-      show_ = appbear.compare_values_by_operator(field_value_, operator_, value_);
+      show_ = jpress.compare_values_by_operator(field_value_, operator_, value_);
     }
     else if ($.inArray(operator_, ['in', 'not in']) > -1) {
       if (!is_empty(value_) && $.isArray(value_)) {
@@ -40,100 +40,100 @@ APPBEAR.events = (function (window, document, $) {
     return show_;
   }
 
-  appbear_events.init = function () {
-    let $appbear = $('.appbear');
+  jpress_events.init = function () {
+    let $jpress = $('.jpress');
 
-    appbear_events.on_change_colorpicker($appbear);
+    jpress_events.on_change_colorpicker($jpress);
 
-    appbear_events.on_change_code_editor($appbear);
+    jpress_events.on_change_code_editor($jpress);
 
-    appbear_events.on_change_file($appbear);
+    jpress_events.on_change_file($jpress);
 
-    appbear_events.on_change_image_selector($appbear);
+    jpress_events.on_change_image_selector($jpress);
 
-    appbear_events.on_change_icon_selector($appbear);
+    jpress_events.on_change_icon_selector($jpress);
 
-    appbear_events.on_change_number($appbear);
+    jpress_events.on_change_number($jpress);
 
-    appbear_events.on_change_oembed($appbear);
+    jpress_events.on_change_oembed($jpress);
 
-    appbear_events.on_change_radio($appbear);
+    jpress_events.on_change_radio($jpress);
 
-    appbear_events.on_change_checkbox($appbear);
+    jpress_events.on_change_checkbox($jpress);
 
-    appbear_events.on_change_switcher($appbear);
+    jpress_events.on_change_switcher($jpress);
 
-    appbear_events.on_change_select($appbear);
+    jpress_events.on_change_select($jpress);
 
-    appbear_events.on_change_text($appbear);
+    jpress_events.on_change_text($jpress);
 
-    appbear_events.on_change_date($appbear);
+    jpress_events.on_change_date($jpress);
 
-    appbear_events.on_change_time($appbear);
+    jpress_events.on_change_time($jpress);
 
-    appbear_events.on_change_textarea($appbear);
+    jpress_events.on_change_textarea($jpress);
 
-    appbear_events.on_change_wp_editor($appbear);
+    jpress_events.on_change_wp_editor($jpress);
 
-    appbear_events.init_conditional_items($appbear);
+    jpress_events.init_conditional_items($jpress);
 
   };
 
-  appbear_events.on_change_colorpicker = function ($appbear) {
-    $appbear.on('change', '.appbear-type-colorpicker .appbear-element', function () {
+  jpress_events.on_change_colorpicker = function ($jpress) {
+    $jpress.on('change', '.jpress-type-colorpicker .jpress-element', function () {
       let $input = $(this);
       let value = $input.val();
-      appbear.update_prev_values($(this), value);
+      jpress.update_prev_values($(this), value);
 
-      $(this).trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($(this), value, 'colorpicker');
+      $(this).trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($(this), value, 'colorpicker');
     });
   };
 
-  appbear_events.on_change_code_editor = function ($appbear) {
-    $appbear.find('.appbear-code-editor').each(function (index, el) {
+  jpress_events.on_change_code_editor = function ($jpress) {
+    $jpress.find('.jpress-code-editor').each(function (index, el) {
       let editor = ace.edit($(el).attr('id'));
       editor.getSession().on('change', function (e) {
-        $(el).trigger('appbear_changed_value', editor.getValue());
-        appbear_events.show_hide_row($(el), editor.getValue(), 'code_editor');
+        $(el).trigger('jpress_changed_value', editor.getValue());
+        jpress_events.show_hide_row($(el), editor.getValue(), 'code_editor');
       });
     });
   };
 
-  appbear_events.on_change_file = function ($appbear) {
-    $appbear.on('change', '.appbear-type-file .appbear-element', function () {
-      let $field = $(this).closest('.appbear-field');
-      let multiple = $field.hasClass('appbear-has-multiple');
+  jpress_events.on_change_file = function ($jpress) {
+    $jpress.on('change', '.jpress-type-file .jpress-element', function () {
+      let $field = $(this).closest('.jpress-field');
+      let multiple = $field.hasClass('jpress-has-multiple');
       let value = '';
       value = $(this).val();
       if (!multiple) {
         value = $(this).val();
       } else {
-        $field.find('.appbear-element').each(function (index, input) {
+        $field.find('.jpress-element').each(function (index, input) {
           value += $(input).val() + ',';
         });
         value = value.replace(/,\s*$/, "");
-        $(this).trigger('appbear_changed_value', value);
+        $(this).trigger('jpress_changed_value', value);
       }
 
-      $(this).trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($(this), value, 'file');
+      $(this).trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($(this), value, 'file');
 
-      if (appbear.is_image_file(value) && !multiple) {
-        let $wrap_preview = $(this).closest('.appbear-field').find('.appbear-wrap-preview').first();
+      if (jpress.is_image_file(value) && !multiple) {
+        let $wrap_preview = $(this).closest('.jpress-field').find('.jpress-wrap-preview').first();
         let preview_size = $wrap_preview.data('preview-size');
         let item_body;
         let obj = {
           url: value,
         };
-        let $new_item = $('<li />', { 'class': 'appbear-preview-item appbear-preview-file' });
-        $new_item.addClass('appbear-preview-image');
-        item_body = '<img src="' + obj.url + '" style="width: ' + preview_size.width + '; height: ' + preview_size.height + '" data-full-img="' + obj.url + '" class="appbear-image appbear-preview-handler">';
-        $new_item.html(item_body + '<a class="appbear-btn appbear-btn-iconize appbear-btn-small appbear-btn-red appbear-remove-preview"><i class="appbear-icon appbear-icon-times-circle"></i></a>');
+        let $new_item = $('<li />', { 'class': 'jpress-preview-item jpress-preview-file' });
+        $new_item.addClass('jpress-preview-image');
+        item_body = '<img src="' + obj.url + '" style="width: ' + preview_size.width + '; height: ' + preview_size.height + '" data-full-img="' + obj.url + '" class="jpress-image jpress-preview-handler">';
+        $new_item.html(item_body + '<a class="jpress-btn jpress-btn-iconize jpress-btn-small jpress-btn-red jpress-remove-preview"><i class="jpress-icon jpress-icon-times-circle"></i></a>');
         $wrap_preview.html($new_item);
       }
     });
-    $appbear.on('appbear_after_add_files', '.appbear-type-file .appbear-field', function (e, selected_files, media) {
+    $jpress.on('jpress_after_add_files', '.jpress-type-file .jpress-field', function (e, selected_files, media) {
       let value;
       if (!media.multiple) {
         $(selected_files).each(function (index, obj) {
@@ -145,57 +145,57 @@ APPBEAR.events = (function (window, document, $) {
           value.push(obj.url);
         });
       }
-      $(this).find('.appbear-element').trigger('appbear_changed_value', [value]);
-      appbear_events.show_hide_row($(this), [value], 'file');
+      $(this).find('.jpress-element').trigger('jpress_changed_value', [value]);
+      jpress_events.show_hide_row($(this), [value], 'file');
     });
   };
 
-  appbear_events.on_change_image_selector = function ($appbear) {
-    $appbear.on('imgSelectorChanged', '.appbear-type-image_selector .appbear-element', function () {
+  jpress_events.on_change_image_selector = function ($jpress) {
+    $jpress.on('imgSelectorChanged', '.jpress-type-image_selector .jpress-element', function () {
 
       /**
        * Spotlayer: Fix image selector change
        */
-      let field_id = $(this).closest('.appbear-type-image_selector').data('field-id');
-      let control_img_id = $(this).closest('.appbear-type-group').find('.appbear-group-control').data('image-field-id');
-      let img_src = $(this).closest('.appbear-item-image-selector').find('img').attr('src');
+      let field_id = $(this).closest('.jpress-type-image_selector').data('field-id');
+      let control_img_id = $(this).closest('.jpress-type-group').find('.jpress-group-control').data('image-field-id');
+      let img_src = $(this).closest('.jpress-item-image-selector').find('img').attr('src');
 
 
       if (control_img_id == field_id) {
-        appbear.synchronize_selector_preview_image('.appbear-control-image', img_src, 'add', img_src, control_img_id);
+        jpress.synchronize_selector_preview_image('.jpress-control-image', img_src, 'add', img_src, control_img_id);
       }
 
 
-      if ($(this).closest('.appbear-image-selector').data('image-selector').like_checkbox) {
+      if ($(this).closest('.jpress-image-selector').data('image-selector').like_checkbox) {
         let value = [];
-        $(this).closest('.appbear-radiochecks').find('input[type=checkbox]:checked').each(function (index, el) {
+        $(this).closest('.jpress-radiochecks').find('input[type=checkbox]:checked').each(function (index, el) {
           value.push($(this).val());
         });
-        $(this).trigger('appbear_changed_value', [value]);
-        appbear_events.show_hide_row($(this), [value], 'image_selector');
+        $(this).trigger('jpress_changed_value', [value]);
+        jpress_events.show_hide_row($(this), [value], 'image_selector');
       } else {
-        $(this).trigger('appbear_changed_value', $(this).val());
-        appbear_events.show_hide_row($(this), $(this).val(), 'image_selector');
+        $(this).trigger('jpress_changed_value', $(this).val());
+        jpress_events.show_hide_row($(this), $(this).val(), 'image_selector');
       }
     });
   };
 
-  appbear_events.on_change_icon_selector = function ($appbear) {
-    $appbear.on('change', '.appbear-type-icon_selector .appbear-element', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'icon_selector');
+  jpress_events.on_change_icon_selector = function ($jpress) {
+    $jpress.on('change', '.jpress-type-icon_selector .jpress-element', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'icon_selector');
     });
   };
 
-  appbear_events.on_change_number = function ($appbear) {
-    $appbear.on('change', '.appbear-type-number .appbear-unit-number', function () {
-      $(this).closest('.appbear-field').find('.appbear-element').trigger('input');
+  jpress_events.on_change_number = function ($jpress) {
+    $jpress.on('change', '.jpress-type-number .jpress-unit-number', function () {
+      $(this).closest('.jpress-field').find('.jpress-element').trigger('input');
     });
-    $appbear.on('input', '.appbear-type-number .appbear-element', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'number');
+    $jpress.on('input', '.jpress-type-number .jpress-element', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'number');
     });
-    $appbear.on('change', '.appbear-type-number .appbear-element', function () {
+    $jpress.on('change', '.jpress-type-number .jpress-element', function () {
       let value = $(this).val();
       let validValue = value;
       let arr = ['auto', 'initial', 'inherit'];
@@ -205,104 +205,104 @@ APPBEAR.events = (function (window, document, $) {
       //Validate values
       if (value != validValue) {
         value = validValue;
-        let $field = $(this).closest('.appbear-field');
-        appbear.set_field_value($field, value, $field.find('input.appbear-unit-number').val());
+        let $field = $(this).closest('.jpress-field');
+        jpress.set_field_value($field, value, $field.find('input.jpress-unit-number').val());
       }
-      $(this).trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($(this), value, 'number');
+      $(this).trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($(this), value, 'number');
     });
   };
 
-  appbear_events.on_change_oembed = function ($appbear) {
-    $appbear.on('change', '.appbear-type-oembed .appbear-element', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'oembed');
+  jpress_events.on_change_oembed = function ($jpress) {
+    $jpress.on('change', '.jpress-type-oembed .jpress-element', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'oembed');
     });
   };
 
-  appbear_events.on_change_radio = function ($appbear) {
-    $appbear.on('ifChecked', '.appbear-type-radio .appbear-element', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'radio');
+  jpress_events.on_change_radio = function ($jpress) {
+    $jpress.on('ifChecked', '.jpress-type-radio .jpress-element', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'radio');
     });
   };
 
-  appbear_events.on_change_checkbox = function ($appbear) {
-    $appbear.on('ifChanged', '.appbear-type-checkbox .appbear-element', function () {
+  jpress_events.on_change_checkbox = function ($jpress) {
+    $jpress.on('ifChanged', '.jpress-type-checkbox .jpress-element', function () {
       let value = [];
-      $(this).closest('.appbear-radiochecks').find('input[type=checkbox]:checked').each(function (index, el) {
+      $(this).closest('.jpress-radiochecks').find('input[type=checkbox]:checked').each(function (index, el) {
         value.push($(this).val());
       });
-      $(this).trigger('appbear_changed_value', [value]);
-      appbear_events.show_hide_row($(this), [value], 'checkbox');
+      $(this).trigger('jpress_changed_value', [value]);
+      jpress_events.show_hide_row($(this), [value], 'checkbox');
     });
   };
 
-  appbear_events.on_change_switcher = function ($appbear) {
-    $appbear.on('statusChange', '.appbear-type-switcher .appbear-element', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'switcher');
+  jpress_events.on_change_switcher = function ($jpress) {
+    $jpress.on('statusChange', '.jpress-type-switcher .jpress-element', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'switcher');
     });
   };
 
-  appbear_events.on_change_select = function ($appbear) {
-    $appbear.on('change', '.appbear-type-select .appbear-element', function (event) {
+  jpress_events.on_change_select = function ($jpress) {
+    $jpress.on('change', '.jpress-type-select .jpress-element', function (event) {
       let $input = $(this).find('input[type="hidden"]');
       let value = $input.val();
-      appbear.update_prev_values($input, value);
-      $(this).trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($(this), value, 'select');
+      jpress.update_prev_values($input, value);
+      $(this).trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($(this), value, 'select');
     });
   };
 
-  appbear_events.on_change_text = function ($appbear) {
-    $appbear.on('input', '.appbear-type-text .appbear-element', function () {
+  jpress_events.on_change_text = function ($jpress) {
+    $jpress.on('input', '.jpress-type-text .jpress-element', function () {
       let $input = $(this);
       let value = $input.val();
-      appbear.update_prev_values($input, value);
-      $input.trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($input, value, 'text');
+      jpress.update_prev_values($input, value);
+      $input.trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($input, value, 'text');
 
-      let $helper = $input.next('.appbear-field-helper');
-      if ($helper.length && $input.closest('.appbear-helper-maxlength').length && $input.attr('maxlength')) {
+      let $helper = $input.next('.jpress-field-helper');
+      if ($helper.length && $input.closest('.jpress-helper-maxlength').length && $input.attr('maxlength')) {
         $helper.text($input.val().length + '/' + $input.attr('maxlength'));
       }
     });
   };
 
-  appbear_events.on_change_date = function ($appbear) {
-    $appbear.on('change', '.appbear-type-date .appbear-element', function () {
+  jpress_events.on_change_date = function ($jpress) {
+    $jpress.on('change', '.jpress-type-date .jpress-element', function () {
       let $input = $(this);
       let value = $input.val();
-      appbear.update_prev_values($input, value);
-      $input.trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($input, value, 'date');
+      jpress.update_prev_values($input, value);
+      $input.trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($input, value, 'date');
     });
   };
 
-  appbear_events.on_change_time = function ($appbear) {
-    $appbear.on('change', '.appbear-type-time .appbear-element', function () {
+  jpress_events.on_change_time = function ($jpress) {
+    $jpress.on('change', '.jpress-type-time .jpress-element', function () {
       let $input = $(this);
       let value = $input.val();
-      appbear.update_prev_values($input, value);
-      $input.trigger('appbear_changed_value', value);
-      appbear_events.show_hide_row($input, value, 'time');
+      jpress.update_prev_values($input, value);
+      $input.trigger('jpress_changed_value', value);
+      jpress_events.show_hide_row($input, value, 'time');
     });
   };
 
-  appbear_events.on_change_textarea = function ($appbear) {
-    $appbear.on('input', '.appbear-type-textarea .appbear-element', function () {
+  jpress_events.on_change_textarea = function ($jpress) {
+    $jpress.on('input', '.jpress-type-textarea .jpress-element', function () {
       $(this).text($(this).val());
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'textarea');
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'textarea');
     });
   };
 
-  appbear_events.on_change_wp_editor = function ($appbear) {
-    let $wp_editors = $appbear.find('.appbear-type-wp_editor textarea.wp-editor-area');
-    $appbear.on('input', '.appbear-type-wp_editor textarea.wp-editor-area', function () {
-      $(this).trigger('appbear_changed_value', $(this).val());
-      appbear_events.show_hide_row($(this), $(this).val(), 'wp_editor');
+  jpress_events.on_change_wp_editor = function ($jpress) {
+    let $wp_editors = $jpress.find('.jpress-type-wp_editor textarea.wp-editor-area');
+    $jpress.on('input', '.jpress-type-wp_editor textarea.wp-editor-area', function () {
+      $(this).trigger('jpress_changed_value', $(this).val());
+      jpress_events.show_hide_row($(this), $(this).val(), 'wp_editor');
     });
     if (typeof tinymce === 'undefined') {
       return;
@@ -314,22 +314,22 @@ APPBEAR.events = (function (window, document, $) {
         if (wp_editor) {
           wp_editor.on('change input', function (e) {
             let value = wp_editor.getContent();
-            $(el).trigger('appbear_changed_value', wp_editor.getContent());
-            appbear_events.show_hide_row($(el), wp_editor.getContent(), 'wp_editor');
+            $(el).trigger('jpress_changed_value', wp_editor.getContent());
+            jpress_events.show_hide_row($(el), wp_editor.getContent(), 'wp_editor');
           });
         }
       });
     }, 1000);
   };
 
-  appbear_events.show_hide_row = function ($el, field_value, type) {
-    let prefix = $el.closest('.appbear').data('prefix');
-    let $id = $el.closest('.appbear-row').data('field-id');
+  jpress_events.show_hide_row = function ($el, field_value, type) {
+    let prefix = $el.closest('.jpress').data('prefix');
+    let $id = $el.closest('.jpress-row').data('field-id');
     let $row_changed;
 
-    if ($el.parents('.appbear-group-wrap').length > 0) {
-      // $row_changed = $el.parents('.appbear-group-item').find(`.condition_${$id}, .condition_items_${$id}`);
-      $row_changed = $el.parents('.appbear-group-item').find(`.condition_${$id}`);
+    if ($el.parents('.jpress-group-wrap').length > 0) {
+      // $row_changed = $el.parents('.jpress-group-item').find(`.condition_${$id}, .condition_items_${$id}`);
+      $row_changed = $el.parents('.jpress-group-item').find(`.condition_${$id}`);
     }
     else {
       // $row_changed = $(`.condition_${$id}, .condition_items_${$id}`);
@@ -343,13 +343,13 @@ APPBEAR.events = (function (window, document, $) {
     let operator = '==';
     let $rows = $row_changed;
 
-    // let $group_item = $row_changed.closest('.appbear-group-item');
+    // let $group_item = $row_changed.closest('.jpress-group-item');
     // if ($group_item.length) {
-    //   $rows = $group_item.find('.appbear-row');
+    //   $rows = $group_item.find('.jpress-row');
     // } else {
     //   $rows.each(function (index, el) {
     //     if ($(el).data('field-type') == 'mixed') {
-    //       $(el).find('.appbear-row').each(function (i, mixed_row) {
+    //       $(el).find('.jpress-row').each(function (i, mixed_row) {
     //         $rows.push($(mixed_row)[0]);
     //       });
     //     }
@@ -441,7 +441,7 @@ APPBEAR.events = (function (window, document, $) {
             operator = operator == '=' ? '==' : operator;
           }
           if ($.inArray(operator, ['==', '!=', '>', '>=', '<', '<=']) > -1) {
-            hide = appbear.compare_values_by_operator(field_value, operator, value);
+            hide = jpress.compare_values_by_operator(field_value, operator, value);
           } else if ($.inArray(operator, ['in', 'not in']) > -1) {
             if (!is_empty(value) && $.isArray(value)) {
               hide = operator == 'in' ? $.inArray(field_value, value) > -1 : $.inArray(field_value, value) == -1;
@@ -493,12 +493,12 @@ APPBEAR.events = (function (window, document, $) {
         }
 
         // NOTE: Supports `image_selector` fields only at the moment.
-        // $row.find(`.appbear-item-image-selector`).hide();
+        // $row.find(`.jpress-item-image-selector`).hide();
 
         for (const key_ in showItems) {
           const
           item_ = showItems[key_],
-          $item = $row.find(`.appbear-item-image-selector.item-key-${item_}`);
+          $item = $row.find(`.jpress-item-image-selector.item-key-${item_}`);
 
           // NOTE: Debug line..
           // console.info({$item});
@@ -510,49 +510,49 @@ APPBEAR.events = (function (window, document, $) {
         if (check_hide) {
           if (show) {
             if (hide) {
-              appbear_events.hide_row($row);
+              jpress_events.hide_row($row);
             } else {
-              appbear_events.show_row($row);
+              jpress_events.show_row($row);
             }
           } else {
-            appbear_events.hide_row($row);
+            jpress_events.hide_row($row);
           }
         } else {
           if (show) {
-            appbear_events.show_row($row);
+            jpress_events.show_row($row);
           } else {
-            appbear_events.hide_row($row);
+            jpress_events.hide_row($row);
           }
         }
       }
 
       if (check_hide) {
         if (hide) {
-          appbear_events.hide_row($row);
+          jpress_events.hide_row($row);
         } else if (check_show) {
           if (show) {
-            appbear_events.show_row($row);
+            jpress_events.show_row($row);
           } else {
-            appbear_events.hide_row($row);
+            jpress_events.hide_row($row);
           }
         } else {
-          appbear_events.show_row($row);
+          jpress_events.show_row($row);
         }
         // if( check_show ){
         // 	if( hide ){
-        // 		appbear_events.hide_row($row);
+        // 		jpress_events.hide_row($row);
         // 	} else {
         // 		if( show ){
-        // 			appbear_events.show_row($row);
+        // 			jpress_events.show_row($row);
         // 		} else {
-        // 			appbear_events.hide_row($row);
+        // 			jpress_events.hide_row($row);
         // 		}
         // 	}
         // } else {
         // 	if( hide ){
-        // 		appbear_events.hide_row($row);
+        // 		jpress_events.hide_row($row);
         // 	} else {
-        // 		appbear_events.show_row($row);
+        // 		jpress_events.show_row($row);
         // 	}
         // }
       }
@@ -563,20 +563,20 @@ APPBEAR.events = (function (window, document, $) {
     });
   };
 
-  appbear_events.show_row = function ($row) {
+  jpress_events.show_row = function ($row) {
     let data_show_hide = $row.data('show-hide');
     let delay = parseInt(data_show_hide.delay);
 
     if (data_show_hide.effect == 'slide') {
       $row.slideDown(delay, function () {
-        if ($row.hasClass('appbear-row-mixed')) {
+        if ($row.hasClass('jpress-row-mixed')) {
           $row.css('display', 'inline-block');
         }
       });
     }
     else if (data_show_hide.effect == 'fade') {
       $row.fadeIn(delay, function () {
-        if ($row.hasClass('appbear-row-mixed')) {
+        if ($row.hasClass('jpress-row-mixed')) {
           $row.css('display', 'inline-block');
         }
       });
@@ -584,12 +584,12 @@ APPBEAR.events = (function (window, document, $) {
     else {
       $row.show();
 
-      if ($row.hasClass('appbear-row-mixed')) {
+      if ($row.hasClass('jpress-row-mixed')) {
         $row.css('display', 'inline-block');
       }
     }
   };
-  appbear_events.hide_row = function ($row) {
+  jpress_events.hide_row = function ($row) {
     let data_show_hide = $row.data('show-hide');
     let delay = parseInt(data_show_hide.delay);
     if (data_show_hide.effect == 'slide') {
@@ -606,10 +606,10 @@ APPBEAR.events = (function (window, document, $) {
   /**
    * Init Conditional Items Extension
    *
-   * @param {*} $appbear
+   * @param {*} $jpress
    * @return {void}
    */
-  appbear_events.init_conditional_items = ($appbear) => {
+  jpress_events.init_conditional_items = ($jpress) => {
     const getRowData = ($row, $items) => {
       const data_ = $row.data('show-hide-items') || { show_items_if: {} };
 
@@ -645,7 +645,7 @@ APPBEAR.events = (function (window, document, $) {
 
       $items.each(function () {
         const $el = $(this);
-        const key_ = $el.attr('class').replace('appbear-item-image-selector item-key-', '');
+        const key_ = $el.attr('class').replace('jpress-item-image-selector item-key-', '');
         const conditions_ = is_empty(conditions[key_]) ? [] : conditions[key_];
 
         if (conditions_.length > 0) {
@@ -678,11 +678,11 @@ APPBEAR.events = (function (window, document, $) {
       });
     };
 
-    $appbear
-    .find('.appbear-row.appbear-type-image_selector')
+    $jpress
+    .find('.jpress-row.jpress-type-image_selector')
     .each(function () {
       const $row = $(this);
-      const $items = $row.find('.appbear-item-image-selector');
+      const $items = $row.find('.jpress-item-image-selector');
       const { data: dataShowHideItems, length: dataLength } = getRowData($row, $items);
       let rowDidInit = $row.data('did-hook-show-items');
 
@@ -744,7 +744,7 @@ APPBEAR.events = (function (window, document, $) {
         let selectorsParsed = '';
 
         selectors.map((val, idx) => {
-          selectorsParsed += `${val} .appbear-element, `;
+          selectorsParsed += `${val} .jpress-element, `;
         });
 
         selectorsParsed = selectorsParsed.substr(0, selectorsParsed.length - 2);
@@ -753,15 +753,15 @@ APPBEAR.events = (function (window, document, $) {
         // console.info({ $row, rowDidInit, dataShowHideItems, dataLength, selectors, selectorsParsed });
 
         // TODO: Hook to inputs changes here
-        $appbear.on('input, statusChange', selectorsParsed, function () {
+        $jpress.on('input, statusChange', selectorsParsed, function () {
           showAll();
           checkShowItems($items, dataShowHideItems, hide);
 
           // const $el = $(this);
           // console.info({ $el });
 
-          // $(this).trigger('appbear_changed_value', $(this).val());
-          // appbear_events.show_hide_row($(this), $(this).val(), 'wp_editor');
+          // $(this).trigger('jpress_changed_value', $(this).val());
+          // jpress_events.show_hide_row($(this), $(this).val(), 'wp_editor');
         });
       }
     });
@@ -782,85 +782,85 @@ APPBEAR.events = (function (window, document, $) {
 
   //Document Ready
   $(function () {
-    appbear = window.APPBEAR;
-    appbear_events.init();
+    jpress = window.APPBEAR;
+    jpress_events.init();
   });
 
-  return appbear_events;
+  return jpress_events;
 
 })(window, document, jQuery);
 
 
 //Events when you change some value of any field.
 /*jQuery(document).ready(function($) {
-  $('.appbear-type-colorpicker .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-colorpicker .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'colorpicker changed:' );
     console.log( value );
   });
 
-  $('.appbear-code-editor').on('appbear_changed_value', function( event, value ){
+  $('.jpress-code-editor').on('jpress_changed_value', function( event, value ){
     console.log( 'code_editor changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-file .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-file .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'file changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-image_selector .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-image_selector .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'image_selector changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-number .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-number .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'number changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-oembed .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-oembed .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'oembed changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-radio .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-radio .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'radio changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-checkbox .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-checkbox .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'checkbox changed:' );
     console.log( value );
   });
 
-  $('.appbear-type-switcher .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-switcher .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'switcher:' );
     console.log( value );
   });
 
-  $('.appbear-type-select .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-select .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'select:' );
     console.log( value );
   });
 
-  $('.appbear-type-text .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-text .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'Texto:' );
     console.log( value );
   });
 
-  $('.appbear-type-textarea .appbear-element').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-textarea .jpress-element').on('jpress_changed_value', function( event, value ){
     console.log( 'textarea:' );
     console.log( value );
   });
 
-  $('.appbear-type-wp_editor .wp-editor-area').on('appbear_changed_value', function( event, value ){
+  $('.jpress-type-wp_editor .wp-editor-area').on('jpress_changed_value', function( event, value ){
     console.log( 'wp_editor:' );
     console.log( value );
   });
 
-  $appbear.on('appbear_on_init_wp_editor', function (e, wp_editor, args) {
+  $jpress.on('jpress_on_init_wp_editor', function (e, wp_editor, args) {
     //After Init
-    console.log('appbear_on_init_wp_editor', wp_editor);
+    console.log('jpress_on_init_wp_editor', wp_editor);
     wp_editor.on('click', function (e) {
       console.log('Editor was clicked');
     });
@@ -870,9 +870,9 @@ APPBEAR.events = (function (window, document, $) {
     }
   });
 
-  $appbear.on('appbear_on_setup_wp_editor', function (e, wp_editor) {
+  $jpress.on('jpress_on_setup_wp_editor', function (e, wp_editor) {
     //Before Init
-    console.log('appbear_on_setup_wp_editor', wp_editor);
+    console.log('jpress_on_setup_wp_editor', wp_editor);
 
     //Add your buttons
     wp_editor.settings.toolbar3 = 'fontselect | media, image';

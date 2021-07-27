@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace Appbear\Includes;
 
 class Importer {
-    private $appbear = null;
+    private $jpress = null;
     private $data = array();
     private $update_uploads_url = false;
     private $update_plugins_url = true;
@@ -15,14 +15,14 @@ class Importer {
     | Constructor de la clase
     |---------------------------------------------------------------------------------------------------
     */
-    public function __construct( $appbear, $data = array(), $settings ){
-        $this->appbear = $appbear;
+    public function __construct( $jpress, $data = array(), $settings ){
+        $this->jpress = $jpress;
         $this->data = $data;
         $this->update_uploads_url = $settings['update_uploads_url'];
         $this->update_plugins_url = $settings['update_plugins_url'];
         if( $settings['show_authentication_fields'] ){
-            $this->username = ! empty( $data['appbear-import-username'] ) ? $data['appbear-import-username'] : null;
-            $this->password = ! empty( $data['appbear-import-password'] ) ? $data['appbear-import-password'] : null;
+            $this->username = ! empty( $data['jpress-import-username'] ) ? $data['jpress-import-username'] : null;
+            $this->password = ! empty( $data['jpress-import-password'] ) ? $data['jpress-import-password'] : null;
         }
 
     }
@@ -32,30 +32,30 @@ class Importer {
     | Obtiene los datos a importar
     |---------------------------------------------------------------------------------------------------
     */
-    public function get_import_appbear_data(){
-        $import_appbear_data = false;
-        $json_appbear_data = false;
+    public function get_import_jpress_data(){
+        $import_jpress_data = false;
+        $json_jpress_data = false;
         $data = $this->data;
-        $prefix = $this->appbear->arg( 'fields_prefix' );
+        $prefix = $this->jpress->arg( 'fields_prefix' );
 
-        //name por defecto del campo es appbear-import-field que se agrega con el método add_import_field() en class-appbear-core.php
+        //name por defecto del campo es jpress-import-field que se agrega con el método add_import_field() en class-jpress-core.php
         //Puede ser from_file, from_url o una url json tomada del array items del campo import.
-        //https://appbearframework.com/documentation/field-types/import-export/
-        $import_from = $data[$prefix . 'appbear-import-field'];
+        //https://jpressframework.com/documentation/field-types/import-export/
+        $import_from = $data[$prefix . 'jpress-import-field'];
 
         switch( $import_from ){
             case 'from_file':
-                if( isset( $_FILES["appbear-import-file"] ) ){
-                    $file_name = $_FILES['appbear-import-file']['name'];
+                if( isset( $_FILES["jpress-import-file"] ) ){
+                    $file_name = $_FILES['jpress-import-file']['name'];
                     if( Functions::ends_with( '.json', $file_name ) ){
-                        $json_appbear_data = file_get_contents( $_FILES['appbear-import-file']['tmp_name'] );
+                        $json_jpress_data = file_get_contents( $_FILES['jpress-import-file']['tmp_name'] );
                     }
                 }
                 break;
 
             case 'from_url':
-                if( Functions::ends_with( '.json', $data['appbear-import-url'] ) ){
-                    $json_appbear_data = $this->get_json_from_url( $data['appbear-import-url'] );
+                if( Functions::ends_with( '.json', $data['jpress-import-url'] ) ){
+                    $json_jpress_data = $this->get_json_from_url( $data['jpress-import-url'] );
                 }
                 break;
 
@@ -64,20 +64,20 @@ class Importer {
                 $import_wp_content = '';
                 $import_wp_widget = '';
                 $widget_cb = '';
-                if( isset( $data['appbear-import-data'] ) ){
-                    $sources = isset( $data['appbear-import-data'][$import_source] ) ? $data['appbear-import-data'][$import_source] : array();
-                    $import_appbear = isset( $sources['import_appbear'] ) ? $sources['import_appbear'] : '';
+                if( isset( $data['jpress-import-data'] ) ){
+                    $sources = isset( $data['jpress-import-data'][$import_source] ) ? $data['jpress-import-data'][$import_source] : array();
+                    $import_jpress = isset( $sources['import_jpress'] ) ? $sources['import_jpress'] : '';
                     $import_wp_content = isset( $sources['import_wp_content'] ) ? $sources['import_wp_content'] : '';
                     $import_wp_widget = isset( $sources['import_wp_widget'] ) ? $sources['import_wp_widget'] : '';
                     $widget_cb = isset( $sources['import_wp_widget_callback'] ) ? $sources['import_wp_widget_callback'] : '';
                 } else {
-                    $import_appbear = $import_source;
+                    $import_jpress = $import_source;
                 }
 
-                //Import appbear data
-                //if( file_exists( $import_appbear ) || Functions::remote_file_exists( $import_appbear ) ){
-                if( Functions::ends_with( '.json', $import_appbear ) ){//Remote file falla en sitios https
-                    $json_appbear_data = $this->get_json_from_url( $import_appbear );
+                //Import jpress data
+                //if( file_exists( $import_jpress ) || Functions::remote_file_exists( $import_jpress ) ){
+                if( Functions::ends_with( '.json', $import_jpress ) ){//Remote file falla en sitios https
+                    $json_jpress_data = $this->get_json_from_url( $import_jpress );
                 }
 
                 //Import Wp Content
@@ -87,11 +87,11 @@ class Importer {
                 } else if( Functions::remote_file_exists( $import_wp_content ) ){
                     $file_content = file_get_contents( $import_wp_content );
                     if( $file_content !== false ){
-                        if( false !== file_put_contents( APPBEAR_DIR . 'wp-content-data.xml', $file_content ) ){
+                        if( false !== file_put_contents( JPRESS_DIR . 'wp-content-data.xml', $file_content ) ){
                             echo '<h2>Importing wordpress data from remote file, please wait ...</h2>';
                             //echo '<div class="wp-import-messages">';
-                            $this->set_wp_content_data( APPBEAR_DIR . 'wp-content-data.xml' );
-                            unlink( APPBEAR_DIR . 'wp-content-data.xml' );
+                            $this->set_wp_content_data( JPRESS_DIR . 'wp-content-data.xml' );
+                            unlink( JPRESS_DIR . 'wp-content-data.xml' );
                             //echo '</div>';
                         }
                     }
@@ -106,14 +106,14 @@ class Importer {
                 break;
         }
 
-        if( $json_appbear_data !== false ){
+        if( $json_jpress_data !== false ){
             //commented by essam for the array issue in top bar logo. on 19-11-2020 reported by emad
-            // $json_appbear_data = $this->update_urls_from_data( $json_appbear_data );
-            $import_appbear_data = json_decode( $json_appbear_data, true );
+            // $json_jpress_data = $this->update_urls_from_data( $json_jpress_data );
+            $import_jpress_data = json_decode( $json_jpress_data, true );
         }
 
-        if( is_array( $import_appbear_data ) && ! empty( $import_appbear_data ) ){
-            return $import_appbear_data;
+        if( is_array( $import_jpress_data ) && ! empty( $import_jpress_data ) ){
+            return $import_jpress_data;
         }
 
         return false;
@@ -129,7 +129,7 @@ class Importer {
 
         $importer_error = false;
         if( ! class_exists( '\WP_Import' ) ){
-            $class_wp_import = APPBEAR_DIR . 'libs/wordpress-importer/wordpress-importer.php';
+            $class_wp_import = JPRESS_DIR . 'libs/wordpress-importer/wordpress-importer.php';
             if( file_exists( $class_wp_import ) ){
                 require_once $class_wp_import;
             } else{
@@ -156,8 +156,8 @@ class Importer {
     |---------------------------------------------------------------------------------------------------
     */
     public function update_urls_from_data( $json_data ){
-        // $this->data = $import_appbear_data;
-        // array_walk_recursive( $import_appbear_data, array( $this, 'replace_urls') );
+        // $this->data = $import_jpress_data;
+        // array_walk_recursive( $import_jpress_data, array( $this, 'replace_urls') );
 
         $data = json_decode( $json_data, true );
         $json_data = str_replace( '\\/', '/', $json_data );

@@ -4,11 +4,11 @@
   $stats = isset($stats) && is_array($stats) ? (Object) $stats : false;
 ?>
 
-<div class="appbear-notification-metabox-wrapper">
+<div class="jpress-notification-metabox-wrapper">
     <?php if ( $disabled ) : ?>
     <div class="meta-options anm_notice">
-      <a href="<?php echo admin_url('admin.php?page=appbear-activation'); ?>" target="_blank">
-        <?php _e('Please connect your AppBear account to enjoy this feature.', 'textdomain'); ?>
+      <a href="<?php echo admin_url('admin.php?page=jpress-activation'); ?>" target="_blank">
+        <?php _e('Please connect your JPress account to enjoy this feature.', 'textdomain'); ?>
       </a>
     </div>
     <hr>
@@ -19,37 +19,37 @@
           <?php echo $disabled ? 'disabled="disabled"' : ''; ?>
           <?php echo $checked ? 'checked="checked"' : ''; ?>
           type="checkbox"
-          name="appbear_notifications_send"
-          id="appbear_notifications_send"
+          name="jpress_notifications_send"
+          id="jpress_notifications_send"
           class="anm_checkbox" />
-        <label for="appbear_notifications_send" class="anm_checkbox_label">
+        <label for="jpress_notifications_send" class="anm_checkbox_label">
           <strong><?php _e('Send notification for this post', 'textdomain') ?></strong>
         </label>
     </p>
     <p class="meta-options anm_field" <?php echo $checked === false ? 'style="display: none;"' : ''; ?>>
-        <label for="appbear_notifications_title"><?php _e('Notification Title', 'textdomain') ?></label>
+        <label for="jpress_notifications_title"><?php _e('Notification Title', 'textdomain') ?></label>
         <input
           <?php echo $disabled ? 'disabled="disabled"' : ''; ?>
           type="text"
-          name="appbear_notifications_title"
-          id="appbear_notifications_title"
+          name="jpress_notifications_title"
+          id="jpress_notifications_title"
           required />
           <!-- readonly -->
     </p>
     <p class="meta-options anm_field" <?php echo $checked === false ? 'style="display: none;"' : ''; ?>>
-        <label for="appbear_notifications_message"><?php _e('Notification Message', 'textdomain') ?></label>
+        <label for="jpress_notifications_message"><?php _e('Notification Message', 'textdomain') ?></label>
         <textarea
           <?php echo $disabled ? 'disabled="disabled"' : ''; ?>
           type="text"
-          name="appbear_notifications_message"
-          id="appbear_notifications_message"
+          name="jpress_notifications_message"
+          id="jpress_notifications_message"
           rows="3">🔥 <?php _e('Check out this new article.', 'textdomain'); ?></textarea>
     </p>
 
     <?php if ( is_object($stats) ) : ?>
     <hr>
     <div class="meta-options anm_notice anm_notice_normal">
-      <span href="<?php echo admin_url('admin.php?page=appbear-activation'); ?>" target="_blank">
+      <span href="<?php echo admin_url('admin.php?page=jpress-activation'); ?>" target="_blank">
         <?php if ( $stats->sent_count > -1 || $stats->sent_count === '?' ): ?>
         <strong><?php _e('Total sent:', 'textdomain'); ?></strong>
         <?php

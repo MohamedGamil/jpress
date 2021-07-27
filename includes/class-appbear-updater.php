@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 0.2.7
  * @author Easy Digital Downloads
- * @author AppBear Team
+ * @author JPress Team
  * @version 1.8.1
  */
-class App_Bear_Updater {
+class JPress_Updater {
   /**
    * Internal API URL
    *
@@ -43,7 +43,7 @@ class App_Bear_Updater {
 	public function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
     global $edd_plugin_data;
 
-    if ( defined('APPBEAR_ENABLE_AUTO_UPDATE') === false || (defined('APPBEAR_ENABLE_AUTO_UPDATE') && APPBEAR_ENABLE_AUTO_UPDATE === false) ) {
+    if ( defined('JPRESS_ENABLE_AUTO_UPDATE') === false || (defined('JPRESS_ENABLE_AUTO_UPDATE') && JPRESS_ENABLE_AUTO_UPDATE === false) ) {
       return;
     }
 

@@ -13,21 +13,21 @@ defined( 'ABSPATH' ) || exit;
 
 // NOTE: Side-Menu Page
 $settings->open_tab_item('sidemenu');
-$appbear_sidemenu_styling = $settings->add_section( array(
+$jpress_sidemenu_styling = $settings->add_section( array(
   'name' => __( 'Side Menu Styling', 'textdomain' ),
   'id' => 'section-sidemenu',
   'options' => array( 'toggle' => true )
 ));
 
-$appbear_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
-$appbear_sidemenu_styling->add_field(array(
+$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+$jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_light-background',
   //'name' => __( 'Light Mode', 'textdomain' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
 ));
 
-$appbear_sidemenu_styling->add_field(array(
+$jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_dark-background',
   'name' => __( 'Dark Mode', 'textdomain' ),
   'type' => 'colorpicker',
@@ -36,17 +36,17 @@ $appbear_sidemenu_styling->add_field(array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   )
 ));
-$appbear_sidemenu_styling->close_mixed_field();
+$jpress_sidemenu_styling->close_mixed_field();
 
-$appbear_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'textdomain' )));
-$appbear_sidemenu_styling->add_field(array(
+$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'textdomain' )));
+$jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_light-sideMenuIconsTextColor',
   //'name' => __( 'Light Mode', 'textdomain' ),
   'type' => 'colorpicker',
   'default' => '#333739',
 ));
 
-$appbear_sidemenu_styling->add_field(array(
+$jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_dark-sideMenuIconsTextColor',
   'name' => __( 'Dark Mode', 'textdomain' ),
   'type' => 'colorpicker',
@@ -55,7 +55,7 @@ $appbear_sidemenu_styling->add_field(array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   )
 ));
-$appbear_sidemenu_styling->close_mixed_field();
+$jpress_sidemenu_styling->close_mixed_field();
 
 
 $sidemenu_items = $settings->add_section( array(

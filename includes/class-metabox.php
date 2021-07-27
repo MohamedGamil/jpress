@@ -14,7 +14,7 @@ class Metabox extends AppbearCore {
 
         $this->args = wp_parse_args( $args, array(
             'id' => '',
-            'title' => __( 'Appbear Metabox', 'appbear' ),
+            'title' => __( 'Appbear Metabox', 'jpress' ),
             'context' => 'normal',
             'priority' => 'high',
             'post_types' => 'post',
@@ -99,16 +99,16 @@ class Metabox extends AppbearCore {
     |---------------------------------------------------------------------------------------------------
     */
     public function build_metabox(){
-        echo $this->build_appbear();
+        echo $this->build_jpress();
     }
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Add a class 'appbear-postbox' to a Metabox
+    | Add a class 'jpress-postbox' to a Metabox
     |---------------------------------------------------------------------------------------------------
     */
     public function add_metabox_classes( $classes = array() ){
-        array_push( $classes, 'appbear-postbox' );
+        array_push( $classes, 'jpress-postbox' );
         if( $this->arg( 'closed' ) && empty( $this->args['header'] ) ){
             array_push( $classes, 'closed' );
         }

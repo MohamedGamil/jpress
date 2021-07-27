@@ -149,7 +149,7 @@ $section_header_1->add_field(array(
 
 $section_header_1->close_mixed_field();
 
-$deeplinkingOpts = appbear_get_deeplinking_opts();
+$deeplinkingOpts = jpress_get_deeplinking_opts();
 $canDeeplinking = isset($deeplinkingOpts->appid_ios) && empty($deeplinkingOpts->appid_ios) === false;
 $deeplinkingAttrs = $canDeeplinking === false ? array( 'disabled' => 'disabled' ) : array();
 $section_header_1->add_field(array(

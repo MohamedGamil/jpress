@@ -10,9 +10,9 @@ jQuery(document).ready(function ($) {
       _custom_media = true;
       wp.media.editor.send.attachment = function (props, attachment) {
         if (_custom_media) {
-          $('#appbear-category-image-id').val(attachment.id);
-          $('#appbear-category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
-          $('#appbear-category-image-wrapper .custom_media_image').attr('src', attachment.url).css('display', 'block');
+          $('#jpress-category-image-id').val(attachment.id);
+          $('#jpress-category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+          $('#jpress-category-image-wrapper .custom_media_image').attr('src', attachment.url).css('display', 'block');
         } else {
           return _orig_send_attachment.apply(button_id, [props, attachment]);
         }
@@ -22,11 +22,11 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  ct_media_upload('.appbear_cat_media_button.button');
+  ct_media_upload('.jpress_cat_media_button.button');
 
-  $('body').on('click', '.appbear_cat_media_remove', function () {
-    $('#appbear-category-image-id').val('');
-    $('#appbear-category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+  $('body').on('click', '.jpress_cat_media_remove', function () {
+    $('#jpress-category-image-id').val('');
+    $('#jpress-category-image-wrapper').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
   });
 
   // Thanks: http://stackoverflow.com/questions/15281995/wordpress-create-category-ajax-response
@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
       $response = $(xml).find('term_id').text();
       if ($response != "") {
         // Clear the thumb image
-        $('#appbear-category-image-wrapper').html('');
+        $('#jpress-category-image-wrapper').html('');
       }
     }
   });

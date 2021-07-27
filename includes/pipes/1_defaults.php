@@ -37,24 +37,24 @@ if (isset($data["topbar_search_button"]) && $data["topbar_search_button"] !== 'f
 }
 
 // URLs
-$options['basicUrls']["getPost"] = "/wp-json/appbear/v1/post";
-$options['basicUrls']["submitComment"] = "/wp-json/appbear/v1/add-comment";
+$options['basicUrls']["getPost"] = "/wp-json/jpress/v1/post";
+$options['basicUrls']["submitComment"] = "/wp-json/jpress/v1/add-comment";
 $options['basicUrls']["removeUrl"] = "/?edd_action=remove_development_token";
 $options['basicUrls']["saveToken"] = "/?edd_action=save_token";
-$options['basicUrls']["translations"] = "/wp-json/appbear/v1/translations";
-$options['basicUrls']["getPostWPJSON"] = "/wp-json/appbear/v1/post";
-$options['basicUrls']["getTags"] = "/wp-json/appbear/v1/posts?tags=";
-$options['basicUrls']["getTagsPosts"] = "/wp-json/appbear/v1/posts?tags=";
-$options['basicUrls']["login"] = "/wp-json/appbear/v1/login";
-$options['basicUrls']["selectDemo"] = "/wp-json/appbear/v1/selectDemo?";
-$options['basicUrls']["demos"] = "/wp-json/appbear/v1/demos";
+$options['basicUrls']["translations"] = "/wp-json/jpress/v1/translations";
+$options['basicUrls']["getPostWPJSON"] = "/wp-json/jpress/v1/post";
+$options['basicUrls']["getTags"] = "/wp-json/jpress/v1/posts?tags=";
+$options['basicUrls']["getTagsPosts"] = "/wp-json/jpress/v1/posts?tags=";
+$options['basicUrls']["login"] = "/wp-json/jpress/v1/login";
+$options['basicUrls']["selectDemo"] = "/wp-json/jpress/v1/selectDemo?";
+$options['basicUrls']["demos"] = "/wp-json/jpress/v1/demos";
 
 // Other settings
 $options['defaultLayout'] = "Layout.standard";
-$options['searchApi'] = "/wp-json/appbear/v1/posts?s=";
-$options['commentsApi'] = "/wp-json/appbear/v1/comments?id=";
-$options['commentAdd'] = "/wp-json/appbear/v1/add-comment";
-$options['relatedPostsApi'] = "/wp-json/appbear/v1/posts?related_id=";
+$options['searchApi'] = "/wp-json/jpress/v1/posts?s=";
+$options['commentsApi'] = "/wp-json/jpress/v1/comments?id=";
+$options['commentAdd'] = "/wp-json/jpress/v1/add-comment";
+$options['relatedPostsApi'] = "/wp-json/jpress/v1/posts?related_id=";
 $options['lang'] = "en";
 $options['validConfig'] = "true";
-$options['ttsLanguage'] = appbear_get_tts_locale();
+$options['ttsLanguage'] = jpress_get_tts_locale();

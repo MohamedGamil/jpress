@@ -986,7 +986,7 @@ return array(
     976 => 'fab fa-wpforms',
     977 => 'fas fa-wrench',
     978 => 'fas fa-x-ray',
-    979 => 'fab fa-appbear',
+    979 => 'fab fa-jpress',
     980 => 'fab fa-xing',
     981 => 'fab fa-xing-square',
     982 => 'fab fa-y-combinator',

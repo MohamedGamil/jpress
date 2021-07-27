@@ -27,7 +27,7 @@
 
 <?php if ($enabled === true): ?>
 
-<!-- AppBear Ad Block Start -->
+<!-- JPress Ad Block Start -->
 <div>
 
   <?php if ($isAdmob === true): ?>
@@ -46,6 +46,6 @@
   <?php endif; ?>
 
 </div>
-<!-- / AppBear Ad Block End -->
+<!-- / JPress Ad Block End -->
 
 <?php endif; ?>

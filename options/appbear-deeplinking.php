@@ -4,14 +4,14 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 
 /**
- * AppBear_Deeplinking Class
+ * JPress_Deeplinking Class
  *
  * This class handles deeplinking integration
  *
  *
  * @since 0.0.5
  */
-class AppBear_Deeplinking {
+class JPress_Deeplinking {
   const SUPPORTED_PLATFORMS = [ 'android', 'ios' ];
 
   /**
@@ -39,7 +39,7 @@ class AppBear_Deeplinking {
       return;
     }
 
-    static::$_localInstance = new AppBear_Deeplinking();
+    static::$_localInstance = new JPress_Deeplinking();
     static::$_didInit = true;
   }
 
@@ -66,7 +66,7 @@ class AppBear_Deeplinking {
    * Initialize options
    */
   public function init_options() {
-    $this->options = appbear_get_deeplinking_opts();
+    $this->options = jpress_get_deeplinking_opts();
   }
 
   /**
@@ -76,8 +76,8 @@ class AppBear_Deeplinking {
     $this->init_options();
 
     $deeplinkingOpts = $this->options;
-    $deeplinkJs = APPBEAR_URL . 'options/js/deeplinking.js';
-    $deeplinkCss = APPBEAR_URL . 'options/css/deeplinking.css';
+    $deeplinkJs = JPRESS_URL . 'options/js/deeplinking.js';
+    $deeplinkCss = JPRESS_URL . 'options/css/deeplinking.css';
     $baseDeeplinkURLAndroid = $this->_getDeeplink('android');
     $baseDeeplinkURLIos = $this->_getDeeplink('ios');
     $deeplinkURLAndroid = $this->_getDeeplink( 'android', 'post', get_the_ID() );
@@ -89,13 +89,13 @@ class AppBear_Deeplinking {
 
     // dd($baseDeeplinkURLAndroid, $baseDeeplinkURLIos, $deeplinkURLAndroid, $deeplinkURLIos);
 
-    wp_enqueue_style( 'appbear-browser-deeplink-widget', $deeplinkCss );
-    wp_register_script( 'appbear-browser-deeplink', '' );
-    wp_enqueue_script( 'appbear-browser-deeplink', array('jquery') );
-    wp_enqueue_script( 'appbear-browser-deeplink-init', $deeplinkJs, array('jquery') );
+    wp_enqueue_style( 'jpress-browser-deeplink-widget', $deeplinkCss );
+    wp_register_script( 'jpress-browser-deeplink', '' );
+    wp_enqueue_script( 'jpress-browser-deeplink', array('jquery') );
+    wp_enqueue_script( 'jpress-browser-deeplink-init', $deeplinkJs, array('jquery') );
 
-    wp_add_inline_script('appbear-browser-deeplink', '
-      window.AppBear_Deeplinking = {
+    wp_add_inline_script('jpress-browser-deeplink', '
+      window.JPress_Deeplinking = {
         base_url_android: "' . $baseDeeplinkURLAndroid . '",
         base_url_ios: "' . $baseDeeplinkURLIos . '",
         deeplink_url_android: "' . $deeplinkURLAndroid . '",
@@ -119,7 +119,7 @@ class AppBear_Deeplinking {
   protected function _getDeeplink($platform, $type = null, $ID = null) {
     $platform = in_array(strtolower($platform), static::SUPPORTED_PLATFORMS) ? strtolower($platform) : static::SUPPORTED_PLATFORMS[0];
     $platformBundle = $this->options->{ "name_{$platform}" } ?? $platform;
-    $baseURL = APPBEAR_DEEPLINKING_SCHEME . "://{$platformBundle}";
+    $baseURL = JPRESS_DEEPLINKING_SCHEME . "://{$platformBundle}";
     $deeplinkURL = $baseURL . '/?type=%s&id=%s';
 
     if ( is_null($type) && is_null($ID) ) {

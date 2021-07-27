@@ -264,8 +264,8 @@
     "termsAndConditions": "/wp-json/wl/v1/page?id=3",
     "contactUs": "/wp-json/wl/v1/contact-us",
     "aboutApp": {
-      "aboutLogoLight": "http://appstage.tielabs.com/wp-content/plugins/appbear_plugin/img/jannah-logo-light.png",
-      "aboutLogoDark": "http://appstage.tielabs.com/wp-content/plugins/appbear_plugin/img/jannah-logo-dark.png",
+      "aboutLogoLight": "http://appstage.tielabs.com/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png",
+      "aboutLogoDark": "http://appstage.tielabs.com/wp-content/plugins/jpress_plugin/img/jannah-logo-dark.png",
       "title": "My WordPress Website",
       "content": "Just another WordPress sitern"
     },

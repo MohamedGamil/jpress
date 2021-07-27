@@ -22,7 +22,7 @@
       cancel_text: '',
       confirm_text: '',
       cancel_class: '',
-      confirm_class: 'appbear-btn-blue',
+      confirm_class: 'jpress-btn-blue',
       cancel_bg: '',
       confirm_bg: '',
       cancel_color: '',
@@ -56,38 +56,38 @@
 
     build: function(){
       var _ = this;
-      var header = _.options.title === '' ? '' : '<div class="appbear-confirm-header"><h3>' + _.options.title + '</h3></div>';
+      var header = _.options.title === '' ? '' : '<div class="jpress-confirm-header"><h3>' + _.options.title + '</h3></div>';
       var cancel_text = _.options.cancel_text || 'Cancel';
       var confirm_text = _.options.confirm_text || 'Accept';
-      var confirm_btn = _.options.hide_confirm ? '' : '<button class="appbear-confirm-btn appbear-btn" type="button"><i class="appbear-icon appbear-icon-check"></i>' + confirm_text +'</button>';
-      var cancel_btn = _.options.hide_cancel ? '' : '<button class="appbear-cancel-btn appbear-btn" type="button"><i class="appbear-icon appbear-icon-close"></i>' + cancel_text +'</button>';
-      var close_btn = '<span class="appbear-confirm-close-btn appbear-icon appbear-icon-times"></span>';
+      var confirm_btn = _.options.hide_confirm ? '' : '<button class="jpress-confirm-btn jpress-btn" type="button"><i class="jpress-icon jpress-icon-check"></i>' + confirm_text +'</button>';
+      var cancel_btn = _.options.hide_cancel ? '' : '<button class="jpress-cancel-btn jpress-btn" type="button"><i class="jpress-icon jpress-icon-close"></i>' + cancel_text +'</button>';
+      var close_btn = '<span class="jpress-confirm-close-btn jpress-icon jpress-icon-times"></span>';
       var content = typeof _.options.content == 'object' ? '' : _.options.content;
 
       _.el =
-        '<div class="appbear appbear-confirm ' + _.options.wrap_class +' ">' +
-          '<div class="appbear-confirm-inner">' +
+        '<div class="jpress jpress-confirm ' + _.options.wrap_class +' ">' +
+          '<div class="jpress-confirm-inner">' +
             close_btn + header +
-            '<div class="appbear-confirm-content">' + content + '</div>' +
-            '<div class="appbear-confirm-footer">' +
+            '<div class="jpress-confirm-content">' + content + '</div>' +
+            '<div class="jpress-confirm-footer">' +
               cancel_btn + confirm_btn +
             '</div>' +
           '</div>' +
         '</div>';
 
       $('body').append(_.el);
-      $('body').append('<div class="appbear-confirm-overlay"></div>');
-      _.$el = $('body').find('.appbear-confirm');
-      _.$overlay = $('body').find('.appbear-confirm-overlay');
+      $('body').append('<div class="jpress-confirm-overlay"></div>');
+      _.$el = $('body').find('.jpress-confirm');
+      _.$overlay = $('body').find('.jpress-confirm-overlay');
 
       //Customization
-      _.$el.find('.appbear-cancel-btn').addClass(_.options.cancel_class);
-      _.$el.find('.appbear-confirm-btn').addClass(_.options.confirm_class);
+      _.$el.find('.jpress-cancel-btn').addClass(_.options.cancel_class);
+      _.$el.find('.jpress-confirm-btn').addClass(_.options.confirm_class);
       var cancel_css = {};
       var confirm_css = {};
 
       if( _.options.hide_close ){
-        _.$el.find('.appbear-confirm-close-btn').hide();
+        _.$el.find('.jpress-confirm-close-btn').hide();
       }
       if( _.options.cancel_bg ){
         cancel_css.background = _.options.cancel_bg;
@@ -95,7 +95,7 @@
       if( _.options.cancel_color ){
         cancel_css.color = _.options.cancel_color;
       }
-      _.$el.find('.appbear-cancel-btn').css(cancel_css);
+      _.$el.find('.jpress-cancel-btn').css(cancel_css);
 
       if( _.options.confirm_bg ){
         confirm_css.background = _.options.confirm_bg;
@@ -103,7 +103,7 @@
       if( _.options.confirm_color ){
         confirm_css.color = _.options.confirm_color;
       }
-      _.$el.find('.appbear-confirm-btn').css(confirm_css);
+      _.$el.find('.jpress-confirm-btn').css(confirm_css);
     },
 
     ajax_content: function(){
@@ -117,11 +117,11 @@
         url: _.options.content.url,
         data: _.options.content.data,
         beforeSend: function(){
-          _.$el.find('.appbear-confirm-content').html("<i class='appbear-icon appbear-icon-spinner appbear-icon-spin appbear-confirm-loader'></i>");
+          _.$el.find('.jpress-confirm-content').html("<i class='jpress-icon jpress-icon-spinner jpress-icon-spin jpress-confirm-loader'></i>");
         },
         success: function( response ) {
           if( typeof response != 'object' && _.options.content.dataType == 'html' ){
-            _.$el.find('.appbear-confirm-content').append(response);
+            _.$el.find('.jpress-confirm-content').append(response);
             setTimeout(function(){ _.center(true); }, 800);
           }
           if ( $.isFunction( _.options.content.onSuccess ) ) {
@@ -134,7 +134,7 @@
         },
         complete: function( jqXHR, textStatus ){
           setTimeout(function(){ _.center(true); }, 1200);
-          _.$el.find('.appbear-confirm-content > .appbear-confirm-loader').remove();
+          _.$el.find('.jpress-confirm-content > .jpress-confirm-loader').remove();
         }
       });
     },
@@ -142,7 +142,7 @@
     open : function(){
       var _ = this;
       _.$overlay.fadeIn(400);
-      _.$el.addClass('appbear-confirm-open');
+      _.$el.addClass('jpress-confirm-open');
       _.visible = true;
       _.center();
       if ( $.isFunction( _.options.onOpen ) ) {
@@ -158,8 +158,8 @@
           return false;
         });
       }
-      _.$el.find('.appbear-confirm-close-btn, .appbear-cancel-btn, .appbear-confirm-btn').on('click', function(event) {
-        if( $(this).hasClass('appbear-confirm-btn') ){
+      _.$el.find('.jpress-confirm-close-btn, .jpress-cancel-btn, .jpress-confirm-btn').on('click', function(event) {
+        if( $(this).hasClass('jpress-confirm-btn') ){
           _.close(event, true);
         } else {
           _.close(event, false);
@@ -173,7 +173,7 @@
 
     close : function(event, confirm){
       var _ = this;
-      _.$el.addClass('appbear-confirm-close');
+      _.$el.addClass('jpress-confirm-close');
       _.$el.one("webkitAnimationEnd oanimationend msAnimationEnd animationend", function(event) {
         if ( $.isFunction( _.options.onCancel ) && confirm === false ) {
           _.options.onCancel.call(this);
@@ -220,7 +220,7 @@
     console.log(msg);
   }
 
-  $.appbearConfirm = function ( options ) {
+  $.jpressConfirm = function ( options ) {
     new Plugin( options );
   };
 

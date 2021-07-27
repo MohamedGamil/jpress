@@ -31,7 +31,7 @@ if ($data['menu_type'] !== 'sidemenu' && isset($data["bottombar_tabs"]) && !empt
           $navigator['title'] = $category->name;
         }
         unset($navigator['main']);
-        $navigator['url']   = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+        $navigator['url']   = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
       break;
       case 'NavigationType.page':
         $post = get_post($navigator['page']);
@@ -40,7 +40,7 @@ if ($data['menu_type'] !== 'sidemenu' && isset($data["bottombar_tabs"]) && !empt
         if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
           $navigator['title'] = $post->post_title;
         }
-        $navigator['url']   = '/wp-json/appbear/v1/page?id=' . $post->ID;
+        $navigator['url']   = '/wp-json/jpress/v1/page?id=' . $post->ID;
         unset($navigator['main']);
       break;
       case 'NavigationType.main':

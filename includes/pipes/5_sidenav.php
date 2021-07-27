@@ -37,7 +37,7 @@ if (isset($data["menu_type"]) && $data["menu_type"] !== 'bottombar') {
         }
 
         unset($navigator['main']);
-        $navigator['url']   = '/wp-json/appbear/v1/posts?categories=' . $category->term_id;
+        $navigator['url']   = '/wp-json/jpress/v1/posts?categories=' . $category->term_id;
       break;
 
       case 'NavigationType.page':
@@ -51,7 +51,7 @@ if (isset($data["menu_type"]) && $data["menu_type"] !== 'bottombar') {
           $navigator['title'] = $post->post_title;
         }
 
-        $navigator['url']   = '/wp-json/appbear/v1/page?id=' . $post->ID;
+        $navigator['url']   = '/wp-json/jpress/v1/page?id=' . $post->ID;
         unset($navigator['main']);
       break;
 

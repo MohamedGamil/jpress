@@ -56,7 +56,7 @@
    * @param {*} type
    * @param {*} isDismissible
    */
-  function _addAlert( message, type = 'success', handle = 'appbear-notifications', isDismissible = true, isSnackbar = false ) {
+  function _addAlert( message, type = 'success', handle = 'jpress-notifications', isDismissible = true, isSnackbar = false ) {
     const opts = {
       id: handle,
       isDismissible: isDismissible === true,
@@ -90,8 +90,8 @@
     $groups = $widget.find('.anm_field').filter(idx => idx > 0);
     $inputs = $groups.find('input, textarea');
     $checkbox = $widget.find('.anm_checkbox:first');
-    $titleInput = $inputs.filter('[name="appbear_notifications_title"]');
-    $msgInput = $inputs.filter('[name="appbear_notifications_message"]');
+    $titleInput = $inputs.filter('[name="jpress_notifications_title"]');
+    $msgInput = $inputs.filter('[name="jpress_notifications_message"]');
 
     const postTitle = _getPostTitle();
 
@@ -165,7 +165,7 @@
 
     _lock(
       isChecked && ( titleLength === 0 || msgLength === 0 ),
-      'appbear-notifications-checks',
+      'jpress-notifications-checks',
       'Please fill the post title and notification message before saving.'
     );
   }
@@ -175,7 +175,7 @@
    */
   function _registerPlugin() {
     wp.plugins.registerPlugin(
-      'appbear-notifications-metabox-checks',
+      'jpress-notifications-metabox-checks',
       {
         render: () => {
           _inputChecks();
@@ -199,7 +199,7 @@
     }
 
     const _callback = () => {
-      $widget = $('#appbear-notifications-metabox');
+      $widget = $('#jpress-notifications-metabox');
 
       if ($widget.length === 0) {
         return;
