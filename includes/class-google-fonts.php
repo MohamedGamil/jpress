@@ -1,6 +1,6 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 class GoogleFonts {
     private $api_key = 'AIzaSyCXXembGADcoCgo0-H5LzkWuCxLK2XVVjA';

@@ -26,8 +26,8 @@ $fontfamily->add_field( array(
   'default' => '',
   'items' => array(
     '' => __('Default', 'textdomain'),
-    __( 'Web Safe Fonts',   'textdomain' ) => AppbearItems::web_safe_fonts(),
-    __( 'Google Fonts',   'textdomain' ) => AppbearItems::dart_google_fonts()
+    __( 'Web Safe Fonts',   'textdomain' ) => JPressItems::web_safe_fonts(),
+    __( 'Google Fonts',   'textdomain' ) => JPressItems::dart_google_fonts()
   ),
   'options' => array(
     'search' => true, // NOTE: Displays an input to search items. Default: false
@@ -40,8 +40,8 @@ $fontfamily->add_field( array(
   'default' => '',
   'items' => array(
     '' => __('Default', 'textdomain'),
-    'Web Safe Fonts' => AppbearItems::web_safe_fonts(),
-    'Google Fonts' => AppbearItems::dart_google_fonts()
+    'Web Safe Fonts' => JPressItems::web_safe_fonts(),
+    'Google Fonts' => JPressItems::dart_google_fonts()
   ),
   'options' => array(
     'search' => true, // NOTE: Displays an input to search items. Default: false
@@ -60,28 +60,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h1-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h1-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h1-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Heading: H2', 'textdomain' )));
@@ -90,28 +90,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h2-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h2-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h2-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Heading: H3', 'textdomain' ),'desc' => __( 'Example: Sections Title')));
@@ -120,28 +120,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h3-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h3-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h3-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Heading: H4', 'textdomain' ),'desc' => __( 'Example: Post Titles',   'textdomain' )));
@@ -150,28 +150,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h4-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h4-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h4-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Heading: H5', 'textdomain' )));
@@ -180,28 +180,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h5-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h5-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h5-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Heading: H6', 'textdomain' )));
@@ -210,28 +210,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h6-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h6-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-h6-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 $font->close_mixed_field();
 $font->open_mixed_field(array('name' => __('Subtitle 1', 'textdomain' ),'desc' => __( 'Example: Meta (tags, author, category, ...)',   'textdomain' ),));
@@ -240,28 +240,28 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-subtitle1-line_height',
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-subtitle1-weight',
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 $font->add_field( array(
   'id' => 'section-typography-font-subtitle1-transform',
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 
 $font->close_mixed_field();
@@ -273,7 +273,7 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 
 $font->add_field( array(
@@ -281,7 +281,7 @@ $font->add_field( array(
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 
 $font->add_field( array(
@@ -289,7 +289,7 @@ $font->add_field( array(
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 
 $font->add_field( array(
@@ -297,7 +297,7 @@ $font->add_field( array(
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 
 $font->close_mixed_field();
@@ -309,7 +309,7 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 
 $font->add_field( array(
@@ -317,7 +317,7 @@ $font->add_field( array(
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 
 $font->add_field( array(
@@ -325,7 +325,7 @@ $font->add_field( array(
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 
 $font->add_field( array(
@@ -333,7 +333,7 @@ $font->add_field( array(
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 
 $font->close_mixed_field();
@@ -345,7 +345,7 @@ $font->add_field( array(
   'name' => __( 'Font Size',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_size(),
+  'items' => JPressItems::font_size(),
 ));
 
 $font->add_field( array(
@@ -353,7 +353,7 @@ $font->add_field( array(
   'name' => __( 'Line Height',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::line_height(),
+  'items' => JPressItems::line_height(),
 ));
 
 $font->add_field( array(
@@ -361,7 +361,7 @@ $font->add_field( array(
   'name' => __( 'Font Weight',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::font_weight(),
+  'items' => JPressItems::font_weight(),
 ));
 
 $font->add_field( array(
@@ -369,7 +369,7 @@ $font->add_field( array(
   'name' => __( 'Capitalization',   'textdomain' ),
   'type' => 'select',
   'default' => '',
-  'items' => AppbearItems::text_transform(),
+  'items' => JPressItems::text_transform(),
 ));
 
 $font->close_mixed_field();

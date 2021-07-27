@@ -1,6 +1,6 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 
 class FieldBuilder {
@@ -259,7 +259,7 @@ class FieldBuilder {
 			} else if( is_array( $show_if[0] ) ){
 
 			} else {
-				$get_jpress = \Appbear::get($this->field->get_jpress()->id);
+				$get_jpress = \JPress::get($this->field->get_jpress()->id);
 				if($field_value = $get_jpress->get_field_value($show_if[0])){
 					$value = '';
 					$operator = '==';
@@ -287,7 +287,7 @@ class FieldBuilder {
 			} else if( is_array( $hide_if[0] ) ) {
 
 			} else {
-				$get_jpress = \Appbear::get($this->field->get_jpress()->id);
+				$get_jpress = \JPress::get($this->field->get_jpress()->id);
 				if($field_value = $get_jpress->get_field_value($hide_if[0])){
 					$value = '';
 					$operator = '==';
@@ -908,7 +908,7 @@ class FieldBuilder {
 		} else if( is_array( $hide_if[0] ) ) {
 
 		} else {
-			$get_jpress = \Appbear::get($this->field->get_jpress()->id);
+			$get_jpress = \JPress::get($this->field->get_jpress()->id);
 			if($get_jpress->get_field_value($hide_if[0]) == ''){
 				$parent = $this->field->get_parent();
 				$field = $parent->get_field( $hide_if[0] );
@@ -979,7 +979,7 @@ class FieldBuilder {
    * @return boolean
    */
   private function _should_display_field($condition) {
-    $get_jpress = \Appbear::get($this->field->get_jpress()->id);
+    $get_jpress = \JPress::get($this->field->get_jpress()->id);
     $show = true;
 
     if ( $get_jpress->get_field_value($condition[0]) == '' ) {

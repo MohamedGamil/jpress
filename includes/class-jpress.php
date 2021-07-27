@@ -1,11 +1,11 @@
 <?php
 
-use Appbear\Includes\AssetsLoader as AssetsLoader;
-use Appbear\Includes\Ajax as Ajax;
-use Appbear\Includes\AppbearCore as AppbearCore;
-use Appbear\Includes\Functions as Functions;
+use JPress\Includes\AssetsLoader as AssetsLoader;
+use JPress\Includes\Ajax as Ajax;
+use JPress\Includes\JPressCore;
+use JPress\Includes\Functions;
 
-class Appbear {
+class JPress {
     public $version;
     private static $instance = null;
     private static $jpresss = array();
@@ -44,7 +44,7 @@ class Appbear {
         $screen = get_current_screen();
 
         foreach( self::$jpresss as $jpress ){
-            if( is_a( $jpress, 'Appbear\Includes\Metabox' ) ){
+            if( is_a( $jpress, 'JPress\Includes\Metabox' ) ){
                 if( in_array( $screen->post_type, (array) $jpress->arg( 'post_types' ) ) ){
                     $load_scripts = true;
                 }
@@ -72,7 +72,7 @@ class Appbear {
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Crear un Appbear
+    | Crear un JPress
     |---------------------------------------------------------------------------------------------------
     */
     public static function new_jpress( $options = array() ){
@@ -84,12 +84,12 @@ class Appbear {
         if( $jpress ){
             return $jpress;
         }
-        return new AppbearCore( $options );
+        return new JPressCore( $options );
     }
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Obtiene una instancia de Appbear
+    | Obtiene una instancia de JPress
     |---------------------------------------------------------------------------------------------------
     */
     public static function get( $jpress_id ){
@@ -118,18 +118,18 @@ class Appbear {
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Agrega una instancia de Appbear
+    | Agrega una instancia de JPress
     |---------------------------------------------------------------------------------------------------
     */
     public static function add( $jpress ){
-        if( is_a( $jpress, 'Appbear\Includes\AppbearCore' ) ){
+        if( is_a( $jpress, 'JPress\Includes\JPressCore' ) ){
             self::$jpresss[$jpress->get_id()] = $jpress;
         }
     }
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Elimina una instancia de Appbear
+    | Elimina una instancia de JPress
     |---------------------------------------------------------------------------------------------------
     */
     public static function remove_jpress( $id ){

@@ -1,6 +1,6 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 class Field {
 	public $id             = 0;
@@ -20,18 +20,18 @@ class Field {
 		$this->jpress_id    = $jpress->id;
 		$this->set_args( $field_args );
 
-		if( is_a( $parent_object, 'Appbear\Includes\Field' ) ){
+		if( is_a( $parent_object, 'JPress\Includes\Field' ) ){
 			$this->add_parent( $parent_object );
 		}
 	}
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Get Appbear
+    | Get JPress
     |---------------------------------------------------------------------------------------------------
     */
     public function get_jpress() {
-        return \Appbear::get( $this->jpress_id );
+        return \JPress::get( $this->jpress_id );
 	}
 
     /*

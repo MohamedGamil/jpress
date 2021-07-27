@@ -78,7 +78,7 @@ register_deactivation_hook( __FILE__, 'jpress_deactivate_hook' );
  */
 require_once plugin_dir_path( __FILE__ ) . '/loader.php';
 
-if ( class_exists( 'AppbearLoader', false ) && defined('JPRESS_DID_INIT') === false ) {
-  $loader = new AppbearLoader( JPRESS_VERSION, JPRESS_PRIORITY );
+if ( class_exists( 'JPressLoader', false ) && defined('JPRESS_DID_INIT') === false ) {
+  $loader = new JPressLoader( JPRESS_VERSION, JPRESS_PRIORITY );
   $loader->init();
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 
 /**
  * JPress RESTFul API Adapter
  */
-class AppbearAPI {
+class JPressAPI {
   const TIMEOUT_DURATION = 15;
   const VERYIFY_SSL = false;
 

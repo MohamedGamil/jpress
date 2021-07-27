@@ -1,5 +1,5 @@
 /*!
- * Appbear Confirm
+ * JPress Confirm
  * Version: 1.0
  * Author: Max López
  */

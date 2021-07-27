@@ -800,7 +800,7 @@ function jpress_shortcodes_parsing($content) {
  * @return void
  */
 function jpress_notice($message, $type = 'success', $isDismissable = true, $isInstant = false) {
-  \Appbear_Notice::notice($type, $message, $isDismissable, $isInstant);
+  \JPress_Notice::notice($type, $message, $isDismissable, $isInstant);
 }
 
 

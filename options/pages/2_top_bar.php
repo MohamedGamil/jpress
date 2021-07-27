@@ -43,7 +43,7 @@ $settings->add_field( array(
   'id' => 'sidenavbar-icon',
   'type' => 'icon_selector',
   'default' => '0xe808',
-  'items' => array_merge( AppbearItems::icon_fonts() ),
+  'items' => array_merge( JPressItems::icon_fonts() ),
   'options' => array(
     'wrap_height' => '220px',
     'size' => '36px',
@@ -68,7 +68,7 @@ $settings->add_field( array(
   'id' => 'appbar-searchicon',
   'type' => 'icon_selector',
   'default' => '0xe820',
-  'items' => array_merge( AppbearItems::icon_fonts() ),
+  'items' => array_merge( JPressItems::icon_fonts() ),
   'options' => array(
     'wrap_height' => '220px',
     'size' => '36px',

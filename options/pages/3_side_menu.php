@@ -105,7 +105,7 @@ $tabs->add_field( array(
   'id' => 'icon',
   'type' => 'icon_selector',
   'default' => '0xe9f5',
-  'items' => array_merge( AppbearItems::icon_fonts() ),
+  'items' => array_merge( JPressItems::icon_fonts() ),
   'options' => array(
   'wrap_height' => '220px',
   'size' => '36px',
@@ -137,7 +137,7 @@ $tabs->add_field(array(
   'name' => __( 'Categories', 'textdomain' ),
   'id' => 'category',
   'type' => 'select',
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('type', '=', 'NavigationType.category'),
   ),
@@ -147,7 +147,7 @@ $tabs->add_field(array(
   'name' => __( 'Pages', 'textdomain' ),
   'id' => 'page',
   'type' => 'select',
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('type', '=', 'NavigationType.page'),
   ),

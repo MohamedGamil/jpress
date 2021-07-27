@@ -1,24 +1,24 @@
 <?php
-use Appbear\Includes\Metabox as Metabox;
-use Appbear\Includes\AdminPage as AdminPage;
+use JPress\Includes\Metabox as Metabox;
+use JPress\Includes\AdminPage as AdminPage;
 
 
 /*
 |---------------------------------------------------------------------------------------------------
-| Obtiene todas las instancias de Appbear
+| Obtiene todas las instancias de JPress
 |---------------------------------------------------------------------------------------------------
 */
 function jpress_get_all(){
-  return Appbear::get_all_jpresss();
+  return JPress::get_all_jpresss();
 }
 
 /*
 |---------------------------------------------------------------------------------------------------
-| Obtiene una instancia de Appbear
+| Obtiene una instancia de JPress
 |---------------------------------------------------------------------------------------------------
 */
 function jpress_get( $jpress_id ){
-  return Appbear::get( $jpress_id );
+  return JPress::get( $jpress_id );
 }
 
 /*
@@ -45,7 +45,7 @@ function jpress_new_admin_page( $options = array() ){
 |---------------------------------------------------------------------------------------------------
 */
 function jpress_get_field_value( $jpress_id, $field_id = '', $default = '', $post_id = '' ){
-  return Appbear::get_field_value( $jpress_id, $field_id, $default, $post_id );
+  return JPress::get_field_value( $jpress_id, $field_id, $default, $post_id );
 }
 
 /*
@@ -67,7 +67,7 @@ function jpress_get_field_value_shortcode( $atts ) {
 
 /*
 |---------------------------------------------------------------------------------------------------
-| Nuevo formulario basado en Appbear
+| Nuevo formulario basado en JPress
 |---------------------------------------------------------------------------------------------------
 */
 // function jpress_new_form( $jpress_id = '', $form_args = array(), $echo = false ){

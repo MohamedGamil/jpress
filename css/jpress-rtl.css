@@ -3510,7 +3510,7 @@ END CAHNGES
 }
 .bootstrap-tagsinput .tag [data-role=remove]:after, .tokenfield .token>.close:after {
   content: "";
-  font: normal normal normal 10px/1 AppbearFontAwesome;
+  font: normal normal normal 10px/1 JPressFontAwesome;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

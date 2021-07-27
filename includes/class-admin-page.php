@@ -1,14 +1,14 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
-use Appbear\Includes\AppbearAPI;
+use JPress\Includes\JPressAPI;
 
 
 /**
  * JPress Admin Page
  */
-class AdminPage extends AppbearCore {
+class AdminPage extends JPressCore {
   const OPTIONS_FILTERS_DIR = JPRESS_INCLUDES_DIR . 'pipes' . DIRECTORY_SEPARATOR;
   const ALLOW_REDIRECT_ON_LICENSE_ACTIVATION = true;
 
@@ -26,7 +26,7 @@ class AdminPage extends AppbearCore {
 			'id' => '',
 			'title' => __( 'Admin Page', 'jpress' ),
 			'menu_side_title' => false,
-			'menu_title' => __( 'Appbear Page', 'jpress' ),
+			'menu_title' => __( 'JPress Page', 'jpress' ),
 			'parent' => false,
 			'capability' => 'manage_options',
 			'position' => null,
@@ -145,7 +145,7 @@ class AdminPage extends AppbearCore {
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Nuevo formulario basado en Appbear
+	| Nuevo formulario basado en JPress
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function get_form( $form_options = array(), $echo = false ) {
@@ -370,7 +370,7 @@ class AdminPage extends AppbearCore {
       $options = $this->_removeEmptyOptions($options);
 
       // Save settings request
-      $response = AppbearAPI::save_settings($options);
+      $response = JPressAPI::save_settings($options);
 
       $options['baseUrl'] = trailingslashit(get_home_url());
       $options['copyrights'] = JPRESS_COPYRIGHTS_URL;
@@ -445,7 +445,7 @@ class AdminPage extends AppbearCore {
 
     // NOTE: Why re-fetch key if we can just use "$licenseKey"?
     $license = $this->_getLicenseKey();
-    $response = AppbearAPI::activate_license($license);
+    $response = JPressAPI::activate_license($license);
 
     // Make sure the response came back okay
     if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {

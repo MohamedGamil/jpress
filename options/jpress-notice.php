@@ -4,7 +4,7 @@
 /**
  * JPress Notices Helpers
  */
-class Appbear_Notice {
+class JPress_Notice {
   const OPTION_KEY = 'jpress_flash_notices';
 
   /**
@@ -31,7 +31,7 @@ class Appbear_Notice {
       return;
     }
 
-    static::$_localInstance = new Appbear_Notice();
+    static::$_localInstance = new JPress_Notice();
     static::$_didInit = true;
   }
 

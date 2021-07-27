@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
-use Appbear\Includes\AppbearAPI;
+use JPress\Includes\JPressAPI;
 
 
 /**
@@ -144,7 +144,7 @@ class JPress_Notifications_Metabox {
       return false;
     }
 
-    $response = AppbearAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
+    $response = JPressAPI::send_notification( $inputs['title'], $inputs['message'], 'post', $postID );
 
     // NOTE: Debug line
     // dd( $inputs, $response );

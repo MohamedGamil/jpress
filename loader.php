@@ -9,7 +9,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * JPress Loader
  */
-class AppbearLoader
+class JPressLoader
 {
   /**
    * Plugin Version
@@ -35,7 +35,7 @@ class AppbearLoader
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Init Appbear
+	| Init JPress
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function init() {
@@ -49,19 +49,19 @@ class AppbearLoader
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Init Appbear
+	| Init JPress
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function load_jpress() {
 		// NOTE: Is the following line added to prevent scope collesions for multiple versions of this plugin?
-		if ( class_exists( 'Appbear', false ) ) {
+		if ( class_exists( 'JPress', false ) ) {
 			return;
 		}
 
     // Run the pre-init hook (Before initialization)
 		do_action( 'jpress_init' );
 
-		// Appbear constants
+		// JPress constants
 		$this->constants();
 
 		// Class autoloader
@@ -79,7 +79,7 @@ class AppbearLoader
 		// JPress generic initialization
 		$this->jpress_core_init();
 
-		Appbear::init( $this->version );
+		JPress::init( $this->version );
 
     // Run the admin-only post-init hook (JPress Admin Initialization)
 		if ( is_admin() ) {
@@ -120,12 +120,12 @@ class AppbearLoader
 	*/
 	public function class_autoloader() {
 		include JPRESS_INCLUDES_DIR . 'class-autoloader.php';
-		Appbear\Includes\Autoloader::run();
+		JPress\Includes\Autoloader::run();
 	}
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Appbear files
+	| JPress files
 	|---------------------------------------------------------------------------------------------------
 	*/
 	public function includes() {
@@ -175,7 +175,7 @@ class AppbearLoader
 		include JPRESS_OPTIONS_DIR . 'jpress-notice.php';
 		include JPRESS_OPTIONS_DIR . 'demos-api.php';
 		include JPRESS_OPTIONS_DIR . 'options.php';
-    include JPRESS_OPTIONS_DIR . 'JPress_subscription.php';
+    include JPRESS_OPTIONS_DIR . 'jpress-subscription.php';
 
     // Init Classes
     JPress_Ads_Shortcode::run();
@@ -184,7 +184,7 @@ class AppbearLoader
     JPress_Deeplinking::run();
     JPress_Categories::run();
     JPress_Notifications_Metabox::run();
-    Appbear_Notice::run();
+    JPress_Notice::run();
   }
 
   /**
@@ -208,7 +208,7 @@ class AppbearLoader
 
 	/*
 	|---------------------------------------------------------------------------------------------------
-	| Get Appbear Url
+	| Get JPress Url
 	|---------------------------------------------------------------------------------------------------
 	*/
 	private function _get_url() {

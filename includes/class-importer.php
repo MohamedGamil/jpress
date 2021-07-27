@@ -1,6 +1,6 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 class Importer {
     private $jpress = null;

@@ -73,8 +73,8 @@ $socialLinks->add_field( array(
   'id' => 'icon',
   'type' => 'icon_selector',
   'default' => '0xe95d',
-  'items' => AppbearItems::icon_fonts(),
-  'only' => AppbearItems::SOCIAL_ICONS_SUBSET,
+  'items' => JPressItems::icon_fonts(),
+  'only' => JPressItems::SOCIAL_ICONS_SUBSET,
   'options' => array(
     'wrap_height' => '220px',
     'size' => '36px',
@@ -188,7 +188,7 @@ $settings->add_field( array(
   'id' => 'settingspage-aboutUs',
   'name' => __( 'About us page',   'textdomain' ),
   'type' => 'select',
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options'	=>	array(
     'show_if' => array('local-settingspage-aboutus', '=', 'true')
   ),
@@ -201,7 +201,7 @@ $settings->add_field( array(
   'name' => __( 'Privacy page',   'textdomain' ),
   'type' => 'select',
   'default' => get_option( 'wp_page_for_privacy_policy' ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
 ));
 
 //  . ' ' . get_option( 'wp_page_for_privacy_policy' )
@@ -210,7 +210,7 @@ $settings->add_field( array(
   'name' => __( 'Terms and conditions page',   'textdomain' ),
   'type' => 'select',
   'default' => get_option( 'wp_page_for_privacy_policy' ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
 ));
 
 $settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));

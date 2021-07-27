@@ -1,9 +1,9 @@
 <?php
 
-use Appbear\Includes\Functions;
-use Appbear\Includes\GoogleFonts;
+use JPress\Includes\Functions;
+use JPress\Includes\GoogleFonts;
 
-class AppbearItems {
+class JPressItems {
 
   /**
    * Social Icons Subset

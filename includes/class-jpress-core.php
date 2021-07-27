@@ -1,8 +1,8 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
-class AppbearCore {
+class JPressCore {
     public $id = 0;
     public $fields_prefix = '';
     public $args = array();
@@ -27,7 +27,7 @@ class AppbearCore {
         $this->fields_prefix = isset( $args['fields_prefix'] ) ? $args['fields_prefix'] : '';
         $this->set_args( $args );
 
-        \Appbear::add( $this );
+        \JPress::add( $this );
     }
 
     /*
@@ -427,7 +427,7 @@ class AppbearCore {
     */
     private function set_fields_structure( $object, $field_id, $field_args = array() ){
         //Si el object actual es una instancia de Field
-        if( is_a( $object, 'Appbear\Includes\Field' ) ){
+        if( is_a( $object, 'JPress\Includes\Field' ) ){
             switch( $object->get_real_row_level() ){
                 case 1:
                     if( isset( $this->fields[$object->id] ) ){
@@ -516,7 +516,7 @@ class AppbearCore {
 
     /*
     |---------------------------------------------------------------------------------------------------
-    | Obtiene el objecto al que se le está agregando campos (Appbear o Field)
+    | Obtiene el objecto al que se le está agregando campos (JPress o Field)
     |---------------------------------------------------------------------------------------------------
     */
     public function get_object( $parent_object = null ){
@@ -816,7 +816,7 @@ class AppbearCore {
         }
         $return .= "<div class='jpress-footer'>";
         $return .= "<div class='jpress-footer-content'>";
-        $return .= $footer === true ? "<span>Appbear Framework v" . JPRESS_VERSION . "</span>" : $footer;
+        $return .= $footer === true ? "<span>JPress Framework v" . JPRESS_VERSION . "</span>" : $footer;
         $return .= "</div>";
         $return .= "</div>";
         return $return;

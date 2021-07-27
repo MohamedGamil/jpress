@@ -1,8 +1,8 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
-use AppbearItems;
+use JPressItems;
 
 class FieldTypes {
     protected $field = null;
@@ -329,7 +329,8 @@ class FieldTypes {
       if ( is_array($subset) === true && count($subset) > 0 ) {
         foreach ( $items as $key => $item ) {
           if (substr($key, 0, 2) === 'fa') {
-            $key = end(explode(' ', $key));
+            $keys = explode(' ', $key);
+            $key = end($keys);
           }
 
           $found = false;
@@ -342,7 +343,7 @@ class FieldTypes {
           }
 
           // NOTE: DEBUG
-          // if ($found && $key[0] != '0' && !in_array($key, AppbearItems::SOCIAL_ICONS_SUBSET))
+          // if ($found && $key[0] != '0' && !in_array($key, JPressItems::SOCIAL_ICONS_SUBSET))
           // dd($key, $found);
 
           if ($found === false) {

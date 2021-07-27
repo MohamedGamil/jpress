@@ -1,13 +1,13 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 class Autoloader {
 	private $_namespace_separator = '\\';
 	private $_file_extension = '.php';
 	private $_start_with = 'class-';
 	private $_file = null;
-	private static $_plugin_base_namespace = 'Appbear';
+	private static $_plugin_base_namespace = 'JPress';
 
 	/*
 	|---------------------------------------------------------------------------------------------------
@@ -26,7 +26,6 @@ class Autoloader {
 	private function load_class( $class ){
 		$full_path = plugin_dir_path( dirname( __FILE__ ) );
 		$class = trim( $class, $this->_namespace_separator );
-
 
 		// If the requested class is not our plugin
 		if ( false === strpos( $class, self::$_plugin_base_namespace ) ){
@@ -49,8 +48,9 @@ class Autoloader {
 	  	}
 	  }
 
+    $class_name = str_replace('j-press', 'jpress', $class_name);
 	  $this->file = $full_path . $this->_start_with . $class_name . $this->_file_extension;
-
+    
 	  if ( file_exists( $this->file ) ) {
 	  	require_once $this->file;
 	  }
@@ -64,10 +64,11 @@ class Autoloader {
 	private function camelcase_to_underscore( $camelCase ) {
 	  preg_match_all( '!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $camelCase, $matches );
 	  $ret = $matches[0];
+
 	  foreach ( $ret as &$match ) {
 	    $match = $match == strtoupper( $match ) ? strtolower( $match ) : lcfirst( $match );
 	  }
+
 	  return implode( '-', $ret );
 	}
-
 }

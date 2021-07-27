@@ -1,5 +1,5 @@
 /*!
- * Appbear Switcher
+ * JPress Switcher
  * Version: 1.0
  * Author: Max López
  * Copyright © 2018 Max Arthur López Pérez - All Rights Reserved.

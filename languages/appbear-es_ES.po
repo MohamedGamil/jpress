@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Project-Id-Version: Appbear Framework\n"
+"Project-Id-Version: JPress Framework\n"
 "POT-Creation-Date: 2016-12-30 01:34-0500\n"
 "PO-Revision-Date: 2016-12-30 01:50-0500\n"
 "Language-Team: \n"
@@ -25,7 +25,7 @@ msgid "Admin Page"
 msgstr ""
 
 #: includes/class-admin-page.php:16
-msgid "Appbear Page"
+msgid "JPress Page"
 msgstr ""
 
 #: includes/class-admin-page.php:21
@@ -182,11 +182,11 @@ msgid "No oEmbed results found for %s. See"
 msgstr "No se han encontrado resultados de oEmbed para %s. Ver"
 
 #: includes/class-metabox.php:15
-msgid "Appbear Metabox"
+msgid "JPress Metabox"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Appbear Framework"
+msgid "JPress Framework"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -195,11 +195,11 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Appbear is a powerful framework to create beautiful, professional and flexibles "
+"JPress is a powerful framework to create beautiful, professional and flexibles "
 "Meta boxes and Admin pages. Building meta boxes or admin pages has never "
 "been easier!"
 msgstr ""
-"Appbear es un potente framework para crear elegantes, profesionales y flexibles "
+"JPress es un potente framework para crear elegantes, profesionales y flexibles "
 "Meta boxes y páginas de administración. ¡Construir Meta boxes o páginas de "
 "administración nunca ha sido tan fácil!"
 

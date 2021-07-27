@@ -1,5 +1,5 @@
 /*!
- * Appbear Image Selector
+ * JPress Image Selector
  * Version: 1.0
  * Author: Max López
  */

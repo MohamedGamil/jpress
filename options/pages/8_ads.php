@@ -254,7 +254,7 @@ $admob->add_field(array(
   'id' => 'in_post_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.category'),
   ),
@@ -264,7 +264,7 @@ $admob->add_field(array(
   'id' => 'in_post_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.page'),
   ),
@@ -396,7 +396,7 @@ $admob->add_field(array(
   'id' => 'after_post_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.category'),
   ),
@@ -406,7 +406,7 @@ $admob->add_field(array(
   'id' => 'after_post_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.page'),
   ),
@@ -538,7 +538,7 @@ $admob->add_field(array(
   'id' => 'before_comments_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.category'),
   ),
@@ -548,7 +548,7 @@ $admob->add_field(array(
   'id' => 'before_comments_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.page'),
   ),
@@ -712,7 +712,7 @@ $admob->add_field(array(
   'id' => 'single_cat_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.category'),
   ),
@@ -722,7 +722,7 @@ $admob->add_field(array(
   'id' => 'single_cat_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.page'),
   ),

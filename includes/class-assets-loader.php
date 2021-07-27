@@ -1,6 +1,6 @@
 <?php
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
 class AssetsLoader {
     public static $version;
@@ -92,7 +92,7 @@ class AssetsLoader {
         wp_register_script( 'browser-deeplink', JPRESS_URL . 'js/browser-deeplink.js', array( 'jquery' ) );
         wp_enqueue_script( 'browser-deeplink' );
 
-        //Appbear scripts
+        //JPress scripts
         wp_register_script( 'jpress-libs', JPRESS_URL . 'js/jpress-libs.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'jpress-libs' );
 

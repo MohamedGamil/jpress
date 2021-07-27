@@ -1,5 +1,5 @@
 /*!
- * Appbear Tabs
+ * JPress Tabs
  * Version: 1.0
  * Author: Max López
  */

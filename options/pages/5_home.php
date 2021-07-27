@@ -174,7 +174,7 @@ $homepage_tabs->add_field(array(
   'name' => __( 'Category', 'textdomain' ),
   'id' => 'categories',
   'type' => 'select',
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
   'multiple' => true,
   'search' => true,
@@ -515,7 +515,7 @@ $section->add_field(array(
   'id' => 'ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'options' => array(
     'show_if' => array('ad_image_link_type', '=', 'NavigationType.category'),
   ),
@@ -525,7 +525,7 @@ $section->add_field(array(
   'id' => 'ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
-  'items' => AppbearItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
+  'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options' => array(
     'show_if' => array('ad_image_link_type', '=', 'NavigationType.page'),
   ),
@@ -613,7 +613,7 @@ $section->add_field( array(
   'name' => __( 'Categories', 'textdomain' ),
   'type' => 'checkbox',
   // 'default' => '$all$',
-  'items' => AppbearItems::terms( 'category' ),
+  'items' => JPressItems::terms( 'category' ),
   'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
   'options' => array(
     'show_if' => array('showposts', '=', 'categories')
@@ -624,7 +624,7 @@ $section->add_field(array(
   'name' => __( 'Tags', 'textdomain' ),
   'type' => 'checkbox',
   // 'default' => '$all$',
-  'items' => AppbearItems::terms( 'post_tag' ),
+  'items' => JPressItems::terms( 'post_tag' ),
   'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
   'options' => array(
     'show_if' => array('showposts', '=', 'tags')

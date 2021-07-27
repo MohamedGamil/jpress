@@ -1,8 +1,8 @@
 <?php 
 
-namespace Appbear\Includes;
+namespace JPress\Includes;
 
-class Metabox extends AppbearCore {
+class Metabox extends JPressCore {
 
     public function __construct( $args = array() ){
 
@@ -14,7 +14,7 @@ class Metabox extends AppbearCore {
 
         $this->args = wp_parse_args( $args, array(
             'id' => '',
-            'title' => __( 'Appbear Metabox', 'jpress' ),
+            'title' => __( 'JPress Metabox', 'jpress' ),
             'context' => 'normal',
             'priority' => 'high',
             'post_types' => 'post',
