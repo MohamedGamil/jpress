@@ -13,7 +13,7 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'JPRESS_VERSION', '0.2.10' );
+define( 'JPRESS_VERSION', '1.0.0' );
 define( 'JPRESS_PRIORITY', 952 );
 
 
