@@ -1,6 +1,5 @@
 === JPress ===
 Contributors: dedulab
-Donate link: https://github.com/MohamedGamil
 Tags: mobile, app, builder, web, ios, android
 Requires at least: 3.0.1
 Tested up to: 3.4
@@ -50,3 +49,4 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 = 1.0.0 =
 * Initial Full Release.
+ 

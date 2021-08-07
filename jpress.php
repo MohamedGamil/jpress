@@ -18,7 +18,7 @@
  * Description:       Convert your WordPress site into a Native Mobile App. No coding required. Your app syncs with your site automatically. Increase engagement, loyalty and monetize better on mobile!
  * Version:           1.0.2
  * Author:            JPress Team
- * Author URI:        https://jpress.dedulab.com
+ * Author URI:        https://dedulab.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       jpress
