@@ -21,8 +21,9 @@ e.g.
 
 1. Upload `jpress` directory to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to plugin settings dashboard and configure your mobile application or choose a configuration preset.
-1. Request mobile app binaries using the "Download App Binaries" button in dashboard.
+1. Go to plugin settings dashboard and configure your mobile application.
+1. Request mobile app binaries using the "Get Mobile App" page in admin ashboard.
+1. After acquiring your mobile app binaries you can submit them to Google Play and / or Apple Store.
 
 == Frequently Asked Questions ==
 
@@ -39,6 +40,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.0.3 =
+* Source code cleanup.
+* Fix author and plugin URLs.
 
 = 1.0.2 =
 * Deprecated and removed activation features from admin pages.
