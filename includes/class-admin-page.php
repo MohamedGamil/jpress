@@ -321,14 +321,25 @@ class AdminPage extends JPressCore {
 			}
 		}
 
-		// NOTE: Add settings error
-		if ( isset( $data[JPRESS_LICENSE_KEY_OPTION] ) ) {
-      $updated = $this->_updateLicenseKey( $data[JPRESS_LICENSE_KEY_OPTION] ) === true;
-      $settingsURL = admin_url('admin.php?page=jpress-settings');
+		// FIXME: Add settings error
+    // TODO: Add app binaries generation logic here..
+		if ( isset( $data['jpress_id'] ) && $data['jpress_id'] === JPRESS_APP_BIN_PAGE_KEY ) {
 
-      if ( $updated && static::ALLOW_REDIRECT_ON_LICENSE_ACTIVATION && wp_redirect( $settingsURL ) ) {
-        exit;
-      }
+      // $has_error = false;
+
+      // foreach ( array('app_id', 'android_file', 'ios_file', 'appicon', 'splashlogo', 'splashcolor') as $param ) {
+      //   if ((isset($data[$param]) && empty($data[$param])) || ! isset($data[$param])) {
+      //     $has_error = true;
+      //   }
+      // }
+
+      // dd($has_error, $data);
+
+      // $settingsURL = admin_url('admin.php?page=' . JPRESS_PRIMARY_OPTIONS);
+
+      // if ( $updated && wp_redirect( $settingsURL ) ) {
+      //   exit;
+      // }
     }
 
     // NOTE: Save settings

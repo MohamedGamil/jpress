@@ -43,9 +43,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 = 1.0.2 =
 * Deprecated and removed activation features from admin pages.
+* Added a page to help users generate their mobile app binaries so they upload them to Apple Store / Google Play.
 
 = 1.0.1 =
 * Deprecated some activation functions.
 
 = 1.0.0 =
-* Initial Release.
+* Initial Full Release.

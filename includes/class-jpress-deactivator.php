@@ -18,7 +18,7 @@
  * @since      0.0.2
  * @package    JPress
  * @subpackage JPress/includes
- * @author     JPress <info@jpress.io>
+ * @author     JPress <info@jpress.dedulab.com>
  */
 class JPress_Deactivator {
 

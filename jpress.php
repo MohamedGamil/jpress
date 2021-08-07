@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://jpress.io
+ * @link              https://jpress.dedulab.com
  * @since             0.0.2
  * @package           JPress
  *
  * @wordpress-plugin
  * Plugin Name:       JPress (BETA)
- * Plugin URI:        https://jpress.io
+ * Plugin URI:        https://jpress.dedulab.com
  * Description:       Convert your WordPress site into a Native Mobile App. No coding required. Your app syncs with your site automatically. Increase engagement, loyalty and monetize better on mobile!
  * Version:           1.0.2
  * Author:            JPress Team
- * Author URI:        https://jpress.io
+ * Author URI:        https://jpress.dedulab.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       jpress

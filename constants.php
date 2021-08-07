@@ -26,7 +26,7 @@ define( 'JPRESS_STORE_URL', 'http://appstage.tielabs.com' );
 /**
  * JPress Copyrights URL.
  */
-define( 'JPRESS_COPYRIGHTS_URL', 'https://jpress.io' );
+define( 'JPRESS_COPYRIGHTS_URL', 'https://jpress.dedulab.com' );
 
 
 /**
@@ -82,6 +82,12 @@ defined('JPRESS_FONTAWESOME_VERSION') OR define('JPRESS_FONTAWESOME_VERSION', '5
  * JPress Options Key Name
  */
 define( 'JPRESS_PRIMARY_OPTIONS', 'jpress-settings' );
+
+
+/**
+ * JPress Download App Key Name
+ */
+define( 'JPRESS_APP_BIN_PAGE_KEY', 'jpress-app-bins' );
 
 
 /**

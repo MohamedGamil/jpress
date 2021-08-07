@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  * @since 0.0.2
  */
 class JPress_Options {
-  const APP_BIN_PAGE_KEY = 'jpress-app-bins';
+  const APP_BIN_PAGE_KEY = JPRESS_APP_BIN_PAGE_KEY;
   const SETTINGS_PAGE_KEY = JPRESS_PRIMARY_OPTIONS;
 
   const OPTIONS_PAGES_DIR = JPRESS_OPTIONS_DIR . 'pages' . DIRECTORY_SEPARATOR;
@@ -235,6 +235,10 @@ class JPress_Options {
 			),
 			'capability' => 'manage_options',
 			'parent' => static::SETTINGS_PAGE_KEY,
+      'form_options' => array(
+        'save_button_text' => __( 'Download App', 'jpress' ),
+        'show_reset_button' => false,
+      ),
 		);
 
 		$page = jpress_new_admin_page( $args );
@@ -246,18 +250,70 @@ class JPress_Options {
 
 		$section->add_field(array(
 			'id' => 'custom-title',
-			'name' => __( 'Enter your license key', 'jpress' ),
+			'name' => __( 'Please provide the following mobile app settings before you can download your app binaries.', 'jpress' ),
 			'type' => 'title',
 			'desc' => (
         '<br>'
-        . __('<strong><u>You must purchase a license</u> on <a href="jpress.io" target="_blank">jpress.io</a> to unlock all features of JPress and get your own mobile app.</strong>')
+        . __('<strong><u>Make sure</u> to provide accurate information regarding your mobile app configuration.</strong>')
         . '<br>'
         . __('Or you can get instant access to a demo of what your mobile app will look like and experience real-time customizations by installing JPress from <a href="#" target="_blank">Google Play</a> or <a href="#" target="_blank">Apple App Store</a>.')
         . '<br>'
       ),
     ));
 
-    // ..
+		$section->add_field(array(
+			'name' => 'Mobile App Package ID',
+			'id' => 'app_id',
+			'type' => 'text',
+			'options' => [
+        'required' => true,
+      ],
+    ));
+
+		$section->add_field(array(
+			'name' => 'Android Google Services File',
+			'id' => 'android_file',
+			'type' => 'file',
+			'options' => [
+        'required' => true,
+      ],
+    ));
+
+		$section->add_field(array(
+			'name' => 'iOS Services File',
+			'id' => 'ios_file',
+			'type' => 'file',
+			'options' => [
+        'required' => true,
+      ],
+    ));
+
+		$section->add_field(array(
+			'name' => 'Application Icon',
+			'id' => 'appicon',
+			'type' => 'file',
+			'options' => [
+        'required' => true,
+      ],
+    ));
+
+		$section->add_field(array(
+			'name' => 'Splash Screen Logo',
+			'id' => 'splashlogo',
+			'type' => 'file',
+			'options' => [
+        'required' => true,
+      ],
+    ));
+
+		$section->add_field(array(
+			'name' => 'Splash Screen Color',
+			'id' => 'splashcolor',
+			'type' => 'colorpicker',
+			'options' => [
+        'required' => true,
+      ],
+    ));
   }
 
 
@@ -305,7 +361,7 @@ class JPress_Options {
 			'type' => 'title',
 			'desc' => (
         '<br>'
-        . __('<strong><u>You must purchase a license</u> on <a href="jpress.io" target="_blank">jpress.io</a> to unlock all features of JPress and get your own mobile app.</strong>')
+        . __('<strong><u>You must purchase a license</u> on <a href="jpress.dedulab.com" target="_blank">jpress.dedulab.com</a> to unlock all features of JPress and get your own mobile app.</strong>')
         . '<br>'
         . __('Or you can get instant access to a demo of what your mobile app will look like and experience real-time customizations by installing JPress from <a href="#" target="_blank">Google Play</a> or <a href="#" target="_blank">Apple App Store</a>.')
         . '<br>'

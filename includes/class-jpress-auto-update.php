@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Performs Automatic Updates.
  *
- * @link       http://jpress.io
+ * @link       http://jpress.dedulab.com
  * @since      0.2.7
  *
  * @package    JPress
@@ -27,7 +27,7 @@ require_once JPRESS_INCLUDES_DIR . 'class-jpress-updater.php';
  * @since      0.2.7
  * @package    JPress
  * @subpackage JPress/includes
- * @author     JPress <info@jpress.io>
+ * @author     JPress <info@jpress.dedulab.com>
  */
 class JPress_Automatic_Updates {
   /**
