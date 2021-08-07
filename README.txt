@@ -1,7 +1,7 @@
 === JPress ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: dedulab
 Donate link: https://github.com/MohamedGamil
-Tags: short-urls, code-to-url, url, shortner
+Tags: mobile, app, builder, web, ios, android
 Requires at least: 3.0.1
 Tested up to: 3.4
 Stable tag: 4.3
@@ -41,34 +41,5 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 1.4 =
-* Fix URL Sanitization in PHP.
-
-= 1.3 =
-* Fix URL Sanitization in JS.
-
-= 1.2 =
-* Add visits counter functionality.
-
-= 1.1 =
-* Add URL shortening functionality.
-
 = 1.0 =
-* Code-to-URL functionality.
-
-== Upgrade Notice ==
-
-= 1.4 =
-No upgrade issues with changes in this version.
-
-= 1.3 =
-No upgrade issues with changes in this version.
-
-= 1.2 =
-No upgrade issues with changes in this version.
-
-= 1.1 =
-Previous URLs added will require their short codes to be generated manually in order to work.
-
-= 1.0 =
-This is the first release version of the plugin.
+* Initial Release.

@@ -81,7 +81,7 @@ html {
 .jpress .jpress-color-dark {
   color: #252C3A; }
 .jpress .jpress-color-blue {
-  color: #3380DA; }
+  color: #313ab2; }
 .jpress .jpress-color-lightblue {
   color: #1694DE; }
 .jpress .jpress-color-green {
@@ -224,7 +224,7 @@ html {
 .jpress-header {
   position: relative;
   color: white;
-  background: #3380DA;
+  background: #313ab2;
   display: table;
   width: 100%;
   min-height: 65px;
@@ -235,12 +235,12 @@ html {
   width: 25%;
   height: 100%;
   padding: 15px 25px;
-  background: #3380DA;
+  background: #313ab2;
   font-size: 25px;
   line-height: 1.3;
   border-top-left-radius: 4px;
   vertical-align: middle;
-  border-left: 1px solid #2778d7; }
+  border-left: 1px solid #1a2291; }
 .jpress-boxed .jpress-header .jpress-header-title {
   width: 25.8%; }
 .jpress.jpress-has-main-tab .jpress-header .jpress-header-title {
@@ -699,14 +699,14 @@ html {
 .jpress-group-control > li:hover .jpress-actions {
   background: #b2bbc8; }
 .jpress-group-control > li.jpress-active, .jpress-group-control > li.jpress-multiple-active {
-  border-color: #3380DA; }
+  border-color: #313ab2; }
 .jpress-group-control > li.jpress-active .jpress-inner p, .jpress-group-control > li.jpress-multiple-active .jpress-inner p {
   color: #1b202a; }
 .jpress-group-control > li.jpress-active .jpress-inner input, .jpress-group-control > li.jpress-multiple-active .jpress-inner input {
   color: #252C3A; }
 .jpress-group-control > li.jpress-active .jpress-actions, .jpress-group-control > li.jpress-multiple-active .jpress-actions {
   color: #eef0f3;
-  background: #3380DA; }
+  background: #313ab2; }
 .jpress-group-control > li.jpress-active .jpress-actions .jpress-btn, .jpress-group-control > li.jpress-multiple-active .jpress-actions .jpress-btn {
   color: #eef0f3; }
 .jpress-group-control > li.jpress-active .jpress-actions .jpress-btn:hover, .jpress-group-control > li.jpress-multiple-active .jpress-actions .jpress-btn:hover {
@@ -947,7 +947,7 @@ html {
   left: 0;
   z-index: 10;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 3px;
   width: 100%; }
 
@@ -1001,13 +1001,13 @@ html {
   top: 0;
   left: 0;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 5px;
   width: 100%; }
 .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after, .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after,
 .jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after,
 .jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after {
-  border-right: 1px solid #3380DA;
+  border-right: 1px solid #313ab2;
   left: -1px; }
 .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item a,
 .jpress-tab-dark > .jpress-tab-header .jpress-tab-menu .jpress-item a {
@@ -1045,7 +1045,7 @@ html {
   top: 0;
   left: 0;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 100%;
   width: 5px; }
 .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.active:first-child:after, .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item.jpress-open:first-child:after {
@@ -1073,7 +1073,7 @@ html {
   top: 0;
   left: 0;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 100%;
   width: 5px; }
 .jpress-tab.jpress-tab-left > .jpress-tab-header .jpress-tab-menu .jpress-item .jpress-toggle-icon {
@@ -1100,7 +1100,7 @@ html {
 
 .jpress-tab.is-accordion .jpress-tab-header {
   width: 100% !important;
-  background: #3380DA; }
+  background: #313ab2; }
 
 .jpress-tab.is-accordion .jpress-tab-nav {
   display: none; }
@@ -1137,7 +1137,7 @@ html {
   left: 0;
   z-index: 10;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 3px;
   width: 100%; }
 .jpress-tab.is-accordion .jpress-accordion-title i {
@@ -1168,7 +1168,7 @@ html {
   left: 0;
   top: 0;
   content: " ";
-  background: #3380DA;
+  background: #313ab2;
   height: 100%;
   width: 5px; }
 
@@ -1605,7 +1605,7 @@ html {
   padding: 19px 32px; }
 .jpress-btn.jpress-btn-blue {
   color: white;
-  background: #3380DA; }
+  background: #313ab2; }
 .jpress-btn.jpress-btn-blue:hover {
   background: #2676d2; }
 .jpress-btn.jpress-btn-blue:active, .jpress-btn.jpress-btn-blue:focus {
@@ -1727,7 +1727,7 @@ html {
   height: 28px;
   font-size: 28px; }
 .jpress-btn.jpress-btn-iconize.jpress-btn-blue {
-  color: #3380DA; }
+  color: #313ab2; }
 .jpress-btn.jpress-btn-iconize.jpress-btn-blue:hover {
   color: #246ec5; }
 .jpress-btn.jpress-btn-iconize.jpress-btn-blue:active, .jpress-btn.jpress-btn-iconize.jpress-btn-blue:focus {
@@ -2968,10 +2968,10 @@ END CAHNGES
   border-bottom-color: #448bdd; }
 
 .jpress.jpress-skin-blue .jpress-header {
-  background: #3380DA; }
+  background: #313ab2; }
 .jpress.jpress-skin-blue .jpress-header .jpress-header-title {
-  background: #3380DA;
-  border-left-color: #2778d7; }
+  background: #313ab2;
+  border-left-color: #1a2291; }
 
 .jpress.jpress-skin-blue input[type="text"]:focus,
 .jpress.jpress-skin-blue input[type="number"]:focus,
@@ -3003,18 +3003,18 @@ END CAHNGES
   border-color: #448bdd !important; }
 
 .jpress.jpress-skin-blue .jpress-group-control > li.jpress-active {
-  border-color: #3380DA; }
+  border-color: #313ab2; }
 .jpress.jpress-skin-blue .jpress-group-control > li.jpress-active .jpress-actions {
-  background: #3380DA; }
+  background: #313ab2; }
 
 .jpress.jpress-skin-blue .jpress-tab-header .jpress-tab-menu .jpress-item.active a:after {
-  background: #3380DA; }
+  background: #313ab2; }
 
 .jpress.jpress-skin-blue .jpress-main-tab > .jpress-tab-header > .jpress-title-tab-menu {
-  background: #3380DA; }
+  background: #313ab2; }
 
 .jpress.jpress-skin-blue .jpress-main-tab > .jpress-tab-header .jpress-tab-menu .jpress-item:after {
-  background: #3380DA; }
+  background: #313ab2; }
 
 .tipso_bubble.jpress-skin-lightblue .tipso_title > h3 {
   border-bottom-color: #209ee9; }

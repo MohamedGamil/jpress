@@ -140,11 +140,11 @@ class JPress_Options {
       'menu_title' => 'JPress',
       'menu_side_title' => 'Settings',
       'icon' => JPRESS_URL . 'assets/img/jpress-light-small.png',//Menu icon
-      'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
+      'skin' => 'blue',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
       'layout' => 'wide',//wide
       'header' => array(
-          'icon' => '<img src="' . JPRESS_URL . 'assets/img/a-logo.svg"/>',
-          'desc' => 'No coding required. Your app syncs with your site automatically.',
+        'icon' => '<img src="' . JPRESS_URL . 'assets/img/jpress-logo-light.svg"/>',
+        'desc' => 'No coding required. Your app syncs with your site automatically.',
       ),
       'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
       'capability' => 'manage_options',
@@ -221,11 +221,11 @@ class JPress_Options {
 			'menu_title' => 'Connect JPress',
 			'menu_side_title' => 'Connect JPress',
 			'icon' => JPRESS_URL . 'assets/img/jpress-light-small.png',//Menu icon
-			'skin' => 'purple',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
+			'skin' => 'blue',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
 			'layout' => 'wide',//wide
 			'header' => array(
-				'icon' => '<img src="' . JPRESS_URL . 'assets/img/a-logo.svg"/>',
-				'desc' => 'Connect and activate your JPress account.',
+        'icon' => '<img src="' . JPRESS_URL . 'assets/img/jpress-logo-light.svg"/>',
+        'desc' => 'Connect and activate your JPress account.',
 			),
 			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
 			'capability' => 'manage_options',
