@@ -15,14 +15,14 @@ defined( 'ABSPATH' ) || exit;
 $settings->open_tab_item('advertisement');
 
 $admob = $settings->add_section( array(
-  'name' => __( 'Advertisements Settings', 'textdomain' ),
+  'name' => __( 'Advertisements Settings', 'jpress' ),
   'id' => 'section-advertisement-admob',
   'options' => array( 'toggle' => true )
 ));
 
-$admob->open_mixed_field(array('name' => __('Admob Banner', 'textdomain' )));
+$admob->open_mixed_field(array('name' => __('Admob Banner', 'jpress' )));
 $admob->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-admob_banner',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -33,7 +33,7 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Android ID', 'textdomain' ),
+  'name' => __( 'Android ID', 'jpress' ),
   'id' => 'advertisement_android_banner_id_text',
   'type' => 'text',
   'options'	=>	array(
@@ -42,7 +42,7 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'iOS ID', 'textdomain' ),
+  'name' => __( 'iOS ID', 'jpress' ),
   'id' => 'advertisement_ios_banner_id_text',
   'type' => 'text',
   'options'	=>	array(
@@ -51,9 +51,9 @@ $admob->add_field(array(
 ));
 $admob->close_mixed_field();
 
-$admob->open_mixed_field(array('name' => __('Admob Interstitial', 'textdomain' )));
+$admob->open_mixed_field(array('name' => __('Admob Interstitial', 'jpress' )));
 $admob->add_field(array(
-  'name' => __( 'Enable', 'textdomain' ),
+  'name' => __( 'Enable', 'jpress' ),
   'id' => 'local-advertisement_admob_interstatial',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -64,7 +64,7 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Android ID', 'textdomain' ),
+  'name' => __( 'Android ID', 'jpress' ),
   'id' => 'advertisement_android_interstatial_id_text',
   'type' => 'text',
   'options'	=>	array(
@@ -73,7 +73,7 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'iOS ID', 'textdomain' ),
+  'name' => __( 'iOS ID', 'jpress' ),
   'id' => 'advertisement_ios_interstatial_id_text',
   'type' => 'text',
   'options'	=>	array(
@@ -83,17 +83,17 @@ $admob->add_field(array(
 $admob->close_mixed_field();
 
 $admob = $settings->add_section( array(
-  'name' => __( 'Single Post Ads Settings', 'textdomain' ),
+  'name' => __( 'Single Post Ads Settings', 'jpress' ),
   'id' => 'ads-section-archives-single',
   'options' => array( 'toggle' => true )
 ));
 
 $admob->open_mixed_field(array(
-  'name' => __('Interstitial Ad', 'textdomain' ),
+  'name' => __('Interstitial Ad', 'jpress' ),
   'options' => array( 'show_if' => array('local-advertisement_admob_interstatial', '=', 'true') ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Enable Interstitial Before Post View', 'textdomain' ),
+  'name' => __( 'Enable Interstitial Before Post View', 'jpress' ),
   'id' => 'local_ads_interstatial_before_post',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -103,7 +103,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Show Interstitial Ad Every', 'textdomain' ),
+  'name' => __( 'Show Interstitial Ad Every', 'jpress' ),
   'id' => 'local_ads_interstatial_before_post_offset',
   'type' => 'number',
   'default' => '1',
@@ -119,7 +119,7 @@ $admob->add_field(array(
 $admob->close_mixed_field();
 
 $admob->add_field(array(
-  'name' => __( 'Enable Ads Inside Post Content', 'textdomain' ),
+  'name' => __( 'Enable Ads Inside Post Content', 'jpress' ),
   'id' => 'local_ads_in_post',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -130,24 +130,24 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Show In-Post Ad After', 'textdomain' ),
+  'name' => __( 'Show In-Post Ad After', 'jpress' ),
   'id' => 'local_ads_in_post_paragraph_offset',
   'type' => 'select',
   'default' => '2',
   'items' => array(
-    '1' => __( '1 Paragraph', 'textdomain' ),
-    '2' => __( '2 Paragraphs', 'textdomain' ),
-    '3' => __( '3 Paragraphs', 'textdomain' ),
-    '4' => __( '4 Paragraphs', 'textdomain' ),
-    '5' => __( '5 Paragraphs', 'textdomain' ),
-    '6' => __( '6 Paragraphs', 'textdomain' ),
+    '1' => __( '1 Paragraph', 'jpress' ),
+    '2' => __( '2 Paragraphs', 'jpress' ),
+    '3' => __( '3 Paragraphs', 'jpress' ),
+    '4' => __( '4 Paragraphs', 'jpress' ),
+    '5' => __( '5 Paragraphs', 'jpress' ),
+    '6' => __( '6 Paragraphs', 'jpress' ),
   ),
   'options' => array('show_if' => array('local_ads_in_post', '=', 'true'))
 ));
 
 $admob->add_field( array(
   'id' => 'local_ads_in_post_type',
-  'name' => __( 'In-Post Ad Type', 'textdomain' ),
+  'name' => __( 'In-Post Ad Type', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
@@ -165,17 +165,17 @@ $admob->add_field( array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'In-Post AdMob Banner Size', 'textdomain' ),
+  'name' => __( 'In-Post AdMob Banner Size', 'jpress' ),
   'id' => 'in_post_admob_banner_size',
   'type' => 'select',
   'default' => 'banner',
   'items' => array(
-    'banner' => __( 'Banner', 'textdomain' ),
-    'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-    'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-    'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-    'large_banner' => __( 'Large Banner', 'textdomain' ),
-    'full_banner' => __( 'Full Banner', 'textdomain' ),
+    'banner' => __( 'Banner', 'jpress' ),
+    'leaderboard' => __( 'Leaderboard', 'jpress' ),
+    'smart_banner' => __( 'Smart Banner', 'jpress' ),
+    'Medium_banner' => __( 'Medium Banner', 'jpress' ),
+    'large_banner' => __( 'Large Banner', 'jpress' ),
+    'full_banner' => __( 'Full Banner', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array(
@@ -187,10 +187,10 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'In-Post Ad HTML Code', 'textdomain' ),
+  'name' => __( 'In-Post Ad HTML Code', 'jpress' ),
   'id' => 'in_post_ad_section_html',
   'type' => 'textarea',
-  'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+  'desc' => __( 'Add your ad spcial HTML markup', 'jpress' ),
   'grid' => '5-of-6',
   'default' => '<p>HTML Content goes here.</p>',
   'options' => array(
@@ -203,7 +203,7 @@ $admob->add_field(array(
 ));
 
 $admob->open_mixed_field(array(
-  'name' =>  __('In-Post Image Ad Options', 'textdomain' ),
+  'name' =>  __('In-Post Image Ad Options', 'jpress' ),
   'options' => array(
     'show_if' => array(
       array('local_ads_in_post', '=', 'true'),
@@ -212,19 +212,19 @@ $admob->open_mixed_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'in_post_ad_image_link_type',
   'type' => 'radio',
   'default' => 'NavigationType.url',
   'items' => array(
-    'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.url' => __( 'Full URL', 'jpress' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link URL', 'textdomain' ),
+  'name' => __( 'Link URL', 'jpress' ),
   'id' => 'in_post_ad_image_link_url',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -233,24 +233,24 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'in_post_ad_image_link_main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'attributes' => array( 'required' => true ),
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('in_post_ad_image_link_type', '=', 'NavigationType.main'),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'in_post_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -260,7 +260,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'in_post_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -270,14 +270,14 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Ad Image', 'textdomain' ),
+  'name' => __( 'Ad Image', 'jpress' ),
   'id' => 'in_post_ad_image_file',
   'type' => 'file',
 ));
 $admob->close_mixed_field();
 
 $admob->add_field(array(
-  'name' => __( 'Enable Ads After Post', 'textdomain' ),
+  'name' => __( 'Enable Ads After Post', 'jpress' ),
   'id' => 'local_ads_after_post',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -289,7 +289,7 @@ $admob->add_field(array(
 
 $admob->add_field( array(
   'id' => 'local_ads_after_post_type',
-  'name' => __( 'After Post Ad Type', 'textdomain' ),
+  'name' => __( 'After Post Ad Type', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
@@ -307,17 +307,17 @@ $admob->add_field( array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'After Post AdMob Banner Size', 'textdomain' ),
+  'name' => __( 'After Post AdMob Banner Size', 'jpress' ),
   'id' => 'after_post_admob_banner_size',
   'type' => 'select',
   'default' => 'banner',
   'items' => array(
-    'banner' => __( 'Banner', 'textdomain' ),
-    'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-    'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-    'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-    'large_banner' => __( 'Large Banner', 'textdomain' ),
-    'full_banner' => __( 'Full Banner', 'textdomain' ),
+    'banner' => __( 'Banner', 'jpress' ),
+    'leaderboard' => __( 'Leaderboard', 'jpress' ),
+    'smart_banner' => __( 'Smart Banner', 'jpress' ),
+    'Medium_banner' => __( 'Medium Banner', 'jpress' ),
+    'large_banner' => __( 'Large Banner', 'jpress' ),
+    'full_banner' => __( 'Full Banner', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array(
@@ -329,10 +329,10 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'After Post Ad HTML Code', 'textdomain' ),
+  'name' => __( 'After Post Ad HTML Code', 'jpress' ),
   'id' => 'after_post_ad_section_html',
   'type' => 'textarea',
-  'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+  'desc' => __( 'Add your ad spcial HTML markup', 'jpress' ),
   'grid' => '5-of-6',
   'default' => '<p>HTML Content goes here.</p>',
   'options' => array(
@@ -345,7 +345,7 @@ $admob->add_field(array(
 ));
 
 $admob->open_mixed_field(array(
-  'name' =>  __('After Post Image Ad Options', 'textdomain' ),
+  'name' =>  __('After Post Image Ad Options', 'jpress' ),
   'options' => array(
     'show_if' => array(
       array('local_ads_after_post', '=', 'true'),
@@ -354,19 +354,19 @@ $admob->open_mixed_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'after_post_ad_image_link_type',
   'type' => 'radio',
   'default' => 'NavigationType.url',
   'items' => array(
-    'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.url' => __( 'Full URL', 'jpress' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link URL', 'textdomain' ),
+  'name' => __( 'Link URL', 'jpress' ),
   'id' => 'after_post_ad_image_link_url',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -375,24 +375,24 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'after_post_ad_image_link_main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'attributes' => array( 'required' => true ),
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('after_post_ad_image_link_type', '=', 'NavigationType.main'),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'after_post_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -402,7 +402,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'after_post_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -412,14 +412,14 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Ad Image', 'textdomain' ),
+  'name' => __( 'Ad Image', 'jpress' ),
   'id' => 'after_post_ad_image_file',
   'type' => 'file',
 ));
 $admob->close_mixed_field();
 
 $admob->add_field(array(
-  'name' => __( 'Enable Ads Before Comments', 'textdomain' ),
+  'name' => __( 'Enable Ads Before Comments', 'jpress' ),
   'id' => 'local_ads_before_comments',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -431,7 +431,7 @@ $admob->add_field(array(
 
 $admob->add_field( array(
   'id' => 'local_ads_before_comments_type',
-  'name' => __( 'Before Comments Ad Type', 'textdomain' ),
+  'name' => __( 'Before Comments Ad Type', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
@@ -449,17 +449,17 @@ $admob->add_field( array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Before Comments AdMob Banner Size', 'textdomain' ),
+  'name' => __( 'Before Comments AdMob Banner Size', 'jpress' ),
   'id' => 'before_comments_admob_banner_size',
   'type' => 'select',
   'default' => 'banner',
   'items' => array(
-    'banner' => __( 'Banner', 'textdomain' ),
-    'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-    'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-    'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-    'large_banner' => __( 'Large Banner', 'textdomain' ),
-    'full_banner' => __( 'Full Banner', 'textdomain' ),
+    'banner' => __( 'Banner', 'jpress' ),
+    'leaderboard' => __( 'Leaderboard', 'jpress' ),
+    'smart_banner' => __( 'Smart Banner', 'jpress' ),
+    'Medium_banner' => __( 'Medium Banner', 'jpress' ),
+    'large_banner' => __( 'Large Banner', 'jpress' ),
+    'full_banner' => __( 'Full Banner', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array(
@@ -471,10 +471,10 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Before Comments Ad HTML Code', 'textdomain' ),
+  'name' => __( 'Before Comments Ad HTML Code', 'jpress' ),
   'id' => 'before_comments_ad_section_html',
   'type' => 'textarea',
-  'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+  'desc' => __( 'Add your ad spcial HTML markup', 'jpress' ),
   'grid' => '5-of-6',
   'default' => '<p>HTML Content goes here.</p>',
   'options' => array(
@@ -487,7 +487,7 @@ $admob->add_field(array(
 ));
 
 $admob->open_mixed_field(array(
-  'name' =>  __('Before Comments Image Ad Options', 'textdomain' ),
+  'name' =>  __('Before Comments Image Ad Options', 'jpress' ),
   'options' => array(
     'show_if' => array(
       array('local_ads_before_comments', '=', 'true'),
@@ -496,19 +496,19 @@ $admob->open_mixed_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'before_comments_ad_image_link_type',
   'type' => 'radio',
   'default' => 'NavigationType.url',
   'items' => array(
-    'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.url' => __( 'Full URL', 'jpress' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link URL', 'textdomain' ),
+  'name' => __( 'Link URL', 'jpress' ),
   'id' => 'before_comments_ad_image_link_url',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -517,24 +517,24 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'before_comments_ad_image_link_main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'attributes' => array( 'required' => true ),
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('before_comments_ad_image_link_type', '=', 'NavigationType.main'),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'before_comments_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -544,7 +544,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'before_comments_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -554,20 +554,20 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Ad Image', 'textdomain' ),
+  'name' => __( 'Ad Image', 'jpress' ),
   'id' => 'before_comments_ad_image_file',
   'type' => 'file',
 ));
 $admob->close_mixed_field();
 
 $admob = $settings->add_section( array(
-  'name' => __( 'Single Category Page Ads Settings', 'textdomain' ),
+  'name' => __( 'Single Category Page Ads Settings', 'jpress' ),
   'id' => 'ads-section-archives-category',
   'options' => array( 'toggle' => true )
 ));
 
 $admob->open_mixed_field(array(
-  'name' =>  __('Enable Single Category Ads', 'textdomain' ),
+  'name' =>  __('Enable Single Category Ads', 'jpress' ),
   'options' => array(
     'show_if' => array(
       // array('local_ads_single_cat', '=', 'true'),
@@ -576,7 +576,7 @@ $admob->open_mixed_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Enable Ads', 'textdomain' ),
+  'name' => __( 'Enable Ads', 'jpress' ),
   'id' => 'local_ads_single_cat',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -587,7 +587,7 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Show Ad Every', 'textdomain' ),
+  'name' => __( 'Show Ad Every', 'jpress' ),
   'id' => 'local_ads_single_cat_offset',
   'type' => 'number',
   'default' => '1',
@@ -605,7 +605,7 @@ $admob->close_mixed_field();
 
 $admob->add_field( array(
   'id' => 'local_ads_single_cat_type',
-  'name' => __( 'Ad Type', 'textdomain' ),
+  'name' => __( 'Ad Type', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.adMob',
   'items' => array(
@@ -623,17 +623,17 @@ $admob->add_field( array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'AdMob Banner Size', 'textdomain' ),
+  'name' => __( 'AdMob Banner Size', 'jpress' ),
   'id' => 'single_cat_admob_banner_size',
   'type' => 'select',
   'default' => 'banner',
   'items' => array(
-    'banner' => __( 'Banner', 'textdomain' ),
-    'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-    'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-    'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-    'large_banner' => __( 'Large Banner', 'textdomain' ),
-    'full_banner' => __( 'Full Banner', 'textdomain' ),
+    'banner' => __( 'Banner', 'jpress' ),
+    'leaderboard' => __( 'Leaderboard', 'jpress' ),
+    'smart_banner' => __( 'Smart Banner', 'jpress' ),
+    'Medium_banner' => __( 'Medium Banner', 'jpress' ),
+    'large_banner' => __( 'Large Banner', 'jpress' ),
+    'full_banner' => __( 'Full Banner', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array(
@@ -645,10 +645,10 @@ $admob->add_field(array(
 ));
 
 $admob->add_field(array(
-  'name' => __( 'Ad HTML Code', 'textdomain' ),
+  'name' => __( 'Ad HTML Code', 'jpress' ),
   'id' => 'single_cat_ad_section_html',
   'type' => 'textarea',
-  'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+  'desc' => __( 'Add your ad spcial HTML markup', 'jpress' ),
   'grid' => '5-of-6',
   'default' => '<p>HTML Content goes here.</p>',
   'options' => array(
@@ -661,7 +661,7 @@ $admob->add_field(array(
 ));
 
 $admob->open_mixed_field(array(
-  'name' =>  __(' Image Ad Options', 'textdomain' ),
+  'name' =>  __(' Image Ad Options', 'jpress' ),
   'options' => array(
     'show_if' => array(
       array('local_ads_single_cat', '=', 'true'),
@@ -670,19 +670,19 @@ $admob->open_mixed_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'single_cat_ad_image_link_type',
   'type' => 'radio',
   'default' => 'NavigationType.url',
   'items' => array(
-    'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.url' => __( 'Full URL', 'jpress' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Link URL', 'textdomain' ),
+  'name' => __( 'Link URL', 'jpress' ),
   'id' => 'single_cat_ad_image_link_url',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -691,24 +691,24 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'single_cat_ad_image_link_main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'attributes' => array( 'required' => true ),
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('single_cat_ad_image_link_type', '=', 'NavigationType.main'),
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'single_cat_ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -718,7 +718,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'single_cat_ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -728,7 +728,7 @@ $admob->add_field(array(
   ),
 ));
 $admob->add_field(array(
-  'name' => __( 'Ad Image', 'textdomain' ),
+  'name' => __( 'Ad Image', 'jpress' ),
   'id' => 'single_cat_ad_image_file',
   'type' => 'file',
 ));

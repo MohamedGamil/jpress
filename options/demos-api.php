@@ -671,8 +671,8 @@ class JPress_Demos_Endpoints
             'contactUs' => '/wp-json/jpress/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo-light.svg',
+              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo.svg',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress sitern',
             ),
@@ -980,8 +980,8 @@ class JPress_Demos_Endpoints
             'contactUs' => '/wp-json/jpress/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo-light.svg',
+              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo.svg',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress site',
             ),
@@ -1198,7 +1198,7 @@ class JPress_Demos_Endpoints
             'contactUs' => '/wp-json/jpress/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png',
+              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo-light.svg',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress site',
             ),
@@ -2116,8 +2116,8 @@ class JPress_Demos_Endpoints
             'contactUs' => '/wp-json/jpress/v1/contact-us',
             'aboutApp' =>
             array (
-              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png',
-              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jannah-logo-dark.png',
+              'aboutLogoLight' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo-light.svg',
+              'aboutLogoDark' => JPRESS_STORE_URL . '/wp-content/plugins/jpress_plugin/img/jpress-logo.svg',
               'title' => 'My WordPress Website',
               'content' => 'Just another WordPress sitern',
             ),

@@ -12,6 +12,9 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  * @since 0.0.2
  */
 class JPress_Options {
+  const APP_BIN_PAGE_KEY = 'jpress-app-bins';
+  const SETTINGS_PAGE_KEY = JPRESS_PRIMARY_OPTIONS;
+
   const OPTIONS_PAGES_DIR = JPRESS_OPTIONS_DIR . 'pages' . DIRECTORY_SEPARATOR;
 
 	/**
@@ -51,7 +54,10 @@ class JPress_Options {
     add_action('admin_notices', array( $this, 'notifyUserLicense' ));
 
     $this->_initOptions();
-    $this->_noLicenseInit();
+    $this->_initAppBins();
+
+    // NOTE: Activation will be removed completely
+    // $this->_noLicenseInit();
   }
 
 
@@ -110,13 +116,14 @@ class JPress_Options {
    */
   public function notifyUserLicense() {
     $activationURL = admin_url( 'admin.php?page=jpress-activation' );
-    $message = __('You must connect your JPress account to activate your license.', 'textdomain')
+    $message = __('You must connect your JPress account to activate your license.', 'jpress')
                   . ' <a href="'. $activationURL .'">'
-                  . __('Click here to activate.', 'textdomain')
+                  . __('Click here to activate.', 'jpress')
                   . '</a> ';
 
     if ( jpress_check_license() === false ) {
-      jpress_notice($message, 'warning');
+      // NOTE: No longer required, activation will be removed
+      // jpress_notice($message, 'warning');
     }
   }
 
@@ -133,9 +140,11 @@ class JPress_Options {
    * Initialize settings page options
    */
   protected function _initSettingsPage() {
+    $appBinPage = admin_url('/admin.php?page=' . static::APP_BIN_PAGE_KEY);
+
     // NOTE: Init Settings Page
     $settings_arg = array(
-      'id' => JPRESS_PRIMARY_OPTIONS,
+      'id' => static::SETTINGS_PAGE_KEY,
       'title' => 'JPress',
       'menu_title' => 'JPress',
       'menu_side_title' => 'Settings',
@@ -144,11 +153,11 @@ class JPress_Options {
       'layout' => 'wide',//wide
       'header' => array(
         'icon' => '<img src="' . JPRESS_URL . 'assets/img/jpress-logo-light.svg"/>',
-        'desc' => 'No coding required. Your app syncs with your site automatically.',
+        'desc' => sprintf('Instant app for your website, no coding skills required. <br> <a href="%s">Get iOS / Android app binaries</a>.', $appBinPage),
       ),
-      'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
+      'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'jpress' ),
       'capability' => 'manage_options',
-      // 'parent' => JPRESS_PRIMARY_OPTIONS,
+      // 'parent' => static::SETTINGS_PAGE_KEY,
     );
 
     $settings = jpress_new_admin_page( $settings_arg );
@@ -158,19 +167,19 @@ class JPress_Options {
       'name' => 'Main tab',
       'id' => 'main-tab',
       'items' => array(
-          'general' => '<i class="jpress-icon fa fa-cog"></i>'.__( 'General', 'textdomain' ),
-          'user_guide' => '<i class="jpress-icon jpress-icon-photo"></i>'.__( 'User Guide', 'textdomain' ),
-          'topbar' => '<i class="jpress-icon fa fa-sliders"></i>'.__( 'Topbar', 'textdomain' ),
-          'sidemenu' => '<i class="jpress-icon fa fa-bars"></i>'.__( 'Side Menu', 'textdomain' ),
-          'homepage' => '<i class="jpress-icon jpress-icon-home"></i>'.__( 'Home Tab', 'textdomain' ),
-          'bottombar' => '<i class="jpress-icon fa fa-th-large"></i>'.__( 'Bottom Bar', 'textdomain' ),
-          'archives' => '<i class="jpress-icon fa-tags"></i>'.__( 'Archives', 'textdomain' ),
-          'styling' => '<i class="jpress-icon fa fa-paint-brush"></i>'.__( 'Styling', 'textdomain' ),
-          // 'typography' => '<i class="jpress-icon jpress-icon-font"></i>'.__( 'Typography', 'textdomain' ),
-          'advertisement' => '<i class="jpress-icon jpress-icon-photo"></i>'.__( 'Advertisement', 'textdomain' ),
-          'settings' => '<i class="jpress-icon jpress-icon-cogs"></i>'.__( 'Settings Tab', 'textdomain' ),
-          'translations' => '<i class="jpress-icon jpress-icon-language"></i>'.__( 'Translations', 'textdomain' ),
-          'import' => '<i class="jpress-icon jpress-icon-database"></i>'.__( 'Import/Export', 'textdomain' ),
+          'general' => '<i class="jpress-icon fa fa-cog"></i>'.__( 'General', 'jpress' ),
+          'user_guide' => '<i class="jpress-icon jpress-icon-photo"></i>'.__( 'User Guide', 'jpress' ),
+          'topbar' => '<i class="jpress-icon fa fa-sliders"></i>'.__( 'Topbar', 'jpress' ),
+          'sidemenu' => '<i class="jpress-icon fa fa-bars"></i>'.__( 'Side Menu', 'jpress' ),
+          'homepage' => '<i class="jpress-icon jpress-icon-home"></i>'.__( 'Home Tab', 'jpress' ),
+          'bottombar' => '<i class="jpress-icon fa fa-th-large"></i>'.__( 'Bottom Bar', 'jpress' ),
+          'archives' => '<i class="jpress-icon fa-tags"></i>'.__( 'Archives', 'jpress' ),
+          'styling' => '<i class="jpress-icon fa fa-paint-brush"></i>'.__( 'Styling', 'jpress' ),
+          // 'typography' => '<i class="jpress-icon jpress-icon-font"></i>'.__( 'Typography', 'jpress' ),
+          'advertisement' => '<i class="jpress-icon jpress-icon-photo"></i>'.__( 'Advertisement', 'jpress' ),
+          'settings' => '<i class="jpress-icon jpress-icon-cogs"></i>'.__( 'Settings Tab', 'jpress' ),
+          'translations' => '<i class="jpress-icon jpress-icon-language"></i>'.__( 'Translations', 'jpress' ),
+          // 'import' => '<i class="jpress-icon jpress-icon-database"></i>'.__( 'Import/Export', 'jpress' ),
       ),
       'options' => array(
           'conditions' => array(
@@ -197,7 +206,7 @@ class JPress_Options {
     include static::OPTIONS_PAGES_DIR . '10_typography.php';
     include static::OPTIONS_PAGES_DIR . '11_settings.php';
     include static::OPTIONS_PAGES_DIR . '12_translations.php';
-    include static::OPTIONS_PAGES_DIR . '13_import.php';
+    // include static::OPTIONS_PAGES_DIR . '13_import.php';
 
     // Close main tab
     $settings->close_tab('main-tab');
@@ -205,7 +214,57 @@ class JPress_Options {
 
 
   /*
+   * Initialize options for app binaries download page
+   */
+  protected function _initAppBins() {
+    $settingsPage = admin_url('/admin.php?page=' . static::SETTINGS_PAGE_KEY);
+
+    // TODO: App binaries page
+
+		$args = array(
+			'id' => static::APP_BIN_PAGE_KEY,
+			'title' => 'Get Mobile App',
+			'menu_title' => 'Get Mobile App',
+			'menu_side_title' => 'Get Mobile JPress',
+			'icon' => JPRESS_URL . 'assets/img/jpress-light-small.png',//Menu icon
+			'skin' => 'blue',// Skins: blue, lightblue, green, teal, pink, purple, bluepurple, yellow, orange'
+			'layout' => 'wide',//wide
+			'header' => array(
+        'icon' => '<img src="' . JPRESS_URL . 'assets/img/jpress-logo-light.svg"/>',
+        'desc' => 'Enter your application details below to get iOS / Android app binaries.',
+			),
+			'capability' => 'manage_options',
+			'parent' => static::SETTINGS_PAGE_KEY,
+		);
+
+		$page = jpress_new_admin_page( $args );
+
+		$section	=	$page->add_section( array(
+			'name' => 'Get Mobile App Binaries',
+			'id' => 'section-app-bin',
+    ));
+
+		$section->add_field(array(
+			'id' => 'custom-title',
+			'name' => __( 'Enter your license key', 'jpress' ),
+			'type' => 'title',
+			'desc' => (
+        '<br>'
+        . __('<strong><u>You must purchase a license</u> on <a href="jpress.io" target="_blank">jpress.io</a> to unlock all features of JPress and get your own mobile app.</strong>')
+        . '<br>'
+        . __('Or you can get instant access to a demo of what your mobile app will look like and experience real-time customizations by installing JPress from <a href="#" target="_blank">Google Play</a> or <a href="#" target="_blank">Apple App Store</a>.')
+        . '<br>'
+      ),
+    ));
+
+    // ..
+  }
+
+
+  /*
    * Initialize options for no or invalid license state
+   *
+   * @deprecated 1.0.2
    */
   protected function _noLicenseInit() {
     if ( jpress_check_license() === true && JPRESS_ENABLE_CONNECT_PAGE_IF_ACTIVE === false ) {
@@ -227,9 +286,9 @@ class JPress_Options {
         'icon' => '<img src="' . JPRESS_URL . 'assets/img/jpress-logo-light.svg"/>',
         'desc' => 'Connect and activate your JPress account.',
 			),
-			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'textdomain' ),
+			'import_message' => __( 'Settings imported. This is just an example. No data imported.', 'jpress' ),
 			'capability' => 'manage_options',
-			'parent' => JPRESS_PRIMARY_OPTIONS,
+			'parent' => static::SETTINGS_PAGE_KEY,
 		);
 
 		$activation = jpress_new_admin_page( $activation_args );
@@ -242,7 +301,7 @@ class JPress_Options {
     $isValidLicense = jpress_check_license() === true;
 		$activation_section->add_field(array(
 			'id' => 'custom-title',
-			'name' => __( 'Enter your license key', 'textdomain' ),
+			'name' => __( 'Enter your license key', 'jpress' ),
 			'type' => 'title',
 			'desc' => (
         '<br>'

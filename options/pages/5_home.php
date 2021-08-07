@@ -15,13 +15,13 @@ defined( 'ABSPATH' ) || exit;
 $settings->open_tab_item('homepage');
 
 $tabs = $settings->add_section( array(
-  'name' => __( 'Home Page tabs', 'textdomain' ),
+  'name' => __( 'Home Page tabs', 'jpress' ),
   'id' => 'section-homepage-tabs',
   'options' => array( 'toggle' => true )
 ));
 
 $tabs->add_field(array(
-  'name' => __( 'Enable Tabs', 'textdomain' ),
+  'name' => __( 'Enable Tabs', 'jpress' ),
   'id' => 'tabsbar_categories_tab',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -33,14 +33,14 @@ $tabs->add_field(array(
 
 $tabs->open_mixed_field(
   array(
-    'name' =>  __('Customize Home Page Title in tabs', 'textdomain' ),
+    'name' =>  __('Customize Home Page Title in tabs', 'jpress' ),
     'options' => array(
       'show_if' => array('tabsbar_categories_tab', '=', 'true')
     ),
   )
 );
 $tabs->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-hompage_title',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -51,10 +51,10 @@ $tabs->add_field(array(
 ));
 $tabs->add_field(array(
   'id' => 'homepage-sections-title',
-  'name' => __( 'Title', 'textdomain' ),
+  'name' => __( 'Title', 'jpress' ),
   'type' => 'text',
   'grid' => '5-of-6',
-  'default' => __( 'Home', 'textdomain' ),
+  'default' => __( 'Home', 'jpress' ),
   'options' => array(
     'show_if' => array('local-hompage_title', '=', 'true')
   )
@@ -62,7 +62,7 @@ $tabs->add_field(array(
 $tabs->close_mixed_field();
 
 $tabs->add_field( array(
-  'name' => __( 'Layout', 'textdomain' ),
+  'name' => __( 'Layout', 'jpress' ),
   'id' => 'tabs-tabslayout',
   'type' => 'image_selector',
   'default' => 'TabsLayout.tab1',
@@ -80,17 +80,17 @@ $tabs->add_field( array(
   ),
 ));
 
-$tabs->open_mixed_field(array('name' => __('Background color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$tabs->open_mixed_field(array('name' => __('Background color', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $tabs->add_field(array(
   'id' => 'styling-themeMode_light-tabbarbackgroundcolor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
 ));
 
 $tabs->add_field(array(
   'id' => 'styling-themeMode_dark-tabbarbackgroundcolor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
   'options' => array(
@@ -99,17 +99,17 @@ $tabs->add_field(array(
 ));
 $tabs->close_mixed_field();
 
-$tabs->open_mixed_field(array('name' => __('InActive Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$tabs->open_mixed_field(array('name' => __('InActive Tab Text color', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $tabs->add_field(array(
   'id' => 'styling-themeMode_light-tabbartextcolor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#7F7F7F',
 ));
 
 $tabs->add_field(array(
   'id' => 'styling-themeMode_dark-tabbartextcolor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#8A8A89',
   'options' => array(
@@ -118,17 +118,17 @@ $tabs->add_field(array(
 ));
 $tabs->close_mixed_field();
 
-$tabs->open_mixed_field(array('name' => __('Active Tab Text color', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$tabs->open_mixed_field(array('name' => __('Active Tab Text color', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $tabs->add_field(array(
   'id' => 'styling-themeMode_light-tabbaractivetextcolor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
 ));
 
 $tabs->add_field(array(
   'id' => 'styling-themeMode_dark-tabbaractivetextcolor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
   'options' => array(
@@ -137,17 +137,17 @@ $tabs->add_field(array(
 ));
 $tabs->close_mixed_field();
 
-$tabs->open_mixed_field(array('name' => __('Indicator color', 'textdomain' ),'desc' => __('The line under/outline/background the active tab', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$tabs->open_mixed_field(array('name' => __('Indicator color', 'jpress' ),'desc' => __('The line under/outline/background the active tab', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $tabs->add_field(array(
   'id' => 'styling-themeMode_light-tabbarindicatorcolor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#0088FF',
 ));
 
 $tabs->add_field(array(
   'id' => 'styling-themeMode_dark-tabbarindicatorcolor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#0088FF',
   'options' => array(
@@ -157,21 +157,21 @@ $tabs->add_field(array(
 $tabs->close_mixed_field();
 
 $homepage_tabs = $tabs->add_group( array(
-  'name' => __('Tabs', 'textdomain'),
+  'name' => __('Tabs', 'jpress'),
   'id' => 'tabsbaritems',
   'options' => array(
-  'add_item_text' => __('New Tab', 'textdomain'),
+  'add_item_text' => __('New Tab', 'jpress'),
     'show_if' => array('tabsbar_categories_tab', '=', 'true')
   ),
   'controls' => array(
-    'name' =>  __('Tabs Item', 'textdomain').' #',
+    'name' =>  __('Tabs Item', 'jpress').' #',
     'position' => 'top',
     'readonly_name' => true,
     'images' => false,
   ),
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Category', 'textdomain' ),
+  'name' => __( 'Category', 'jpress' ),
   'id' => 'categories',
   'type' => 'select',
   'items' => JPressItems::terms( 'category' ),
@@ -182,9 +182,9 @@ $homepage_tabs->add_field(array(
   ),
 ));
 
-$homepage_tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
+$homepage_tabs->open_mixed_field(array('name' => __('Customized Title', 'jpress' )));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Enable', 'textdomain' ),
+  'name' => __( 'Enable', 'jpress' ),
   'id' => 'customized-title',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -194,7 +194,7 @@ $homepage_tabs->add_field(array(
   )
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'New Title', 'textdomain' ),
+  'name' => __( 'New Title', 'jpress' ),
   'id' => 'title',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -204,9 +204,9 @@ $homepage_tabs->add_field(array(
 ));
 $homepage_tabs->close_mixed_field();
 
-$homepage_tabs->open_mixed_field(array('name' => __('Exclude Posts', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$homepage_tabs->open_mixed_field(array('name' => __('Exclude Posts', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-tabs-exclude_posts',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -217,18 +217,18 @@ $homepage_tabs->add_field(array(
 ));
 $homepage_tabs->add_field(array(
   'id' => 'tabs-exclude_posts',
-  'name' => __( 'Posts ID/IDs', 'textdomain' ),
+  'name' => __( 'Posts ID/IDs', 'jpress' ),
   'type' => 'text',
   'grid' => '5-of-6',
-  'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
+  'desc' => __( 'Enter a post ID, or IDs separated by comma', 'jpress' ),
   'options' => array(
     'show_if' => array('local-tabs-exclude_posts', '=', 'true')
   )
 ));
 $homepage_tabs->close_mixed_field();
-$homepage_tabs->open_mixed_field(array('name' => __('Offset', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$homepage_tabs->open_mixed_field(array('name' => __('Offset', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-tabs-offset_posts',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -239,10 +239,10 @@ $homepage_tabs->add_field(array(
 ));
 $homepage_tabs->add_field(array(
   'id' => 'tabs-offset_posts',
-  'name' => __( 'Offset Count', 'textdomain' ),
+  'name' => __( 'Offset Count', 'jpress' ),
   'type' => 'number',
   'grid' => '5-of-6',
-  'desc' => __( 'Number of posts to pass over', 'textdomain' ),
+  'desc' => __( 'Number of posts to pass over', 'jpress' ),
   'options' => array(
     'show_unit' => false,
     'show_if' => array('local-tabs-offset_posts', '=', 'true')
@@ -250,41 +250,41 @@ $homepage_tabs->add_field(array(
 ));
 $homepage_tabs->close_mixed_field();
 $homepage_tabs->add_field(array(
-  'name' => __( 'Number of posts to show', 'textdomain' ),
+  'name' => __( 'Number of posts to show', 'jpress' ),
   'id' => 'tabs-count',
   'type' => 'select',
   'default' => '3',
   'items' => array(
-    '1' => __( '1 Post', 'textdomain' ),
-    '2' => __( '2 Posts', 'textdomain' ),
-    '3' => __( '3 Posts', 'textdomain' ),
-    '4' => __( '4 Posts', 'textdomain' ),
-    '5' => __( '5 Posts', 'textdomain' ),
-    '6' => __( '6 Posts', 'textdomain' ),
-    '7' => __( '7 Posts', 'textdomain' ),
-    '8' => __( '8 Posts', 'textdomain' ),
-    '9' => __( '9 Posts', 'textdomain' ),
-    '10' => __( '10 Posts', 'textdomain' ),
+    '1' => __( '1 Post', 'jpress' ),
+    '2' => __( '2 Posts', 'jpress' ),
+    '3' => __( '3 Posts', 'jpress' ),
+    '4' => __( '4 Posts', 'jpress' ),
+    '5' => __( '5 Posts', 'jpress' ),
+    '6' => __( '6 Posts', 'jpress' ),
+    '7' => __( '7 Posts', 'jpress' ),
+    '8' => __( '8 Posts', 'jpress' ),
+    '9' => __( '9 Posts', 'jpress' ),
+    '10' => __( '10 Posts', 'jpress' ),
   ),
   'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Sort Order', 'textdomain' ),
+  'name' => __( 'Sort Order', 'jpress' ),
   'id' => 'tabs-sort',
   'type' => 'select',
   'default' => 'latest',
   'items' => array(
-    'latest' => __( 'Recent Posts', 'textdomain' ),
-    // 'rand' => __( 'Random Posts', 'textdomain' ),
-    'modified' => __( 'Last Modified Posts', 'textdomain' ),
-    'comment_count' => __( 'Most Commented posts', 'textdomain' ),
-    'title' => __( 'Alphabetically', 'textdomain' ),
+    'latest' => __( 'Recent Posts', 'jpress' ),
+    // 'rand' => __( 'Random Posts', 'jpress' ),
+    'modified' => __( 'Last Modified Posts', 'jpress' ),
+    'comment_count' => __( 'Most Commented posts', 'jpress' ),
+    'title' => __( 'Alphabetically', 'jpress' ),
   ),
   'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))
 ));
 $homepage_tabs->add_field( array(
   'id' => 'tabs-postlayout',
-  'name' => __( 'Posts Layout', 'textdomain' ),
+  'name' => __( 'Posts Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.startThumbPost',
   'items' => array(
@@ -306,11 +306,11 @@ $homepage_tabs->add_field( array(
   ),
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Is first post "Featured"?', 'textdomain' ),
+  'name' => __( 'Is first post "Featured"?', 'jpress' ),
   'id' => 'local-tabs-firstfeatured',
   'type' => 'switcher',
   'default'	=>	'false',
-  'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
+  'desc' => __( 'Enable this to make the first post of this section with different post layout', 'jpress' ),
   'options' => array(
     'on_value' => 'true',
     'off_value' => 'false',
@@ -319,7 +319,7 @@ $homepage_tabs->add_field(array(
 ));
 $homepage_tabs->add_field( array(
   'id' => 'tabs-firstfeatured',
-  'name' => __( 'Featured Post Layout', 'textdomain' ),
+  'name' => __( 'Featured Post Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.featuredPost',
   'items' => array(
@@ -334,9 +334,9 @@ $homepage_tabs->add_field( array(
     'show_if' => array('local-tabs-firstfeatured', '=', 'true')
   ),
 ));
-$homepage_tabs->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
+$homepage_tabs->open_mixed_field(array('name' => __('Advanced Settings', 'jpress' ), 'options' => array('show_if' => array('tabsbar_categories_tab', '=', 'true'))));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Catgeory', 'textdomain' ),
+  'name' => __( 'Catgeory', 'jpress' ),
   'id' => 'tabs-options-category',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -346,7 +346,7 @@ $homepage_tabs->add_field(array(
   )
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'tabs-options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -356,7 +356,7 @@ $homepage_tabs->add_field(array(
   )
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'tabs-options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -366,7 +366,7 @@ $homepage_tabs->add_field(array(
   )
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'tabs-options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -376,7 +376,7 @@ $homepage_tabs->add_field(array(
   )
 ));
 $homepage_tabs->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'tabs-options-share',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -388,19 +388,19 @@ $homepage_tabs->add_field(array(
 $homepage_tabs->close_mixed_field();
 
 $homepage = $settings->add_section( array(
-  'name' => __( 'Home Page Sections', 'textdomain' ),
+  'name' => __( 'Home Page Sections', 'jpress' ),
   'id' => 'section-homepage-builder',
   'options' => array( 'toggle' => true )
 ));
 
 $section = $homepage->add_group( array(
-  'name' => __( 'Home Page Sections', 'textdomain' ),
+  'name' => __( 'Home Page Sections', 'jpress' ),
   'id' => 'sections',
   'options' => array(
-    'add_item_text' => __('New Section', 'textdomain'),
+    'add_item_text' => __('New Section', 'jpress'),
   ),
   'controls' => array(
-    'name' =>  __('Section', 'textdomain').' #',
+    'name' =>  __('Section', 'jpress').' #',
     'readonly_name' => false,
     'images' => true,
     'position' => 'left',
@@ -412,7 +412,7 @@ $section = $homepage->add_group( array(
 
 $section->add_field( array(
   'id' => 'postlayout',
-  'name' => __( 'Posts Layout', 'textdomain' ),
+  'name' => __( 'Posts Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.startThumbPost',
   'items' => array(
@@ -437,27 +437,27 @@ $section->add_field( array(
 ));
 
 $section->add_field(array(
-  'name' => __( 'AdMob Banner Size', 'textdomain' ),
+  'name' => __( 'AdMob Banner Size', 'jpress' ),
   'id' => 'admob_banner_size',
   'type' => 'select',
   'default' => 'banner',
   'items' => array(
-    'banner' => __( 'Banner', 'textdomain' ),
-    'leaderboard' => __( 'Leaderboard', 'textdomain' ),
-    'smart_banner' => __( 'Smart Banner', 'textdomain' ),
-    'Medium_banner' => __( 'Medium Banner', 'textdomain' ),
-    'large_banner' => __( 'Large Banner', 'textdomain' ),
-    'full_banner' => __( 'Full Banner', 'textdomain' ),
+    'banner' => __( 'Banner', 'jpress' ),
+    'leaderboard' => __( 'Leaderboard', 'jpress' ),
+    'smart_banner' => __( 'Smart Banner', 'jpress' ),
+    'Medium_banner' => __( 'Medium Banner', 'jpress' ),
+    'large_banner' => __( 'Large Banner', 'jpress' ),
+    'full_banner' => __( 'Full Banner', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('postlayout', '=', 'PostLayout.adMob'),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Ad HTML Code', 'textdomain' ),
+  'name' => __( 'Ad HTML Code', 'jpress' ),
   'id' => 'ad_section_html',
   'type' => 'textarea',
-  'desc' => __( 'Add your ad spcial HTML markup', 'textdomain' ),
+  'desc' => __( 'Add your ad spcial HTML markup', 'jpress' ),
   'grid' => '5-of-6',
   'default' => '<p>HTML Content goes here.</p>',
   'options' => array(
@@ -467,25 +467,25 @@ $section->add_field(array(
 ));
 
 $section->open_mixed_field(array(
-  'name' =>  __('Image Ad Options', 'textdomain' ),
+  'name' =>  __('Image Ad Options', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', '=', 'PostLayout.imageAd'),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'ad_image_link_type',
   'type' => 'radio',
   'default' => 'NavigationType.url',
   'items' => array(
-    'NavigationType.url' => __( 'Full URL', 'textdomain' ),
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.url' => __( 'Full URL', 'jpress' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Link URL', 'textdomain' ),
+  'name' => __( 'Link URL', 'jpress' ),
   'id' => 'ad_image_link_url',
   'type' => 'text',
   'grid' => '2-of-6',
@@ -494,24 +494,24 @@ $section->add_field(array(
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'ad_image_link_main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'attributes' => array( 'required' => true ),
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('ad_image_link_type', '=', 'NavigationType.main'),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'ad_image_link_category',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -521,7 +521,7 @@ $section->add_field(array(
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'ad_image_link_page',
   'type' => 'select',
   'attributes' => array( 'required' => true ),
@@ -531,7 +531,7 @@ $section->add_field(array(
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Ad Image', 'textdomain' ),
+  'name' => __( 'Ad Image', 'jpress' ),
   'id' => 'ad_image_file',
   'type' => 'file',
 ));
@@ -539,13 +539,13 @@ $section->close_mixed_field();
 
 
 $section->open_mixed_field(array(
-  'name' =>  __('Section Title', 'textdomain' ),
+  'name' =>  __('Section Title', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-section_title',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -556,10 +556,10 @@ $section->add_field(array(
 ));
 $section->add_field(array(
   'id' => 'title',
-  'name' => __( 'Title', 'textdomain' ),
+  'name' => __( 'Title', 'jpress' ),
   'type' => 'text',
   'grid' => '5-of-6',
-  'desc' => __( 'If you don\'t need this section to have title, then switch it off', 'textdomain' ),
+  'desc' => __( 'If you don\'t need this section to have title, then switch it off', 'jpress' ),
   'options' => array(
     'show_if' => array('local-section_title', '=', 'true')
   )
@@ -567,7 +567,7 @@ $section->add_field(array(
 $section->close_mixed_field();
 
 $section->add_field(array(
-  'name' => __( "Show 'See All' Button", 'textdomain' ),
+  'name' => __( "Show 'See All' Button", 'jpress' ),
   'id' => 'local-enable_see_all',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -578,7 +578,7 @@ $section->add_field(array(
   ),
 ));
 $section->add_field(array(
-  'name' => __( "Show 'Load more' Button", 'textdomain' ),
+  'name' => __( "Show 'Load more' Button", 'jpress' ),
   'id' => 'local-enable_load_more',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -590,19 +590,19 @@ $section->add_field(array(
 ));
 
 $section->open_mixed_field(array(
-  'name' =>  __('Show posts by', 'textdomain' ),
+  'name' =>  __('Show posts by', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Taxonomy type', 'textdomain' ),
+  'name' => __( 'Taxonomy type', 'jpress' ),
   'id' => 'showposts',
   'type' => 'radio',
   'default' => 'categories',
   'items' => array(
-    'categories' => __( 'Categories', 'textdomain' ),
-    'tags' => __( 'Tags', 'textdomain' ),
+    'categories' => __( 'Categories', 'jpress' ),
+    'tags' => __( 'Tags', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
@@ -610,22 +610,22 @@ $section->add_field(array(
 ));
 $section->add_field( array(
   'id' => 'categories',
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'type' => 'checkbox',
   // 'default' => '$all$',
   'items' => JPressItems::terms( 'category' ),
-  'desc' => __( 'Select all categories you need to show thier posts in that section', 'textdomain' ),
+  'desc' => __( 'Select all categories you need to show thier posts in that section', 'jpress' ),
   'options' => array(
     'show_if' => array('showposts', '=', 'categories')
   )
 ));
 $section->add_field(array(
   'id' => 'tags',
-  'name' => __( 'Tags', 'textdomain' ),
+  'name' => __( 'Tags', 'jpress' ),
   'type' => 'checkbox',
   // 'default' => '$all$',
   'items' => JPressItems::terms( 'post_tag' ),
-  'desc' => __( 'Select all tags you need to show thier posts in that section', 'textdomain' ),
+  'desc' => __( 'Select all tags you need to show thier posts in that section', 'jpress' ),
   'options' => array(
     'show_if' => array('showposts', '=', 'tags')
   )
@@ -634,13 +634,13 @@ $section->close_mixed_field();
 
 $section->close_mixed_field();
 $section->open_mixed_field(array(
-  'name' => __('Exclude Posts', 'textdomain' ),
+  'name' => __('Exclude Posts', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-enable_exclude_posts',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -651,23 +651,23 @@ $section->add_field(array(
 ));
 $section->add_field(array(
   'id' => 'local-exclude_posts',
-  'name' => __( 'Posts ID/IDs', 'textdomain' ),
+  'name' => __( 'Posts ID/IDs', 'jpress' ),
   'type' => 'text',
   'grid' => '5-of-6',
-  'desc' => __( 'Enter a post ID, or IDs separated by comma', 'textdomain' ),
+  'desc' => __( 'Enter a post ID, or IDs separated by comma', 'jpress' ),
   'options' => array(
     'show_if' => array('local-enable_exclude_posts', '=', 'true')
   )
 ));
 $section->close_mixed_field();
 $section->open_mixed_field(array(
-  'name' => __('Offset', 'textdomain' ),
+  'name' => __('Offset', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-enable_offset_posts',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -678,10 +678,10 @@ $section->add_field(array(
 ));
 $section->add_field(array(
   'id' => 'local-offset_posts',
-  'name' => __( 'Count', 'textdomain' ),
+  'name' => __( 'Count', 'jpress' ),
   'type' => 'number',
   'grid' => '5-of-6',
-  'desc' => __( 'Number of posts to pass over', 'textdomain' ),
+  'desc' => __( 'Number of posts to pass over', 'jpress' ),
   'options' => array(
     'show_unit' => false,
     'show_if' => array('local-enable_offset_posts', '=', 'true')
@@ -689,37 +689,37 @@ $section->add_field(array(
 ));
 $section->close_mixed_field();
 $section->add_field(array(
-  'name' => __( 'Sort Order', 'textdomain' ),
+  'name' => __( 'Sort Order', 'jpress' ),
   'id' => 'local-sort',
   'type' => 'select',
   'default' => 'latest',
   'items' => array(
-    'latest' => __( 'Recent Posts', 'textdomain' ),
-    // 'rand' => __( 'Random Posts', 'textdomain' ),
-    'modified' => __( 'Last Modified Posts', 'textdomain' ),
-    'comment_count' => __( 'Most Commented posts', 'textdomain' ),
-    'title' => __( 'Alphabetically', 'textdomain' ),
+    'latest' => __( 'Recent Posts', 'jpress' ),
+    // 'rand' => __( 'Random Posts', 'jpress' ),
+    'modified' => __( 'Last Modified Posts', 'jpress' ),
+    'comment_count' => __( 'Most Commented posts', 'jpress' ),
+    'title' => __( 'Alphabetically', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Number of posts to show', 'textdomain' ),
+  'name' => __( 'Number of posts to show', 'jpress' ),
   'id' => 'local-count',
   'type' => 'select',
   'default' => '3',
   'items' => array(
-    '1' => __( '1 Post', 'textdomain' ),
-    '2' => __( '2 Posts', 'textdomain' ),
-    '3' => __( '3 Posts', 'textdomain' ),
-    '4' => __( '4 Posts', 'textdomain' ),
-    '5' => __( '5 Posts', 'textdomain' ),
-    '6' => __( '6 Posts', 'textdomain' ),
-    '7' => __( '7 Posts', 'textdomain' ),
-    '8' => __( '8 Posts', 'textdomain' ),
-    '9' => __( '9 Posts', 'textdomain' ),
-    '10' => __( '10 Posts', 'textdomain' ),
+    '1' => __( '1 Post', 'jpress' ),
+    '2' => __( '2 Posts', 'jpress' ),
+    '3' => __( '3 Posts', 'jpress' ),
+    '4' => __( '4 Posts', 'jpress' ),
+    '5' => __( '5 Posts', 'jpress' ),
+    '6' => __( '6 Posts', 'jpress' ),
+    '7' => __( '7 Posts', 'jpress' ),
+    '8' => __( '8 Posts', 'jpress' ),
+    '9' => __( '9 Posts', 'jpress' ),
+    '10' => __( '10 Posts', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
@@ -727,13 +727,13 @@ $section->add_field(array(
 ));
 
 $section->open_mixed_field(array(
-  'name' =>  __('Featured post', 'textdomain' ),
+  'name' =>  __('Featured post', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Is first post "Featured"?', 'textdomain' ),
+  'name' => __( 'Is first post "Featured"?', 'jpress' ),
   'id' => 'local-firstfeatured',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -742,10 +742,10 @@ $section->add_field(array(
     'off_value' => 'false',
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
-  'desc' => __( 'Enable this to make the first post of this section with different post layout', 'textdomain' ),
+  'desc' => __( 'Enable this to make the first post of this section with different post layout', 'jpress' ),
 ));
 $section->add_field(array(
-  'name' => __( 'First Post Layout', 'textdomain' ),
+  'name' => __( 'First Post Layout', 'jpress' ),
   'id' => 'firstFeatured',
   'type' => 'image_selector',
   'default' => 'PostLayout.featuredPost',
@@ -764,7 +764,7 @@ $section->add_field(array(
 $section->close_mixed_field();
 
 $section->add_field(array(
-  'name' => __( 'Add separator after the block?', 'textdomain' ),
+  'name' => __( 'Add separator after the block?', 'jpress' ),
   'id' => 'separator',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -775,13 +775,13 @@ $section->add_field(array(
   )
 ));
 $section->open_mixed_field(array(
-  'name' => __('Advanced Settings', 'textdomain' ),
+  'name' => __('Advanced Settings', 'jpress' ),
   'options' => array(
     'show_if' => array('postlayout', 'not in', ['PostLayout.adMob', 'PostLayout.htmlAd', 'PostLayout.imageAd']),
   ),
 ));
 $section->add_field(array(
-  'name' => __( 'Catgeory', 'textdomain' ),
+  'name' => __( 'Catgeory', 'jpress' ),
   'id' => 'options-category',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -791,7 +791,7 @@ $section->add_field(array(
   )
 ));
 $section->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -801,7 +801,7 @@ $section->add_field(array(
   )
 ));
 $section->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -811,7 +811,7 @@ $section->add_field(array(
   )
 ));
 $section->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -821,7 +821,7 @@ $section->add_field(array(
   )
 ));
 $section->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'options-share',
   'type' => 'switcher',
   'default'	=>	'false',

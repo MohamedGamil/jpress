@@ -581,7 +581,7 @@ class JPress_Endpoints {
    * Options
    */
   public function do_options() {
-    return get_option('jpress-options');
+    return get_option(JPRESS_OPTIONS_KEY);
   }
 
 

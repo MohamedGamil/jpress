@@ -36,16 +36,16 @@ function jpress_get_read_time() {
 		$reading_time  = round( $words_count / $words_per_min );
 
 		if( $reading_time < 1){
-			$result = esc_html__( 'Less than a minute', 'textdomain' );
+			$result = esc_html__( 'Less than a minute', 'jpress' );
 		}
 		elseif( $reading_time > 60 ){
-			$result = sprintf( esc_html__( '%s hours read', 'textdomain' ), number_format_i18n( floor( $reading_time / 60 ) ) );
+			$result = sprintf( esc_html__( '%s hours read', 'jpress' ), number_format_i18n( floor( $reading_time / 60 ) ) );
 		}
 		else if ( $reading_time == 1 ){
-			$result = esc_html__( '1 minute read', 'textdomain' );
+			$result = esc_html__( '1 minute read', 'jpress' );
 		}
 		else {
-			$result = sprintf( esc_html__( '%s minutes read', 'textdomain' ), number_format_i18n( $reading_time ) );
+			$result = sprintf( esc_html__( '%s minutes read', 'jpress' ), number_format_i18n( $reading_time ) );
 		}
 
 		return apply_filters( 'JPress/API/Post/Read_Time', $result, $reading_time, $words_per_min, $words_count );
@@ -280,19 +280,19 @@ function jpress_get_ads_in_post_options($asArray = false) {
 
           switch($linkValue) {
             case 'MainPage.home':
-              $linkTitle = __('Home', 'textdomain' );
+              $linkTitle = __('Home', 'jpress' );
             break;
             case 'MainPage.optss':
-              $linkTitle = __('Categories', 'textdomain' );
+              $linkTitle = __('Categories', 'jpress' );
             break;
             case 'MainPage.favourites':
-              $linkTitle = __('Favorites', 'textdomain' );
+              $linkTitle = __('Favorites', 'jpress' );
             break;
             case 'MainPage.settings':
-              $linkTitle = __('Settings', 'textdomain' );
+              $linkTitle = __('Settings', 'jpress' );
             break;
             case 'MainPage.contactUs':
-              $linkTitle = __('Contact us', 'textdomain' );
+              $linkTitle = __('Contact us', 'jpress' );
             break;
           }
           break;

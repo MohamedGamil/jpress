@@ -47,19 +47,19 @@ if ($data['menu_type'] !== 'sidemenu' && isset($data["bottombar_tabs"]) && !empt
         if (!isset($navigator["cutomized_title"]) || $navigator["cutomized_title"] == 'false') {
           switch($navigator['main']) {
             case 'MainPage.home':
-              $navigator['title'] = __('Home', 'textdomain' );
+              $navigator['title'] = __('Home', 'jpress' );
             break;
             case 'MainPage.sections':
-              $navigator['title'] = __('Categories', 'textdomain' );
+              $navigator['title'] = __('Categories', 'jpress' );
             break;
             case 'MainPage.favourites':
-              $navigator['title'] = __('Favorites', 'textdomain' );
+              $navigator['title'] = __('Favorites', 'jpress' );
             break;
             case 'MainPage.settings':
-              $navigator['title'] = __('Settings', 'textdomain' );
+              $navigator['title'] = __('Settings', 'jpress' );
             break;
             case 'MainPage.contactUs':
-              $navigator['title'] = __('Contact us', 'textdomain' );
+              $navigator['title'] = __('Contact us', 'jpress' );
             break;
           }
         }

@@ -14,32 +14,32 @@ defined( 'ABSPATH' ) || exit;
 // NOTE: Top Bar Page
 $settings->open_tab_item('topbar');
 $settings->add_field(array(
-  'name' => __('Logo (Light)', 'textdomain' ),
+  'name' => __('Logo (Light)', 'jpress' ),
   'id' => 'logo-light',
   'type' => 'file',
-  'default' => JPRESS_URL . 'assets/img/jannah-logo-light.png',
+  'default' => JPRESS_URL . 'assets/img/jpress-logo-light.svg',
 ));
 $settings->add_field(array(
-  'name' => __('Logo (Dark)', 'textdomain' ),
+  'name' => __('Logo (Dark)', 'jpress' ),
   'id' => 'logo-dark',
   'type' => 'file',
-  'default' => JPRESS_URL . 'assets/img/jannah-logo-dark.png',
+  'default' => JPRESS_URL . 'assets/img/jpress-logo.svg',
   'options' => array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   ),
 ));
 $settings->add_field(array(
-  'name' => __( 'Logo Postition', 'textdomain' ),
+  'name' => __( 'Logo Postition', 'jpress' ),
   'id' => 'appbar-position',
   'type' => 'radio',
   'default' => 'LogoPosition.start',
   'items' => array(
-    'LogoPosition.start' => __( 'Start', 'textdomain' ),
-    'LogoPosition.center' => __( 'Center', 'textdomain' ),
+    'LogoPosition.start' => __( 'Start', 'jpress' ),
+    'LogoPosition.center' => __( 'Center', 'jpress' ),
   )
 ));
 $settings->add_field( array(
-  'name' => __('Side menu icon', 'textdomain'),
+  'name' => __('Side menu icon', 'jpress'),
   'id' => 'sidenavbar-icon',
   'type' => 'icon_selector',
   'default' => '0xe808',
@@ -52,9 +52,9 @@ $settings->add_field( array(
     'show_if' => array('menu_type', '!=', 'bottombar')
   ),
 ));
-$settings->open_mixed_field(array('name' => __('Show search button', 'textdomain' )));
+$settings->open_mixed_field(array('name' => __('Show search button', 'jpress' )));
 $settings->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'topbar_search_button',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -64,7 +64,7 @@ $settings->add_field(array(
   )
 ));
 $settings->add_field( array(
-  'name' => __('Search icon', 'textdomain'),
+  'name' => __('Search icon', 'jpress'),
   'id' => 'appbar-searchicon',
   'type' => 'icon_selector',
   'default' => '0xe820',
@@ -79,17 +79,17 @@ $settings->add_field( array(
 ));
 $settings->close_mixed_field();
 
-$settings->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+$settings->open_mixed_field(array('name' => __('Background color', 'jpress' )));
 $settings->add_field(array(
   'id' => 'styling-themeMode_light-appBarBackgroundColor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
 ));
 
 $settings->add_field(array(
   'id' => 'styling-themeMode_dark-appBarBackgroundColor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
   'options' => array(
@@ -98,17 +98,17 @@ $settings->add_field(array(
 ));
 $settings->close_mixed_field();
 
-$settings->open_mixed_field(array('name' => __('Icons/Text colors', 'textdomain' )));
+$settings->open_mixed_field(array('name' => __('Icons/Text colors', 'jpress' )));
 $settings->add_field(array(
   'id' => 'styling-themeMode_light-appBarColor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
 ));
 
 $settings->add_field(array(
   'id' => 'styling-themeMode_dark-appBarColor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
   'options' => array(

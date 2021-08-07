@@ -16,7 +16,7 @@
  * Plugin Name:       JPress (BETA)
  * Plugin URI:        https://jpress.io
  * Description:       Convert your WordPress site into a Native Mobile App. No coding required. Your app syncs with your site automatically. Increase engagement, loyalty and monetize better on mobile!
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            JPress Team
  * Author URI:        https://jpress.io
  * License:           GPL-2.0+

@@ -69,7 +69,7 @@ class JPress_Notifications_Metabox {
   public function add_meta_box( $taxonomy ) {
     add_meta_box(
       'jpress-notifications-metabox',
-      esc_html__( 'JPress Push Notifications', 'textdomain' ),
+      esc_html__( 'JPress Push Notifications', 'jpress' ),
       array( $this, 'display_meta_box' ),
       'post',
       'side',
@@ -246,7 +246,7 @@ class JPress_Notifications_Metabox {
    * @return void
    */
   protected function _serveSubmitError($message = null) {
-    $message = __($message, 'textdomain') ?? __('JPress Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'textdomain');
+    $message = __($message, 'jpress') ?? __('JPress Notification Error! Unable to send notification, please check your inputs and verify that your current plan allows it.', 'jpress');
     $error = new WP_Error(400, $message, $message);
 
     wp_die($message);
@@ -259,7 +259,7 @@ class JPress_Notifications_Metabox {
    * @return void
    */
   protected function _serveSuccessMessage($message = null) {
-    $message = __($message, 'textdomain') ?? __('JPress notification sent successfully.', 'textdomain');
+    $message = __($message, 'jpress') ?? __('JPress notification sent successfully.', 'jpress');
 
     // TODO: ...
     // jpress_notice($message);

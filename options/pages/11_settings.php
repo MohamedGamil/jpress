@@ -15,14 +15,14 @@ defined( 'ABSPATH' ) || exit;
 $settings->open_tab_item('settings');
 
 $section_header_social = $settings->add_section( array(
-  'name' => __( 'Social', 'textdomain' ),
+  'name' => __( 'Social', 'jpress' ),
   'id' => 'local-section_social_links',
-  'desc' => __( 'Add social networks links to your application', 'textdomain' ),
+  'desc' => __( 'Add social networks links to your application', 'jpress' ),
   'options' => array( 'toggle' => true )
 ));
 
 $section_header_social->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'social_enabled',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -34,21 +34,21 @@ $section_header_social->add_field(array(
 
 $socialLinks = $section_header_social->add_group( array(
   'id' => 'social',
-  'name' => __('Social', 'textdomain'),
+  'name' => __('Social', 'jpress'),
   'controls' => array(
-    'name' =>  __('Social Link', 'textdomain').' #',
+    'name' =>  __('Social Link', 'jpress').' #',
     'readonly_name' => false,
     'images' => false,
   ),
   'options' => array(
-  'add_item_text' => __('New Social Link', 'textdomain'),
+  'add_item_text' => __('New Social Link', 'jpress'),
     'show_if' => array('social_enabled', '=', 'true'),
   ),
 ));
 
-$socialLinks->open_mixed_field(array('name' => __('Title', 'textdomain' )));
+$socialLinks->open_mixed_field(array('name' => __('Title', 'jpress' )));
 $socialLinks->add_field(array(
-  'name' => __( 'Enable', 'textdomain' ),
+  'name' => __( 'Enable', 'jpress' ),
   'id' => 'social_link_title',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -59,7 +59,7 @@ $socialLinks->add_field(array(
 ));
 $socialLinks->add_field(array(
   'id' => 'title',
-  'name' => __('Social Link Title', 'textdomain'),
+  'name' => __('Social Link Title', 'jpress'),
   'type' => 'text',
   'grid' => '3-of-6',
   'options' => array(
@@ -69,7 +69,7 @@ $socialLinks->add_field(array(
 $socialLinks->close_mixed_field();
 
 $socialLinks->add_field( array(
-  'name' => __('Icon', 'textdomain'),
+  'name' => __('Icon', 'jpress'),
   'id' => 'icon',
   'type' => 'icon_selector',
   'default' => '0xe95d',
@@ -85,13 +85,13 @@ $socialLinks->add_field( array(
 
 $socialLinks->add_field(array(
   'id' => 'url',
-  'name' => __('URL', 'textdomain'),
+  'name' => __('URL', 'jpress'),
   'type' => 'text',
   'grid' => '3-of-6'
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Text size option', 'textdomain' ),
+  'name' => __( 'Text size option', 'jpress' ),
   'id' => 'settingspage-textSize',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -99,15 +99,15 @@ $settings->add_field(array(
     'on_value' => 'true',
     'off_value' => 'false'
   ),
-  'desc' => __( 'Give your vistiors the ability to change the text size of the application', 'textdomain' ),
+  'desc' => __( 'Give your vistiors the ability to change the text size of the application', 'jpress' ),
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Switch between Dark/Light modes', 'textdomain' ),
+  'name' => __( 'Switch between Dark/Light modes', 'jpress' ),
   'id' => 'settingspage-darkMode',
   'type' => 'switcher',
   'default'	=>	'false',
-  'desc' => __( 'Give your vistiors the ability to switch between Dark/Light modes', 'textdomain' ),
+  'desc' => __( 'Give your vistiors the ability to switch between Dark/Light modes', 'jpress' ),
   'options' => array(
   'on_value' => 'true',
   'off_value' => 'false',
@@ -116,7 +116,7 @@ $settings->add_field(array(
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Rate application', 'textdomain' ),
+  'name' => __( 'Rate application', 'jpress' ),
   'id' => 'settingspage-rateApp',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -124,11 +124,11 @@ $settings->add_field(array(
     'on_value' => 'true',
     'off_value' => 'false'
   ),
-  'desc' => __( 'Show rate appliction button on the settings page', 'textdomain' ),
+  'desc' => __( 'Show rate appliction button on the settings page', 'jpress' ),
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Share application', 'textdomain' ),
+  'name' => __( 'Share application', 'jpress' ),
   'id' => 'local-settingspage-share',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -136,45 +136,45 @@ $settings->add_field(array(
     'on_value' => 'true',
     'off_value' => 'false'
   ),
-  'desc' => __( 'Show share appliction button on the settings page', 'textdomain' ),
+  'desc' => __( 'Show share appliction button on the settings page', 'jpress' ),
 ));
 
-$settings->open_mixed_field(array('name' => __('Share info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-share', '=', 'true'))));
+$settings->open_mixed_field(array('name' => __('Share info', 'jpress' ),'options'	=>	array('show_if' => array('local-settingspage-share', '=', 'true'))));
 
 $settings->add_field(
 array(
-  'name' => __( 'Headline', 'textdomain' ),
+  'name' => __( 'Headline', 'jpress' ),
   'id' => 'settingspage-shareApp-title',
 'type' => 'text'
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Image', 'textdomain' ),
+  'name' => __( 'Image', 'jpress' ),
   'id' => 'settingspage-shareApp-image',
   'type' => 'file',
-  'desc' => __( 'The image that will be shared with the application link', 'textdomain' ),
+  'desc' => __( 'The image that will be shared with the application link', 'jpress' ),
 ));
 
 $settings->add_field(
 array(
-  'name' => __( 'Android Link', 'textdomain' ),
+  'name' => __( 'Android Link', 'jpress' ),
   'id' => 'settingspage-shareApp-android',
 'type' => 'text'
 ));
 
 $settings->add_field(
 array(
-  'name' => __( 'iOS Link', 'textdomain' ),
+  'name' => __( 'iOS Link', 'jpress' ),
   'id' => 'settingspage-shareApp-ios',
 'type' => 'text'
 ));
 
 $settings->close_mixed_field();
 
-$settings->open_mixed_field(array('name' => __('About us', 'textdomain' )));
+$settings->open_mixed_field(array('name' => __('About us', 'jpress' )));
 
 $settings->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'local-settingspage-aboutus',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -186,7 +186,7 @@ $settings->add_field(array(
 
 $settings->add_field( array(
   'id' => 'settingspage-aboutUs',
-  'name' => __( 'About us page',   'textdomain' ),
+  'name' => __( 'About us page',   'jpress' ),
   'type' => 'select',
   'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
   'options'	=>	array(
@@ -198,7 +198,7 @@ $settings->close_mixed_field();
 
 $settings->add_field( array(
   'id' => 'settingspage-privacyPolicy',
-  'name' => __( 'Privacy page',   'textdomain' ),
+  'name' => __( 'Privacy page',   'jpress' ),
   'type' => 'select',
   'default' => get_option( 'wp_page_for_privacy_policy' ),
   'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
@@ -207,16 +207,16 @@ $settings->add_field( array(
 //  . ' ' . get_option( 'wp_page_for_privacy_policy' )
 $settings->add_field( array(
   'id' => 'settingspage-termsAndConditions',
-  'name' => __( 'Terms and conditions page',   'textdomain' ),
+  'name' => __( 'Terms and conditions page',   'jpress' ),
   'type' => 'select',
   'default' => get_option( 'wp_page_for_privacy_policy' ),
   'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
 ));
 
-$settings->open_mixed_field(array('name' => __('Contact us', 'textdomain' )));
+$settings->open_mixed_field(array('name' => __('Contact us', 'jpress' )));
 
 $settings->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'settingspage-contactus',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -227,10 +227,10 @@ $settings->add_field(array(
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Email/s', 'textdomain' ),
+  'name' => __( 'Email/s', 'jpress' ),
   'id' => 'local-settingspage-contactus',
   'type' => 'textarea',
-  'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'textdomain' ),
+  'desc' => __( 'Those emails will be the emails which will receive the contact us messages from the applications.', 'jpress' ),
   'grid' => '5-of-6',
   'default' => get_bloginfo( 'admin_email' ),
   'options' => array(
@@ -242,7 +242,7 @@ $settings->add_field(array(
 $settings->close_mixed_field();
 
 $settings->add_field(array(
-  'name' => __( 'About application', 'textdomain' ),
+  'name' => __( 'About application', 'jpress' ),
   'id' => 'local-settingspage-aboutapp',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -250,22 +250,22 @@ $settings->add_field(array(
     'on_value' => 'true',
     'off_value' => 'false'
   ),
-  'desc' => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'textdomain' ),
+  'desc' => __( 'Show about appliction page onn the settings page, which will be needed if you need to activate the development mode too', 'jpress' ),
 ));
-$settings->open_mixed_field(array('name' => __('About Info', 'textdomain' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
+$settings->open_mixed_field(array('name' => __('About Info', 'jpress' ),'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))));
 
 $settings->add_field(array(
-  'name' => __('Logo (Light)', 'textdomain' ),
+  'name' => __('Logo (Light)', 'jpress' ),
   'id' => 'settingspage-aboutapp-logo-light',
   'type' => 'file',
-  'default' => JPRESS_URL . 'assets/img/jannah-logo-light.png',
+  'default' => JPRESS_URL . 'assets/img/jpress-logo-light.svg',
 ));
 
 $settings->add_field(array(
-  'name' => __('Logo (Dark)', 'textdomain' ),
+  'name' => __('Logo (Dark)', 'jpress' ),
   'id' => 'settingspage-aboutapp-logo-dark',
   'type' => 'file',
-  'default' => JPRESS_URL . 'assets/img/jannah-logo-dark.png',
+  'default' => JPRESS_URL . 'assets/img/jpress-logo.svg',
   'options' => array(
     'show_if' => array('switch_theme_mode', '=', 'true'),
   ),
@@ -273,7 +273,7 @@ $settings->add_field(array(
 
 $settings->add_field(
 array(
-  'name' => __( 'Title', 'textdomain' ),
+  'name' => __( 'Title', 'jpress' ),
   'id' => 'settingspage-aboutapp-title',
   'type' => 'text',
   'default' => get_bloginfo( 'name' ),
@@ -281,7 +281,7 @@ array(
 
 $settings->add_field(
 array(
-  'name' => __( 'Description', 'textdomain' ),
+  'name' => __( 'Description', 'jpress' ),
   'id' => 'settingspage-aboutapp-content',
   'type' => 'textarea',
   'default' => get_bloginfo( 'description' ),
@@ -289,7 +289,7 @@ array(
 
 $settings->close_mixed_field();
 $settings->add_field(array(
-  'name' => __( 'Enable Demos', 'textdomain' ),
+  'name' => __( 'Enable Demos', 'jpress' ),
   'id' => 'settingspage-demos',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -300,13 +300,13 @@ $settings->add_field(array(
 ));
 
 $settings->open_mixed_field( array(
-  'name' => __('Development Mode', 'textdomain' ),
-  'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'textdomain' ),
+  'name' => __('Development Mode', 'jpress' ),
+  'desc' => __( 'The development mode allows you to only save changes to your mobile application and after you see the result, you can deactivate it and publish the changes to all your visitors.', 'jpress' ),
   'options'	=>	array('show_if' => array('local-settingspage-aboutapp', '=', 'true'))
 ));
 
 $settings->add_field(array(
-  'name' => __( 'Enabled', 'textdomain' ),
+  'name' => __( 'Enabled', 'jpress' ),
   'id' => 'settingspage-devmode',
   'type' => 'switcher',
   'default'	=>	'false',

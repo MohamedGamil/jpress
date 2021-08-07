@@ -70,19 +70,19 @@ foreach($data['sections'] as $key => $section) {
 
             switch($linkValue) {
               case 'MainPage.home':
-                $linkTitle = __('Home', 'textdomain' );
+                $linkTitle = __('Home', 'jpress' );
               break;
               case 'MainPage.sections':
-                $linkTitle = __('Categories', 'textdomain' );
+                $linkTitle = __('Categories', 'jpress' );
               break;
               case 'MainPage.favourites':
-                $linkTitle = __('Favorites', 'textdomain' );
+                $linkTitle = __('Favorites', 'jpress' );
               break;
               case 'MainPage.settings':
-                $linkTitle = __('Settings', 'textdomain' );
+                $linkTitle = __('Settings', 'jpress' );
               break;
               case 'MainPage.contactUs':
-                $linkTitle = __('Contact us', 'textdomain' );
+                $linkTitle = __('Contact us', 'jpress' );
               break;
             }
             break;
@@ -102,7 +102,7 @@ foreach($data['sections'] as $key => $section) {
     continue;
   }
 
-  if ($section['local-hompage_title'] == true && $section['homepage-sections-title'] != '') {
+  if (isset($section['local-hompage_title']) && $section['local-hompage_title'] == true && $section['homepage-sections-title'] != '') {
     $item['hometab'] = $data['homepage-sections-title'];
   }
 
@@ -194,8 +194,8 @@ foreach($data['sections'] as $key => $section) {
     $item['separator'] = $section['separator'];
   }
 
-  $item_options["sort"]  = $slide['local-sort'];
-  $item_options["count"] = $slide['local-count'];
+  $item_options["sort"]  = isset($slide['local-sort']) ? $slide['local-sort'] : '';
+  $item_options["count"] = isset($slide['local-count']) ? $slide['local-count'] : '';
 
   if (isset($section["options-category"]) && $section["options-category"] !== 'false') {
     $item_options["category"]  =   $section["options-category"];

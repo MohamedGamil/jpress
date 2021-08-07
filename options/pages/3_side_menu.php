@@ -14,22 +14,22 @@ defined( 'ABSPATH' ) || exit;
 // NOTE: Side-Menu Page
 $settings->open_tab_item('sidemenu');
 $jpress_sidemenu_styling = $settings->add_section( array(
-  'name' => __( 'Side Menu Styling', 'textdomain' ),
+  'name' => __( 'Side Menu Styling', 'jpress' ),
   'id' => 'section-sidemenu',
   'options' => array( 'toggle' => true )
 ));
 
-$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'textdomain' )));
+$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Background color', 'jpress' )));
 $jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_light-background',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
 ));
 
 $jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_dark-background',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
   'options' => array(
@@ -38,17 +38,17 @@ $jpress_sidemenu_styling->add_field(array(
 ));
 $jpress_sidemenu_styling->close_mixed_field();
 
-$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'textdomain' )));
+$jpress_sidemenu_styling->open_mixed_field(array('name' => __('Icon/Text color', 'jpress' )));
 $jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_light-sideMenuIconsTextColor',
-  //'name' => __( 'Light Mode', 'textdomain' ),
+  //'name' => __( 'Light Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#333739',
 ));
 
 $jpress_sidemenu_styling->add_field(array(
   'id' => 'styling-themeMode_dark-sideMenuIconsTextColor',
-  'name' => __( 'Dark Mode', 'textdomain' ),
+  'name' => __( 'Dark Mode', 'jpress' ),
   'type' => 'colorpicker',
   'default' => '#FFFFFF',
   'options' => array(
@@ -59,19 +59,19 @@ $jpress_sidemenu_styling->close_mixed_field();
 
 
 $sidemenu_items = $settings->add_section( array(
-  'name' => __( 'Side Menu Items', 'textdomain' ),
+  'name' => __( 'Side Menu Items', 'jpress' ),
   'id' => 'section-sidemenu-items',
   'options' => array( 'toggle' => true )
 ));
 
 $tabs = $sidemenu_items->add_group( array(
-  'name' => __('Menu Items', 'textdomain'),
+  'name' => __('Menu Items', 'jpress'),
   'id' => 'navigators',
   'options' => array(
-    'add_item_text' => __('New Tab', 'textdomain'),
+    'add_item_text' => __('New Tab', 'jpress'),
   ),
   'controls' => array(
-    'name' =>  __('Menu Item', 'textdomain').' #',
+    'name' =>  __('Menu Item', 'jpress').' #',
     'position' => 'left',
     'readonly_name' => true,
     'images' => false,
@@ -79,19 +79,19 @@ $tabs = $sidemenu_items->add_group( array(
 ));
 
 $tabs->add_field(array(
-  'name' => __( 'Link Type', 'textdomain' ),
+  'name' => __( 'Link Type', 'jpress' ),
   'id' => 'type',
   'type' => 'radio',
   'default' => 'NavigationType.category',
   'items' => array(
-    'NavigationType.main' => __( 'Main Page', 'textdomain' ),
-    'NavigationType.category' => __( 'Category', 'textdomain' ),
-    'NavigationType.page' => __( 'Page', 'textdomain' ),
+    'NavigationType.main' => __( 'Main Page', 'jpress' ),
+    'NavigationType.category' => __( 'Category', 'jpress' ),
+    'NavigationType.page' => __( 'Page', 'jpress' ),
   )
 ));
-$tabs->open_mixed_field(array('name' => __('Link Icon', 'textdomain' )));
+$tabs->open_mixed_field(array('name' => __('Link Icon', 'jpress' )));
 $tabs->add_field(array(
-  'name' => __( 'Enable', 'textdomain' ),
+  'name' => __( 'Enable', 'jpress' ),
   'id' => 'side_menu_tab_icon',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -101,7 +101,7 @@ $tabs->add_field(array(
   )
 ));
 $tabs->add_field( array(
-  'name' => __('Tab icon', 'textdomain'),
+  'name' => __('Tab icon', 'jpress'),
   'id' => 'icon',
   'type' => 'icon_selector',
   'default' => '0xe9f5',
@@ -117,16 +117,16 @@ $tabs->add_field( array(
 $tabs->close_mixed_field();
 
 $tabs->add_field(array(
-  'name' => __( 'Main Pages', 'textdomain' ),
+  'name' => __( 'Main Pages', 'jpress' ),
   'id' => 'main',
   'type' => 'select',
   'default' => 'MainPage.home',
   'items' => array(
-    'MainPage.home' => __( 'Home', 'textdomain' ),
-    'MainPage.sections' => __( 'Sections', 'textdomain' ),
-    'MainPage.favourites' => __( 'Favorites', 'textdomain' ),
-    'MainPage.settings' => __( 'Settings', 'textdomain' ),
-    'MainPage.contactUs' => __( 'Contact us', 'textdomain' ),
+    'MainPage.home' => __( 'Home', 'jpress' ),
+    'MainPage.sections' => __( 'Sections', 'jpress' ),
+    'MainPage.favourites' => __( 'Favorites', 'jpress' ),
+    'MainPage.settings' => __( 'Settings', 'jpress' ),
+    'MainPage.contactUs' => __( 'Contact us', 'jpress' ),
   ),
   'options' => array(
     'show_if' => array('type', '=', 'NavigationType.main'),
@@ -134,7 +134,7 @@ $tabs->add_field(array(
   'attributes' => array( 'required' => true ),
 ));
 $tabs->add_field(array(
-  'name' => __( 'Categories', 'textdomain' ),
+  'name' => __( 'Categories', 'jpress' ),
   'id' => 'category',
   'type' => 'select',
   'items' => JPressItems::terms( 'category' ),
@@ -144,7 +144,7 @@ $tabs->add_field(array(
   'attributes' => array( 'required' => true ),
 ));
 $tabs->add_field(array(
-  'name' => __( 'Pages', 'textdomain' ),
+  'name' => __( 'Pages', 'jpress' ),
   'id' => 'page',
   'type' => 'select',
   'items' => JPressItems::posts_by_post_type( 'page', array( 'posts_per_page' => -1 ) ),
@@ -154,9 +154,9 @@ $tabs->add_field(array(
   'attributes' => array( 'required' => true ),
 ));
 
-$tabs->open_mixed_field(array('name' => __('Customized Title', 'textdomain' )));
+$tabs->open_mixed_field(array('name' => __('Customized Title', 'jpress' )));
 $tabs->add_field(array(
-  'name' => __( 'Enable', 'textdomain' ),
+  'name' => __( 'Enable', 'jpress' ),
   'id' => 'cutomized_title',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -166,7 +166,7 @@ $tabs->add_field(array(
   )
 ));
 $tabs->add_field(array(
-  'name' => __( 'New Title', 'textdomain' ),
+  'name' => __( 'New Title', 'jpress' ),
   'id' => 'title',
   'type' => 'text',
   'grid' => '2-of-6',

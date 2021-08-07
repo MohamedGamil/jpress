@@ -265,7 +265,7 @@
     "contactUs": "/wp-json/wl/v1/contact-us",
     "aboutApp": {
       "aboutLogoLight": "http://appstage.tielabs.com/wp-content/plugins/jpress_plugin/img/jannah-logo-light.png",
-      "aboutLogoDark": "http://appstage.tielabs.com/wp-content/plugins/jpress_plugin/img/jannah-logo-dark.png",
+      "aboutLogoDark": "http://appstage.tielabs.com/wp-content/plugins/jpress_plugin/img/jpress-logo.svg",
       "title": "My WordPress Website",
       "content": "Just another WordPress sitern"
     },

@@ -20,11 +20,11 @@ function add_category_image($category) {
     <td> -->
 		<div style="padding-top: 10px;">
 			<div class="jpress_postbox ">
-				<h2 style="padding:0 20px"><span><?php echo __( 'JPress - Category Options', 'textdomain' );?></span></h2>
+				<h2 style="padding:0 20px"><span><?php echo __( 'JPress - Category Options', 'jpress' );?></span></h2>
 				<div class="inside">
 					<div class="jpress-category-panel">
 						<div id="category-item" class="option-item ">
-							<span class="jpress-label"><?php echo __( 'Category Image', 'textdomain' );?></span>
+							<span class="jpress-label"><?php echo __( 'Category Image', 'jpress' );?></span>
 							<input id="category" name="term_meta[custom_term_meta]" class="jpress-img-path" type="text" value="">
 							<input id="upload_category_button" type="button" class="jpress-upload-img button" value="Upload">
 							<div id="category-preview" class="img-preview" style="display:none">
@@ -60,7 +60,7 @@ function edit_category_image($category) {
 	wp_enqueue_style('category');
 	$options = array(
 		'id' => 'category-options',
-		'title' => __( 'JPress - Category Options', 'textdomain' ),
+		'title' => __( 'JPress - Category Options', 'jpress' ),
 	);
 	if (current_filter() == 'category_edit_form_fields') {
 
@@ -69,11 +69,11 @@ function edit_category_image($category) {
 		<td colspan="2">
 			<div style="padding-top: 10px;">
 				<div class="jpress_postbox ">
-					<h2 style="padding:0 20px"><span><?php echo __( 'JPress - Category Options', 'textdomain' );?></span></h2>
+					<h2 style="padding:0 20px"><span><?php echo __( 'JPress - Category Options', 'jpress' );?></span></h2>
 					<div class="inside">
 						<div class="jpress-category-panel">
 							<div id="category-item" class="option-item ">
-								<span class="jpress-label"><?php echo __( 'Category Image', 'textdomain' );?></span>
+								<span class="jpress-label"><?php echo __( 'Category Image', 'jpress' );?></span>
 								<input id="category" name="term_meta[custom_term_meta]" class="jpress-img-path" type="text" value="">
 								<input id="upload_category_button" type="button" class="jpress-upload-img button" value="Upload">
 								<input type="hidden" value="<?php echo $category->term_id; ?>" id="ajaxtestdel_postid">

@@ -93,19 +93,19 @@ if (isset($data['local_ads_after_post']) && $data['local_ads_after_post'] === 't
 
           switch($linkValue) {
             case 'MainPage.home':
-              $linkTitle = __('Home', 'textdomain' );
+              $linkTitle = __('Home', 'jpress' );
             break;
             case 'MainPage.sections':
-              $linkTitle = __('Categories', 'textdomain' );
+              $linkTitle = __('Categories', 'jpress' );
             break;
             case 'MainPage.favourites':
-              $linkTitle = __('Favorites', 'textdomain' );
+              $linkTitle = __('Favorites', 'jpress' );
             break;
             case 'MainPage.settings':
-              $linkTitle = __('Settings', 'textdomain' );
+              $linkTitle = __('Settings', 'jpress' );
             break;
             case 'MainPage.contactUs':
-              $linkTitle = __('Contact us', 'textdomain' );
+              $linkTitle = __('Contact us', 'jpress' );
             break;
           }
           break;
@@ -162,19 +162,19 @@ if (isset($data['local_ads_before_comments']) && $data['local_ads_before_comment
 
           switch($linkValue) {
             case 'MainPage.home':
-              $linkTitle = __('Home', 'textdomain' );
+              $linkTitle = __('Home', 'jpress' );
             break;
             case 'MainPage.sections':
-              $linkTitle = __('Categories', 'textdomain' );
+              $linkTitle = __('Categories', 'jpress' );
             break;
             case 'MainPage.favourites':
-              $linkTitle = __('Favorites', 'textdomain' );
+              $linkTitle = __('Favorites', 'jpress' );
             break;
             case 'MainPage.settings':
-              $linkTitle = __('Settings', 'textdomain' );
+              $linkTitle = __('Settings', 'jpress' );
             break;
             case 'MainPage.contactUs':
-              $linkTitle = __('Contact us', 'textdomain' );
+              $linkTitle = __('Contact us', 'jpress' );
             break;
           }
           break;
@@ -235,19 +235,19 @@ if (isset($data['local_ads_single_cat']) && $data['local_ads_single_cat'] === 't
 
           switch($linkValue) {
             case 'MainPage.home':
-              $linkTitle = __('Home', 'textdomain' );
+              $linkTitle = __('Home', 'jpress' );
             break;
             case 'MainPage.sections':
-              $linkTitle = __('Categories', 'textdomain' );
+              $linkTitle = __('Categories', 'jpress' );
             break;
             case 'MainPage.favourites':
-              $linkTitle = __('Favorites', 'textdomain' );
+              $linkTitle = __('Favorites', 'jpress' );
             break;
             case 'MainPage.settings':
-              $linkTitle = __('Settings', 'textdomain' );
+              $linkTitle = __('Settings', 'jpress' );
             break;
             case 'MainPage.contactUs':
-              $linkTitle = __('Contact us', 'textdomain' );
+              $linkTitle = __('Contact us', 'jpress' );
             break;
           }
           break;

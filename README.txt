@@ -41,5 +41,11 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.2 =
+* Deprecated and removed activation features from admin pages.
+
+= 1.0.1 =
+* Deprecated some activation functions.
+
+= 1.0.0 =
 * Initial Release.

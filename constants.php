@@ -13,8 +13,8 @@
  * Use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'JPRESS_VERSION', '1.0.0' );
-define( 'JPRESS_PRIORITY', 952 );
+define( 'JPRESS_VERSION', '1.0.2' );
+define( 'JPRESS_PRIORITY', 953 );
 
 
 /**
@@ -117,10 +117,16 @@ define( 'JPRESS_ENABLE_CONNECT_PAGE_IF_ACTIVE', false );
 /**
  * Enable / Disable Plugin Automatic Updates
  */
-define( 'JPRESS_ENABLE_AUTO_UPDATE', true );
+define( 'JPRESS_ENABLE_AUTO_UPDATE', false );
 
 
 /**
  * Enable / Disable License Debugging Mode
  */
-define( 'JPRESS_ENABLE_LICENSE_DEBUG_MODE', true );
+define( 'JPRESS_ENABLE_LICENSE_DEBUG_MODE', false );
+
+
+/**
+ * Enable / Disable License Debugging Mode
+ */
+define( 'JPRESS_OPTIONS_KEY', 'jpress_options' );

@@ -335,7 +335,7 @@ class AdminPage extends JPressCore {
     else {
       $options = array();
       $updated = true;
-      $updatedMessage = __('Your settings has been updated successfully', 'textdomain');
+      $updatedMessage = __('Your settings has been updated successfully', 'jpress');
       $updatedClass = 'updated';
 
       // NOTE: Apply default demo data if doing a reset with a hard reset to default options
@@ -370,37 +370,40 @@ class AdminPage extends JPressCore {
       $options = $this->_removeEmptyOptions($options);
 
       // Save settings request
-      $response = JPressAPI::save_settings($options);
+      // $response = JPressAPI::save_settings($options);
 
       $options['baseUrl'] = trailingslashit(get_home_url());
       $options['copyrights'] = JPRESS_COPYRIGHTS_URL;
       $options['validConfig'] = 'true';
 
-      update_option( 'jpress-options', $options );
+      // NOTE: No longer needed
+      update_option( JPRESS_OPTIONS_KEY, $options );
 
+      // NOTE: No longer needed
       // Parse response then update deeplinking options
-      $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
+      // $responseObject = json_decode( wp_remote_retrieve_body( $response ), true );
 
       // NOTE: Debug line
       // dd($responseObject, $options);
 
       // NOTE: Handle update response
-      if (isset($responseObject['success']) && (bool) $responseObject['success'] === true) {
-        $this->_updateDeeplinkingOptions( $responseObject );
+      // $this->_updateDeeplinkingOptions( $responseObject );
 
-        if ( isset($responseObject['version']) && $newVersion = (int) $responseObject['version'] ) {
-          update_option( 'jpress-version', $newVersion, false );
-        }
-      }
+      // if ( isset($responseObject['version']) && $newVersion = (int) $responseObject['version'] ) {
+      //   update_option( 'jpress-version', $newVersion, false );
+      // }
+
+      // if (isset($responseObject['success']) && (bool) $responseObject['success'] === true) {
+      // }
 
       // NOTE: Reset & invalidate license key / status
-      else {
-        jpress_invalidate_license(true);
-        $updated = false;
-      }
+      // else {
+      //   jpress_invalidate_license(true);
+      //   $updated = false;
+      // }
 
       if ( $updated === false ) {
-        $updatedMessage = __('Error! Unable to completely save your settings, please check your license key and plan limits.', 'textdomain');
+        $updatedMessage = __('Error! Unable to completely save your settings, please check your license key and plan limits.', 'jpress');
         $updatedClass = 'error';
       }
 

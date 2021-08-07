@@ -274,28 +274,28 @@ class JPressItems {
   */
   public static function line_height( $more_items = array() ){
       $items = array(
-          '' => __( 'Default',   'textdomain' ),
-          '1' => __( '1',   'textdomain' ),
-          '1.25' => __( '1.25',   'textdomain' ),
-          '1.5' => __( '1.5',   'textdomain' ),
-          '1.75' => __( '1.75',   'textdomain' ),
-          '2' => __( '2',   'textdomain' ),
-          '2.25' => __( '2.25',   'textdomain' ),
-          '2.5' => __( '2.5',   'textdomain' ),
-          '2.75' => __( '2.75',   'textdomain' ),
-          '3' => __( '3',   'textdomain' ),
-          '3.25' => __( '3.25',   'textdomain' ),
-          '3.5' => __( '3.5',   'textdomain' ),
-          '3.75' => __( '3.75',   'textdomain' ),
-          '4' => __( '4',   'textdomain' ),
-          '4.25' => __( '4.25',   'textdomain' ),
-          '4.5' => __( '4.5',   'textdomain' ),
-          '4.75' => __( '4.75',   'textdomain' ),
-          '5' => __( '5',   'textdomain' ),
-          '5.25' => __( '5.25',   'textdomain' ),
-          '5.50' => __( '5.50',   'textdomain' ),
-          '5.75' => __( '5.75',   'textdomain' ),
-          '6' => __( '6',   'textdomain' ),
+          '' => __( 'Default',   'jpress' ),
+          '1' => __( '1',   'jpress' ),
+          '1.25' => __( '1.25',   'jpress' ),
+          '1.5' => __( '1.5',   'jpress' ),
+          '1.75' => __( '1.75',   'jpress' ),
+          '2' => __( '2',   'jpress' ),
+          '2.25' => __( '2.25',   'jpress' ),
+          '2.5' => __( '2.5',   'jpress' ),
+          '2.75' => __( '2.75',   'jpress' ),
+          '3' => __( '3',   'jpress' ),
+          '3.25' => __( '3.25',   'jpress' ),
+          '3.5' => __( '3.5',   'jpress' ),
+          '3.75' => __( '3.75',   'jpress' ),
+          '4' => __( '4',   'jpress' ),
+          '4.25' => __( '4.25',   'jpress' ),
+          '4.5' => __( '4.5',   'jpress' ),
+          '4.75' => __( '4.75',   'jpress' ),
+          '5' => __( '5',   'jpress' ),
+          '5.25' => __( '5.25',   'jpress' ),
+          '5.50' => __( '5.50',   'jpress' ),
+          '5.75' => __( '5.75',   'jpress' ),
+          '6' => __( '6',   'jpress' ),
       );
       return Functions::nice_array_merge( $more_items, $items );
   }
@@ -307,16 +307,16 @@ class JPressItems {
   */
   public static function font_weight( $more_items = array() ){
       $items = array(
-          '' => __( 'Default',   'textdomain' ),
-          'FontWeight.w100' => __( 'Thin 100',   'textdomain' ),
-          'FontWeight.w200' => __( 'Extra 200 Light',   'textdomain' ),
-          'FontWeight.w300' => __( 'Light 300',   'textdomain' ),
-          'FontWeight.w400' => __( 'Regular 400',   'textdomain' ),
-          'FontWeight.w500' => __( 'Medium 500',   'textdomain' ),
-          'FontWeight.w600' => __( 'Semi 600 Bold',   'textdomain' ),
-          'FontWeight.w700' => __( 'Bold 700',   'textdomain' ),
-          'FontWeight.w800' => __( 'Extra 800 Bold',   'textdomain' ),
-          'FontWeight.w900' => __( 'Black 900',   'textdomain' ),
+          '' => __( 'Default',   'jpress' ),
+          'FontWeight.w100' => __( 'Thin 100',   'jpress' ),
+          'FontWeight.w200' => __( 'Extra 200 Light',   'jpress' ),
+          'FontWeight.w300' => __( 'Light 300',   'jpress' ),
+          'FontWeight.w400' => __( 'Regular 400',   'jpress' ),
+          'FontWeight.w500' => __( 'Medium 500',   'jpress' ),
+          'FontWeight.w600' => __( 'Semi 600 Bold',   'jpress' ),
+          'FontWeight.w700' => __( 'Bold 700',   'jpress' ),
+          'FontWeight.w800' => __( 'Extra 800 Bold',   'jpress' ),
+          'FontWeight.w900' => __( 'Black 900',   'jpress' ),
       );
       return Functions::nice_array_merge( $more_items, $items );
   }
@@ -328,7 +328,7 @@ class JPressItems {
   */
   public static function font_size( $more_items = array() ){
       $items = array(
-          '' => __( 'Default',   'textdomain' ),
+          '' => __( 'Default',   'jpress' ),
           '8' => '8',
           '9' => '9',
           '10' => '10',
@@ -383,10 +383,10 @@ class JPressItems {
   */
   public static function text_transform( $more_items = array() ){
       $items = array(
-          '' => __( 'Default',   'textdomain' ),
-          'uppercase' => __( 'UPPERCASE',   'textdomain' ),
-          'lowercase' => __( 'lowercase',   'textdomain' ),
-          'capitalize' => __( 'Capitalize',   'textdomain' ),
+          '' => __( 'Default',   'jpress' ),
+          'uppercase' => __( 'UPPERCASE',   'jpress' ),
+          'lowercase' => __( 'lowercase',   'jpress' ),
+          'capitalize' => __( 'Capitalize',   'jpress' ),
       );
       return Functions::nice_array_merge( $more_items, $items );
   }

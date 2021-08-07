@@ -31,8 +31,8 @@ $options['styling']['ThemeMode.light']['dividerColor'] = $data['styling-themeMod
 $options['styling']['ThemeMode.light']['inputsbackgroundcolor'] = $data['styling-themeMode_light-inputsbackgroundcolor'];
 $options['styling']['ThemeMode.light']['buttonsbackgroudcolor'] = $data['styling-themeMode_light-buttonsbackgroudcolor'];
 $options['styling']['ThemeMode.light']['buttonTextColor'] = $data['styling-themeMode_light-buttonTextColor'];
-$options['styling']['ThemeMode.light']['settingBackgroundColor'] = $data['styling-themeMode_light-settingBackgroundColor'];
-$options['styling']['ThemeMode.light']['settingTextColor'] = $data['styling-themeMode_light-settingTextColor'];
+$options['styling']['ThemeMode.light']['settingBackgroundColor'] = isset($data['styling-themeMode_light-settingBackgroundColor']) ? $data['styling-themeMode_light-settingBackgroundColor'] : '';
+$options['styling']['ThemeMode.light']['settingTextColor'] = isset($data['styling-themeMode_light-settingTextColor']) ? $data['styling-themeMode_light-settingTextColor'] : '';
 $options['styling']['ThemeMode.light']['errorColor'] =  $data['styling-themeMode_light-errorcolor'];
 $options['styling']['ThemeMode.light']['successColor'] = $data['styling-themeMode_light-successcolor'];
 
@@ -58,8 +58,8 @@ if (isset($data['switch_theme_mode']) && $data['switch_theme_mode'] !== 'false')
   $options['styling']['ThemeMode.dark']['inputsbackgroundcolor'] = $data['styling-themeMode_dark-inputsbackgroundcolor'];
   $options['styling']['ThemeMode.dark']['buttonsbackgroudcolor'] = $data['styling-themeMode_dark-buttonsbackgroudcolor'];
   $options['styling']['ThemeMode.dark']['buttonTextColor'] = $data['styling-themeMode_dark-buttonTextColor'];
-  $options['styling']['ThemeMode.dark']['settingBackgroundColor'] = $data['styling-themeMode_dark-settingBackgroundColor'];
-  $options['styling']['ThemeMode.dark']['settingTextColor'] = $data['styling-themeMode_dark-settingTextColor'];
+  $options['styling']['ThemeMode.dark']['settingBackgroundColor'] = isset($data['styling-themeMode_dark-settingBackgroundColor']) ? $data['styling-themeMode_dark-settingBackgroundColor'] : '';
+  $options['styling']['ThemeMode.dark']['settingTextColor'] = isset($data['styling-themeMode_dark-settingTextColor']) ? $data['styling-themeMode_dark-settingTextColor'] : '';
   $options['styling']['ThemeMode.dark']['errorColor'] = $data['styling-themeMode_dark-errorcolor'];
   $options['styling']['ThemeMode.dark']['successColor'] = $data['styling-themeMode_dark-successcolor'];
 }

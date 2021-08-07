@@ -15,14 +15,14 @@ defined( 'ABSPATH' ) || exit;
 $settings->open_tab_item('archives');
 
 $archives_single = $settings->add_section( array(
-  'name' => __( 'Single Post Settings', 'textdomain' ),
+  'name' => __( 'Single Post Settings', 'jpress' ),
   'id' => 'section-archives-single',
   'options' => array( 'toggle' => true )
 ));
 
-$archives_single->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+$archives_single->open_mixed_field(array('name' => __('Advanced Settings', 'jpress' )));
 $archives_single->add_field(array(
-  'name' => __( 'Author', 'textdomain' ),
+  'name' => __( 'Author', 'jpress' ),
   'id' => 'archives-single-options-author',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -32,7 +32,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Catgeory', 'textdomain' ),
+  'name' => __( 'Catgeory', 'jpress' ),
   'id' => 'archives-single-options-category',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -42,7 +42,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'tags', 'textdomain' ),
+  'name' => __( 'tags', 'jpress' ),
   'id' => 'archives-single-options-tags',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -52,7 +52,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'archives-single-options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -62,7 +62,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'archives-single-options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -72,7 +72,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'archives-single-options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -82,7 +82,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'archives-single-options-share',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -92,7 +92,7 @@ $archives_single->add_field(array(
   )
 ));
 $archives_single->add_field(array(
-  'name' => __( 'Text to Speech', 'textdomain' ),
+  'name' => __( 'Text to Speech', 'jpress' ),
   'id' => 'archives-single-options-tts',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -104,13 +104,13 @@ $archives_single->add_field(array(
 $archives_single->close_mixed_field();
 
 $archives_categories = $settings->add_section( array(
-  'name' => __( 'Categories List Page Settings', 'textdomain' ),
+  'name' => __( 'Categories List Page Settings', 'jpress' ),
   'id' => 'section-archives-categories',
   'options' => array( 'toggle' => true )
 ));
 $archives_categories->add_field( array(
   'id' => 'archives-categories-postlayout',
-  'name' => __( 'Categories Page Layout', 'textdomain' ),
+  'name' => __( 'Categories Page Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'CategoriesLayout.cat1',
   'items' => array(
@@ -126,13 +126,13 @@ $archives_categories->add_field( array(
 ));
 
 $archives_category = $settings->add_section( array(
-  'name' => __( 'Single Category Page Settings', 'textdomain' ),
+  'name' => __( 'Single Category Page Settings', 'jpress' ),
   'id' => 'section-archives-category',
   'options' => array( 'toggle' => true )
 ));
 $archives_category->add_field( array(
   'id' => 'archives-category-postlayout',
-  'name' => __( 'Single Category Posts Layout', 'textdomain' ),
+  'name' => __( 'Single Category Posts Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.startThumbPost',
   'items' => array(
@@ -152,39 +152,39 @@ $archives_category->add_field( array(
   ),
 ));
 $archives_category->add_field(array(
-  'name' => __( 'Sort Order', 'textdomain' ),
+  'name' => __( 'Sort Order', 'jpress' ),
   'id' => 'local-archives-category-sort',
   'type' => 'select',
   'default' => 'latest',
   'items' => array(
-    'latest' => __( 'Recent Posts', 'textdomain' ),
-    // 'rand' => __( 'Random Posts', 'textdomain' ),
-    'modified' => __( 'Last Modified Posts', 'textdomain' ),
-    'comment_count' => __( 'Most Commented posts', 'textdomain' ),
-    'title' => __( 'Alphabetically', 'textdomain' ),
+    'latest' => __( 'Recent Posts', 'jpress' ),
+    // 'rand' => __( 'Random Posts', 'jpress' ),
+    'modified' => __( 'Last Modified Posts', 'jpress' ),
+    'comment_count' => __( 'Most Commented posts', 'jpress' ),
+    'title' => __( 'Alphabetically', 'jpress' ),
   )
 ));
 $archives_category->add_field(array(
-  'name' => __( 'Number of posts to show', 'textdomain' ),
+  'name' => __( 'Number of posts to show', 'jpress' ),
   'id' => 'local-archives-category-count',
   'type' => 'select',
   'default' => '10',
   'items' => array(
-    '1' => __( '1 Post', 'textdomain' ),
-    '2' => __( '2 Posts', 'textdomain' ),
-    '3' => __( '3 Posts', 'textdomain' ),
-    '4' => __( '4 Posts', 'textdomain' ),
-    '5' => __( '5 Posts', 'textdomain' ),
-    '6' => __( '6 Posts', 'textdomain' ),
-    '7' => __( '7 Posts', 'textdomain' ),
-    '8' => __( '8 Posts', 'textdomain' ),
-    '9' => __( '9 Posts', 'textdomain' ),
-    '10' => __( '10 Posts', 'textdomain' ),
+    '1' => __( '1 Post', 'jpress' ),
+    '2' => __( '2 Posts', 'jpress' ),
+    '3' => __( '3 Posts', 'jpress' ),
+    '4' => __( '4 Posts', 'jpress' ),
+    '5' => __( '5 Posts', 'jpress' ),
+    '6' => __( '6 Posts', 'jpress' ),
+    '7' => __( '7 Posts', 'jpress' ),
+    '8' => __( '8 Posts', 'jpress' ),
+    '9' => __( '9 Posts', 'jpress' ),
+    '10' => __( '10 Posts', 'jpress' ),
   )
 ));
-$archives_category->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+$archives_category->open_mixed_field(array('name' => __('Advanced Settings', 'jpress' )));
 $archives_category->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'archives-category-options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -194,7 +194,7 @@ $archives_category->add_field(array(
   )
 ));
 $archives_category->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'archives-category-options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -204,7 +204,7 @@ $archives_category->add_field(array(
   )
 ));
 $archives_category->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'archives-category-options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -214,7 +214,7 @@ $archives_category->add_field(array(
   )
 ));
 $archives_category->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'archives-category-options-share',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -226,13 +226,13 @@ $archives_category->add_field(array(
 $archives_category->close_mixed_field();
 
 $archives_search = $settings->add_section( array(
-  'name' => __( 'Search Page Settings', 'textdomain' ),
+  'name' => __( 'Search Page Settings', 'jpress' ),
   'id' => 'section-archives-search',
   'options' => array( 'toggle' => true )
 ));
 $archives_search->add_field( array(
   'id' => 'archives-search-postlayout',
-  'name' => __( 'Search Page Posts Layout', 'textdomain' ),
+  'name' => __( 'Search Page Posts Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.startThumbPost',
   'items' => array(
@@ -252,39 +252,39 @@ $archives_search->add_field( array(
   ),
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Sort Order', 'textdomain' ),
+  'name' => __( 'Sort Order', 'jpress' ),
   'id' => 'local-archives-search-sort',
   'type' => 'select',
   'default' => 'latest',
   'items' => array(
-    'latest' => __( 'Recent Posts', 'textdomain' ),
-    // 'rand' => __( 'Random Posts', 'textdomain' ),
-    'modified' => __( 'Last Modified Posts', 'textdomain' ),
-    'comment_count' => __( 'Most Commented posts', 'textdomain' ),
-    'title' => __( 'Alphabetically', 'textdomain' ),
+    'latest' => __( 'Recent Posts', 'jpress' ),
+    // 'rand' => __( 'Random Posts', 'jpress' ),
+    'modified' => __( 'Last Modified Posts', 'jpress' ),
+    'comment_count' => __( 'Most Commented posts', 'jpress' ),
+    'title' => __( 'Alphabetically', 'jpress' ),
   )
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Number of posts to show', 'textdomain' ),
+  'name' => __( 'Number of posts to show', 'jpress' ),
   'id' => 'local-archives-search-count',
   'type' => 'select',
   'default' => '10',
   'items' => array(
-    '1' => __( '1 Post', 'textdomain' ),
-    '2' => __( '2 Posts', 'textdomain' ),
-    '3' => __( '3 Posts', 'textdomain' ),
-    '4' => __( '4 Posts', 'textdomain' ),
-    '5' => __( '5 Posts', 'textdomain' ),
-    '6' => __( '6 Posts', 'textdomain' ),
-    '7' => __( '7 Posts', 'textdomain' ),
-    '8' => __( '8 Posts', 'textdomain' ),
-    '9' => __( '9 Posts', 'textdomain' ),
-    '10' => __( '10 Posts', 'textdomain' ),
+    '1' => __( '1 Post', 'jpress' ),
+    '2' => __( '2 Posts', 'jpress' ),
+    '3' => __( '3 Posts', 'jpress' ),
+    '4' => __( '4 Posts', 'jpress' ),
+    '5' => __( '5 Posts', 'jpress' ),
+    '6' => __( '6 Posts', 'jpress' ),
+    '7' => __( '7 Posts', 'jpress' ),
+    '8' => __( '8 Posts', 'jpress' ),
+    '9' => __( '9 Posts', 'jpress' ),
+    '10' => __( '10 Posts', 'jpress' ),
   )
 ));
-$archives_search->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+$archives_search->open_mixed_field(array('name' => __('Advanced Settings', 'jpress' )));
 $archives_search->add_field(array(
-  'name' => __( 'Catgeory', 'textdomain' ),
+  'name' => __( 'Catgeory', 'jpress' ),
   'id' => 'archives-search-options-category',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -294,7 +294,7 @@ $archives_search->add_field(array(
   )
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'archives-search-options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -304,7 +304,7 @@ $archives_search->add_field(array(
   )
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'archives-search-options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -314,7 +314,7 @@ $archives_search->add_field(array(
   )
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'archives-search-options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -324,7 +324,7 @@ $archives_search->add_field(array(
   )
 ));
 $archives_search->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'archives-search-options-share',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -336,13 +336,13 @@ $archives_search->add_field(array(
 $archives_search->close_mixed_field();
 
 $archives_favorites = $settings->add_section( array(
-  'name' => __( 'Favorites Page Settings', 'textdomain' ),
+  'name' => __( 'Favorites Page Settings', 'jpress' ),
   'id' => 'section-archives-favorites',
   'options' => array( 'toggle' => true )
 ));
 $archives_favorites->add_field( array(
   'id' => 'archives-favorites-postlayout',
-  'name' => __( 'Favorites Page Posts Layout', 'textdomain' ),
+  'name' => __( 'Favorites Page Posts Layout', 'jpress' ),
   'type' => 'image_selector',
   'default' => 'PostLayout.startThumbPost',
   'items' => array(
@@ -362,39 +362,39 @@ $archives_favorites->add_field( array(
   ),
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Sort Order', 'textdomain' ),
+  'name' => __( 'Sort Order', 'jpress' ),
   'id' => 'local-archives-favorites-sort',
   'type' => 'select',
   'default' => 'latest',
   'items' => array(
-    'latest' => __( 'Recent Posts', 'textdomain' ),
-    // 'rand' => __( 'Random Posts', 'textdomain' ),
-    'modified' => __( 'Last Modified Posts', 'textdomain' ),
-    'comment_count' => __( 'Most Commented posts', 'textdomain' ),
-    'title' => __( 'Alphabetically', 'textdomain' ),
+    'latest' => __( 'Recent Posts', 'jpress' ),
+    // 'rand' => __( 'Random Posts', 'jpress' ),
+    'modified' => __( 'Last Modified Posts', 'jpress' ),
+    'comment_count' => __( 'Most Commented posts', 'jpress' ),
+    'title' => __( 'Alphabetically', 'jpress' ),
   )
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Number of posts to show', 'textdomain' ),
+  'name' => __( 'Number of posts to show', 'jpress' ),
   'id' => 'local-archives-favorites-count',
   'type' => 'select',
   'default' => '10',
   'items' => array(
-    '1' => __( '1 Post', 'textdomain' ),
-    '2' => __( '2 Posts', 'textdomain' ),
-    '3' => __( '3 Posts', 'textdomain' ),
-    '4' => __( '4 Posts', 'textdomain' ),
-    '5' => __( '5 Posts', 'textdomain' ),
-    '6' => __( '6 Posts', 'textdomain' ),
-    '7' => __( '7 Posts', 'textdomain' ),
-    '8' => __( '8 Posts', 'textdomain' ),
-    '9' => __( '9 Posts', 'textdomain' ),
-    '10' => __( '10 Posts', 'textdomain' ),
+    '1' => __( '1 Post', 'jpress' ),
+    '2' => __( '2 Posts', 'jpress' ),
+    '3' => __( '3 Posts', 'jpress' ),
+    '4' => __( '4 Posts', 'jpress' ),
+    '5' => __( '5 Posts', 'jpress' ),
+    '6' => __( '6 Posts', 'jpress' ),
+    '7' => __( '7 Posts', 'jpress' ),
+    '8' => __( '8 Posts', 'jpress' ),
+    '9' => __( '9 Posts', 'jpress' ),
+    '10' => __( '10 Posts', 'jpress' ),
   )
 ));
-$archives_favorites->open_mixed_field(array('name' => __('Advanced Settings', 'textdomain' )));
+$archives_favorites->open_mixed_field(array('name' => __('Advanced Settings', 'jpress' )));
 $archives_favorites->add_field(array(
-  'name' => __( 'Catgeory', 'textdomain' ),
+  'name' => __( 'Catgeory', 'jpress' ),
   'id' => 'archives-favorites-options-category',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -404,7 +404,7 @@ $archives_favorites->add_field(array(
   )
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Read Time', 'textdomain' ),
+  'name' => __( 'Read Time', 'jpress' ),
   'id' => 'archives-favorites-options-readtime',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -414,7 +414,7 @@ $archives_favorites->add_field(array(
   )
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Created Date', 'textdomain' ),
+  'name' => __( 'Created Date', 'jpress' ),
   'id' => 'archives-favorites-options-date',
   'type' => 'switcher',
   'default'	=>	'false',
@@ -424,7 +424,7 @@ $archives_favorites->add_field(array(
   )
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Favorite', 'textdomain' ),
+  'name' => __( 'Favorite', 'jpress' ),
   'id' => 'archives-favorites-options-save',
   'type' => 'switcher',
   'default'	=>	'true',
@@ -434,7 +434,7 @@ $archives_favorites->add_field(array(
   )
 ));
 $archives_favorites->add_field(array(
-  'name' => __( 'Share', 'textdomain' ),
+  'name' => __( 'Share', 'jpress' ),
   'id' => 'archives-favorites-options-share',
   'type' => 'switcher',
   'default'	=>	'true',
