@@ -544,18 +544,15 @@ class Functions {
   | Comprueba si un archivo rfemoto existe
   |---------------------------------------------------------------------------------------------------
   */
-  public static function remote_file_exists( $url = '' ) {
-    $ch = curl_init( $url );
+  public static function remote_file_exists( $url = '', $http_verb = 'GET', $verify_ssl = true ) {
+    $fn = strtolower($http_verb) === 'get' ? 'wp_remote_get' : 'wp_remote_post';
+    $headers = array( 'sslverify' => $verify_ssl );
+    $req = $fn( $url, $headers );
+    $content = wp_remote_retrieve_body($req);
+    $http_code = wp_remote_retrieve_response_code($req);
 
-    curl_setopt( $ch, CURLOPT_NOBODY, true );
-    curl_exec( $ch );
-
-    $http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-
-    curl_close( $ch );
-
-    if ( $http_code == 200 ) {
-      return true;
+    if ( is_wp_error( $req ) === false && $http_code === 200 ) {
+      return $content;
     }
 
     return false;

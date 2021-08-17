@@ -171,9 +171,6 @@ class JPressAPI {
       )
     );
 
-    // NOTE: Debug line
-    // dd($endpoint, $opts);
-
     return wp_remote_post( JPRESS_STORE_URL . $endpoint, $opts );
   }
 }

@@ -82,19 +82,19 @@ class Importer {
 
                 //Import Wp Content
                 if( file_exists( $import_wp_content ) ){
-                    echo '<h2>Importing wordpress data from local file, please wait ...</h2>';
-                    $this->set_wp_content_data( $import_wp_content );
-                } else if( Functions::remote_file_exists( $import_wp_content ) ){
-                    $file_content = file_get_contents( $import_wp_content );
-                    if( $file_content !== false ){
-                        if( false !== file_put_contents( JPRESS_DIR . 'wp-content-data.xml', $file_content ) ){
-                            echo '<h2>Importing wordpress data from remote file, please wait ...</h2>';
-                            //echo '<div class="wp-import-messages">';
-                            $this->set_wp_content_data( JPRESS_DIR . 'wp-content-data.xml' );
-                            unlink( JPRESS_DIR . 'wp-content-data.xml' );
-                            //echo '</div>';
-                        }
-                    }
+                  echo '<h2>Importing wordpress data from local file, please wait ...</h2>';
+                  $this->set_wp_content_data( $import_wp_content );
+                }
+                elseif ( ($file_content = Functions::remote_file_exists( $import_wp_content )) ) {
+                  if ( $file_content !== false ) {
+                      if( false !== file_put_contents( JPRESS_DIR . 'wp-content-data.xml', $file_content ) ){
+                          echo '<h2>Importing wordpress data from remote file, please wait ...</h2>';
+                          //echo '<div class="wp-import-messages">';
+                          $this->set_wp_content_data( JPRESS_DIR . 'wp-content-data.xml' );
+                          unlink( JPRESS_DIR . 'wp-content-data.xml' );
+                          //echo '</div>';
+                      }
+                  }
                 }
 
                 //Import Wp Widget

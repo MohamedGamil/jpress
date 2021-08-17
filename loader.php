@@ -73,9 +73,6 @@ class JPressLoader
 		// Includes
 		$this->includes();
 
-		// Automatic Updates
-		$this->autoUpdateInit();
-
 		// JPress generic initialization
 		$this->jpress_core_init();
 
@@ -132,19 +129,6 @@ class JPressLoader
 		include JPRESS_INCLUDES_DIR . 'class-jpress.php';
 		include JPRESS_INCLUDES_DIR . 'class-jpress-items.php';
 		include JPRESS_INCLUDES_DIR . 'global-functions.php';
-	}
-
-	/**
-   * Automatic updates initialization
-   *
-   * @since 0.2.7
-   * @return void
-   */
-	public function autoUpdateInit() {
-    include JPRESS_INCLUDES_DIR . 'class-jpress-auto-update.php';
-
-    // Run the updater
-    JPress_Automatic_Updates::run();
 	}
 
 	/*
