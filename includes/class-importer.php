@@ -125,29 +125,24 @@ class Importer {
     |---------------------------------------------------------------------------------------------------
     */
     public function set_wp_content_data( $file ){
-        if( ! defined( 'WP_LOAD_IMPORTERS' ) ) define( 'WP_LOAD_IMPORTERS', true );
+      if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
+        define( 'WP_LOAD_IMPORTERS', true );
+      }
 
-        $importer_error = false;
-        if( ! class_exists( '\WP_Import' ) ){
-            $class_wp_import = JPRESS_DIR . 'libs/wordpress-importer/wordpress-importer.php';
-            if( file_exists( $class_wp_import ) ){
-                require_once $class_wp_import;
-            } else{
-                $importer_error = true;
-            }
-        }
+      $importer_error = ! class_exists( '\WP_Import' );
 
-        if( $importer_error ){
-            die( "Error on import" );
+      if ( $importer_error ) {
+        die( "Error on import" );
+      }
+      else {
+        if( is_file( $file ) && class_exists( '\WP_Import' ) ){
+          $wp_import = new \WP_Import();
+          $wp_import->fetch_attachments = true;
+          $wp_import->import( $file );
         } else{
-            if( is_file( $file ) && class_exists( '\WP_Import' ) ){
-                $wp_import = new \WP_Import();
-                $wp_import->fetch_attachments = true;
-                $wp_import->import( $file );
-            } else{
-                echo "The XML file containing the dummy content is not available or could not be read .. You might want to try to set the file permission to chmod 755.<br/>If this doesn't work please use the Wordpress importer and import the XML file (should be located in your download .zip: Sample Content folder) manually";
-            }
+          echo "The XML file containing the dummy content is not available or could not be read .. You might want to try to set the file permission to chmod 755.<br/>If this doesn't work please use the Wordpress importer and import the XML file (should be located in your download .zip: Sample Content folder) manually";
         }
+      }
     }
 
     /*
