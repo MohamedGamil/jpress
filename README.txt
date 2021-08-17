@@ -39,6 +39,12 @@ The plugin comes with a user-friendly settings administration interface, if you 
 
 == Changelog ==
 
+= 1.0.4 =
+* Fix issue of "Tested Up To Value is Out of Date, Invalid, or Missing".
+* Fix issue of "Incorrect Stable Tag".
+* Fix issue of "Including An Update Checker".
+* Fix issue of "Using CURL Instead of HTTP API".
+
 = 1.0.3 =
 * Source code cleanup.
 * Fix author and plugin URLs.
