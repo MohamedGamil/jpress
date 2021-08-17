@@ -44,6 +44,7 @@ The plugin comes with a user-friendly settings administration interface, if you 
 * Fix issue of "Incorrect Stable Tag".
 * Fix issue of "Including An Update Checker".
 * Fix issue of "Using CURL Instead of HTTP API".
+* Removed wordpress importer library.
 
 = 1.0.3 =
 * Source code cleanup.
